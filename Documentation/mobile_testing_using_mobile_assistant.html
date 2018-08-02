@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="mobile_testing.html">
+            <span itemprop="name">モバイルテスト</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="mobile_testing_using_mobile_assistant.html">
+            <span itemprop="name">Burp Suiteモバイルアシスタントの使い方</span>
+            <meta itemprop="position" content="4"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>Burp Suiteモバイルアシスタントの使い方</h1>
+        <p>
+            Burp Suiteモバイルアシスタントは、他のアプリと同様にデバイス上で起動できます。アプリのアイコンをタップするだけで起動します。
+        </p>
+        <a name="routing"></a>
+        <h2>Burp Suiteを経由するようトラフィックをルーティング</h2>
+        <p>
+            Burpインスタンスが実行中で、モバイルデバイスからネットワークアクセスできるか確認してください。
+        </p>
+        <p>
+            Burp Suiteモバイルアシスタントでは、接続するBurp Suiteのホストとポートの設定、設定されたインスタンスからCA証明書をインストール、デバイスのプロキシーとして有効化が可能です。
+        </p>
+        <p>
+            設定を確認するためにテストの実行もできます。テストでは、次のチェックが行われます:
+        </p>
+        <ul>
+            <li>
+                ネットワーク接続 - デバイスが特定のホストとポートに接続できるかどうか表示します。
+            </li>
+            <li>
+                Burpの検証 - 指定されたホストとポートでリッスンしているサービスが、Burp Suiteのインスタンスかどうか表示します。
+            </li>
+            <li>
+                CA証明書のインストール - 設定されたBurp Suiteのインストタンスで使われているCA証明書が、デバイスで信頼されているかどうか表示します。
+            </li>
+            <li>
+                プロキシーが有効か - HTTPとHTTPS接続が、指定されたホストとポートにプロキシーされるよう、デバイスが設定されているかどうか表示します。
+            </li>
+        </ul>
+        <div class="rounded-corner-box">
+            <p>
+                <strong>注:</strong> モバイルアシスタントによるプロキシー設定変更は一時的なもので、再起動すると元に戻ります。iOSバージョン9.0以降の端末では、モバイルアシスタントを使用してプロキシー設定を変更しても、iOS設定アプリに反映されません。インストールされたBurpのCA証明書は、再起動しても元に戻されません。
+            </p>
+        </div>
+        <a name="bypassingcertpinning"></a>
+        <h2>証明書ピニングの回避</h2>
+        <p>
+            証明書ピニングは、悪意のある攻撃者による信頼されたサーバーの偽装から守るために、アプリが使用する手法です。ここでのピニングとは、正当な証明書の信頼できるローカルコピーに対して、(SSL証明書の形式でリモートサーバーから提供される)ホストのIDを認証する処理を指します。したがって、アプリが期待したIDとサーバーの証明書が一致してそのIDを認証できた場合のみ、リモートサーバーとの接続が確立されます。
+        </p>
+        <p>
+            Burpはデフォルトで、ホストごとの証明書を、自己署名のCA証明書で署名し生成します。デバイスにはこのような証明書を信頼させられますが、アプリが期待しているピニングされた証明書とは一致しません。その結果、HTTPトラフィックをプロキシーするよう適切にデバイスが設定されていても、証明書のピニングがされていると、そのようなアプリによって生成されたトラフィックをBurpがインターセプトした診断ができなくなります。
+        </p>
+        <p>
+            Burp Suiteモバイルアシスタントには、低レベルのシステムAPIをフックして証明書ピニングを無効化する処理を挿入する機能があり、証明書のピニングが実装されていてもBurp Suiteを使用したトラフィックのインターセプトができます。
+        </p>
+        <p>
+            証明書ピニングは、システムAPI、サードパーティーのライブラリ、カスタムコードを使用するなど様々な方法で実装されています。Burp Suiteモバイルアシスタントは低レベルのシステムAPIをフックするので、大抵のアプリで成功します。しかし場合によっては、アプリへの挿入が成功していてもピニングが無効にならない場合があり、アプリがカスタムコードを使用した証明書ピニングをしていることを示しています。
+        </p>
+        <div class="rounded-corner-box">
+            <p>
+                <strong>注:</strong> 現在のところ、モバイルアシスタントの証明書ピニングバイパス機能は、iOSバージョン10をサポートしていません。
+            </p>
+        </div>
+        <a name="bypassingcertpinning_addinginjectedapps"></a>
+        <h3>挿入されたアプリの追加</h3>
+        <p>
+            "挿入されたアプリを追加"をタップすると、<a href="#bypassingcertpinning_injectedappslist">挿入アプリ一覧</a>にアイテムを追加できます。挿入アプリ一覧のいずれかに一致する場合、アプリに証明書ピニングバイパスが挿入されます。
+        </p>
+        <p>
+            追加メニューには、ユーザーアプリとシステムアプリのリストが表示され、これらのアプリを個別に選択して挿入できます。
+        </p>
+        <p>
+            上級ユーザーは、一連の関連アプリにまとめて挿入したいでしょう。これは、高度なフィルターを追加すると実現できます。次の種類のフィルターを使用できます:
+        <ul>
+            <li>
+                実行ファイル: 実行可能ファイルの名前がフィルターの値と一致する全てのアプリにマッチします。
+            </li>
+            <li>
+                バンドルID: 指定したバンドルIDに一致する、またはそのバンドルIDのフレームワークに依存する全てのアプリにマッチします。例えばcom.apple.UIKitでフィルターするとGUIを持つアプリにマッチし、com.apple.Securityでフィルターすると全てのアプリにマッチします。
+            </li>
+            <li>
+                クラス: フィルター値と一致する名前のクラスを実装した全てのアプリにマッチします。
+            </li>
+        </ul>
+        </p>
+        <a name="bypassingcertpinning_injectedappslist"></a>
+        <h3>挿入アプリ一覧</h3>
+        <p>
+            挿入されたアプリのリストで、個別のエントリーを有効または無効にできます。アイテムが有効な場合は様々なチェックが行われ、エラーが発生するとアイテムは自動的に無効になります。
+        </p>
+        <p>
+            個々のアイテムをアイテムを左にスワイプするか"全てを削除"をタップすると、リストから削除できます。
+        </p>
+        <div class="rounded-corner-box">
+            <p>
+                <strong>注:</strong> 挿入を有効にしてもすぐには有効になりません。挿入はアプリの起動時に行われます。したがって、既に起動しているアプリを挿入アプリ一覧で有効化した場合は、アプリを再起動する必要があります。アプリに正常に挿入されている場合、アプリの起動時にダイアログが表示されます。
+            </p>
+        </div>
+        <a name="bypassingcertpinning_recoveringfromcrashes"></a>
+        <h3>クラッシュからの回復</h3>
+        <p>
+            アプリケーションに挿入してAPI呼び出しをフックする処理には、本質的にリスクが伴います。このため、Cydia Substrateは予期せぬ状況を検知し、デバイスが永続的なクラッシュ状態になるのを防ぎます。万が一Burp Suiteモバイルアシスタントがクラッシュして問題を引き起こした場合は、Cydia Substrateの<a href="https://cydia.saurik.com/safemode/">セーフモード</a>を参照してください。
+        </p>
+    </div>
+</section>
+</body>
+</html>

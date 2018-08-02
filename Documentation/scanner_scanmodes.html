@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="scanner.html">
+            <span itemprop="name">Scanner</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="scanner_scanmodes.html">
+            <span itemprop="name">スキャンモード</span>
+            <meta itemprop="position" content="4"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>スキャンモード</h1>
+        <p>
+            Burp Scannerは、2つの異なる方法で動作します:
+        </p>
+        <ul>
+            <li>
+                <strong><a href="#active">アクティブスキャン</a></strong>, 脆弱性を見つけるためにアプリケーションに新規リクエストを送信する。
+            </li>
+            <li>
+                <strong><a href="#passive">パッシブスキャン</a></strong>, 既存のリクエストとレスポンスを解析し、それらから脆弱性を推測する。
+            </li>
+        </ul>
+        <p>
+            Burp Scannerが報告できる全ての問題カテゴリのリストは、<a href="https://portswigger.net/kb/issues">問題タイプのリスト</a>を参照してください。
+        </p>
+        <a name="active"></a>
+        <h2>アクティブスキャン</h2>
+        <p>
+            このスキャンモードでは、アプリケーションの個々のリクエスト("ベースリクエスト"と呼びます)に注目し、<a href="https://portswigger.net/kb/issues">脆弱性</a>が存在していることを示す挙動を引き出すように、様々方法でリクエストを変更します。変更されたリクエストはアプリケーションに送信され、結果のレスポンスが解析されます。多くの場合、最初の調査結果に基づいて、さらなるリクエストが送信されます。
+        </p>
+        <div class="rounded-corner-box">
+            <p>
+                <strong>注:</strong> この動作モードでは、悪意のある形式のリクエストが大量に生成され、アプリケーションを誤動作させる可能性があります。このスキャンモードは、アプリケーション所有者の明示的な許可を得て、自動スキャンによるアプリケーションとそのデータに影響を及ぼす可能性を警告した上で、注意深く使用してください。理想的には、非本番システムに対してスキャンを実行し、スキャン前のフルバックアップ実行が望ましいです。
+            </p>
+        </div>
+        <p>
+            全自動で検出できるWebアプリケーションの脆弱性の種類には、限界があることがよく知られています。Burpのアクティブスキャン機能は、スキャナーが確実に検出<i>できる</i>、入力値ベースの脆弱性に注力するよう設計されています。他の分野で誤検知を発生させないことで、出力に信頼性を持たせ、人間の経験や知能が必要な仕事に集中できるようにします。
+        </p>
+        <p>
+            Burpのアクティブスキャンが特定できる問題は、主に次の2つのカテゴリに分類されます:
+        </p>
+        <ol>
+            <li>
+                クロスサイトスクリプティング、HTTPヘッダーインジェクション、オープンリダイレクトなど、クライアント側を対象にした入力値ベースの脆弱性。
+            </li>
+            <li>
+                SQLインジェクション、OSコマンドインジェクション、ファイルパストラバーサルなど、サーバ側を対象にした入力値ベースの脆弱性。
+            </li>
+        </ol>
+        <p>
+            カテゴリ1の問題は、非常に高精度で検出できます。ほとんどの場合、バグの発見に関連するすべてが、クライアント側で確認できます。例えば、反射型XSSを検出するために、Burp Scannerはアプリケーションの各入力箇所に無害な入力値を送信し、これがレスポンスに反射されるかどうかを調べます。もし反射された場合、レスポンスコンテンツを解析して、その入力値が出現する文脈を判断します。次に、さまざまな操作をした入力を送り、それらの文脈で攻撃に使用できる文字列も反射されるかどうか判断します。Burp Scannerは、Webアプリケーションで発生する、不完全な入力フィルターやその回避方法の広い知識があり、その文脈に適用される全てをチェックします。先行するチェックからのフィードバックを元にした、チェックの完全な意思決定ツリーを実装すると、熟練した人間のテスターが実行する緻密なアクションを効果的にエミュレートします。Burpが見逃す唯一のバグは、入力をカプセル化するカスタムスキームなど、理解に知能が必要な特殊な機能を持つ場合です。
+        </p>
+        <p>
+            カテゴリ2の問題は、多くの場合バグの特定に関連する動作がサーバー上でのみ発生し、クライアント側での兆候がほとんどないため、本質的に自動検出には向いていません。例えば、SQLインジェクションのバグは、レスポンスに詳細なエラーメッセージを返す場合がありますが、全く見えない場合もあります。時間遅延、真偽条件の変更による曖昧なレスポンス差分など、サーバー側のブラインドインジェクションの問題を特定する様々な手法を採用します。これらの手法は、カテゴリー1で利用可能な方法よりも本質的に間違いが多くなります。それでもBurp Scannerは、この領域で高い成功率を達成し、人間のテスターが診断するのが困難で面倒な多数の種類の問題を確実に報告します。
+        </p>
+        <a name="passive"></a>
+        <h2>パッシブスキャン</h2>
+        <p>
+            このスキャンモードで、Burpはアプリケーションに対して新たなリクエストを発行しません - 既存のリクエストとレスポンスの内容を分析し、それらから脆弱性を推測します。この操作モードは、アプリケーションにアクセスできる権限があればどのような状況でも安全かつ合法的に使用できます。
+        </p>
+        <p>
+            受動的なテクニックだけを使っても多くの種類の脆弱性を特定できます。例:
+        </p>
+        <ul>
+            <li>
+                平文でのパスワード送信
+            </li>
+            <li>
+                HttpOnly とsecureフラグがないような、安全でない cookie の属性
+            </li>
+            <li>
+                開放的な cookie スコープ
+            </li>
+            <li>
+                クロスドメインのスクリプト読み込みとリファラ漏洩
+            </li>
+            <li>
+                オートコンプリートが有効になっているフォーム
+            </li>
+            <li>
+                SSL で保護されたコンテンツのキャッシュ
+            </li>
+            <li>
+                ディレクトリーリスティング
+            </li>
+            <li>
+                後のレスポンスで返される、入力したパスワード
+            </li>
+            <li>
+                セキュアではないセッショントークンの送信
+            </li>
+            <li>
+                内部 IP アドレス、メール アドレス、スタック トレースなどの情報の漏洩
+            </li>
+            <li>
+                安全でない ViewState設定
+            </li>
+            <li>
+                あいまい・不完全・不正確・非標準のContent-Typeディレクティブ
+            </li>
+        </ul>
+        <p>
+            これらの問題の多くは比較的つまらなく、それらの記録は人間にとってだるい単純作業です。しかし、ペネトレーションテスターとしてそれらを報告する義務があります。アプリケーションをブラウズする際Burp Scannerがこれらの問題を確実に巻き取ることで、時間と正気の節約になります。
+        </p>
+        <p>
+            パッシブだけの脆弱性スキャンは、一部の状況で有益です:
+        </p>
+        <ul>
+            <li>
+                パッシブスキャンではアプリケーションに対して新たなリクエストを送信しないので、送信する全てのリクエストを完全に制御したい重要な本番アプリケーションに対して、安全に実行できます。
+            </li>
+            <li>
+                一部のアプリケーションでは、明らかに悪意のあるリクエストを受信する度に、セッションの終了やアカウントをするなど、攻撃に積極的に反応します。このような状況では断片的な手動テストに制限される場合がありますが、パッシブスキャンなら何の問題も起こさず様々な種類の問題を特定できます。
+            </li>
+            <li>
+                対象を攻撃する許可を(まだ)得ていない場合、純粋に一般ユーザーとしてアプリケーションにアクセスするだけで、パッシブスキャンで脆弱性を特定できます。例えば、新たなペネトレーションテスト契約を提案している場合、パッシブスキャンで対象のセキュリティ状況の感触が得られ、ひょっとすると報告できる問題を正式にテストを始める前から持参できるかもしれません。
+            </li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>

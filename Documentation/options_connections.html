@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="options.html">
+            <span itemprop="name">オプション</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="options_connections.html">
+            <span itemprop="name">接続</span>
+            <meta itemprop="position" content="4"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>オプション: 接続</h1>
+        <p>
+            接続オプションは、<a href="#platformauth">プラットフォーム認証</a>、<a href="#upstream">上位プロキシーサーバー</a>、<a href="#socks">SOCKSプロキシー</a>、<a href="#timeouts">タイムアウト</a>、<a href="#dns">ホスト名解決</a>、<a href="#outofscope">コープ外リクエスト</a>を、どのようにBurpが処理するか制御します。
+        </p>
+        <div class="rounded-corner-box">
+            <p>
+                <strong>注:</strong> これらのいくつかのオプションは、ユーザーとプロジェクトの両方のレベルで定義されます。ユーザーレベルで通常のオプションを設定し、必要な場合プロジェクトごとに上書きができます。
+            </p>
+        </div>
+        <a name="platformauth"></a>
+        <h2>プラットフォーム認証</h2>
+        <p>
+            宛先Webサーバーに自動的にプラットフォーム認証を実行する設定をします。個々のホストに対して、異なる認証方法やクレデンシャルを設定できます。
+        </p>
+        <p>
+            サポートしている認証タイプは次の通りです: 基本認証・NTLMv1・NTLMv2・ダイジェスト認証。ドメインとホスト名フィールドは、NTLM認証でのみ使用されます。
+        </p>
+        <p>
+            "プラットフォーム認証失敗時にクレデンシャルのプロンプトを表示する"オプションによって、認証失敗が発生した場合に対話型のポップアップを表示します。
+        </p>
+        <a name="upstream"></a>
+        <h2>上位プロキシーサーバー</h2>
+        <p>
+            上位のプロキシーサーバーにリクエストを送信するか、宛先Webサーバーに直接送信するか設定します。
+        </p>
+        <p>
+            複数のルールを定義でき、異なる宛先ホストやホストグループに異なるプロキシーを設定できます。ルールは順番に適用され、宛先Webサーバーにマッチした最初のルールが使用されます。ルールに一致しない場合、Burpはデフォルトでプロキシーを経由しない直接接続を行います。
+        </p>
+        <p>
+            宛先ホストの指定にワイルドカードが使用できます(「*」は0個以上の文字にマッチ、「?」はドット以外の任意の文字にマッチ)。全てのトラフィックを単一のプロキシーサーバーに送信するには、宛先ホストを * にしたルールを作成してください。プロキシーホストを空白のままにすると、指定したホストに直接接続します。
+        </p>
+        <p>
+            設定した上位プロキシーごとに、必要なら認証タイプとクレデンシャルを指定できます。サポートしている認証タイプは次の通りです: 基本認証・NTLMv1・NTLMv2・ダイジェスト認証。ドメインとホスト名フィールドは、NTLM認証でのみ使用されます。
+        </p>
+        <a name="socks"></a>
+        <h2>SOCKSプロキシー</h2>
+        <p>
+            全ての外向き通信にSOCKSプロキシーを使用するよう設定できます。この設定はTCPレベルで適用され、全送信リクエストがこのプロキシー経由で送信されます。
+        </p>
+        <p>
+            上位HTTPプロキシーサーバーを設定していた場合、上位プロキシーへのリクエストはここで設定したSOCKSプロキシー経由で送信されます。
+        </p>
+        <p>
+            "SOCKSプロキシ上でDNS検索をする"オプションが有効の場合、全ドメイン名はプロキシーで名前解決されます。ローカル参照は実行されません。
+        </p>
+        <a name="timeouts"></a>
+        <h2>タイムアウト</h2>
+        <p>
+            様々なネットワークタスクに使用するタイムアウトを指定します。次のタイムアウトを指定できます:
+        </p>
+        <ul>
+            <li>
+                <strong>標準</strong> - ほとんどのネットワーク接続で利用され、タイムアウトが発生したリクエストとレコードを破棄する前に、どのくらいBurpを待機させるか決定します。
+            </li>
+            <li>
+                <strong>開始からレスポンスが終了するまで</strong> - Content-LenthやTransfer-Encodingヘッダーを含まないレスポンスの処理のみに使われます。このような状況で、転送が完了したと判断する前に指定した時間待ちます。
+            </li>
+            <li>
+                <strong>ドメイン名解決</strong> - 正常に完了したドメイン名検索を、再度実行する頻度を決定します。対象ホストのアドレスが頻繁に変化する場合、適度に小さい値に設定する必要があります。
+            </li>
+            <li>
+                <strong>名前解決失敗時の再試行</strong> - 失敗したドメイン名解決を再試行する頻度を決定します。
+            </li>
+        </ul>
+        <p>
+            値は、秒単位です。オプションを空白のままにすると場合、Burpはその機能でタイムアウトしません。
+        </p>
+        <a name="dns"></a>
+        <h2>ホスト名の解決</h2>
+        <p>
+            ホスト名とIPアドレスのマッピングを指定し、コンピューターのDNS名前解決を上書きします。
+        </p>
+        <p>
+            各ホスト名解決ルールには、ホスト名と、ホスト名に関連づけられるIPアドレスを指定します。ルールは個別に有効または無効にできます。
+        </p>
+        <p>
+            プロキシー非対応のシッククライアントコンポーネントからのトラフィックを<a href="proxy_options_invisible.html">透過プロキシー</a>するためhostsファイルが変更されている場合に、リクエスト転送以降の処理が正しいかどうかを確認するために便利です。
+        </p>
+        <a name="outofscope"></a>
+        <h2>スコープ外のリクエスト</h2>
+        <p>
+            スコープ外へのリクエスト発行を防ぐために使用される機能です。現在の作業で、スコープ内ではない対象にリクエストを送信しないことを保証する場合に便利です。ブラウザがスコープ外のアイテムにリクエストしても、Burpによって送信リクエストは破棄されます。
+        </p>
+        <p>
+            現在の<a href="target_scope.html">ターゲットスコープ</a>に対して、この機能を有効にできます。また、<a href="suite_functions_urlmatching.html">URLマッチルール</a>を使ってカスタムスコープを定義できます。
+        </p>
+    </div>
+</section>
+</body>
+</html>

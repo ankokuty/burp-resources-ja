@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="options.html">
+            <span itemprop="name">オプション</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="options_http.html">
+            <span itemprop="name">HTTP</span>
+            <meta itemprop="position" content="4"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>オプション: HTTP</h1>
+        <p>
+            このタブでは、<a href="#redirects">リダイレクト</a>、<a href="#streaming">ストリーミングレスポンス</a>、<a href="#status100">ステータス100レスポンス</a>をBurpがどのように制御するか設定します。
+        </p>
+        <a name="redirects"></a>
+        <h2>リダイレクト</h2>
+        <p>
+            リダイレクトをたどるべき状況として、Burpが認識するリダイレクトタイプを設定します。
+        </p>
+        <p>
+            次の種類のリダイレクトを選択できます:
+        </p>
+        <ul>
+            <li>
+                Locationヘッダー付きの3xxステータスコード
+            </li>
+            <li>
+                Refreshヘッダー
+            </li>
+            <li>
+                Meta refreshタグ
+            </li>
+            <li>
+                JavaScript駆動
+            </li>
+            <li>
+                Locationヘッダー付きの任意のステータスコード
+            </li>
+        </ul>
+        <p>
+            Burpが特定の対象にリダイレクトをたどる動作は、個々のBurpツールの設定(例えば<a href="target_scope.html">Targetスコープ</a>に基づくなど)によって決定されることに注意してください。
+        </p>
+        <a name="streaming"></a>
+        <h2>ストリーミングレスポンス</h2>
+        <p>
+            レスポンスが終了しない"ストリーミング"レスポンスを返すURLをBurpに通知できます。Burpはこれらのレスポンスに、通常のレスポンスとは異なる処理をします。
+        </p>
+        <p>
+            取引価格データを継続的に更新するような機能のアプリケーションで、ストリーミングレスポンスが使われます。通常、クライアント側のスクリプトコードがリクエストを生成し、サーバーはレスポンスストリームを開いたままにし、継続データが利用可能になったらそれをリアルタイムにプッシュします。インターセプトプロキシーは、ストアアンドフォワードモデルを使用するので、これらのアプリケーションを壊す可能性があります: Proxyはストリーミングレスポンスが終了するのを無限に待機し、クライアントには何も転送されないでしょう。
+        </p>
+        <p>
+            ストリーミングレスポンスは、個々のBurpツールで次のように処理されます:
+        </p>
+        <ul>
+            <li>
+                <strong>Proxy</strong>は、データを受信したものとしてこれらのレスポンスをクライアントに直接通過させます。
+            </li>
+            <li>
+                <strong>Repeater</strong>は、データを受信するとリアルタイムでレスポンスパネルを更新します。
+            </li>
+            <li>
+                <strong>その他のツール</strong>はストリーミングレスポンスを無視し、接続を閉じます。
+            </li>
+        </ul>
+        <p>
+            ストリーミングURLの設定には、<a href="suite_functions_urlmatching.html">URLマッチングルール</a>のヘルプを参照してください。
+        </p>
+        <p>
+            ストリーミングレスポンスに関するさらに２つのオプションがあります:
+        </p>
+        <ul>
+            <li>
+                <strong>ストリーミングレスポンスを保存</strong> - ストリーミングレスポンスを完全に保存します。<a href="proxy_history.html">Proxy履歴</a>や<a href="repeater_using.html#requests">Repeaterレスポンスパネル</a>でストリーミングレスポンスのコンテンツを表示したい場合は、このオプションが必要です。このオプションによって、巨大な一時ファイルができる可能性があることに注意してください。
+            </li>
+            <li>
+                <strong>ストリーミングレスポンスからチャンクエンコーディングメタデータを除去する</strong> - ストリーミングレスポンスは一般的にHTTP上でチャンクエンコードされます。このオプションが選択されると、Burpはチャンクエンコードのメタデータを削除し、Burp内でレスポンスを読みやすいようにします。このメタデータを削除すると、実装によってはクライアント側のアプリケーションを壊す可能性があることに注意してください。
+            </li>
+        </ul>
+        <p>
+            ストリーミングレスポンスは多くの場合GZIPエンコーディングを使用して圧縮されています - <a href="proxy_options.html#misc">Proxy</a>と<a href="repeater_options.html">Repeater</a>の通常のオプションで、Burpがこれらのコンテンツを展開するよう設定できます。
+        </p>
+        <p>
+            (バイナリファイルのダウンロードのような)とても大きなレスポンスを処理する際、ストリーミングレスポンスを使用するとBurpのパフォーマンスを向上させるためにストアアンドフォワードプロキシーモデルをバイパスできます。
+        </p>
+        <a name="status100"></a>
+        <h2>ステータス100レスポンス</h2>
+        <p>
+            ステータスが100のHTTPレスポンスをBurpが処理する方法を制御します。サーバーにPOSTリクエストを送るとき、リクエストボディが転送される前に、暫定的なレスポンスを返す場合によく発生します。
+        </p>
+        <p>
+            次の設定があります:
+        </p>
+        <ul>
+            <li>
+                <strong>100 Continueレスポンスを認識する</strong> - このオプションが選択されると、暫定レスポンスをスキップし、ステータスコードやコンテントタイプなどのレスポンス情報は実際のレスポンスヘッダーから解析します。
+            </li>
+            <li>
+                <strong>100 Continueヘッダを削除する</strong> - このオプションが選択されると、個々のツールに渡される前に、サーバーのレスポンスから暫定ヘッダーを削除します。
+            </li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>

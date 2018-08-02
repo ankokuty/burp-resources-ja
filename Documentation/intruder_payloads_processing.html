@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="intruder.html">
+            <span itemprop="name">Intruder</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="intruder_payloads.html">
+            <span itemprop="name">ペイロード</span>
+            <meta itemprop="position" content="4"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="intruder_payloads_processing.html">
+            <span itemprop="name">処理</span>
+            <meta itemprop="position" content="5"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>Payload Processing</h1>
+        <p>
+            <a href="intruder_payloads_types.html">ペイロードタイプ</a>の設定により生成されたペイロードは、<a href="#rules">処理ルール</a>と<a href="#encoding">ペイロードのエンコーディング</a>を使用してさらに操作できます。
+        </p>
+        <a name="rules"></a>
+        <h2> ペイロード処理ルール </h2>
+        <p>
+            ペイロードが使われる前に各ペイロードのに様々な処理タスクを実行する、ルールを定義できます。定義済みルールは順番に実行され、設定の問題をデバッグするためにオンとオフを切り替えられます。ペイロード処理ルールは、通常とは異なるペイロードを生成する必要がある場合や、より大きな構造体に包む場合や、使う前にエンコードが必要な場合など、様々なシチュエーションで便利です。
+        </p>
+        <p>
+            次の種類のルールがあります:
+        </p>
+        <ul>
+            <li>
+                <strong>プレフィックスを追加</strong> - ペイロードの前に文字列を追加します。
+            </li>
+            <li>
+                <strong>サフィックスを追加</strong> - ペイロードの後ろに文字列を追加します。
+            </li>
+            <li>
+                <strong>検索/置換</strong> - 指定した正規表現に一致する部分を文字列に置換します。
+            </li>
+            <li>
+                <strong>部分文字列</strong> - 指定した(０から始まる)オフセットから、指定した長さまでの、ペイロードの一部を取り出します。
+            </li>
+            <li>
+                <strong>部分文字列の反転</strong> - 部分文字列として動作しますが、オフセットはペイロードの最後から指定し、長さはオフセットから逆方向にカウントされます。
+            </li>
+            <li>
+                <strong>大文字小文字変</strong> - 該当する場合、ペイロードの大文字小文字を変更します。同じオプションは、<a href="intruder_payloads_types.html#casemod">大文字小文字変換</a>ペイロードタイプにもあります。
+            </li>
+            <li>
+                <strong>エンコード</strong> - 様々なスキームでペイロードをエンコードします: URL・HTML・Base64・ASCII16進数・様々なプラットフォームで作られる文字列。
+            </li>
+            <li>
+                <strong>デコード</strong> - 様々なスキームでペイロードをデコードします: URL・HTML・Base64・ASCII16進数。
+            </li>
+            <li>
+                <strong>ハッシュ</strong> - ペイロードのハッシュ処理を実行します。
+            </li>
+            <li>
+                <strong>生ペイロード追加</strong> - 現在処理中の前または後に、生のペイロードを追加します。例えば、生の値とハッシュされた両方を同じペイロードで送信したい場合などに便利です。
+            </li>
+            <li>
+                <strong>正規表現に一致した場合にスキップ</strong> - 現在処理中の値が指定した正規表現にマッチするかチェックし、マッチした場合はペイロードをスキップして次に移ります。例えば、パラメーター値の最小の長さがあることを知っていて、その長さより短い文字列をスキップしたい場合などに便利です。
+            </li>
+            <li>
+                <strong>Burp拡張を呼び出す</strong> - ペイロードを処理するために<a href="extender.html">Burp拡張機能</a>を呼び出します。拡張機能は、Intruderペイロードプロセッサとして登録されている必要があります。現在読み込まれている拡張機能によって登録されている、使用可能なプロセッサの一覧から選択できます。
+            </li>
+        </ul>
+        <a name="encoding"></a>
+        <h2>ペイロードのエンコーディング</h2>
+        <p>
+            HTTPリクエストを安全に送信するために、ペイロード内でURLエンコードをする必要がある文字を設定できます。<a href="#rules">ペイロード処理ルール</a>が実行された後、最後に設定されたURLエンコードが適用されます。
+        </p>
+        <p>
+            <a href="intruder_options.html#greppayloads">ペイロード検索</a>オプションは、URLエンコードされる前のペイロードがレスポンスに出力されるかどうかチェックするので、最終的なURLエンコードはペイロード処理ルールではなく、この設定の使用を推奨します。
+        </p>
+    </div>
+</section>
+</body>
+</html>

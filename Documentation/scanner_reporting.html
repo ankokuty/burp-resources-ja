@@ -1,0 +1,153 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="scanner.html">
+            <span itemprop="name">Scanner</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="scanner_reporting.html">
+            <span itemprop="name">レポート</span>
+            <meta itemprop="position" content="4"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>Burp Scanner - レポート</h1>
+        <p>
+            Burp Scannerが生成した問題の一部または全てのレポートをエクスポートできます。これを行うには、出力する問題を<a href="target_sitemap.html">サイトマップ</a>の<a href="target_sitemap.html#info_issues">問題ビュー</a>で選択し、コンテキストメニューから"選択した問題をレポート"を選択します。レポートウィザードでは、以下で説明するように、レポートのさまざまなオプションを選択できます。
+        </p>
+        <ul class="link-list">
+            <li>
+                <a href="https://portswigger.net/burp/samplereport/burpscannersamplereport">サンプルレポートを表示</a>
+            </li>
+        </ul>
+        <a name="format"></a>
+        <h2>レポートの書式</h2>
+        <p>
+            レポートには、次のいずれかの形式を選択できます。
+        </p>
+        <ul>
+            <li>
+                <strong>HTML</strong> - ブラウザで印刷または表示するためのHTML形式のレポートが生成されます。
+            </li>
+            <li>
+                <strong>XML</strong> - 他のツールやレポートフレームワークにインポートするのに適したXML形式のレポートが生成されます。Base64エンコードしたHTTPリクエストとレスポンスをXML内に出力もできます。HTTPメッセージには、(CDATAブロックであっても)XMドキュメント内では厳密には許可されていない非印字文字が含まれる場合があるため、厳密なXMLパーサーとの互換性が維持されるよう、このオプションの使用を推奨します。
+            </li>
+        </ul>
+        <p>
+            <strong>注: </strong>XML形式では内部DTDを使用しているため、相互運用性コードの作者はサンプルレポートを確認し、最新のDTDの取得を推奨します。次のXMLエレメントに注目してください:
+        </p>
+        <ul>
+            <li>
+                <span class="InlineCode">serialNumber</span>エレメントには、個々の問題ごとに固有なlong整数値が入ります。Burpの同じインスタンスから問題を複数回エクスポートする場合は、新たに増えた問題の特定にシリアル番号が使用できます。
+            </li>
+            <li>
+                <span class="InlineCode">type</span>エレメントには、問題タイプ(SQLインジェクションやXSSなど)を一意に識別する整数値が入ります。この値はBurpの複数のインスタンス間でも変化しません。全てのタイプ識別番号のリストは、<a href="https://portswigger.net/kb/issues">スキャン項目タイプ</a>のリストを参照してください。
+            </li>
+            <li>
+                <span class="InlineCode">name</span>エレメントには、問題タイプに対応するわかりやすい名前が入ります。全ての項目名のリストは、<a href="https://portswigger.net/kb/issues">スキャン項目タイプ</a> を参照してください。
+            </li>
+            <li>
+                <span class="InlineCode">path</span>エレメントには、問題の(クエリーストリングを除く)URLが入ります。
+            </li>
+            <li>
+                <span class="InlineCode">location</span>エレメントには、(特定のURLパラメーターやリクエストヘッダーなど)攻撃のエントリーポイントに関連する、URLと説明の両方が入ります。
+            </li>
+            <li>
+                <span class="InlineCode">request</span>と<span class="InlineCode">response</span>エレメントには<span class="InlineCode">base64</span>属性があり、メッセージがBase64エンコードされているかどうかを示す真偽値が入ります。
+            </li>
+        </ul>
+        <a name="issuedetails"></a>
+        <h2>問題の詳細</h2>
+        <p>
+            レポートに含める詳細の種類を選択できます。
+        </p>
+        <ul>
+            <li>
+                <strong>問題のバックグラウンド</strong> - これは標準的な説明で、同じ種類の全ての問題で同じです。
+            </li>
+            <li>
+                <strong>対策のバックグラウンド</strong> - これは標準的な対策方法のアドバイスで、同じ種類の全ての問題で同じです。
+            </li>
+            <li>
+                <strong>問題詳細</strong> - 一部の問題タイプでは、個別の事象に当てはまる特定の詳細に注意を払わせるよう、特定の問題に関するさらに詳しいカスタム情報が含まれます。
+            </li>
+            <li>
+                <strong>対策の詳細</strong> - 問題を観測した個々の機能に応じた、対策方法のアドバイスが含まれます。
+            </li>
+            <li>
+                <strong>脆弱性の分類</strong> - 共通脆弱性タイプ一覧(CWE)に関連するマッピングが含まれます。
+            </li>
+        </ul>
+        <a name="messages"></a>
+        <h2>HTTPメッセージ</h2>
+        <p>
+            レポートでのHTTPメッセージの表示方法を選択できます。リクエストとレスポンスには次のオプションがあります。
+        </p>
+        <ul>
+            <li>
+                <strong>含めない</strong> - 関連するタイプのメッセージをレポートに含めません。
+            </li>
+            <li>
+                <strong>関連する部分を抽出</strong> - ツール内の結果で強調表示されたメッセージ部分と、その前後で文脈の判断に必要なメッセージ部分をレポートに含めます。
+            </li>
+            <li>
+                <strong>完全に含める</strong> - 問題の理解や再現に直接関係のない部分を含む、完全なメッセージをレポートに含めます。各メッセージを指定した最大長に制限して、メッセージが大きすぎる場合にレポートのサイズが大きくならないようにもできます。
+            </li>
+        </ul>
+        <a name="types"></a>
+        <h2>問題の種類</h2>
+        <p>
+            ウィザードには、選択に含まれていたさまざまな問題タイプと、各タイプの実証数のカウントが表示されます。含めたくない任意の問題タイプの選択を解除できます。多くの問題を選択していて(例えばアプリケーションホストを選択した場合)、興味のない問題タイプをレポートから削除したい場合に便利です。
+        </p>
+        <a name="reportdetails"></a>
+        <h2>レポートの詳細</h2>
+        <p>
+            レポートを保存するファイルを指定できます。
+        </p>
+        <p>
+            HTMLレポートの場合は、次の詳細を指定できます:
+        </p>
+        <ul>
+            <li>
+                レポートタイトル
+            </li>
+            <li>
+                レポート内の問題の整理方法(タイプごと、重要度ごと、URLごと)
+            </li>
+            <li>
+                目次に含める詳細レベルの数
+            </li>
+            <li>
+                サマリーテーブルと棒グラフに含める問題の重大度
+            </li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>

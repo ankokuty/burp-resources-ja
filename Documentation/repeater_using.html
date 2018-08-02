@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="repeater.html">
+            <span itemprop="name">Repeater</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="repeater_using.html">
+            <span itemprop="name">Burp Repeaterの使い方</span>
+            <meta itemprop="position" content="4"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>Burp Repeaterの使い方</h1>
+        <p>
+            Burp Repeaterは、手動によるHTTPリクエストの操作や再発行をし、アプリケーションのレスポンスを分析するための、シンプルなツールです。入力ベースの脆弱性をテストするためにパラメーター値を書き換える、ロジックフローをテストするために特定の順序でリクエストを発行する、Burp Scannerが報告した<a href="target_sitemap.html#info_issues">Burp Scanner問題</a>を検証するためにリクエストを再送するなど、様々な目的にRepeaterが利用できます。
+        </p>
+        <a name="requests"></a>
+        <h2>リクエスト発行</h2>
+        <p>
+            RepeaterのUIのそれぞれ個別のタブで、複数の異なるリクエストを同時に操作できます。Repeaterにリクエストを送信すると、それぞれが個別の番号付きタブで開かれます。各タブには、次のアイテムがあります:
+        </p>
+        <ul>
+            <li>
+                リクエストの発行とリクエストの履歴をナビゲートするコントロール。リクエストを送信する対象サーバーが表示されます - 変更するには対象の詳細をクリックします。
+            </li>
+            <li>
+                発行するリクエストを含む<a href="suite_functions_messageeditor.html">HTTPメッセージエディター</a>。何度も繰り返してリクエストを編集し再発行できます。
+            </li>
+            <li>
+                最後に発行されたリクエストから受信したレスポンスを表示する<a href="suite_functions_messageeditor.html">HTTPメッセージエディター</a>
+            </li>
+        </ul>
+        <p>
+            最も簡単にRepeaterを使い始めるには、Burpの他のツール(<a href="proxy_history.html">Proxy履歴</a>やTarget<a href="target_sitemap.html">サイトマップ</a>など)でリクエストを選択し、コンテキストメニューの"Repeaterに送信"を使います。Repeaterに新しいリクエストタブが作成され、対象の詳細や関連する詳細をリクエストメッセージエディターに自動的に設定します。必要に応じて、リクエストを変更し、発行できます。
+        </p>
+        <p>
+            リクエストを送信する準備ができたら、"送信"ボタンをクリックしサーバーに送信します。レスポンスを受信すると、レスポンス長とタイマー(ミリ秒)とともにレスポンスが表示されます。リクエストとレスポンスのメッセージを分析しさらにアクションを実行するために、通常<a href="suite_functions_messageeditor.html">HTTPメッセージエディター</a>の機能が使えます。
+        </p>
+        <a name="history"></a>
+        <h2>リクエスト履歴</h2>
+        <p>
+            Repeaterの各タブは、その内で作られたリクエストのタブ固有のヒストリーを保持します。"&lt;"と"&gt;"ボタンをクリックして履歴を後方・前方に移動し、各リクエストとレスポンスを表示できます。ドロップダウンボタンを利用すると、最近の履歴アイテムのリストが表示され、それらに素早く移動できます。履歴の任意の時点で、現在表示されているリクエストを編集して再発行できます。
+        </p>
+        <a name="options"></a>
+        <h2>Repeaterオプション</h2>
+        <p>
+            Content-Lengthヘッダーの自動更新、圧縮コンテンツの展開、リダイレクトの遷移など、Burp Repeaterには様々な<a href="repeater_options.html">オプション</a>があります。Repeaterメニュー経由でオプションにアクセスできます。&nbsp;
+        </p>
+        <a name="tabs"></a>
+        <h2>Requestタブの管理</h2>
+        <p>
+            Repeaterのリクエストタブは簡単に管理できます。以下が可能です:
+        </p>
+        <ul>
+            <li>
+                タブヘッダーをダブルクリックして名前変更
+            </li>
+            <li>
+                ドラッグして並び替え
+            </li>
+            <li>
+                一番右の"..."タブをクリックして新しいタブを開く
+            </li>
+            <li>
+                タブヘッダーの X ボタンをクリックしてタブを閉じる
+            </li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>

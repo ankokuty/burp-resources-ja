@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="options.html">
+            <span itemprop="name">オプション</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="options_misc_user.html">
+            <span itemprop="name">その他ユーザーオプション</span>
+            <meta itemprop="position" content="4"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>その他ユーザーオプション</h1>
+        <p>
+            このタブには、<a href="#hotkeys">ホットキー</a>、<a href="#automaticprojectbackup">プロジェクト自動バックアップ</a>、<a href="#proxyinterception">プロキシーインターセプト</a>、<a href="#proxyinterception">プロキシー履歴ログ</a>、<a href="#tempfiles">一時ファイル</a>の場所、<a href="#perffeedback">パフォーマンスフィードバック</a>の設定があります。
+        </p>
+        <a name="hotkeys"></a>
+        <h2>ホットキー</h2>
+        <p>
+            一般的なアクションのためのホットキーを設定できます。多くのタイプのアクションにホットキーを割り当てられ、次のカテゴリがあります:
+        </p>
+        <ul>
+            <li>
+                "Repeaterへ送信"など、個々のHTTPリクエストやレスポンスに固有のアクション。
+            </li>
+            <li>
+                "Proxyに切り替え"など、グローバルアクション。
+            </li>
+            <li>
+                "切り取り"、"元に戻す"など、エディター内のアクション。
+            </li>
+        </ul>
+        <p>
+            多くのホットキーがデフォルトで設定されています。ホットキーをよく使う場合、割り当てられているよりも多くの機能がある点に注意してください。
+        </p>
+        <p>
+            全てのホットキーはコントロールキー(またはOSXではコマンドキー)を使用する必要があり、シフトやその他の修飾キーも使用できます。一部のWindowsインストールでは、Ctrl+Altの組み合わせはAltGrと同等として扱われるので、テキストフィールドに入力した文字が現れる可能性がある点に注意してください。&nbsp;
+        </p>
+        <a name="automaticprojectbackup"></a>
+        <h2>プロジェクト自動バックアップ</h2>
+        <p>
+            プロジェクト自動バックアップは、バックグラウンドで定期的にBurpプロジェクトファイルのコピーを保存します。次のオプションがあります:
+        </p>
+        <ul>
+            <li>
+                自動バックアップを実行するかどうか、およびその頻度。
+            </li>
+            <li>
+                スコープ内のアイテムのみ含めるかどうか。
+            </li>
+            <li>
+                バックアップ中に進捗ダイアログを表示するかどうか。
+            </li>
+            <li>
+                Burpの正常終了時にバックアップファイルを削除するかどうか。
+            </li>
+        </ul>
+        <a name="proxyinterception"></a>
+        <h2>Proxyインターセプト</h2>
+        <p>
+            Burp起動時に、Proxyインターセプトを有効にするか設定します。常に有効化、常に無効化、前回終了時の状態を復元、から選択できます。
+        </p>
+        <a name="proxylogging"></a>
+        <h2>Proxy履歴ログ</h2>
+        <p>
+            ターゲットスコープへアイテムを追加したときに、履歴や他のBurpツールにスコープ外アイテムを送信しないよう<a href="proxy_options.html#misc">Proxyオプション</a>を自動的に追加するかどうか設定します。この設定により、プロジェクトデータにスコープ外のアイテムが蓄積されるのを避けられます。
+        </p>
+        <a name="tempfiles"></a>
+        <h2>一時ファイルの場所</h2>
+        <p>
+            Burpが一時ファイルを保存する場所を設定します。
+        </p>
+        <p>
+            デフォルトで、プラットフォームの提供する一時ファイル場所に、Burpはディレクトリーを作成します。これを別のディレクトリーを使用するように変更できます - 例えば、別のボリュームや、全ユーザーに読取権限がない場所などです。
+        </p>
+        <p>
+            Mac OS Xでは、システムを休止状態にするとデフォルトの一時ファイル場所がクリアされることがあり、Burpが一時ファイルを失う原因になります。Burpの一時ファイルを格納するカスタムの場所を設定すると、この問題を解決できます。
+        </p>
+        <p>
+            この設定の変更は、次回のBurp起動時に有効になります。
+        </p>
+        <a name="perffeedback"></a>
+        <h2>パフォーマンスフィードバック</h2>
+        <p>
+            Burpのパフォーマンスに関する匿名のフィードバックを送信すると、Burpを向上させられます。
+        </p>
+        <p>
+            フィードバックにはBurpの内部機能に関する技術情報だけが含まれ、あなたを特定する方法はありません。バグを報告する場合デバッグIDを含めると、あなたのBurpインスタンスで発生した問題の診断の助けになります。
+        </p>
+        <p>&nbsp;
+        </p>
+    </div>
+</section>
+</body>
+</html>

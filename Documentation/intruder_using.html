@@ -1,0 +1,265 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="intruder.html">
+            <span itemprop="name">Intruder</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="intruder_using.html">
+            <span itemprop="name">Burp Intruderの使い方</span>
+            <meta itemprop="position" content="4"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>Burp Intruderの使い方</h1>
+        <p>
+            Burp Intruderは、Web アプリケーションに対するカスタマイズした攻撃を自動化するツールです。非常に強力で自由にカスタマイズでき、単純なWebディレクトリーの推測から複雑なブラインドSQLインジェクションによる情報窃取まで、広範囲のタスクに利用できます。
+        </p>
+        <div class="rounded-corner-box">
+            <p>
+                <a href="https://support.portswigger.net/">Burp Suiteサポートセンタ</a>も参照:
+            </p>
+            <ul class="link-list">
+                <li>
+                    <a href="https://support.portswigger.net/customer/portal/topics/720250-burp-intruder/articles"> Burp Intruderの使い方</a>
+                </li>
+            </ul>
+        </div>
+        <a name="how"></a>
+        <h2>Intruderの仕組み</h2>
+        <p>
+            Burp Intruderは、1つのHTTPリクエスト("ベースリクエスト"と呼びます)を受け取り、様々な体系的な方法でリクエストを編集し、それぞれの編集されたバージョンのリクエストを発行し、アプリケーションのレスポンスを分析して気になる挙動を特定します。
+        </p>
+        <p>
+            各攻撃では、1つ以上の<a href="intruder_payloads.html">ペイロード</a>セットと、ペイロードに置き換えられるベースリクエスト内の<a href="intruder_positions.html">ポジション</a>を指定する必要があります。ペイロードを生成する多数の方法(単純な文字列のリスト、数値、日付、総当たり、ビット反転、その他多数)があります。ペイロードは、<a href="intruder_positions.html#attacktype">異なるアルゴリズム</a>を使ってペイロードポジションに配置できます。結果の分析や、後で深掘りするアイテムの特定を補助する様々なツールがあります。
+        </p>
+        <a name="uses"></a>
+        <h2>一般的な用途</h2>
+        <p>
+            Burp Intruderは非常に柔軟なツールで、Web アプリケーションをテストする際のすべてのタイプのタスクを自動化できます。Intruderの最も一般的な使用例は、次のカテゴリに分類されます。
+        </p>
+        <ul>
+            <li>
+                <a href="#uses_enumerating">識別子の列挙</a>
+            </li>
+            <li>
+                <a href="#uses_harvesting">有用なデータの収集</a>
+            </li>
+            <li>
+                <a href="#uses_fuzzing">脆弱性のファジング</a>
+            </li>
+        </ul>
+        <p>
+            Burp Intruderを使って行える攻撃タイプの詳細については、<a href="http://mdsec.net/wahh/">The Web Application Hacker's Handbook</a> (<a href="http://mdsec.net/wahh/toc1e.html">初版</a>の１３章、<a href="http://mdsec.net/wahh/toc2e.html">第二版</a>の１４章)を参照してください。
+        </p>
+        <a name="uses_enumerating"></a>
+        <h3>識別子の列挙</h3>
+        <p>
+            Webアプリケーションは、データやリソースアイテムを参照するための識別子を頻繁に使用します。例えば、ユーザー名、ドキュメントID、口座番号などです。多くの場合、有効な識別子や、さらに調査する価値がある識別子を列挙するため、可能性のある多くの識別子を繰り返し試す必要があります。Burp Intruderでこれを行うには、次の手順を実行する必要があります:
+        </p>
+        <ul>
+            <li>
+                識別子をパラメーターに含み、識別子が有効かどうかレスポンス内に示されるような、アプリケーションのリクエストを探します。
+            </li>
+            <li>
+                そのパラメーターの値を単一の<a href="intruder_positions.html">ペイロードポジション</a>に設定します。
+            </li>
+            <li>
+                正しいフォーマットやスキームの識別子候補がテストで生成されるよう、適切な<a href="intruder_payloads.html">ペイロードタイプ</a>を使います。
+            </li>
+            <li>
+                有効な識別子であることを確実に推測できるレスポンスの特徴をみつけ、それに応じてBurpを設定します。例えば、有効な識別子だとHTTPステータスコードやレスポンスサイズが異なる場合、この属性で<a href="intruder_attacks.html#results_table">結果をソート</a>します。または、有効な識別子の場合に特定の文字列を含むレスポンスが返ってくる場合は、この文字列に一致するレスポンスを取り出すよう<a href="intruder_options.html#grepmatch">match grep</a>アイテムを定義します。
+            </li>
+        </ul>
+        <p>
+            この種類の実際の攻撃例は次の通りです。
+        </p>
+        <ul>
+            <li>
+                アプリケーションのログイン失敗メッセージで有効なユーザー名の列挙ができる場合、<a href="intruder_payloads_types.html#usernamegenerator">ユーザー名生成</a>ペイロードタイプを使って、使用可能なユーザー名の長いリストを流し、有効なものを特定します。
+            </li>
+            <li>
+                有効なユーザー名のリストを特定した後、一般的なパスワードのセットの<a href="intruder_payloads_types.html#simplelist">シンプルリスト</a>ペイロードタイプを使って、ユーザーのパスワードを推測できます。
+            </li>
+            <li>
+                有効な注文IDを送信するとその注文の詳細が表示されるアプリケーションの場合、<a href="intruder_payloads_types.html#customiterator">カスタムイテレーター</a>ペイロードタイプを使って、有効なフォーマットの潜在的な注文IDを生成し、他のユーザーの注文を探せます。
+            </li>
+            <li>
+                アプリケーションがCBC暗号を使って暗号化された、意味のある構造をしたセッショントークンを使っている場合、<a href="intruder_payloads_types.html#bitflipper">ビットフリッパー</a>ペイロードタイプを使い有効なトークンを体系的に変更し、復号した値が意味のある値になるよう操作を試行します。
+            </li>
+        </ul>
+        <a name="uses_harvesting"></a>
+        <h3>有用なデータの収集</h3>
+        <p>
+            多くの場合単に有効な識別子を特定するよりも、最も重要なアイテムに努力を集中したり、他の攻撃に反映させるための気になるデータを、各アイテムから抽出する必要があるでしょう。Burp Intruderでこれを行うには、次の手順を実行する必要があります:
+        </p>
+        <ul>
+            <li>
+                識別子をパラメーターに含むアプリケーションのリクエストと、リクエストしたアイテムに関するレスポンスの、気になるデータが含まれている部分を探します。
+            </li>
+            <li>
+                そのパラメーターの値を単一の<a href="intruder_positions.html">ペイロードポジション</a>に設定します。
+            </li>
+            <li>
+                正しいフォーマットやスキームの識別子候補がテストで生成されるよう、適切な<a href="intruder_payloads.html">ペイロードタイプ</a>を使います。
+            </li>
+            <li>
+                <a href="intruder_options.html#grepextract">extract grep</a>アイテムを設定して、各レスポンスから関連データを取得し、<a href="intruder_attacks.html#results">攻撃結果</a>に一覧表示します。
+            </li>
+        </ul>
+        <p>
+            この種類の実際の攻撃例は次の通りです。
+        </p>
+        <ul>
+            <li>
+                アプリケーションに"パスワードを忘れた"機能があり、ユーザーネームをパラメーターで受け取りそのユーザーのパスワードヒントを表示する場合、<a href="intruder_payloads_types.html#simplelist">シンプルリスト</a>で一般的なユーザー名を流し、有効な各ユーザーのパスワードヒントを抽出できます。検索されたヒントのリストを素早くスキャンして、簡単に推測できるものが見つけられます。
+            </li>
+            <li>
+                URLに含まれる数値のページIDパラメータによって、アプリケーションが動的にコンテンツを出し分けている場合、<a href="intruder_payloads_types.html#numbers">数値</a>ペイロードタイプを使って全ての有効な識別子を流し、各ページのHTMLタイトルタグを検索できます。その有効なページのリストを素早くレビューし、特に気になるページやアクセスが許可されていないページを特定できます。
+            </li>
+            <li>
+                アプリケーションに各ユーザーの情報を含んだ"ユーザープロフィール"ページがあり、アプリケーション上での権限も書かれている場合、既に抽出したユーザー名のリストを流し各ユーザーの権限を検索すると、標的型攻撃の管理者アカウントを素早く特定できます。
+            </li>
+        </ul>
+        <a name="uses_fuzzing"></a>
+        <h3>脆弱性のファジング</h3>
+        <p>
+            SQLインジェクション・クロスサイトスクリプティング・パストラバーサルのような入力ベースの脆弱性の多くは、リクエストパラメーターに様々なテスト文字列を入れ送信し、アプリケーションのレスポンスのエラーメッセージや異常を分析して検出します。最近のアプリケーションのサイズや複雑さを考えると、手動テストの実行は時間がかかり、退屈なプロセスです。
+        </p>
+        <p>
+            Burp IntruderでWebアプリケーションのファジングを自動化するには、次の手順を行います:
+        </p>
+        <ul>
+            <li>
+                全てのリクエストパラメーター値にペイロードポジションを設定します。
+            </li>
+            <li>
+                <a href="intruder_payloads_types.html#simplelist">simple list</a>ペイロードタイプを使います。
+            </li>
+            <li>
+                一般的なファジング文字列を含むBurpの<a href="intruder_payloads_types.html#simplelist_predefined">定義済みペイロード一覧</a>のいずれかか、独自の攻撃文字列のリストを、ペイロードリストに使うよう設定します。
+            </li>
+            <li>
+                一般的なエラーメッセージ文字列を<a href="intruder_options.html#grepmatch">match grep</a>アイテムに設定します。match grepのUIのデフォルトオプションに、この目的に有用な文字列リストがあります。
+            </li>
+            <li>
+                <a href="#launching">攻撃の起動</a>後、気になるエラーやその他の異常がないか<a href="intruder_attacks.html#results">攻撃結果</a>をレビューします。各match grep列や、レスポンス長、HTTPステータスコード、応答時間など、その他の関連する列で結果一覧をソートする必要があります。
+            </li>
+        </ul>
+        <p>
+            <strong>注:</strong>一般的にファジングする際は、同じIntruderのペイロードとmatch grep設定で大量のリクエストをテストしたいでしょう。それには、Intruderメニューの" 新規タブの動作"オプションの"最後のタブから設定をコピー"が便利です。１つのリクエストにペイロードおよびgrepの文字列を設定すると、その後Intruderに送信する後続のリクエストで、同じ設定オプションが使われるようになります。複数のリクエストをファジングするには、単純にそれぞれをIntruderに送信し、Intruderメニューから"攻撃開始"を選択する必要があります。
+        </p>
+        <a name="configuring"></a>
+        <h2>攻撃の設定</h2>
+        <p>
+            メインのIntruder UIでは、複数の攻撃をそれぞれ個別のタブで同時に設定できます。Intruderにリクエストを送信すると、それぞれ独自の番号付きタブで開かれます。各攻撃設定タブには、攻撃を設定する複数のサブタブがあります。各タブの詳細は、次のリンクを参照してください:
+        </p>
+        <ul>
+            <li>
+                <strong><a href="intruder_target.html">Target</a></strong> - 攻撃対象サーバーの詳細を設定します。
+            </li>
+            <li>
+                <strong><a href="intruder_positions.html">Positions</a></strong> - ペイロードポジションを含む攻撃用のリクエストテンプレートと、攻撃タイプ(ペイロードポジションにペイロードを適用する方法)を設定します。
+            </li>
+            <li>
+                <strong><a href="intruder_payloads.html">Payloads</a></strong> - 攻撃中にペイロードポジションに配置される、１つまたは複数のペイロードセットを設定します。
+            </li>
+            <li>
+                <strong><a href="intruder_options.html">Options</a></strong> - この攻撃に影響を与える他の多くのオプションを設定します。
+            </li>
+        </ul>
+        <p>
+            Intruderでの新たな攻撃を簡単に作成するには、他のBurpツール(<a href="proxy_history.html">Proxy履歴</a> やTarget<a href="target_sitemap.html">サイトマップ</a>など)で関連するベースリクエストを選択し、コンテキストメニューのオプションで"Intruderに送信"を使います。新しい攻撃タブが作成され、自動的に<a href="intruder_target.html">Target</a>と<a href="intruder_positions.html">ポジション</a>タブに、ベースリクエストに関連する詳細が設定されます。必要に応じて自動設定されたペイロードポジション、<a href="intruder_payloads.html">ペイロード</a>サブテーブル、その他の<a href="intruder_options.html">オプション</a>を修正できます。
+        </p>
+        <p>
+            Burp Intruderには攻撃設定を管理する多くの機能があります。これらの機能はIntruderメニューから使用できます:
+        </p>
+        <ul>
+            <li>
+                現在のタブの攻撃設定を保存して、後でそれを再読み込みできます。読み込みや保存の際に、ペイロードポジション設定を含めるか除外するか選択できます。ペイロードポジションを含んだ設定は、特定の攻撃についての完全な設定を保存できます。ペイロードを除外した設定は、他のベースリクエストテンプレートやペイロードポジションで再利用できる、汎用的な攻撃設定を保存できます。 - 例えば、リクエストの特定タイプをファジングする好みの設定などです。
+            </li>
+            <li>
+                二つの既存のタブ間や新しいタブに、攻撃設定をコピーできます。上記同様、ペイロードポジションを含めるか除外するか選択できます。
+            </li>
+            <li>
+                新規攻撃タブを開いた際(一番右の"..."タブをクリックするかIntruderに新規リクエストを送信した場合)に、Intruderがどのように攻撃設定を扱うか制御できます。デフォルトの攻撃設定を使う、最初に開いた攻撃タブから設定をコピーする、あるいは最後に開いたタブからコピーするか選択できます。後者のオプションを使用すると、一般的な攻撃設定(例えばファジング用)を作成し、Intruderに送信した各新規リクエストに自動的に適用できます。
+            </li>
+        </ul>
+        <p>
+            攻撃タブ自身の管理も簡単です。以下が可能です:
+        </p>
+        <ul>
+            <li>
+                タブヘッダーをダブルクリックして名前変更
+            </li>
+            <li>
+                ドラッグして並び替え
+            </li>
+            <li>
+                一番右の"..."タブをクリックして新しいタブを開く
+            </li>
+            <li>
+                タブヘッダーの X ボタンをクリックしてタブを閉じる
+            </li>
+        </ul>
+        <a name="launching"></a>
+        <h2>攻撃の開始</h2>
+        <p>
+            攻撃が全て<a href="#configuring">設定</a>できたら、Intruderメニューから"攻撃開始"を選択して攻撃を起動できます。
+        </p>
+        <p>
+            各攻撃は新規ウィンドウで実行され、そこには<a href="intruder_attacks.html#results">結果</a>の詳細と、(<a href="intruder_options.html#results">設定</a>されていれば)全リクエストとレスポンスがあります。<a href="intruder_attacks.html#results_table">結果の解析</a>や、後で深掘りするアイテムの特定を補助する様々な機能があります。以下が可能です:
+        </p>
+        <ul>
+            <li>
+                アイテムの様々な属性(HTTPステータスコード、レスポンス長など)に応じて結果の列をソートする。
+            </li>
+            <li>
+                デフォルトで隠れている、追加結果<a href="intruder_attacks.html#resultsmenus_columns">列</a>を再表示する。
+            </li>
+            <li>
+                攻撃が既に進行中でも、新たな<a href="intruder_options.html#grepmatch">match grep</a>と<a href="intruder_options.html#grepextract">extract grep</a>アイテムを定義し、観察の結果に基づく解析を実行する。
+            </li>
+            <li>
+                結果に<a href="intruder_attacks.html#results_filter">ディスプレイフィルター</a>と<a href="intruder_attacks.html#results_annotations">注釈</a> をセットする。
+            </li>
+            <li>
+                結果一覧のコンテンツを<a href="intruder_attacks.html#resultsmenus_save">保存</a>する。
+            </li>
+            <li>
+                他の操作の実行や<a href="suite_usingburp.html">テストワークフロー</a>との統合に、<a href="intruder_attacks.html#results_workflow">コンテキストメニュー</a>を使用する。
+            </li>
+            <li>
+                <span class="pro-edition-feature-label">プロフェッショナル版</span> 攻撃全体を<a href="intruder_attacks.html#resultsmenus_save">保存する</a>。後で保存した攻撃を読み込むには、Intruderメニューで"保存した攻撃を開く"を選択します。
+            </li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>

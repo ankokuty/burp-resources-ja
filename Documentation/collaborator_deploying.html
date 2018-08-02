@@ -1,0 +1,602 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="collaborator.html">
+            <span itemprop="name">Burp Collaborator</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="collaborator_deploying.html">
+            <span itemprop="name">プライベートサーバーの配備</span>
+            <meta itemprop="position" content="4"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>プライベートBurp Collaboratorサーバーの配備</h1>
+        <p>
+            デフォルトでBurpは、PortSwiggerが提供するパブリックBurp Collaboratorサーバーを使いますが、この選択は多くの目的に適さない場合があります。詳細は、メインの<a href="collaborator.html">Burp Collaboratorドキュメント</a>を参照してください。
+        </p>
+        <p>
+            必要に応じて、Burp Collaboratorサーバーのプライベートインスタンスを配備できます。このドキュメントは、そのためのプロセスと、次のトピックについても説明します:
+        </p>
+        <ul class="link-list">
+            <li>
+                <a href="#installation">インストールと実行</a>
+            </li>
+            <li>
+                <a href="#closednetwork">閉じたネットワーク上での基本的なセットアップ</a>
+            </li>
+            <li>
+                <a href="#ports">非標準ポートでの実行</a>
+            </li>
+            <li>
+                <a href="#dns">DNS設定</a>
+            </li>
+            <li>
+                <a href="#ssl">SSL設定</a>
+            </li>
+            <li>
+                <a href="#interactions">通信イベントとポーリング</a>
+            </li>
+            <li>
+                <a href="#metrics">メトリクス</a>
+            </li>
+            <li>
+                <a href="#testing">インストールのテスト</a>
+            </li>
+            <li>
+                <a href="#configfile">設定ファイルの形式</a>
+            </li>
+        </ul>
+        <a name="installation"></a>
+        <h2>インストールと実行</h2>
+        <p>
+            Burp Collaboratorサーバーは、Burp Suite Professional自身と同じ実行ファイルに含まれています。独自のサーバーインスタンスを実行するのに、ライセンスキーは必要ありません。サーバーはコマンドラインから<span class="InlineCode">--collaborator-server</span>引数を使って直接起動できます。例:
+        </p>
+        <p class="InlineCode">
+            
+            sudo java -jar burp.jar --collaborator-server
+        
+        </p>
+        <p>
+            サービスを実行するのに必要なポートにバインドできない場合、サーバーは起動に失敗します。これらのポートを使用している他のプロセスを停止する必要があります。デフォルトで、Burp Collaboratorサーバーは次のポートをリッスンします:
+        </p>
+        <ul>
+            <li>
+                DNS: UDP ポート53
+            </li>
+            <li>
+                HTTP: TCP ポート80
+            </li>
+            <li>
+                HTTP: TCP ポート443
+            </li>
+            <li>
+                SMTP: TCP ポート25および587
+            </li>
+            <li>
+                SMTPS: TCP ポート465
+            </li>
+        </ul>
+        <p>
+            さらに、Unixベースのシステムでこれらのポートにバインドするためには、root権限でサーバーを実行する必要があります。あるいは、<a href="#ports">非標準のポート上で実行</a>するようサーバーを設定し、ポートマッピングで元のポートへリダイレクトする方法もあります。
+        </p>
+        <p>
+            Burp Collaboratorサーバーを起動するとき、想定する使用方法に基づいて、JVMのメモリ処理およびガベージコレクションの設定をお勧めします。少人数での利用を想定してデスクトップマシンでCollaboratorサーバーを実行する場合、JVMの使用するメモリ量を減らせます。次のコマンドは、ヒープを10から200MBの間で変動させ、JVMの5%の時間をガベレージコレクションに使用する設定で、通常あまりメモリを消費しません:
+        </p>
+        <p>
+            <span class="InlineCode">  sudo java -Xms10m -Xmx200m
+            -XX:GCTimeRatio=19 -jar burp.jar --collaborator-server  </span>
+        </p>
+        <p>
+            大人数で利用ができるよう専用マシン上でCollaboratorサーバーを実行する場合、通常はOS・JVM・その他の実行プロセス用に1GBのメモリを残し、使用可能な物理メモリの量にヒープサイズを固定する設定が効率的です。例:
+        </p>
+        <p>
+            <span class="InlineCode">  sudo java -Xmx3g -Xms3g -jar burp.jar
+            --collaborator-server  </span>
+        </p>
+        <p>
+            サーバーを頻繁に使用する予定で4GB以上の物理メモリがある場合は、ガベレージコレクション中に起こるJVMの一時停止を大幅に削減する、G1 ガベレージコレクタへの切り替えを推奨します。例:
+        </p>
+        <p>
+            <span class="InlineCode">  sudo java -Xmx12g -Xms12g -XX:+UseG1GC -jar
+            burp.jar --collaborator-server  </span>
+        </p>
+        <p>
+            Collaboratorサーバーの機能をすべて使うには、通常は適切な<a href="#configfile">設定ファイル</a>を作る必要があります。
+        </p>
+        <a name="closednetwork"></a>
+        <h2>閉じたネットワーク上の基本セットアップ</h2>
+        <p>
+            閉じたプライベートなネットワークでひとり(または少人数のチーム)で利用する方法が、プライベートCollaboratorサーバーの一般的な利用方法です。インターネットアクセスがない閉じたネットワーク上のアプリケーションをテストする場合、もちろんデフォルトのCollaboratorサーバーは使用できません。
+        </p>
+        <p>
+            このような状況では、<a href="#configfile">設定ファイル</a>は必要なく、<a href="#installation">インストールと実行</a>にあるコマンドの一つを使って、最小限のCollaboratorサーバーのインスタンスを実行できます。<a href="options_misc_project.html#collaboratorserver">Burpの設定</a>で、Collaboratorサーバーのアドレスに自分のマシンのIPアドレスを設定する必要があります。
+        </p>
+        <p>
+            このセットアップでは、DNS名前解決のカスタマイズや、信頼された有効なHTTPS接続はサポートしません。しかし、Collaboratorの最低限の機能を使用でき、外部にHTTP通信するような問題は検出できます。&nbsp;
+        </p>
+        <a name="ports"></a>
+        <h2>非標準ポートでの実行</h2>
+        <p>
+            Collaboratorサーバーを root 以外のユーザーとして実行する場合は、非標準のポート上で実行するように設定する必要があります。使用しているカスタムポートと標準ポートをマッピングするように、オペレーティングシステムを設定する必要もあります。通常、TCPとUDP接続の受信、およびUDPレスポンス送信のマッピング設定が必要です。
+        </p>
+        <p>
+            Collaboratorサーバーが非標準ポートを使用するよう、<a href="#configfile">設定ファイル</a>で設定できます。例:
+        </p>
+        <pre>
+{
+"serverDomain" : "burpcollaborator.example.com",
+"eventCapture": {
+"http": {
+"ports" : 8080
+},
+"https": {
+"ports" : 8443
+},
+"smtp": {
+"ports" : [8025, 8587]
+},
+"smtps": {
+"ports" : 8465
+}
+},
+
+"dns": {
+"ports" : 8053
+}
+}		</pre>
+        <a name="dns"></a> "ports"の値には単一の数値、または複数のポートでサービスのリッスンをしたい場合はポート番号の配列が指定できます。Collaboratorサーバーはデフォルトで、SMTP通信用にポート25と587をリッスンします。<br>
+        <h2>DNS設定</h2>
+        <p>
+            Burp Collaboratorはデフォルトで、特定ドメインのDNSサービスを実行するため、これにはCollaboratorが使用する専用ドメインやサブドメインが必要になります。DNS機能を省略し、IPアドレスのみでCollaboratorサーバーにアクセスもできます; しかしこの設定は、様々な脆弱性の検出に効果的ではありません。
+        </p>
+        <p>
+            Burp Collaboratorをパブリックなインターネットで実行する場合、特定のドメイン(例えばexample.com)を購入するか、既に所有し使用しているドメインのサブドメイン(例えばburpcollaborator.example.com)が使用できます。制限された内部ネットワークの場合は、任意の専用内部ドメインを選択できます。
+        </p>
+        <p>
+            Collaboratorサーバーが適切なDNSレコードを使用できるように、制御するドメインを知っている必要があります。これは、Collaborator<a href="#configfile">設定ファイル</a>の設定です。例:
+        </p>
+        <pre>
+{
+"serverDomain": "burpcollaborator.example.com"
+}		</pre>
+        <p>
+            また、そのドメインのDNSがCollaboratorサーバーに委任されるよう、ドメインを設定する必要があります。この詳細は状況によって異なります。ほとんどのドメインレジストラは、ドメインの権威DNSサーバーを設定するWebインタフェースを提供しています。
+        </p>
+        <p>
+            <span class="InlineCode">example.com</span>をCollaboratorサーバー用のドメインとして使用している場合、次のネームサーバーを使用するよう設定が必要です:
+        </p>
+        <p>
+            <span class="InlineCode"> ns1.example.com<br>ns2.example.com </span>
+        </p>
+        <p>
+            また、それぞれをCollaboratorサーバーのIPアドレスに関連づけるグルーレコードを設定する必要があります。設定したDNSサーバーそれぞれに異なるIPアドレスを指定するようドメインレジストラが要求する場合、Collaboratorサーバーに２つのパブリックIPアドレスを設定する必要があるかもしれません。
+        </p>
+        <p>
+            <strong>注:</strong> テスト対象サーバーのhostsファイルを編集するだけでは、Collaborator DNSサービスの使用は避けられません。テストでCollaboratorサーバーを使用すると、メインに設定されたドメインの、ランダムに生成したサブドメインを使用します。hostsファイルはワイルドカードをサポートせず、よってランダムに生成されたサブドメインを検索する方法がありません。
+        </p>
+        <a name="ssl"></a>
+        <h2>SSL設定</h2>
+        <p>
+            Burp Collaboratorは、テスト対象システムからの通信キャプチャと、Burp Suiteによるポーリングリクエストを提供するために、HTTPSとSMTPSサービスを実行します。通常は、Collaboratorが使用しているドメイン名のワイルドカードSSL証明書が設定されている場合のみ、CollaboratorサーバーへのSSL接続は成功します。Collaboratorの<a href="#configfile">設定ファイル</a>でSSL証明書の設定ができます。
+        </p>
+        <p>
+            ドメインの有効なワイルドカード証明書を持っていない場合、Burp Collaboratorは自己署名の証明書を生成できます。例えば、次の設定で *.burpcollaborator.example.com の自己署名ワイルドカード証明書が作成されます:
+        </p>
+        <pre>
+"ssl": {
+"hostname" : "burpcollaborator.example.com"
+}	</pre>
+        <p>
+            テスト対象のサーバーの信頼する証明書にインストールできるか、対象アプリケーションがSSL証明書の検証を行わない場合は、自己署名証明書で十分でしょう。
+        </p>
+        <p>
+            ドメイン用の有効なワイルドカード証明書を購入していれば、認証局(CA)から証明書を取得し、Collaboratorサーバーにインストールできます。この例では、OpenSSLで証明書署名要求(CSR)を作成し、CAは証明書と中間証明書を提供しています。
+        </p>
+        <p>
+            OpenSSLで、秘密鍵のデフォルトフォーマットは、伝統的なSSLeayフォーマットになっています。Collaboratorサーバーにインストールする前に、これらをPKCS8に変換する必要があります。この変換を行うOpenSSLコマンドは次の通りです:
+        </p>
+        <p>
+            <span class="InlineCode">  openssl pkcs8 -topk8 -inform PEM -in
+            keys/burpcollaborator.example.com.key -outform PEM -out
+            keys/burpcollaborator.example.com.key.pkcs8 -nocrypt  </span>
+        </p>
+        <p>
+            Collaboratorの<a href="#configfile">設定ファイル</a>でSSL証明書の設定ができます。次の設定ファイルの例では、秘密鍵・証明書・中間証明書を読み込む方法を示しています。
+        </p>
+        <pre>
+"ssl": {
+"certificateFiles" : [
+"keys/burpcollaborator.example.com.key.pkcs8",
+"keys/burpcollaborator.example.com.crt",
+"keys/intermediate.crt"]
+}		</pre>
+        <p>
+            <strong>注:</strong> 証明書ファイルは正しい順序(秘密鍵・証明書・中間証明書)で指定する必要があります:
+        </p>
+        <p>
+            また、Java keytoolを使用してCSRを生成し、結果として得られる証明書をサーバーのJavaキーストアにインポートできます。この場合、次の設定で証明書をCollaboratorサーバーに読み込みます:
+        </p>
+        <pre>
+"ssl": {
+"keystore": {
+"path" : "myKeystore.jks",
+"password" : "myPassword"
+}		</pre>
+        <p>
+            <a href="#interactions">通信イベントとポーリング</a>を個別のネットワークインタフェースに設定した場合、インタフェースごとに個別のSSL設定が必要です。
+        </p>
+        <a name="interactions"></a>
+        <h2>通信イベントとポーリング</h2>
+        <p>
+            Collaboratorサーバーは、クライアントからの２種類の受信通信をサポートします。
+        </p>
+        <ul>
+            <li>
+                <strong>通信イベント</strong> - テスト対象のアプリケーションがCollaboratorサーバーと何らかの通信、例えばDNS名前解決やHTTPリクエストを行う際に発生します。
+            </li>
+            <li>
+                <strong>ポーリングリクエスト</strong> - ペイロードによって通信イベントが発生したかどうか、Burpインスタンスが問い合わせる際に発生します。
+            </li>
+        </ul>
+        <p>
+            デフォルトで、Collaboratorサーバーは通信イベントとポーリングリクエストの両方の通信を、同じネットワークインタフェースで処理します。必要に応じて、ポーリングリクエストに異なるインタフェース(またはポート)を使用するように設定できます。この機能は、ファイアウォール制限の回避や、ネットワーク層でポーリング機能をアクセス制御する場合に使用できます。
+        </p>
+        <p>
+            Collaboratorの<a href="#configfile">設定ファイル</a>の"polling"オプションセクションで、個別のポーリングインタフェースを設定できます。これを行う場合、両方のインタフェースに同じワイルドカードSSL証明書が使用でき、CollaboratorサーバーのDNSサービスでポーリングリクエストが正しいインタフェースに向くよう設定してください。このセットアップでは、<a href="options_misc_project.html#collaboratorserver">Burp Collaborator Server</a>オプションのサーバーの位置のみ設定する必要があり、Burpがポーリングをする際にサーバードメインの先頭に"polling."を自動的に追加します。CollaboratorのDNSサービスはポーリングサブドメインを、分離したポーリングインタフェースのパブリックIPアドレスに名前解決します。これにより、Burpクライアントの設定をシンプルにしながら、通信とポーリングのインタフェースを分離できる利点があります。
+        </p>
+        <a name="metrics"></a>
+        <h2>メトリクス</h2>
+        <p>
+            Collaboratorサーバーは、管理者がサーバーのパフォーマンスや負荷を監視するための様々な使用率のメトリクスを収集します。Collaboratorのマシンがその使用レベルに十分耐えうるかを確認するためにこれらのメトリクスが有用です。<a href="#interactions">通信イベントやポーリングリクエスト</a>から抽出されたデータは、このメトリクスには全く含まれていない点に留意してください。
+        </p>
+        <p>
+            Collaboratorサーバーのポーリングインタフェース経由でメトリクスデータにアクセスでき、共有秘密URLとクライアントIPアドレスのホワイトリストでアクセスを制御できます。デフォルトでメトリクスは無効で、Collaborator<a href="#configfile">設定ファイル</a>の"metrics"オプションセクションを使用すると有効になります。例:
+        </p>
+        <pre>
+"polling" : {
+"publicAddress" : "10.20.0.159"
+},
+"metrics": {
+"path" : "jnaicmez8",
+"addressWhitelist" : ["21.10.23.0/24"]
+},</pre>
+        <p>
+            この設定では、21.10.23.0/24ネットワーク上のクライアントが次のURLにアクセスすると利用できます:
+        </p>
+        <p>
+            <span class="InlineCode">https://10.20.0.159/jnaicmez8/metrics</span>
+        </p>
+        <a name="testing"></a>
+        <h2>インストールのテスト</h2>
+        <p>
+            サーバーを配備したとき、正しく動作しているかの確認にBurp Suiteが使用できます。Burpで、<a href="options_misc_project.html#collaboratorserver">Burp Collaborator Server</a>オプションの詳細を設定し、ヘルスチェック機能を実行してください。Burpは期待するCollaboratorの各機能を動作させようとし、各機能の成功または失敗をフィードバックします。
+        </p>
+        <a name="configfile"></a>
+        <h2>設定ファイルのフォーマット</h2>
+        <p>
+            Burp Collaboratorサーバーの全てのオプションは、設定ファイルを使用して制御します。デフォルトで、<span class="InlineCode">collaborator.config</span>というファイルをカレントディレクトリー内で探します。<span class="InlineCode">--collaborator-config</span>コマンドライン引数でこの場所を上書きできます。例:
+        </p>
+        <p class="InlineCode">
+            
+            sudo java -jar burp.jar --collaborator-server --collaborator-config=myconfig.config
+        
+        </p>
+        <p>
+            設定ファイルはJSONフォーマットを使用し、コメントもサポートします。IPアドレスが必要な場所で、単一のアドレスまたはアドレスのリストを設定できます。例えば、ネットワークインタフェースのローカルアドレスの設定に次のどちらも使用できます:
+        </p>
+        <pre>
+"localAddress" : "10.20.0.159"
+"localAddress" : ["10.20.0.159", "127.0.0.1"]</pre>
+        <p>
+            利用可能なオプション設定も含む、完全な設定ファイルのサンプルを次に示します:<br>
+        </p>
+        <pre>
+{
+"serverDomain" : "burpcollaborator.example.com",
+"workerThreads" : 10,
+"eventCapture": {
+"localAddress" : ["10.20.0.159", "127.0.0.1"],
+"publicAddress" : "10.20.0.159",
+"http": {
+"ports" : 80
+},
+"https": {
+"ports" : 443
+},
+"smtp": {
+"ports" : [25, 587]
+},
+"smtps": {
+"ports" : 465
+},
+"ssl": {
+"certificateFiles" : [
+"keys/burpcollaborator.example.com.key.pkcs8",
+"keys/burpcollaborator.example.com.crt",
+"keys/intermediate.crt" ]
+}
+},
+"polling" : {
+"localAddress" : "127.0.0.1",
+"publicAddress" : "10.20.0.159",
+"http": {
+"port" : 9090
+},
+"https": {
+"port" : 9443
+},
+"ssl": {
+"hostname" : "collaboratorpolling.example.com"
+}
+},
+"metrics": {
+"path" : "jnaicmez8",
+"addressWhitelist" : ["21.10.23.0/24"]
+},
+"dns": {
+"interfaces" : [{
+"name":"ns1",
+"localAddress":"34.23.11.6",
+"publicAddress":"98.87.76.55"
+},{
+"name":"ns2",
+"localAddress":"34.23.11.6",
+"publicAddress":"98.87.11.00"
+}],
+"ports" : 53
+},
+"logLevel" : "INFO"
+}</pre>
+        <table>
+            <tr>
+                <td>
+                    
+                    serverDomain
+                
+                </td>
+                <td>
+                    Collaboratorサーバーが制御するドメインまたはサブドメイン。この設定は、DNS機能に必要です。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    workerThreads
+                
+                </td>
+                <td>
+                    Collaboratorが受信リクエストの処理に使用するスレッドの数。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    eventCapture.localAddress
+                
+                </td>
+                <td>
+                    デフォルトで、通信イベントをキャプチャするために全てのローカルインタフェースをリッスンします。指定した場合、設定したインタフェースのみリッスンします。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    eventCapture.publicAddress
+                
+                </td>
+                <td>
+                    通信イベントのキャプチャに使用するパブリックIPアドレス。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    eventCapture.http.ports
+                
+                </td>
+                <td>
+                    HTTP通信イベントをリッスンするポート。ポート80が転送されている場合のみデフォルトから変更する必要があります。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    eventCapture.https.ports
+                
+                </td>
+                <td>
+                    HTTPS通信イベントをリッスンするポート。ポート443が転送されている場合のみデフォルトから変更する必要があります。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    eventCapture.smtp.ports
+                
+                </td>
+                <td>
+                    SMTP通信イベントをリッスンするポート。ポート25と587が転送されている場合のみデフォルトから変更する必要があります。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    eventCapture.smtps.ports
+                
+                </td>
+                <td>
+                    SMTPS通信イベントをリッスンするポート。ポート465が転送されている場合のみデフォルトから変更する必要があります。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    eventCapture.https.hostname
+                
+                </td>
+                <td>
+                    自己署名証明書を生成する際に使用されます。詳細は、<a href="#ssl">SSL設定</a>を参照してください。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    polling.localAddress
+                
+                </td>
+                <td>
+                    デフォルトで、Collaboratorは通信イベントのキャプチャとポーリングリクエストに、同じネットワークインタフェースを使用します。指定した場合、ポーリングリクエストに別のインタフェースが使用されます。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    polling.publicAddress
+                
+                </td>
+                <td>
+                    ポーリングリクエストに使用するパブリックアドレス。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    polling.http.port
+                
+                </td>
+                <td>
+                    HTTP経由のポーリングに使用するポート。これは標準ではなく、Burp Suiteがそれを使用するように<a href="options_misc_project.html#collaboratorserver">設定</a>する必要があります。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    polling.https.port
+                
+                </td>
+                <td>
+                    HTTPS経由のポーリングに使用するポート。これは標準ではなく、Burp Suiteがそれを使用するように<a href="options_misc_project.html#collaboratorserver">設定</a>する必要があります。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    polling.https.hostname
+                
+                </td>
+                <td>
+                    自己署名証明書を生成する際に使用されます。詳細は、<a href="#ssl">SSL設定</a>を参照してください。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    metrics.path
+                
+                </td>
+                <td>
+                    メトリクスページにアクセスできるようにするURLパス。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    metrics.whitelist
+                
+                </td>
+                <td>
+                    メトリクスページにアクセスを許可するクライアントIPアドレスのホワイトリスト。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    dns.ports
+                
+                </td>
+                <td>
+                    DNSクエリのリッスンポート。53 番ポートを転送している場合のみデフォルトから変更する必要があります。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    dns.interfaces
+                
+                </td>
+                <td>
+                    DNSクエリをリッスンするローカルインタフェースのリスト。各権威ネームサーバーに異なるIPアドレスを設定するようレジストラが要求する場合、複数のネットワークインタフェースを使用でき、それらの場所をこのオプションで設定できます。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    dns.interfaces.name
+                
+                </td>
+                <td>
+                    このインタフェースで実行するネームサーバーのホスト名。各ネームサーバーに異なるホスト名を使用してください (例えば ns1、ns2、など)。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    dns.interfaces.localAddress
+                
+                </td>
+                <td>
+                    このネームサーバーにバインドするローカル アドレス。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    dns.interfaces.publicAddress
+                
+                </td>
+                <td>
+                    設定されたローカルアドレスに対応するパブリックIPアドレス。通常、ドメインのDNSレコードに、設定されたホスト名とパブリックIPアドレスを使用する必要があります。
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    
+                    logLevel
+                
+                </td>
+                <td>
+                    標準出力へ出力するログレベル。次の値が有効で、それぞれ前のレベルを含みます:<br>OFF - 何もログに記録しません。<br>ERROR - 予期しない例外が記録されます。<br>INFO - 起動時に、設定およびサービスについての情報が記録されます。これがデフォルト値です。<br>DEBUG - Collaborator通信およびポーリングの詳細が記録され、送信元IPアドレスとインタラクションIDが含まれます。機密情報がログに出力され漏洩する可能性がある点に注意してください。
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
+</body>
+</html>

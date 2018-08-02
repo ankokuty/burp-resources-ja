@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="suite_functions.html">
+            <span itemprop="name">Suite機能</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="suite_functions_collaborator_client.html">
+            <span itemprop="name">Collaboratorクライアント</span>
+            <meta itemprop="position" content="4"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>Collaboratorクライアント</h1>
+        <p>
+            Burp Collaboratorクライアントは、手動テスト中に<a href="collaborator.html">Burp Collaborator</a>を使用するためのツールです。手動テストで使用するペイロードを生成し、Collaboratorサーバーをポーリングしそのペイロードによるあらゆるネットワーク通信を取得します。
+        </p>
+        <p>
+            Burp Collaboratorクライアントを実行するには、Burpメニューから"Burp Collaboratorクライアント"を選択してください。
+        </p>
+        <p>
+            次の機能があります:
+        </p>
+        <ul>
+            <li>
+                指定した個数のCollaboratorペイロードを生成し、クリップボードにコピーできます。これらを手動テストで、例えば<a href="intruder.html">Burp Intruder</a>や<a href="repeater.html">Repeater</a>で使用できます。
+            </li>
+            <li>
+                ペイロードにCollaboratorサーバーのFQDNを含めるか、あるいは一意なインタラクションIDのみ生成するか選択できます。
+            </li>
+            <li>
+                定期的または必要な時にCollaboratorサーバーをポーリングし、そのペイロードによるあらゆるネットワーク通信の詳細を取得できます。
+            </li>
+        </ul>
+        <p>
+            Burp Collaboratorクライアントを使用する場合、次の点に注意してください:
+        </p>
+        <ul>
+            <li>
+                各Collaboratorクライアントウィンドウは別のコンテキストで開き、ペイロードの生成とポーリングを実行します。別のクライアントウィンドウ同士でペイロードや通信をやりとりする方法はありません。したがって、クライアントウィンドウを閉じてしまうと、ペイロードによって生じた通信を取得する方法がなくなります。
+            </li>
+            <li>
+                各Collaboratorクライアントウィンドウは、ウィンドウを開いた時点の<a href="options_misc_project.html#collaboratorserver">Collaboratorサーバー設定</a>に関連づけられています。Collaboratorサーバー設定を変更した場合(例えば、他のプライベートCollaboratorサーバーを使用するなど)、その設定を使用するには新たなクライアントウィンドウを開く必要があります。
+            </li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>

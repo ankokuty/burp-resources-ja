@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="options.html">
+            <span itemprop="name">オプション</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="options_misc_project.html">
+            <span itemprop="name">その他プロジェクトオプション</span>
+            <meta itemprop="position" content="4"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>その他プロジェクトオプション</h1>
+        <p>
+            このタブには、<a href="#taskscheduler">スケジュールタスク</a>、<a href="#collaboratorserver"> Burp Collaboratorサーバー</a>、<a href="#logging">ロギング</a>の設定があります。
+        </p>
+        <a name="taskscheduler"></a>
+        <h2 class="inline-block">スケジュールタスク</h2>
+        <span class="pro-edition-feature-label inline-block title-edition-tag">プロフェッショナル版</span>
+        <p>
+            <a href="suite_functions_taskscheduler.html">タスクスケジューラーのドキュメント</a>を参照してください。
+        </p>
+        <a name="collaboratorserver"></a>
+        <h2>Burp Collaboratorサーバー</h2>
+        <p>
+            Burp Collaboratorは、Burpが多くの脆弱性を発見するのに役立つ外部サービスです。Burp Collaboratorの機能と利用方法に関する詳細は、<a href="collaborator.html">Burp Collaboratorドキュメント</a>を参照してください。
+        </p>
+        <p>
+            <strong>注:</strong> Burp Collaboratorの機能は、慎重に検討しないと問題が起こる場合があります。Burp Collaboratorの機能と代替手段を完全に理解し、利用による自分自身や組織への影響を考慮しておく必要があります。
+        </p>
+        <p>
+            Burp Collaboratorを使用するために、次のオプションがあります:
+        </p>
+        <ul>
+            <li>
+                <strong>デフォルトのCollaboratorサーバを使用する</strong> - このデフォルトオプションは、PortSwiggerが提供する公開Collaboratorサーバーを使用します。このサーバーは、これを使用する全てのBurpユーザーで共用です。もし公開Collaboratorサーバーの停止や不具合があると、BurpのCollaboratorに関連する機能の有効性が失われる可能性があります。そのため、PortSwiggerはこのサーバーのパフォーマンスまたは可用性について保証しません。
+            </li>
+            <li>
+                <strong>Burp Collaboratorを使用しない</strong> - Collaboratorに関連した機能はどれも有効になりません。
+            </li>
+            <li>
+                <strong>プライベートCollaboratorサーバを使用する</strong> - 独自のCollaboratorサーバーのインスタンスを使用します。これを行うには、<a href="collaborator_deploying.html">プライベートCollaboratorサーバーのデプロイ</a>ドキュメントを参照してください。
+            </li>
+        </ul>
+        <p>
+            プライベートCollaboratorサーバーを使用する場合、その位置について詳細を設定する必要があります。次のオプションがあります:
+        </p>
+        <ul>
+            <li>
+                <strong>サーバーの場所</strong> - サーバーのドメイン名またはIPアドレスです。サーバーをIPアドレスで指定する場合、DNSに依存するBurpのCollaborator関連機能は利用できません。詳細は、<a href="collaborator.html">Burp Collaboratorドキュメント</a>を参照してください。
+            </li>
+            <li>
+                <strong>ポーリング場所(オプション)</strong> - このオプションフィールドには、プライベートCollaboratorサーバーがポーリングリクエストに応答する位置を指定します。必要であればCollaboratorサーバーが、通信の受信とポーリングリクエストの応答を、異なるネットワークインタフェースで行うよう設定できます。ポーリング位置をホスト名かIPアドレスで、オプションでコロンで区切ったポート番号を指定できます。例えば、10.20.30.40:8008 です。
+            </li>
+        </ul>
+        <p>
+            さらに次のオプションがあります。
+        </p>
+        <ul>
+            <li>
+                <strong>暗号化されていないHTTPでポーリングする</strong> - デフォルトでBurpは、HTTPS上でCollaboratorサーバーをポーリングし、中間者攻撃を防ぐためSSLを強制します。ネットワークやその他の制限でBurpがHTTPS上で直接ポーリングできない場合、暗号化されていないHTTP上でのポーリングもできます。
+            </li>
+            <li>
+                <strong>ヘルスチェック実行</strong> - このボタンをクリックすると、設定したCollaboratorサーバーのヘルスチェックを実行するダイアログが開きます。様々なネットワークサービスが通信できるかどうか、通信の詳細をポーリングで取得できるかどうかを確認します。これらのテストから、BurpがCollaboratorの機能を全てまたは一部利用できるか、または全く利用できないか判断できます。
+            </li>
+        </ul>
+        <a name="logging"></a>
+        <h2>ロギング</h2>
+        <p>
+            HTTPリクエストとレスポンスのロギングを制御します。ロギングは、ツールごと、または全Burpトラフィックに対して設定できます。
+        </p>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="mobile_testing.html">
+            <span itemprop="name">モバイルテスト</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>モバイルテスト</h1>
+        <p>
+            Burp Suiteモバイルアシスタントは、Burp SuiteによるiOSアプリのテストを容易にするためのツールです。次の主要機能をサポートしています:
+        </p>
+        <ul>
+            <li>
+                iOSデバイスのシステム全体のプロキシー設定を変更し、実行中のBurpインスタンスにHTTP(S)トラフィックを容易にリダイレクトできます。
+            </li>
+            <li>
+                選択されたアプリのSSL証明書ピニングの回避し、Burp SuiteがHTTPS接続を解読しすべてのトラフィックをインターセプト、調査、修正できるよう試みます。
+            </li>
+        </ul>
+        <p>
+            Burp Suiteモバイルアシスタントは現在、iOSバージョン8.0以降で動作するデバイスをサポートしています。
+        </p>
+        <div class="rounded-corner-box">
+            <p>
+                詳細は、次のリンクを参照してください:
+            </p>
+            <ul class="link-list">
+                <li>
+                    <a href="mobile_testing_installing_mobile_assistant.html">モバイルアシスタントをインストール</a>
+                </li>
+                <li>
+                    <a href="mobile_testing_using_mobile_assistant.html">モバイルアシスタントの使い方</a>
+                </li>
+            </ul>
+        </div>
+        <div class="rounded-corner-box">
+            <p>
+                <strong>注:</strong> Burp Suiteモバイルアシスタントは、データの可用性・機密性・完全性が必要な状況では使用しないでください。モバイルアシスタントは、通信のセキュリティを大幅に低下させる方法で、挿入されたアプリを変更します。
+            </p>
+        </div>
+    </div>
+</section>
+</body>
+</html>

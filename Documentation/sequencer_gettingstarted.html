@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="sequencer.html">
+            <span itemprop="name">Sequencer</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="sequencer_gettingstarted.html">
+            <span itemprop="name">入門</span>
+            <meta itemprop="position" content="4"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>Burp Sequencer入門</h1>
+        <p>
+            Burp Sequencerは、アプリケーションのセッショントークンやその他の重要なデータなど、予測困難である必要があるデータの乱数の質を分析するためのツールです。
+        </p>
+        <div class="rounded-corner-box">
+            <p>
+                <strong>注:</strong> Burp Sequencerを使うと、一部のアプリケーションで予期しない影響が出る可能性があります。機能や設定にしっかり慣れるまで、本番以外のシステムだけで使うべきです。
+            </p>
+        </div>
+        <p>
+            Burp Sequencerを習得するには、次の手順を実行します:
+        </p>
+        <ol>
+            <li>
+                まず、<a href="suite_gettingstarted.html#launching">インストールと実行</a>を確認し、<a href="suite_gettingstarted.html#browser">ブラウザの設定</a>を行い、<a href="proxy_gettingstarted.html">Proxy履歴に表示されるよう</a>対象アプリケーションへアクセスしておきます。
+            </li>
+            <li>
+                Set-Cookieヘッダーやフォームフィールドやその他の箇所で、セッショントークンや同等の値が発行されているレスポンスを、Proxy履歴から探します。(履歴でCookie列でソートすると、cookieが発行されている箇所を素早く見つけられます。)コンテキストメニューを使って、そのアイテムをBurp Sequencerに送信します。
+            </li>
+            <li>
+                Sequencerタブに移動し、"イブキャプチャリクエスト選択"セクションで、今送信したアイテムを選択します。
+            </li>
+            <li>
+                "レスポンス中のトークン位置"セクションで、レスポンスにトークンが出現する箇所を選択します。トークンが一般的な箇所(例えば、Set-Cookieヘッダーやフォームフィールド)以外に出現する場合、"カスタム位置"オプションを選択し、ダイアログでレスポンス中のトークンを選択し、"OK"をクリックします。
+            </li>
+            <li>
+                "ライブキャプチャリクエスト選択"セクションで、"ライブキャプチャ開始"ボタンをクリックします。するとBurpはオリジナルのリクエストを繰り返し発行し、受信したレスポンスからトークンを全て抽出します。ライブキャプチャセッションには、キャプチャの進捗と得られたトークン数を示す新しいウィンドウが開きます。数百のトークンを取得したら、ライブキャプチャセッションを停止し、"解析実行"ボタンをクリックします。
+            </li>
+            <li>
+                分析が完了したら、タブにランダム性テストの結果が表示されます。これらは、サンプルから推定したエントロピーの概要と、実施した各テストタイプの結果詳細を表示します。各テスト結果内に簡単なドキュメントがあります。
+            </li>
+            <li>
+                一部の状況で、トークンの適当なサンプルが既に得られている場合があります。Sequencerにこのサンプルを手動で読み込ませ、同じ分析を実行できます。これには、Burp UI でSequencerの手動読み込みタブに移動します。クリップボードから貼り付けるかファイルから読み込み、"解析実行"ボタンを押すと、読み込んだサンプルの解析が始まります。
+            </li>
+        </ol>
+        <div class="rounded-corner-box">
+            <p>
+                Burp Sequencerを使い始めるには、次のリンクを参照してください:
+            </p>
+            <ul class="link-list">
+                <li>
+                    <a href="sequencer.html">Burp Sequencerヘルプ</a>
+                </li>
+                <li>
+                    <a href="sequencer_tests.html">乱数テストの方法</a>
+                </li>
+                <li>
+                    <a href="sequencer_results.html">結果の解釈</a>
+                </li>
+                <li>
+                    <a href="suite_usingburp.html">Burp Suiteの使い方</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+</body>
+</html>

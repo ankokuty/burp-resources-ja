@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+                <span itemprop="name">サポートセンター</span>
+                <meta itemprop="position" content="1"/>
+            </a></li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+                <span itemprop="name">ドキュメント</span>
+                <meta itemprop="position" content="2"/>
+            </a></li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="target.html">
+                <span itemprop="name">Target</span>
+                <meta itemprop="position" content="3"/>
+            </a></li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="target_scope.html">
+                <span itemprop="name">スコープ</span>
+                <meta itemprop="position" content="4"/>
+            </a></li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>ターゲットスコープ</h1>
+        <p>
+            ターゲットスコープ設定はBurp Suiteの全体レベルで、どのホストとURLを現在の作業の対象とするかをBurpに設定します。ターゲットスコープは、おおよそ、現在興味を持っていて攻撃しようとしているアイテムと考えられます。 </p>
+        <p>
+            この設定は、ツール全体の動作に影響します。例: </p>
+        <ul>
+            <li>
+                <a href="target_sitemap.html#filter">対象サイトマップ</a>や<a href="proxy_history.html#filter">Proxy履歴</a>にディスプレイフィルターを設定して、スコープ内のアイテムのみ表示できます。
+            </li>
+            <li>Proxyで、スコープ内のリクエストとレスポンスのみ<a href="proxy_options.html#interception">インターセプト</a>するようにできます。
+            </li>
+            <li><a href="spider.html">Spider</a>はスコープ内のリンクのみたどります。</li>
+            <li>
+                <span class="pro-edition-feature-label">プロフェッショナル版</span> Burp Scannerで、スコープ内のアイテムに<a href="scanner_initiatingscans.html#live">自動的に脆弱性スキャンを開始</a>できます。
+            </li>
+            <li>
+                スコープ内のURLのみリダイレクトをたどるよう、<a href="intruder_options.html#redirects">Intruder</a>と<a href="repeater_options.html">Repeater</a>を設定できます。
+            </li>
+        </ul>
+        <p>
+            Burpに現在の対象を伝えると、興味があり攻撃しようとしているアイテムのみに、様々なアクションが適切な方法で実行されるようになります。必要であれば全てのケースで、ターゲットスコープおよび関連する動作を個々のツールでさらに微調整でき、Burpが行う全てを詳細に制御できます。ただしスイート全体の定義は、何が正しいか、何がアクセス禁止かを素早く簡単に設定する方法で、それは作業を本格的に開始する前に設定するべきです。 </p>
+        <p>
+            スコープの定義は、"含める"リストと"除外"リストの２つのURLマッチングルールを使用します。URLが"含める"ルールのいずれか一つにマッチし、"除外"ルールのいずれにもマッチしない場合に、そのURLがターゲットスコープ内であるとみなします。スコープ内に含めたい標準的なホストやディレクトリーを設定しておき、特定のサブディレクトリー(ログアウトや管理機能など)をスコープから除外できます。 </p>
+        <p>
+            "含める"と"除外"リストを、<a href="suite_functions_urlmatching.html">URLマッチングルールエディター</a>を使用して追加や編集ができます。しかしほとんどの場合、ターゲットスコープを定義する最も簡単な方法は、<a href="target_sitemap.html">サイトマップ</a>です。Burp Proxy経由で対象アプリケーションをマッピングすると、アプリケーションのコンテンツがサイトマップに表示されます。一つまたは複数のホストやフォルダーを選択し、<a href="target_sitemap.html#workflow">コンテキストメニュー</a>でこれらのアイテムを含めるまたは除外できます。このプロセスは非常に簡単で、ほとんどの状況でのすべてのテストに必要なルールを簡単に定義できます。 </p>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="scanner.html">
+            <span itemprop="name">Scanner</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="scanner_initiatingscans.html">
+            <span itemprop="name">スキャン開始</span>
+            <meta itemprop="position" content="4"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>スキャン開始</h1>
+        <p>
+            ２つの方法で、対象アプリケーションに対するスキャンを開始できます:
+        </p>
+        <ul>
+            <li>
+                <strong><a href="#manual">マニュアルスキャン</a></strong> - Burpの任意の場所でHTTPリクエストやURLを選択し、コンテキストメニューからスキャンを開始します。
+            </li>
+            <li>
+                <strong><a href="#live">ブラウズしながらライブスキャン</a></strong> - 対象アプリケーションをブラウズしたときにProxyを経由したリクエストに対して、自動的にスキャンを実行するよう設定できます。
+            </li>
+        </ul>
+        <a name="manual"></a>
+        <h2>手動スキャン</h2>
+        <p>
+            Burpの任意の場所で、一つまたは複数のHTTPリクエストやURLを選択し、Scannerに送信してスキャンを実行できます。次のような場合にこの手法を使用します:
+        </p>
+        <ul>
+            <li>
+                Proxyを経由する<a href="proxy_intercept.html">リクエストのインターセプト</a>をしながらアプリケーションの巡回をしていて、気になるパラメーターを使用したリクエストを見つけたとき、コンテキストメニューからスキャンするよう送信できます。
+            </li>
+            <li>
+                アプリケーションのコンテンツと機能をマッピングしたら、対象の<a href="target_sitemap.html">サイトマップ</a>でアプリケーションのホストを選択し、コンテキストメニューからアプリケーション全体に対してスキャンを開始できます。
+            </li>
+            <li>
+                あるいは、アプリケーションの選択した部分だけをスキャンする場合は、サイトマップの特定のブランチだけを選択し、コンテキストメニューでそれらだけをスキャンします。また、特定のディレクトリーとURLだけを含むように<a href="target_scope.html">ターゲットスコープ</a>を定義しておき、<a href="#manual_wizard">アクティブスキャンウィザード</a>で"スコープ外のアイテムを除外"が選択できます。
+            </li>
+            <li>
+                <a href="repeater.html">Burp Repeater</a>で手動で個々のリクエストの脆弱性を探索しているとき、コンテキストメニューからそのリクエストに対してだけアクティブスキャンを実行できます。アクティブスキャンは入力ベースの脆弱性を全体的にチェックするので、その他の人間だけが発見できるタイプの脆弱性に集中できます。
+            </li>
+            <li>
+                <a href="intruder_using.html#uses_fuzzing">Intruderファジング攻撃</a>の結果をレビューしていて、ベースリクエストのあるパラメーター変更が引き起こした異常なレスポンスを見つけた場合、それはアプリケーションへの新しい攻撃ルートを見つけたかもしれません。その結果アイテムをアクティブスキャンに送信し、その変更されたパラメーター値を使って、その他のリクエストパラメーターのテストをします。この手法では、ほとんどのスキャナーが見逃してしまう難しいバグを発見することがよくあります; 例えば、１つのパラメーターにあるクロスサイトスクリプティングやSQLインジェクションで、他のパラメーターの変更も必要な場合などです。
+            </li>
+        </ul>
+        <a name="manual_wizard"></a>
+        <h3> アクティブスキャンウィザード </h3>
+        <p>
+            複数のアイテムを選択してそれらを<a href="scanner_scanmodes.html#active">アクティブスキャン</a>に送信すると、Burpは選択範囲を微調整できる簡単なウィザードを起動します。とりあえずサイトマップで大きなブランチを選択すると、一般的にスキャンする必要がないアイテムがそこには含まれているので、スキャンウィザードで不要なアイテムを削除できます。
+        </p>
+        <p>
+            ウィザードでは、様々な特徴のアイテムを削除するかどうかを選択できます:
+        </p>
+        <ul>
+            <li>
+                選択範囲内で重複(URLとパラメーター名が一致)するアイテム
+            </li>
+            <li>
+                スキャン済みアイテム
+            </li>
+            <li>
+                スコープ外のアイテム
+            </li>
+            <li>
+                パラメーターなしのアイテム
+            </li>
+            <li>
+                メディア(非テキスト)レスポンスのアイテム
+            </li>
+            <li>
+                特定のファイル拡張子のアイテム
+            </li>
+        </ul>
+        <p>
+            各アイテムについて、対象となるアイテム数が表示されます。まだリクエストされていないアイテムがある場合、Burpはレスポンスのメディアタイプを決定する前にリクエストを送信する必要があります。もしオプションが何の結果ももたらさない場合や全てのアイテムが削除対象である場合、このオプションは使用できません。
+        </p>
+        <p>
+            ウィザードには、スキャンされるアイテムの完全なリストが表示されます。完全なリクエスト及びレスポンスの詳細を表示するには、リストの任意のアイテムをダブルクリックします。スキャンしたくないアイテムを、さらに手動で削除できます。
+        </p>
+        <p>
+            ウィザードが完了すると、選択したアイテムは通常通りScannerに送信されます。
+        </p>
+        <a name="live"></a>
+        <h2>ライブスキャン</h2>
+        <p>
+            ライブスキャンでは、対象アプリケーションをBurp Proxy経由でブラウズして、スキャンする対象を決定できます。設定は、<a href="#live_active">ライブアクティブスキャン</a>と<a href="#live_passive">ライブパッシブスキャン</a>に分かれています。
+        </p>
+        <a name="live_active"></a>
+        <h3>ライブアクティブスキャン</h3>
+        <p>
+            ライブ<a href="scanner_scanmodes.html#active">アクティブスキャン</a>を実行するには、次の手順を実行します:
+        </p>
+        <ul>
+            <li>
+                アクティブスキャン設定で、アクティブスキャンをする対象の詳細を設定をします。既に今回の作業用にSuite全体の<a href="target_scope.html">ターゲットスコープ</a>を設定している場合、そのスコープ内で該当する全てのリクエストを簡単にアクティブスキャンできます。また、<a href="suite_functions_urlmatching.html">URLマッチングルール</a>でカスタムスコープを定義できます。
+            </li>
+            <li>
+                Burp Proxy経由で、通常の方法でアプリケーションをブラウズします。これにより、どのアプリケーションの機能をスキャンしたいかをBurpに示すことになります。ブラウザ経由で発行されたリクエストのうちスコープ内のユニークなリクエストを、<a href="scanner_scanmodes.html#active">アクティブスキャン</a>のキューに貯め、そして脆弱性の検索をバックグラウンドで実行します。
+            </li>
+        </ul>
+        <p>
+            <strong>注:</strong> ライブアクティブスキャンでは、cookie以外のパラメーターを含まないメディアリソース(画像など)のリクエストは無視されます。このようなリクエストはほとんどがセキュリティ上重要ではない静的リソースで、Scannerが無視しても事実上問題ありません。(これは<a href="#manual">手動スキャン</a>には適用されません - 手動でこれらのアイテムを選択してアクティブスキャンに送信すれば、それらはもちろん通常通りスキャンされます。)
+        </p>
+        <p>
+            <a href="scanner_initiatingscans.html">ここをクリック</a>すると、スキャン開始について全ての方法が書かれています。
+        </p>
+        <a name="live_passive"></a>
+        <h3>ライブパッシブスキャン</h3>
+        <p>
+            ライブ<a href="scanner_scanmodes.html#passive">パッシブスキャン</a>を実行するには、次の手順を実行します:
+        </p>
+        <ul>
+            <li>
+                パッシブスキャン設定で、パッシブスキャンをする対象の詳細を設定をします。デフォルトで、全てのリクエストをパッシブスキャンしますが、Suite全体の<a href="target_scope.html">ターゲットスコープ</a>か、<a href="suite_functions_urlmatching.html">URLマッチングルール</a>でカスタムスコープに制限できます。
+            </li>
+            <li>
+                Burp Proxy経由で、通常の方法でアプリケーションをブラウズします。これにより、どのアプリケーションの機能をスキャンしたいかをBurpに示すことになります。
+            </li>
+        </ul>
+        <p>
+            <a href="scanner_initiatingscans.html">ここをクリック</a>すると、スキャン開始について全ての方法が書かれています。
+        </p>
+    </div>
+</section>
+</body>
+</html>

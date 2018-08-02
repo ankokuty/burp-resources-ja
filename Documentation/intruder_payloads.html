@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="intruder.html">
+            <span itemprop="name">Intruder</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="intruder_payloads.html">
+            <span itemprop="name">ペイロード</span>
+            <meta itemprop="position" content="4"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>ペイロード</h1>
+        <p>
+            1 つまたは複数のペイロードセットを設定します。ペイロードセットの数は、<a href="intruder_positions.html#attacktype">ポジションタブ</a>で定義されている攻撃の種類に依存します。パラメーターのファジング、ユーザーパスワードの推測、ページ識別子の巡回のような一般的なタスクでは、１つのペイロードセットのみが必要になります。
+        </p>
+        <p>
+            ペイロードセットの設定に必要な手順は次の通りです:
+        </p>
+        <ul>
+            <li>
+                <strong>ペイロードセット</strong>ドロップダウンリストから設定したいものを選択します。
+            </li>
+            <li>
+                ドロップダウンリストから使用する<strong>ペイロードタイプ</strong>を選択します。多くのペイロードタイプが利用でき、高度に設定可能で、あらゆる状況のペイロードの生成を自動化できます:
+                <ul class="link-list">
+                    <li>
+                        <a href="intruder_payloads_types.html#simplelist">単純リスト</a>
+                    </li>
+                    <li>
+                        <a href="intruder_payloads_types.html#runtimefile">実行時ファイル</a>
+                    </li>
+                    <li>
+                        <a href="intruder_payloads_types.html#customiterator">カスタムイテレータ</a>
+                    </li>
+                    <li>
+                        <a href="intruder_payloads_types.html#charsubst">文字置換</a>
+                    </li>
+                    <li>
+                        <a href="intruder_payloads_types.html#casemod">大文字小文字変換</a>
+                    </li>
+                    <li>
+                        <a href="intruder_payloads_types.html#recursivegrep">再帰検索</a>
+                    </li>
+                    <li>
+                        <a href="intruder_payloads_types.html#illegalunicode">不正なUnicode</a>
+                    </li>
+                    <li>
+                        <a href="intruder_payloads_types.html#charblocks">文字ブロック</a>
+                    </li>
+                    <li>
+                        <a href="intruder_payloads_types.html#numbers">数値</a>
+                    </li>
+                    <li>
+                        <a href="intruder_payloads_types.html#dates">日付</a>
+                    </li>
+                    <li>
+                        <a href="intruder_payloads_types.html#bruteforcer">ブルートフォース</a>
+                    </li>
+                    <li>
+                        <a href="intruder_payloads_types.html#nulls">ペイロードなし</a>
+                    </li>
+                    <li>
+                        <a href="intruder_payloads_types.html#charfrobber">文字フロバー</a>
+                    </li>
+                    <li>
+                        <a href="intruder_payloads_types.html#bitflipper">ビットフリッパー</a>
+                    </li>
+                    <li>
+                        <a href="intruder_payloads_types.html#usernamegenerator">ユーザー名ジェネレーター</a>
+                    </li>
+                    <li>
+                        <a href="intruder_payloads_types.html#ecbblockshuffler">ECBブロックシャッフル</a>
+                    </li>
+                    <li>
+                        <a href="intruder_payloads_types.html#extensiongenerated">拡張による生成</a>
+                    </li>
+                    <li>
+                        <a href="intruder_payloads_types.html#copyother">他ペイロードコピー</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                選択したペイロードタイプの<strong><a href="intruder_payloads_types.html">ペイロードオプション</a></strong>を設定します。
+            </li>
+            <li>
+                必要な<strong><a href="intruder_payloads_processing.html#rules">ペイロード処理ルール</a></strong>を設定し、生成されたペイロードを様々な方法で操作します。
+            </li>
+            <li>
+                必要な<strong><a href="intruder_payloads_processing.html#encoding">ペイロードエンコーディング</a></strong>を設定し、安全なHTTP転送するためのURLエンコードする文字を確認します。
+            </li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="collaborator.html">
+            <span itemprop="name">Burp Collaborator</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>Burp Collaboratorドキュメント</h1>
+        <p>
+            このセクションでは、<a href="#what">Burp Collaboratorとは</a>、<a href="#howitworks">Burp Collaboratorの仕組み</a>、<a href="#security">Burp Collaboratorデータのセキュリティ</a>、<a href="#options">Burp Collaboratorの選択肢</a>についての説明します。
+        </p>
+        <a name="what"></a>
+        <h2>Burp Collaboratorとは？</h2>
+        <p>
+            Burp Collaboratorは、Burpが多くの脆弱性を発見するのに役立つ外部サービスです。例:
+        </p>
+        <ul>
+            <li>
+                一部の脆弱性は、指定された入力を元にアプリケーションが外部システムと通信する際に発生します。例えば、リクエストパラメーターで指定されたURLにアプリケーションがアクセスしてコンテンツ取得し、自身のコンテンツ内にサニタイズせず含めてレスポンスを返すと、アウトオブバンドXSSが起こります。
+            </li>
+            <li>
+                一部のインジェクションベースの脆弱性は、インジェクションが成功した際に外部システムとの通信が発生するようなペイロードを使って検出できます。例えば、一部のブラインドSQLインジェクションで、アプリケーションのレスポンスの内容やタイミングに差異を引き起こせなくなくても、外部システムと通信するペイロードをSQLクエリ内に使って検出できます。
+            </li>
+            <li>
+                一部のサービス固有の脆弱性を検出するには、そのサービス用のペイロードを対象アプリケーションに送信し、そのサービスと連携するインスタンスとの通信を詳細に分析します。例えば、メールヘッダーインジェクションはこの方法で検出できます。
+            </li>
+        </ul>
+        <p>
+            Burp Collaboratorを使用すると、Collaborationサーバーとの通信を引き起こすように設計されたペイロードが、対象のアプリケーションに送信されます。通信が発生したか確認するために、BurpはCollaboratorサーバーに定期的にアクセスします。対象アプリケーションが通信したときにCollaboratorサーバーが返すレスポンスも制御もできます。
+        </p>
+        <p>
+            Burp Collaboratorはいまのところ、Scannerツールだけで使われています。将来的には、他のツールでも利用する予定です。
+        </p>
+        <a name="howitworks"></a>
+        <h2>Burp Collaboratorのしくみ</h2>
+        <p>
+            Burp Collaboratorは単一のサーバーとして動作し、様々なネットワークサービスのカスタム実装を提供します:
+        </p>
+        <ul>
+            <li>
+                独自の専用ドメイン名を使用し、そのドメインの権威DNSサーバーとして登録されています。
+            </li>
+            <li>
+                登録済みのドメイン(またはサブドメイン)の全ての名前解決に対して、自身のIPアドレスを返すDNSサービスを提供します。
+            </li>
+            <li>
+                HTTP/HTTPSサービスを提供し、そのドメイン名に対し、CAが署名した有効なワイルドカードSSL証明書を使用しています。
+            </li>
+            <li>
+                将来的には、SMTPやFTPなど各種ネットワークサービスの最低限の実装を提供する予定です。
+            </li>
+        </ul>
+        <p>
+            Collaboratorサーバーを経由した外部サービスとの典型的な通信を、次のように検出できます:
+        </p>
+        <ul>
+            <li>
+                Burpは、Collaboratorドメイン上のランダムなサブドメインを使ったURLを含むペイロードを、アプリケーションに送ります。例:<br><span class="InlineCode">param=http://f294gchg2la...r9gf.burpcollaborator.net/</span>
+            </li>
+            <li>
+                プログラムの(意図した、または意図しない)挙動によって、アプリケーションがそのURLのコンテンツを取得しようとします。すると、まずランダムなサブドメインのDNS名前解決が発生し、その後HTTPリクエストが発生するはずです。
+            </li>
+            <li>
+                DNS名前解決とHTTPリクエストは、Collaboratorサーバーによって受け取られます。いずれの通信も、Collaboratorのサブドメインとしてランダムデータが含まれます。
+            </li>
+            <li>
+                BurpはCollaboratorサーバーをポーリングし、「私のペイロードに関する通信を受信しましたか？」と尋ねると、Collaboratorサーバーは通信の詳細を返します。
+            </li>
+            <li>
+                Burpは、サーバーでキャプチャした全ての通信メッセージを含む、外部サービスとの通信をユーザーに報告します。
+            </li>
+        </ul>
+        <p>
+            この基本動作だけでなく、Collaboratorは脆弱性を検出するための様々な役割を果たします。例:
+        </p>
+        <ul>
+            <li>
+                XSSやSQLインジェクションのようなおなじみの問題の、アウトオブバンドバージョンを検出するために、外部との通信が発生するようなテストペイロード含むレスポンスをCollaboratorサーバーが返します。
+            </li>
+            <li>
+                完全にブラインドなインジェクションの脆弱性を検出するために、インジェクションが成功した場合に外部への通信が発生するよう設計されたインジェクションベースのペイロードを、Burpが送信できます。
+            </li>
+            <li>
+                対象にペイロードを送信した通信内ではなく、それに続いて後で非同期に発生する遅れた影響を、Collaboratorサーバーは検知してBurpに通知できます。これにより、セカンドオーダーSQLインジェクションやブラインドXSSなど、様々な蓄積型脆弱性の検出が可能になります。
+            </li>
+        </ul>
+        <a name="security"></a>
+        <h2>Collaboratorデータのセキュリティ</h2>
+        <p>
+            Collaboratorサーバーで処理されるデータのセキュリティに関してユーザーが懸念を持つのは当然で、データのセキュリティを重視して機能を設計しています。
+        </p>
+        <h4>Collaboratorサーバーはどのようなデータを格納しているのか？</h4>
+        <p>
+            ほとんどの、場合脆弱性が見つかっても、Collaboratorサーバーは脆弱性に関する十分な情報を受信しません。Burpから対象アプリケーションに送信されたHTTPリクエストは見られません。典型的な場合では、どこから通信を受け取ったのかと、Burpによって生成されたランダムな識別子を含む通信内容を記録します。場合によって、例えばユーザー登録フォームを経由して生成されたメールの内容など、アプリケーション固有のデータをCollaboratorサーバーが受け取ります。
+        </p>
+        <h4>Collaboratorデータの取得はどのように制御されているのか？</h4>
+        <p>
+            Burp Collaborator機能は、特定のペイロードを生成したBurpのインスタンスのみが、そのペイロードに起因する通信の詳細を取得できるように設計されています。この要件は次のように実装されています:
+        </p>
+        <ul>
+            <li>
+                Burpの各インスタンスは、乱数のシークレットを安全に生成します。
+            </li>
+            <li>
+                BurpがCollaborator関連の各ペイロードを対象アプリケーションに送信するとき、シークレットから一方向ハッシュ(暗号学的ハッシュ関数)で算出されるランダムな識別子が含まれます。
+            </li>
+            <li>
+                Collaboratorとの全ての通信結果には、送信データ(例えば、サブドメインのDNS名前解決やHTTPリクエストのホスト名など)にこの識別子が含まれます。
+            </li>
+            <li>
+                シークレットは、通信結果の詳細をポーリングするために、BurpからCollaboratorサーバーに対してだけ送信されます。これはBurpのオプションで上書きしない限り、HTTPSを使用しています。
+            </li>
+            <li>
+                Collaboratorサーバーがポーリングリクエストを受け取ると、送信されたシークレットから一方向ハッシュを実行し、そのハッシュから算出された識別子を含む全ての通信の詳細な記録を取得します。
+            </li>
+            <li>
+                したがって、シークレットを生成したBurpインスタンスのみが、そのペイロードが引き起こした通信の詳細を取得できます。
+            </li>
+        </ul>
+        <p>
+            このメカニズムでは、さらにCollaboratorサーバーのデータを不正アクセスから守るために次の予防措置を実装しています:
+        </p>
+        <ul>
+            <li>
+                通信の詳細は、一時的なプロセスメモリのみに格納されます。
+            </li>
+            <li>
+                あらゆる種類の永続的な記録領域にデータはありません: 例えば、データベースやログファイルなど
+            </li>
+            <li>
+                通常、通信が発生した直後にBurpによって通信の詳細が取得され、その後サーバーで破棄されます。
+            </li>
+            <li>
+                Burpが取得しに来ない古い通信の詳細は、一定期間後破棄されます。
+            </li>
+            <li>
+                通信の詳細を表示するための管理者機能はなく、既に説明した検索メカニズムしかありません。
+            </li>
+            <li>
+                Collaboratorサーバーは、Burpユーザーを特定するあらゆるデータ(アカウント名やライセンスキーなど)を受け取らないよう設計されています。
+            </li>
+        </ul>
+        <a name="options"></a>
+        <h2>Burp Collaboratorの選択</h2>
+        <p>
+            Burpユーザーは、次の三つの選択肢から選択してBurp Collaboratorを使用できます:
+        </p>
+        <ul>
+            <li>
+                <strong>公開Collaboratorサーバー</strong> - これはPortSwiggerが提供するサーバーで、全てのBurpユーザーが共同で使用します。もし公開Collaboratorサーバーの停止や不具合があると、BurpのCollaboratorに関連する機能の有効性が失われる可能性があります。そのため、PortSwiggerはこのサーバーのパフォーマンスまたは可用性について保証しません。
+            </li>
+            <li>
+                <strong>プライベートCollaboratorサーバー</strong> - Burp Suite プロフェッショナルライセンスを持つユーザーは、独自のCollaboratorサーバーのインスタンスを実行できます。これを最大限生かすには、ホストサーバー、専用のドメイン名、及びCAに署名された有効なワイルドカードSSL証明書が必要です。適切なドメイン名またはSSL証明書を持たないプライベートCollaboratorサーバーは、BurpのCollaborator関連機能を全てではなく、一部のみをサポートします。ネットワーク層でプライベートCollaboratorインスタンスを保護できます: 通信の受信とポーリングリクエストの応答に異なるネットワークインタフェースを使うよう設定でき、対象とテスト者の位置に応じて好きにIP制限を適用できます。プライベートCollaboratorサーバーを使用する選択肢は、ペネトレーションテスト企業や社内のセキュリティチームにアピールができます。インターネットアクセスがない専用の閉じたネットワーク上でテストするとき、テスト者個別のCollaboratorインスタンスを用意する場合にも有効です。詳細は、<a href="collaborator_deploying.html">プライベートCollaboratorサーバーの配備</a>を参照してください。
+            </li>
+            <li>
+                <strong>Collaboratorサーバーなし</strong> - BurpがCollaborationサーバーを使わないよう設定します。これを選択すると、BurpのCollaborator関連機能はいずれも有効になりません。
+            </li>
+        </ul>
+        <div class="rounded-corner-box">
+            <p>
+                <strong>注:</strong> Burp Collaboratorの機能は、慎重に検討しないと問題が起こる場合があります。Burp Collaboratorの機能と代替手段を完全に理解し、利用による自分自身や組織への影響を考慮しておく必要があります。
+            </p>
+        </div>
+        <p>
+            Burp内の<a href="options_misc_project.html#collaboratorserver">Burp Collaboratorサーバーオプション</a>でこれらの設定ができます。<br>
+        </p>
+    </div>
+</section>
+</body>
+</html>

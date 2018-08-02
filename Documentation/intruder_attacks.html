@@ -1,0 +1,345 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="intruder.html">
+            <span itemprop="name">Intruder</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="intruder_attacks.html">
+            <span itemprop="name">攻撃</span>
+            <meta itemprop="position" content="4"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>攻撃実行</h1>
+        <p>
+            全ての攻撃設定が完了したら、<a href="#launching">攻撃の開始</a>をし、<a href="#results">結果</a>を分析し、場合によって<a href="#configtabs">攻撃設定</a>を修正し、<a href="#results_workflow">テストワークフロー</a>とのリンクや<a href="#resultsmenus">その他のアクション</a>を実行する必要があります。
+        </p>
+        <a name="launching"></a>
+        <h2>攻撃の開始</h2>
+        <p>
+            2 つの方法で、攻撃を開始できます:
+        </p>
+        <ul>
+            <li>
+                <a href="intruder_target.html">Target</a>、<a href="intruder_positions.html">ポジション</a>、<a href="intruder_payloads.html">ペイロード</a>、<a href="intruder_options.html">オプション</a>の各タブで攻撃設定をし、Intruderメニューから"攻撃開始"を選択します。
+            </li>
+            <li>
+                Intruderメニューから"Open saved attack"を選択し、<a href="#resultsmenus_save">以前保存した攻撃</a>を開きます。
+            </li>
+        </ul>
+        <p>
+            それぞれの攻撃は別のウィンドウで開かれます。このウィンドウには生成された攻撃の<a href="#results">結果</a>が表示され、<a href="#configtabs">攻撃設定</a>をリアルタイムに修正でき、<a href="#results_workflow">テストワークフロー</a>とのリンクや<a href="#resultsmenus">その他のアクション</a>の実行もできます。
+        </p>
+        <a name="results"></a>
+        <h2>結果タブ</h2>
+        <p>
+            結果タブには、攻撃で発行された全リクエストの<a href="#results_table">完全な詳細</a>があります。これらの情報に<a href="#results_filter">フィルター</a>や<a href="#results_annotations">注釈</a>を付けると分析しやすくなり、<a href="#results_workflow">テストワークフロー</a>の推進にも利用できます。
+        </p>
+        <a name="results_table"></a>
+        <h3>結果一覧</h3>
+        <p>
+            結果の表には、攻撃で生成された全リクエストとレスポンスの詳細が表示されます。表には次の列がありますが、攻撃設定によっていくつかはデフォルトで非表示になっていて、<a href="#resultsmenus_columns">列メニュー</a>で表示させられます:
+        </p>
+        <ul>
+            <li>
+                リクエスト番号。攻撃で元のリクエストをそのまま送るような<a href="intruder_options.html#results">設定</a>がされていたら、番号０のアイテムとして一覧内に表示されます。
+            </li>
+            <li>
+                現在のペイロードのポジション番号(<a href="intruder_positions.html#attacktype">スナイパー攻撃</a>用)
+            </li>
+            <li>
+                リクエストで使われたペイロード
+            </li>
+            <li>
+                HTTP ステータス コード
+            </li>
+            <li>
+                リクエストが行われた時刻
+            </li>
+            <li>
+                レスポンスを受信し始めるまでの所要時間(ミリ秒)
+            </li>
+            <li>
+                レスポンスを受信し終わるまでの所要時間(ミリ秒)
+            </li>
+            <li>
+                リクエスト送信中にエラーが発生したかどうか
+            </li>
+            <li>
+                レスポンスや処理を待っている間タイムアウトが発生したかどうか
+            </li>
+            <li>
+                レスポンスの長さ(バイト)
+            </li>
+            <li>
+                レスポンスで受信したcookie
+            </li>
+            <li>
+                設定された<a href="intruder_options.html#grepmatch">match grep</a>アイテムの結果
+            </li>
+            <li>
+                設定された<a href="intruder_options.html#grepextract">extract grep</a>アイテムで抽出されたデータ
+            </li>
+            <li>
+                <a href="intruder_options.html#greppayloads">payload grep</a>が設定されている場合、ペイロードがレスポンス内に返ってきたかどうか
+            </li>
+            <li>
+                <a href="intruder_options.html#redirects">設定</a>されている場合、リダイレクトをたどった数
+            </li>
+            <li>
+                ユーザーが適用した<a href="#results_annotations">コメント</a>.
+            </li>
+        </ul>
+        <p>
+            任意の列ヘッダーをクリックすると、一覧内のコンテンツの並び替えができます(ヘッダーをクリックすると、昇順・降順・ソートなしを循環します)。例えば、最新のアイテムが一覧のトップに来て"上方"にリストが延びるのが好きな場合は、リクエスト番号列を降順に並べ替えます。
+        </p>
+        <p>
+            <span class="pro-edition-feature-label">プロフェッショナル版</span> Ctrlキーを押しながらヘッダーをクリックすると、列のコンテンツをコピーできます。
+        </p>
+        <p>
+            一覧内のアイテムを選択すると、<a href="intruder_options.html#results">リクエストとレスポンスの保存</a>の設定で設定したように、そのリクエストとレスポンスがリクエスト/レスポンス部に表示されます。<a href="intruder_options.html#redirects">リダイレクトをたどる</a>よう設定していると、最初のリクエストと最後のレスポンスと共に、途中のレスポンスとリクエストも表示されます。リクエスト/レスポンス部には、各メッセージの<a href="suite_functions_messageeditor.html">HTTPメッセージエディター</a>があり、詳細な分析ができます。一覧でアイテムをダブルクリックすると、ポップアップウィンドウでリクエストとレスポンスの表示ができます。
+        </p>
+        <h4>結果の分析</h4>
+        <p>
+            攻撃結果を効率的に解釈するには、気になるまたは成功したサーバーレスポンスをみつけ、これらを生成したリクエストの特定が重要です。気になるレスポンスは通常、次のいずれかの方法で区別できます:
+        </p>
+        <ul>
+            <li>
+                異なるHTTPステータスコード
+            </li>
+            <li>
+                異なるレスポンス長
+            </li>
+            <li>
+                特定の表現の有無
+            </li>
+            <li>
+                エラーまたはタイムアウトの発生
+            </li>
+            <li>
+                レスポンスの受信または完了までにかかる時間
+            </li>
+        </ul>
+        <p>
+            例えば、コンテンツ探索をしている際、存在しているリソースへのリクエストには様々なサイズの"200 OK"レスポンスが返り、存在しないリソースへのリクエストには"404 Not found"レスポンスや、固定長のカスタムエラーページが"200 OK"で返ってくるかもしれません。あるいはパスワード推測攻撃では、ログイン試行が失敗した場合は"login failed"というキーワードが含まれた"200 OK"レスポンスで、ログイン試行が成功した場合は"302 Object moved"レスポンスや、"welcome"と書かれた異なるサイズの"200 OK"が返ってくるかもしれません。一般的に、レスポンス形式の種類は、実行された<a href="intruder_using.html#uses">攻撃の種類</a>に依存します。
+        </p>
+        <p>
+            次のテクニックで、攻撃結果の分析と気になるアイテムの特定を助けます:
+        </p>
+        <ul>
+            <li>
+                順番に各列のヘッダーをクリックし、並べ替えられた一覧をレビューして異常なアイテムを特定します。
+            </li>
+            <li>
+                <a href="#resultsmenus_columns">追加の列を再表示</a>し、応答時間とcookieを分析します。
+            </li>
+            <li>
+                <a href="#results_filter">ディスプレイフィルター</a>を使って、特定の文字列を含む、または含まないアイテムを除去します。
+            </li>
+            <li>
+                一部のレスポンスで見つかった文字列を含むレスポンスを特定するために、新たな<a href="intruder_options.html#grepmatch">match grep</a>アイテムを作り、新たに追加した列でソートします。
+            </li>
+            <li>
+                エラーメッセージや気になるデータがレスポンスに現れていた場合、このデータを抽出するため新たな<a href="intruder_options.html#grepextract">extract grep</a>を作り、新たに追加した列でソートします。
+            </li>
+        </ul>
+        <a name="results_filter"></a>
+        <h3>ディスプレイフィルター</h3>
+        <p>
+            結果タブのディスプレイフィルターを使ってビューから一部のコンテンツを非表示にすると、注目するコンテンツの解析や作業が容易になります。
+        </p>
+        <p>
+            一覧の上部のフィルターバーには、現在のディスプレイフィルターについての説明があります。フィルターバーをクリックすると、編集用にフィルターオプションが開きます。フィルターは、次の属性について設定できます:
+        </p>
+        <ul>
+            <li>
+                <span class="pro-edition-feature-label">プロフェッショナル版</span> <strong>検索語</strong> - 指定された検索語がレスポンスに含まれている、または含まれていないかによってフィルターできます。検索語は、リテラル文字列または正規表現で設定でき、大文字小文字を区別するかどうかも設定できます。"一致しないものを検索"オプションを選択すると、検索語が存在しないアイテムのみにマッチします。
+            </li>
+            <li>
+                <strong>ステータスコード</strong> - 様々なHTTPステータスコードで表示または非表示を設定できます。
+            </li>
+            <li>
+                <strong>注釈</strong> - ユーザーが指定した<a href="#results_annotations">コメントや色付け</a>があるアイテムだけを表示するよう設定できます。
+            </li>
+        </ul>
+        <p>
+            結果一覧に表示されるコンテンツは、データベースを反映したビューで、ディスプレイフィルターはビューへの表示内容を制御します。一部のアイテムを隠すようフィルターをセットすると、それらは非表示になるだけで削除されるわけではなく、関連するフィルターを解除すれば再度表示されます。フィルターを使用すると、機械的に生成された大量の結果セット(例えば多くのパラメーターを含む<a href="intruder_using.html#uses_fuzzing">ファジング</a>によるものなど)の中から、異なる種類の特徴的なレスポンスが現れるものを調べるのが楽になります。
+        </p>
+        <a name="results_annotations"></a>
+        <h3> 注釈 </h3>
+        <p>
+            攻撃の結果アイテムへのコメントの追加や色付けにより、注釈が付けられます。後で深掘りするレスポンスにフラグを立てておくのに便利です。
+        </p>
+        <p>
+            色付けは、2 つの方法で追加できます:
+        </p>
+        <ul>
+            <li>
+                一番左の列のドロップダウンメニューを使用して、個々のアイテムを色付けできます。
+            </li>
+            <li>
+                コンテキストメニューの"色付け"を使用して、１つまたは複数の選択されたアイテムに色付けできます。
+            </li>
+        </ul>
+        <p>
+            コメントは、2 つの方法で追加できます。
+        </p>
+        <ul>
+            <li>
+                該当するエントリーのコメント列をダブルクリックし、その場で追加または編集できます。
+            </li>
+            <li>
+                コンテキストメニューの"コメントを追加"を使用して、選択された1 つ以上のアイテムにコメントできます。
+            </li>
+        </ul>
+        <p>
+            気になるリクエストに注釈を付けておくと、列のソートや<a href="#results_filter">ディスプレイフィルター</a>によって、後でこれらのアイテムを素早く探し出せます。
+        </p>
+        <a name="results_workflow"></a>
+        <h3> テストワークフロー </h3>
+        <p>
+            攻撃結果では、すべてのリクエストおよびレスポンスの詳細を表示するだけでなく、コンテキストメニューから指定した攻撃を開始したり、その他のアクションの制御などが可能です。次のオプションがあります:
+        </p>
+        <ul>
+            <li>
+                <strong>スキャン/巡回/送信する ...</strong> - 任意のアイテムを他のBurpツールに送信し、さらなる攻撃や解析が実行できます。ツール間のリクエストの送信機能は、Burpの<a href="suite_usingburp.html">ユーザー主導ワークフロー</a>の中核をなします。&nbsp;
+            </li>
+            <li>
+                <strong>レスポンスをブラウザで表示</strong> - 選択したレスポンスをブラウザ内でレンダリングさせ、Burpの組み込み<a href="suite_functions_messageeditor.html#tabs_render">HTMLレンダラ</a>の制限を回避します。(Burpのインスタンスをプロキシーに設定した)ブラウザにペーストできる一意なURLが生成され、レスポンスがレンダリングされます。その結果、ブラウザのリクエストはBurpによって処理され(リクエストは元のWebサーバーには送信されません)、選択したレスポンスを正確に返し、最初にリクエストされたURLのコンテキストでブラウザはレスポンスを処理します。したがって、レスポンス内の相対リンクは、ブラウザによって正しく処理されます。その結果、ブラウザはレスポンスのレンダリングの課程で追加のリクエスト(画像やCSSなど)を生成し、これらはBurpの通常の方法で処理されます。
+            </li>
+            <li>
+                <strong>ブラウザでリクエスト</strong> - 選択したリクエストを(Burpのインスタンスをプロキシーに設定した)ブラウザで再送信できます。次のサブオプションがあります:
+                <ul>
+                    <li>
+                        <strong>元のセッションを使う</strong> - 元のリクエストにあるCookieヘッダーを正確に使ったリクエストを発行します。
+                    </li>
+                    <li>
+                        <strong>現在のブラウザのセッションを使う</strong> -&nbsp;&nbsp; ブラウザのcookieを使ったリクエストを発行します。
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span class="pro-edition-feature-label">プロフェッショナル版</span> <strong>CSRF PoC作成</strong> - <a href="suite_functions_csrfpoc.html">CSRF PoC作成</a> 機能で、ブラウザで表示したとき、選択したリクエストが発行されるHTMLを作成できます。
+            </li>
+            <li>
+                <strong>サイトマップに追加</strong> - 選択したアイテムをBurpのTarget<a href="target_sitemap.html">サイトマップ</a>に追加します。Intruderを<a href="intruder_using.html#uses_enumerating">カスタマイズしたコンテンツ探索</a>に使っていて、他の方法では発見されずサイトマップに追加されていない新たなサーバーリソースが発見された場合に、このオプションが便利です。
+            </li>
+            <li>
+                <strong>アイテムを再リクエスト</strong> - 選択したアイテムが攻撃エンジンによって再リクエストされるようキューに入れます。アイテムが再リクエストされると、アイテムのエントリーや関連するHTTPメッセージが、新たなリクエストを元に更新されます。このオプションは、一部の攻撃リクエストがネットワークエラーで失敗した場合や、断続的な問題により異常なレスポンスを受信していた場合に便利です。ベースリクエストやその他の関連する設定を<a href="#configtabs">変更した</a>場合に、元の設定で再リクエストしたい場合にも使用できます。
+            </li>
+            <li>
+                <strong>レスポンスから抽出grepを定義</strong> - <a href="suite_functions_responseextraction.html">レスポンス抽出ルールダイアログ</a>が開き、選択されたレスポンスのアイテムが表示され、そのレスポンスを元に新たな<a href="intruder_options.html#grepextract">extract grep</a>アイテムを作成できます。一部の攻撃リクエストが、元のリクエストと異なるタイプのレスポンスを生成する場合(例えば、<a href="intruder_using.html#uses_fuzzing">ファジング</a>の際の特定フォーマットのエラーメッセージや、<a href="intruder_using.html#uses_enumerating">クレデンシャルの推測</a>の際の異なるログインメッセージなど)に便利です。このような異なるレスポンスが発生した場合、レスポンスの気になる部分を抽出する新たなextract grepアイテムを作成するのに便利で、他の同様のレスポンスのコンテンツを素早くレビューできます。
+            </li>
+            <li>
+                <strong>コメントを追加</strong> - 選択したアイテムにコメントを追加できます。詳細は、<a href="#results_annotations"> 注釈</a>を参照してください。
+            </li>
+            <li>
+                <strong>色付け</strong> - 選択したアイテムを色付けします。詳細は、<a href="#results_annotations"> 注釈</a>を参照してください。
+            </li>
+            <li>
+                <strong>アイテムを削除</strong> - 選択したアイテムを完全に削除します。
+            </li>
+            <li>
+                <strong>リンクをコピー</strong> - 選択したアイテムのリンクを解析し、クリップボードにコピーします。
+            </li>
+            <li>
+                <strong>アイテムを保存</strong> - 完全なリクエスト・レスポンス・レスポンス長・HTTPステータスコード・MIMEタイプなど全ての関連するメタデータを含む、選択したアイテムに関するデータを、指定したファイルにXMLフォーマットで保存します。
+            </li>
+        </ul>
+        <a name="configtabs"></a>
+        <h2>攻撃設定タブ</h2>
+        <p>
+            <a href="#results">結果タブ</a>と同様に、攻撃ウィンドウには現在の攻撃の基になったメインのUIでの各設定タブが複製されます。攻撃が進行中、攻撃設定を確認して変更できます。
+        </p>
+        <div class="rounded-corner-box">
+            <p>
+                詳細については、各設定タブのヘルプを参照してください。
+            </p>
+            <ul class="link-list">
+                <li>
+                    <a href="intruder_target.html">Target</a>
+                </li>
+                <li>
+                    <a href="intruder_positions.html">ポジション</a>
+                </li>
+                <li>
+                    <a href="intruder_payloads.html">ペイロード</a>
+                </li>
+                <li>
+                    <a href="intruder_options.html">オプション</a>
+                </li>
+            </ul>
+        </div>
+        <p>
+            実行中の攻撃の設定を変更する場合、次の点に注意してください。
+        </p>
+        <ul>
+            <li>
+                攻撃設定のうち、一部の攻撃設定(<a href="intruder_positions.html#attacktype">攻撃タイプ</a>や<a href="intruder_payloads_types.html">ペイロードの種類</a>など)は重要で、攻撃が開始された後は変更できません。
+            </li>
+            <li>
+                攻撃の実行中に設定の一部を変更すると、予期しない効果が起こる場合があります。例えば、<a href="intruder_payloads_types.html#numbers">数値ペイロード</a>を使っているときにToフィールドを変更すると、実行中の各キーに対して変更が影響します; もし、Toフィールドの数字を最初に削除すると、その瞬間Toフィールドは今より小さい数字になるので攻撃が突然終了する可能性があります。設定を変更する前に、実行中の攻撃の一時停止を強くお勧めします。
+            </li>
+        </ul>
+        <a name="resultsmenus"></a>
+        <h2>結果メニュー</h2>
+        <p>
+            結果ビューには、攻撃の制御や、他のアクションを実行するためのコマンドといくつかのメニューがあります。これらを以下に記載します。
+        </p>
+        <a name="resultsmenus_attack"></a>
+        <h3>攻撃メニュー</h3>
+        <p>
+            攻撃の一時停止、再開、再送するコマンドがあります。
+        </p>
+        <a name="resultsmenus_save"></a>
+        <h3>保存メニュー</h3>
+        <ul>
+            <li>
+                <strong>攻撃</strong> - 結果を含む、現在の攻撃のコピーを保存します。保存したファイルは、BurpメインUIのIntruderメニューから"保存した攻撃を開く"を使用すると、再度読み込めます。
+            </li>
+            <li>
+                <strong>結果テーブル</strong> - <a href="#results_table">結果一覧</a>をテキストファイルに保存します。全ての行を保存するか、選択した行のみ保存するか、選択できます。含める列、及び列の区切り文字も選択できます。さらなる分析のために結果をスプレッドシートにエクスポートする場合や、単一の列(<a href="intruder_options.html#grepextract">extract grep</a>機能で抽出したデータなど)を他の攻撃やツールの入力ファイルとして使う場合に、便利です。
+            </li>
+            <li>
+                <strong>サーバーレスポンス</strong> - 全てのリクエストに対して受信した全てのレスポンスを保存します。個々のファイル(連番)か、順番に連結した1つのファイルのいずれかに保存できます。
+            </li>
+            <li>
+                <strong>攻撃設定</strong> - 現在実行中の攻撃の設定(結果ではなく)を保存します。BurpメインUIのIntruderメニューから"攻撃設定を読み込み"を使用すると、攻撃設定を再度読み込めます。
+            </li>
+        </ul>
+        <a name="resultsmenus_columns"></a>
+        <h3>列メニュー</h3>
+        <p>
+            攻撃の<a href="#results_table">結果一覧</a>に表示する列を選択します。
+        </p>
+    </div>
+</section>
+</body>
+</html>

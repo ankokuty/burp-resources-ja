@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="sequencer.html">
+            <span itemprop="name">Sequencer</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="sequencer_sample.html">
+            <span itemprop="name">サンプル</span>
+            <meta itemprop="position" content="4"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>サンプルの取得</h1>
+        <p>
+            アプリケーションのトークンに対するランダム性テストを実行するには、まずそれらのトークンの適切なサンプルを取得する必要があります。これは二つの方法で実行できます: <a href="#live">ライブキャプチャー</a>で対象からトークンを自動で直接取得する、またはで既に取得したトークンのサンプルを<a href="#manual">手動で読み込む</a>方法です。
+        </p>
+        <p>
+            <strong>注:</strong> 当然、サンプル数が多くなるとより信頼性の高い分析ができます。Burpは、100個のトークンサンプルで初期解析を実行できますが、まともな目的にはこれで信頼できるとはいえません。ほとんどの目的で信頼性の高い分析を実行するには5,000トークンのサンプルで十分ですが、サンプルの特性に依存します。サポートする最大サイズは20,000トークンで、これはFIPS準拠の統計テストに十分です。&nbsp;
+        </p>
+        <a name="live"></a>
+        <h2>ライブキャプチャー</h2>
+        <p>
+            ライブキャプチャーを実行するには、対象アプリケーション内で、レスポンスのどこかに分析対象のセッショントークンや他のアイテムが返されるリクエストを、指定する必要があります。これを行うには、Burp内の任意の場所でリクエストを選択し、コンテキストメニューから"Sequencerに送信"オプションを選択します。このリクエストでライブキャプチャを設定するために必要な手順は次の通りです:
+        </p>
+        <a name="live_request"></a>
+        <h3>ライブキャプチャリクエストの選択</h3>
+        <p>
+            ライブキャプチャリクエストリストには、他のBurpツールからSequencerに送信したリクエストが表示されます。分析するトークンまたはその他のアイテムを返すリクエストを選択します。
+        </p>
+        <a name="live_location"></a>
+        <h3>レスポンス内のトークンの位置</h3>
+        <p>
+            アプリケーションのレスポンス内にトークンが表示される場所を選択します。次のオプションがあります:
+        </p>
+        <ul>
+            <li>
+                <strong>Cookie</strong> - レスポンスがcookieをセットする場合、解析するcookieをこのオプションで選択できます。これがセッショントークンをクライアントとやりとりする最も一般的な方法です。
+            </li>
+            <li>
+                <strong>フォームフィールド</strong> - レスポンスにHTMLフォームフィールドがある場合、このオプションを選択すると分析するフォームフィールド値を選択できます。この方法は、CSRF対策トークンやページごとのその他のトークンをクライアントに送信するためによく使用されます。
+            </li>
+            <li>
+                <strong>カスタム位置</strong> - このオプションを使用すると、解析するデータを含むレスポンス内の位置を任意に指定できます。これは<a href="suite_functions_responseextraction.html">レスポンス抽出ルールダイアログ</a>を使用して設定します。
+            </li>
+        </ul>
+        <a name="live_options"></a>
+        <h3>ライブキャプチャーのオプション</h3>
+        <p>
+            ライブキャプチャーを実行してトークンを収集する際にHTTPリクエストを生成する、エンジンの挙動を設定します。次のオプションがあります:
+        </p>
+        <ul>
+            <li>
+                <strong>スレッド数</strong> - ライブキャプチャーが生成できる同時リクエスト数を制御します。
+            </li>
+            <li>
+                <strong>リクエスト間のウェイト</strong> - 必要に応じて、ライブキャプチャーは全てのリクエストの前に指定した時間(ミリ秒)ウェイトを入れられます。アプリケーションの負荷を避けたい場合や、こっそりと実行したい場合、このオプションが便利です。
+            </li>
+            <li>
+                <strong>長さの異なるトークンを無視する</strong> - 平均トークン長よりも、指定した閾値を超えた長さのトークンをライブキャプチャーが無視するよう設定できます。これはアプリケーションがたまに、通常はトークンが表示される場所に異なるアイテムを含む異常なレスポンスを返す場合に便利です。
+            </li>
+        </ul>
+        <a name="live_running"></a>
+        <h3>ライブキャプチャの実行</h3>
+        <p>
+            ライブキャプチャーを全て設定したら、"ライブキャプチャー開始"ボタンをクリックしてライブキャプチャーを開始します。Burp Sequencerはリクエストを繰り返し発行し、アプリケーションのレスポンスから関連するトークンを抽出します。
+        </p>
+        <p>
+            ライブキャプチャー中に進行状況バーが表示され、トークン、リクエスト、およびネットワークエラー数のカウンタが表示されます。次のオプションがあります:
+        </p>
+        <ul>
+            <li>
+                <strong>一時停止/再開</strong> - キャプチャーの一時停止と再開をします。
+            </li>
+            <li>
+                <strong>停止</strong> - キャプチャを終了します。
+            </li>
+            <li>
+                <strong>トークンをコピー</strong> - 他のBurpの攻撃(Intruderのペイロードなど)やツールで使用するために、現在キャプチャーしたトークンをクリップボードにコピーします。
+            </li>
+            <li>
+                <strong>トークンを保存</strong> - 現在キャプチャーされたトークンをファイルに保存します。
+            </li>
+            <li>
+                <strong>自動解析</strong> - このオプションを有効にすると、Burpは自動的にトークン解析を実行し、ライブキャプチャ中は定期的に結果を更新します。
+            </li>
+            <li>
+                <strong>解析実行</strong> - 最低100個のトークンが収集できた場合に利用可能で、現在のサンプルを解析して結果を更新します。
+            </li>
+        </ul>
+        <a name="manual"></a>
+        <h2>手動読込</h2>
+        <p>
+            既に取得してあるトークンのサンプルをSequencerに読み込ませ、サンプルの統計解析を実行できます。
+        </p>
+        <p>
+            手動読込を実行するには、まず独自のスクリプトや以前のライブキャプチャの出力や<a href="intruder_using.html#uses_harvesting">Intruderの攻撃</a>などで、対象アプリケーションからトークンの独自サンプルを取得する必要があります。トークンは、改行で区切られた単純なテキスト形式にする必要があります。
+        </p>
+        <p>
+            "貼り付け"ボタンでトークンをクリップボードから貼り付けるか、"読み込み"ボタンでファイルから読み込みます。読み込まれたトークンの最短及び最長の長さの詳細と共に表示されるので、サンプルが正しく読み込まれていそうか確認できます。&nbsp;
+        </p>
+        <p>
+            読み込まれたトークンを解析するには、"解析実行"ボタンをクリックします。
+        </p>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol itemscope itemtype="http://schema.org/BreadcrumbList">
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="https://support.portswigger.net/">
+            <span itemprop="name">サポートセンター</span>
+            <meta itemprop="position" content="1"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="index.html">
+            <span itemprop="name">ドキュメント</span>
+            <meta itemprop="position" content="2"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="suite_functions.html">
+            <span itemprop="name">Suite機能</span>
+            <meta itemprop="position" content="3"/>
+            </a>
+        </li>
+        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="suite_functions_clickbandit.html">
+            <span itemprop="name">Clickbandit</span>
+            <meta itemprop="position" content="4"/>
+            </a>
+        </li>
+    </ol>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>Burp Clickbandit</h1>
+        <p>
+            Burp Clickbanditは、クリックじゃキング攻撃を生成するためのツールです。クリックジャッキングの脆弱性があるWebページを発見した場合、Burp Clickbanditを使用して攻撃を作成し、脆弱性が悪用できるか確認できます。
+        </p>
+        <p>
+            このドキュメントで扱う内容は次の通りです:
+        </p>
+        <ul class="link-list">
+            <li>
+                <a href="#running">Burp Clickbanditの実行</a>
+            </li>
+            <li>
+                <a href="#record">記録モード</a>
+            </li>
+            <li>
+                <a href="#review">レビューモード</a>
+            </li>
+        </ul>
+        <div class="rounded-corner-box">
+            <p>
+                <b>注:</b> 信頼できないWebサイトでBurp Clickbanditを実行する際は注意が必要です。対象サイトからの悪意のあるJavaScriptによって、Burp Clickbanditが生成したHTML出力が破壊される可能性があります。
+            </p>
+        </div>
+        <a name="running"></a>
+        <h2>Burp Clickbanditの実行</h2>
+        <p>
+            Burp Clickbanditは、JavaScriptを使用してブラウザで実行されます。Microsoft IEとEdge以外の、すべての最新のブラウザで動作します。
+        </p>
+        <p>
+            Clickbanditを実行するには、Burpメニューの"Burp Clickbandit"を選択します。その後、次の手順を実行します:
+        </p>
+        <ol>
+            <li>
+                "Clickbanditをクリップボードにコピー"ボタンをクリックします。これにより、Clickbanditスクリプトがクリップボードにコピーされます。
+            </li>
+            <li>
+                ブラウザで、テストするWebページに通常通りアクセスします。
+            </li>
+            <li>
+                ブラウザで、Web開発者コンソールを開きます。これは"デベロッパーツール"または"JavaScriptコンソール"とも呼ばれます。
+            </li>
+            <li>
+                ClickbanditスクリプトをWeb開発者コンソールに貼り付け、Enterを押します。
+            </li>
+        </ol>
+        <p>
+            Burp Clickbanditのバナーがブラウザウィンドウの上部に表示され、元のページがフレーム内でリロードされ、攻撃が実行されます。
+        </p>
+        <a name="record"></a>
+        <h2>記録モード</h2>
+        <p>
+            Burp Clickbanditはまず記録モードで読み込みます。"Start"をクリックしてサイトを読み込みます。1回以上のマウスクリックを行い、クリックジャッキング攻撃を記録します。通常これは、被害者のユーザーに実行させたいアクションに必要な、マウスクリックを行う必要があります。
+        </p>
+        <p>
+            デフォルトで、クリックが記録され、対象ページも通常の通り操作します。"クリックアクションを無効にする"チェックボックスを使用して、対象ページを操作しないクリックを記録できます。
+        </p>
+        <p>
+            "サンドボックスiframe"チェックボックスをクリックすると、iframeにsandobox属性を追加できます。このオプションを使用すると、iframeバスターを回避できます。
+        </p>
+        <p>
+            記録が終わったら、"完了"ボタンをクリックしてレビューモードに入ります。
+        </p>
+        <a name="review"></a>
+        <h2>レビューモード</h2>
+        <p>
+            攻撃の記録が終了すると、Burp Clickbanditはレビューモードに入ります。攻撃UIを元のページのUIに重ねて、生成された攻撃のレビューができます。攻撃UI上のボタンをクリックして、攻撃が動作するか確認できます。
+        </p>
+        <p>
+            レビューモードでは、次のコマンドを使用できます:
+        </p>
+        <ul>
+            <li>
+                + と - ボタンで、ズームイン/ズームアウトができます。
+            </li>
+            <li>
+                "透明にする"ボタンで、元のページのUIを表示または非表示にできます。
+            </li>
+            <li>
+                "リセット”ボタンは、これまでのクリックがされる前の状態になるよう、生成された攻撃を復元します。
+            </li>
+            <li>
+                "保存"ボタンは、攻撃を含むHTMLファイルを保存します。これは、クリックジャッキングの脆弱性を実際に悪用するために使用できます。
+            </li>
+            <li>
+                元のページのUIと正しく位置が合っていない場合は、キーボードの矢印キーで攻撃UIの位置調整ができます。
+            </li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>
