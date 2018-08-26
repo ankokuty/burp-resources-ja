@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../styles/css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://support.portswigger.net/">サポートセンター</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">便利な機能</a>
+        </li>
+        <li>
+            <a href="response-extraction.html">レスポンス抽出ルール</a>
+        </li>
+    </ol>
+</section>
+<section class="container edition-labels">
+	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>レスポンス抽出ルール</h1>
+        <p>
+            レスポンス抽出ルールはBurpの様々な箇所で使用され、レスポンス内で変化し抽出が必要なアイテム位置を定義します。Sequencerでのカスタム<a href="../tools/sequencer/sample.html#token-location-within-response">セッショントークン</a>の特定、Intruderでの<a href="../tools/intruder/options.html#grep-extract">抽出grep</a>アイテムの定義、マクロで<a href="../options/sessions/macro-editor.html#custom-parameter-locations-in-response">カスタムパラメーター値</a>の位置指定で使用されます。
+        </p>
+        <p>
+            様々な方法で、様々な複数のレスポンスから同じアイテムを抽出するようレスポンス抽出ルールは設計されており、アイテムの位置を非常に柔軟な方法で指定できます。
+        </p>
+        <p>
+            抽出ルールを定義するダイアログには、上部パネルに現在の設定が、下部パネルにサンプルレスポンスが表示されます。まだ対象アプリケーションからレスポンスを取得していない場合は、"レスポンス取得"をクリックすると可能です。
+        </p>
+        <p>
+            アイテムの場所を指定する最も簡単な方法は、サンプルレスポンス内でアイテムを単純に選択します。"以下の選択を元に設定を更新"チェックボックスがオンになっている場合、Burpは自動的に適切な設定を上部パネルに作成します。
+        </p>
+        <p>
+            場合によっては、別のレスポンスを受信した場合に動作するように、手動で設定を変更する必要があります。使用可能なオプションは次の通りです。
+        </p>
+            <h4>開始と終了を定義</h4>
+        <p>
+            抽出するアイテムの開始点と終了点を定義します。
+        </p>
+        <ul>
+                    <li>
+                        <strong>この後ろから開始</strong> - 抽出するアイテムの前にあるリテラル文字列を指定します。エスケープシーケンスを使用して非表示文字を表せます: \rはCR, \nはLF, \xNNはASCII16進数コードの文字、\\はバックスラッシュ文字を表します。
+            </li>
+                    <li>
+                        <strong>開始オフセット</strong> - レスポンス内でアイテムが始まる固定オフセットを指定します。
+                    </li>
+                    <li>
+                        <strong>この区切りで終了</strong> - 抽出するアイテムの後ろに続くリテラル文字列を指定します。"この後ろから開始"の説明と同じエスケープシーケンスを使用できます。
+                    </li>
+                    <li>
+                        <strong>固定長で終了</strong> - レスポンスから抽出するアイテムの先頭からの長さを固定長で指定します。
+                    </li>
+        </ul>
+            <h4>正規表現グループから定義</h4>
+        <p>
+            グループを含む正規表現を指定し、マッチした場合グループの内容が抽出されます。例えば、次の指定でHTML titleタグの内容を抽出できます:
+        </p>
+        <p class="InlineCode">&lt;title&gt;(.*?)&lt;/title&gt;</p>
+        <p>
+または、次の指定でレスポンス内から6桁の数字を抽出できます:</p>
+<p class="InlineCode">(\d\d\d\d\d\d)</p>
+<h4>設定のテスト</h4>
+        <p>
+            上部パネルの設定を手動で変更すると、レスポンスから抽出されたアイテムを自動的に強調表示します(存在する場合)。
+        </p>
+        <p>
+            設定が完了したら、"レスポンスを再取得"ボタンを数回クリックし、設定をテストできます。Burpはレスポンスを再取得し抽出されるアイテム項目を自動的に強調表示するので、意図した通りに設定が動作しているかどうか確認できます。
+        </p>
+    </div>
+</section>
+</body>
+</html>

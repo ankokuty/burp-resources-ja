@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../styles/css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://support.portswigger.net/">サポートセンター</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">ウェブサイトのスキャン</a>
+        </li>
+        <li>
+            <a href="audit-items.html">診断項目</a>
+        </li>
+    </ol>
+</section>
+<section class="container edition-labels">
+	<span class="pro-edition-feature-label">プロフェッショナル</span>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>診断項目ビュー</h1>
+<p>
+            Burp<a href="../dashboard/index.html">ダッシュボード</a>で、診断を含むスキャンタスクの<a href="../dashboard/task-details.html">タスク詳細ウィンドウ</a>を開くと、診断項目ビューにアクセスできます。
+        </p>
+<p>
+            各アイテムについて次の情報が表示されます:
+        </p>
+        <ul>
+            <li>
+                アイテムのインデックス番号
+            </li>
+            <li>
+                宛先プロトコル、ホスト、URL
+            </li>
+            <li>
+                アイテムの現在のステータス
+            </li>
+            <li>
+                該当する場合(パッシブ、アクティブ、JavaScript解析)、様々な<a href="../../scanner/auditing.html#audit-phases">診断のフェーズ</a>の進捗
+            </li>
+            <li>
+                危険度で分類された、そのアイテムで発見された<a href="../tools/target/site-map/index.html#issues-view">問題</a>の数
+            </li>
+            <li>
+                アイテムの診断中に発生したリクエスト数。これは挿入ポイントの数に比例しないことを覚えておいてください - 人間のテスターと同様に、対象アプリケーションの挙動に応じてその後のリクエストが変化します。
+            </li>
+            <li>
+                ネットワークエラーの数
+            </li>
+            <li>
+                アイテム用に作成された<a href="../../scanner/auditing.html#insertion-points">挿入ポイント</a>の数
+            </li>
+        </ul>
+        <p>
+            この情報を使用して、個々の診断アイテムの進行状況を容易に監視できます。一部のスキャンの進捗が遅い場合、挿入ポイントが多い、アプリケーションのレスポンスが遅い、ネットワークエラーなどの理由がわかります。この情報によって、<a href="audit-options.html#audit-optimization">診断最適化</a>、テストされる<a href="audit-options.html#issues-reported">項目</a>、<a href="audit-options.html#insertion-point-types">挿入ポイント</a>の設定変更をするなど、スキャンの最適化アクションがとれます。
+        </p>
+        <p>
+            アイテムをダブルクリックするとこれまでに発見された問題が表示され、ベースリクエストとレスポンスを表示できます。
+        </p>
+        <p>
+            コンテキストメニューを使用すると、診断処理を制御する様々なアクションを実行できます。実際に表示されるオプションは、選択したアイテムのステータスによって変わります:
+        </p>
+        <ul>
+            <li>
+                <strong>詳細を表示</strong> - これまでに発見された問題と、ベースリクエストとレスポンスを表示するウィンドウを開きます。
+            </li>
+            <li>
+                <strong>キャンセル</strong> - 選択したアイテムが診断されないようキャンセルします。診断が既に実行中の場合、保留中の診断リクエストが完了するまで若干の遅延があり、その後そのアイテムは完全にキャンセルされます。
+            </li>
+            <li>
+                <strong>再診断</strong> - 選択したアイテムを複製し、リストの最後に追加します。
+            </li>
+            <li>
+                <strong>コメントを追加</strong> - 選択したアイテムにコメントを追加できます。詳細は、<a href="#audit-items-annotations">注釈</a>を参照してください。
+            </li>
+            <li>
+                <strong>色付け</strong> - 選択したアイテムを色付けします。詳細は、<a href="#audit-items-annotations">注釈</a>を参照してください。
+            </li>
+            <li>
+                <strong>送信 ...</strong> - 選択したアイテムのベースリクエストをBurpの他のツールに送信します。
+            </li>
+        </ul>
+        <h2 id="audit-items-annotations">診断アイテムの注釈</h2>
+        <p>
+            診断アイテムへのコメントの追加や色付けにより、注釈が付けられます。これは、後で深掘りするアイテムにフラグを設定する、または手動ワークフローを管理する場合に便利です。
+        </p>
+        <p>
+            色付けは、2 つの方法で追加できます:
+        </p>
+        <ul>
+            <li>
+                一番左の列のドロップダウンメニューを使用して、個々のアイテムを色付けできます。
+            </li>
+            <li>
+                コンテキストメニューの"色付け"を使用して、１つまたは複数の選択されたアイテムに色付けできます。
+            </li>
+        </ul>
+        <p>
+            コメントは、2 つの方法で追加できます。
+        </p>
+        <ul>
+            <li>
+                該当するエントリーのコメント列をダブルクリックし、その場で追加または編集できます。
+            </li>
+            <li>
+                コンテキストメニューの"コメントを追加"を使用して、選択された1 つ以上のアイテムにコメントできます。
+            </li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../styles/css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://support.portswigger.net/">サポートセンター</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">オプション</a>
+        </li>
+        <li>
+            <a href="misc-user.html">その他ユーザーオプション</a>
+        </li>
+    </ol>
+</section>
+<section class="container edition-labels">
+	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>その他ユーザーオプション</h1>
+        <p>
+            このタブには、<a href="#hotkeys">ホットキー</a>、<a href="#automatic-project-backup">プロジェクト自動バックアップ</a>、<a href="#proxy-interception">Proxyインターセプト</a>、<a href="#rest-api-options">REST API</a>、<a href="#proxy-interception">Proxy履歴ログ</a>、<a href="#temporary-files-location">一時ファイル</a>の場所、<a href="#performance-feedback">パフォーマンスフィードバック</a>があります。
+        </p>
+        <h2 id="hotkeys">ホットキー</h2>
+        <p>
+            一般的なアクションのためのホットキーを設定できます。多くのタイプのアクションにホットキーを割り当てられ、次のカテゴリがあります:
+        </p>
+        <ul>
+            <li>
+                "Repeaterへ送信"など、個々のHTTPリクエストやレスポンスに固有のアクション。
+            </li>
+            <li>
+                "Proxyに切り替え"など、グローバルアクション。
+            </li>
+            <li>
+                "切り取り"、"元に戻す"など、エディター内のアクション。
+            </li>
+        </ul>
+        <p>
+            多くのホットキーがデフォルトで設定されています。ホットキーをよく使う場合、割り当てられているよりも多くの機能がある点に注意してください。
+        </p>
+        <p>
+            全てのホットキーはコントロールキー(またはOSXではコマンドキー)を使用する必要があり、シフトやその他の修飾キーも使用できます。一部のWindowsインストールでは、Ctrl+Altの組み合わせはAltGrと同等として扱われるので、テキストフィールドに入力した文字が現れる可能性がある点に注意してください。&nbsp;
+        </p>
+        <h2 id="automatic-project-backup">プロジェクト自動バックアップ</h2>
+        <p>
+            プロジェクト自動バックアップは、バックグラウンドで定期的にBurpプロジェクトファイルのコピーを保存します。次のオプションがあります:
+        </p>
+        <ul>
+            <li>
+                自動バックアップを実行するかどうか、およびその頻度。
+            </li>
+            <li>
+                スコープ内のアイテムのみ含めるかどうか。
+            </li>
+            <li>
+                バックアップ中に進捗ダイアログを表示するかどうか。
+            </li>
+            <li>
+                Burpの正常終了時にバックアップファイルを削除するかどうか。
+            </li>
+        </ul>
+<h2 id="rest-api-options">REST APIオプション</h2>
+        <p>
+            REST APIを使用して、他のツールとBurp Suiteを統合できます。
+        </p>
+        <p>
+            <strong>注:</strong> REST APIは機密性の高い機能とデータを公開します。信頼できないネットワークインターフェイスではREST APIサービスを有効にせず、アクセスを許可するクライアントごとに個別のAPIキーを使用するべきです。
+        </p>
+        <p>
+            次のオプションがあります:
+        </p>
+        <ul>
+            <li>
+                サービスが実行されるURL。バインドするポート番号とインターフェイスを選択できます。信頼できないネットワークに接続している場合は、ループバックインターフェイス以外にバインドしないでください。
+            </li>
+            <li>
+                サービスが現在実行中かどうか。
+            </li>
+            <li>
+                APIキーなしでアクセスを許可するかどうか。このオプションは<strong>非推奨</strong>です。サービスエンドポイントへのネットワークアクセスができる人は誰でも、Burp内のアクションを起動してしてそのデータにアクセスできることになります。これには、Burpと同じマシンでブラウズする信頼できないWebサイトからのCSRFリクエストも含まれるため、サービスがループバックインタフェースのみでリッスンしている場合でも、常にAPIキーを使用する必要があります。
+            </li>
+            <li>
+                クライアントが使用するAPIキー。異なる用途に別々のAPIキーを作成し、それらの有効または無効を選択できます。APIキーは秘密で、慎重に扱う必要があります。APIキーの値は、作成された時点でしか取得できないことに注意してください。
+            </li>
+        </ul>
+        <p>
+            設定を行うと、APIドキュメントのブラウズができ、[サービスURL]/[APIキー]でAPIとのやりとりができます。
+        </p>
+<h2 id="proxy-interception">Proxyインターセプト</h2>
+        <p>
+            Burp起動時に、Proxyインターセプトを有効にするか設定します。常に有効化、常に無効化、前回終了時の状態を復元、から選択できます。
+        </p>
+        <h2 id="proxy-history-logging">Proxy履歴ログ</h2>
+        <p>
+            ターゲットスコープへアイテムを追加したときに、履歴や他のBurpツールにスコープ外アイテムを送信しないよう<a href="../tools/proxy/options/index.html#miscellaneous">Proxyオプション</a>を自動的に追加するかどうか設定します。この設定により、プロジェクトデータにスコープ外のアイテムが蓄積されるのを避けられます。
+        </p>
+        <h2 id="temporary-files-location">一時ファイルの場所</h2>
+        <p>
+            Burpが一時ファイルを保存する場所を設定します。
+        </p>
+        <p>
+            デフォルトで、プラットフォームの提供する一時ファイル場所に、Burpはディレクトリーを作成します。これを別のディレクトリーを使用するように変更できます - 例えば、別のボリュームや、全ユーザーに読取権限がない場所などです。
+        </p>
+        <p>
+            Mac OS Xでは、システムを休止状態にするとデフォルトの一時ファイル場所がクリアされることがあり、Burpが一時ファイルを失う原因になります。Burpの一時ファイルを格納するカスタムの場所を設定すると、この問題を解決できます。
+        </p>
+        <p>
+            この設定の変更は、次回のBurp起動時に有効になります。
+        </p>
+        <h2 id="performance-feedback">パフォーマンスフィードバック</h2>
+        <p>
+            Burpのパフォーマンスに関する匿名のフィードバックを送信すると、Burpの向上に貢献できます。
+        </p>
+        <p>
+            フィードバックにはBurpの内部機能に関する技術情報だけが含まれ、あなたを特定する方法はありません。バグを報告する場合デバッグIDを含めると、あなたのBurpインスタンスで発生した問題の診断の助けになります。
+        </p>
+</div>
+</section>
+</body>
+</html>

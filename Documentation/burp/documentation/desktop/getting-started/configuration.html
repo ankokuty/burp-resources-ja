@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../styles/css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://support.portswigger.net/">サポートセンター</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">入門</a>
+        </li>
+        <li>
+            <a href="configuration.html">設定</a>
+        </li>
+    </ol>
+</section>
+<section class="container edition-labels">
+	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>設定</h1>
+<p>
+            設定ライブラリを使用して、個々のタスクに応じて、異なるBurp設定を利用できます。例えば、スキャンの種類ごとに、異なる設定が作成できます。または、作業を行うクライアントごとに固有の設定を読み込む必要があるかもしれません。設定ファイルの形式で、保存や読み込みもできます。
+        </p>
+        <h2 id="configuration-library">設定ライブラリ </h2>
+<p>
+            Burpの設定ライブラリには、様々なタスクタイプの設定オプションが格納されており、<a href="../scanning/scan-launcher.html">スキャンの開始</a>のようなアクションを実行する際に簡単に利用できます。
+        </p>
+        <p>
+            設定ライブラリには次のものがあります:
+        </p>
+        <ul>
+            <li>
+                <strong> 組み込み設定</strong> - 一般的な用途で便利な、事前定義された設定です。例えば、高速クロールの実行や、重大な脆弱性のみの診断、などです。
+            </li>
+            <li>
+                <strong>カスタム設定</strong> - ユーザーが定義し管理する設定です。
+            </li>
+        </ul>
+        <p>
+            Burpメニューや、<a href="../scanning/scan-launcher.html">スキャンランチャー</a>など他の関連機能から、Burpの設定ライブラリにアクセスできます。
+        </p>
+        <p>
+            設定ライブラリの各アイテムは、"クロール"など特定の機能に適用されます。新しいカスタム設定の作成や、既存のものを編集する際は、選択した機能の設定エディタが表示されます。通常、指定された機能で定義できる複数の設定範囲があります。設定エディタでは、その設定で定義する範囲を選択できます。設定を定義していない範囲には、デフォルトまたは既存の値が使用されます。多くのBurp機能で複数の設定を選択できるのでこの挙動が便利です; これらは順番に適用され、複数の設定から最終的な設定を構築できます。
+        </p>
+        <p>
+            各設定には個別の名前を付ける必要があります。設定ファイルとして、設定のエクスポートまたはインポートができます。設定の詳細は、<a href="#configuration-file-format">JSON形式</a>で記述されます。
+        </p>
+        <h2 id="user-and-project-configuration-files">ユーザーとプロジェクトの設定ファイル</h2>
+        <p>
+            <a href="../options/index.html">ユーザーレベルとプロジェクトレベルのオプション</a>管理に、個別の設定ファイルが使用されます。
+        </p>
+        <p>
+            ユーザー設定ファイルには、個々のユーザー環境とUIに関する設定が書かれており、内容は次の通りです:
+        </p>
+        <ul>
+            <li>
+                <a href="../options/index.html">ユーザーオプション</a>タブの全て
+            </li>
+            <li>
+                設定された拡張を含む、<a href="../tools/extender.html">Extender</a>ツール
+            </li>
+            <li>
+                <a href="../tools/target/site-map/index.html#site-map-views">ターゲットサイトマップ</a>で選択したビューなど、他のツールのUI関連の設定
+            </li>
+        </ul>
+        <p>
+            プロジェクト設定ファイルには、個々の対象アプリケーションで実行される作業に関する設定が書かれており、内容は次の通りです:
+        </p>
+        <ul>
+            <li>
+                <a href="../options/index.html">プロジェクトオプション</a>タブの全て
+            </li>
+            <li>
+                <a href="../tools/proxy/index.html">Proxy</a>や<a href="../../scanner/index.html">Scanner</a>など、個々のBurpツールの非UI関連の設定
+            </li>
+        </ul>
+        <h2 id="loading-and-saving-configuration-files">設定ファイルの読み込みと保存</h2>
+        <p>
+            様々な方法で設定ファイルの読み込みと保存ができます:
+        </p>
+        <ul>
+            <li>
+                Burpの<a href="#configuration-library">設定ライブラリ</a>で、設定ファイルとして、設定のエクスポートまたはインポートができます。
+            </li>
+            <li>
+                Burpメニューから、ユーザーレベルおよびプロジェクトレベルの全ての設定を、読み込みや保存ができます。
+            </li>
+            <li>
+                Burpの至る所にある個々の設定パネルで、"オプション"ボタンでそのパネルの設定を、読み込みや保存ができます。
+            </li>
+            <li>
+                <a href="index.html#startup-wizard">開始ウィザード</a>で、プロジェクトの作成または再開をするとき、プロジェクトレベルの設定を読み込む設定ファイルを指定できます。
+            </li>
+            <li>
+                コマンドラインからBurpを実行するとき、<a href="launching-from-command-line.html#command-line-arguments">コマンドライン引数</a>を使用して、１つまたは複数の設定ファイルを指定してユーザーレベル及びプロジェクトレベルの設定を読み込めます。
+            </li>
+            <li>
+                <a href="../tools/extender.html">Burp拡張</a>からはAPI経由で設定ファイルの読み込みと保存ができます。
+            </li>
+        </ul>
+        <h2 id="configuration-file-format">設定ファイルのフォーマット</h2>
+        <p>
+            設定ファイルはJSON形式を使用しています。JSON内で使用される構造と名前スキームは、Burp UIでの設定表示方法に対応します。個別の目的に応じた設定ファイル作成するには、Burp UIで必要な設定を作成し、そこから<a href="#loading-and-saving-configuration-files">設定ファイルの保存</a>をする方法が、最も簡単です。設定ファイルの内容は人間が判読可能でそれ自身がドキュメントにもなっているので、必要に応じて既存の設定ファイルを手動で編集できます。
+        </p>
+</div>
+</section>
+</body>
+</html>

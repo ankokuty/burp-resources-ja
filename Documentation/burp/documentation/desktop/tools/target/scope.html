@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../styles/css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://support.portswigger.net/">サポートセンター</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Target</a>
+        </li>
+        <li>
+            <a href="scope.html">スコープ</a>
+        </li>
+    </ol>
+</section>
+<section class="container edition-labels">
+	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>ターゲットスコープ</h1>
+        <p>
+            ターゲットスコープ設定はBurp Suiteの全体レベルで、どのホストとURLを現在の作業の対象とするかをBurpに設定します。ターゲットスコープは、おおよそ、現在興味を持っていて攻撃しようとしているアイテムと考えられます。
+        </p>
+        <p>
+            この設定は、ツール全体の動作に影響します。例:
+        </p>
+        <ul>
+            <li>
+                <a href="site-map/index.html#site-map-display-filter">対象サイトマップ</a>や<a href="../proxy/history.html#proxy-history-display-filter">Proxy履歴</a>にディスプレイフィルターを設定して、スコープ内のアイテムのみ表示できます。
+            </li>
+            <li>
+                Proxyで、スコープ内のリクエストとレスポンスのみ<a href="../proxy/options/index.html#intercepting-http-requests-and-responses">インターセプト</a>するようにできます。
+            </li>
+            <li>
+                <span class="pro-edition-feature-label">プロフェッショナル</span> Burp Scannerで、スコープ内のアイテムに<a href="../../scanning/live-scans.html">自動ライブスキャン</a>を実行できます。
+            </li>
+            <li>
+                スコープ内のURLのみリダイレクトをたどるよう、<a href="../intruder/options.html#handling-redirections-during-attacks">Intruder</a>と<a href="../repeater/options.html">Repeater</a>を設定できます。
+            </li>
+        </ul>
+        <p>
+            Burpに現在の対象を伝えると、興味があり攻撃しようとしているアイテムのみに、様々なアクションが適切な方法で実行されるようになります。必要であれば全てのケースで、ターゲットスコープおよび関連する動作を個々のツールでさらに微調整でき、Burpが行う全てを詳細に制御できます。ただしスイート全体の定義は、何が正しいか、何がアクセス禁止かを素早く簡単に設定する方法で、それは作業を本格的に開始する前に設定するべきです。
+        </p>
+        <p>
+            スコープの定義は、"含める"リストと"除外"リストの２つのURLマッチングルールを使用します。URLが"含める"ルールのいずれか1つにマッチし、"除外"ルールのいずれにもマッチしない場合に、そのURLがターゲットスコープ内であるとみなします。スコープ内に含めたい標準的なホストやディレクトリーを設定しておき、特定のサブディレクトリー(ログアウトや管理機能など)をスコープから除外できます。
+        </p>
+        <p>
+            "含める"と"除外"リストを、<a href="../../functions/url-matching.html">URLマッチングルールエディター</a>を使用して追加や編集ができます。しかしほとんどの場合、ターゲットスコープを定義する最も簡単な方法は、<a href="site-map/index.html">サイトマップ</a>です。Burp Proxy経由で対象アプリケーションをマッピングすると、アプリケーションのコンテンツがサイトマップに表示されます。1つまたは複数のホストやフォルダーを選択し、<a href="site-map/index.html#site-map-testing-workflow">コンテキストメニュー</a>でこれらのアイテムを含めるまたは除外できます。このプロセスは非常に簡単で、ほとんどの状況でのすべてのテストに必要なルールを簡単に定義できます。
+        </p>
+    </div>
+</section>
+</body>
+</html>

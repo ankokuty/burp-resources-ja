@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../styles/css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://support.portswigger.net/">サポートセンター</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">ウェブサイトのスキャン</a>
+        </li>
+        <li>
+            <a href="live-scans.html">ライブスキャン</a>
+        </li>
+    </ol>
+</section>
+<section class="container edition-labels">
+	<span class="pro-edition-feature-label">プロフェッショナル</span>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>ライブスキャン</h1>
+        <p>
+            ライブスキャンを使用すると、Burpのツールで処理されたリクエストとレスポンスに対して、自動的にスキャン処理を実行できます。
+        </p>
+        <p>
+            脆弱性の診断や、観測したリソースのBurpのTarget<a href="../tools/target/site-map/index.html">サイトマップ</a>への追加に、ライブスキャンを使用できます。
+        </p>
+        <p>
+            Burp<a href="../dashboard/index.html">ダッシュボード</a>の"新規ライブタスク"ボタンで、ライブスキャンを作成できます。いくつかのデフォルトライブタスクが、新しいプロジェクトで自動的に作成されます。
+        </p>
+        <h2 id="live-scan-configuration">ライブスキャン設定</h2>
+        <p>
+            すべてのタイプのライブスキャンタスクで、次のオプションを設定する必要があります:
+        </p>
+        <ul>
+            <li>
+                <strong>ツールスコープ</strong> - トラフィックを検査して、ライブスキャンで処理されるアイテムを選択するツールを選択できます。
+            </li>
+            <li>
+                <strong>URLスコープ</strong> - URLに基づいて、ライブスキャンで処理されるアイテムを定義できます。すべてを含めるか、<a href="../tools/target/scope.html">全体スコープ</a>で定義した範囲のアイテムだけか、カスタムスコープ内のアイテムにするかを選択できます。
+            </li>
+            <li>
+                <strong>重複排除</strong> - URLとパラメータ名に基づいて、処理されるアイテムを重複廃除するかどうか選択できます。同じアイテムに診断を複数回繰り返すのが望ましくない箇所の、<a href="#live-audit">ライブ診断</a>タスクで特に便利です。
+            </li>
+        </ul>
+        <h2 id="live-audit">ライブ診断</h2>
+        <p>
+            このタイプのライブタスクは、<a href="#live-scan-configuration">ライブスキャン設定</a>で選択されたアイテムの<a href="../../scanner/auditing.html">診断</a>を行います。使用する<a href="../scanning/audit-options.html">診断設定</a>を選択できます。
+        </p>
+        <p>
+            ライブ診断タスクの一般的な用途は、プロキシ経由のすべてのトラフィックへのパッシブ診断、またはスコープ内のアイテムのみへのアクティブ診断の実施です。
+        </p>
+        <h2 id="live-passive-crawl">ライブパッシブクロール </h2>
+        <p>
+            このタイプのライブタスクは、HTTPメッセージを解析し、Target<a href="../tools/target/site-map/index.html">サイトマップ</a>にエントリーを追加します。
+        </p>
+        <p>
+            タスク設定で、観測された場合に追加するアイテムのタイプ(リンクとフォーム送信)を選択できます。
+        </p>
+        <p>
+            追加するアイテムを、URLに基づいて選択もできます。全て、または、そのアイテム自身、リクエストされたURLと同じドメインのアイテム、<a href="../tools/target/scope.html">全体スコープ</a>またはカスタムスコープのアイテムを含めるか、選択できます。
+        </p>
+</div>
+</section>
+</body>
+</html>

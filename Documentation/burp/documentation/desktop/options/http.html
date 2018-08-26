@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../styles/css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://support.portswigger.net/">サポートセンター</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">オプション</a>
+        </li>
+        <li>
+            <a href="http.html">HTTP</a>
+        </li>
+    </ol>
+</section>
+<section class="container edition-labels">
+	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>オプション: HTTP</h1>
+        <p>
+            このタブでは、<a href="#redirections">リダイレクト</a>、<a href="#streaming-responses">ストリーミングレスポンス</a>、<a href="#status-100-responses">ステータス100レスポンス</a>をBurpがどのように制御するか設定します。
+        </p>
+        <h2 id="redirections">リダイレクト</h2>
+        <p>
+            リダイレクトをたどるべき状況として、Burpが認識するリダイレクトタイプを設定します。
+        </p>
+        <p>
+            次の種類のリダイレクトを選択できます:
+        </p>
+        <ul>
+            <li>
+                Locationヘッダー付きの3xxステータスコード
+            </li>
+            <li>
+                Refreshヘッダー
+            </li>
+            <li>
+                Meta refreshタグ
+            </li>
+            <li>
+                JavaScript駆動
+            </li>
+            <li>
+                Locationヘッダー付きの任意のステータスコード
+            </li>
+        </ul>
+        <p>
+            Burpが特定の対象にリダイレクトをたどる動作は、個々のBurpツールの設定(例えば<a href="../tools/target/scope.html">Targetスコープ</a>に基づくなど)によって決定されることに注意してください。
+        </p>
+        <h2 id="streaming-responses">ストリーミングレスポンス</h2>
+        <p>
+            レスポンスが終了しない"ストリーミング"レスポンスを返すURLをBurpに通知できます。Burpはこれらのレスポンスに、通常のレスポンスとは異なる処理をします。
+        </p>
+        <p>
+            取引価格データを継続的に更新するような機能のアプリケーションで、ストリーミングレスポンスが使われます。通常、クライアント側のスクリプトコードがリクエストを生成し、サーバーはレスポンスストリームを開いたままにし、継続データが利用可能になったらそれをリアルタイムにプッシュします。インターセプトプロキシーは、ストアアンドフォワードモデルを使用するので、これらのアプリケーションを壊す可能性があります: Proxyはストリーミングレスポンスが終了するのを無限に待機し、クライアントには何も転送されないでしょう。
+        </p>
+        <p>
+            ストリーミングレスポンスは、個々のBurpツールで次のように処理されます:
+        </p>
+        <ul>
+            <li>
+                <strong>Proxy</strong>は、データを受信したものとしてこれらのレスポンスをクライアントに直接通過させます。
+            </li>
+            <li>
+                <strong>Repeater</strong>は、データを受信するとリアルタイムでレスポンスパネルを更新します。
+            </li>
+            <li>
+                <strong>その他のツール</strong>はストリーミングレスポンスを無視し、接続を閉じます。
+            </li>
+        </ul>
+        <p>
+            ストリーミングURLの設定には、<a href="../functions/url-matching.html">URLマッチングルール</a>のヘルプを参照してください。
+        </p>
+        <p>
+            ストリーミングレスポンスに関するさらに２つのオプションがあります:
+        </p>
+        <ul>
+            <li>
+                <strong>ストリーミングレスポンスを保存</strong> - ストリーミングレスポンスを完全に保存します。<a href="../tools/proxy/history.html">Proxy履歴</a>や<a href="../tools/repeater/using.html#issuing-requests">Repeaterレスポンスパネル</a>でストリーミングレスポンスのコンテンツを表示したい場合は、このオプションが必要です。このオプションによって、巨大な一時ファイルができる可能性があることに注意してください。
+            </li>
+            <li>
+                <strong>ストリーミングレスポンスからチャンクエンコーディングメタデータを除去する</strong> - ストリーミングレスポンスは一般的にHTTP上でチャンクエンコードされます。このオプションが選択されると、Burpはチャンクエンコードのメタデータを削除し、Burp内でレスポンスを読みやすいようにします。このメタデータを削除すると、実装によってはクライアント側のアプリケーションを壊す可能性があることに注意してください。
+            </li>
+        </ul>
+        <p>
+            ストリーミングレスポンスは多くの場合GZIPエンコーディングを使用して圧縮されています - <a href="../tools/proxy/options/index.html#miscellaneous">Proxy</a>と<a href="../tools/repeater/options.html">Repeater</a>の通常のオプションで、Burpがこれらのコンテンツを展開するよう設定できます。
+        </p>
+        <p>
+            (バイナリファイルのダウンロードのような)とても大きなレスポンスを処理する際、ストリーミングレスポンスを使用するとBurpのパフォーマンスを向上させるためにストアアンドフォワードプロキシーモデルをバイパスできます。
+        </p>
+        <h2 id="status-100-responses">ステータス100レスポンス</h2>
+        <p>
+            ステータスが100のHTTPレスポンスをBurpが処理する方法を制御します。サーバーにPOSTリクエストを送るとき、リクエストボディが転送される前に、暫定的なレスポンスを返す場合によく発生します。
+        </p>
+        <p>
+            次の設定があります:
+        </p>
+        <ul>
+            <li>
+                <strong>100 Continueレスポンスを認識する</strong> - このオプションが選択されると、暫定レスポンスをスキップし、ステータスコードやコンテントタイプなどのレスポンス情報は実際のレスポンスヘッダーから解析します。
+            </li>
+            <li>
+                <strong>100 Continueヘッダを削除する</strong> - このオプションが選択されると、個々のツールに渡される前に、サーバーのレスポンスから暫定ヘッダーを削除します。
+            </li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>

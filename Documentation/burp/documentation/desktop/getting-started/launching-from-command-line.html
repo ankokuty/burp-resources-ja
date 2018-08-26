@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../styles/css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://support.portswigger.net/">サポートセンター</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">入門</a>
+        </li>
+        <li>
+            <a href="launching-from-command-line.html">コマンドライン</a>
+        </li>
+    </ol>
+</section>
+<section class="container edition-labels">
+    <span class="pro-edition-feature-label">プロフェッショナル</span> &nbsp; <span class="pro-edition-feature-label">コミュニティ</span>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>コマンドラインからBurp Suiteを起動</h1>
+        <p>
+            コマンドラインからBurp Suiteを起動するには、プレーンなJARファイル版のBurpをダウンロードする必要があります。JARファイルはJavaを使用して実行でき、JARファイル自身のコンテンツを展開する必要はありません。
+        </p>
+        <p>
+            まずJavaがインストールされているかどうかを確認します:
+        </p>
+        <ul>
+            <li>
+                コマンドプロンプトで、次をタイプします: <span class="InlineCode">java -version</span>
+            </li>
+            <li>
+                Javaがインストールされていれば、次のようなメッセージが表示されます: <span class="InlineCode">java version "1.8.0_162"</span>。Burpを実行するには、バージョン1.8以上のJavaが必要です。
+            </li>
+            <li>
+                Javaがインストールされていない場合、またはJavaのバージョンが1.8より古い場合は、Javaをインストールする必要があります。<a href="http://www.oracle.com/technetwork/java/javase/downloads/">最新のJava実行環境(JRE)をダウンロード</a>し、インストーラを実行し、新しいコマンドプロンプトで上記を再度実行してください。
+            </li>
+        </ul>
+        <p>
+            Javaがインストールされている場合は、コマンドプロンプトで次のようにコマンドを入力します。
+        </p>
+        <p class="InlineCode">
+            
+            java -jar -Xmx4g /path/to/burp.jar
+        
+        </p>
+        <p>
+            <span class="InlineCode">4</span>の部分は、Burpに割り当てたいメモリ量(Gb単位)で、<span class="InlineCode"> /path/to/burp.jar </span>はBurpのJARファイルのコンピューター上の場所です。
+        </p>
+        <p>
+            うまくいけば、スプラッシュ画面が数秒表示されて、その後起動ウィザードのウィンドウが表示されるはずです。もし何も起こらなかったり、エラーメッセージが表示された場合は、<a href="../troubleshooting.html">トラブルシューティング</a>を参照してください。
+        </p>
+        <h2 id="command-line-arguments">コマンドライン引数</h2>
+        <p>
+            Burpの動作を制御する様々な起動コマンドライン引数があります。例えば、<a href="../tools/extender.html">拡張</a>を読み込ませない、特定の<a href="projects.html#project-files">Burpプロジェクトファイルを</a>開く、特定の<a href="configuration.html">設定ファイル</a>を読み込む、などを指定できます。
+        </p>
+        <p>
+            利用可能なオプションの一覧を表示するには、<span class="InlineCode">--help</span>コマンドライン引数を指定してください。
+        </p>
+    </div>
+</section>
+</body>
+</html>

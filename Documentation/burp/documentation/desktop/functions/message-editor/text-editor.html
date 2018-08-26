@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../styles/css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://support.portswigger.net/">サポートセンター</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">便利な機能</a>
+        </li>
+        <li>
+            <a href="index.html">メッセージエディター</a>
+        </li>
+        <li>
+            <a href="text-editor.html">テキストエディター</a>
+        </li>
+    </ol>
+</section>
+<section class="container edition-labels">
+	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>テキストエディター</h1>
+        <p>
+            テキストエディターは、<a href="index.html">HTTPメッセージエディター</a>で、リクエストとレスポンスを<a href="index.html#raw">生形式</a>で表示する際や、その他Burpがプレーンテキストのコンテンツを表示する際に使用されます。 &nbsp;
+        </p>
+        <h2 id="syntax-analysis">構文解析</h2>
+        <p>
+            HTTPリクエストとレスポンスの構文は自動的に色付けされ、リクエストのパラメーターやレスポンスのHTML要素などの気になるアイテムを強調表示します。<a href="../../options/display.html#http-message-display">メッセージ表示オプション</a>で、この挙動とフォントを設定できます。
+        </p>
+        <p>
+            構文の色づけが有効になっている場合、場所によっては構文アイテムのデコードされた値を表示するマウスオーバーポップアップも表示します。HTTPリクエストの場合、ポップアップはURLデコードを行い、レスポンスの場合はHTMLデコードを実行します。
+        </p>
+        <h2 id="text-editor-hotkeys">テキストエディタのホットキー</h2>
+        <p>
+            テキストエディターは、様々な一般的な操作でホットキーをサポートしています。これらは、<a href="../../options/misc-user.html#hotkeys">ホットキーオプション</a>で設定でき、テキストエディターに関連するデフォルトのホットキーは次の通りです:
+        </p>
+        <ul>
+            <li>
+                Ctrl + A, 全て選択
+            </li>
+            <li>
+                Ctrl + X, 選択したテキストをカット
+            </li>
+            <li>
+                Ctrl + C, 選択したテキストをコピー
+            </li>
+            <li>
+                Ctrl + V, ペースト
+            </li>
+            <li>
+                Ctrl + S, メッセージ全体から選択したテキスト検索して強調表示
+            </li>
+            <li>
+                Ctrl + Z, 最後の編集を元に戻す
+            </li>
+            <li>
+                Ctrl + Y, 最後に元に戻した編集をやり直す
+            </li>
+            <li>
+                Ctrl + U, 選択したテキストをURLエンコード (デコードはShiftキーも押す)
+            </li>
+            <li>
+                Ctrl + H, 選択したテキストをHTMLエンコード (デコードはShiftキーも押す)
+            </li>
+            <li>
+                Ctrl + B, 選択したテキストをBase64エンコード (デコードはShiftキーも押す)
+            </li>
+            <li>
+                Ctrl + ←, 前の単語に移動
+            </li>
+            <li>
+                Ctrl + →, 次の単語に移動
+            </li>
+            <li>
+                Ctrl + ↑, 前の段落に移動
+            </li>
+            <li>
+                Ctrl + ↓, 次の段落に移動
+            </li>
+            <li>
+                Ctrl + Home, メッセージの先頭に移動
+            </li>
+            <li>
+                Ctrl + End, メッセージの末尾に移動
+            </li>
+            <li>
+                Ctrl + Backspace, 前の単語を削除
+            </li>
+            <li>
+                Ctrl + Del, 次の単語を削除
+            </li>
+        </ul>
+        <h2 id="quick-search">クイック検索</h2>
+        <p>
+            テキストエディターの下部には、表示されたテキスト内から文字列をすばやく見つけるための検索バーがあります。検索ボックスに入力すると、エディターはテキスト内の一致するアイテムを自動的に強調表示します。"&lt;"と"&gt;"ボタンを使用して、前または次の一致箇所に移動ができます。"+"ボタンは次のオプションを表示します:
+        </p>
+        <ul>
+            <li>
+                <strong>大文字小文字を区別</strong> - 検索で大文字と小文字を区別するかどうかを指定します。
+            </li>
+            <li>
+                <strong>正規表現</strong> - 検索語が正規表現かリテラル文字列かを指定します。
+            </li>
+            <li>
+                <strong>テキスト変更時にマッチした箇所に自動スクロール</strong> - 新しいテキストが表示されたときに、最初に強調表示された一致箇所までテキストエディターが自動でスクロールするかどうかを指定します。これは例えば、<a href="../../tools/proxy/history.html">Proxy履歴</a>でレスポンスから特定の文字列を探してアイテムを順に見ている際に便利です。このオプションを選択して新しいアイテムを選択すると、最初の検索一致箇所に自動で表示がスクロールします。
+            </li>
+        </ul>
+        <p>
+            検索の強調表示に加え、Burpツールの中には、リクエストとレスポンスに独自の強調表示を適用するものがあります。例えば、<a href="../../../scanner/index.html">Burp Scanner</a>は<a href="../../tools/target/site-map/index.html#issues-view">問題の報告</a>内で、HTTPメッセージの関連部分を強調表示します。検索機能を使用していない場合は、"&lt;"と"&gt;"を使用して、ツールが生成した強調表示間で選択範囲を移動できます。
+        </p>
+    </div>
+</section>
+</body>
+</html>

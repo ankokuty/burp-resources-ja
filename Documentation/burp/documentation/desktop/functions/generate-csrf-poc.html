@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../styles/css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://support.portswigger.net/">サポートセンター</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">便利な機能</a>
+        </li>
+        <li>
+            <a href="generate-csrf-poc.html">CSRF PoC生成</a>
+        </li>
+    </ol>
+</section>
+<section class="container edition-labels">
+	<span class="pro-edition-feature-label">プロフェッショナル</span>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>CSRF PoC生成</h1>
+        <p>
+            この機能は、指定したリクエストに対するクロスサイトリクエストフォージェリ(CSRF)攻撃の概念実証(PoC)を生成するために使われます。
+        </p>
+        <p>
+            この機能にアクセスするには、Burp内の任意の場所でURLまたはHTTPリクエストを選択し、コンテキストメニューの"関連ツール"の"CSRF PoC生成"を選択します。
+        </p>
+        <p>
+            この機能を実行すると、選択した完全なリクエストを上部パネルに、生成されたCSRF HTMLを下部パネルに表示します。ブラウザに必要なリクエストを生成させるため、HTMLはフォームやJavaScriptを使用します。
+        </p>
+        <p>
+            リクエストを手動で編集し"再生成"ボタンをクリックすると、更新されたリクエストを元にCSRF HTMLを生成します。
+        </p>
+        <p>
+            "ブラウザでテスト"ボタンを使用すると、生成されたPoCの有効性をブラウザでテストできます。このオプションを選択すると、Burpは一意なURLを生成し、(Burpの現在のインスタンスをプロキシーとして使用するように設定した)ブラウザに貼り付けられます。ブラウザがリクエストした結果Burpは現在のHTMLを表示し、Proxyを経由して行われたリクエストの結果を監視することで、PoCが有効かどうかを判断できます。
+        </p>
+        <p>
+            CSRF手法に関していくつか注意すべき点があります。
+        </p>
+        <ul>
+            <li>
+                クロスドメインXmlHttpRequest (XHR)手法は、クロスオリジンリソース共有(CORS)をサポートする最新のHTML5対応ブラウザでのみ動作します。この手法は、Firefox、Internet Explorer、Chromeの現在のバージョンでテストされています。ブラウザでJavaScriptを有効にする必要があります。この手法では、ブラウザは通常の方法でアプリケーションのレスポンスを処理しないため、反射型クロスサイトスクリプティング(XSS)を実現するクロスドメインのリクエストを生成するには適していません。クロスドメインXHRには様々な制限があり、一部のリクエスト機能では動作しない可能性があります。これが起こりそうな場合、CSRF PoCジェネレーター内に警告が表示されます。
+            </li>
+            <li>
+                一部のリクエストには、フォーム以外の方法で生成されるプレーンテキストエンコーディングのボディ(例えばXMLやJSON)や、クロスドメインのXHRがあります。前者の場合、リクエストには"Content-Type: text/plain"ヘッダーが含まれます。後者の場合、リクエストには任意のContent-Typeヘッダーを指定できますが、Content-Typeヘッダーに通常のHTMLフォームに指定できる標準的な値が指定されている場合のみ、"単純な"クロスドメインリクエスト(つまり攻撃対策のプリフライトリクエストが必要ない)として許可されます。場合によって、メッセージボディ本文が攻撃リクエストと完全に一致していても、予期しないContent-Typeヘッダーの場合、アプリケーションはリクエストを拒否する場合があります。そのようなCSRFっぽい状態で、実際に悪用できないかもしれません。これが起こりそうな場合、CSRF PoCジェネレーター内に警告が表示されます。
+            </li>
+            <li>
+                <a href="#csrf-poc-options">手動で選択</a>したCSRF手法を使用して必要なリクエストを生成できない場合、Burpは最良の生成をし、警告を表示します。
+            </li>
+            <li>
+                CSRF PoCジェネレーターがプレーンテキストエンコーディングを使用している場合、期待するボディになるHTMLをBurpが生成するには、リクエストボディに必ず=記号が含まれていなければなりません。元のリクエストが=記号を含まない場合、サーバの処理に影響を与えないように、リクエスト内の適切な位置に=記号を記述してください。
+            </li>
+        </ul>
+        <h2 id="csrf-poc-options">CSRF PoCオプション</h2>
+        <p>
+            次のオプションがあります:
+        </p>
+        <ul>
+            <li>
+                <strong>CRSFテクニック</strong> - CSRFリクエストを生成するHTMLで使用するCSRF手法を指定できます。通常は"自動"オプションでよく、必要なリクエストを生成できる最も適切な手法をBurpが選択します。
+            </li>
+            <li>
+                <strong>自動サブミットスクリプトを含める</strong> - このオプションを使用すると、ページが読み込まれた際に、JavaScriptが有効なブラウザがCSRFリクエストを自動的に発行させるよう、HTMLにスクリプトを含めます。
+            </li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>

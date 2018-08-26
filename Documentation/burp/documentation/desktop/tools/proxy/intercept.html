@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../styles/css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://support.portswigger.net/">サポートセンター</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Proxy</a>
+        </li>
+        <li>
+            <a href="intercept.html">メッセージのインターセプト</a>
+        </li>
+    </ol>
+</section>
+<section class="container edition-labels">
+	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>メッセージのインターセプト</h1>
+        <p>
+            インターセプトタブは、ブラウザとWebサーバー間を通過するHTTPおよびWebSocketメッセージの表示と変更に使われます。全てのメッセージを表示・インターセプト・変更できるこの機能は、Burpの<a href="../../penetration-testing/index.html">ユーザー主導型ワークフロー</a>の中核です。Burp Proxyオプションの<a href="options/index.html#intercepting-http-requests-and-responses">インターセプトルール</a>で、どのHTTPリクエストとレスポンスをインターセプトするか(例えば、スコープ内のアイテム、指定した拡張子のアイテム、パラメーターを含むリクエストなど)を設定できます。どの<a href="options/index.html#intercepting-websockets-messages">WebSocketメッセージ</a>をインターセプトするかも、設定できます。
+        </p>
+        <h2 id="controls">コントロール</h2>
+        <p>
+            インターセプトしたメッセージが表示されているパネルの上部に、宛先サーバーの詳細が表示されます。HTTPリクエストについて、サーバー表示またはその横のボタンをクリックして、リクエストを送信するサーバーを手動で編集できます。
+        </p>
+        <p>
+            パネルには、次のコントロールもあります:
+        </p>
+        <ul>
+            <li>
+                <strong>転送</strong> - メッセージをレビューし(必要なら)編集して、"Forward"をクリックするとサーバーまたはブラウザにメッセージが送信されます。
+            </li>
+            <li>
+                <strong>破棄</strong> - メッセージを破棄する場合に使用し、メッセージは転送されません。
+            </li>
+            <li>
+                <strong>インターセプト有効/無効</strong> - 全てのインターセプトのオンとオフを切り替えます。ボタンに"インターセプト有効"と表示されていれば、メッセージはインターセプトされるか、<a href="options/index.html#intercepting-http-requests-and-responses">HTTP</a>と<a href="options/index.html#intercepting-websockets-messages">WebSockets</a>メッセージのインターセプト設定に基づいて自動的に転送されます。ボタンに"インターセプトオフ"と表示されている場合、全てのメッセージが自動的に転送されます。
+            </li>
+            <li>
+                <strong>アクション</strong> - 現在表示されているメッセージに対して実行できるアクションのメニューが表示されます。これらは、インターセプト<a href="#message-display">メッセージ表示</a>のコンテキストメニューに表示されるオプションと同じです。
+            </li>
+            <li>
+                <strong>コメントフィールド</strong> - 気になるアイテムにコメント追加でき、後で特定しやすくなります。インターセプトパネルで追加したコメントは、<a href="history.html">Proxy履歴</a>の関連アイテムに表示されます。さらに、HTTPリクエストにコメントを追加した場合、そのコメントはレスポンスがインターセプトされた場合に再度表示されます。
+            </li>
+            <li>
+                <strong>色付け</strong> - 気になるアイテムに色付けして強調表示できます。コメント同様、色付けもProxy履歴とインターセプトしたレスポンスに表示されます。
+            </li>
+        </ul>
+        <p>
+            <strong>注:</strong> メッセージの転送や破棄にホットキーも使えます。デフォルトで、Ctrl+Fで現在のメッセージを転送します。<a href="../../options/misc-user.html#hotkeys">ホットキーオプション</a>でホットキーのデフォルトを変更できます。
+        </p>
+        <h2 id="message-display">メッセージ表示</h2>
+        <p>
+            インターセプトタブのメインパネルには、現在インターセプトしたメッセージを表示する<a href="../../functions/message-editor/index.html">メッセージエディター</a>があり、メッセージの解析や様々なアクションを実行できます。
+        </p>
+        <p>
+            エディターのコンテキストメニューには、多数の有用なアイテムがあります。エディター自体の提供する<a href="../../functions/message-editor/index.html#context-menu-commands">標準的な機能</a>に加え、HTTPメッセージに対して次のアクションが可能です:
+        </p>
+        <ul>
+            <li>
+                <strong>インターセプトしないリクエスト/レスポンス</strong> - 現在表示されているメッセージと共通する(ホスト名、ファイル拡張子、HTTPステータスコードなどに基づく)メッセージを以後インターセプトしないように、これらのコマンドで素早く<a href="options/index.html#intercepting-http-requests-and-responses">インターセプトルール</a>を設定できます。特定タイプの関心のないリクエストやレスポンスをインターセプトしてしまっている場合、このオプションでそのようなメッセージを自動的に転送できます。
+            </li>
+            <li>
+                <strong>インターセプト実行</strong> - リクエストにのみ有効で、現在表示されているリクエストに対するレスポンスをインターセプトします。
+            </li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>

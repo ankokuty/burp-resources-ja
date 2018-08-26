@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../styles/css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://support.portswigger.net/">サポートセンター</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">ウェブサイトのスキャン</a>
+        </li>
+    </ol>
+</section>
+<section class="container edition-labels">
+	<span class="pro-edition-feature-label">プロフェッショナル</span>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>ウェブサイトのスキャン</h1>
+        <p>
+            Burp Scannerは、Webサイトのコンテンツと脆弱性をスキャンする作業を自動化します。設定に応じてScannerは、<a href="../../scanner/crawling.html">アプリケーションをクロール</a>してコンテンツと機能を探索し、<a href="../../scanner/auditing.html">アプリケーションを診断</a>して脆弱性を発見します。
+        </p>
+        <ul class="link-list">
+		    <li>
+		        <a href="../../scanner/index.html">Burp Scannerの仕組みについて詳細を参照する</a>
+	        </li>
+	    </ul>
+		<h2 id="launching-scans">スキャンの開始</h2>
+		<p>
+		    スキャンは、さまざまな方法で開始できます:
+	    </p>
+		<ul>
+		    <li>
+		        <strong>指定したURLからスキャン</strong>。1つ以上の指定したURL内のコンテンツをクロールし、必要に応じてクロールしたコンテンツを診断します。これを行うには、<a href="../dashboard/index.html">Burpダッシュボード</a>で、"新規スキャン"ボタンをクリックしてください。<a href="scan-launcher.html">スキャンランチャー</a>が開き、スキャンの詳細を設定できます。
+	        </li>
+		    <li>
+		        <strong>選択したアイテムをスキャン</strong>。特定のHTTPリクエストに、診断のみ(クロールなし)を実行できます。これを行うには、Burp内の任意の場所で1つ以上のリクエストを選択し、コンテキストメニューから、”スキャン”メニューを選択してください。<a href="scan-launcher.html">スキャンランチャー</a>が開き、スキャンの詳細を設定できます。
+	        </li>
+		    <li>
+		        <strong>ライブスキャン</strong>。<a href="live-scans.html">ライブスキャン</a>を使用すると、<a href="../tools/proxy/index.html">Proxy</a>や<a href="../tools/repeater/index.html">Repeater</a>ツールなど、他のBurpツールが処理したリクエストに自動的にスキャンができます。どのリクエストを処理するか、コンテンツの探索か脆弱性の診断をするかどうかを正確に設定できます。これを行うには、<a href="../dashboard/index.html">Burpダッシュボードで</a>、"新規ライブタスク"ボタンをクリックしてください。<a href="live-scans.html">ライブスキャン</a>ランチャーが開き、タスクの詳細が設定できます。
+	        </li>
+		</ul>
+        <h3 id="configuring-scans">スキャンの設定</h3>
+<p>
+    複数のスキャンを並行して起動でき、各スキャンには、スキャンの実行方法を正確に決定する個別の設定オプションがあります。設定には2つの重要な領域があります:
+</p>
+<ul>
+    <li>
+        <strong>クロールオプション</strong>。これらのオプションは、最大リンク深度、スピードと網羅性によるクローラーの最適化方法、クロール範囲の制限などの動作を制御します。<a href="crawl-options.html" class="chevron-after">続きを読む</a>
+    </li>
+    <li>
+        <strong>診断オプション</strong>。これらのオプションは、挿入ポイントの処理や、使用する検出手法などの動作を制御します。軽量で純粋なパッシブ解析から、重厚な侵入型スキャンまで、実行される診断アクティビティのタイプを制御する上でこれらのオプションが非常に重要です。<a href="audit-options.html" class="chevron-after">続きを読む</a>
+    </li>
+</ul>
+<h2 id="monitoring-scan-activity"> スキャンアクティビティの監視 </h2>
+<p>
+    さまざまな方法でスキャンの進行状況と結果を監視できます。
+</p>
+<ul>
+    <li>
+        <a href="../dashboard/index.html">Burpダッシュボード</a>には各タスクの進捗状況が表示され、<a href="../dashboard/issue-activity.html">問題アクティビティログ</a>には全てのスキャンタスクによって報告された問題が表示されます。
+    </li>
+    <li>
+        個々のスキャンの<a href="../dashboard/task-details.html">タスク詳細ウィンドウ</a>を開くと、そのスキャンのみの<a href="../dashboard/issue-activity.html">問題アクティビティログ</a>や、アプリケーションタスクの<a href="audit-items.html">診断アイテム</a>の詳細が表示できます。
+    </li>
+    <li>
+        <a href="../tools/target/site-map/index.html">Targetサイトマップ</a>には、発見された全てのコンテンツと問題が表示されます。
+    </li>
+</ul>
+<h2 id="reporting"> レポート</h2>
+<p>
+    Burp Scannerが発見した問題のHTML形式の<a href="reporting-results.html">レポート生成</a>ができます。他のツールへのインポートに適したXML形式でも、問題をエクスポートできます。
+</p>
+</div>
+</section>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../styles/css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://support.portswigger.net/">サポートセンター</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Repeater</a>
+        </li>
+        <li>
+            <a href="options.html">オプション</a>
+        </li>
+    </ol>
+</section>
+<section class="container edition-labels">
+	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>Burp Repeaterオプション</h1>
+        <p>
+            Repeaterメニューは、Burp Repeaterの挙動を制御します。次のオプションがあります:
+        </p>
+        <ul>
+            <li>
+                <strong>Content-Lengthを更新</strong> - 必要に応じてリクエストのContent-Lengthヘッダーを自動的に更新します。リクエストにボディが含まれている場合、通常このオプションが不可欠です。
+            </li>
+            <li>
+                <strong>gzip/deflateを展開する</strong> - レスポンスで受け取ったgzipやdeflateで圧縮されたコンテンツを自動的に展開します。
+            </li>
+            <li>
+                <strong>リダイレクトをたどる</strong> - 自動でリダイレクトするかどうか設定します。<strong>注:</strong> 自動的にリダイレクトしないURLへのリダイレクトレスポンスを受け取った場合、UIの上部に"リダイレクトをたどる"ボタンが表示されます。これで、手動でリダイレクト先にアクセスできます。この機能は、各リクエストとレスポンスのリダイレクトを順番にたどる場合に便利です。下記の"リダイレクト中にcookieを処理する"オプションがセットされていると、これらの手動リダイレクトでも新しいcookieが処理されます。
+            </li>
+            <li>
+                <strong>リダイレクト中にcookieを処理する</strong> - リダイレクトレスポンスでセットされたcookieを、リダイレクト先にアクセスする際送信します。
+            </li>
+            <li>
+                <strong>表示</strong> - リクエスト/レスポンスパネルのレイアウトを設定できます。上下分割、左右分割、またはタブで、HTTP メッセージを表示できます。
+            </li>
+            <li>
+                <strong>アクション</strong> - リクエストとレスポンスの<a href="../../functions/message-editor/index.html">メッセージエディター</a>のコンテキストメニューと同じオプションが含まれます。
+            </li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>

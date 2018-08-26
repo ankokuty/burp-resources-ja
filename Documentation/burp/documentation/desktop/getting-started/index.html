@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../styles/css/ps.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://support.portswigger.net/">サポートセンター</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">入門</a>
+        </li>
+    </ol>
+</section>
+<section class="container edition-labels">
+	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>Burp Suite入門</h1>
+<div class="rounded-corner-box">
+            <p>
+                <a href="https://support.portswigger.net/">Burp Suiteサポートセンタ</a>も参照:
+            </p>
+            <ul class="link-list">
+                <li>
+                    <a href="https://support.portswigger.net/customer/portal/articles/1816883-getting-started-with-burp-suite"> Burp Suite入門</a>
+                </li>
+            </ul>
+        </div>
+        <p>
+            <strong>注:</strong> Burp Suiteを使うと、一部のアプリケーションで予期しない影響が出る可能性があります。機能や設定にしっかり慣れるまで、本番以外のシステムだけで使用してください。
+        </p>
+        <h2 id="launching-burp">Burpの起動</h2>
+        <p>
+            必要なプラットフォーム (Windows・MacOS・Linux)用のBurp Suiteのインストーラーを、<a href="https://portswigger.net/burp/releases">PortSwigger.net</a>のウェブサイトからダウンロードしてください。
+        </p>
+        <p>
+            インストーラを実行し、インストールウィザードで任意のオプションを選択します。
+        </p>
+        <p>
+            インストールされたアプリケーションのショートカットをクリックして、Burp Suiteを起動します。Linuxでは、インストール時に表示/選択されたインストールパスにショートカットがあります。
+        </p>
+        <p>
+            追加のオプションや<a href="launching-from-command-line.html#command-line-arguments">コマンドライン引数</a>を指定して、<a href="launching-from-command-line.html">コマンドラインからBurp Suiteを起動</a>もできます。
+        </p>
+
+        <h2 id="startup-wizard">起動アップウィザード</h2>
+        <p>
+            Burpが起動すると、起動ウィザードが表示されます。開始するBurpプロジェクトと使用するプロジェクト設定を選択できます。
+        </p>
+        <h3 id="selecting-a-project">プロジェクトの選択</h3>
+        <p>
+            次のオプションから選択して、プロジェクトを作成または開始ができます。
+        </p>
+        <ul>
+            <li>
+                <strong>一時プロジェクト</strong> - 保存する必要がない素早いタスクに適しています。すべてのデータはメモリ内に保持され、Burp終了時に失われます。
+            </li>
+            <li>
+                <strong>新規ディスクプロジェクト</strong> - 新しいプロジェクトが作成され、データを<a href="projects.html">Burpプロジェクトファイル</a>に保存します。このファイルには、プロジェクトの全データと設定が保存され、作業するにつれデータが追加されていきます。プロジェクト名の指定も可能です。
+            </li>
+            <li>
+                <strong>既存のプロジェクトを開く</strong> - <a href="projects.html">Burpプロジェクトファイルから</a>既存のプロジェクトを再開します。最近開いたプロジェクトのリストが表示され、簡単に選択できます。このオプションを選択した場合、プロジェクト再開時に既存の設定済みの対象に対して意図せずリクエストが送信されないように、SpiderおよびScannerツールは自動的に一時停止されます。必要なら、このオプション解除できます。
+            </li>
+        </ul>
+        <p>
+            <strong>注:</strong> プロジェクト名は後でBurpメニューから変更できます。
+        </p>
+        <h3 id="selecting-a-configuration">設定の選択</h3>
+        <p>
+            プロジェクト設定を、次のオプションから選択できます:
+        </p>
+        <ul>
+            <li>
+                <strong>Burpのデフォルトを使用する</strong> - Burpのデフォルトオプションを使用してプロジェクトを開きます。
+            </li>
+            <li>
+                <strong>プロジェクトに保存されたオプションを使用する</strong> - 既存のプロジェクトを再開する場合のみ使用でき、<a href="projects.html">プロジェクトファイル</a>に保存されたオプションを使用してプロジェクトを開きます。
+            </li>
+            <li>
+                <strong>ファイルから設定を読み込む</strong> - 選択した<a href="configuration.html">Burp設定ファイル</a>のオプションを使用してプロジェクトを開始します。設定ファイル内の<a href="../options/index.html">プロジェクトレベルのオプション</a>のみ読み込まれ、ユーザーレベルオプションは無視される点に注意してください。素早く選択できるよう、最近使用された設定ファイルのリストが表示されます。
+            </li>
+        </ul>
+        <h3 id="opening-a-project-from-a-different-burp-installation">別のBurpインストールからのプロジェクトを開始する</h3>
+        <p>
+            別のBurpインストールで作成された既存のプロジェクトを開いた場合、プロジェクトの完全な所有権を取得するかどうかプロンプトが表示されます。
+        </p>
+        <p>
+            プロジェクトには<a href="../../collaborator/index.html">Burp Collaborator</a>が関連付けられており、その通信を検索するための識別子がプロジェクトファイル内にされているため、この選択が必要です。２つのBurpインスタンスで同じ識別子を共有し作業すると、Collaboratorベースの診断項目を見逃す、または正しく報告されない可能性があります。他のBurpインスタンスがそのプロジェクトで作業していない場合のみ、他のBurpインストールからプロジェクトの完全な所有権を取得してください。
+        </p>
+        <h2 id="display-settings">表示設定</h2>
+        <p>
+            Burpを初めて使用する際、表示設定の確認にちょっと時間を割く価値があります。Burpでは、画面解像度に応じて、UIの各部分に異なるサイズのフォントが選択できます。
+        </p>
+        <p>
+            まず、Burpのメニュー、タブのキャプション、ボタンやその他に表示されるテキストを見てください。メインUIのフォントサイズを変えるには、ユーザーオプションタブの表示タブを開き、<a href="index.html">ユーザーインタフェース</a>セクションでフォントサイズを変更します。その後Burpを再起動し、新しいフォントが適切か確認してください。
+        </p>
+        <p>
+            次に、Repeaterタブで、リクエストパネルに表示されるHTTPメッセージを見てください。HTTPメッセージのフォントサイズを変えるには、ユーザーオプションタブの表示タブを開き、<a href="index.html">HTTPメッセージ表示</a>セクションでフォントサイズを変更します。その後Repeaterタブに戻り、フォントが適切か確認してください。(再起動は不要です)
+        </p>
+<h2 id="next-steps">次の手順</h2>
+            <p>
+                Burp使う上でさらにヘルプが必要であれば、次のリンクを参照してください:
+            </p>
+            <ul class="link-list">
+		    <li>
+		        <a href="../scanning/index.html"> ウェブサイトをスキャン </a>
+	        </li>
+		    <li>
+		        <a href="../penetration-testing/index.html">ペネトレーションテストにBurp Suiteを使用する</a>
+		        </li>
+		    <li>
+		        <a href="configuration.html">Burpの設定作業 </a>
+		        </li>
+		    <li>
+                <a href="../troubleshooting.html">一般的な問題のトラブルシューティング</a>
+                </li>
+            </ul>
+    </div>
+</section>
+</body>
+</html>
