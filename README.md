@@ -6,6 +6,7 @@ Burp Suite日本語ドキュメント
 ## 目次
 
 - [Documentation](Documentation/burp/documentation/index.html)
+- [API](API/index.html)
 
 ## 注意事項
 
