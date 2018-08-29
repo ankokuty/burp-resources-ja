@@ -33,13 +33,13 @@
     <div class="container main">
         <h1>その他プロジェクトオプション</h1>
         <p>
-            このタブには、<a href="#scheduled-tasks">スケジュールタスク</a>、<a href="#burp-collaborator-server"> Burp Collaboratorサーバー</a>、<a href="#logging">ロギング</a>の設定があります。
+            このタブには、<a href="#scheduled-tasks">スケジュールタスク</a>、<a href="#burp-collaborator-server"> Burp Collaboratorサーバ</a>、<a href="#logging">ロギング</a>の設定があります。
         </p>
         <h2 id="scheduled-tasks">スケジュールタスク</h2>
         <p>
-        <span class="pro-edition-feature-label">プロフェッショナル</span> <a href="../functions/task-scheduler.html">タスクスケジューラーのドキュメント</a>を参照してください。
+        <span class="pro-edition-feature-label">プロフェッショナル</span> <a href="../functions/task-scheduler.html">タスクスケジューラのドキュメント</a>を参照してください。
         </p>
-        <h2 id="burp-collaborator-server">Burp Collaboratorサーバー</h2>
+        <h2 id="burp-collaborator-server">Burp Collaboratorサーバ</h2>
         <p>
             Burp Collaboratorは、Burpが多くの脆弱性を発見するのに役立つ外部サービスです。Burp Collaboratorの機能と利用方法に関する詳細は、<a href="../../collaborator/index.html">Burp Collaboratorドキュメント</a>を参照してください。
         </p>
@@ -51,24 +51,24 @@
         </p>
         <ul>
             <li>
-                <strong>デフォルトのCollaboratorサーバを使用する</strong> - このデフォルトオプションは、PortSwiggerが提供する公開Collaboratorサーバーを使用します。このサーバーは、これを使用する全てのBurpユーザーで共用です。もし公開Collaboratorサーバーの停止や不具合があると、BurpのCollaboratorに関連する機能の有効性が失われる可能性があります。そのため、PortSwiggerはこのサーバーのパフォーマンスまたは可用性について保証しません。
+                <strong>デフォルトのCollaboratorサーバを使用する</strong> - このデフォルトオプションは、PortSwiggerが提供する公開Collaboratorサーバを使用します。このサーバは、これを使用する全てのBurpユーザで共用です。もし公開Collaboratorサーバの停止や不具合があると、BurpのCollaboratorに関連する機能の有効性が失われる可能性があります。そのため、PortSwiggerはこのサーバのパフォーマンスまたは可用性について保証しません。
             </li>
             <li>
                 <strong>Burp Collaboratorを使用しない</strong> - Collaboratorに関連した機能はどれも有効になりません。
             </li>
             <li>
-                <strong>プライベートCollaboratorサーバを使用する</strong> - 独自のCollaboratorサーバーのインスタンスを使用します。これを行うには、<a href="../../collaborator/deploying.html">プライベートCollaboratorサーバーのデプロイ</a>ドキュメントを参照してください。
+                <strong>プライベートCollaboratorサーバを使用する</strong> - 独自のCollaboratorサーバのインスタンスを使用します。これを行うには、<a href="../../collaborator/deploying.html">プライベートCollaboratorサーバのデプロイ</a>ドキュメントを参照してください。
             </li>
         </ul>
         <p>
-            プライベートCollaboratorサーバーを使用する場合、その位置について詳細を設定する必要があります。次のオプションがあります:
+            プライベートCollaboratorサーバを使用する場合、その位置について詳細を設定する必要があります。次のオプションがあります:
         </p>
         <ul>
             <li>
-                <strong>サーバーの場所</strong> - サーバーのドメイン名またはIPアドレスです。サーバーをIPアドレスで指定する場合、DNSに依存するBurpのCollaborator関連機能は利用できません。詳細は、<a href="../../collaborator/index.html">Burp Collaboratorドキュメント</a>を参照してください。
+                <strong>サーバの場所</strong> - サーバのドメイン名またはIPアドレスです。サーバをIPアドレスで指定する場合、DNSに依存するBurpのCollaborator関連機能は利用できません。詳細は、<a href="../../collaborator/index.html">Burp Collaboratorドキュメント</a>を参照してください。
             </li>
             <li>
-                <strong>ポーリング場所(オプション)</strong> - このオプションフィールドには、プライベートCollaboratorサーバーがポーリングリクエストに応答する位置を指定します。必要であればCollaboratorサーバーが、通信の受信とポーリングリクエストの応答を、異なるネットワークインタフェースで行うよう設定できます。ポーリング位置をホスト名かIPアドレスで、オプションでコロンで区切ったポート番号を指定できます。例えば、10.20.30.40:8008 です。
+                <strong>ポーリング場所(オプション)</strong> - このオプションフィールドには、プライベートCollaboratorサーバがポーリングリクエストに応答する位置を指定します。必要であればCollaboratorサーバが、通信の受信とポーリングリクエストの応答を、異なるネットワークインタフェースで行うよう設定できます。ポーリング位置をホスト名かIPアドレスで、オプションでコロンで区切ったポート番号を指定できます。例えば、10.20.30.40:8008 です。
             </li>
         </ul>
         <p>
@@ -76,10 +76,10 @@
         </p>
         <ul>
             <li>
-                <strong>暗号化されていないHTTPでポーリングする</strong> - デフォルトでBurpは、HTTPS上でCollaboratorサーバーをポーリングし、中間者攻撃を防ぐためSSLを強制します。ネットワークやその他の制限でBurpがHTTPS上で直接ポーリングできない場合、暗号化されていないHTTP上でのポーリングもできます。
+                <strong>暗号化されていないHTTPでポーリングする</strong> - デフォルトでBurpは、HTTPS上でCollaboratorサーバをポーリングし、中間者攻撃を防ぐためSSLを強制します。ネットワークやその他の制限でBurpがHTTPS上で直接ポーリングできない場合、暗号化されていないHTTP上でのポーリングもできます。
             </li>
             <li>
-                <strong>ヘルスチェック実行</strong> - このボタンをクリックすると、設定したCollaboratorサーバーのヘルスチェックを実行するダイアログが開きます。様々なネットワークサービスが通信できるかどうか、通信の詳細をポーリングで取得できるかどうかを確認します。これらのテストから、BurpがCollaboratorの機能を全てまたは一部利用できるか、または全く利用できないか判断できます。
+                <strong>ヘルスチェック実行</strong> - このボタンをクリックすると、設定したCollaboratorサーバのヘルスチェックを実行するダイアログが開きます。様々なネットワークサービスが通信できるかどうか、通信の詳細をポーリングで取得できるかどうかを確認します。これらのテストから、BurpがCollaboratorの機能を全てまたは一部利用できるか、または全く利用できないか判断できます。
             </li>
         </ul>
         <h2 id="logging">ロギング</h2>

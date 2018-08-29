@@ -36,7 +36,7 @@
             Burp Extenderにより、Burp拡張を使い、あなた自身またはサードパーティのコードによってBurpの機能を拡張できます。<a href="#loading-and-managing-extensions">拡張の読込と管理</a>、インストールした拡張の<a href="#extension-details">詳細表示</a>、<a href="#bapp-store">BApp Store</a>から拡張のインストール、<a href="#burp-extender-api">Burp Extender API</a>の閲覧、および拡張の処理方法に関する<a href="#extender-options">オプション</a>設定ができます。
         </p>
         <p>
-            Burp拡張は、<a href="proxy/history.html">Proxy履歴</a>、<a href="target/site-map/index.html">Targetサイトマップ</a>、<a href="target/site-map/index.html#issues-view">Scanner項目</a>のほか、HTTPリクエストとレスポンスの修正、UIのカスタマイズ、スキャナーでのチェック項目の追加、実行時キー情報へのアクセスなど、様々な方法でBurpの動作をカスタマイズできます。
+            Burp拡張は、<a href="proxy/history.html">Proxy履歴</a>、<a href="target/site-map/index.html">Targetサイトマップ</a>、<a href="target/site-map/index.html#issues-view">Scanner項目</a>のほか、HTTPリクエストとレスポンスの修正、UIのカスタマイズ、Scannerでのチェック項目の追加、実行時キー情報へのアクセスなど、様々な方法でBurpの動作をカスタマイズできます。
         </p>
         <p>
             独自のBurp拡張を作成するためのヘルプは、<a href="https://portswigger.net/burp/extender">拡張に関するドキュメント</a>を参照してください。
@@ -93,13 +93,13 @@
         </ul>
         <h2 id="bapp-store">BApp Store</h2>
         <p>
-            BAppストアには、Burp Suiteのユーザーによって書かれた、Burpの能力を拡張する拡張があります。
+            BAppストアには、Burp Suiteのユーザによって書かれた、Burpの能力を拡張する拡張があります。
         </p>
         <p>
-            利用可能なBApp一覧の表示、特定のBAppのインストール、インストールしたBAppのユーザー評価が送信できます。
+            利用可能なBApp一覧の表示、特定のBAppのインストール、インストールしたBAppのユーザ評価が送信できます。
         </p>
         <p>
-            Burpを実行しているコンピューターからインターネットにアクセスできない場合は、<a href="https://portswigger.net/bappstore">BAppストアのWebサイト</a>からBAppファイルをダウンロードし、Burpにそれらを手動でインストールできます。
+            Burpを実行しているコンピュータからインターネットにアクセスできない場合は、<a href="https://portswigger.net/bappstore">BAppストアのWebサイト</a>からBAppファイルをダウンロードし、Burpにそれらを手動でインストールできます。
         </p>
         <p>
             一部の BAppは、PythonやRubyで書かれていて、JythonまたはJRubyをダウンロードし、関連する言語インタープリターの場所を<a href="#extender-options">Burpの設定</a>で指定する必要があります。一部のBAppは、Burpの最新のバージョン、または別のエディションのBurpが必要になります。
@@ -129,7 +129,7 @@
         </ul>
         <h3 id="java-environment">Java環境</h3>
         <p>
-            Javaで記述された拡張を実行する環境の設定ができます。拡張が任意のライブラリを使用している場合、ライブラリが読み込まれるフォルダーを指定できます。BurpはこのフォルダーとサブフォルダーからJARファイルを検索し、Java拡張のロードに使用するクラスローダのクラスパスに含めます。
+            Javaで記述された拡張を実行する環境の設定ができます。拡張が任意のライブラリを使用している場合、ライブラリが読み込まれるフォルダを指定できます。BurpはこのフォルダとサブフォルダからJARファイルを検索し、Java拡張のロードに使用するクラスローダのクラスパスに含めます。
         </p>
         <h3 id="python-environment">Python環境</h3>
         <p>
@@ -140,7 +140,7 @@
                 <strong>JythonのスタンドアロンJARファイルの場所</strong> - Jythonをダウンロードした場所。Jythonのスタンドアロンバージョンをダウンロードする必要があります。
             </li>
             <li>
-                <strong>モジュールを読み込むフォルダー</strong> - この設定はオプションで、拡張が必要とするモジュールをPythonインタープリターが探してロードするフォルダーを指定します。設定された場合、Pythonの<span class="InlineCode">sys.path</span>変数を、指定した場所に更新します。このオプションは、独自のPythonライブラリを作り、複数の拡張から利用する場合に便利です。
+                <strong>モジュールを読み込むフォルダ</strong> - この設定はオプションで、拡張が必要とするモジュールをPythonインタープリターが探してロードするフォルダを指定します。設定された場合、Pythonの<span class="InlineCode">sys.path</span>変数を、指定した場所に更新します。このオプションは、独自のPythonライブラリを作り、複数の拡張から利用する場合に便利です。
             </li>
         </ul>
         <p>

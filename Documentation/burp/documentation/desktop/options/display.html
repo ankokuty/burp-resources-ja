@@ -33,22 +33,22 @@
     <div class="container main">
         <h1>オプション: 表示</h1>
         <p>
-            このタブには、<a href="#user-interface">ユーザーインタフェース</a>、HTTP<a href="#http-message-display">メッセージ表示</a>、<a href="#character-sets">文字セット</a>ハンドリング、<a href="#html-rendering">HTMLレンダリング</a>の設定があります。
+            このタブには、<a href="#user-interface">ユーザインタフェース</a>、HTTP<a href="#http-message-display">メッセージ表示</a>、<a href="#character-sets">文字セット</a>ハンドリング、<a href="#html-rendering">HTMLレンダリング</a>の設定があります。
         </p>
-        <h2 id="user-interface">ユーザーインタフェース</h2>
+        <h2 id="user-interface">ユーザインタフェース</h2>
         <p>
-            Burpユーザーインタフェースの外観を制御します。UI全体で使われるフォント(<a href="#http-message-display">HTTPメッセージ</a>の表示を除く)と、Javaのルックアンドフィールを設定できます。この設定の変更は、Burpを再起動すると反映されます。
+            Burpユーザインタフェースの外観を制御します。UI全体で使われるフォント(<a href="#http-message-display">HTTPメッセージ</a>の表示を除く)と、Javaのルックアンドフィールを設定できます。この設定の変更は、Burpを再起動すると反映されます。
         </p>
         <h2 id="http-message-display">HTTPメッセージ表示</h2>
         <p>
-            <a href="../functions/message-editor/index.html">HTTPメッセージエディター</a>にHTTPメッセージを表示する方法を制御します。フォントのフェイスとポイントサイズ、フォントスムージングを使用するかどうか設定できます。
+            <a href="../functions/message-editor/index.html">HTTPメッセージエディタ</a>にHTTPメッセージを表示する方法を制御します。フォントのフェイスとポイントサイズ、フォントスムージングを使用するかどうか設定できます。
         </p>
         <p>
             次の追加オプションがあります:
         </p>
         <ul>
             <li>
-                <strong>リクエストの構文を色付けする</strong> - リクエストパラメーターのシンタックスハイライトを行うかどうか制御します。
+                <strong>リクエストの構文を色付けする</strong> - リクエストパラメータのシンタックスハイライトを行うかどうか制御します。
             </li>
             <li>
                 <strong>レスポンスの構文を色付けする</strong> - レスポンス構文のシンタックスハイライトを行うかどうか制御します。
@@ -60,7 +60,7 @@
         </p>
         <ul>
             <li>
-                メッセージヘッダーに基づいて各メッセージの文字セットを自動的に認識する。これがデフォルトオプションで、様々な文字セットを使用するメッセージを同時に作業できます。
+                メッセージヘッダに基づいて各メッセージの文字セットを自動的に認識する。これがデフォルトオプションで、様々な文字セットを使用するメッセージを同時に作業できます。
             </li>
             <li>
                 全てのメッセージでシステムのデフォルト文字セットを使用する。
@@ -73,14 +73,14 @@
             </li>
         </ul>
         <p>
-            HTTPヘッダーは常に生形式で表示されます - 文字セットエンコーディングの設定はメッセージボディにのみ適用されます。
+            HTTPヘッダは常に生形式で表示されます - 文字セットエンコーディングの設定はメッセージボディにのみ適用されます。
         </p>
         <p>
             一部の文字セットに必要な字形がすべてのフォントでサポートされていないことに注意してください。拡張または異常な文字セットを使用する場合は、まずCourier NewやDialogなどのシステムフォントを試してみてください。
         </p>
         <h2 id="html-rendering">HTMLレンダリング</h2>
         <p>
-            <a href="../functions/message-editor/index.html">HTTPメッセージエディター</a>内の<a href="../functions/message-editor/index.html#render">Renderタブ</a>は、おおよそブラウザが表示するようにHTMLコンテンツを表示します。HTMLコンテンツを完全にレンダリングするために必要な追加のHTTPリクエスト(例えば、埋め込み画像など)を送信するか制御します。このオプションはHTMLレンダリングの品質と速度のトレードオフになり、対象アプリケーションへのさらなるリクエスト送信を避けたい場合に使用してください。
+            <a href="../functions/message-editor/index.html">HTTPメッセージエディタ</a>内の<a href="../functions/message-editor/index.html#render">Renderタブ</a>は、おおよそブラウザが表示するようにHTMLコンテンツを表示します。HTMLコンテンツを完全にレンダリングするために必要な追加のHTTPリクエスト(例えば、埋め込み画像など)を送信するか制御します。このオプションはHTMLレンダリングの品質と速度のトレードオフになり、対象アプリケーションへのさらなるリクエスト送信を避けたい場合に使用してください。
         </p>
 </div>
 </section>

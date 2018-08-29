@@ -36,10 +36,10 @@
     <div class="container main">
         <h1>Burp Proxyの使い方</h1>
         <p>
-            Proxyツールは、Burpの<a href="../../penetration-testing/index.html">ユーザー主導ワークフロー</a>の中心部分に位置し、対象アプリケーションの詳細な動作を直接表示します。Webプロキシーサーバーとして動作し、中間者攻撃のようにブラウザと宛先のWebアプリケーションの間に配置します。これにより、通過する双方向の生トラフィックを傍受・監視・変更できます。
+            Proxyツールは、Burpの<a href="../../penetration-testing/index.html">ユーザ主導ワークフロー</a>の中心部分に位置し、対象アプリケーションの詳細な動作を直接表示します。Webプロキシサーバとして動作し、中間者攻撃のようにブラウザと宛先のWebアプリケーションの間に配置します。これにより、通過する双方向の生トラフィックを傍受・監視・変更できます。
         </p>
         <p>
-            アプリケーションがHTTPSを使っている場合、Burpはブラウザとサーバーの間でSSL接続を解読し、Proxyが暗号化されたデータの閲覧や変更をできるようにします。
+            アプリケーションがHTTPSを使っている場合、Burpはブラウザとサーバの間でSSL接続を解読し、Proxyが暗号化されたデータの閲覧や変更をできるようにします。
         </p>
         <div class="rounded-corner-box">
             <p>
@@ -60,43 +60,43 @@
                 <strong>Proxyリスナー</strong> - ブラウザからのリクエストを受け入れるために、Burpは<a href="options/index.html#proxy-listeners">Proxyリスナー</a>を使います。一般的なテストでは、IPv4ループバックインタフェースのポート8080上にある、デフォルトのBurpリスナーで十分です。このポートを(おそらく別のアプリケーションが使用していて)使用できない場合、Burpは起動時に<a href="../../dashboard/index.html">ダッシュボードのイベントログ</a>に警告を表示します。<a href="options/index.html#proxy-listeners">Proxyリスナーオプション</a>で、デフォルトリスナーの変更や新規追加ができます。
             </li>
             <li>
-                <strong>ブラウザのプロキシー設定</strong> - HTTPとHTTPS両方のプロトコルについて、Burp Proxyリスナーをブラウザのプロキシーサーバーとして設定する必要があります。
+                <strong>ブラウザのプロキシ設定</strong> - HTTPとHTTPS両方のプロトコルについて、Burp Proxyリスナーをブラウザのプロキシサーバとして設定する必要があります。
             </li>
             <li>
-                <strong>Burp CA証明書</strong> - Burpがブラウザとサーバー間のSSL接続を解読するので、Burp Proxy経由でHTTPSサイトにアクセスすると、デフォルトでブラウザは警告メッセージを表示するでしょう。ブラウザがBurpのSSL証明書を認識しておらず、外部の攻撃者によって通信が傍受されている可能性があると推測するためです。SSL接続でBurpを効果的に使用するには、ブラウザに<a href="options/installing-ca-certificate.html">Burpの認証局マスター証明書をインストール</a>し、Burpが生成した証明書を信頼する必要があります。
+                <strong>Burp CA証明書</strong> - Burpがブラウザとサーバ間のSSL接続を解読するので、Burp Proxy経由でHTTPSサイトにアクセスすると、デフォルトでブラウザは警告メッセージを表示するでしょう。ブラウザがBurpのSSL証明書を認識しておらず、外部の攻撃者によって通信が傍受されている可能性があると推測するためです。SSL接続でBurpを効果的に使用するには、ブラウザに<a href="options/installing-ca-certificate.html">Burpの認証局マスター証明書をインストール</a>し、Burpが生成した証明書を信頼する必要があります。
             </li>
         </ul>
         <p>
-            設定を行ったら、ブラウザで任意のURLにアクセスし、Burp Proxyの<a href="intercept.html">Interceptタブ</a>に移動します。うまく動作していれば、閲覧と変更のためHTTPリクエストが表示されるのがわかります。全てのエントリーが <a href="history.html">Proxy履歴</a>タブにも表示されます。ブラウジングを継続するには、Interceptタブに表示されたHTTPメッセージを転送する必要があります。
+            設定を行ったら、ブラウザで任意のURLにアクセスし、Burp Proxyの<a href="intercept.html">Interceptタブ</a>に移動します。うまく動作していれば、閲覧と変更のためHTTPリクエストが表示されるのがわかります。全てのエントリが <a href="history.html">Proxy履歴</a>タブにも表示されます。ブラウジングを継続するには、Interceptタブに表示されたHTTPメッセージを転送する必要があります。
         </p>
         <h2 id="intercepting-requests-and-responses">リクエストとレスポンスのインターセプト</h2>
         <p>
-            レビューや変更のため、Burp Proxyがインターセプトした個々のHTTPリクエストとレスポンスが<a href="intercept.html">Interceptタブ</a>に表示されます。この機能は、Burpのユーザー主導ワークフローの重要な部分です:
+            レビューや変更のため、Burp Proxyがインターセプトした個々のHTTPリクエストとレスポンスが<a href="intercept.html">Interceptタブ</a>に表示されます。この機能は、Burpのユーザ主導ワークフローの重要な部分です:
         </p>
         <ul>
             <li>
                 インターセプトしたメッセージの手動レビューが、アプリケーションの攻撃対象を詳細に理解するポイントになります。
             </li>
             <li>
-                リクエストパラメーターの変更によって、一般的なセキュリティの脆弱性を素早く特定できます。
+                リクエストパラメータの変更によって、一般的なセキュリティの脆弱性を素早く特定できます。
             </li>
         </ul>
         <p>
-            インターセプトしたリクエストやレスポンスは、メッセージを素早く分析や操作できるように設計された多くの機能を持った、<a href="../../functions/message-editor/index.html">HTTPメッセージエディター</a>に表示されます。
+            インターセプトしたリクエストやレスポンスは、メッセージを素早く分析や操作できるように設計された多くの機能を持った、<a href="../../functions/message-editor/index.html">HTTPメッセージエディタ</a>に表示されます。
         </p>
         <p>
-            デフォルトで、Burp Proxyはリクエストメッセージのみをインターセプトし、かつテストに直接関係なさそうな一般的なファイル拡張子(画像、CSS、JavaScript)のURLはインターセプトしません。<a href="options/index.html#intercepting-http-requests-and-responses">インターセプトオプション</a>でこのデフォルトの動作を変更できます。例えば、パラメーターが付いた<a href="../target/scope.html">スコープ内</a>のリクエストのみインターセプトする、またはHTMLを含む全てのレスポンスをインターセプトする、などBurpを設定できます。さらに、Burpのインターセプトを完全にオフにし、全てのHTTPメッセージをユーザーの介入なしに自動的に転送させたい場合がよくあります。これは、<a href="intercept.html">Interceptタブ</a>のマスターインターセプトトグルでできます。
+            デフォルトで、Burp Proxyはリクエストメッセージのみをインターセプトし、かつテストに直接関係なさそうな一般的なファイル拡張子(画像、CSS、JavaScript)のURLはインターセプトしません。<a href="options/index.html#intercepting-http-requests-and-responses">インターセプトオプション</a>でこのデフォルトの動作を変更できます。例えば、パラメータが付いた<a href="../target/scope.html">スコープ内</a>のリクエストのみインターセプトする、またはHTMLを含む全てのレスポンスをインターセプトする、などBurpを設定できます。さらに、Burpのインターセプトを完全にオフにし、全てのHTTPメッセージをユーザの介入なしに自動的に転送させたい場合がよくあります。これは、<a href="intercept.html">Interceptタブ</a>のマスターインターセプトトグルでできます。
         </p>
         <h2 id="using-the-proxy-history">Proxy履歴の使い方</h2>
         <p>
-            Burpは、Proxyを経由したリクエストとレスポンスの<a href="history.html">全ての履歴</a>を管理しています。これにより、ブラウザとサーバー間の通信をレビューでき、アプリケーションの機能の理解、または重要なテストタスクの実行ができます。時々、Proxy履歴のリクエストとレスポンスを注意深くレビューする前に、<a href="intercept.html"> Interceptタブ</a>でインターセプトを完全に無効化してアプリケーションの機能の一部を自由に巡回したい場合があります。
+            Burpは、Proxyを経由したリクエストとレスポンスの<a href="history.html">全ての履歴</a>を管理しています。これにより、ブラウザとサーバ間の通信をレビューでき、アプリケーションの機能の理解、または重要なテストタスクの実行ができます。時々、Proxy履歴のリクエストとレスポンスを注意深くレビューする前に、<a href="intercept.html"> Interceptタブ</a>でインターセプトを完全に無効化してアプリケーションの機能の一部を自由に巡回したい場合があります。
         </p>
         <p>
             Burpには、Proxy履歴の解析を補助する次の機能があります:
         </p>
         <ul>
             <li>
-                <a href="history.html#history-table">履歴一覧</a>は、任意の列ヘッダーをクリックすると並び替えができます(ヘッダーのクリックで昇順・降順・ソートなしを循環します)。これで似たアイテムをグループ化し異常なアイテムを素早く特定できます。
+                <a href="history.html#history-table">履歴一覧</a>は、任意の列ヘッダをクリックすると並び替えができます(ヘッダのクリックで昇順・降順・ソートなしを循環します)。これで似たアイテムをグループ化し異常なアイテムを素早く特定できます。
             </li>
             <li>
                 <a href="history.html#proxy-history-display-filter">ディスプレイフィルター</a>で様々な特性のアイテムを非表示にできます。
@@ -110,7 +110,7 @@
         </ul>
         <h2 id="burp-proxy-testing-workflow">Burp Proxyのテストワークフロー</h2>
         <p>
-            Burpの<a href="../../penetration-testing/index.html">ユーザー主導ワークフロー</a>の重要な部分は、気になるアイテムをBurpの他のツールに送り異なるタスクを実行する機能です。例えば、Proxyの観察で気になるリクエストに対して、以下ができます:
+            Burpの<a href="../../penetration-testing/index.html">ユーザ主導ワークフロー</a>の重要な部分は、気になるアイテムをBurpの他のツールに送り異なるタスクを実行する機能です。例えば、Proxyの観察で気になるリクエストに対して、以下ができます:
         </p>
         <ul>
             <li>
@@ -135,7 +135,7 @@
         </p>
         <ul>
             <li>
-                <a href="options/index.html#binding">異なるインタフェース</a>へのバインド、他のホストへの<a href="options/index.html#request-handling">リクエストのリダイレクト</a>、異なる<a href="options/index.html#certificate">サーバーSSL証明書</a>の処理、プロキシーをサポートしないクライアント用に<a href="options/invisible.html">透過プロキシー</a>のサポートなど、Proxyリスナーの設定が必要かもしません。
+                <a href="options/index.html#binding">異なるインタフェース</a>へのバインド、他のホストへの<a href="options/index.html#request-handling">リクエストのリダイレクト</a>、異なる<a href="options/index.html#certificate">サーバSSL証明書</a>の処理、プロキシをサポートしないクライアント用に<a href="options/invisible.html">透過プロキシ</a>のサポートなど、Proxyリスナーの設定が必要かもしません。
             </li>
             <li>
                 様々な体系的な方法で自動的に<a href="options/index.html#response-modification">HTTPレスポンスを変更</a>するように設定できます; 例えば、hiddenフォームフィールドを表示する、JavaScriptのフォーム入力検証を削除するなどです。
