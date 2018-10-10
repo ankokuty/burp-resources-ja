@@ -32,8 +32,8 @@
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-professional">プロフェッショナル</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -41,7 +41,7 @@
         <p>
             <a href="types.html">ペイロードタイプ</a>の設定により生成されたペイロードは、<a href="#payload-processing-rules">処理ルール</a>と<a href="#payload-encoding">ペイロードのエンコーディング</a>を使用してさらに操作できます。
         </p>
-        <h2 id="payload-processing-rules"> ペイロード処理ルール </h2>
+        <h2 id="payload-processing-rules">ペイロード処理ルール</h2>
         <p>
             ペイロードが使われる前に各ペイロードに様々な処理タスクを実行する、ルールを定義できます。定義済みルールは順番に実行され、設定の問題をデバッグするためにオンとオフを切り替えられます。ペイロード処理ルールは、通常とは異なるペイロードを生成する必要がある場合や、より大きな構造体に包む場合や、使う前にエンコードが必要な場合など、様々なシチュエーションで便利です。
         </p>
@@ -65,7 +65,7 @@
                 <strong>部分文字列の反転</strong> - 部分文字列として動作しますが、オフセットはペイロードの最後から指定し、長さはオフセットから逆方向にカウントされます。
             </li>
             <li>
-                <strong>大文字小文字変</strong> - 該当する場合、ペイロードの大文字小文字を変更します。同じオプションは、<a href="types.html#case-modification">大文字小文字変換</a>ペイロードタイプにもあります。
+                <strong>大文字小文字変</strong> - 該当する場合、ペイロードの大文字小文字を変更します。同じオプションは、<a href="types.html#case-modification">case modification</a>ペイロードタイプにもあります。
             </li>
             <li>
                 <strong>エンコード</strong> - 様々なスキームでペイロードをエンコードします: URL・HTML・Base64・ASCII16進数・様々なプラットフォームで作られる文字列。

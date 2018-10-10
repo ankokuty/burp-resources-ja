@@ -22,16 +22,17 @@
             <a href="index.html">オプション</a>
         </li>
         <li>
-            <a href="misc-user.html">その他ユーザオプション</a>
+            <a href="misc-user.html">その他のユーザオプション</a>
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-professional">プロフェッショナル</label>
+    <label class="editionlabel is-community">コミュニティ</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
-        <h1>その他ユーザオプション</h1>
+        <h1>その他のユーザオプション</h1>
         <p>
             このタブには、<a href="#hotkeys">ホットキー</a>、<a href="#automatic-project-backup">プロジェクト自動バックアップ</a>、<a href="#proxy-interception">Proxyインターセプト</a>、<a href="#rest-api-options">REST API</a>、<a href="#proxy-interception">Proxy履歴ログ</a>、<a href="#temporary-files-location">一時ファイル</a>の場所、<a href="#performance-feedback">パフォーマンスフィードバック</a>があります。
         </p>
@@ -54,9 +55,9 @@
             多くのホットキーがデフォルトで設定されています。ホットキーをよく使う場合、割り当てられているよりも多くの機能がある点に注意してください。
         </p>
         <p>
-            全てのホットキーはコントロールキー(またはOSXではコマンドキー)を使用する必要があり、シフトやその他の修飾キーも使用できます。一部のWindowsインストールでは、Ctrl+Altの組み合わせはAltGrと同等として扱われるので、テキストフィールドに入力した文字が現れる可能性がある点に注意してください。&nbsp;
+            全てのホットキーはコントロールキー(またはOSXではコマンドキー)を使用する必要があり、シフトやその他の修飾キーも使用できます。一部のWindowsインストールでは、Ctrl+Altの組み合わせはAltGrと同等として扱われるので、テキストフィールドに入力した文字が現れる可能性がある点に注意してください。
         </p>
-        <h2 id="automatic-project-backup">プロジェクト自動バックアップ</h2>
+        <h2 id="automatic-project-backup">自動プロジェクトバックアップ</h2>
         <p>
             プロジェクト自動バックアップは、バックグラウンドで定期的にBurpプロジェクトファイルのコピーを保存します。次のオプションがあります:
         </p>
@@ -74,7 +75,7 @@
                 Burpの正常終了時にバックアップファイルを削除するかどうか。
             </li>
         </ul>
-<h2 id="rest-api-options">REST APIオプション</h2>
+        <h2 id="rest-api-options">REST APIオプション</h2>
         <p>
             REST APIを使用して、他のツールとBurp Suiteを統合できます。
         </p>
@@ -101,13 +102,13 @@
         <p>
             設定を行うと、APIドキュメントのブラウズができ、[サービスURL]/[APIキー]でAPIとのやりとりができます。
         </p>
-<h2 id="proxy-interception">Proxyインターセプト</h2>
+        <h2 id="proxy-interception">Proxyインターセプト</h2>
         <p>
             Burp起動時に、Proxyインターセプトを有効にするか設定します。常に有効化、常に無効化、前回終了時の状態を復元、から選択できます。
         </p>
-        <h2 id="proxy-history-logging">Proxy履歴ログ</h2>
+        <h2 id="proxy-history-logging">Proxy履歴ロギング</h2>
         <p>
-            ターゲットスコープへアイテムを追加したときに、履歴や他のBurpツールにスコープ外アイテムを送信しないよう<a href="../tools/proxy/options/index.html#miscellaneous">Proxyオプション</a>を自動的に追加するかどうか設定します。この設定により、プロジェクトデータにスコープ外のアイテムが蓄積されるのを避けられます。
+            ターゲットスコープへアイテムを追加したときに、履歴やライブタスクにスコープ外アイテムを送信しないよう<a href="../tools/proxy/options/index.html#miscellaneous">Proxyオプション</a>を自動的に追加するかどうか設定します。この設定により、プロジェクトデータにスコープ外のアイテムが蓄積されるのを避けられます。
         </p>
         <h2 id="temporary-files-location">一時ファイルの場所</h2>
         <p>
@@ -129,7 +130,7 @@
         <p>
             フィードバックにはBurpの内部機能に関する技術情報だけが含まれ、あなたを特定する方法はありません。バグを報告する場合デバッグIDを含めると、あなたのBurpインスタンスで発生した問題の診断の助けになります。
         </p>
-</div>
+    </div>
 </section>
 </body>
 </html>

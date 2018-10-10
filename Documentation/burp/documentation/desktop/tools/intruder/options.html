@@ -29,14 +29,14 @@
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-professional">プロフェッショナル</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
         <h1>攻撃オプション</h1>
         <p>
-            このタブには、Intruderの攻撃オプションの、<a href="#attack-request-headers">リクエストヘッダ</a>、<a href="#request-engine">リクエストエンジン</a>、<a href="#attack-results-options">攻撃結果</a>、<a href="#grep-match">Grep - Match</a>、<a href="#grep-extract">Grep - Extract</a>、<a href="#grep-payloads">Grep - Payloads</a>、<a href="#handling-redirections-during-attacks">リダイレクト</a>があります。攻撃を起動する前にメインのIntruder UI でこれらのオプションを編集でき、攻撃が既に実行されているときは攻撃ウィンドウでほとんどの設定を変更できます。
+            このタブにはIntruderの攻撃オプションの、<a href="#attack-request-headers">Request Headers</a>、<a href="#request-engine">Request Engine</a>、<a href="#attack-results-options"> Attack Results</a>、<a href="#grep-match">Grep - Match</a>、<a href="#grep-extract">Grep - Extract</a>、<a href="#grep-payloads">Grep - Payloads</a>、<a href="#handling-redirections-during-attacks">Redirections</a>があります。攻撃を起動する前にメインのIntruder UI でこれらのオプションを編集でき、攻撃が既に実行されているときは攻撃ウィンドウでほとんどの設定を変更できます。
         </p>
         <h2 id="attack-request-headers">攻撃リクエストのヘッダ</h2>
         <p>
@@ -59,7 +59,8 @@
         </p>
         <ul>
             <li>
-                <span class="pro-edition-feature-label">プロフェッショナル</span> <strong>スレッド数</strong> - 攻撃で生成できる同時リクエスト数を制御します。
+                <label class="editionlabel is-professional">プロフェッショナル</label>
+                <strong>スレッド数</strong> - 攻撃で生成できる同時リクエスト数を制御します。
             </li>
             <li>
                 <strong>ネットワークエラー時のリトライ回数</strong> - 接続エラーやその他のネットワークの問題が発生した場合、Burpがリクエストを諦めるまでの回数を指定します。テスト中に断続的にネットワーク障害が起こる場合は、失敗時に数回リクエストの再試行をお勧めします。
@@ -79,7 +80,7 @@
         </p>
         <h2 id="attack-results-options">攻撃結果オプション</h2>
         <p>
-            <a href="attacks.html#attack-results">攻撃結果</a>で、どのような情報を取得するか制御できます。次のオプションがあります:
+            <a href="attacks.html#attack-results">攻撃結果</a>でどのような情報がキャプチャされるか制御します。次のオプションがあります:
         </p>
         <ul>
             <li>
@@ -95,7 +96,7 @@
                 <strong>全ペイロードを保存する</strong> - Burpは各結果の全てのペイロードを記録します。このオプションは追加のメモリを消費しますが、<a href="#grep-payloads">Payload - Grep</a>設定の変更や、変更されたリクエストテンプレートの再発行など、特定のアクションの実行時に必要になる場合があります。
             </li>
         </ul>
-        <h2 id="grep-match">Grep - Match</h2>
+        <h2 id="grep-match">Grep - match</h2>
         <p>
             指定された文字列をレスポンスに含む結果アイテムにフラグを設定します。リストに設定されたアイテムごと、そのアイテムが各レスポンスで見つかったかを示すチェックボックスが、結果の列に追加されます。(列ヘッダをクリックして)この列をソートすると、一致した結果をグループ化できます。
         </p>
@@ -116,7 +117,7 @@
                 <strong>HTTPヘッダを除外する</strong> - HTTPレスポンスヘッダをチェック対象外にするかどうかを指定します。
             </li>
         </ul>
-        <h2 id="grep-extract">Grep - Extract</h2>
+        <h2 id="grep-extract">Grep - extract</h2>
         <p>
             レスポンスから有用な情報を抽出し、攻撃結果一覧に表示します。リストに設定されたアイテムごとに、そのアイテムで抽出されたテキストが、結果の列に追加されます。(列ヘッダをクリックして)抽出されたデータでこの列をソートできます。
         </p>
@@ -132,7 +133,7 @@
         <p>
             必要に応じて、各アイテムに対してBurpがキャプチャする最大長を設定できます。
         </p>
-        <h2 id="grep-payloads">Grep - Payloads</h2>
+        <h2 id="grep-payloads">Grep - payloads</h2>
         <p>
             送信したペイロードが反射される結果アイテムに、フラグを設定できます。オプションが有効な場合、各レスポンスでそのペイロードが見つかったかを示すチェックボックスが、結果の列に追加されます。(１つ以上の<a href="payloads/index.html">ペイロードセット</a>が使われていると、各ペイロードセットごとに別の列が追加されます)
         </p>
@@ -153,7 +154,7 @@
                 <strong>URLエンコード前のペイロードとマッチする</strong> - リクエストのペイロードを<a href="payloads/processing.html#payload-encoding">URLエンコード</a>するようIntruderを設定するのが普通です。しかしこれらは普通、アプリケーションによってデコードされ、元の形式でエコーされます。このオプションを使用すると、エンコードされる前の形式のペイロードがレスポンス内にあるかどうか確認できます。
             </li>
         </ul>
-        <h2 id="handling-redirections-during-attacks">攻撃時のリダイレクトの処理 </h2>
+        <h2 id="handling-redirections-during-attacks">攻撃時のリダイレクトの処理</h2>
         <p>
             攻撃を実行するときの、リダイレクトを処理する方法を制御します。攻撃の目標達成にリダイレクトをたどらなければならない場合が、よくあります。例えば、パスワード推測攻撃で、各試行の結果がリダイレクト後のページだけに表示される場合があります。ファジングで、最初に返されたリダイレクトレスポンスの後のエラーメッセージだけに、関連するフィードバックが表示される場合があります。
         </p>

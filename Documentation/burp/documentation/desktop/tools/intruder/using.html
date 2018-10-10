@@ -29,8 +29,8 @@
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-professional">プロフェッショナル</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -38,13 +38,13 @@
         <p>
             Burp Intruderは、Web アプリケーションに対するカスタマイズした攻撃を自動化するツールです。非常に強力で自由にカスタマイズでき、単純なWebディレクトリの推測から複雑なブラインドSQLインジェクションによる情報窃取まで、広範囲のタスクに利用できます。
         </p>
-        <div class="rounded-corner-box">
+        <div class="highlightedarea">
             <p>
                 <a href="https://support.portswigger.net/">Burp Suiteサポートセンタ</a>も参照:
             </p>
             <ul class="link-list">
                 <li>
-                    <a href="https://support.portswigger.net/customer/portal/topics/720250-burp-intruder/articles"> Burp Intruderの使い方</a>
+                    <a href="https://support.portswigger.net/customer/portal/topics/720250-burp-intruder/articles">Burp Intruderの使い方</a>
                 </li>
             </ul>
         </div>
@@ -53,7 +53,7 @@
             Burp Intruderは、1つのHTTPリクエスト("ベースリクエスト"と呼びます)を受け取り、様々な体系的な方法でリクエストを編集し、それぞれの編集されたバージョンのリクエストを発行し、アプリケーションのレスポンスを分析して気になる挙動を特定します。
         </p>
         <p>
-            各攻撃では、1つ以上の<a href="payloads/index.html">ペイロード</a>セットと、ペイロードに置き換えられるベースリクエスト内の<a href="positions.html">ポジション</a>を指定する必要があります。ペイロードを生成する多数の方法(単純な文字列のリスト、数値、日付、総当たり、ビット反転、その他多数)があります。ペイロードは、<a href="positions.html#attack-type">異なるアルゴリズム</a>を使ってペイロードポジションに配置できます。結果の分析や、後で深掘りするアイテムの特定を補助する様々なツールがあります。
+            各攻撃では、1つ以上の<a href="payloads/index.html">ペイロード</a>セットと、ペイロードに置き換えられるベースリクエスト内の<a href="positions.html">ポジション</a>を指定する必要があります。ペイロードを生成する多数の方法(単純な文字列のリスト、数値、日付、総当たり、ビット反転、その他多数)があります。ペイロードは<a href="positions.html#attack-type">異なるアルゴリズム</a>を使ってペイロードポジションに配置できます。結果の分析や、後で深掘りするアイテムの特定を補助する様々なツールがあります。
         </p>
         <h2 id="typical-uses">一般的な用途</h2>
         <p>
@@ -96,7 +96,7 @@
         </p>
         <ul>
             <li>
-                アプリケーションのログイン失敗メッセージで有効なユーザ名の列挙ができる場合、<a href="payloads/types.html#username-generator">ユーザ名生成</a>ペイロードタイプを使って、使用可能なユーザ名の長いリストを流し、有効なものを特定します。
+                アプリケーションのログイン失敗メッセージで有効なユーザ名の列挙ができる場合、<a href="payloads/types.html#username-generator">ユーザ名生成</a>ペイロードタイプを使って、使用可能なユーザ名の長いリストを流し、有効なものを探し出します。
             </li>
             <li>
                 有効なユーザ名のリストを特定した後、一般的なパスワードのセットの<a href="payloads/types.html#simple-list">シンプルリスト</a>ペイロードタイプを使って、ユーザのパスワードを推測できます。
@@ -123,7 +123,7 @@
                 正しいフォーマットやスキームの識別子候補がテストで生成されるよう、適切な<a href="payloads/index.html">ペイロードタイプ</a>を使います。
             </li>
             <li>
-                <a href="options.html#grep-extract">extract grep</a>アイテムを設定して、各レスポンスから関連データを取得し、<a href="attacks.html#attack-results">攻撃結果</a>に一覧表示します。
+                <a href="options.html#grep-extract">extract grep</a>アイテムを設定して各レスポンスから関連データを取得し、<a href="attacks.html#attack-results">攻撃結果</a>に一覧表示します。
             </li>
         </ul>
         <p>
@@ -155,7 +155,7 @@
                 <a href="payloads/types.html#simple-list">simple list</a>ペイロードタイプを使います。
             </li>
             <li>
-                一般的なファジング文字列を含むBurpの<a href="payloads/types.html#predefined-payload-lists">定義済みペイロード一覧</a>のいずれかか、独自の攻撃文字列のリストを、ペイロードリストに使うよう設定します。
+                一般的なファズ文字列を含むBurpの<a href="payloads/types.html#predefined-payload-lists">定義済みペイロード一覧</a>の１つか、独自の攻撃文字列のリストを、ペイロードリストに使うよう設定します。
             </li>
             <li>
                 一般的なエラーメッセージ文字列を<a href="options.html#grep-match">match grep</a>アイテムに設定します。match grepのUIのデフォルトオプションに、この目的に有用な文字列リストがあります。
@@ -246,7 +246,8 @@
                 他の操作の実行や<a href="../../penetration-testing/index.html">テストワークフロー</a>との統合に、<a href="attacks.html#burp-intruder-testing-workflow">コンテキストメニュー</a>を使用する。
             </li>
             <li>
-                <span class="pro-edition-feature-label">プロフェッショナル</span> 攻撃全体を<a href="attacks.html#save-menu">保存</a>する。後で保存した攻撃を読み込むには、Intruderメニューで"保存した攻撃を開く"を選択します。
+                <label class="editionlabel is-professional">プロフェッショナル</label>
+                攻撃全体を<a href="attacks.html#save-menu">保存</a>する。後で保存した攻撃を読み込むには、Intruderメニューで"保存した攻撃を開く"を選択します。
             </li>
         </ul>
     </div>

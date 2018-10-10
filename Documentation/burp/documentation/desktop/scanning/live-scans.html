@@ -26,8 +26,8 @@
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-professional">プロフェッショナル</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -53,7 +53,7 @@
                 <strong>URLスコープ</strong> - URLに基づいて、ライブスキャンで処理されるアイテムを定義できます。すべてを含めるか、<a href="../tools/target/scope.html">全体スコープ</a>で定義した範囲のアイテムだけか、カスタムスコープ内のアイテムにするかを選択できます。
             </li>
             <li>
-                <strong>重複排除</strong> - URLとパラメータ名に基づいて、処理されるアイテムを重複廃除するかどうか選択できます。同じアイテムに診断を複数回繰り返すのが望ましくない箇所の、<a href="#live-audit">ライブ診断</a>タスクで特に便利です。
+                <strong>重複排除</strong> - URLとパラメータ名に基づいて、処理されるアイテムを重複排除するかどうか選択できます。同じアイテムに診断を複数回繰り返すのが望ましくない箇所の、<a href="#live-audit">ライブ診断</a>タスクで特に便利です。
             </li>
         </ul>
         <h2 id="live-audit">ライブ診断</h2>
@@ -63,7 +63,7 @@
         <p>
             ライブ診断タスクの一般的な用途は、プロキシ経由のすべてのトラフィックへのパッシブ診断、またはスコープ内のアイテムのみへのアクティブ診断の実施です。
         </p>
-        <h2 id="live-passive-crawl">ライブパッシブクロール </h2>
+        <h2 id="live-passive-crawl">ライブパッシブクロール</h2>
         <p>
             このタイプのライブタスクは、HTTPメッセージを解析し、Target<a href="../tools/target/site-map/index.html">サイトマップ</a>にエントリを追加します。
         </p>
@@ -73,7 +73,7 @@
         <p>
             追加するアイテムを、URLに基づいて選択もできます。全て、または、そのアイテム自身、リクエストされたURLと同じドメインのアイテム、<a href="../tools/target/scope.html">全体スコープ</a>またはカスタムスコープのアイテムを含めるか、選択できます。
         </p>
-</div>
+    </div>
 </section>
 </body>
 </html>

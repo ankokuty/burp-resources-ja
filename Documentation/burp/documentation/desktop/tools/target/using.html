@@ -29,8 +29,9 @@
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-professional">プロフェッショナル</label>
+    <label class="editionlabel is-community">コミュニティ</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -39,12 +40,12 @@
             Targetツールは、対象アプリケーションのコンテンツや機能の概要を提供し、テストワークフローの主要部分を推進させます。Targetタブに関連する主な手順は次の通りです:
         </p>
         <h2 id="manual-application-mapping">手動アプリケーションマッピング</h2>
-<p>
+        <p>
             まず、対象アプリケーションを手動でマッピングします。これを行うには、次の手順を実行します:
         </p>
         <ul>
             <li>
-                <a href="../proxy/using.html#getting-set-up"> ブラウザとBurp Proxy</a>が連携するよう設定します。
+                <a href="../proxy/using.html#getting-set-up">ブラウザとBurp Proxy</a> が連携するよう設定します。
             </li>
             <li>
                 <a href="../proxy/using.html#intercepting-requests-and-responses">Proxyインターセプト</a>をオフにし、手動でアプリケーション全体をブラウズします。
@@ -59,15 +60,15 @@
         <p>
             <strong>注:</strong> アプリケーションの診断中にBurp Scannerが自動的にセッションを維持できるような方法で、アプリケーションのナビゲーションをパスを取得するため、一部のケースでは手動でのアプリケーションマッピングよりBurpの<a href="../../../scanner/crawling.html">自動クロール</a>の方が優れています。一方で手動マッピングでは、人間のユーザが処理を誘導し、潜在的に危険な機能を回避し、ナビゲーション動作が期待した結果になっているか検証できます。手動マッピングと自動マッピング、どちらを選択するかは、アプリケーションの性質や結果の使用目的によって大きく異なります。
         </p>
-<h2 id="defining-target-scope">ターゲットスコープの定義</h2>
+        <h2 id="defining-target-scope">ターゲットスコープの定義</h2>
         <p>
             最初のアプリケーションマッピングが完了したら、サイトマップでブランチを選択し、コンテキストメニューから"スコープに追加"または"スコープから削除"コマンドを選択し、<a href="scope.html">ターゲットスコープ</a>を定義します。<a href="site-map/index.html#site-map-display-filter">サイトマップ</a>や<a href="../proxy/history.html#proxy-history-display-filter">Proxy履歴</a>に適切なディスプレイフィルターを設定して、現在興味のないアイテムを非表示にできます。
         </p>
         <h2 id="reviewing-unrequested-items">リクエストされていないアイテムのレビュー</h2>
         <p>
-            パッシブスパイダリングで検出したがまだリクエストされていない対象内のアイテムを、サイトマップでレビューします。これらのアイテムは、サイトマップに灰色で表示されます。ツリービューでアプリケーション全体を選択し、一覧ビューを"リクエスト時刻"カラムでソート(カラムヘッダをクリック)すると、リクエストされていないアイテムをがグループ化され素早く検索できます。これらのアイテムを手動でレビュー(例えば、各URLをブラウザにコピーするなど)して、さらに気になるコンテンツが含まれているかどうかを確認する必要があります。
+            パッシブクロールで検出したがまだリクエストされていない対象内のアイテムを、サイトマップでレビューします。これらのアイテムは、サイトマップに灰色で表示されます。ツリービューでアプリケーション全体を選択し、一覧ビューを"リクエスト時刻"カラムでソート(カラムヘッダをクリック)すると、リクエストされていないアイテムをがグループ化され素早く検索できます。これらのアイテムを手動でレビュー(例えば、各URLをブラウザにコピーするなど)して、さらに気になるコンテンツが含まれているかどうかを確認する必要があります。
         </p>
-<h2 id="discovering-hidden-content">隠しコンテンツの探索</h2>
+        <h2 id="discovering-hidden-content">隠しコンテンツの探索</h2>
         <p>
             アプリケーションの可視コンテンツ(つまり、アプリケーションをブラウズしリンクをたどって観察できたコンテンツ)をマッピングした後、次の自動アクションを実行し可視コンテンツからリンクされていない"隠れた"コンテンツを特定できます:
         </p>

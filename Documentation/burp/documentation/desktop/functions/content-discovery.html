@@ -26,8 +26,8 @@
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-professional">プロフェッショナル</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -39,7 +39,7 @@
             この機能にアクセスするには、Burpの任意の場所か、Targetの<a href="../tools/target/site-map/index.html">サイトマップ</a>でHTTPリクエストを選択し、コンテキストメニューの"関連ツール"から"コンテンツ探索"を選択します。
         </p>
         <p>
-            Burpはコンテンツを探し出すために、名前の推測、Web巡回、アプリケーション内で観測された命名規則からの推定など、様々なテクニックを使います。発見されたコンテンツは、探索セッション固有の<a href="#site-map">サイトマップ</a>に表示され、メインの<a href="../tools/target/site-map/index.html">全体サイトマップ</a>への追加も可能です。
+            Burpはコンテンツを探し出すために、名前の推測、Webクロール、アプリケーション内で観測された命名規則からの推定など、様々なテクニックを使います。発見されたコンテンツは、探索セッション固有の<a href="#site-map">サイトマップ</a>に表示され、メインの<a href="../tools/target/site-map/index.html">全体サイトマップ</a>への追加も可能です。
         </p>
         <h2 id="control">コントロール</h2>
         <p>
@@ -113,7 +113,7 @@
                 対象サイトで使われていることを発見した名前。このオプションを選択すると、対象サイトで発見されたディレクトリ名とファイル名本体のリストを保持し、テスト済みのディレクトリの新たなディレクトリとしてこれらをチェックします。
             </li>
             <li>
-                検出されたアイテムからの変更。このオプションを選択すると、既に発見されているアイテム名に基づくアイテム名を推測しようとします。例えば、AnnualReport2011ディレクトリが発見されていた場合、Burpは AnnualReport2012、AnnualReport2013などをチェックします。
+                検出されたアイテムからの変更。このオプションを選択すると、既に発見されているアイテム名に基づくアイテム名を推測しようとします。例えば、AnnualReport2018ディレクトリが発見されていた場合、Burpは AnnualReport2019、AnnualReport2020などをチェックします。
             </li>
         </ul>
         <h2 id="file-extensions">ファイル拡張子</h2>
@@ -149,13 +149,13 @@
                 <strong>サイトマップからコンテンツをコピー</strong> - このオプションが選択されると、探索セッションはメインの<a href="../tools/target/site-map/index.html">Suiteサイトマップ</a>から<a href="#site-map">Discoverサイトマップ</a>に、既存の関連するコンテンツをコピーし、新しいコンテンツを発見するための初期データを与えます。
             </li>
             <li>
-                <strong>発見したコンテンツから自動巡回</strong> - このオプションが選択されると、探索セッションは従来通りのWeb巡回を実行し、新たなコンテンツへのリンクを探すリクエストを探索するためにレスポンスを処理します。
+                <strong>発見したコンテンツから自動巡回</strong> - このオプションが選択されると、探索セッションは従来通りのWebクロールを実行し、新たなコンテンツへのリンクを探すリクエストを探索するためにレスポンスを処理します。
             </li>
             <li>
                 <strong>探索スレッド数</strong> - 探索エンジンの同時リクエスト発行数を制御します。
             </li>
             <li>
-                <strong>自動巡回スレッド数</strong> - もし有効なら、巡回機能の同時リクエスト発行数を制御します。
+                <strong>自動巡回スレッド数</strong> - もし有効なら、クロール機能の同時リクエスト発行数を制御します。
             </li>
         </ul>
         <h2 id="site-map">サイトマップ</h2>

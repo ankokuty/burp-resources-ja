@@ -32,8 +32,9 @@
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-professional">プロフェッショナル</label>
+    <label class="editionlabel is-community">コミュニティ</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -44,13 +45,13 @@
         <p>
             <strong>注:</strong> 信頼するルート証明書にインストールすると、その証明書の秘密鍵を持っている攻撃者は、あなたがプロキシを使用していない場合でも、検知されることなくSSL接続に対して中間者攻撃が実行できます。この脅威から保護するために、Burpは各インストールごとに一意なCA証明書を生成し、この証明書に対する秘密鍵をコンピュータ内の、ユーザが指定した場所に保存します。信頼されていない人がコンピュータのデータを読める場合は、BurpのCA証明書をインストールすべきではありません。
         </p>
-        <div class="rounded-corner-box">
+        <div class="highlightedarea">
             <p>
                 BurpのCA証明書をブラウザにインストールする完全な手順は、<a href="https://support.portswigger.net/">Burp Suiteサポートセンタ</a>の次の記事を参照してください:
             </p>
             <ul class="link-list">
                 <li>
-                    <a href="https://support.portswigger.net/customer/portal/articles/1783075-installing-burp-s-ca-certificate-in-your-browser"> BurpのCA証明書をブラウザにインストールする</a>
+                    <a href="https://support.portswigger.net/customer/portal/articles/1783075-installing-burp-s-ca-certificate-in-your-browser">BurpのCA証明書をブラウザにインストールする</a>
                 </li>
             </ul>
             <p>

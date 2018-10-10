@@ -26,8 +26,9 @@
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-professional">プロフェッショナル</label>
+    <label class="editionlabel is-community">コミュニティ</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -59,7 +60,7 @@
             ブラウザの設定ができたら、正しく動作しているかテストする必要があります。Burpが実行している状態で、ブラウザでどこかHTTPのURL(まだHTTPSは使わないでください)にアクセスします。ブラウザはリクエストの完了を待っている状態になるはずです。Burpで、Proxyのインターセプトタブを開きます。これらのタブに色が付いていて、メインパネルにHTTPリクエストが表示されているはずです。"インターセプト有効"ボタンをクリックすると、"インターセプト無効"に変わります。ブラウザ画面に戻ると、要求したURLが(すぐに)通常通り読み込まれているはずです。もし何かうまく動いてなければ、<a href="../troubleshooting.html">トラブルシューティング</a>を参照してください。
         </p>
         <p>
-            最後に、Burp経由でブラウザがHTTPSリクエストを問題なく送信できるように設定する必要があります。Burpの基本的な操作や非HTTPS URLだけで使う場合、この手順は厳密には必要ありませんが、一度だけ実行すればよく、HTTPSを使ったアプリケーションをテストする場合にBurpを最大限活用するために必要です。これが必要なの理由は、ブラウザと宛先WebサーバとのSSL接続の間にBurpが入り込み、HTTPSメッセージを平文で表示や変更するためです。SSLはこのような行為を防ぐように設計されているため、Burpを使ってHTTPSのURLにアクセスするとブラウザはデフォルトで警告画面を表示します。HTTPSを使用しているアプリケーションを正しく機能させるためには、ブラウザにBurpの認証局(CA)SSL証明書をインストールする必要があります。この詳細な方法は、<a href="../tools/proxy/options/installing-ca-certificate.html">BurpのCA証明書のインストール</a>を参照してください。これが済んだら、すべてのブラウザウィンドウを閉じ、新たにブラウザを開き、どこかHTTPSのURLにアクセスします。ブラウザはセキュリティ警告を表示せず、通常通りページが読み込まれるはずです。(もしProxyインターセプトタブでインターセプトを有効にしていれば、再度無効にする必要があります)
+            最後に、Burp経由でブラウザがHTTPSリクエストを問題なく送信できるように設定する必要があります。Burpの基本的な操作や非HTTPS URLだけで使う場合、この手順は厳密には必要ありませんが、一度だけ実行すればよく、HTTPSを使ったアプリケーションをテストする場合にBurpを最大限活用するために必要です。これが必要なの理由は、ブラウザと宛先WebサーバとのSSL接続の間にBurpが入り込み、HTTPSメッセージを平文で表示や変更するためです。SSLはこのような行為を防ぐように設計されているため、Burpを使ってHTTPSのURLにアクセスするとブラウザはデフォルトで警告画面を表示します。HTTPSを使用しているアプリケーションを正しく機能させるためには、ブラウザにBurpの認証局(CA)SSL証明書をインストールする必要があります。詳細な方法は、<a href="../tools/proxy/options/installing-ca-certificate.html">BurpのCA証明書のインストール</a>を参照してください。これが済んだら、すべてのブラウザウィンドウを閉じ、新たにブラウザを開き、どこかHTTPSのURLにアクセスします。ブラウザはセキュリティ警告を表示せず、通常通りページが読み込まれるはずです。(もしProxyインターセプトタブでインターセプトを有効にしていれば、再度無効にする必要があります)
         </p>
     </div>
 </section>

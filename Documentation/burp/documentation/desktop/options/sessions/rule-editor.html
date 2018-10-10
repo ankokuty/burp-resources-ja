@@ -29,8 +29,9 @@
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-professional">プロフェッショナル</label>
+    <label class="editionlabel is-community">コミュニティ</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -46,7 +47,7 @@
         <p>
             各ルールは、実行される1つまたは複数のアクションが指定できます。ルールが適用されると、次のアクションを適用しないよう設定されたアクションがない限り、これらのアクションが順番に実行されます。
         </p>
-        <div class="rounded-corner-box">
+        <div class="highlightedarea">
             <p>
                 次の種類のアクションがあります:
             </p>
@@ -81,11 +82,11 @@
         <p>
             このアクションは、Burpの<a href="index.html#cookie-jar">cookie jar</a>の関連するcookieで、リクエストを更新します。全てのcookie(または一部除外)、または特定のcookieだけを更新するようアクションの設定ができます。
         </p>
-        <h3 id="set-a-specific-cookie-or-parameter-value">特定cookieまたはパラメータ値の指定</h3>
+        <h3 id="set-a-specific-cookie-or-parameter-value">指定したcookieやパラメータ値をセットする</h3>
         <p>
             このアクションは、名前付きのパラメータやcookieに、指定した値をセットしてリクエストを更新します。存在していない場合、追加するパラメータのタイプを指定できます。
         </p>
-        <h3 id="check-session-is-valid">セッションの有効性のチェックする</h3>
+        <h3 id="check-session-is-valid">セッションの有効性をチェックする</h3>
         <p>
             このアクションは、現在のセッションが有効かどうかをチェックし、有効でない場合は有効な新しいセッションを取得するアクションを実行します。
         </p>
@@ -105,7 +106,7 @@
             現在のリクエストが発行され、セッションが有効だとルールが判断した場合、このリクエストでさらにアクションは実行されません。
         </p>
         <p>
-            Xリクエストごとに、Burpがセッションを検証する設定もできます。アプリケーションがほとんどセッションを無効にしない場合、余計なリクエストを発生させないために便利です。&nbsp;
+            Xリクエストごとに、Burpがセッションを検証する設定もできます。アプリケーションがほとんどセッションを無効にしない場合、余計なリクエストを発生させないために便利です。
         </p>
         <h4>セッションの有効性判断にレスポンスを検証</h4>
         <p>

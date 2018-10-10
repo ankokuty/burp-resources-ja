@@ -20,13 +20,14 @@
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-enterprise">エンタープライズ</label>
+    <label class="editionlabel is-professional">プロフェッショナル</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
         <h1>Burp Infiltrator</h1>
-<p>
+        <p>
             Burp Infiltratorは、<a href="scanner/index.html">Burp Scanner</a>を使ったテストを推進するために、対象Webアプリケーションを器具化するツールです。Burpの入力が潜在的に危険なAPIまで通過したかをBurpが検出できるように、対象アプリケーションを変更します。
         </p>
         <p>
@@ -40,7 +41,7 @@
                 C#, VB, またはその他の .NET言語 (.NETバージョン 2.0以降)
             </li>
         </ul>
-        <div class="rounded-corner-box">
+        <div class="highlightedarea">
             <p>
                 <strong>重要な注意事項</strong>
             </p>
@@ -89,7 +90,7 @@
                 インストルメンテーションフックは、変更されたBurp CollaboratorドメインのDNS参照を実行します。
             </li>
             <li>
-                必要に応じて、<a href="#configuration-options">設定オプション</a>によっては、関連する全てのパラメータやアプリケーションのコールスタックを含んだHTTP/Sリクエストを、変更後のBurp Collaboratorドメインに発行します。
+                必要に応じて、<a href="#configuration-options">設定オプション</a>によっては、変更後のBurp CollaboratorドメインにHTTP/Sリクエストを発行し、それには関連する全てのパラメータやアプリケーションのコールスタックが含まれています。
             </li>
             <li>
                 スキャンペイロードによって発生したCollaboratorとの通信の詳細を取得するため、Burpは通常通りCollaboratorサーバをポーリングします。Burp Infiltratorが実行した通信の詳細が、Burpに返されます。
@@ -98,8 +99,7 @@
                 アプリケーション内で、入力に関連するアイテムが潜在的に危険なAPIまで達したことを、関連する脆弱性タイプの情報レベルの問題としてユーザに報告します。同じ問題の他の証拠(診断中の動作や他のColalborator通信)が見つかった場合、この証拠は１つの問題に集約されます。
             </li>
         </ol>
-		<img src="../documentation/images/infiltrator/infiltrator-1.png" alt="">
-        
+        <img src="../documentation/images/infiltrator/infiltrator-1.svg" alt="">
         <p>
             Burp InfiltratorはBurp Collaboratorドメインを含むBurpペイロードを観察する動作をし、指定されたBurp Collaboratorサーバを経由して通信するので、Burp Infiltratorを使うには次を満たす必要があります:
         </p>
@@ -194,11 +194,11 @@
         
         </p>
         <p>
-            非対話形式でBurp Infiltratorをインストールする前に、上書きされずに使われる<a href="#configuration-options">設定オプション</a>のデフォルト値を、上記のオプションを使って確認し、要件に基づいて適切なオプションが確実に使われるようにすべきです。&nbsp;
+            非対話形式でBurp Infiltratorをインストールする前に、上書きされずに使われる<a href="#configuration-options">設定オプション</a>のデフォルト値を、上記のオプションを使って確認し、要件に基づいて適切なオプションが確実に使われるようにすべきです。
         </p>
-        <div class="rounded-corner-box">
+        <div class="highlightedarea">
             <p>
-                <strong>注: </strong>Burp Infiltratorのインストーラを非対話モードで実行すると、対話モードで表示される全ての警告と免責事項を読み、同意したと見なされます。&nbsp;
+                <strong>注: </strong>Burp Infiltratorのインストーラを非対話モードで実行すると、対話モードで表示される全ての警告と免責事項を読み、同意したと見なされます。
             </p>
         </div>
         <h2 id="configuration-options">設定オプション</h2>
@@ -225,7 +225,7 @@
         <p>
             <strong>注:</strong> 設定オプションはパッチを適用している処理中に指定され、アプリケーションのバイトコードに行った変更に反映されています。パッチを適用された後にBurp Infiltratorの設定を変更するには、更新したオプションを使用してBurp Infiltratorのインストーラを再度実行し、アプリケーションを再起動する必要があります。
         </p>
-</div>
+    </div>
 </section>
 </body>
 </html>

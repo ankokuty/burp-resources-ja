@@ -29,8 +29,9 @@
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-professional">プロフェッショナル</label>
+    <label class="editionlabel is-community">コミュニティ</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -80,7 +81,7 @@
         <p>
             Burp Sequencerによって実行されたテストは<a href="#character-level-analysis">文字レベル</a>と<a href="#bit-level-analysis">ビットレベル</a>に分けられます。
         </p>
-        <h2 id="character-level-analysis">文字レベル分析</h2>
+        <h2 id="character-level-analysis">文字レベル解析</h2>
         <p>
             文字レベルの解析はトークンに書かれた文字をそのままの形式で操作してテストします。まず、各位置での文字集合のサイズが計測されます。文字集合のサイズとは、サンプルデータ内の各位置に現れる異なる文字種数です。以降のテストは、この情報を使用して行われます:
         </p>
@@ -95,7 +96,7 @@
         <p>
             文字レベル分析では、上記のテストに基づき、それぞれの文字位置について総合スコアを計算します - これはそれぞれの文字レベルテストで、各位置で計算された最小の確率です。それからこの分析は、様々な有意水準における、有効エントロピーのビット数をカウントします。トークン内の文字集合の大きさに基づき、各位置にエントロピーのビット数を割り当てます (もし4文字ならば2bit、8文字ならば3bit)。そして、各有意水準以上における総ビット数が計算されます。
         </p>
-        <h2 id="bit-level-analysis">ビットレベル分析</h2>
+        <h2 id="bit-level-analysis">ビットレベル解析</h2>
         <p>
             ビットレベルテストは文字レベルテストよりも強力です。ビットレベル分析を有効にするために、それぞれのトークンをビット集合に変換する必要があります。各文字位置の文字集合のサイズからビット総数が求められます。いずれかの位置で、2のべき乗ちょうどではないサイズの文字集合が使用されていた場合は、その位置でのサンプルデータは、もとの集合のサイズよりも小さく元の値に最も近い2のべき乗ちょうどに変換されます。その位置でのデータの部分的なビットは、その位置から派生した全ビットに効率的にマージされます。この変換は、もともとの標本のランダム性についての特徴を保存し、どのような偏りの追加・削除も行われないように設計された方法で行われます。しかし、この方式での変換は完璧ではなく、もしかしたら不完全な文字集合のサイズを持つ標本を分析する過程で、分析結果にある種の不正確さをもたらすかもしれません。
         </p>

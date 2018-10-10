@@ -29,14 +29,15 @@
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-professional">プロフェッショナル</label>
+    <label class="editionlabel is-community">コミュニティ</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
         <h1>Burp Proxyオプション</h1>
         <p>
-            このタブにはBurp Proxy設定の、<a href="#proxy-listeners">Proxyリスナー</a>、<a href="#intercepting-http-requests-and-responses">HTTPリクエストとレスポンスのインターセプト</a>、<a href="#intercepting-websockets-messages">WebSocketsメッセージのインターセプト</a>、<a href="#response-modification">レスポンス変更</a>、<a href="#match-and-replace">検索と置換</a>、<a href="#ssl-pass-through">SSLパススルー</a>、<a href="#miscellaneous">その他</a>のオプションがあります。
+            このタブには、Burp Proxy設定の、<a href="#proxy-listeners">Proxyリスナー</a>、<a href="#intercepting-http-requests-and-responses">HTTPリクエストとレスポンスのインターセプト</a>、<a href="#intercepting-websockets-messages">WebSocketsメッセージのインターセプト</a>、<a href="#response-modification">レスポンス変更</a>、<a href="#match-and-replace">検索と置換</a>、<a href="#ssl-pass-through">SSLパススルー</a>、<a href="#miscellaneous">その他</a>のオプションがあります。
         </p>
         <h2 id="proxy-listeners">Proxyリスナー</h2>
         <p>
@@ -342,16 +343,16 @@
                 <strong>レスポンスのgzip/deflateを展開する</strong> - ほとんどのブラウザは、gzip- または deflate-圧縮されたレスポンスのコンテンツを許容します。このオプションは、圧縮されたレスポンスボディを自動的に展開するか制御します。リクエストからAccept-Encodingヘッダの削除(Burp Proxyの<a href="#match-and-replace">検索と置換</a>機能で可能)すると、レスポンスの圧縮をほぼ防げます。
             </li>
             <li>
-                <strong>http://burp のWebインタフェースを無効にする</strong> - 保護されていないインタフェースからの接続を許可するように<a href="#binding">リスナー</a>を設定しなければならず、他者からの<a href="../in-browser-controls.html">ブラウザ内インタフェース</a>へのアクセスを防御したい場合に、このオプションが便利です。
+                <strong>http://burp のWebインタフェースを無効にする</strong> - 保護されていないインタフェースからの接続を許可するように<a href="#binding">リスナー</a>を設定しなければならず、他者からの<a href="../in-browser-interface.html">ブラウザ内インタフェース</a>へのアクセスを防御したい場合に、このオプションが便利です。
             </li>
             <li>
                 <strong>ブラウザへのBurpエラーメッセージを抑制する</strong> - 特定のエラーが発生した場合、デフォルトでBurpは意味のあるエラーメッセージをブラウザに返します。もし、脆弱な被害者に中間者攻撃を実行する場合など、Burpをステルスモードで実行したい場合は、Burpが関与しているという事実を隠すようこれらのエラーメッセージを抑制します。
             </li>
             <li>
-                <strong>Proxy履歴や他のBurpツールにアイテムを送信しない</strong> - すべてのリクエストがプロキシ履歴やターゲットサイトマップにロギングされず、ライブスキャンにアイテムが送信されないようにするオプションです。Burp Proxyを特定の用途、例えば上位サーバへの認証や、検索と置換の実行に使っていて、ログによるメモリやストレージの負荷を抑えたい場合に便利です。
+                <strong>Proxy履歴やライブタスクにアイテムを送信しない</strong> - すべてのリクエストについて、プロキシ履歴へのロギングや、クロールやライブ診断などのライブタスクに送信されないようにするオプションです。Burp Proxyを特定の用途、例えば上位サーバへの認証や、検索と置換の実行に使っていて、ログによるメモリやストレージの負荷を抑えたい場合に便利です。
             </li>
             <li>
-                <strong>スコープ外の場合、Proxy履歴や他のBurpツールにアイテムを送信しない</strong> - スコープ外のリクエストがプロキシ履歴やターゲットサイトマップにロギングされず、ライブスキャンにアイテムが送信されないようにするオプションです。スコープ外アイテムがプロジェクトデータに蓄積させないために便利です。
+                <strong>スコープ外の場合、Proxy履歴やライブタスクにアイテムを送信しない</strong> - スコープ外のリクエストについて、プロキシ履歴へのロギングや、クロールやライブ診断などのライブタスクに送信されないようにするオプションです。スコープ外アイテムがプロジェクトデータに蓄積させないために便利です。
             </li>
         </ul>
     </div>

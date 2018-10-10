@@ -26,8 +26,9 @@
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-professional">プロフェッショナル</label>
+    <label class="editionlabel is-community">コミュニティ</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -47,33 +48,42 @@
         <p>
             場合によっては、別のレスポンスを受信した場合に動作するように、手動で設定を変更する必要があります。使用可能なオプションは次の通りです。
         </p>
-            <h4>開始と終了を定義</h4>
+        <h4>開始と終了を定義</h4>
         <p>
             抽出するアイテムの開始点と終了点を定義します。
         </p>
         <ul>
-                    <li>
-                        <strong>この後ろから開始</strong> - 抽出するアイテムの前にあるリテラル文字列を指定します。エスケープシーケンスを使用して非表示文字を表せます: \rはCR, \nはLF, \xNNはASCII16進数コードの文字、\\はバックスラッシュ文字を表します。
+            <li>
+                <strong>この後ろから開始</strong> - 抽出するアイテムの前にあるリテラル文字列を指定します。エスケープシーケンスを使用して非表示文字を表せます: <span class="InlineCode">\r</span>は<span class="InlineCode">CR</span>, <span class="InlineCode"></span>\nは<span class="InlineCode">LF</span>, <span class="InlineCode">\xNN</span>はASCII16進数コード<span class="InlineCode">NN</span>の文字、<span class="InlineCode">\\</span>はバックスラッシュ文字を表します。
             </li>
-                    <li>
-                        <strong>開始オフセット</strong> - レスポンス内でアイテムが始まる固定オフセットを指定します。
-                    </li>
-                    <li>
-                        <strong>この区切りで終了</strong> - 抽出するアイテムの後ろに続くリテラル文字列を指定します。"この後ろから開始"の説明と同じエスケープシーケンスを使用できます。
-                    </li>
-                    <li>
-                        <strong>固定長で終了</strong> - レスポンスから抽出するアイテムの先頭からの長さを固定長で指定します。
-                    </li>
+            <li>
+                <strong>開始オフセット</strong> - レスポンス内でアイテムが始まる固定オフセットを指定します。
+            </li>
+            <li>
+                <strong>この区切りで終了</strong> - 抽出するアイテムの後ろに続くリテラル文字列を指定します。"この後ろから開始"の説明と同じエスケープシーケンスを使用できます。
+            </li>
+            <li>
+                <strong>固定長で終了</strong> - レスポンスから抽出するアイテムの先頭からの長さを固定長で指定します。
+            </li>
         </ul>
-            <h4>正規表現グループから定義</h4>
+        <h4>正規表現グループから定義</h4>
         <p>
             グループを含む正規表現を指定し、マッチした場合グループの内容が抽出されます。例えば、次の指定でHTML titleタグの内容を抽出できます:
         </p>
-        <p class="InlineCode">&lt;title&gt;(.*?)&lt;/title&gt;</p>
+        <p class="InlineCode">
+            
+            &lt;title&gt;(.*?)&lt;/title&gt;
+        
+        </p>
         <p>
-または、次の指定でレスポンス内から6桁の数字を抽出できます:</p>
-<p class="InlineCode">(\d\d\d\d\d\d)</p>
-<h4>設定のテスト</h4>
+            または、次の指定でレスポンス内から6桁の数字を抽出できます:
+        </p>
+        <p class="InlineCode">
+            
+            (\d\d\d\d\d\d)
+        
+        </p>
+        <h4>設定のテスト</h4>
         <p>
             上部パネルの設定を手動で変更すると、レスポンスから抽出されたアイテムを自動的に強調表示します(存在する場合)。
         </p>

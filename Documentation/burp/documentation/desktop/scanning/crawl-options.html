@@ -26,8 +26,8 @@
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-professional">プロフェッショナル</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -86,15 +86,14 @@
                 クローラが不正なユーザ名でログインを失敗させるかどうか。これは、不正な資格情報が送信された場合にアクセスできる、アカウントリカバリー機能に到達するのに便利です。無効なパスワードが設定された<a href="../scanning/scan-launcher.html#application-login-options">アプリケーションログイン</a>アカウントを、Burpのクローラはそのまま送信するため、これらのアカウントがロックされないように注意してください。
             </li>
         </ul>
-<h2 id="handling-application-errors-during-crawl">クロール中のアプリケーションエラーの処理</h2>
-<p>
-    これらの設定はBurp Scannerの、スキャンのクロールフェーズで発生する<a href="../../scanner/auditing.html#handling-application-errors">アプリケーションエラーの処理</a>方法 (接続失敗や送信タイムアウト)を制御します。
-</p>
-<p>
+        <h2 id="handling-application-errors-during-crawl">クロール中のアプリケーションエラーの処理</h2>
+        <p>
+            これらの設定はBurp Scannerの、スキャンのクロールフェーズで発生する<a href="../../scanner/auditing.html#handling-application-errors">アプリケーションエラーの処理</a>方法 (接続失敗や送信タイムアウト)を制御します。
+        </p>
+        <p>
             次のオプションを設定できます:
         </p>
         <ul>
-            
             <li>
                 タスクを一時停止するまでの、連続してタイムアウトしたリクエスト数、またはタイムアウトしたリクエスト全体の割合。
             </li>
@@ -103,7 +102,7 @@
             </li>
         </ul>
         <p>
-            空白のままにしておくと、無効にできます。 &nbsp;
+            空白のままにしておくと、無効にできます。
         </p>
     </div>
 </section>

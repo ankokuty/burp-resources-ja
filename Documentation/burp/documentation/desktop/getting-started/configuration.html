@@ -26,17 +26,18 @@
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-professional">プロフェッショナル</label>
+    <label class="editionlabel is-community">コミュニティ</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
         <h1>設定</h1>
-<p>
+        <p>
             設定ライブラリを使用して、個々のタスクに応じて、異なるBurp設定を利用できます。例えば、スキャンの種類ごとに、異なる設定が作成できます。または、作業を行うクライアントごとに固有の設定を読み込む必要があるかもしれません。設定ファイルの形式で、保存や読み込みもできます。
         </p>
-        <h2 id="configuration-library">設定ライブラリ </h2>
-<p>
+        <h2 id="configuration-library">設定ライブラリ</h2>
+        <p>
             Burpの設定ライブラリには、様々なタスクタイプの設定オプションが格納されており、<a href="../scanning/scan-launcher.html">スキャンの開始</a>のようなアクションを実行する際に簡単に利用できます。
         </p>
         <p>
@@ -103,20 +104,20 @@
                 Burpの至る所にある個々の設定パネルで、"オプション"ボタンでそのパネルの設定を、読み込みや保存ができます。
             </li>
             <li>
-                <a href="index.html#startup-wizard">開始ウィザード</a>で、プロジェクトの作成または再開をするとき、プロジェクトレベルの設定を読み込む設定ファイルを指定できます。
+                <a href="index.html#startup-wizard">開始ウィザード</a>で、プロジェクトの作成または再開をするとき、プロジェクトレベルのオプションを読み込む設定ファイルを指定できます。
             </li>
             <li>
-                コマンドラインからBurpを実行するとき、<a href="launching-from-command-line.html#command-line-arguments">コマンドライン引数</a>を使用して、１つまたは複数の設定ファイルを指定してユーザレベル及びプロジェクトレベルの設定を読み込めます。
+                コマンドラインからBurpを実行するとき、<a href="launching-from-command-line.html#command-line-arguments">コマンドライン引数</a>を使用して、１つまたは複数の設定ファイルを指定してユーザレベル及びプロジェクトレベルのオプション読み込めます。
             </li>
             <li>
                 <a href="../tools/extender.html">Burp拡張</a>からはAPI経由で設定ファイルの読み込みと保存ができます。
             </li>
         </ul>
-        <h2 id="configuration-file-format">設定ファイルのフォーマット</h2>
+        <h2 id="configuration-file-format">設定ファイルの形式</h2>
         <p>
             設定ファイルはJSON形式を使用しています。JSON内で使用される構造と名前スキームは、Burp UIでの設定表示方法に対応します。個別の目的に応じた設定ファイル作成するには、Burp UIで必要な設定を作成し、そこから<a href="#loading-and-saving-configuration-files">設定ファイルの保存</a>をする方法が、最も簡単です。設定ファイルの内容は人間が判読可能でそれ自身がドキュメントにもなっているので、必要に応じて既存の設定ファイルを手動で編集できます。
         </p>
-</div>
+    </div>
 </section>
 </body>
 </html>

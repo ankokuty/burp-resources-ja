@@ -29,20 +29,20 @@
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-professional">プロフェッショナル</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
         <h1>攻撃実行</h1>
         <p>
-            全ての攻撃設定が完了したら、<a href="using.html#launching-an-attack">攻撃の開始</a>をし、<a href="#attack-results">結果</a>を分析し、場合によって<a href="#attack-configuration-tabs">攻撃設定</a>を修正し、<a href="#burp-intruder-testing-workflow">テストワークフロー</a>とのリンクや<a href="#results-menus">その他のアクション</a>を実行する必要があります。
+            攻撃の全ての設定が完了したら、<a href="using.html#launching-an-attack">攻撃の開始</a>をして、<a href="#attack-results">結果</a>を分析し、場合によって<a href="#attack-configuration-tabs">攻撃設定</a>を修正し、<a href="#burp-intruder-testing-workflow">テストワークフロー</a>とのリンクや<a href="#results-menus">その他のアクション</a>を実行する必要があります。
         </p>
         <h2 id="attack-results">攻撃結果</h2>
         <p>
             結果タブには、攻撃で発行された全リクエストの<a href="#results-table">完全な詳細</a>があります。これらの情報に<a href="#intruder-attacks-display-filter">フィルター</a>や<a href="#annotations">注釈</a>を付けると分析しやすくなり、<a href="#burp-intruder-testing-workflow">テストワークフロー</a>の推進にも利用できます。
         </p>
-        <h3 id="results-table">結果一覧</h3>
+        <h3 id="results-table">結果テーブル</h3>
         <p>
             結果の表には、攻撃で生成された全リクエストとレスポンスの詳細が表示されます。表には次の列がありますが、攻撃設定によっていくつかはデフォルトで非表示になっていて、<a href="#columns-menu">列メニュー</a>で表示させられます:
         </p>
@@ -81,7 +81,7 @@
                 レスポンスで受信したcookie
             </li>
             <li>
-                設定された<a href="options.html#grep-match">match grep</a>アイテムの結果
+                設定された<a href="options.html#grep-match">match grep</a>項目の結果
             </li>
             <li>
                 設定された<a href="options.html#grep-extract">extract grep</a>アイテムで抽出されたデータ
@@ -100,10 +100,11 @@
             任意の列ヘッダをクリックすると、一覧内のコンテンツの並び替えができます(ヘッダをクリックすると、昇順・降順・ソートなしを循環します)。例えば、最新のアイテムが一覧のトップに来て"上方"にリストが延びるのが好きな場合は、リクエスト番号列を降順に並べ替えます。
         </p>
         <p>
-            <span class="pro-edition-feature-label">プロフェッショナル</span> Ctrlキーを押しながらヘッダをクリックすると、列のコンテンツをコピーできます。
+            <label class="editionlabel is-professional">プロフェッショナル</label>
+            Ctrlキーを押しながらヘッダをクリックすると、列のコンテンツをコピーできます。
         </p>
         <p>
-            一覧内のアイテムを選択すると、<a href="options.html#attack-results-options">リクエストとレスポンスの保存</a>の設定で設定したように、そのリクエストとレスポンスがリクエスト/レスポンス部に表示されます。<a href="options.html#handling-redirections-during-attacks">リダイレクトをたどる</a>よう設定していると、最初のリクエストと最後のレスポンスと共に、途中のレスポンスとリクエストも表示されます。リクエスト/レスポンス部には、各メッセージの<a href="../../functions/message-editor/index.html">HTTPメッセージエディタ</a>があり、詳細な分析ができます。一覧でアイテムをダブルクリックすると、ポップアップウィンドウでリクエストとレスポンスの表示ができます。
+            一覧内のアイテムを選択すると、<a href="options.html#attack-results-options">リクエストとレスポンスの保存</a>の設定で設定したように、そのリクエストとレスポンスがrequest/responseペインに表示されます。<a href="options.html#handling-redirections-during-attacks">リダイレクトをたどる</a>よう設定していると、最初のリクエストと最後のレスポンスと共に、途中のレスポンスとリクエストも表示されます。リクエスト/レスポンス部には、各メッセージの<a href="../../functions/message-editor/index.html">HTTPメッセージエディタ</a>があり、詳細な分析ができます。一覧でアイテムをダブルクリックすると、ポップアップウィンドウでリクエストとレスポンスの表示ができます。
         </p>
         <h4>結果の分析</h4>
         <p>
@@ -158,7 +159,8 @@
         </p>
         <ul>
             <li>
-                <span class="pro-edition-feature-label">プロフェッショナル</span> <strong>検索語</strong> - 指定された検索語がレスポンスに含まれている、または含まれていないかによってフィルターできます。検索語は、リテラル文字列または正規表現で設定でき、大文字小文字を区別するかどうかも設定できます。"一致しないものを検索"オプションを選択すると、検索語が存在しないアイテムのみにマッチします。
+                <label class="editionlabel is-professional">プロフェッショナル</label>
+                <strong>検索語</strong> - 指定された検索語がレスポンスに含まれている、または含まれていないかによってフィルターできます。検索語は、リテラル文字列または正規表現で設定でき、大文字小文字を区別するかどうかも設定できます。"一致しないものを検索"オプションを選択すると、検索語が存在しないアイテムのみにマッチします。
             </li>
             <li>
                 <strong>ステータスコード</strong> - 様々なHTTPステータスコードで表示または非表示を設定できます。
@@ -170,7 +172,7 @@
         <p>
             結果一覧に表示されるコンテンツは、データベースを反映したビューで、ディスプレイフィルターはビューへの表示内容を制御します。一部のアイテムを隠すようフィルターをセットすると、それらは非表示になるだけで削除されるわけではなく、関連するフィルターを解除すれば再度表示されます。フィルターを使用すると、機械的に生成された大量の結果セット(例えば多くのパラメータを含む<a href="using.html#fuzzing-for-vulnerabilities">ファジング</a>によるものなど)の中から、異なる種類の特徴的なレスポンスが現れるものを調べるのが楽になります。
         </p>
-        <h3 id="annotations"> 注釈 </h3>
+        <h3 id="annotations">注釈</h3>
         <p>
             攻撃の結果アイテムへのコメントの追加や色付けにより、注釈が付けられます。後で深掘りするレスポンスにフラグを立てておくのに便利です。
         </p>
@@ -199,13 +201,13 @@
         <p>
             気になるリクエストに注釈を付けておくと、列のソートや<a href="#intruder-attacks-display-filter">ディスプレイフィルター</a>によって、後でこれらのアイテムを素早く探し出せます。
         </p>
-        <h3 id="burp-intruder-testing-workflow">Burp Intruderのテストワークフロー </h3>
+        <h3 id="burp-intruder-testing-workflow">Burp Intruderのテストワークフロー</h3>
         <p>
             攻撃結果では、すべてのリクエストおよびレスポンスの詳細を表示するだけでなく、コンテキストメニューから指定した攻撃を開始したり、その他のアクションの制御などが可能です。次のオプションがあります:
         </p>
         <ul>
             <li>
-                <strong>スキャン/Spider/送信する ...</strong> - 任意のアイテムを他のBurpツールに送信し、さらなる攻撃や解析が実行できます。ツール間のリクエストの送信機能は、Burpの<a href="../../penetration-testing/index.html">ユーザ主導ワークフロー</a>の中核をなします。&nbsp;
+                <strong>スキャン/Spider/送信する ...</strong> - 任意のアイテムを他のBurpツールに送信し、さらなる攻撃や解析が実行できます。ツール間のリクエストの送信機能は、Burpの<a href="../../penetration-testing/index.html">ユーザ主導ワークフロー</a>の中核をなします。
             </li>
             <li>
                 <strong>レスポンスをブラウザで表示</strong> - 選択したレスポンスをブラウザ内でレンダリングさせ、Burpの組み込み<a href="../../functions/message-editor/index.html#render">HTMLレンダラ</a>の制限を回避します。(Burpのインスタンスをプロキシに設定した)ブラウザにペーストできる一意なURLが生成され、レスポンスがレンダリングされます。その結果、ブラウザのリクエストはBurpによって処理され(リクエストは元のWebサーバには送信されません)、選択したレスポンスを正確に返し、最初にリクエストされたURLのコンテキストでブラウザはレスポンスを処理します。したがって、レスポンス内の相対リンクは、ブラウザによって正しく処理されます。その結果、ブラウザはレスポンスのレンダリングの課程で追加のリクエスト(画像やCSSなど)を生成し、これらはBurpの通常の方法で処理されます。
@@ -214,16 +216,17 @@
                 <strong>ブラウザでリクエスト</strong> - 選択したリクエストを(Burpのインスタンスをプロキシに設定した)ブラウザで再送信でき、<strong>オリジナルのセッション</strong> (オリジナルのリクエストに含まれていたcookieをそのまま使ったリクエストを発行する)、または<strong>現在のブラウザのセッション</strong> (ブラウザの提供するcookieを使用してリクエストを発行する)が使えます。
             </li>
             <li>
-                <span class="pro-edition-feature-label">プロフェッショナル</span> <strong>CSRF PoC作成</strong> - <a href="../../functions/generate-csrf-poc.html">CSRF PoC作成</a> 機能で、ブラウザで表示したとき、選択したリクエストが発行されるHTMLを作成できます。
+                <label class="editionlabel is-professional">プロフェッショナル</label>
+                <strong><a href="../../functions/generate-csrf-poc.html">CSRF PoCジェネレータ</a></strong> - ブラウザで表示したとき、選択したリクエストが発行されるHTMLを作成できます。
             </li>
             <li>
-                <strong>サイトマップに追加</strong> - 選択したアイテムをBurpのTarget<a href="../target/site-map/index.html">サイトマップ</a>に追加します。Intruderを<a href="using.html#enumerating-identifiers">カスタマイズしたコンテンツ探索</a>に使っていて、他の方法では発見されずサイトマップに追加されていない新たなサーバリソースが発見された場合に、このオプションが便利です。
+                <strong>サイトマップに追加</strong> - 選択したアイテムをBurpのTarget<a href="../target/site-map/index.html">サイトマップ</a>に追加します。Intruderを<a href="using.html#enumerating-identifiers">カスタマイズしたコンテンツ探索</a>に使っていて、他の方法で発見されずサイトマップに追加されていない、新たなサーバリソースが発見された場合に、このオプションが便利です。
             </li>
             <li>
                 <strong>アイテムを再リクエスト</strong> - 選択したアイテムが攻撃エンジンによって再リクエストされるようキューに入れます。アイテムが再リクエストされると、アイテムのエントリや関連するHTTPメッセージが、新たなリクエストを元に更新されます。このオプションは、一部の攻撃リクエストがネットワークエラーで失敗した場合や、断続的な問題により異常なレスポンスを受信していた場合に便利です。ベースリクエストやその他の関連する設定を<a href="#attack-configuration-tabs">変更した</a>場合に、元の設定で再リクエストしたい場合にも使用できます。
             </li>
             <li>
-                <strong>レスポンスから抽出grepを定義</strong> - <a href="../../functions/response-extraction.html">レスポンス抽出ルールダイアログ</a>が開き、選択されたレスポンスのアイテムが表示され、そのレスポンスを元に新たな<a href="options.html#grep-extract">extract grep</a>アイテムを作成できます。一部の攻撃リクエストが、元のリクエストと異なるタイプのレスポンスを生成する場合(例えば、<a href="using.html#fuzzing-for-vulnerabilities">ファジング</a>の際の特定フォーマットのエラーメッセージや、<a href="using.html#enumerating-identifiers">クレデンシャルの推測</a>の際の異なるログインメッセージなど)に便利です。このような異なるレスポンスが発生した場合、レスポンスの気になる部分を抽出する新たなextract grepアイテムを作成するのに便利で、他の同様のレスポンスのコンテンツを素早くレビューできます。
+                <strong>Define extract grep from response</strong> - <a href="../../functions/response-extraction.html">レスポンス抽出ルールダイアログ</a>が開き、選択されたレスポンスのアイテムが表示され、そのレスポンスを元に新たな<a href="options.html#grep-extract">extract grep</a>アイテムを作成できます。一部の攻撃リクエストが、元のリクエストと異なるタイプのレスポンスを生成する場合(例えば、<a href="using.html#fuzzing-for-vulnerabilities">ファジング</a>の際の特定フォーマットのエラーメッセージや、<a href="using.html#enumerating-identifiers">クレデンシャルの推測</a>の際の異なるログインメッセージなど)に便利です。このような異なるレスポンスが発生した場合、レスポンスの気になる部分を抽出する新たなextract grepアイテムを作成するのに便利で、他の同様のレスポンスのコンテンツを素早くレビューできます。
             </li>
             <li>
                 <strong>コメントを追加</strong> - 選択したアイテムにコメントを追加できます。詳細は、<a href="#annotations">注釈</a>を参照してください。
@@ -245,7 +248,7 @@
         <p>
             <a href="#attack-results">結果タブ</a>と同様に、攻撃ウィンドウには現在の攻撃の基になったメインのUIでの各設定タブが複製されます。攻撃が進行中、攻撃設定を確認して変更できます。
         </p>
-        <div class="rounded-corner-box">
+        <div class="highlightedarea">
             <p>
                 詳細については、各設定タブのヘルプを参照してください。
             </p>

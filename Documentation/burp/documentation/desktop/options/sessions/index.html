@@ -26,8 +26,9 @@
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-professional">プロフェッショナル</label>
+    <label class="editionlabel is-community">コミュニティ</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -116,7 +117,7 @@
             Burpのセッションハンドリング機能を現実のアプリケーションに適用するために必要な設定は、多くの場合複雑でミスが起こりやすいです。セッションハンドリングトレーサを使用して、セッションハンドリングルールのトラブルシューティングを支援できます。
         </p>
         <p>
-            トレーサは、セッションハンドリング機能が処理したリクエスト(つまり、最後のセッションルールが適用された箇所)のリストを表示します。処理された各リクエストごとに、実行されたルールの配列とアクションを表示し、配列のステップごとに現在のリクエストに起こった変更を表示します。&nbsp;
+            トレーサは、セッションハンドリング機能が処理したリクエスト(つまり、最後のセッションルールが適用された箇所)のリストを表示します。処理された各リクエストごとに、実行されたルールの配列とアクションを表示し、配列のステップごとに現在のリクエストに起こった変更を表示します。
         </p>
         <p>
             セッションハンドリングトレーサは、影響を受ける全てのHTTPリクエストで処理され、ストレージに負荷がかかることに注意してください。セッションハンドリングルールのトラブルシューティングするときだけトレーサを使用するべきで、通常は実行し続けないようにしてください。
@@ -176,7 +177,7 @@
                 セッションハンドリングルールがリクエストを発行する前に変更する場合(たとえば、cookieやその他のパラメータを更新するなど)、分かりやすくするために、更新された最終リクエストがBurpのツール中に表示されます。これは、Intruder、Repeater、Spiderの各ツールに適用されます。報告されたScannerの問題内に表示されるリクエストは、必要に応じて、元のリクエストを表示させ続け、ベースのリクエストとの明確な比較を容易にします。セッションハンドラに変更されたスキャン項目の最終的なリクエストを観察するには、Burp Repeaterにリクエストを送信し発行してください(RepeaterでもScannerと同じセッションハンドリングルールが有効な場合)。
             </li>
             <li>
-                ScannerまたはIntruderが、セッションハンドリングアクションの影響を受けるcookieやパラメータを操作するリクエストを行う場合、実行中のテストの妨げにならないようそのリクエストに対してアクションは適用されません。例えば、Intruderを使用してリクエストの全てのパラメータにファジングをする場合、リクエストの"sessid"cookieを更新するセッションハンドリングルールを設定していると、Intruderが他のパラメータをファジングしているときは"sessid"cookieは更新されます。Intruderが"sessid" cookie 自身をファジングするときは、Burpは"sessid"の値にIntruderのペイロードを送信し、セッションハンドリングルールは正常に行われたように振る舞いますがcookieは更新しません。
+                ScannerまたはIntruderが、セッションハンドリングアクションの影響を受けるcookieやパラメータを操作するリクエストを行う場合、実行中のテストの妨げにならないようそのリクエストに対してアクションは適用されません。例えば、Intruderを使用してリクエストの全てのパラメータにファジングをする場合、リクエストの<span class="InlineCode">sessid</span> cookieを更新するセッションハンドリングルールを設定していると、Intruderが他のパラメータをファジングしているときは<span class="InlineCode">sessid </span> cookieは更新されます。Intruderが<span class="InlineCode">sessid</span> cookie 自身をファジングするときは、Burpは<span class="InlineCode">sessid<span class="InlineCode">の値にIntruderのペイロードを送信し、セッションハンドリングルールは正常に行われたように振る舞いますがcookieは更新しません。
             </li>
         </ul>
     </div>

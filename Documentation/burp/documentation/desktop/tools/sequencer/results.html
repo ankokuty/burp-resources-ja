@@ -29,8 +29,9 @@
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>&nbsp;<span class="pro-edition-feature-label">コミュニティ</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-professional">プロフェッショナル</label>
+    <label class="editionlabel is-community">コミュニティ</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -45,14 +46,14 @@
         <p>
             サンプル数に基づく、結果の信頼性の推定値も報告します。
         </p>
-        <h2 id="character-level-analysis-results"> 文字レベル解析結果</h2>
+        <h2 id="character-level-analysis-results">文字レベル解析結果</h2>
         <p>
             文字レベル分析タブは、文字レベルのテスト全ての結果概要を表示し、各文字レベルテストの詳細が深掘りできます。また、各位置の文字セットのサイズや、各文字位置が影響するエントロピービットの最大数を示すグラフもあります。
         </p>
         <p>
             サンプル数と比較して使用されている文字セットのサイズが大きすぎる場合、文字レベルのテストは信頼性がないことに注意してください。例えば、トークンの各文字位置に64種類の文字が使われていて、サンプルが100個だけの場合、文字分布について信頼性の高い結論を出すために必要な十分なサンプルデータにはなりません。このため、結果にリスクがある場合、Burp Sequencerは自動的に文字レベルのテストを無効化し、文字レベルの結果によって全体的な解析結果が損なわれることを防ぎます。
         </p>
-        <h2 id="bit-level-analysis-results"> ビットレベル解析結果</h2>
+        <h2 id="bit-level-analysis-results">ビットレベル解析結果</h2>
         <p>
             ビットレベル分析タブは、ビットレベルテスト全ての結果概要を表示し、各ビットレベルテストの詳細が深掘りできます。サンプルの特性についてのより深い理解を得られ、異常があった場合の原因を特定や、トークンを予測できる可能性が評価できます。
         </p>
@@ -63,7 +64,7 @@
         <p>
             解析オプションタブは、解析のために設定されたオプションを表示しています。これらを変更し、必要な場合は解析をやり直せます。
         </p>
-        <div class="rounded-corner-box">
+        <div class="highlightedarea">
             <p>
                 詳細は、次のヘルプを参照してください。
             </p>

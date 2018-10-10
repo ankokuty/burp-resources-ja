@@ -29,8 +29,8 @@
         </li>
     </ol>
 </section>
-<section class="container edition-labels">
-	<span class="pro-edition-feature-label">プロフェッショナル</span>
+<section class="container editionlabels-wrapper">
+    <label class="editionlabel is-professional">プロフェッショナル</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -38,14 +38,14 @@
         <p>
             このタブを使用して、<a href="#payload-markers">ペイロードマーカ</a>と、<a href="#attack-type">攻撃の種類</a>(どの位置にペイロードを割り当てるかを決める方法)からなる、攻撃のための<a href="#request-template">リクエストテンプレート</a>を設定します。
         </p>
-        <h2 id="request-template"> リクエストテンプレート </h2>
+        <h2 id="request-template">リクエストテンプレート</h2>
         <p>
             メインのリクエストエディタを使用して、すべての攻撃の派生元となるリクエストテンプレートを定義します。Burpは攻撃リクエストごとに、リクエストテンプレートから、<a href="#payload-markers">ペイロードマーカ</a>によって定義されている位置に 1 つまたは複数の<a href="payloads/index.html">ペイロード</a>を当てはめます。
         </p>
         <p>
-            リクエストテンプレートを設定する最も簡単な方法は、攻撃したいリクエストをBurpの内のどこかで選び、コンテキストメニューの"Intruderに送信"オプションを選択します。すると選択したリクエストがIntruderの新しいタブに送信され、<a href="target.html">Target</a>とポジションタブが自動的に現れます。&nbsp;
+            リクエストテンプレートを設定する最も簡単な方法は、攻撃したいリクエストをBurpの内のどこかで選び、コンテキストメニューの"Intruderに送信"オプションを選択します。すると選択したリクエストがIntruderの新しいタブに送信され、<a href="target.html">Target</a>とポジションタブが自動的に現れます。
         </p>
-        <h2 id="payload-markers"> ペイロードマーカ </h2>
+        <h2 id="payload-markers">ペイロードマーカ</h2>
         <p>
             ペイロードマーカは、§文字を使用して次のように機能します:
         </p>
