@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../styles/css/ps.css">
+<link rel="stylesheet" href="../../../../assets/ps/styles/pssupportnav.css">
 </head>
 <body>
 <section class="container ps-breadcrumbs">
@@ -26,8 +26,8 @@
         </li>
     </ol>
 </section>
-<section class="container editionlabels-wrapper">
-    <label class="editionlabel is-professional">プロフェッショナル</label>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">プロフェッショナル</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -48,7 +48,7 @@
         </p>
         <h3 id="crawl-strategy">クロール戦略</h3>
         <p>
-            現実世界のアプリケーションは、コンテンツやナビゲーションの構成方法、レスポンスの揮発性、アプリケーション状態の種類や複雑さの点で、全く異なっています。極端な例では、アプリケーションはそれぞれの異なる機能について固有で安定したURLを使い、各レスポンスで固定のコンテンツを返し、サーバ側の状態が含まれません。他の極端な例では、機能にアクセスする都度変化する短命なURL、異なる機能への異なるナビゲーション経路でアクセスすると頻繁に変化するURL、不確定に変わる揮発性のコンテンツ、ユーザの操作によってその後に観察される内容や動作が変化する重度のステートフルな機能、などを使用しています。
+            現実世界のアプリケーションは、コンテンツやナビゲーションの構成方法、レスポンスの揮発性、アプリケーション状態の種類や複雑さの点で、全く異なっています。極端な例では、アプリケーションはそれぞれの異なる機能について固有で安定したURLを使い、各レスポンスで固定のコンテンツを返し、サーバ側の状態が含まれません。他の極端な例では、機能にアクセスする都度変化する短命なURL、異なる機能への異なるナビゲーション経路でアクセスすると頻繁に変化するURL、非確定に変わる揮発性のコンテンツ、ユーザの操作によってその後に観察される内容や動作が変化する重度のステートフルな機能、などを使用しています。
         </p>
         <p>
             Burpのクローラは、これらの両極端を処理できます。必要に応じて、<a href="../../scanner/crawling.html#core-approach">短命で頻繁に変化するURL</a>、<a href="../../scanner/crawling.html#crawling-volatile-content">揮発性のコンテンツ</a>、<a href="../../scanner/crawling.html#detecting-changes-in-application-state">アプリケーション状態の変化</a>を処理できます。ただし、これらのケースを完全に処理すると、クロール作業に大幅な負荷が発生します。クロール戦略の設定を使用して、指定したアプリケーションに適用されるアプローチを調整できます。実際にこの設定は、クロールの速度と達成される網羅性とのトレードオフになります。デフォルトの戦略は、一般的なアプリケーションで網羅性と速度のバランスが取れています。より安定してユニークなURLを使っていて、ステートフルな機能がないアプリケーションをクロールする場合は、より速度を最適化した戦略を選択できます。あるいは、より揮発的で頻繁に変わるURLや、複雑なステートフル機能のアプリケーションをクロールする場合は、より網羅性を最適化した戦略も選択できます。
@@ -104,6 +104,18 @@
         <p>
             空白のままにしておくと、無効にできます。
         </p>
+        <h2 id="miscellaneous-crawl-settings">その他クロール設定</h2>
+        <p>
+            クロールの詳細をカスタマイズできます:
+        </p>
+        <ul>
+            <li>
+                <strong> フォームを送信する</strong> - フォームを送信するかどうか設定します。
+            </li>
+            <li>
+                <strong>User-Agentのカスタマイズ</strong> - カスタムのUser-Agentヘッダを指定できます。
+            </li>
+        </ul>
     </div>
 </section>
 </body>

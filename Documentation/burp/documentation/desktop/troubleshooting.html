@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../styles/css/ps.css">
+<link rel="stylesheet" href="../../../assets/ps/styles/pssupportnav.css">
 </head>
 <body>
 <section class="container ps-breadcrumbs">
@@ -23,9 +23,9 @@
         </li>
     </ol>
 </section>
-<section class="container editionlabels-wrapper">
-    <label class="editionlabel is-professional">プロフェッショナル</label>
-    <label class="editionlabel is-community">コミュニティ</label>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">プロフェッショナル</label>
+    <label class="label-edition is-community">コミュニティ</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -39,7 +39,7 @@
         </p>
         <h4>NoClassDefFoundErrorというエラーメッセージが表示される</h4>
         <p>
-            コマンドラインからBurpを実行しているときは、<span class="InlineCode">-jar</span>引数の後にBurpのJARファイルの場所を続けてください。それでも問題が解決しない場合は、コマンドが正しいバージョンのJavaを起動していることを確認してください。<span class="InlineCode">java -version</span>コマンドを実行し、実行中のバージョンが1.6以上であることを確認してください。それ以上のバージョンのJavaをインストールしていても、まだ古いバージョンが実行されている場合は、"java"の代わりにシステム上の正しいjava実行ファイルへの絶対パスを指定してください。それでも問題が解決しない場合は、Javaのインストールが壊れている可能性がありますので、再インストールしてください。
+            コマンドラインからBurpを実行しているときは、<span class="InlineCode">-jar</span>引数の後にBurpのJARファイルの場所を続けてください。それでも問題が解決しない場合は、コマンドが正しいバージョンのJavaを起動していることを確認してください。<span class="InlineCode">java -version</span>コマンドを実行し、実行中のバージョンが1.8以上であることを確認してください。それ以上のバージョンのJavaをインストールしていても、まだ古いバージョンが実行されている場合は、"java"の代わりにシステム上の正しいjava実行ファイルへの絶対パスを指定してください。それでも問題が解決しない場合は、Javaのインストールが壊れている可能性がありますので、再インストールしてください。
         </p>
         <p>
             Burp拡張プラグインがある状態でBurpを起動しようとしているときにこのエラーメッセージが表示される場合は、BurpExtenderクラスがburpパッケージで宣言され、拡張のJARファイル内のburpというフォルダ内に存在することを確認してください。

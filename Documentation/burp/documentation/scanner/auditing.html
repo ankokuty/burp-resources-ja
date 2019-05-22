@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../styles/css/ps.css">
+<link rel="stylesheet" href="../../../assets/ps/styles/pssupportnav.css">
 </head>
 <body>
 <section class="container ps-breadcrumbs">
@@ -23,9 +23,9 @@
         </li>
     </ol>
 </section>
-<section class="container editionlabels-wrapper">
-    <label class="editionlabel is-enterprise">エンタープライズ</label>
-    <label class="editionlabel is-professional">プロフェッショナル</label>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-enterprise">エンタープライズ</label>
+    <label class="label-edition is-professional">プロフェッショナル</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -104,7 +104,7 @@
         <p>
             Burp Scannerは挿入ポイントの概念を使用して、リクエスト内の様々な場所にペイロードを配置します。一般的に挿入ポイントとは、サーバ側アプリケーションによって特別に処理される可能性がある、リクエスト内のデータ部分を表します。次の例は、一般的なタイプの挿入ポイントを強調表示したリクエストです:
         </p>
-        <img src="../images/auditing/auditing-1.svg" alt="">
+        <img src="../images/auditing/auditing-1.svg" alt="スキャン挿入ポイント">
         <p>
             Burp Scannerは挿入ポイントを個別に診断し、各挿入ポイントにペイロードを送信して、アプリケーションがその入力を処理するかどうかをテストします。
         </p>
@@ -112,32 +112,32 @@
         <p>
             HTTPリクエスト内の様々な場所では通常、データのエンコード方法が異なります。Burp Scannerは、挿入ポイントの種類によってペイロードに適切なエンコーディングを自動的に適用し、関連するアプリケーション機能に生のペイロードが確実に到達するようにします。たとえば、標準のボディパラメータでも、異なるエンコーディングが適用されます:
         </p>
-        <img src="../images/auditing/auditing-2.svg" alt="">
+        <img src="../images/auditing/auditing-2.svg" alt="ボディパラメータ内のスキャンペイロードのURLエンコード">
         <p>
             JSONデータ内の場合:
         </p>
-        <img src="../images/auditing/auditing-3.svg" alt="">
+        <img src="../images/auditing/auditing-3.svg" alt="JSONデータ内のスキャンペイロードのエンコード">
         <p>
             XMLデータ内の場合:
         </p>
-        <img src="../images/auditing/auditing-4.svg" alt="">
+        <img src="../images/auditing/auditing-4.svg" alt="XMLデータ内のスキャンペイロードのエンコード">
         <p>
             Burp Scannerは、Base64など、挿入ポイントの種類に関連しない他のタイプのエンコーディングをアプリケーションが使用していることも検出します。
         </p>
-        <img src="../images/auditing/auditing-5.svg" alt="">
+        <img src="../images/auditing/auditing-5.svg" alt="Base64データ内のスキャンペイロードのエンコード">
         <h3 id="nested-insertion-points">ネストされた挿入ポイント</h3>
         <p>
             一部のアプリケーションは、同じデータに対して多段階のエンコーディングを適用し、あるフォーマットを別のフォーマットの中に効果的にネストします。Burp Scannerはこの動作を検出し、ペイロードに対して同じ階層のエンコードを自動的に適用します。
         </p>
-        <img src="../images/auditing/auditing-6.svg" alt="">
-        <h3 id="modifying-parameter-locations">パラメータ場所の操作</h3>
+        <img src="../images/auditing/auditing-6.svg" alt="ネストされた挿入ポイント内のスキャンペイロードのエンコード">
+        <h3 id="modifying-parameter-locations">パラメータ位置の操作</h3>
         <p>
             一部のアプリケーションでは、特定タイプのパラメータに入力を配置させますが、異なるタイプのパラメータで入力を行っても実際は処理されることがあるでしょう。これは一部のプラットフォームで、アプリケーションがリクエストから入力を取り出す際のAPIが、パラメータがどこに入力されたかとは無関係に取り出すために発生します。ただし、Webアプリケーションファイアウォールなど、アプリケーションの周囲にある一部の防御機能は、元のパラメータタイプにのみ適用される場合があります。
         </p>
         <p>
             Burpはこの動作を悪用し、挿入ポイントのパラメータタイプを変更し、防御を突破して脆弱なアプリケーション機能に到達するリクエストの作成もできます。例えば、ペイロードがURLクエリーストリングパラメータとして送信される場合、Burpは対応するパラメータをボディパラメータやcookieで送信する場合があります:
         </p>
-        <img src="../images/auditing/auditing-7.svg" alt="">
+        <img src="../images/auditing/auditing-7.svg" alt="HTTPリクエスト内のパラメータ位置の操作">
         <h2 id="automatic-session-handling">自動セッションハンドリング</h2>
         <p>
             自動クロールに続いてBurp Scannerの診断が行われる場合、クロール結果を利用して診断中のセッションを自動的に維持できます。ユーザの設定は不要です。
@@ -145,34 +145,34 @@
         <p>
             Burpは個々のリクエストを診断する際、クロールの開始位置からそのリクエストに到達する最短経路を特定します。
         </p>
-        <img src="../images/auditing/auditing-8.svg" alt="">
+        <img src="../images/auditing/auditing-8.svg" alt="開始URLから診断リクエストまでの全経路">
         <p>
             そして、有効なセッション内で同じリクエストを繰り返し送信する、最も効率的な方法を決定します。最初に経路を再巡回して新鮮なセッショントークンのサンプルを取得し、経路を様々な方法で単純化したテストを行い、セッションが正しく維持されているかどうかを確認します。
         </p>
         <p>
-            多くの場合、最終リクエストを何度も何度も再発行ができます。実際にはリクエストに、セッショントークンがまったく含まれていないために発生します:
+            多くの場合、最終リクエストを何度も何度も再発行ができます。リクエストにセッショントークンがまったく含まれていない場合に可能です:
         </p>
-        <img src="../images/auditing/auditing-9.svg" alt="">
+        <img src="../images/auditing/auditing-9.svg" alt="セッショントークンが含まれていない場合、最終リクエストを繰り返し発行">
         <p>
             あるいは、セッショントークンがcookieだけにあり、通常は複数回使用できます:
         </p>
-        <img src="../images/auditing/auditing-10.svg" alt="">
+        <img src="../images/auditing/auditing-10.svg" alt="セッショントークンがcookieのみの場合、最終リクエストを繰り返し発行">
         <p>
-            または、リクエストにcookieとCSRFトークンの両方が含まれていれば、CSRFトークンを繰り返し使用できます:
+            または、リクエストにcookieとCSRFトークンの両方が含まれており、CSRFトークンを繰り返し使用できる場合も可能です:
         </p>
-        <img src="../images/auditing/auditing-11.svg" alt="">
+        <img src="../images/auditing/auditing-11.svg" alt="CSRFトークンが複数回利用できる場合、最終リクエストを繰り返し発行">
         <p>
-            場合によって、診断するリクエストを発行する前に、前のリクエストを発行する必要があります。これは通常、アプリケーションがワンタイムCSRFトークンを使用する場合に発生します。トークンは1回のみ使用できるため、新しいトークンを取得するためには、その都度前のリクエストを再発行する必要があります。
+            場合によって、診断するリクエストを発行する前に、前のリクエストを発行する必要があります。これは通常、アプリケーションがワンタイムCSRFトークンを使用する場合に発生します。トークンが1回しか使用できない場合、新しいトークンを取得するためにその都度先行したリクエストを再発行する必要があります。
         </p>
-        <img src="../images/auditing/auditing-12.svg" alt="">
+        <img src="../images/auditing/auditing-12.svg" alt="各最終リクエストの前に先行リクエストを発行し、新鮮なワンタイムCSRFトークンを取得する">
         <p>
             極端な場合、リクエスト間のすべての遷移がワンタイムトークンによって保護されます。これは、ナビゲーションが綿密に制御されている高セキュリティアプリケーションでたまにあります。この状況で、診断されるリクエストを繰り返し発行する最も信頼性の高い方法は、常に開始位置に戻り、そのリクエストへの完全な経路をたどることです。
         </p>
-        <img src="../images/auditing/auditing-13.svg" alt="">
+        <img src="../images/auditing/auditing-13.svg" alt="有効なCSRFトークンが確実に使われるよう、開始URLから全経路をたどる">
         <p>
             診断するリクエストを繰り返し発行する最も効率的な方法が決定すると、診断が実行されます。さまざまな診断チェックを実行しながら、Burpはアプリケーションのレスポンスを定期的に監視して、有効なセッションが確実に維持されるようにします。Burpがセッションの有効性を確実に確認すると、全て完了した診断チェックにチェックポイントが設定されます。セッションが無効になったとBurpが認識した場合、最新のチェックポイントにロールバックしてそこから再開します。このロジックは、セッション管理のオーバーヘッドを最小限に抑え、セッションが頻繁に失われた場合の無限ループを回避する方法で実行されます。例:
         </p>
-        <img src="../images/auditing/auditing-14.svg" alt="">
+        <img src="../images/auditing/auditing-14.svg" alt="最終チェックポイントまでロールバックして脆弱性スキャン中のセッションを自動的に維持する">
         <h2 id="avoiding-duplication">重複の回避</h2>
         <p>
             Burp Scannerは、重複した作業や重複した問題の報告を最小限に抑えるために、さまざまな手法を使用します。

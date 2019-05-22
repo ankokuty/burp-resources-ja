@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../../../styles/css/ps.css">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/pssupportnav.css">
 </head>
 <body>
 <section class="container ps-breadcrumbs">
@@ -29,9 +29,9 @@
         </li>
     </ol>
 </section>
-<section class="container editionlabels-wrapper">
-    <label class="editionlabel is-professional">プロフェッショナル</label>
-    <label class="editionlabel is-community">コミュニティ</label>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">プロフェッショナル</label>
+    <label class="label-edition is-community">コミュニティ</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -55,7 +55,7 @@
                 <strong>バインドするポート</strong> - 接続の受信用に開かれるローカルインタフェースのポートです。別のアプリケーションによってバインドされていない空きポートを使用する必要があります。
             </li>
             <li>
-                <strong>バインドするアドレス</strong> - バインドするローカルインタフェースのIPアドレスです。ループバックインタフェースのみ、全インタフェース、特定のローカルIPアドレスのいずれかにバインドできます。<strong>注:</strong> 全インタフェースやループバック以外の特定のインタフェースにリスナーをバインドした場合、他のコンピュータがそのリスナーに接続できるようになります。外部から、あなたのIPアドレスを発信元とする外部への接続ができ、ログイン情報などの機密データを含む可能性のある<a href="../history.html">Proxy履歴</a>にアクセスされる可能性があります。信頼できるネットワーク上にいる場合にのみ有効にすべきです。
+                <strong>バインドするアドレス</strong> - バインドするローカルインタフェースのIPアドレスです。ループバックインタフェースのみ、全インタフェース、特定のローカルIPアドレスのいずれかにバインドできます。<strong>注:</strong> 全インタフェースやループバック以外の特定のインタフェースにリスナーをバインドした場合、他のコンピュータがそのリスナーに接続できるようになります。
             </li>
         </ul>
         <h3 id="request-handling">リクエストハンドリング</h3>
@@ -331,7 +331,7 @@
                 <strong>受信リクエストから Proxy-*ヘッダを除去する</strong> - ブラウザが、使用しているプロキシサーバの情報をリクエストヘッダに含めて送信する場合があります。これらのヘッダ内に機密データが含まれるようにブラウザを誘導する攻撃を行う、悪意のあるWebサイトが存在します。デフォルトで、受信したリクエストからこれらのヘッダを取り除き、全ての情報漏洩を防ぎます。このオプションをオフにすると、これらのヘッダは未変更のまま残ります。
             </li>
             <li>
-                <strong>受信リクエストのAccept-Encodingヘッダからサポートしていないエンコーディングを除去する</strong> - ブラウザには通常、コンテンツの圧縮など様々なレスポンスのエンコーディングを受け入れる機能があります。一部のエンコーディングは、Burpでレスポンスを処理する際に問題となる場合があります。デフォルトでBurpは、エンコーディングが使用される機会を減らすためにこのヘッダを削除します。サーバがエンコーディングを要求する場合は、このオプションをオフにする必要があります。
+                <strong>受信リクエストのAccept-Encodingヘッダからサポートしていないエンコーディングを削除する</strong> - ブラウザには通常、コンテンツの圧縮など様々なレスポンスのエンコーディングを受け入れる機能があります。一部のエンコーディングは、Burpでレスポンスを処理する際に問題となる場合があります。デフォルトでBurpは、これらのエンコーディングが使用される機会を減らすために、サポートしていないエンコーディングを削除します。サポートしていないエンコーディングのサポートをサーバが要求する場合は、このオプションをオフにする必要があります。
             </li>
             <li>
                 <strong>受信リクエストからSec-WebSocket-Extensionsヘッダを除去する</strong> - コンテンツの圧縮などWebSocket接続に関する様々な拡張をサポートするブラウザがあります。一部のエンコーディングは、Burpでレスポンスを処理する際に問題となる場合があります。デフォルトでBurpは、拡張が使用される機会を減らすためにこのヘッダを削除します。サーバが特定の拡張を要求する場合は、このオプションをオフにする必要があります。

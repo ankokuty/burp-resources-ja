@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../styles/css/ps.css">
+<link rel="stylesheet" href="../../../../assets/ps/styles/pssupportnav.css">
 </head>
 <body>
 <section class="container ps-breadcrumbs">
@@ -26,8 +26,8 @@
         </li>
     </ol>
 </section>
-<section class="container editionlabels-wrapper">
-    <label class="editionlabel is-professional">プロフェッショナル</label>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">プロフェッショナル</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -49,7 +49,7 @@
                 アイテムの現在のステータス
             </li>
             <li>
-                該当する場合(パッシブ、アクティブ、JavaScript解析)、様々な<a href="../../scanner/auditing.html#audit-phases">診断のフェーズ</a>の進捗
+                該当する場合(パッシブ、アクティブ、JavaScript解析)、様々な<a href="#audit-phase-indicators">診断のフェーズ</a>の進捗
             </li>
             <li>
                 危険度で分類された、そのアイテムで発見された<a href="../tools/target/site-map/index.html#issues-view">問題</a>の数
@@ -91,6 +91,42 @@
             </li>
             <li>
                 <strong>送信 ...</strong> - 選択したアイテムのベースリクエストをBurpの他のツールに送信します。
+            </li>
+        </ul>
+        <h2 id="audit-phase-indicators">診断フェーズの表示</h2>
+        <p>
+            スキャンが実行されるとBurp Scannerはいくつかの<a href="../../scanner/auditing.html#audit-phases">診断フェーズ</a>を実行します。診断アイテムビューには、各診断フェーズの進捗がそれぞれ表示されます。
+        </p>
+        <ul>
+            <li>
+                パッシブフェーズ 1: 受動的な問題点の特定をしますが、報告はしません。
+            </li>
+            <li>
+                パッシブフェーズ 2: <a href="../../scanner/auditing.html#consolidation-of-frequently-occurring-passive-issues">頻繁に発生する受動的な問題点を統合</a>し、結果の問題点を報告します。
+            </li>
+            <li>
+                アクティブフェーズ 1: 各挿入ポイントをテストし、ファーストオーダー脆弱性を探します。
+            </li>
+            <li>
+                アクティブフェーズ 2: 蓄積された入力による挙動を検出するよう設計されたデータを、各挿入ポイントに送信します。
+            </li>
+            <li>
+                アクティブフェーズ 3: アプリケーションのレスポンスを再取得し、蓄積された入力による挙動を検出します。
+            </li>
+            <li>
+                アクティブフェーズ 4: 発見した蓄積された入力への経路をテストし、セカンドオーダー脆弱性を探します。
+            </li>
+            <li>
+                アクティブフェーズ 5: ペイロードがアプリケーションユーザによってレンダリングされる場合、<a href="../../collaborator/index.html">Burp Collaborator</a>と通信するよう設計されたペイロードを各挿入ポイントに送信し、ブラインド蓄積型XSS脆弱性を検出します。
+            </li>
+            <li>
+                JavaScriptフェーズ 1: JavaScriptを解析し、自己完結型のDOMベースの問題点を検出します。
+            </li>
+            <li>
+                JavaScriptフェーズ 2: JavaScriptコード内に反射される入力値を解析し、DOMベースの問題点を検出します。
+            </li>
+            <li>
+                JavaScriptフェーズ 3: JavaScriptコード内に蓄積された入力値を解析し、DOMベースの問題点を検出します。
             </li>
         </ul>
         <h2 id="audit-items-annotations">診断アイテムの注釈</h2>

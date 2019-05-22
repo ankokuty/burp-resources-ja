@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../styles/css/ps.css">
+<link rel="stylesheet" href="../../../assets/ps/styles/pssupportnav.css">
 </head>
 <body>
 <section class="container ps-breadcrumbs">
@@ -20,9 +20,9 @@
         </li>
     </ol>
 </section>
-<section class="container editionlabels-wrapper">
-    <label class="editionlabel is-enterprise">エンタープライズ</label>
-    <label class="editionlabel is-professional">プロフェッショナル</label>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-enterprise">エンタープライズ</label>
+    <label class="label-edition is-professional">プロフェッショナル</label>
 </section>
 <section class="maincontainer">
     <div class="container main">
@@ -36,7 +36,7 @@
         </p>
         <ul>
             <li>
-                一部のインジェクションベースの脆弱性は、インジェクションが成功した際に外部システムとの通信が発生するようなペイロードを使って検出できます。例えば、一部のブラインドSQLインジェクションで、アプリケーションのレスポンスの内容やタイミングに差異を引き起こせなくなくても、外部システムと通信するペイロードをSQLクエリ内に使って検出できます。
+                一部のインジェクション系の脆弱性は、インジェクションが成功した際に外部システムとの通信が発生するようなペイロードを使って検出できます。例えば、一部のブラインドSQLインジェクションで、アプリケーションのレスポンスの内容やタイミングに差異を引き起こせなくなくても、外部システムと通信するペイロードをSQLクエリ内に使って検出できます。
             </li>
             <li>
                 一部のサービス固有の脆弱性を検出するには、そのサービス用のペイロードを対象アプリケーションに送信し、そのサービスと連携するインスタンスとの通信を詳細に分析します。例えば、メールヘッダインジェクションはこの方法で検出できます。
@@ -48,7 +48,7 @@
         <p>
             Burp Collaboratorを使用すると、Collaborationサーバとの通信を引き起こすように設計されたペイロードが、アプリケーションに送信されます。通信が発生したか確認するために、BurpはCollaboratorサーバに定期的にアクセスします:
         </p>
-        <img src="../images/collaborator/collaborator-1.svg" alt="">
+        <img src="../images/collaborator/collaborator-1.svg" alt="Burp Collaborator">
         <p>
             Burp Collaboratorは、<a href="../scanner/index.html">Burp Scanner</a>や<a href="../desktop/tools/collaborator-client.html">手動のBurp Collaboratorクライアント</a>で使用され、<a href="../desktop/tools/extender.html#burp-extender-api">Burp拡張API</a>からも使用できます。
         </p>
@@ -94,22 +94,22 @@
                 Burpは、Collaboratorサーバでキャプチャした全ての通信メッセージを含む、外部サービスとの通信をユーザに報告します。
             </li>
         </ul>
-        <img src="../images/collaborator/collaborator-2.svg" alt="">
+        <img src="../images/collaborator/collaborator-2.svg" alt="外部サービスとの通信を検知">
         <h4>帯域外リソース読み込みの検知</h4>
         <p>
             帯域外リソースの読み込みは、アプリケーションが外部ソースからコンテンツを読み込むよう誘導し、それが自身のレスポンスに含まれる場合に起こります。Burp Suiteは、外部通信に対する特定のデータをCollaboratorサーバに返させ、同じデータに対するアプリケーションの対域内レスポンスを分析して、この問題を検出できます。
         </p>
-        <img src="../images/collaborator/collaborator-3.svg">
+        <img src="../images/collaborator/collaborator-3.svg" alt="帯域外リソース読み込みの検知">
         <h4>ブラインドSQLインジェクションの検出</h4>
         <p>
-            完全にブラインドなインジェクションの脆弱性を検出するために、インジェクションが成功した場合に外部への通信が発生するよう設計されたインジェクションベースのペイロードを、Burpが送信できます。次の例では、Oracle固有のAPIを使用して、SQL文に正常に挿入された場合に通信を発生させています:
+            完全にブラインドなインジェクション系脆弱性を検出するために、インジェクションが成功した場合に外部への通信が発生するよう設計されたインジェクションベースのペイロードを、Burpが送信できます。次の例では、Oracle固有のAPIを使用して、SQL文に正常に挿入された場合に通信を発生させています:
         </p>
-        <img src="../images/collaborator/collaborator-4.svg">
+        <img src="../images/collaborator/collaborator-4.svg" alt="ブラインドSQLインジェクションの検出">
         <h4>ブラインドクロスサイトスクリプティングの検出</h4>
         <p>
             対象にペイロードを送信した通信内ではなく、それに続いて後で非同期に発生する遅れた影響を、Collaboratorサーバは検知してBurpに通知できます。これにより、セカンドオーダーSQLインジェクションやブラインドXSSなど、様々な蓄積型脆弱性の検出が可能になります。次の例では、いつかユーザにレンダリングされた場合にCollaborサーバとの通信が発生するよう設計された、蓄積型XSSのペイロードをBurp Suiteが送信しています。その後、管理者ユーザがペイロードを表示すると、そのブラウザが通信を実行します。そして、Burp SuiteはCollaboratorサーバをポーリングし、その通信の詳細を受取、蓄積型XSS脆弱性を報告します:
         </p>
-        <img src="../images/collaborator/collaborator-5.svg">
+        <img src="../images/collaborator/collaborator-5.svg" alt="ブラインドクロスサイトスクリプティングの検出">
         <h2 id="security-of-collaborator-data">Collaboratorデータのセキュリティ</h2>
         <p>
             Collaboratorサーバで処理されるデータのセキュリティに関してユーザが懸念を持つのは当然で、データのセキュリティを重視して機能を設計しています。
