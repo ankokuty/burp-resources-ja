@@ -65,6 +65,9 @@
             デフォルトでクロールの範囲は、設定されたURLの最終フォルダ(存在する場合)までに切り捨てられた範囲に制限されます。例えば、開始URLに<span class="InlineCode">https://example.org/myapp/welcome.php</span>を指定した場合、クローラはこのURLから開始し、<span class="InlineCode">https://example.org/myapp/</span>パス内のコンテンツをクロールします。
         </p>
         <p>
+            "URLのプロトコルを無視してスキャン"オプションが有効な場合、Burpは<span class="InlineCode">http://</span>も<span class="InlineCode">https://</span>もスキャンを行います。
+        </p>
+        <p>
             "詳細なスコープ設定"トグルを開くと、デフォルトの動作を変更し、異なるスコープ設定を提供できます。ここでは、Burpの<a href="../tools/target/scope.html">Targetスコープ</a>のように、URLプレフィックスか高度マッチルールを使用して、スコープが設定できます。それでも、スキャンするURLを指定する必要があることに注意してください。これらはクロールの開始点であり、スキャンするURLは定義したスコープ内である必要があります。
         </p>
         <h4>スキャンするアイテム</h4>

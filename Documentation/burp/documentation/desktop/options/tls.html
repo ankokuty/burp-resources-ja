@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/pssupportnav.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://support.portswigger.net/">サポートセンター</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">オプション</a>
+        </li>
+        <li>
+            <a href="tls.html">TLS</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">プロフェッショナル</label>
+    <label class="label-edition is-community">コミュニティ</label>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>オプション: TLS</h1>
+        <p>
+            このタブには、<a href="#tls-negotiation">TLSネゴシエーション</a>、<a href="#java-tls-options">Java TLSオプション</a>、<a href="#client-tls-certificates">クライアント</a>と<a href="#server-tls-certificates">サーバ</a>のTLS証明書の設定があります。
+        </p>
+        <p>
+            <strong>注:</strong> これらのいくつかのオプションは、ユーザとプロジェクトの両方のレベルで定義されます。ユーザレベルで通常のオプションを設定し、必要な場合プロジェクトごとに上書きができます。
+        </p>
+        <h2 id="tls-negotiation">TLSネゴシエーション</h2>
+        <p>
+            Burpが上位のサーバとTLSネゴシエーションを実行するときに使う、TLSプロトコルと暗号を制御します。全てのプロトコルと暗号、またはJavaのデフォルトのプロトコルと暗号を使うようにもできますし、必要に応じてこれらのデフォルト値を上書きして個別のプロトコルと暗号のみを有効にもできます。
+        </p>
+        <p>
+            他に次のオプションがあります:
+        </p>
+        <ul>
+            <li>
+                <strong>安全ではないTLSリネゴシエーションを許可する</strong> - このオプションは、クライアントTLS証明書を使うときや、他のTLSの問題を回避するのに必要な場合があります。
+            </li>
+            <li>
+                <strong>TLSセッションの再開を無効にする</strong> - このオプションは、TLS接続をキャッシュし、リクエスト間で再利用するかどうかを制御します。セッション再開の使用は、一般的には効率が良くなりますが、状況によっては問題が発生します。
+            </li>
+        </ul>
+        <h2 id="java-tls-options">Java TLSオプション</h2>
+        <p>
+            一部のサーバへ正常に接続するために必要となる、様々なTLS機能を有効にする設定です。
+        </p>
+        <p>
+            次のオプションがあります:
+        </p>
+        <ul>
+            <li>
+                <strong>Javaセキュリティポリシーでブロックされたアルゴリズムを有効にする</strong> - Java 7で、Javaのセキュリティポリシーを使用すると、古いアルゴリズムがTLSネゴシエーションで使われるのをブロックしたり、他にもいくつか(MD2など)がブロックされます。多くの稼働しているWebサーバでは古いアルゴリズムのTLS証明書を使っており、デフォルトのJavaのセキュリティポリシーではこれらのサーバに接続できません。このオプションを有効にすると、影響を受けるサーバに接続するときBurpに古いアルゴリズムを強制できます。このオプションの変更は、Burpを再起動すると反映されます。
+            </li>
+            <li>
+                <strong>Java SNI拡張を無効にする</strong> - Java 7で、TLS Server Name Indication(サーバ名表示、SNI)拡張が実装され、デフォルトで有効になっています。SNIの設定が正しくないまま有効にしているWebサーバは、TLSハンドシェイクで"Unrecognized name(認識できない名前)"という警告を送信します。ブラウザはこの警告を無視しますが、Java実装はそうではなく、接続に失敗します。この設定でJavaのSNI拡張を無効にして、影響を受けていたサーバに接続できます。このオプションの変更は、Burpを再起動すると反映されます。
+            </li>
+        </ul>
+        <h2 id="client-tls-certificates">クライアントTLS証明書</h2>
+        <p>
+            宛先ホストがクライアントTLS証明書を要求してきたときに使う証明書を設定します。複数の証明書が設定でき、各証明書の使用対象とするホストを指定できます。ホストがクライアントTLS証明書を要求してきたとき、ホスト設定リストの名前に最初に一致する証明書を使用します。
+        </p>
+        <p>
+            宛先ホストの指定にワイルドカードが使用できます(「*」は0個以上の文字にマッチ、「?」はドット以外の任意の文字にマッチ)。証明書を要求してきたどのホストにも同じ証明書を使うには、宛先ホストを「*」にします。
+        </p>
+        <p>
+            次の種類のクライアント証明書がサポートされます:
+        </p>
+        <ul>
+            <li>
+                <strong>ファイル(PKCS#12)</strong> - 証明書ファイルの場所と、証明書のパスワードを設定する必要があります。
+            </li>
+            <li>
+                <strong>ハードウェアトークンやスマートカード(PKCS#11)</strong> - デバイスのPKCS#11ライブラリファイルの場所、PINコードを設定し、有効な証明書の中から選択する必要があります。PKCS#11ライブラリファイルは、デバイス用のソフトウェアと一緒にインストールされているネイティブコードファイルです。Windowsでは、インストールされているライブラリファイルを一般的な場所から自動的に探せます。
+            </li>
+        </ul>
+        <h2 id="server-tls-certificates">サーバTLS証明書</h2>
+        <p>
+            この情報パネルには、Webサーバから受信した全てのX509証明書の詳細があります。アイテムをダブルクリックすると、証明書の詳細が表示されます。
+        </p>
+    </div>
+</section>
+</body>
+</html>

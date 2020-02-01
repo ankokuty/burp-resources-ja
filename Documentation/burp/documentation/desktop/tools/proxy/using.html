@@ -40,7 +40,7 @@
             Proxyツールは、Burpの<a href="../../penetration-testing/index.html">ユーザ主導ワークフロー</a>の中心部分に位置し、対象アプリケーションの詳細な動作を直接表示します。Webプロキシサーバとして動作し、中間者攻撃のようにブラウザと宛先のWebアプリケーションの間に配置します。これにより、通過する双方向の生トラフィックを傍受・監視・変更できます。
         </p>
         <p>
-            アプリケーションがHTTPSを使っている場合、Burpはブラウザとサーバの間でSSL接続を解読し、Proxyが暗号化されたデータの閲覧や変更をできるようにします。
+            アプリケーションがHTTPSを使っている場合、Burpはブラウザとサーバの間でTLS接続を解読し、Proxyが暗号化されたデータの閲覧や変更をできるようにします。
         </p>
         <div class="highlightedarea">
             <p>
@@ -64,7 +64,7 @@
                 <strong>ブラウザのプロキシ設定</strong> - HTTPとHTTPS両方のプロトコルについて、Burp Proxyリスナーをブラウザのプロキシサーバとして設定する必要があります。
             </li>
             <li>
-                <strong>Burp CA証明書</strong> - Burpがブラウザとサーバ間のSSL接続を解読するので、Burp Proxy経由でHTTPSサイトにアクセスすると、デフォルトでブラウザは警告メッセージを表示するでしょう。ブラウザがBurpのSSL証明書を認識しておらず、外部の攻撃者によって通信が傍受されている可能性があると推測するためです。SSL接続でBurpを効果的に使用するには、ブラウザに<a href="options/installing-ca-certificate.html">Burpの認証局マスター証明書をインストール</a>し、Burpが生成した証明書を信頼する必要があります。
+                <strong>Burp CA証明書</strong> - Burpがブラウザとサーバ間のTLS接続を解読するので、Burp Proxy経由でHTTPSサイトにアクセスすると、デフォルトでブラウザは警告メッセージを表示するでしょう。ブラウザがBurpのTLS証明書を認識しておらず、外部の攻撃者によって通信が傍受されている可能性があると推測するためです。TLS接続でBurpを効果的に使用するには、ブラウザに<a href="options/installing-ca-certificate.html">Burpの認証局マスター証明書をインストール</a>し、Burpが生成した証明書を信頼する必要があります。
             </li>
         </ul>
         <p>
@@ -136,7 +136,7 @@
         </p>
         <ul>
             <li>
-                <a href="options/index.html#binding">異なるインタフェース</a>へのバインド、他のホストへの<a href="options/index.html#request-handling">リクエストのリダイレクト</a>、異なる<a href="options/index.html#certificate">サーバSSL証明書</a>の処理、プロキシをサポートしないクライアント用に<a href="options/invisible.html">透過プロキシ</a>のサポートなど、Proxyリスナーの設定が必要かもしません。
+                <a href="options/index.html#binding">異なるインタフェース</a>へのバインド、他のホストへの<a href="options/index.html#request-handling">リクエストのリダイレクト</a>、異なる<a href="options/index.html#certificate">サーバTLS証明書</a>の処理、プロキシをサポートしないクライアント用に<a href="options/invisible.html">透過プロキシ</a>のサポートなど、Proxyリスナーの設定が必要かもしません。
             </li>
             <li>
                 様々な体系的な方法で自動的に<a href="options/index.html#response-modification">HTTPレスポンスを変更</a>するように設定できます; 例えば、hiddenフォームフィールドを表示する、JavaScriptのフォーム入力検証を削除するなどです。

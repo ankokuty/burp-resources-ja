@@ -37,7 +37,7 @@
     <div class="container main">
         <h1>Burp Proxyオプション</h1>
         <p>
-            このタブには、Burp Proxy設定の、<a href="#proxy-listeners">Proxyリスナー</a>、<a href="#intercepting-http-requests-and-responses">HTTPリクエストとレスポンスのインターセプト</a>、<a href="#intercepting-websockets-messages">WebSocketsメッセージのインターセプト</a>、<a href="#response-modification">レスポンス変更</a>、<a href="#match-and-replace">検索と置換</a>、<a href="#ssl-pass-through">SSLパススルー</a>、<a href="#miscellaneous">その他</a>のオプションがあります。
+            このタブには、Burp Proxy設定の、<a href="#proxy-listeners">Proxyリスナー</a>、<a href="#intercepting-http-requests-and-responses">HTTPリクエストとレスポンスのインターセプト</a>、<a href="#intercepting-websocket-messages">WebSocketメッセージのインターセプト</a>、<a href="#response-modification">レスポンス変更</a>、<a href="#match-and-replace">検索と置換</a>、<a href="#tls-pass-through">TLSパススルー</a>、<a href="#miscellaneous">その他</a>のオプションがあります。
         </p>
         <h2 id="proxy-listeners">Proxyリスナー</h2>
         <p>
@@ -70,7 +70,7 @@
                 <strong>リダイレクト先ポート</strong> - このオプションが設定された場合、ブラウザが要求した対象に関わらず、全てのリクエストを指定したポートに転送します。
             </li>
             <li>
-                <strong>SSLを強制利用</strong> - このオプションが設定された場合、受信したリクエストが平文のHTTPでも、送信接続に全てHTTPSを使います。このオプションを、SSLに関連する<a href="#response-modification">レスポンス変更</a>オプションと共に使用すると、無意識のうちにBurpにトラフィックをプロキシされている被害者に対して、HTTPSを強制するアプリケーションを平文のHTTPにダウングレードするSSLstrip攻撃を実行できます。
+                <strong>TLSを強制利用</strong> - このオプションが設定された場合、受信したリクエストが平文のHTTPでも、送信接続に全てHTTPSを使います。このオプションを、TLSに関連する<a href="#response-modification">レスポンス変更</a>オプションと共に使用すると、無意識のうちにBurpにトラフィックをプロキシされている被害者に対して、HTTPSを強制するアプリケーションを平文のHTTPにダウングレードするSSLstrip攻撃を実行できます。
             </li>
         </ul>
         <p>
@@ -81,17 +81,17 @@
         </p>
         <h3 id="certificate">証明書</h3>
         <p>
-            SSLクライアントに提示されるSSLサーバ証明書を制御します。これらのオプションを使用すると、プロキシでインターセプトする際に発生する一部のSSLに関する問題を解決できます:
+            TLSクライアントに提示されるTLSサーバ証明書を制御します。これらのオプションを使用すると、プロキシでインターセプトする際に発生する一部のTLSに関する問題を解決できます:
         </p>
         <ul>
             <li>
-                ブラウザのSSL警告や、SSL例外を作成する必要がなくなります。
+                ブラウザのTLS警告や、TLS例外を作成する必要がなくなります。
             </li>
             <li>
-                WebページがSSLで保護されたアイテムを他のドメインから読み込んでいる箇所で、各参照ドメインのプロキシのSSL証明書を最初に手動で承諾する必要なく、正しくブラウザに読み込まれるようになります。
+                WebページがTLSで保護されたアイテムを他のドメインから読み込んでいる箇所で、各参照ドメインのプロキシのTLS証明書を最初に手動で承諾する必要なく、正しくブラウザに読み込まれるようになります。
             </li>
             <li>
-                無効なSSL証明書を受信した場合、サーバへの接続を拒否するようなファットクライアントアプリケーションでも作業できます。
+                無効なTLS証明書を受信した場合、サーバへの接続を拒否するようなファットクライアントアプリケーションでも作業できます。
             </li>
         </ul>
         <p>
@@ -99,13 +99,13 @@
         </p>
         <ul>
             <li>
-                <strong>自己署名の証明書を使用する</strong> - 単純な自己署名SSL証明書がブラウザに提示され、常にSSL警告が起こります。
+                <strong>自己署名の証明書を使用する</strong> - 単純な自己署名TLS証明書がブラウザに提示され、常にTLS警告が起こります。
             </li>
             <li>
-                <strong>CAが署名したホストごとの証明書を生成する</strong> - これはデフォルトオプションです。インストール時に、Burpは独自の自己署名の認証局(CA)を作成し、それをコンピュータ内に格納しておき、Burpを実行するたびにこれを使用します。ブラウザが特定のホストにSSL接続すると、Burpはそのホスト用の証明書を生成し、CA証明書で署名します。ブラウザの信頼するルートに<a href="installing-ca-certificate.html">BurpのCA証明書をインストール</a>すると、ホストごとの証明書は警告なしに受け付けられます。他のツールや他のBurpのインスタンスで使用するために、<a href="#exporting-and-importing-the-ca-certificate">CA証明書のエクスポート</a>もできます。
+                <strong>CAが署名したホストごとの証明書を生成する</strong> - これはデフォルトオプションです。インストール時に、Burpは独自の自己署名の認証局(CA)を作成し、それをコンピュータ内に格納しておき、Burpを実行するたびにこれを使用します。ブラウザが特定のホストにTLS接続すると、Burpはそのホスト用のTLS証明書を生成し、CA証明書で署名します。ブラウザの信頼するルートに<a href="installing-ca-certificate.html">BurpのCA証明書をインストール</a>すると、ホストごとの証明書は警告なしに受け付けられます。他のツールや他のBurpのインスタンスで使用するために、<a href="#exporting-and-importing-the-ca-certificate">CA証明書のエクスポート</a>もできます。
             </li>
             <li>
-                <strong>CAが署名した指定したホスト名の証明書を生成する</strong> - これは前のオプションに似ています; しかし、全てのSSL接続で使うホスト証明書を指定したホスト名で１つだけ生成します。透過プロキシを使う場合、クライアントはCONNECTリクエストを送信しないので、BurpはSSLネゴシエーションをする前にホスト名を特定できない場合があります。先に、信頼するルートに<a href="installing-ca-certificate.html">BurpのCA証明書をインストール</a>しておきます。
+                <strong>CAが署名した指定したホスト名の証明書を生成する</strong> - これは前のオプションに似ています; しかし、全てのTLS接続で使うホスト証明書を指定したホスト名で１つだけ生成します。透過プロキシを使う場合、クライアントはCONNECTリクエストを送信しないので、BurpはTLSネゴシエーションをする前にホスト名を特定できない場合があります。先に、信頼するルートに<a href="installing-ca-certificate.html">BurpのCA証明書をインストール</a>しておきます。
             </li>
             <li>
                 <strong>カスタム証明書を使用する</strong> - 指定した証明書(PKCS#12形式)を読み込み、ブラウザに提示します。特定のサーバ証明書(指定したシリアル番号または証明書チェーンなど) を必要とするアプリケーションを使用している場合、このオプションを使用する必要があります。
@@ -180,7 +180,7 @@
         <p>
             リクエストに対して、リクエスト最後の空行の過不足を自動的に修正するオプションがあります。リクエストの編集時にヘッダの後に空行がない場合、Burpが追加します。編集されたリクエストで、URLエンコードされたパラメータのボディの末尾に空行があった場合、Burpはこれらを削除します。インターセプトビューで手動で編集したリクエストの間違いを修正するのに便利で、無効なリクエストがサーバに発行されないようにできます。
         </p>
-        <h2 id="intercepting-websockets-messages">WebSocketメッセージのインターセプト</h2>
+        <h2 id="intercepting-websocket-messages">WebSocketメッセージのインターセプト</h2>
         <p>
             どのWebSocketメッセージを、インターセプトタブで止めて表示や編集するか制御します。
         </p>
@@ -220,7 +220,7 @@
             </li>
         </ul>
         <p>
-            次のオプションは、トラフィックが無意識のうちにBurpにプロキシされてしまっている被害者ユーザに対して、SSLstrip攻撃をするために使えます。<a href="#request-handling">発信方向のリクエストでSSLを強制する</a>リスナーオプションと組み合わせて使用すると、ユーザの接続からSSLを効果的に削除できます:
+            次のオプションは、トラフィックが無意識のうちにBurpにプロキシされてしまっている被害者ユーザに対して、SSLstrip攻撃をするために使えます。<a href="#request-handling">発信方向のリクエストでTLSを強制する</a>リスナーオプションと組み合わせて使用すると、ユーザの接続からTLSを効果的に削除できます:
         </p>
         <ul>
             <li>
@@ -300,15 +300,15 @@
             Replaced: $1
         
         </p>
-        <h2 id="ssl-pass-through">SSLパススルー</h2>
+        <h2 id="tls-pass-through">TLSパススルー</h2>
         <p>
-            SL接続を直接通過させる宛先のWebサーバを設定できます。これらの接続によるリクエストやレスポンスは、Proxyの<a href="../intercept.html">インターセプトビュー</a>や<a href="../history.html">履歴</a>で詳細が利用できません。
+            TLS接続を直接通過させる宛先のWebサーバを設定できます。これらの接続によるリクエストやレスポンスは、Proxyの<a href="../intercept.html">インターセプトビュー</a>や<a href="../history.html">履歴</a>で詳細が利用できません。
         </p>
         <p>
-            SSL接続のパススルーは、クライアントでのSSLエラーの除去が簡単ではない場合 - 例えば、SSL証明書のピニングをしているモバイルアプリケーションなどに便利です。アプリケーションが複数のドメインにアクセスする、またはHTTPとHTTPSが混在している場合、問題のあるホストへのSSL接続をパススルーに指定すると、他のトラフィックはBurpを使った通常の方法で作業できるようになります。
+            TLS接続のパススルーは、クライアントでのTLSエラーの除去が簡単ではない場合 - 例えば、TLS証明書のピニングをしているモバイルアプリケーションなどに便利です。アプリケーションが複数のドメインにアクセスする、またはHTTPとHTTPSが混在している場合、問題のあるホストへのTLS接続をパススルーに指定すると、他のトラフィックはBurpを使った通常の方法で作業できるようになります。
         </p>
         <p>
-            <strong>SSLネゴシエーションが失敗したエントリを自動的に追加</strong>オプションが有効な場合、クライアントのSSLネゴシエーション失敗(例えば、Burpの<a href="installing-ca-certificate.html">CA証明書</a>を認識していないため)をBurpが検知し、自動的にSSLパススルーリストにそのサーバを追加します。
+            <strong>TLSネゴシエーションが失敗したエントリを自動的に追加</strong>オプションが有効な場合、クライアントのTLSネゴシエーション失敗(例えば、Burpの<a href="installing-ca-certificate.html">CA証明書</a>を認識していないため)をBurpが検知し、自動的にTLSパススルーリストにそのサーバを追加します。
         </p>
         <h2 id="miscellaneous">その他</h2>
         <p>
