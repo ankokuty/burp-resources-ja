@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/pssupportnav.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">入門</a>
+        </li>
+        <li>
+            <a href="../index.html">外部ブラウザで動作するようBurp Proxyを設定する</a>
+        </li>
+        <li>
+            <a href="index.html">BurpのCA証明書のインストール</a>
+        </li>
+        <li>
+            <a href="firefox.html">Firefox</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">プロフェッショナル</label>
+    <label class="label-edition is-community">コミュニティ</label>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>FirefoxへのBurpのCA証明書のインストール</h1>
+        <p>
+            BurpのCA証明書をインストールする前に、<a href="../check-listener.html">プロキシリスナーが動作</a>しており、<a href="../browser/index.html">Burpが使われるようブラウザの設定</a>ができているか確認します。
+        </p>
+        <div class="highlightedarea">
+            <p>
+                <strong>注:</strong> 以前、Burpが生成した別のCA証明書をインストールしている場合は、新しいものをインストールする前に<a href="#removing-burp-s-ca-certificate-from-firefox">それを削除する</a>必要があります。
+            </p>
+        </div>
+        <p>
+            FirefoxにBurpのCA証明書をインストールするには、次の手順に従います:
+        </p>
+        <p>
+            Burpを実行している状態で、Firefoxで<code>http://burpsuite</code>にアクセスします。"Welcome to Burp Suite Professional"というWebページが表示されるはずです。表示されない場合は、<a href="../../proxy-troubleshooting.html">プロキシのトラブルシューティング</a>ページを参照してください。何が悪かったかによっては、自動的にそこに遷移するかもしれません。
+        </p>
+        <p>
+            ページの右上隅にある"CA Certificate"をクリックして、独自のBurp CA証明書をダウンロードします。保存する場所をメモしておいてください。
+        </p>
+        <div class="section-small">
+            <img src="../../../images/support/InstallingandConfiguring_InstallingBurpsCACertificate_FF_1.jpg" alt="FirefoxでCA証明書をダウンロード" class="center-block">
+        </div>
+        <p>
+            Firefoxでハンバーガーメニューを開き、"設定"または"オプション"をクリックします。
+        </p>
+        <div class="section-small">
+            <img src="../../../images/support/InstallingandConfiguring_InstallingBurpsCACertificate_FF_2.jpg" alt="Firefoxで設定を開く" class="center-block">
+        </div>
+        <p>
+            画面左のナビゲーションバーから"プライバシーとセキュリティ"の設定を開きます。
+        </p>
+        <p>
+            "証明書"セクションまでスクロールし、"証明書の表示"ボタンをクリックします。
+        </p>
+        <div class="section-small">
+            <img src="../../../images/support/InstallingandConfiguring_InstallingBurpsCACertificate_FF_3.jpg" alt="Firefoxで証明書を表示" class="center-block">
+        </div>
+        <p>
+            開いたダイアログで、"認証局証明書"タブに移動し、"インポート"をクリックします。先程ダウンロードしたBurp CA証明書を選択し、"開く"をクリックします。
+        </p>
+        <div class="section-small">
+            <img src="../../../images/support/InstallingandConfiguring_InstallingBurpsCACertificate_FF_4.jpg" alt="Firefoxで証明書のインポート" class="center-block">
+        </div>
+        <p>
+            信頼設定の編集を求められたら、"この認証局によるウェブサイトの識別を信頼する"のチェックボックスが選択されていることを確認し、"OK"をクリックします。
+        </p>
+        <p>
+            Firefoxを閉じて再起動します。Burpを実行したまま、HTTPSのURLにアクセスしてみてください。すべて正常に動作していれば、セキュリティ警告なしでページを参照できるはずです。
+        </p>
+        <div class="section-small">
+            <img src="../../../images/support/InstallingandConfiguring_InstallingBurpsCACertificate_FF_5.jpg" alt="Firefoxで証明書を表示" class="center-block">
+        </div>
+        <h2 id="removing-burp-s-ca-certificate-from-firefox">FirefoxからBurpのCA証明書を削除</h2>
+        <p>
+            BurpのCA証明書をFirefoxから削除するには、"証明書の表示" &gt; "認証局証明書"ダイアログに戻り、"PortSwigger CA"を選択します。次に、"削除または信頼しない"をクリックし、"OK"をクリックして、Firefoxを再起動します。
+        </p>
+    </div>
+</section>
+</body>
+</html>

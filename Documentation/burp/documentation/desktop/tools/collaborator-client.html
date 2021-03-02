@@ -10,7 +10,7 @@
 <section class="container ps-breadcrumbs">
     <ol>
         <li>
-            <a href="https://support.portswigger.net/">サポートセンター</a>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
         <li>
             <a href="../../index.html">ドキュメント</a>
@@ -63,6 +63,67 @@
                 各Collaboratorクライアントウィンドウは、ウィンドウを開いた時点の<a href="../options/misc-project.html#burp-collaborator-server">Collaboratorサーバ設定</a>に関連づけられています。Collaboratorサーバ設定を変更した場合(例えば、他のプライベートCollaboratorサーバを使用するなど)、その設定を使用するには新たなクライアントウィンドウを開く必要があります。
             </li>
         </ul>
+        <h2 id="using-burp-collaborator-client">Burp Collaboratorクライアントの使用</h2>
+        <p>
+            状況によって、レスポンスの内容や応答時間などいずれにも、アプリケーションの応答に顕著な影響が現れない場合があります。このような状況でも、データベースからテスターのサーバへの帯域外ネットワーク接続をさせることで、脆弱性を検出できる場合があります。Burp Scannerは、Burp Collaborator機能を使ってこの手法を行います。
+        </p>
+        <p>
+            次の手順は、Collaboratorクライアントを使用してCollaboratorとの通信から手動で脆弱性を検証するプロセスを示しています。
+        </p>
+        <p>
+            この例でBurp Scannerは、外部ドメインのURLを参照するUNCファイルパスを含むSQL Serverの<code>xp_dirtree</code>ストアドプロシージャを挿入するペイロードを送信しています。
+        </p>
+        <p>
+            アプリケーションがそのドメインと通信し、挿入されたSQLクエリが実行されたことを示しています。
+        </p>
+        <p>
+            Collaboratorクライアントを使用して、この結果を確認できます。
+        </p>
+        <div class="section-small">
+            <img src="../images/support/Using_Burp_Collaborator_Client_2.jpg" alt="Collaboratorクライアントとの通信" class="center-block">
+        </div>
+        <p>
+            この例では、リクエスト中のCollaboratorペイロードを識別し、リクエストをRepeaterに送信しています。
+        </p>
+        <p>
+            ペイロードを、Collaboratorクライアントによって生成されたペイロードに置き換える必要があります。
+        </p>
+        <p>
+            別々のクライアントウィンドウやBurp Collaborator間で、ペイロードの共有や通信は行われません。したがって、クライアントウィンドウを閉じたり、スキャナによって生成されたペイロードを使用すると、そのペイロードから生じる通信を取得する方法はありません。
+        </p>
+        <div class="section-small">
+            <img src="../images/support/Using_Burp_Collaborator_Client_3.jpg" alt="リクエスト内のペイロードを特定" class="center-block">
+        </div>
+        <p>
+            Burp Collaboratorクライアントを実行するには、Burpメニューから"Burp Collaboratorクライアント"を選択してください。
+        </p>
+        <div class="section-small">
+            <img src="../images/support/Using_Burp_Collaborator_Client_1.jpg" alt="Burp Collaboratorクライアントを開く" class="center-block">
+        </div>
+        <p>
+            "クリップボードにコピー"機能を使用して、ペイロードをコピーします。
+        </p>
+        <p>
+            <strong>注:</strong> 指定した個数のCollaboratorペイロードを生成し、クリップボードにコピーできます。これらを手動テストで、例えばBurp IntruderやRepeaterで使用できます。
+        </p>
+        <div class="section-small">
+            <img src="../images/support/Using_Burp_Collaborator_Client_4.jpg" alt="Burp Collaboratorペイロードをクリップボードにコピー" class="center-block">
+        </div>
+        <p>
+            Collaboratorクライアントのペイロードを適切な場所にペーストし、リクエストを転送します。
+        </p>
+        <div class="section-small">
+            <img src="../images/support/Using_Burp_Collaborator_Client_5.jpg" alt="ペイロードをリクエストにペースト" class="center-block">
+        </div>
+        <p>
+            "今すぐポーリング"機能を使用して、ペイロードに起因するネットワーク通信の詳細を取得します。
+        </p>
+        <p>
+            この例では、CollaboratorサーバがDNSルックアップを受信し、挿入されたSQLクエリが実行されたことを確認しています。
+        </p>
+        <div class="section-small">
+            <img src="../images/support/Using_Burp_Collaborator_Client_6.jpg" alt="相互作用のポーリング" class="center-block">
+        </div>
     </div>
 </section>
 </body>

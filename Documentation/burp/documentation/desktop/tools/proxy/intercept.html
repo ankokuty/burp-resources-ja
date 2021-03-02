@@ -10,7 +10,7 @@
 <section class="container ps-breadcrumbs">
     <ol>
         <li>
-            <a href="https://support.portswigger.net/">サポートセンター</a>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
         <li>
             <a href="../../../index.html">ドキュメント</a>
@@ -37,8 +37,13 @@
     <div class="container main">
         <h1>メッセージのインターセプト</h1>
         <p>
-            インターセプトタブは、ブラウザとWebサーバ間を通過するHTTPおよびWebSocketメッセージの表示と変更に使われます。全てのメッセージを表示・インターセプト・変更できるこの機能は、Burpの<a href="../../penetration-testing/index.html">ユーザ主導型ワークフロー</a>の中核です。Burp Proxyオプションの<a href="options/index.html#intercepting-http-requests-and-responses">インターセプトルール</a>で、どのHTTPリクエストとレスポンスをインターセプトするか(例えば、スコープ内のアイテム、指定した拡張子のアイテム、パラメータを含むリクエストなど)を設定できます。どの<a href="options/index.html#intercepting-websocket-messages">WebSocketメッセージ</a>をインターセプトするかも、設定できます。
+            インターセプトタブは、ブラウザとWebサーバ間を通過するHTTPおよびWebSocketメッセージの表示と変更に使われます。すべてのメッセージを表示・インターセプト・変更できるこの機能は、Burpの<a href="../../penetration-testing/index.html">ユーザ主導型ワークフロー</a>の中核です。Burp Proxyオプションの<a href="options/index.html#intercepting-http-requests-and-responses">インターセプトルール</a>で、どのHTTPリクエストとレスポンスをインターセプトするか(例えば、スコープ内のアイテム、指定した拡張子のアイテム、パラメータを含むリクエストなど)を設定できます。どの<a href="options/index.html#intercepting-websocket-messages">WebSocketメッセージ</a>をインターセプトするかも、設定できます。
         </p>
+        <div class="container">
+            <div class="youtube-wrapper">
+                <iframe src="https://www.youtube.com/embed/ouDe5sJ_uC8?origin=https://portswigger.net"></iframe>
+            </div>
+        </div>
         <h2 id="controls">コントロール</h2>
         <p>
             インターセプトしたメッセージが表示されているパネルの上部に、宛先サーバの詳細が表示されます。HTTPリクエストについて、サーバ表示またはその横のボタンをクリックして、リクエストを送信するサーバを手動で編集できます。
@@ -54,7 +59,7 @@
                 <strong>破棄</strong> - メッセージを破棄する場合に使用し、メッセージは転送されません。
             </li>
             <li>
-                <strong>インターセプト有効/無効</strong> - 全てのインターセプトのオンとオフを切り替えます。ボタンに"インターセプト有効"と表示されていれば、メッセージはインターセプトされるか、<a href="options/index.html#intercepting-http-requests-and-responses">HTTP</a>と<a href="options/index.html#intercepting-websocket-messages">WebSocketメッセージ</a>のインターセプト設定に基づいて自動的に転送されます。ボタンに"インターセプトオフ"と表示されている場合、全てのメッセージが自動的に転送されます。
+                <strong>インターセプト有効/無効</strong> - すべてのインターセプトのオンとオフを切り替えます。ボタンに"インターセプト有効"と表示されていれば、メッセージはインターセプトされるか、<a href="options/index.html#intercepting-http-requests-and-responses">HTTP</a>と<a href="options/index.html#intercepting-websocket-messages">WebSocketメッセージ</a>のインターセプト設定に基づいて自動的に転送されます。ボタンに"インターセプトオフ"と表示されている場合、すべてのメッセージが自動的に転送されます。
             </li>
             <li>
                 <strong>アクション</strong> - 現在表示されているメッセージに対して実行できるアクションのメニューが表示されます。これらは、インターセプト<a href="#message-display">メッセージ表示</a>のコンテキストメニューに表示されるオプションと同じです。
@@ -71,10 +76,10 @@
         </p>
         <h2 id="message-display">メッセージ表示</h2>
         <p>
-            インターセプトタブのメインパネルには、現在インターセプトしたメッセージを表示する<a href="../../functions/message-editor/index.html">メッセージエディタ</a>があり、メッセージの解析や様々なアクションを実行できます。
+            インターセプトタブのメインパネルには、現在インターセプトしたメッセージを表示する<a href="../../functions/message-editor/index.html">メッセージエディタ</a>があり、メッセージの解析やさまざまなアクションを実行できます。
         </p>
         <p>
-            エディタのコンテキストメニューには、多数の有用なアイテムがあります。エディタ自体の提供する<a href="../../functions/message-editor/index.html#context-menu-commands">標準的な機能</a>に加え、HTTPメッセージに対して次のアクションが可能です:
+            エディタのコンテキストメニューには、多数の有用なアイテムがあります。エディタ自体の提供する<a href="../../functions/message-editor/index.html#context-specific-actions">標準的な機能</a>に加え、HTTPメッセージに対して次のアクションが可能です:
         </p>
         <ul>
             <li>

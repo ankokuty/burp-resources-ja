@@ -10,7 +10,7 @@
 <section class="container ps-breadcrumbs">
     <ol>
         <li>
-            <a href="https://support.portswigger.net/">サポートセンター</a>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
         <li>
             <a href="../index.html">ドキュメント</a>
@@ -54,14 +54,14 @@
         </p>
         <h2 id="how-burp-collaborator-works">Burp Collaboratorのしくみ</h2>
         <p>
-            Burp Collaboratorは単一のサーバとして動作し、様々なネットワークサービスのカスタム実装を提供します:
+            Burp Collaboratorは単一のサーバとして動作し、さまざまなネットワークサービスのカスタム実装を提供します:
         </p>
         <ul>
             <li>
                 独自の専用ドメイン名を使用し、そのドメインの権威DNSサーバとして登録されています。
             </li>
             <li>
-                登録済みのドメイン(またはサブドメイン)の全ての名前解決に対して、自身のIPアドレスを返すDNSサービスを提供します。
+                登録済みのドメイン(またはサブドメイン)のすべての名前解決に対して、自身のIPアドレスを返すDNSサービスを提供します。
             </li>
             <li>
                 HTTP/HTTPSサービスを提供し、そのドメイン名に対し、CAが署名した有効なワイルドカードTLS証明書を使用しています。
@@ -79,7 +79,7 @@
         </p>
         <ul>
             <li>
-                Burpは、Collaboratorドメイン上のランダムなサブドメインを使ったURLを含むペイロードを、アプリケーションに送ります。例: <span class="InlineCode">param=http://f294gchg2la...r9gf.burpcollaborator.net/</span>
+                Burpは、Collaboratorドメイン上のランダムなサブドメインを使ったURLを含むペイロードを、アプリケーションに送ります。例: <code>param=http://f294gchg2la...r9gf.burpcollaborator.net/</code>
             </li>
             <li>
                 プログラムの(意図した、または意図しない)挙動によって、アプリケーションがそのURLのコンテンツを取得しようとします。すると、まずランダムなサブドメインのDNS名前解決が発生し、その後HTTPリクエストが発生するはずです。
@@ -91,7 +91,7 @@
                 BurpはCollaboratorサーバをポーリングし、「私のペイロードに関する通信を受信しましたか？」と尋ねると、Collaboratorサーバは通信の詳細を返します。
             </li>
             <li>
-                Burpは、Collaboratorサーバでキャプチャした全ての通信メッセージを含む、外部サービスとの通信をユーザに報告します。
+                Burpは、Collaboratorサーバでキャプチャしたすべての通信メッセージを含む、外部サービスとの通信をユーザに報告します。
             </li>
         </ul>
         <img src="../images/collaborator/collaborator-2.svg" alt="外部サービスとの通信を検知">
@@ -107,7 +107,7 @@
         <img src="../images/collaborator/collaborator-4.svg" alt="ブラインドSQLインジェクションの検出">
         <h4>ブラインドクロスサイトスクリプティングの検出</h4>
         <p>
-            対象にペイロードを送信した通信内ではなく、それに続いて後で非同期に発生する遅れた影響を、Collaboratorサーバは検知してBurpに通知できます。これにより、セカンドオーダーSQLインジェクションやブラインドXSSなど、様々な蓄積型脆弱性の検出が可能になります。次の例では、いつかユーザにレンダリングされた場合にCollaborサーバとの通信が発生するよう設計された、蓄積型XSSのペイロードをBurp Suiteが送信しています。その後、管理者ユーザがペイロードを表示すると、そのブラウザが通信を実行します。そして、Burp SuiteはCollaboratorサーバをポーリングし、その通信の詳細を受取、蓄積型XSS脆弱性を報告します:
+            対象にペイロードを送信した通信内ではなく、それに続いて後で非同期に発生する遅れた影響を、Collaboratorサーバは検知してBurpに通知できます。これにより、セカンドオーダーSQLインジェクションやブラインドXSSなど、さまざまな蓄積型脆弱性の検出が可能になります。次の例では、いつかユーザにレンダリングされた場合にCollaborサーバとの通信が発生するよう設計された、蓄積型XSSのペイロードをBurp Suiteが送信しています。その後、管理者ユーザがペイロードを表示すると、そのブラウザが通信を実行します。そして、Burp SuiteはCollaboratorサーバをポーリングし、その通信の詳細を受取、蓄積型XSS脆弱性を報告します:
         </p>
         <img src="../images/collaborator/collaborator-5.svg" alt="ブラインドクロスサイトスクリプティングの検出">
         <h2 id="security-of-collaborator-data">Collaboratorデータのセキュリティ</h2>
@@ -130,13 +130,13 @@
                 BurpがCollaborator関連の各ペイロードを対象アプリケーションに送信するとき、シークレットから一方向ハッシュ(暗号学的ハッシュ関数)で算出されるランダムな識別子が含まれます。
             </li>
             <li>
-                Collaboratorとの全ての通信結果には、送信データ(例えば、サブドメインのDNS名前解決やHTTPリクエストのホスト名など)にこの識別子が含まれます。
+                Collaboratorとのすべての通信結果には、送信データ(例えば、サブドメインのDNS名前解決やHTTPリクエストのホスト名など)にこの識別子が含まれます。
             </li>
             <li>
                 シークレットは、通信結果の詳細をポーリングするために、BurpからCollaboratorサーバに対してだけ送信されます。これはBurpのオプションで上書きしない限り、HTTPSを使用しています。
             </li>
             <li>
-                Collaboratorサーバがポーリングリクエストを受け取ると、送信されたシークレットから一方向ハッシュを実行し、そのハッシュから算出された識別子を含む全ての通信の詳細な記録を取得します。
+                Collaboratorサーバがポーリングリクエストを受け取ると、送信されたシークレットから一方向ハッシュを実行し、そのハッシュから算出された識別子を含むすべての通信の詳細な記録を取得します。
             </li>
             <li>
                 したがって、シークレットを生成したBurpインスタンスのみが、そのペイロードが引き起こした通信の詳細を取得できます。
@@ -171,10 +171,10 @@
         </p>
         <ul>
             <li>
-                <strong>公開Collaboratorサーバ</strong> - これはPortSwiggerが提供するサーバで、全てのBurpユーザが共同で使用します。もし公開Collaboratorサーバの停止や不具合があると、BurpのCollaboratorに関連する機能の有効性が失われる可能性があります。そのため、PortSwiggerはこのサーバのパフォーマンスまたは可用性について保証しません。
+                <strong>公開Collaboratorサーバ</strong> - これはPortSwiggerが提供するサーバで、すべてのBurpユーザが共同で使用します。もし公開Collaboratorサーバの停止や不具合があると、BurpのCollaboratorに関連する機能の有効性が失われる可能性があります。そのため、PortSwiggerはこのサーバのパフォーマンスまたは可用性について保証しません。
             </li>
             <li>
-                <strong>プライベートCollaboratorサーバ</strong> - Burp Suite プロフェッショナルライセンスを持つユーザは、独自のCollaboratorサーバのインスタンスを実行できます。これを最大限生かすには、ホストサーバ、専用のドメイン名、及びCAに署名された有効なワイルドカードTLS証明書が必要です。適切なドメイン名またはTLS証明書を持たないプライベートCollaboratorサーバは、BurpのCollaborator関連機能を全てではなく、一部のみをサポートします。ネットワーク層でプライベートCollaboratorインスタンスを保護できます: 通信の受信とポーリングリクエストの応答に異なるネットワークインタフェースを使うよう設定でき、対象とテスト者の位置に応じて好きにIP制限を適用できます。プライベートCollaboratorサーバを使用する選択肢は、ペネトレーションテスト企業や社内のセキュリティチームにアピールができます。インターネットアクセスがない専用の閉じたネットワーク上でテストするとき、テスト者個別のCollaboratorインスタンスを用意する場合にも有効です。詳細は、<a href="deploying.html">プライベートCollaboratorサーバの配備</a>を参照してください。
+                <strong>プライベートCollaboratorサーバ</strong> - Burp Suite プロフェッショナルライセンスを持つユーザは、独自のCollaboratorサーバのインスタンスを実行できます。これを最大限生かすには、ホストサーバ、専用のドメイン名、及びCAに署名された有効なワイルドカードTLS証明書が必要です。適切なドメイン名またはTLS証明書を持たないプライベートCollaboratorサーバは、BurpのCollaborator関連機能をすべてではなく、一部のみをサポートします。ネットワーク層でプライベートCollaboratorインスタンスを保護できます: 通信の受信とポーリングリクエストの応答に異なるネットワークインタフェースを使うよう設定でき、対象とテスト者の位置に応じて好きにIP制限を適用できます。プライベートCollaboratorサーバを使用する選択肢は、ペネトレーションテスト企業や社内のセキュリティチームにアピールができます。インターネットアクセスがない専用の閉じたネットワーク上でテストするとき、テスト者個別のCollaboratorインスタンスを用意する場合にも有効です。詳細は、<a href="deploying.html">プライベートCollaboratorサーバの配備</a>を参照してください。
             </li>
             <li>
                 <strong>Collaboratorサーバなし</strong> - BurpがCollaborationサーバを使わないよう設定します。これを選択すると、BurpのCollaborator関連機能はいずれも有効になりません。

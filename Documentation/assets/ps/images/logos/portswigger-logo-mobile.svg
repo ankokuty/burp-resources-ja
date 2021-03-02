@@ -1,1 +1,8 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="42" height="39.35" viewBox="0 0 42 39.35"><title>PortSwigger Logo</title><polygon points="21 39.35 0 35.33 0 4.03 21 0 21 39.35" fill="#404041"/><polygon points="22 39.35 42 35.33 42 4.03 22 0 22 39.35" fill="#f63"/><path d="M31.13,4.74A14.58,14.58,0,0,0,33,5.09v5.4c-2,2-3.12,3.12-5.21,5.49L33,16.2v5.36l7.14-.22A65.44,65.44,0,0,0,33,29.47v4.21c-1,.16-1,.22-2,.34v-4.9c3-2.62,3.14-3.87,5.19-6.15-2.09.13-3.19.16-5.19.28V17.76l-7.14-.16C26.09,14.83,29,12.18,31,9.69V7.43C31,6.37,31.13,5.84,31.13,4.74Z" fill="#fff"/></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+     y="0px"
+     width="42px" height="42px" viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;" xml:space="preserve">
+<rect y="0" fill="#FF6633" width="42" height="42"/>
+    <polygon fill="#FFFFFF" points="23.3,42 18.7,42 18.7,35.3 24.8,27.8 18.7,27.8 18.7,18.7 7.7,18.7 18.7,5.1 18.7,0 23.3,0 23.3,6.7
+	17.2,14.2 23.3,14.2 23.3,23.3 34.3,23.3 23.3,36.9 "/>
+</svg>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/pssupportnav.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">入門</a>
+        </li>
+        <li>
+            <a href="proxy-troubleshooting.html">BurpのCA証明書のダウンロード</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">プロフェッショナル</label>
+    <label class="label-edition is-community">コミュニティ</label>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>BurpのCA証明書のダウンロードに問題がありますか?</h1>
+        <p>
+            <code>http://burpsuite</code>にアクセスしCA証明書をダウンロードするには、ブラウザがBurpのプロキシリスナーを経由してトラフィックを送信している必要があります。まだ設定が済んでいない場合は、<a href="https://portswigger.net/support/configuring-your-browser-to-work-with-burp">Burpが動作するようブラウザの設定をする</a>手順を完了する必要があります。
+        </p>
+        <p>
+            既に行っていて、<code>http://burpsuite</code>にアクセスしようとしたときどこかにリダイレクトされる場合は、プロキシ設定に問題があります。しかし、心配しないでください。簡単に修正できるはずです。次の一般的な解決策を試してください:
+        </p>
+        <h2 id="check-that-burp-is-running">Burpが実行されているか確認</h2>
+        <p>
+            <code>http://burpsuite</code>にアクセスするために、Burpが実行されている必要があります。完全にBurpを再起動するか、まだ開いていない場合はBurpを開いてください。
+        </p>
+        <h2 id="check-your-proxy-listener-is-active">Proxyリスナーがアクティブか確認</h2>
+        <p>
+            Burpで、"Proxy" &gt; "オプション"タブに移動します。"プロキシリスナー"パネルで、インタフェースが<code>127.0.0.1:8080</code>になっているエントリがあり、"起動中"チェックボックスが選択されているか確認してください。そうでない場合は、パネルの左上にある設定アイコンをクリックしてから、"デフォルトに戻す"をクリックします。
+        </p>
+        <p>
+            それでもプロキシリスナーが実行されない場合は、別のポートを使用してみる必要があるかもしれません。
+        </p>
+        <div class="section-small">
+            <img src="../images/proxy-listener-restore-defaults.png" alt="Proxyリスナー" class="center-block">
+        </div>
+        <h2 id="try-a-different-port">別のポートの試行</h2>
+        <p>
+            デフォルトで、Burpのプロキシリスナーはポート8080を使用します。前の手順を両方とも試してみてもプロキシリスナーがまだ実行されていない場合は、ポート8080が他のアプリケーションですでに使用されているなどの理由で利用できないのかもしれません。別のポートを使用するには:
+        </p>
+        <ol>
+            <li>
+                空いていることがわかっている別のポートを特定します。
+            </li>
+            <li>
+                Burpで、"Proxy" &gt; "オプション"タブに移動します。
+            </li>
+            <li>
+                "Proxyリスナー"パネルで、<code>127.0.0.1:8080</code>のエントリーを選択し、"編集"ボタンをクリックします。"プロキシリスナーを編集"ダイアログが開きます。
+            </li>
+            <li>
+                "バインドするポート"フィールドで、新たなポート番号を入力し、"OK"をクリックします。
+            </li>
+            <li>
+                "起動中"チェックボックスを選択して、リスナーをアクティブにしてみてください。起動できれば問題ありません。これで、<code>http://burpsuite</code>にアクセスできるようになります。
+            </li>
+            <li>
+                チェックボックスをクリックしてもリスナーがアクティブにならない場合は、入力した新たなポートもブロックされている可能性があるため、別のポートを試す必要があります。
+            </li>
+        </ol>
+        <div class="section-small">
+            <img src="../images/proxy-listener-edit.png" alt="プロキシリスナーを編集" class="center-block">
+        </div>
+        <p>
+            詳細については、<a href="https://portswigger.net/burp/documentation/desktop/tools/proxy/options#listeners">Burp Proxyオプション</a>のドキュメントを参照してください。
+        </p>
+        <h2 id="what-next">次は？</h2>
+        <p>
+            上記のすべてを試してもこのページにリダイレクトされる場合は、当社の技術サポートチームにお気軽にお問い合わせください。<a href="https://portswigger.net/support">サポート</a>ページのさまざまな方法で、私たちに連絡ができます。
+        </p>
+    </div>
+</section>
+</body>
+</html>

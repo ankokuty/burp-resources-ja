@@ -10,7 +10,7 @@
 <section class="container ps-breadcrumbs">
     <ol>
         <li>
-            <a href="https://support.portswigger.net/">サポートセンター</a>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
         <li>
             <a href="../../index.html">ドキュメント</a>
@@ -53,7 +53,7 @@
         </p>
         <ul>
             <li>
-                <strong>デフォルトのCollaboratorサーバを使用する</strong> - このデフォルトオプションは、PortSwiggerが提供する公開Collaboratorサーバを使用します。このサーバは、これを使用する全てのBurpユーザで共用です。もし公開Collaboratorサーバの停止や不具合があると、BurpのCollaboratorに関連する機能の有効性が失われる可能性があります。そのため、PortSwiggerはこのサーバのパフォーマンスまたは可用性について保証しません。
+                <strong>デフォルトのCollaboratorサーバを使用する</strong> - このデフォルトオプションは、PortSwiggerが提供する公開Collaboratorサーバを使用します。このサーバは、これを使用するすべてのBurpユーザで共用です。もし公開Collaboratorサーバの停止や不具合があると、BurpのCollaboratorに関連する機能の有効性が失われる可能性があります。そのため、PortSwiggerはこのサーバのパフォーマンスまたは可用性について保証しません。
             </li>
             <li>
                 <strong>Burp Collaboratorを使用しない</strong> - Collaboratorに関連した機能はどれも有効になりません。
@@ -81,12 +81,19 @@
                 <strong>暗号化されていないHTTPでポーリングする</strong> - デフォルトでBurpは、HTTPS上でCollaboratorサーバをポーリングし、中間者攻撃を防ぐためTLSを強制します。ネットワークやその他の制限でBurpがHTTPS上で直接ポーリングできない場合、暗号化されていないHTTP上でのポーリングもできます。
             </li>
             <li>
-                <strong>ヘルスチェック実行</strong> - このボタンをクリックすると、設定したCollaboratorサーバのヘルスチェックを実行するダイアログが開きます。様々なネットワークサービスが通信できるかどうか、通信の詳細をポーリングで取得できるかどうかを確認します。これらのテストから、BurpがCollaboratorの機能を全てまたは一部利用できるか、または全く利用できないか判断できます。
+                <strong>ヘルスチェック実行</strong> - このボタンをクリックすると、設定したCollaboratorサーバのヘルスチェックを実行するダイアログが開きます。さまざまなネットワークサービスが通信できるかどうか、通信の詳細をポーリングで取得できるかどうかを確認します。これらのテストから、BurpがCollaboratorの機能をすべてまたは一部利用できるか、または全く利用できないか判断できます。
             </li>
         </ul>
         <h2 id="logging">ロギング</h2>
         <p>
             HTTPリクエストとレスポンスのロギングを制御します。ロギングは、ツールごと、または全Burpトラフィックに対して設定できます。
+        </p>
+        <h2 id="embedded-browser-project-options">内蔵ブラウザプロジェクトオプション</h2>
+        <p>
+            Burpの<a href="../functions/embedded-browser.html">内蔵ブラウザ</a>は、デフォルトでサンドボックス化されています。ただし、Linuxでrootとして実行している場合など一部の非常に特殊な状況では、サンドボックスを使用した<a href="../scanning/browser-powered.html">ブラウザを利用したスキャン</a>が起動できない場合があります。
+        </p>
+        <p>
+            問題が発生した場合は、"内蔵ブラウザヘルスチェック"ツールを使用して、これが原因かどうかを確認してください。その場合は、"内蔵ブラウザをサンドボックスなしで実行できるようにする"オプションを有効にできます。その前に、セキュリティへの影響を認識しているか確認してください。サンドボックスなしで敵対的なWebサイトをスキャンすると、ローカルシステムが危険にさらされるリスクが高まります。
         </p>
     </div>
 </section>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/pssupportnav.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Intruder</a>
+        </li>
+        <li>
+            <a href="analyzing-results.html">結果の分析</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">プロフェッショナル</label>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>Burp Intruder攻撃結果の解析</h1>
+        <p>
+            このセクションには、Burp Intruder攻撃の結果を分析する典型的な方法例があります。
+        </p>
+        <p>
+            Burp Intruder攻撃を開始すると、新しい攻撃ウィンドウが開き、攻撃が開始します。結果の解析や、後で深掘りするアイテムの特定を補助するさまざまな機能があります。攻撃すると、結果タブに一覧がある新しいウィンドウが開きます。結果一覧には生成された各リクエストごとにエントリがあり、使われたペイロードなど各種キーの詳細・HTTPステータスコード・レスポンス長などが表示されます。一覧で任意のアイテムを選択すると、完全なリクエストとレスポンスが表示できます。
+        </p>
+        <div class="section-small">
+            <img src="../../images/intruder-results.png" alt="Intruder攻撃結果" class="center-block">
+        </div>
+        <p>
+            列見出しをクリックすると一覧を並べ替えられ、フィルターバーを使用して一覧のコンテンツのフィルターもできます。これらの機能は、Proxy履歴と同じように動作します。
+        </p>
+        <div class="section-small">
+            <img src="../../images/intruder-results-sort.png" alt="Intruder結果テーブルのソート" class="center-block">
+        </div>
+        <p>
+            コンテキストメニューを使用して、他の操作の実行やテストワークフローとの統合します。
+        </p>
+        <div class="section-small">
+            <img src="../../images/intruder-results-repeater.png" alt="Intruderコンテキストメニュー" class="center-block">
+        </div>
+        <p>
+            攻撃ウィンドウには、この攻撃で使われた設定を表示する別のタブがあります。攻撃が開始された後でも、この設定のほとんどを変更できます。
+        </p>
+        <p>
+            オプションタブで、"Grep - Match"までスクロールし、"これらの文字列にマッチするレスポンスにフラグをセットする"チェックボックスをオンにします。
+        </p>
+        <p>
+            これでリスト内の各文字列に一致するレスポンスを検索し、マッチしたアイテムにフラグが立つようになります。デフォルトで、ファジングに便利ないくつかの一般的なエラー文字列が一覧に表示されますが、希望に応じて独自の文字列を設定できます。
+        </p>
+        <div class="section-small">
+            <img src="../../images/intruder-results-match.png" alt="Intruderのgrep matchルール" class="center-block">
+        </div>
+        <p>
+            結果タブに戻り、リストのアイテムごとに列が追加され、各レスポンスでマッチする文字列が見つかったかどうか示すチェックボックスがあることを確認します。運が良ければ、攻撃によって一部のレスポンスでエラーメッセージが発生するかもしれません。単純なファジングでも、バグの存在を示している可能性があります。レスポンスに異なるキーワードが存在するかどうかの比較は、ブルートフォース攻撃やユーザ名の列挙などにも役立ちます。
+        </p>
+        <div class="section-small">
+            <img src="../../images/intruder-results-match-columns.png" alt="Grep match結果" class="center-block">
+        </div>
+        <p>
+            それでは、一覧内の任意のアイテムを選択し、そのアイテムのレスポンス見てください。レスポンスから気になる文字列(ページタイトルまたはエラーメッセージなど)を探します。一覧内のアイテムを右クリックし、コンテキストメニューから"レスポンスから抽出grepを定義"を選択します。
+        </p>
+        <div class="section-small">
+            <img src="../../images/intruder-results-extract.png" alt="レスポンスから抽出grepを定義" class="center-block">
+        </div>
+        <p>
+            ダイアログボックスで、レスポンス内の気になる文字列を選択し、"OK"をクリックします。
+        </p>
+        <div class="section-small">
+            <img src="../../images/intruder-results-extract-select.png" alt="選択の確認" class="center-block">
+        </div>
+        <p>
+            各レスポンスからこの部分のテキストを抽出した新しい列(これは各ケースで異なる場合があります)が結果一覧に出現します。この機能で、何千もの大規模な攻撃のレスポンスの中から、気になるデータを検索できます。攻撃前または攻撃中に、オプションタブで"抽出grep"アイテムを設定できることを覚えておいてください。
+        </p>
+        <div class="section-small">
+            <img src="../../images/intruder-results-extract-column.png" alt="抽出grep結果" class="center-block">
+        </div>
+        <p>
+            結果一覧または攻撃全体を保存するには、結果ウィンドウで"保存"メニューを使います。他のツールまたはスプレッドシートプログラムに、結果一覧を読み込めます。Burp UIメインのIntruderメニューから、保存した攻撃を再読み込みできます。
+        </p>
+        <div class="section-small">
+            <img src="../../images/intruder-results-save.png" alt="結果テーブルの保存" class="center-block">
+        </div>
+    </div>
+</section>
+</body>
+</html>

@@ -10,7 +10,7 @@
 <section class="container ps-breadcrumbs">
     <ol>
         <li>
-            <a href="https://support.portswigger.net/">サポートセンター</a>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
         <li>
             <a href="../../../index.html">ドキュメント</a>
@@ -36,37 +36,97 @@
 <section class="maincontainer">
     <div class="container main">
         <h1>Burp Suiteモバイルアシスタントをインストール</h1>
+        <p>
+            Burp Suiteモバイルアシスタントは、Burp SuiteによるiOSアプリのテストを容易にするためのツールです。次の主要機能をサポートしています:
+        </p>
+        <ul>
+            <li>
+                iOSデバイスのシステム全体のプロキシ設定を変更し、実行中のBurpインスタンスにHTTP(S)トラフィックを容易にリダイレクトできます。
+            </li>
+            <li>
+                選択されたアプリのSSL証明書ピニングの回避し、Burp SuiteがHTTPS接続を解読し、すべてのトラフィックをインターセプト・調査・変更できるよう試みます。
+            </li>
+        </ul>
         <div class="highlightedarea">
             <p>
-                <strong>注:</strong> Burp Suiteモバイルアシスタントは、機能の性質上、脱獄されたデバイスにインストールする必要があります。脱獄では通常、モバイルアシスタントのインストールに使用できる、人気パッケージマネージャーのCydiaをインストールします。上級ユーザはモバイルアシスタントを直接インストールしたいかもしれません。例えば、<span class="InlineCode">http://[burp-host-ip]:8080/mobileassistant.deb</span>のように、Burp Suiteのブラウザ内インタフェースにブラウザでアクセスすると可能です。Cydiaは厳密には必要ありませんが、モバイルアシスタントはCydia Substrateに依存しています。
+                <strong>注:</strong> Burp Suiteモバイルアシスタントは機能の性質上、脱獄されたデバイスにインストールする必要があります。脱獄では通常、モバイルアシスタントのインストールに使用できる、人気パッケージマネージャーのCydiaをインストールします。上級ユーザはモバイルアシスタントを直接インストールしたいかもしれません。例えば、<code>http://[burp-host-ip]:8080/mobileassistant.deb</code> のように、Burp Suiteのブラウザ内インタフェースにブラウザでアクセスすると可能です。Cydiaは厳密には必要ありませんが、モバイルアシスタントはCydia Substrateに依存しています。
             </p>
         </div>
         <p>
-            CydiaでBurp Suiteモバイルアシスタントをインストールするには次の手順を実行してください:
+            このチュートリアルでは、Cydiaを使用してモバイルアシスタントをインストールする方法を示します。
         </p>
-        <ol>
-            <li>
-                脱獄したデバイスからネットワークアクセスできるシステムでBurp Suiteを起動し、プロキシリスナーがアクセスできるネットワークインタフェースとポートをバインドしているか確認します。
-            </li>
-            <li>
-                脱獄したデバイスで、Cydiaを開きSourcesタブに移動します。
-            </li>
-            <li>
-                右上隅にあるEditボタンをタップします。
-            </li>
-            <li>
-                左上隅にあるAddボタンをタップします。
-            </li>
-            <li>
-                BurpプロキシリスナーのIPアドレス(またはホスト名)とポート番号と、プロトコルにはHTTPを使用し、http://[burp-host-ip]:8080 のようにAPT URLプロンプトに入力します。Cydiaが接続できない場合は、関連するネットワークインタフェースをリッスンするようBurpプロキシリスナーが設定されているか、またコンピュータのホストファイアウォールや無線ネットワークのデバイス分離で接続がブロックされていないか確認してください。
-            </li>
-            <li>
-                終了するには、Doneボタンをタップします。
-            </li>
-            <li>
-                Cydiaのパッケージソースから通常の方法でモバイルアシスタントをインストールします。モバイルアシスタントを検索するか、新しいソースのパッケージをブラウズしてInstallをタップします。
-            </li>
-        </ol>
+        <p>
+            脱獄したデバイスからネットワークアクセスできるシステムでBurp Suiteを起動し、プロキシリスナーがアクセスできるネットワークインタフェースとポートをバインドしているか確認します。
+        </p>
+        <div class="section-small">
+            <img src="../../images/mobiles-assistant-listener.png" alt="モバイルアシスタントのProxyリスナー" class="center-block">
+        </div>
+        <p>
+            次のステップは、Burp SuiteのインスタンスをCydiaのパッケージソースに追加します。
+        </p>
+        <p>
+            脱獄したデバイスで、Cydiaを開きます。
+        </p>
+        <div class="section-small">
+            <img src="../../images/support/MobileAssistant_1.jpg" alt="Cydiaを開く" class="center-block">
+        </div>
+        <p>
+            Sourcesタブに移動します。
+        </p>
+        <p>
+            右上隅にあるEditボタンをタップします。
+        </p>
+        <div class="section-small">
+            <img src="../../images/support/MobileAssistant_2.jpg" alt="Cydiaのsourcesタブ" class="center-block">
+        </div>
+        <p>
+            左上隅にあるAddボタンをタップします。
+        </p>
+        <p>
+            APT URLプロンプトに<code>http://[burp-host-ip]:8080</code>のように、プロトコルにはHTTPを使用し、BurpプロキシリスナーのIPアドレス(またはホスト名)とポート番号を入力します。
+        </p>
+        <p>
+            Cydiaが接続できない場合は、関連するネットワークインタフェースをリッスンするようBurpプロキシリスナーが設定されているか、またコンピュータのホストファイアウォールや無線ネットワークのデバイス分離によって接続がブロックされていないか確認してください。
+        </p>
+        <div class="section-small">
+            <img src="../../images/support/MobileAssistant_4.jpg" alt="Cydia/APT URLを入力" class="center-block">
+        </div>
+        <p>
+            終了するには、Doneボタンをタップします。
+        </p>
+        <p>
+            Burp Suiteが個別のソースとして表示されるはずです。"Burp Suite Pro"オプションをタップします。
+        </p>
+        <div class="section-small">
+            <img src="../../images/support/MobileAssistant_7.jpg" alt="CydiaのBurp Suite Proソース" class="center-block">
+        </div>
+        <p>
+            Cydiaのパッケージソースから通常の方法でモバイルアシスタントをインストールします。Mobile Assistantを検索するか、新しいソースのパッケージを参照します。
+        </p>
+        <div class="section-small">
+            <img src="../../images/support/MobileAssistant_8.jpg" alt="Mobile Assistantをインストール" class="center-block">
+        </div>
+        <p>
+            "Install"をタップします。
+        </p>
+        <div class="section-small">
+            <img src="../../images/support/MobileAssistant_10.jpg" alt="Mobile Assistantのインストールをタップ" class="center-block">
+        </div>
+        <p>
+            "Confirm"をタップします。ダウンロードが完了したら、"Restart Springboard"をクリックします。
+        </p>
+        <p>
+            これで、Mobile Assistantアイコンがデバイスに表示されます。
+        </p>
+        <div class="section-small">
+            <img src="../../images/support/MobileAssistant_11.jpg" alt="Mobile Assistantダウンロードの確認" class="center-block">
+        </div>
+        <p>
+            <a href="https://portswigger.net/support/configuring-burp-suite-mobile-assistant">Burp Suiteを経由したトラフィックのルーティング</a>を開始できます。
+        </p>
+        <div class="section-small">
+            <img src="../../images/support/MobileAssistant_15.jpg" alt="Burp Suiteを経由するようトラフィックをルーティング" class="center-block">
+        </div>
     </div>
 </section>
 </body>

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/pssupportnav.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">ウェブサイトのスキャン</a>
+        </li>
+        <li>
+            <a href="api-scanning.html">APIスキャン</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-enterprise">エンタープライズ</label>
+    <label class="label-edition is-professional">プロフェッショナル</label>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>Burp Scannerを使用したAPIのスキャン</h1>
+        <p>
+            Burp Scannerは、JSONベースとYAMLベースの両方のAPI定義をスキャンして脆弱性を検出できます。デフォルトでは、クローラが検出したAPI定義を解析して、サポートされているメソッドとパラメーターとともに、潜在的なエンドポイントを識別しようとします。スキャンを開始するときに、API定義のURLを明示的に指定もできます。検出したエンドポイントに基づいて、Burp Scannerは新たにクロールおよび診断する場所を取得できます。
+        </p>
+        <p>
+            アプリケーションの他の部分をスキャンする場合と同様に、クロールフェーズで使用されたものと同じ一連のリクエストがAPIエンドポイントの診断にも使用されます。
+        </p>
+        <div class="component-notes">
+            <h4>注</h4>
+            <p>
+                必要に応じて、スキャン設定で"API定義の解析"クロールオプションの選択を解除すると、APIスキャンを無効にできます。このオプションは"その他"にあります。
+            </p>
+        </div>
+        <h2 id="prerequisites-for-api-scanning">APIスキャンの前提条件</h2>
+        <p>
+            Burp Scannerは、API定義をスキャンするためにそれを解析できる必要があります。現在、これは次の要件を満たすAPI定義でのみ可能です:
+        </p>
+        <ul>
+            <li>
+                API定義は、OpenAPIバージョン3.xx仕様である必要があります。クローラは、検出されたドキュメントがAPI定義であるかどうかを識別するために、定義の最上位のキーに<code>openapi</code>を使用します。
+            </li>
+            <li>
+                API定義には、外部参照を含めることはできません。
+            </li>
+        </ul>
+        <p>
+            これらの要件を満たさない定義は、スキャン中にスキップされます。
+        </p>
+        <h2 id="deriving-locations-from-an-api-definition">API定義から場所を取得する</h2>
+        <p>
+            クローラがAPI定義を解析するとき、エンドポイントごとに複数の場所を作成することがよくあります。エンドポイントが複数のメソッドをサポートしている場合、それぞれに個別の場所が作成されます。同様に、スコープ内に複数のAPIサーバがある場合、単一のメソッドとエンドポイントの組み合わせは、それぞれの異なるサーバへの同じ呼び出しを表す別々の場所が生成されます。
+        </p>
+        <p>
+            例えば、特定のエンドポイントが<code>GET</code>と<code>PUT</code>メソッド両方をサポートするとします。スコープ内にサーバが1つしかない場合、このエンドポイントから2つの場所が派生します。ただし、サーバが3つある場合は、合計6つの新しい場所になります。
+        </p>
+        <h2 id="parameter-handling-during-api-scans">APIスキャン中のパラメータ処理</h2>
+        <p>
+            クロール中、各エンドポイントのパラメータが定義される方法は、Burp Scannerが送信するリクエストの数に影響します:
+        </p>
+        <ul>
+            <li>
+                オプションのパラメータが定義されている場合、クローラは少なくとも2つのリクエストをそのエンドポイントに送信します。1つは必須パラメーターのみを含むリクエストで、もう1つはすべてのオプションパラメータも含むリクエストです。
+            </li>
+            <li>
+                列挙型の場合、クローラはパラメータに許可された値ごとに個別のリクエストを送信します。
+            </li>
+        </ul>
+        <p>
+            これにより、各エンドポイントを最大限にカバーできます。
+        </p>
+        <p>
+            各リクエストのパラメータに使用される値も、API定義によって部分的に決定されます。パラメータにサンプル値が指定されている場合、クローラはそれぞれの場合に最後のサンプルを使用します。それ以外の場合は、適切なカスタム値が生成されます。
+        </p>
+        <h2 id="limitations-for-api-scanning">APIスキャンの制限</h2>
+        <p>
+            クローラがAPI定義を解析しようとする場合、次の制限が適用されます。エンドポイントがこれらの制限に準拠していない場合、スキャンから除外されます。いずれの場合も、イベントログをチェックして、特定のエンドポイントがスキップされた理由を確認できます。
+        </p>
+        <ul>
+            <li>
+                スキャンでは引き続きBurpの通常の認証処理機能を使用しますが、クローラは現在、エンドポイントレベルで実装されている認証を処理できません。
+            </li>
+            <li>
+                サーバパラメータとパスパラメータは、それらが列挙型である場合、または定義で値の例が提供されている場合にのみサポートされます。
+            </li>
+            <li>
+                次のいずれかがリクエストに存在する必要があるエンドポイントはサポートされていません: <ul>
+                    <li>
+                        追加のHTTPヘッダー
+                    </li>
+                    <li>
+                        <code>array</code>タイプのクエリまたはボディパラメータ。ただし、このタイプのJSONボディパラメーターはサポートされていることに注意してください。
+                    </li>
+                    <li>
+                        <code>XML</code>タイプのクエリまたはボディパラメータ
+                    </li>
+                    <li>
+                        タイプが混合しているクエリまたはボディパラメータ。例えば、<code>application/x-www-form-urlencoded</code> ボディ内のJSONパラメータ、など。
+                    </li>
+                    <li>
+                        <code>JSON</code>タイプのクエリパラメータ。ただし、このタイプのボディパラメータはサポートされていることに注意してください。
+                    </li>
+                    <li>
+                        <code>multipart</code>タイプのボディパラメータ
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</section>
+</body>
+</html>

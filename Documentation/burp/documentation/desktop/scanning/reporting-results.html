@@ -10,7 +10,7 @@
 <section class="container ps-breadcrumbs">
     <ol>
         <li>
-            <a href="https://support.portswigger.net/">サポートセンター</a>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
         <li>
             <a href="../../index.html">ドキュメント</a>
@@ -33,7 +33,7 @@
     <div class="container main">
         <h1>スキャン結果のレポート</h1>
         <p>
-            Burp Scannerが生成した問題の一部または全てのレポートをエクスポートできます。これを行うには、<a href="../tools/target/site-map/index.html">サイトマップ</a>の<a href="../tools/target/site-map/index.html#issues-view">問題ビュー</a>か<a href="../dashboard/issue-activity.html">問題アクティビティログ</a>で出力したい問題を選択し、コンテキストメニューから"選択した問題をレポート"を選択してください。レポートウィザードでは、以下で説明するように、レポートのさまざまなオプションを選択できます。
+            Burp Scannerが生成した問題の一部またはすべてのレポートをエクスポートできます。これを行うには、<a href="../tools/target/site-map/index.html">サイトマップ</a>の<a href="../tools/target/site-map/index.html#issues-view">問題ビュー</a>か<a href="../dashboard/issue-activity.html">問題アクティビティログ</a>で出力したい問題を選択し、コンテキストメニューから"選択した問題をレポート"を選択してください。レポートウィザードでは、以下で説明するように、レポートのさまざまなオプションを選択できます。
         </p>
         <ul class="link-list">
             <li>
@@ -57,22 +57,22 @@
         </p>
         <ul>
             <li>
-                <span class="InlineCode">serialNumber</span>エレメントには、個々の問題ごとに固有なlong整数値が入ります。Burpの同じインスタンスから問題を複数回エクスポートする場合は、新たに増えた問題の特定にシリアル番号が使用できます。
+                <code>serialNumber</code>エレメントには、個々の問題ごとに固有なlong整数値が入ります。Burpの同じインスタンスから問題を複数回エクスポートする場合は、新たに増えた問題の特定にシリアル番号が使用できます。
             </li>
             <li>
-                <span class="InlineCode">type</span>エレメントには、問題タイプ(SQLインジェクションやXSSなど)を一意に識別する整数値が入ります。この値はBurpの複数のインスタンス間でも変化しません。全てのタイプ識別番号のリストは、<a href="https://portswigger.net/kb/issues">スキャン項目タイプ</a>のリストを参照してください。
+                <code>type</code>エレメントには、問題タイプ(SQLインジェクションやXSSなど)を一意に識別する整数値が入ります。この値はBurpの複数のインスタンス間でも変化しません。すべてのタイプ識別番号のリストは、<a href="https://portswigger.net/kb/issues">スキャン項目タイプ</a>のリストを参照してください。
             </li>
             <li>
-                <span class="InlineCode">name</span>エレメントには、問題タイプに対応するわかりやすい名前が入ります。全ての項目名のリストは、<a href="https://portswigger.net/kb/issues">スキャン項目タイプ</a> を参照してください。
+                <code>name</code>エレメントには、問題タイプに対応するわかりやすい名前が入ります。すべての項目名のリストは、<a href="https://portswigger.net/kb/issues">スキャン項目タイプ</a> を参照してください。
             </li>
             <li>
-                <span class="InlineCode">path</span>エレメントには、問題の(クエリーストリングを除く)URLが入ります。
+                <code>path</code>エレメントには、問題の(クエリーストリングを除く)URLが入ります。
             </li>
             <li>
-                <span class="InlineCode">location</span>エレメントには、(特定のURLパラメータやリクエストヘッダなど)攻撃のエントリポイントに関連する、URLと説明の両方が入ります。
+                <code>location</code>エレメントには、(特定のURLパラメータやリクエストヘッダなど)攻撃のエントリポイントに関連する、URLと説明の両方が入ります。
             </li>
             <li>
-                <span class="InlineCode">request</span>と<span class="InlineCode">response</span>エレメントには<span class="InlineCode">base64</span>属性があり、メッセージがBase64エンコードされているかどうかを示す真偽値が入ります。
+                <code>request</code>と<code>response</code>エレメントには<code>base64</code>属性があり、メッセージがBase64エンコードされているかどうかを示す真偽値が入ります。
             </li>
         </ul>
         <h2 id="issue-details">問題の詳細</h2>
@@ -81,10 +81,10 @@
         </p>
         <ul>
             <li>
-                <strong>問題のバックグラウンド</strong> - これは標準的な説明で、同じ種類の全ての問題で同じです。
+                <strong>問題のバックグラウンド</strong> - これは標準的な説明で、同じ種類のすべての問題で同じです。
             </li>
             <li>
-                <strong>対策のバックグラウンド</strong> - これは標準的な対策方法のアドバイスで、同じ種類の全ての問題で同じです。
+                <strong>対策のバックグラウンド</strong> - これは標準的な対策方法のアドバイスで、同じ種類のすべての問題で同じです。
             </li>
             <li>
                 <strong>問題詳細</strong> - 一部の問題タイプでは、個別の事象に当てはまる特定の詳細に注意を払わせるよう、特定の問題に関するさらに詳しいカスタム情報が含まれます。

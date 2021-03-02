@@ -10,7 +10,7 @@
 <section class="container ps-breadcrumbs">
     <ol>
         <li>
-            <a href="https://support.portswigger.net/">サポートセンター</a>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
         <li>
             <a href="../../../index.html">ドキュメント</a>
@@ -45,17 +45,17 @@
         </p>
         <ul>
             <li>
-                <a href="../proxy/using.html#getting-set-up">ブラウザとBurp Proxy</a> が連携するよう設定します。
+                Burpの<a href="../../functions/embedded-browser.html">内蔵ブラウザ</a>を起動、または<a href="../../getting-started/proxy-setup/index.html">外部ブラウザでBurp Proxyが動作するよう設定</a>します。
             </li>
             <li>
                 <a href="../proxy/using.html#intercepting-requests-and-responses">Proxyインターセプト</a>をオフにし、手動でアプリケーション全体をブラウズします。
             </li>
             <li>
-                全てのリンクをたどり、全てのフォームを送信し、全ての多段階プロセス実行し、全ての保護エリアにログインします。
+                すべてのリンクをたどり、すべてのフォームを送信し、すべての多段階プロセス実行し、すべての保護エリアにログインします。
             </li>
         </ul>
         <p>
-            この手動マッピングプロセスによって、Proxy経由でリクエストした全てのコンテンツや、(<a href="../../scanning/live-scans.html#live-passive-crawl">パッシブクロール</a>によって)アプリケーションのレスポンス(リンクやフォームなど)から推測できるその他のコンテンツが、Target <a href="site-map/index.html">サイトマップに</a>追加されます。この手動マッピングプロセスによって、目に見える全てのアプリケーションコンテンツのほぼ完全なサイトマップを作成し、アプリケーションについて完全に把握できるようになります。
+            この手動マッピングプロセスによって、Proxy経由でリクエストしたすべてのコンテンツや、(<a href="../../scanning/live-scans.html#live-passive-crawl">パッシブクロール</a>によって)アプリケーションのレスポンス(リンクやフォームなど)から推測できるその他のコンテンツが、Target <a href="site-map/index.html">サイトマップに</a>追加されます。この手動マッピングプロセスによって、目に見えるすべてのアプリケーションコンテンツのほぼ完全なサイトマップを作成し、アプリケーションについて完全に把握できるようになります。
         </p>
         <p>
             <strong>注:</strong> アプリケーションの診断中にBurp Scannerが自動的にセッションを維持できるような方法で、アプリケーションのナビゲーションをパスを取得するため、一部のケースでは手動でのアプリケーションマッピングよりBurpの<a href="../../../scanner/crawling.html">自動クロール</a>の方が優れています。一方で手動マッピングでは、人間のユーザが処理を誘導し、潜在的に危険な機能を回避し、ナビゲーション動作が期待した結果になっているか検証できます。手動マッピングと自動マッピング、どちらを選択するかは、アプリケーションの性質や結果の使用目的によって大きく異なります。
@@ -64,6 +64,11 @@
         <p>
             最初のアプリケーションマッピングが完了したら、サイトマップでブランチを選択し、コンテキストメニューから"スコープに追加"または"スコープから削除"コマンドを選択し、<a href="scope.html">ターゲットスコープ</a>を定義します。<a href="site-map/index.html#site-map-display-filter">サイトマップ</a>や<a href="../proxy/history.html#proxy-history-display-filter">Proxy履歴</a>に適切なディスプレイフィルターを設定して、現在興味のないアイテムを非表示にできます。
         </p>
+        <div class="container">
+            <div class="youtube-wrapper">
+                <iframe src="https://www.youtube.com/embed/0mTg2BsYVmg?origin=https://portswigger.net"></iframe>
+            </div>
+        </div>
         <h2 id="reviewing-unrequested-items">リクエストされていないアイテムのレビュー</h2>
         <p>
             パッシブクロールで検出したがまだリクエストされていない対象内のアイテムを、サイトマップでレビューします。これらのアイテムは、サイトマップに灰色で表示されます。ツリービューでアプリケーション全体を選択し、一覧ビューを"リクエスト時刻"カラムでソート(カラムヘッダをクリック)すると、リクエストされていないアイテムをがグループ化され素早く検索できます。これらのアイテムを手動でレビュー(例えば、各URLをブラウザにコピーするなど)して、さらに気になるコンテンツが含まれているかどうかを確認する必要があります。
@@ -82,14 +87,14 @@
         </ul>
         <h2 id="analyzing-the-attack-surface">攻撃経路の分析</h2>
         <p>
-            アプリケーションの全てのコンテンツと機能を十分にマッピングできたら、<a href="site-map/index.html">サイトマップ</a>のコンテンツ(および<a href="../proxy/history.html">Proxy履歴</a>)をレビューし、アプリケーションが公開している攻撃経路を理解します。次のサイトマップの機能でこのタスクをサポートできます:
+            アプリケーションのすべてのコンテンツと機能を十分にマッピングできたら、<a href="site-map/index.html">サイトマップ</a>のコンテンツ(および<a href="../proxy/history.html">Proxy履歴</a>)をレビューし、アプリケーションが公開している攻撃経路を理解します。次のサイトマップの機能でこのタスクをサポートできます:
         </p>
         <ul>
             <li>
-                サイトマップツリーのブランチを選択し<a href="../../functions/target-analyzer.html">対象の解析</a>機能で、全ての動的URLとパラメータを特定できます。
+                サイトマップツリーのブランチを選択し<a href="../../functions/target-analyzer.html">対象の解析</a>機能で、すべての動的URLとパラメータを特定できます。
             </li>
             <li>
-                <a href="site-map/index.html#site-map-display-filter">ディスプレイフィルター</a>とソート可能な<a href="site-map/index.html#target-information">一覧ビュー</a>を使用すると、複雑なサイトマップを体系的に処理し、様々な種類の気になるコンテンツがどこにあるのか理解できます。
+                <a href="site-map/index.html#site-map-display-filter">ディスプレイフィルター</a>とソート可能な<a href="site-map/index.html#target-information">一覧ビュー</a>を使用すると、複雑なサイトマップを体系的に処理し、さまざまな種類の気になるコンテンツがどこにあるのか理解できます。
             </li>
             <li>
                 用途の説明や後で戻ってきたときに気になるアイテムを特定しやすいように、色付けとコメントでアイテムに<a href="site-map/index.html#site-map-annotations">注釈</a>を付けられます。

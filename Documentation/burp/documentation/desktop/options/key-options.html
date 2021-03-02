@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/pssupportnav.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">オプション</a>
+        </li>
+        <li>
+            <a href="key-options.html">キー</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">プロフェッショナル</label>
+    <label class="label-edition is-community">コミュニティ</label>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>重要な設定オプション</h1>
+        <p>
+            Burpには、対象アプリケーションが必要とする方法で連携できるようにする、豊富な設定オプションがあります。このセクションでは、最も必要とされる可能性の高い、主要な設定オプションの概要を簡単に説明します。
+        </p>
+        <p>
+            HTTPメッセージの表示に使用するフォントや文字セット、Burp UI自身のフォントを設定できます。
+        </p>
+        <div class="section-small">
+            <img src="../images/options-key-display.png" alt="主要な表示設定" class="center-block">
+        </div>
+        <p>
+            <a href="../tools/target/scope.html">ターゲットスコープ</a>設定は、現在注目していて、攻撃をする意思があるアイテムをBurpに伝えます。テストの初期段階で設定すべきで、<a href="../tools/proxy/history.html">Proxy履歴</a>やTarget<a href="../tools/target/site-map/index.html">サイトマップ</a>に表示されるアイテム、Proxyがインターセプトするメッセージ、スキャンされるメッセージを制御できます。
+        </p>
+        <div class="section-small">
+            <img src="../images/options-key-scope.png" alt="主要なスコープ設定" class="center-block">
+        </div>
+        <p>
+            アプリケーションサーバがプラットフォームレベル(HTTP)認証を使用している場合、Burpが自動的に<a href="../options/connections.html#platform-authentication">認証</a>するよう設定します。
+        </p>
+        <div class="section-small">
+            <img src="../images/options-key-authentication.png" alt="主要な認証設定" class="center-block">
+        </div>
+        <p>
+            多くのアプリケーションには、セッション終了応答、リクエストトークン、状態が維持された多段階のプロセスのような、自動または手動テストを実行しづらくする機能があります。<a href="../options/sessions/index.html#session-handling-rules">セッションハンドリングルール</a>と<a href="../options/sessions/index.html#macros">マクロ</a>を組み合わせて、これらの状況にシームレスに対応できるよう<a href="../options/sessions/index.html">Burpを設定</a>できます。
+        </p>
+        <div class="section-small">
+            <img src="../images/options-key-session.png" alt="主要なセッションハンドリング設定" class="center-block">
+        </div>
+        <p>
+            指定した時間帯だけテストをするよう、決まった時間や間隔で<a href="../functions/task-scheduler.html">タスクをスケジュールする</a>ようBurpを設定できます。
+        </p>
+        <div class="section-small">
+            <img src="../images/options-key-schedule-task.png" alt="主要なスケジューリングタスク" class="center-block">
+        </div>
+    </div>
+</section>
+</body>
+</html>

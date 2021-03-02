@@ -10,7 +10,7 @@
 <section class="container ps-breadcrumbs">
     <ol>
         <li>
-            <a href="https://support.portswigger.net/">サポートセンター</a>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
         <li>
             <a href="../../index.html">ドキュメント</a>
@@ -34,7 +34,7 @@
     <div class="container main">
         <h1>URLマッチングルール</h1>
         <p>
-            URLマッチングルールは、一般的な<a href="../tools/target/scope.html">対象スコープ</a>、<a href="../scanning/live-scans.html">ライブスキャン</a>のような個別スコープ、<a href="../options/http.html#streaming-responses">ストリーミングレスポンス</a>を返すURL、<a href="../options/sessions/index.html#session-handling-rules">セッションハンドリングルール</a>のスコープなど、URLベースのスコープを定義する、Burp内の様々な場所で使用されます。
+            URLマッチングルールは、一般的な<a href="../tools/target/scope.html">対象スコープ</a>、<a href="../scanning/live-scans.html">ライブスキャン</a>のような個別スコープ、<a href="../options/http.html#streaming-responses">ストリーミングレスポンス</a>を返すURL、<a href="../options/sessions/index.html#session-handling-rules">セッションハンドリングルール</a>のスコープなど、URLベースのスコープを定義する、Burp内のさまざまな場所で使用されます。
         </p>
         <p>
             URLベースのスコープは、<a href="#normal-scope-control">標準</a>または<a href="#advanced-scope-control">高度</a>モードで設定できます。標準モードは、ほとんどの状況で良好に動作しますが、高度モードでは必要に応じてより強力で柔軟な設定が可能です。どちらのタイプのスコープ制御ルールも大文字小文字を区別しません。
@@ -48,19 +48,19 @@
         </p>
         <ul>
             <li>
-                <span class="InlineCode">http://example.com/path</span>
+                <code>http://example.com/path</code>
             </li>
             <li>
-                <span class="InlineCode">https://example.com/admin</span>
+                <code>https://example.com/admin</code>
             </li>
             <li>
-                <span class="InlineCode">example.com</span>
+                <code>example.com</code>
             </li>
             <li>
-                <span class="InlineCode">example.com/myapp/</span>
+                <code>example.com/myapp/</code>
             </li>
             <li>
-                <span class="InlineCode">http://example.com:8080/login</span>
+                <code>http://example.com:8080/login</code>
             </li>
         </ul>
         <p>
@@ -68,14 +68,14 @@
         </p>
         <h2 id="advanced-scope-control">高度スコープ制御</h2>
         <p>
-            高度スコープ制御は、標準スコープ制御よりも強力で柔軟に設定でき、単純なURLプレフィックスではなくURLマッチングルールを使用します。各URLマッチングルールは、マッチさせるURLの様々な要素を指定できます。URLをルールにマッチさせるには、ルールに指定された全ての要素にマッチする必要があります。次のアイテムを設定できます:
+            高度スコープ制御は、標準スコープ制御よりも強力で柔軟に設定でき、単純なURLプレフィックスではなくURLマッチングルールを使用します。各URLマッチングルールは、マッチさせるURLのさまざまな要素を指定できます。URLをルールにマッチさせるには、ルールに指定されたすべての要素にマッチする必要があります。次のアイテムを設定できます:
         </p>
         <ul>
             <li>
                 <strong>プロトコル</strong> - ルールがマッチするプロトコルを指定します。使用可能な選択肢は、HTTP、HTTPS、Anyです。
             </li>
             <li>
-                <strong>ホストまたはIPレンジ</strong> - ルールがマッチするホストを指定します。ホスト名にマッチする正規表現か、10.1.1.1/24や10.1.1-20.1-127など、様々な標準形式でIPレンジを入力できます。ホストフィールドを空白のままにすると、任意のホストのURLにマッチさせられます。
+                <strong>ホストまたはIPレンジ</strong> - ルールがマッチするホストを指定します。ホスト名にマッチする正規表現か、10.1.1.1/24や10.1.1-20.1-127など、さまざまな標準形式でIPレンジを入力できます。ホストフィールドを空白のままにすると、任意のホストのURLにマッチさせられます。
             </li>
             <li>
                 <strong>ポート</strong> - ルールがマッチするポートを指定します。1つ以上のポート番号にマッチする正規表現を入力できます。ポートフィールドを空白のままにすると、任意のポートのURLにマッチさせられます。

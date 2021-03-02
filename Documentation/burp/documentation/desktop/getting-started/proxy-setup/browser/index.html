@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/pssupportnav.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">入門</a>
+        </li>
+        <li>
+            <a href="../index.html">外部ブラウザで動作するようBurp Proxyを設定する</a>
+        </li>
+        <li>
+            <a href="index.html">ブラウザの設定</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">プロフェッショナル</label>
+    <label class="label-edition is-community">コミュニティ</label>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>Burpと連携するよう外部ブラウザを設定する</h1>
+        <div class="highlightedarea">
+            <p>
+                <strong>注: </strong>Burpを使用した手動テストに外部ブラウザを使用する場合にのみこれらの手順が必要です。必要に応じてBurpの<a href="../../../functions/embedded-browser.html">内蔵ブラウザ</a>が使用でき、これは既にBurp Proxyで動作するように事前設定されています。内蔵ブラウザにアクセスするには、"プロキシ" &gt; "インターセプト"タブに移動し、"ブラウザを開く"をクリックします。
+            </p>
+        </div>
+        <p>
+            プロキシリスナーの稼働を確認したら、それがHTTPプロキシサーバとして使用されるようにブラウザを設定する必要があります。それにはブラウザのプロキシ設定で、HTTPとHTTPS両方のプロトコルでアドレス(デフォルトは<code>127.0.0.1</code>)とポート(デフォルトは<code>8080</code>)を変更し、例外設定を空にします。これにより、すべてのHTTPおよびHTTPSトラフィックがBurpを通過するようになります。詳細な設定方法は、ブラウザとバージョンによって異なります。Burpで使用するブラウザに応じて、次の関連セクションを参照してください。
+        </p>
+        <ul class="link-list">
+            <li>
+                <a href="firefox.html">Burpと連携するようFirefoxを設定する</a>
+            </li>
+            <li>
+                <a href="chrome.html">Burpと連携するようChromeを設定する</a>
+            </li>
+            <li>
+                <a href="safari.html">Burpと連携するようSafariを設定する</a>
+            </li>
+            <li>
+                <a href="internet-explorer.html">Burpと連携するようInternet Explorerを設定する</a>
+            </li>
+        </ul>
+        <h2 id="check-your-browser-proxy-configuration">ブラウザのプロキシ設定の確認</h2>
+        <p>
+            ブラウザの設定ができたら、正しく動作しているかテストするために次の手順を実行する必要があります。次に説明する方法で何も起こらない場合は、ブラウザの設定に問題があります。この場合、<a href="../../../troubleshooting.html">トラブルシューティング</a>ページを参照してください。
+        </p>
+        <ol>
+            <li>
+                <a href="../check-listener.html">プロキシリスナーがアクティブであるか確認</a>し、選択したブラウザが設定済みか確認します。
+            </li>
+            <li>
+                Burpを実行している状態で設定したブラウザを開き、ブラウザでどこかHTTPのURL(まだHTTPSは使わないでください)にアクセスします。ブラウザがリクエストの完了を待っている状態、つまりページを読み込もうとしてスタックしているように見えるはずです。これは、ブラウザが送信しようとしているHTTPリクエストをBurpがインターセプトしたためです。
+            </li>
+            <li>
+                Burpで、"Proxy"タブに移動し、"インターセプト"サブタブを開きます。これらのタブが両方とも強調表示されるはずです。"インターセプト"タブで、メインパネルにインターセプトされたHTTPリクエストが表示されます。
+            </li>
+            <li>
+                "インターセプト有効"というボタンに注目してください。クリックすると"インターセプト無効"に変わり、Burpからリクエストが放出されます。
+            </li>
+            <li>
+                ブラウザに戻ります。これで、通常のブラウジング時と同じように、要求されたページが読み込まれ表示されます。
+            </li>
+        </ol>
+        <p>
+            上記のすべてができた場合、Burp Suiteで外部ブラウザを使用するための必須設定が完了しています。ただし現時点では、HTTPだけを使用するWebアプリケーションのみをテストできます。外部ブラウザを使用してHTTPS URLにアクセスしようとすると、接続がブロックされるでしょう。したがって、HTTPSを使用するアプリケーションをテストできるように、<a href="../certificate/index.html">BurpのCA証明書をインストールする</a>最後の追加手順を強く推奨します。
+        </p>
+    </div>
+</section>
+</body>
+</html>

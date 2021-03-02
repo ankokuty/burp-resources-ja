@@ -10,7 +10,7 @@
 <section class="container ps-breadcrumbs">
     <ol>
         <li>
-            <a href="https://support.portswigger.net/">サポートセンター</a>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
         <li>
             <a href="../../index.html">ドキュメント</a>
@@ -30,8 +30,13 @@
     <div class="container main">
         <h1>ウェブサイトのスキャン</h1>
         <p>
-            Burp Scannerは、Webサイトのコンテンツと脆弱性をスキャンする作業を自動化します。設定に応じてScannerは、<a href="../../scanner/crawling.html">アプリケーションをクロール</a>してコンテンツと機能を探索し、<a href="../../scanner/auditing.html">アプリケーションを診断</a>して脆弱性を発見します。
+            Burp Scannerは、Webサイトのコンテンツと脆弱性をスキャンする作業を自動化します。設定に応じてScannerは、<a href="../../scanner/crawling.html">アプリケーションをクロール</a>してコンテンツと機能を探索し、<a href="../../scanner/auditing.html">アプリケーションを診断</a>して脆弱性を発見します。デフォルトで、Burpの<a href="../functions/embedded-browser.html">内蔵ブラウザ</a>を使用して、<a href="browser-powered.html">ブラウザを利用したスキャン</a>による最大限の網羅性を確保します。<a href="scan-launcher.html#application-login-options">ユーザの認証情報</a>セットを提供すると、認証されたユーザのみがアクセスできるコンテンツを検出して診断ができるようになります。<a href="recorded-logins.html">完全なログイン手順</a>をインポートすると、Burp Scannerはシングルサインオンを含むより複雑なログインメカニズムも処理できます。
         </p>
+        <div class="container">
+            <div class="youtube-wrapper">
+                <iframe src="https://www.youtube.com/embed/VP9eQhUASYQ?origin=https://portswigger.net"></iframe>
+            </div>
+        </div>
         <ul class="link-list">
             <li>
                 <a href="../../scanner/index.html">Burp Scannerの仕組みについて詳細を参照する</a>
@@ -43,25 +48,28 @@
         </p>
         <ul>
             <li>
-                <strong>指定したURLからスキャン</strong>。1つ以上の指定したURL内のコンテンツをクロールし、必要に応じてクロールしたコンテンツを診断します。これを行うには、<a href="../dashboard/index.html">Burpダッシュボード</a>で、"新規スキャン"ボタンをクリックしてください。<a href="scan-launcher.html">スキャンランチャー</a>が開き、スキャンの詳細を設定できます。
+                <strong>指定したURLからスキャン</strong>。1つ以上の指定したURL内のコンテンツをクロールし、必要に応じてクロールしたコンテンツを診断します。これを行うには、<a href="../dashboard/index.html">Burpダッシュボード</a>で、"新規スキャン"ボタンをクリックしてください。<a href="scan-launcher.html">スキャンランチャ</a>が開き、スキャンの詳細を設定できます。
             </li>
             <li>
-                <strong>選択したアイテムをスキャン</strong>。特定のHTTPリクエストに、診断のみ(クロールなし)を実行できます。これを行うには、Burp内の任意の場所で1つ以上のリクエストを選択し、コンテキストメニューから、"スキャン"メニューを選択してください。<a href="scan-launcher.html">スキャンランチャー</a>が開き、スキャンの詳細を設定できます。
+                <strong>選択したアイテムをスキャン</strong>。特定のHTTPリクエストに、診断のみ(クロールなし)を実行できます。これを行うには、Burp内の任意の場所で1つ以上のリクエストを選択し、コンテキストメニューから、"スキャン"メニューを選択してください。<a href="scan-launcher.html">スキャンランチャ</a>が開き、スキャンの詳細を設定できます。
             </li>
             <li>
-                <strong>ライブスキャン</strong>。<a href="live-scans.html">ライブスキャン</a>を使用すると、<a href="../tools/proxy/index.html">Proxy</a>や<a href="../tools/repeater/index.html">Repeater</a>ツールなど、他のBurpツールが処理したリクエストに自動的にスキャンができます。どのリクエストを処理するか、コンテンツの探索か脆弱性の診断をするかどうかを正確に設定できます。これを行うには、<a href="../dashboard/index.html">Burpダッシュボードで</a>、"新規ライブタスク"ボタンをクリックしてください。<a href="live-scans.html">ライブスキャン</a>ランチャーが開き、タスクの詳細が設定できます。
+                <strong>ライブスキャン</strong>。<a href="live-scans.html">ライブスキャン</a>を使用すると、<a href="../tools/proxy/index.html">Proxy</a>や<a href="../tools/repeater/index.html">Repeater</a>ツールなど、他のBurpツールが処理したリクエストに自動的にスキャンができます。どのリクエストを処理するか、コンテンツの探索か脆弱性の診断をするかどうかを正確に設定できます。これを行うには、<a href="../dashboard/index.html">Burpダッシュボードで</a>、"新規ライブタスク"ボタンをクリックしてください。<a href="live-scans.html">ライブスキャン</a>ランチャが開き、タスクの詳細が設定できます。
+            </li>
+            <li>
+                <strong>インスタントスキャン</strong>。コンテキストメニューからインスタントアクティブまたはパッシブスキャンも起動できます。つまり、スキャンランチャを開かなくても、脆弱性をすばやく確認できます。リクエストを右クリックすると、これらのオプションにアクセスできます。または、インスタントスキャンを起動するホットキーも設定できます。
             </li>
         </ul>
         <h3 id="configuring-scans">スキャンの設定</h3>
         <p>
-            複数のスキャンを並行して起動でき、各スキャンには、スキャンの実行方法を正確に決定する個別の設定オプションがあります。設定には2つの重要な領域があります:
+            複数のスキャンを並行して起動でき、各スキャンには、スキャンの実行方法を正確に決定する個別の設定オプションがあります。設定には2つの重要なエリアがあります:
         </p>
         <ul>
             <li>
-                <strong>クロールオプション</strong>。これらのオプションは、最大リンク深度、スピードと網羅性によるクローラの最適化方法、クロール範囲の制限などの動作を制御します。<a href="crawl-options.html" class="chevron-after">続きを読む</a>
+                <a href="crawl-options.html"><strong>クロールオプション</strong></a>。これらのオプションは、最大リンク深度・スピードと網羅性によるクローラの最適化方法・クロール範囲の制限などの動作を制御します。また、<a href="browser-powered.html">ブラウザによるスキャン</a>や<a href="api-scanning.html">APIスキャン</a>など、Burp Scannerのさまざまな機能の一部を有効または無効化もできます。
             </li>
             <li>
-                <strong>診断オプション</strong>。これらのオプションは、挿入ポイントの処理や、使用する検出手法などの動作を制御します。軽量で純粋なパッシブ解析から、重厚な侵入型スキャンまで、実行される診断アクティビティのタイプを制御する上でこれらのオプションが非常に重要です。<a href="audit-options.html" class="chevron-after">続きを読む</a>
+                <a href="audit-options.html"><strong>診断オプション</strong></a>。これらのオプションは、挿入ポイントの処理や、使用する検出手法などの動作を制御します。これらのオプションは、軽量の完全に受動的なパッシブ分析から重量級の侵襲的スキャンまで、実行される監査アクティビティのタイプを制御する上で非常に重要です。
             </li>
         </ul>
         <h2 id="monitoring-scan-activity">スキャンアクティビティの監視</h2>
@@ -70,19 +78,40 @@
         </p>
         <ul>
             <li>
-                <a href="../dashboard/index.html">Burpダッシュボード</a>には各タスクの進捗状況が表示され、<a href="../dashboard/issue-activity.html">問題アクティビティログ</a>には全てのスキャンタスクによって報告された問題が表示されます。
+                <a href="../dashboard/index.html">Burpダッシュボード</a>には各タスクの進捗状況が表示され、<a href="../dashboard/issue-activity.html">問題アクティビティログ</a>にはすべてのスキャンタスクによって報告された問題が表示されます。
             </li>
             <li>
                 個々のスキャンの<a href="../dashboard/task-details.html">タスク詳細ウィンドウ</a>を開くと、そのスキャンのみの<a href="../dashboard/issue-activity.html">問題アクティビティログ</a>や、アプリケーションタスクの<a href="audit-items.html">診断アイテム</a>の詳細が表示できます。
             </li>
             <li>
-                <a href="../tools/target/site-map/index.html">Targetサイトマップ</a>には、発見された全てのコンテンツと問題が表示されます。
+                <a href="../tools/target/site-map/index.html">Targetサイトマップ</a>には、発見されたすべてのコンテンツと問題が表示されます。
             </li>
         </ul>
         <h2 id="reporting">レポート</h2>
         <p>
             Burp Scannerが発見した問題のHTML形式の<a href="reporting-results.html">レポート生成</a>ができます。他のツールへのインポートに適したXML形式でも、問題をエクスポートできます。
         </p>
+        <h4>追加情報</h4>
+        <p>
+            特定のトピックに関する追加情報は、以下のサポートページにあります:
+        </p>
+        <ul class="link-list">
+            <li>
+                <a href="../performance.html">パフォーマンス問題のトラブルシューティング</a>
+            </li>
+            <li>
+                <a href="https://portswigger.net/support/using-burp-to-manually-verify-scanner-issues">Burpを使用してスキャナの問題を手動で確認する</a>
+            </li>
+            <li>
+                <a href="https://portswigger.net/support/integrating-burp-suite-with-acunetix-vulnerability-scanner">Burp SuiteとAcunetix脆弱性スキャナーの統合</a>
+            </li>
+            <li>
+                <a href="https://portswigger.net/support/integrating-burp-suite-with-hp-webinspect">Burp SuiteとHP WebInspectの統合</a>
+            </li>
+            <li>
+                <a href="https://portswigger.net/support/integrating-burp-suite-with-threadfix">Burp SuiteとThreadFixの統合</a>
+            </li>
+        </ul>
     </div>
 </section>
 </body>

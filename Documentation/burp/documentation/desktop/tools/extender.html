@@ -10,7 +10,7 @@
 <section class="container ps-breadcrumbs">
     <ol>
         <li>
-            <a href="https://support.portswigger.net/">サポートセンター</a>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
         <li>
             <a href="../../index.html">ドキュメント</a>
@@ -37,7 +37,7 @@
             Burp Extenderにより、Burp拡張を使い、あなた自身またはサードパーティのコードによってBurpの機能を拡張できます。<a href="#loading-and-managing-extensions">拡張の読込と管理</a>、インストールした拡張の<a href="#extension-details">詳細表示</a>、<a href="#bapp-store">BApp Store</a>から拡張のインストール、<a href="#burp-extender-api">Burp Extender API</a>の閲覧、および拡張の処理方法に関する<a href="#extender-options">オプション</a>設定ができます。
         </p>
         <p>
-            Burp拡張は、<a href="proxy/history.html">Proxy履歴</a>、<a href="target/site-map/index.html">Targetサイトマップ</a>、<a href="target/site-map/index.html#issues-view">Scanner項目</a>のほか、HTTPリクエストとレスポンスの修正、UIのカスタマイズ、スキャナでのチェック項目の追加、実行時キー情報へのアクセスなど、様々な方法でBurpの動作をカスタマイズできます。
+            Burp拡張は、<a href="proxy/history.html">Proxy履歴</a>、<a href="target/site-map/index.html">Targetサイトマップ</a>、<a href="target/site-map/index.html#issues-view">Scanner項目</a>のほか、HTTPリクエストとレスポンスの修正、UIのカスタマイズ、スキャナでのチェック項目の追加、実行時キー情報へのアクセスなど、さまざまな方法でBurpの動作をカスタマイズできます。
         </p>
         <p>
             独自のBurp拡張を作成するためのヘルプは、<a href="https://portswigger.net/burp/extender">拡張に関するドキュメント</a>を参照してください。
@@ -107,7 +107,7 @@
         </p>
         <h2 id="burp-extender-api">Burp Extender API</h2>
         <p>
-            Burpの拡張の作成に使用できるAPIの詳細があります。リストには、実行しているBurpのバージョンで利用可能なAPIが表示されています。リストから表示したいインタフェースの名前を選択すると、インタフェースのコードが全て表示されます。
+            Burpの拡張の作成に使用できるAPIの詳細があります。リストには、実行しているBurpのバージョンで利用可能なAPIが表示されています。リストから表示したいインタフェースの名前を選択すると、インタフェースのコードがすべて表示されます。
         </p>
         <p>
             "インタフェースファイルを保存"と"Javadocファイルを保存"ボタンでこれらのファイルをローカルにコピーし、拡張の開発時に利用できます。
@@ -122,7 +122,7 @@
         </p>
         <ul>
             <li>
-                起動時に拡張を自動的に再読み込みするかどうか。<strong>注:</strong> この設定をしたままBurpをシャットダウンし、拡張を自動的にリロードせずにBurpを再起動したい場合は、コマンドラインフラグ<span class="InlineCode">--disable-extensions</span>を付けてBurpを起動してください。Burpは全ての拡張を自動的にリロードしなくなります。
+                起動時に拡張を自動的に再読み込みするかどうか。<strong>注:</strong> この設定をしたままBurpをシャットダウンし、拡張を自動的にリロードせずにBurpを再起動したい場合は、コマンドラインフラグ<code>--disable-extensions</code>を付けてBurpを起動してください。Burpはすべての拡張を自動的にリロードしなくなります。
             </li>
             <li>
                 インストールされたBAppを起動時に自動アップデートするかどうか。
@@ -141,24 +141,20 @@
                 <strong>JythonのスタンドアロンJARファイルの場所</strong> - Jythonをダウンロードした場所。Jythonのスタンドアロンバージョンをダウンロードする必要があります。
             </li>
             <li>
-                <strong>モジュールを読み込むフォルダ</strong> - この設定はオプションで、拡張が必要とするモジュールをPythonインタープリターが探してロードするフォルダを指定します。設定された場合、Pythonの<span class="InlineCode">sys.path</span>変数を、指定した場所に更新します。このオプションは、独自のPythonライブラリを作り、複数の拡張から利用する場合に便利です。
+                <strong>モジュールを読み込むフォルダ</strong> - この設定はオプションで、拡張が必要とするモジュールをPythonインタープリターが探してロードするフォルダを指定します。設定された場合、Pythonの<code>sys.path</code>変数を、指定した場所に更新します。このオプションは、独自のPythonライブラリを作り、複数の拡張から利用する場合に便利です。
             </li>
         </ul>
         <p>
             <strong>注:</strong> JythonはJavaクラスを動的に生成するため、異なるPython拡張をいくつもロードしたり、何度もPython拡張のアンロードとロードを行うと、メモリ問題が発生する場合があります。この場合、次のようなエラーが表示されます:
         </p>
-        <p class="InlineCode">
-            
-            java.lang.OutOfMemoryError: PermGen space
-        
+        <p>
+            <code> java.lang.OutOfMemoryError: PermGen space </code>
         </p>
         <p>
-            Burpを起動するときのコマンドラインオプションに<span class="InlineCode">-XX:MaxPermSize</span>を追加し、より多くの PermGenストレージが割り当てられるようJavaを設定すると、この問題を回避できるかもしれません。例:
+            Burpを起動するときのコマンドラインオプションに<code>-XX:MaxPermSize</code>を追加し、より多くの PermGenストレージが割り当てられるようJavaを設定すると、この問題を回避できるかもしれません。例:
         </p>
-        <p class="InlineCode">
-            
-            java -XX:MaxPermSize=1G -jar burp.jar
-        
+        <p>
+            <code> java -XX:MaxPermSize=1G -jar burp.jar </code>
         </p>
         <h3 id="ruby-environment">Ruby環境</h3>
         <p>

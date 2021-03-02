@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/pssupportnav.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">入門</a>
+        </li>
+        <li>
+            <a href="../index.html">外部ブラウザで動作するようBurp Proxyを設定する</a>
+        </li>
+        <li>
+            <a href="index.html">BurpのCA証明書のインストール</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">プロフェッショナル</label>
+    <label class="label-edition is-community">コミュニティ</label>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>BurpのCA証明書のインストール</h1>
+        <div class="highlightedarea">
+            <p>
+                <strong>注: </strong>Burpを使用した手動テストに外部ブラウザを使用する場合にのみこれらの手順が必要です。必要に応じてBurpの<a href="../../../functions/embedded-browser.html">内蔵ブラウザ</a>が使用でき、これは既にBurp Proxyで動作するように事前設定されています。内蔵ブラウザにアクセスするには、"プロキシ" &gt; "インターセプト"タブに移動し、"ブラウザを開く"をクリックします。
+            </p>
+        </div>
+        <p>
+            BurpのCA証明書をインストールする手順は、使用しているブラウザによって異なります。選択したブラウザに証明書をインストールする方法の詳細は、以下のリンクを選択してください。
+        </p>
+        <ul class="link-list">
+            <li>
+                <a href="firefox.html">FirefoxへのBurpのCA証明書のインストール</a>
+            </li>
+            <li>
+                <a href="chrome.html">ChromeへのBurpのCA証明書のインストール</a>
+            </li>
+            <li>
+                <a href="safari.html">SafariへのBurpのCA証明書のインストール</a>
+            </li>
+            <li>
+                <a href="internet-explorer.html">Internet ExplorerへのBurpのCA証明書のインストール</a>
+            </li>
+        </ul>
+        <p>
+            これが済んだら、すべてのブラウザウィンドウを閉じ、新たにブラウザセッションを開き、どこかHTTPSのURLにアクセスします。ブラウザはセキュリティ警告を表示せず、通常通りページが読み込まれるはずです(もし"Proxy" &gt; "インターセプト"タブでインターセプトを有効にしていれば、再度無効にする必要があります)。
+        </p>
+        <h2 id="installing-burp-s-ca-certificate-on-a-mobile-device">モバイルデバイスへのBurpのCA証明書のインストール</h2>
+        <p>
+            さらに、モバイルデバイスへのBurpのCA証明書のインストールもできます。まず、<a href="../../../../../../support/burp-and-mobile-devices.html">モバイルデバイスがBurp Suiteで動作するように設定</a>されているか確認してください。次に、証明書のインストールについて、以下のリンクを使用してください:
+        </p>
+        <ul class="link-list">
+            <li>
+                <a href="../../../../../../support/installing-burp-suites-ca-certificate-in-an-ios-device.html">iOSデバイス</a>
+            </li>
+            <li>
+                <a href="../../../../../../support/installing-burp-suites-ca-certificate-in-an-android-device.html">Androidデバイス</a>
+            </li>
+            <li>
+                <a href="../../../../../../support/installing-burp-suites-ca-certificate-in-a-windows-mobile-device.html">Windowsデバイス</a>
+            </li>
+        </ul>
+        <h2 id="why-do-i-need-to-install-burp-s-ca-certificate">なぜBurpのCA証明書をインストールする必要があるのか？</h2>
+        <p>
+            TLSの重要な機能の1つは、ブラウザが通信するWebサーバの身元を認証することです。この認証プロセスは、例えば、偽のWebサイトが正規のウェブサイトになりすますのを防ぐのに役立ちます。また中間者攻撃から保護するために、送信されたデータを暗号化し、整合性チェックを実装します。ブラウザと対象Webサーバ間のトラフィックをBurpがインターセプトするために、このTLS接続に割り込む必要があります。その結果、Burpを実行しながらHTTPS URLにアクセスしようとすると、本物のWebサーバと直接通信していないことをブラウザが検出し、セキュリティ警告が表示されます。
+        </p>
+        <p>
+            この問題を防ぐために、Burpは独自の認証局(CA)によって署名された、ホストごとに固有のTLS証明書を生成します。このCA証明書は、Burpを初めて起動したときに生成され、ローカルに保存されます。HTTPS WebサイトでBurp Proxyを最も効果的に使用するには、ブラウザのトラストストアに信頼されたルートとしてこの証明書をインストールする必要があります。次に、BurpはこのCA証明書を使用して、アクセスするホストごとにTLS証明書を作成および署名し、通常どおりHTTPS URLを参照できるようにします。その後は他のHTTPメッセージと同様に、HTTPSで送信されたリクエストやレスポンスの表示や編集ができます。
+        </p>
+        <p>
+            厳密にはこの手順は、特に非HTTPS URLのみを使用したい場合は必須ではありませんが、この手順を完了しておくことを推奨します。これを行う必要があるのは1回だけで、外部ブラウザを使用しているときにBurp Suiteを最大限活用するために必要です。
+        </p>
+        <div class="highlightedarea">
+            <p>
+                <strong>注:</strong> 信頼するルート証明書にインストールすると、その証明書の秘密鍵を持っている攻撃者は、あなたがプロキシを使用していない場合でも、検知されることなくTLS接続に対して中間者攻撃が実行できます。この脅威から保護するために、Burpは各インストールごとに一意なCA証明書を生成し、この証明書に対する秘密鍵をコンピュータ内の、ユーザが指定した場所に保存します。信頼されていない人がコンピュータのデータを読める場合は、BurpのCA証明書をインストールすべきではありません。
+            </p>
+        </div>
+    </div>
+</section>
+</body>
+</html>

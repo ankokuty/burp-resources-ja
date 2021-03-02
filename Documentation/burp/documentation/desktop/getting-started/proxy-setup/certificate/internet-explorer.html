@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/pssupportnav.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">入門</a>
+        </li>
+        <li>
+            <a href="../index.html">外部ブラウザで動作するようBurp Proxyを設定する</a>
+        </li>
+        <li>
+            <a href="index.html">BurpのCA証明書のインストール</a>
+        </li>
+        <li>
+            <a href="internet-explorer.html">Internet Explorer</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">プロフェッショナル</label>
+    <label class="label-edition is-community">コミュニティ</label>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>Internet ExplorerへのBurpのCA証明書のインストール</h1>
+        <p>
+            BurpのCA証明書をインストールする前に、<a href="../check-listener.html">プロキシリスナーが動作</a>しており、<a href="../browser/index.html">Burpが使われるようブラウザの設定</a>ができているか確認します。
+        </p>
+        <div class="highlightedarea">
+            <p>
+                <strong>注:</strong> 以前、Burpが生成した別のCA証明書をインストールしている場合は、新しいものをインストールする前に<a href="#removing-burp-s-ca-certificate-from-internet-explorer">それを削除する</a>必要があります。
+            </p>
+        </div>
+        <p>
+            Internet ExplorerにBurpのCA証明書をインストールするには、次の手順に従います:
+        </p>
+        <p>
+            Internet Explorerアイコンを右クリックし、"管理者として実行"を選択します。
+        </p>
+        <div class="section-small">
+            <img src="../../../images/support/InstallingandConfiguring_InstallingBurpsCACertificate_IE_.jpg" alt="管理者としてIEを実行" class="center-block">
+        </div>
+        <p>
+            Burpを実行している状態で、Internet Explorerで<code>http://burpsuite</code>にアクセスします。CA証明書をダウンロードするためのリンクがある比較的わかりやすいWebページが表示されるはずです。表示されない場合は、<a href="../../proxy-troubleshooting.html">プロキシのトラブルシューティング</a>ページを参照してください。何が悪かったかによっては、自動的にそこに遷移するかもしれません。
+        </p>
+        <p>
+            "CA Certificate"をクリックして、独自のBurp CA証明書をダウンロードします。保存する場所をメモしておいてください。
+        </p>
+        <div class="section-small">
+            <img src="../../../images/ca-cert-burpsuite-page-generic.png" alt="IEでCA証明書をダウンロード" class="center-block">
+        </div>
+        <p>
+            ダウンロードしたファイルを開きます。"証明書"ダイアログが開きます。"証明書のインストール"をクリックします。"証明書のインポート ウィザード"ダイアログで、"次へ"をクリックします。"証明書をすべて次のストアに配置する"を選択し、"参照"をクリックします。
+        </p>
+        <div class="section-small">
+            <img src="../../../images/support/InstallingandConfiguring_InstallingBurpsCACertificate_IE_3.jpg" alt="IEでCA証明書をインストール" class="center-block">
+        </div>
+        <p>
+            "証明書ストアの選択"ダイアログで、"信頼されたルート証明機関"を選択し、"OK"をクリックします。
+        </p>
+        <p>
+            "次へ"、"完了"の順にクリックします。すべてのダイアログを閉じて、Internet Explorerを再起動します。Burpを実行したまま、HTTPSのURLにアクセスしてみてください。すべて正常に動作していれば、セキュリティ警告なしでページを参照できるはずです。
+        </p>
+        <div class="section-small">
+            <img src="../../../images/support/InstallingandConfiguring_InstallingBurpsCACertificate_IE_4.jpg" alt="IEで証明書ストアの選択" class="center-block">
+        </div>
+        <h2 id="removing-burp-s-ca-certificate-from-internet-explorer">Internet ExplorerからBurpのCA証明書を削除</h2>
+        <p>
+            BurpのCA証明書をInternet Explorerから削除するには:
+        </p>
+        <ol>
+            <li>
+                Internet Explorerアイコンを右クリックし、"管理者として実行"を選択します。
+            </li>
+            <li>
+                "インターネットオプション"を開き、"コンテンツ"タブで"証明書"をクリックします。
+            </li>
+            <li>
+                "信頼されたルート証明機関"タブで、"PortSwigger CA"を選択し、"削除"をクリックします。
+            </li>
+            <li>
+                プロンプトが表示されるたびに"はい"を選択し、Internet Explorerを再起動します。
+            </li>
+        </ol>
+    </div>
+</section>
+</body>
+</html>

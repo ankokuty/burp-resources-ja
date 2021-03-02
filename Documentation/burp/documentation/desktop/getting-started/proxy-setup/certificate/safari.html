@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/pssupportnav.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">入門</a>
+        </li>
+        <li>
+            <a href="../index.html">外部ブラウザで動作するようBurp Proxyを設定する</a>
+        </li>
+        <li>
+            <a href="index.html">BurpのCA証明書のインストール</a>
+        </li>
+        <li>
+            <a href="safari.html">Safari</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">プロフェッショナル</label>
+    <label class="label-edition is-community">コミュニティ</label>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>SafariへのBurpのCA証明書のインストール</h1>
+        <p>
+            BurpのCA証明書をインストールする前に、<a href="../check-listener.html">プロキシリスナーが動作</a>しており、<a href="../browser/index.html">Burpが使われるようブラウザの設定</a>ができているか確認します。
+        </p>
+        <div class="highlightedarea">
+            <p>
+                <strong>注:</strong> 以前、Burpが生成した別のCA証明書をインストールしている場合は、新しいものをインストールする前に<a href="#removing-burp-s-ca-certificate-from-safari">それを削除する</a>必要があります。
+            </p>
+        </div>
+        <p>
+            SafariにBurpのCA証明書をインストールするには、次の手順に従います:
+        </p>
+        <p>
+            Burpを実行している状態で、Safariで<code>http://burpsuite</code>にアクセスします。"Welcome to Burp Suite Professional"というWebページが表示されるはずです。表示されない場合は、<a href="../../proxy-troubleshooting.html">プロキシのトラブルシューティング</a>ページを参照してください。何が悪かったかによっては、自動的にそこに遷移するかもしれません。
+        </p>
+        <p>
+            ページの右上隅にある"CA Certificate"をクリックして、独自のBurp CA証明書をダウンロードします。保存する場所をメモしておいてください。
+        </p>
+        <div class="section-small">
+            <img src="../../../images/ca-cert-burpsuite-page-generic.png" alt="SafariでCA証明書をダウンロード" class="center-block">
+        </div>
+        <p>
+            MacOSで"キーチェーンアクセス"アプリケーションを開き、"証明書"フォルダに移動します。
+        </p>
+        <p>
+            ダウンロードした証明書をドラッグアンドドロップして、証明書リストにコピーします。
+        </p>
+        <div class="section-small">
+            <img src="../../../images/support/InstallingandConfiguring_InstallingBurpsCACertificate_Safari_.2.jpg" alt="Safariの証明書をキーチェーンにコピー" class="center-block">
+        </div>
+        <p>
+            "キーチェーンアクセス"で、"PortSwigger CA"のエントリをダブルクリックします。開いたダイアログで、"信頼"セクションを展開し、"常に信頼する"オプションを選択します。必要に応じてパスワードを入力してください。
+        </p>
+        <p>
+            Safariを再起動します。Burpを実行したまま、HTTPSのURLにアクセスしてみてください。すべて正常に動作していれば、セキュリティ警告なしでページを参照できるはずです。
+        </p>
+        <div class="section-small">
+            <img src="../../../images/support/InstallingandConfiguring_InstallingBurpsCACertificate_Safari_3.jpg" alt="Safariで信頼設定の編集" class="center-block">
+        </div>
+        <h2 id="removing-burp-s-ca-certificate-from-safari">SafariからBurpのCA証明書を削除</h2>
+        <p>
+            SafariからBurpのCA証明書を削除するには:
+        </p>
+        <ol>
+            <li>
+                "キーチェーンアクセス"アプリケーションを開きます。
+            </li>
+            <li>
+                左側のサイドバーで、"ログイン"を選択します。
+            </li>
+            <li>
+                アイテムのリストから、"PortSwigger CA"のエントリを見つけて右クリックします。
+            </li>
+            <li>
+                コンテキストメニューから"PortSwigger CAの削除"を選択し、Safariを再起動します。
+            </li>
+        </ol>
+    </div>
+</section>
+</body>
+</html>

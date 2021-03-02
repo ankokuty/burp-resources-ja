@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/pssupportnav.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">ウェブサイトのスキャン</a>
+        </li>
+        <li>
+            <a href="browser-powered.html">ブラウザを利用したスキャン</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">プロフェッショナル</label>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>ブラウザを利用したスキャン</h1>
+        <p>
+            ブラウザを利用したスキャンは、Burp Scannerの比類のない機能を、最新のWebサイトやWebアプリケーション上でフルに発揮する非常に貴重な機能です。ブラウザによるスキャンが有効になっている場合、Burpは<a href="../functions/embedded-browser.html">内蔵ブラウザ</a>を利用して、スキャンのクロールフェーズと監査フェーズの両方ですべてのナビゲーションを実行します。このようにターゲットをナビゲートすることで、Burp Scannerは、最新のブラウザで可能なクライアントサイドのテクノロジーを正確に処理できます。これにより、従来のクローラエンジンと比較してカバー率が飛躍的に向上する可能性を秘めています。
+        </p>
+        <p>
+            多くの最新のウェブサイトで真に包括的な自動テストを実行するためには、ブラウザを使ったスキャニングがほぼ必須です。たとえば、一部のWebサイトでは、JavaScriptを使用して動的に生成されるナビゲーションUIがあります。これは、生のHTMLが存在しないことを意味します。この場合、以前のクローラエンジンはコンテンツ全体をレンダリングできず、結果として重要な脆弱性を見逃す可能性があります。しかし、内蔵ブラウザを使用してクロールする場合、Burp Scannerはページを読み込み、UIの構築に必要なスクリプトを実行し、その後は通常どおりクロールを継続できます。
+        </p>
+        <p>
+            ブラウザを利用したスキャンでは、WebサイトがJavaScriptイベントハンドラを使用し、その場でリクエストを変更するケースにも対応できます。内蔵ブラウザを使用することにより、Burp Scannerは関連するイベントをトリガーし、対応するスクリプトを実行して、必要に応じてリクエストを変更できます。
+        </p>
+        <p>
+            また、ブラウザを利用したスキャンを有効にすると、内蔵ブラウザに依存する他のいくつかの新機能も利用できます。最も重要なのは、Burp Scannerがシングルサインオンを含むより複雑なログインメカニズムを正常に処理できるように、<a href="recorded-logins.html">完全なログイン手順</a>を記録してアップロードできることです。
+        </p>
+        <h2 id="how-to-enable-browser-powered-scanning">ブラウザを利用したスキャンを有効にする方法</h2>
+        <p>
+            多くのユーザは、ブラウザを利用したスキャンを有効にするために何もする必要はありません。Burpを起動すると、マシンスペックが自動的にチェックされます。システム要件を満たしていると思われる場合、すべてのスキャンはデフォルトで内蔵ブラウザを使用します。それ以外の場合、スキャンは以前のクローラエンジンに戻ります。
+        </p>
+        <p>
+            必要に応じて、ブラウザを利用したスキャンを有効または無効にするよう手動でスキャン設定を変更できます。このオプションは、"クロール" &gt; "その他" &gt; "<a href="../scanning/crawl-options.html#embedded-browser-options">内蔵ブラウザオプション</a>"にあります。
+        </p>
+        <h2 id="system-requirements-for-browser-powered-scanning">ブラウザを利用したスキャンのシステム要件</h2>
+        <p>
+            ブラウザを利用したスキャンでは、通常のスキャンよりもシステムリソースにわずかに多くの負荷がかかります。このため、少なくとも2つのCPUコアと8GBのRAMを搭載したマシンの使用を推奨します。
+        </p>
+        <h2 id="browser-powered-scanning-on-linux">Linuxでのブラウザを利用したスキャン</h2>
+        <p>
+            予防措置としてBurpの内蔵ブラウザは、デフォルトでサンドボックス化されています。ただし、Linuxで<code>root</code>としてで実行する場合、最初はブラウザを利用したスキャンを起動できない場合があります。
+        </p>
+        <p>
+            問題が発生した場合は、"ヘルプ"メニューから、"内蔵ブラウザヘルスチェック"ツールを開き、これが原因かどうかを確認してください。これが原因の場合、サンドボックスなしで内蔵ブラウザを実行もできます。このオプションは、"プロジェクトオプション" &gt; "その他"&gt; "内蔵ブラウザオプション"にあります。その前に、セキュリティへの影響を認識しているか確認してください。サンドボックスなしで敵対的なWebサイトをスキャンすると、ローカルシステムが危険にさらされるリスクが高まります。
+        </p>
+    </div>
+</section>
+</body>
+</html>

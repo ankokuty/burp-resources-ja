@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/pssupportnav.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">入門</a>
+        </li>
+        <li>
+            <a href="installing-burp.html">Burp Suiteのインストール</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">プロフェッショナル</label>
+    <label class="label-edition is-community">コミュニティ</label>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>Burp Suiteのダウンロードとインストール</h1>
+        <p>
+            Burp Suiteをダウンロードする手順、Burp SuiteプロフェッショナルとBurp Suiteコミュニティ版のどちらをインストールするかによって若干異なります。
+        </p>
+        <h2 id="downloading-burp-suite-professional">Burp Suiteプロフェッショナル版のダウンロード</h2>
+        <p>
+            Burp Suiteの任意のバージョンのインストーラを、<a href="https://portswigger.net/burp/releases">リリース</a>ページからダウンロードできます。ログインは不要です。これは、すでにライセンスキーを持っている場合に便利です。
+        </p>
+        <p>
+            ライセンスキーを持っていない場合は、最初に<a href="../../../pro/index.html">無料トライアルへの登録またはライセンスの購入</a>を推奨します。アカウントを取得したら、ライセンスキーと、必要なプラットフォーム(Windows、MacOS、Linux)用の最新バージョンのBurp Suiteの両方を、<a href="https://portswigger.net/users/youraccount">あなたのアカウントページ</a>からダウンロードできます。
+        </p>
+        <p>
+            いずれかのネイティブプラットフォームのインストーラを使用する代わりに、JARファイルとしてダウンロードもでき、<a href="launching/command-line.html">コマンドラインから直接起動</a>できます。
+        </p>
+        <h2 id="downloading-burp-suite-community-edition">Burp Suiteコミュニティ版のダウンロード</h2>
+        <p>
+            <a href="https://portswigger.net/burp/communitydownload">Burp Suiteコミュニティ版のダウンロード</a>ページで、無料のBurp Suiteコミュニティ版がダウンロードできます。その後、BurpSuiteのインストールに進めます。
+        </p>
+        <h2 id="installing-burp-suite">Burp Suiteのインストール</h2>
+        <p>
+            Burp Suiteをインストールするには、インストーラを実行し、インストールウィザードでお好みのオプションを選択するだけです。このプロセスは、比較的自明なものでしょう。
+        </p>
+        <h3 id="burp-suite-system-requirements">Burp Suiteのシステム要件</h3>
+        <p>
+            Burp Suiteプロフェッショナルを最大限に活用するには、8GB以上のメモリと2つのCPUコアを搭載したマシンの使用を推奨します。大量の作業を実行している場合、または大規模や複雑なアプリケーションをテストしている場合には、これよりも多くのメモリが必要になる場合があります。使用しているコンピューターが適切かどうかわからない場合は、まずBurp Suiteコミュニティ版をテストしてみて、正しく機能するかどうかの確認を推奨します。
+        </p>
+        <h3 id="error-running-the-installer-on-macos">MacOSでインストーラ実行中のエラー</h3>
+        <p>
+            MacOSでインストーラを実行しようとすると、"Appleでソフトウェアが悪質なソフトウェアであることを確認できないため、インストーラを開けません"というエラーメッセージが表示される場合があります。この警告を回避するには、インストーラを信頼して実行するかどうか、手動で確認する必要があります。
+        </p>
+        <ol>
+            <li>
+                エラーメッセージのポップアップを閉じます。
+            </li>
+            <li>
+                MacOSで、"システム環境設定" &gt; "セキュリティとプライバシー"に移動します。
+            </li>
+            <li>
+                ダイアログの下部に、Burp Suiteインストーラがブロックされたことを示すメッセージが表示されます。その横にある"とにかく開く"をクリックします。
+            </li>
+            <li>
+                最初のエラーメッセージが再びポップアップ表示されますが、今回は警告にもかかわらずインストーラを実行する"開く"ボタンがクリックできるようになります。
+            </li>
+        </ol>
+    </div>
+</section>
+</body>
+</html>
