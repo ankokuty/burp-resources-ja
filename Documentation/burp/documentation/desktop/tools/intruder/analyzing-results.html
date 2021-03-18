@@ -42,19 +42,19 @@
             Burp Intruder攻撃を開始すると、新しい攻撃ウィンドウが開き、攻撃が開始します。結果の解析や、後で深掘りするアイテムの特定を補助するさまざまな機能があります。攻撃すると、結果タブに一覧がある新しいウィンドウが開きます。結果一覧には生成された各リクエストごとにエントリがあり、使われたペイロードなど各種キーの詳細・HTTPステータスコード・レスポンス長などが表示されます。一覧で任意のアイテムを選択すると、完全なリクエストとレスポンスが表示できます。
         </p>
         <div class="section-small">
-            <img src="../../images/intruder-results.png" alt="Intruder攻撃結果" class="center-block">
+            <img src="../../images/intruder-results-940.png" alt="Intruder攻撃結果" class="center-block">
         </div>
         <p>
             列見出しをクリックすると一覧を並べ替えられ、フィルターバーを使用して一覧のコンテンツのフィルターもできます。これらの機能は、Proxy履歴と同じように動作します。
         </p>
         <div class="section-small">
-            <img src="../../images/intruder-results-sort.png" alt="Intruder結果テーブルのソート" class="center-block">
+            <img src="../../images/intruder-results-sort-940.png" alt="Intruder結果テーブルのソート" class="center-block">
         </div>
         <p>
             コンテキストメニューを使用して、他の操作の実行やテストワークフローとの統合します。
         </p>
         <div class="section-small">
-            <img src="../../images/intruder-results-repeater.png" alt="Intruderコンテキストメニュー" class="center-block">
+            <img src="../../images/intruder-results-repeater-940.png" alt="Intruderコンテキストメニュー" class="center-block">
         </div>
         <p>
             攻撃ウィンドウには、この攻撃で使われた設定を表示する別のタブがあります。攻撃が開始された後でも、この設定のほとんどを変更できます。
@@ -66,37 +66,37 @@
             これでリスト内の各文字列に一致するレスポンスを検索し、マッチしたアイテムにフラグが立つようになります。デフォルトで、ファジングに便利ないくつかの一般的なエラー文字列が一覧に表示されますが、希望に応じて独自の文字列を設定できます。
         </p>
         <div class="section-small">
-            <img src="../../images/intruder-results-match.png" alt="Intruderのgrep matchルール" class="center-block">
+            <img src="../../images/intruder-results-match-940.png" alt="Intruderのgrep matchルール" class="center-block">
         </div>
         <p>
             結果タブに戻り、リストのアイテムごとに列が追加され、各レスポンスでマッチする文字列が見つかったかどうか示すチェックボックスがあることを確認します。運が良ければ、攻撃によって一部のレスポンスでエラーメッセージが発生するかもしれません。単純なファジングでも、バグの存在を示している可能性があります。レスポンスに異なるキーワードが存在するかどうかの比較は、ブルートフォース攻撃やユーザ名の列挙などにも役立ちます。
         </p>
         <div class="section-small">
-            <img src="../../images/intruder-results-match-columns.png" alt="Grep match結果" class="center-block">
+            <img src="../../images/intruder-results-match-columns-940.png" alt="Grep match結果" class="center-block">
         </div>
         <p>
             それでは、一覧内の任意のアイテムを選択し、そのアイテムのレスポンス見てください。レスポンスから気になる文字列(ページタイトルまたはエラーメッセージなど)を探します。一覧内のアイテムを右クリックし、コンテキストメニューから"レスポンスから抽出grepを定義"を選択します。
         </p>
         <div class="section-small">
-            <img src="../../images/intruder-results-extract.png" alt="レスポンスから抽出grepを定義" class="center-block">
+            <img src="../../images/intruder-results-extract-940.png" alt="レスポンスから抽出grepを定義" class="center-block">
         </div>
         <p>
             ダイアログボックスで、レスポンス内の気になる文字列を選択し、"OK"をクリックします。
         </p>
         <div class="section-small">
-            <img src="../../images/intruder-results-extract-select.png" alt="選択の確認" class="center-block">
+            <img src="../../images/intruder-results-extract-select-940.png" alt="選択の確認" class="center-block">
         </div>
         <p>
             各レスポンスからこの部分のテキストを抽出した新しい列(これは各ケースで異なる場合があります)が結果一覧に出現します。この機能で、何千もの大規模な攻撃のレスポンスの中から、気になるデータを検索できます。攻撃前または攻撃中に、オプションタブで"抽出grep"アイテムを設定できることを覚えておいてください。
         </p>
         <div class="section-small">
-            <img src="../../images/intruder-results-extract-column.png" alt="抽出grep結果" class="center-block">
+            <img src="../../images/intruder-results-extract-column-940.png" alt="抽出grep結果" class="center-block">
         </div>
         <p>
             結果一覧または攻撃全体を保存するには、結果ウィンドウで"保存"メニューを使います。他のツールまたはスプレッドシートプログラムに、結果一覧を読み込めます。Burp UIメインのIntruderメニューから、保存した攻撃を再読み込みできます。
         </p>
         <div class="section-small">
-            <img src="../../images/intruder-results-save.png" alt="結果テーブルの保存" class="center-block">
+            <img src="../../images/intruder-results-save-940.png" alt="結果テーブルの保存" class="center-block">
         </div>
     </div>
 </section>

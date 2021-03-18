@@ -121,7 +121,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <hr>
 <pre>public interface <span class="typeNameLabel">IBurpExtenderCallbacks</span></pre>
-<div class="block">拡張がBurp内で様々なアクションを実行する際に使用する、コールバックメソッドのセットを拡張に渡すために、Burp Suiteによって使われます。拡張が読み込まれると、Burpはその<code>registerExtenderCallbacks()</code>メソッドを呼び出し、<code>IBurpExtenderCallbacks</code>インタフェースのインスタンスを渡します。拡張は、Burpの機能を拡張するために必要な、このインタフェースのメソッドを呼び出せます。</div>
+<div class="block">拡張がBurp内でさまざまなアクションを実行する際に使用する、コールバックメソッドのセットを拡張に渡すために、Burp Suiteによって使われます。拡張が読み込まれると、Burpはその<code>registerExtenderCallbacks()</code>メソッドを呼び出し、<code>IBurpExtenderCallbacks</code>インタフェースのインスタンスを渡します。拡張は、Burpの機能を拡張するために必要な、このインタフェースのメソッドを呼び出せます。</div>
 </li>
 </ul>
 </div>
@@ -231,7 +231,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </a>
 <h3>メソッドのサマリー</h3>
 <table class="memberSummary">
-<caption><span id="t0" class="activeTableTab"><span>全てのメソッド</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">インスタンスメソッド</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">抽象メソッド</a></span><span class="tabEnd">&nbsp;</span></span><span id="t6" class="tableTab"><span><a href="javascript:show(32);">非推奨メソッド</a></span><span class="tabEnd">&nbsp;</span></span></caption>
+<caption><span id="t0" class="activeTableTab"><span>すべてのメソッド</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">インスタンスメソッド</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">抽象メソッド</a></span><span class="tabEnd">&nbsp;</span></span><span id="t6" class="tableTab"><span><a href="javascript:show(32);">非推奨メソッド</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">修飾子と型</th>
 <th class="colSecond" scope="col">メソッド</th>
@@ -450,7 +450,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <td class="colFirst"><code><a href="IHttpRequestResponse.html" title="burp 内のインタフェース">IHttpRequestResponse</a>[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getProxyHistory()">getProxyHistory</a></span>()</code></th>
 <td class="colLast">
-<div class="block">Proxy履歴の全てにアイテムの詳細を返します。</div>
+<div class="block">Proxy履歴のすべてにアイテムの詳細を返します。</div>
 </td>
 </tr>
 <tr id="i28" class="altColor">
@@ -464,7 +464,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <td class="colFirst"><code><a href="IScanIssue.html" title="burp 内のインタフェース">IScanIssue</a>[]</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getScanIssues(java.lang.String)">getScanIssues</a></span>​(java.lang.String&nbsp;urlPrefix)</code></th>
 <td class="colLast">
-<div class="block">指定されたリテラル プレフィックスに一致するURLのスキャンで見つかった全ての問題を返します。</div>
+<div class="block">指定されたリテラル プレフィックスに一致するURLのスキャンで見つかったすべての問題を返します。</div>
 </td>
 </tr>
 <tr id="i30" class="altColor">
@@ -1133,7 +1133,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="block">多数の有用なタスクを拡張で実行するために使われる<code>IExtensionHelpers</code>オブジェクトを取得します。</div>
 <dl>
 <dt><span class="returnLabel">戻り値:</span></dt>
-<dd>HTTPリクエストの構築や解析などのタスク用の、様々なヘルパーメソッドを持ったオブジェクト。</dd>
+<dd>HTTPリクエストの構築や解析などのタスク用の、さまざまなヘルパーメソッドを持ったオブジェクト。</dd>
 </dl>
 </li>
 </ul>
@@ -1144,7 +1144,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>getStdout</h4>
 <pre class="methodSignature">java.io.OutputStream&nbsp;getStdout()</pre>
-<div class="block">この拡張の標準出力ストリームを取得します。拡張はこのストリームに全ての出力を書き込む必要があり、Burpユーザはその出力をUI上でどう処理するか設定できます。</div>
+<div class="block">この拡張の標準出力ストリームを取得します。拡張はこのストリームにすべての出力を書き込む必要があり、Burpユーザはその出力をUI上でどう処理するか設定できます。</div>
 <dl>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>拡張の標準出力ストリーム。</dd>
@@ -1158,7 +1158,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>getStderr</h4>
 <pre class="methodSignature">java.io.OutputStream&nbsp;getStderr()</pre>
-<div class="block">この拡張の標準エラーストリームを取得します。拡張はこのストリームに全てのエラーメッセージを書き込む必要があり、Burpユーザはその出力をUI上でどう処理するか設定できます。</div>
+<div class="block">この拡張の標準エラーストリームを取得します。拡張はこのストリームにすべてのエラーメッセージを書き込む必要があり、Burpユーザはその出力をUI上でどう処理するか設定できます。</div>
 <dl>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>拡張の標準エラーストリーム。</dd>
@@ -2092,7 +2092,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>getProxyHistory</h4>
 <pre class="methodSignature"><a href="IHttpRequestResponse.html" title="burp 内のインタフェース">IHttpRequestResponse</a>[]&nbsp;getProxyHistory()</pre>
-<div class="block">Proxy履歴の全てにアイテムの詳細を返します。</div>
+<div class="block">Proxy履歴のすべてにアイテムの詳細を返します。</div>
 <dl>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>Proxy履歴のコンテンツ。</dd>
@@ -2122,10 +2122,10 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <h4>getScanIssues</h4>
 <pre class="methodSignature"><a href="IScanIssue.html" title="burp 内のインタフェース">IScanIssue</a>[]&nbsp;getScanIssues​(java.lang.String&nbsp;urlPrefix)</pre>
-<div class="block">指定されたリテラル プレフィックスに一致するURLのスキャンで見つかった全ての問題を返します。</div>
+<div class="block">指定されたリテラル プレフィックスに一致するURLのスキャンで見つかったすべての問題を返します。</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>urlPrefix</code> - スキャン項目の指定したサブセットを抽出するための、URLプレフィックスの指定に使用されます。このメソッドは単純な大文字小文字を区別するテキストマッチを実行し、全スキャン項目内のアイテムで指定したプレフィックスで始まるURLのものを返します。nullの場合、全ての項目が返されます。</dd>
+<dd><code>urlPrefix</code> - スキャン項目の指定したサブセットを抽出するための、URLプレフィックスの指定に使用されます。このメソッドは単純な大文字小文字を区別するテキストマッチを実行し、全スキャン項目内のアイテムで指定したプレフィックスで始まるURLのものを返します。nullの場合、すべての項目が返されます。</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>スキャン項目の詳細。</dd>
 </dl>
@@ -2286,7 +2286,7 @@ void&nbsp;loadConfig​(java.util.Map&lt;java.lang.String,​java.lang.String&gt
 <li class="blockList">
 <h4>loadConfigFromJson</h4>
 <pre class="methodSignature">void&nbsp;loadConfigFromJson​(java.lang.String&nbsp;config)</pre>
-<div class="block">指定されたJSON文字列から、プロジェクトレベルの設定を新しく読み込みます。これは、Burpのユーザインタフェースで保存や読み込む形式と同じです。部分的な設定も可能で、指定されていない設定は変更されません。入力に含まれる、ユーザレベルの設定オプションは全て無視されます。</div>
+<div class="block">指定されたJSON文字列から、プロジェクトレベルの設定を新しく読み込みます。これは、Burpのユーザインタフェースで保存や読み込む形式と同じです。部分的な設定も可能で、指定されていない設定は変更されません。入力に含まれる、ユーザレベルの設定オプションはすべて無視されます。</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>config</code> - 新規設定を含んだJSON文字列。</dd>
@@ -2405,7 +2405,7 @@ void&nbsp;loadConfig​(java.util.Map&lt;java.lang.String,​java.lang.String&gt
 <pre class="methodSignature"><a href="IHttpRequestResponseWithMarkers.html" title="burp 内のインタフェース">IHttpRequestResponseWithMarkers</a>&nbsp;applyMarkers​(<a href="IHttpRequestResponse.html" title="burp 内のインタフェース">IHttpRequestResponse</a>&nbsp;httpRequestResponse,
                                              java.util.List&lt;int[]&gt;&nbsp;requestMarkers,
                                              java.util.List&lt;int[]&gt;&nbsp;responseMarkers)</pre>
-<div class="block">HTTPリクエストまたはレスポンスメッセージに、いくつかの特定の目的に関連するオフセット位置にマーカを適用します。Intruderのペイロードポジションの指定や、Scannerの挿入ポイント、Scanner問題の強調表示など、様々な場面でマーカが使用されます。</div>
+<div class="block">HTTPリクエストまたはレスポンスメッセージに、いくつかの特定の目的に関連するオフセット位置にマーカを適用します。Intruderのペイロードポジションの指定や、Scannerの挿入ポイント、Scanner問題の強調表示など、さまざまな場面でマーカが使用されます。</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>httpRequestResponse</code> - マーカを適用する<code>IHttpRequestResponse</code>オブジェクト。</dd>
@@ -2512,7 +2512,7 @@ void&nbsp;registerMenuItem​(java.lang.String&nbsp;menuItemCaption,
 <div class="deprecationBlock"><span class="deprecatedLabel">非推奨。</span>
 <div class="deprecationComment">代わりに<code>registerContextMenuFactory()</code>を使用してください。</div>
 </div>
-<div class="block">ユーザ主導アクションを処理するためにBurp Suite全体で使用される、様々なコンテキストメニューに表示される新しいメニューアイテムを登録します。</div>
+<div class="block">ユーザ主導アクションを処理するためにBurp Suite全体で使用される、さまざまなコンテキストメニューに表示される新しいメニューアイテムを登録します。</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>menuItemCaption</code> - メニューアイテムに表示する見出し。</dd>

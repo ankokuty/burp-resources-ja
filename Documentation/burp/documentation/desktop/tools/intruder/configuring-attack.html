@@ -56,7 +56,7 @@
             Intruderでの新たな攻撃を簡単に作成するには、他のBurpツール(<a href="../proxy/history.html">Proxy履歴</a> やTarget<a href="../target/site-map/index.html">サイトマップ</a>など)で関連するベースリクエストを選択し、コンテキストメニューのオプションで"Intruderに送信"を使います。
         </p>
         <div class="section-small">
-            <img src="../../images/intruder-config-send.png" alt="Intruderに送信" class="center-block">
+            <img src="../../images/intruder-config-send-940.png" alt="Intruderに送信" class="center-block">
         </div>
         <p>
             新しい攻撃タブが作成され、自動的に<a href="target.html">Target</a>と<a href="positions.html">ポジション</a>タブに、ベースリクエストに関連する詳細が設定されます。必要に応じて自動設定されたペイロードポジション、<a href="payloads/index.html">ペイロード</a>サブテーブル、その他の<a href="payloads/index.html">オプション</a>を変更できます。
@@ -65,25 +65,25 @@
             ペイロードを配置するであろう箇所をBurpが自動的に推測した結果が表示されているはずです。デフォルトで、すべてのリクエストパラメータとcookieの値にペイロードが配置されます。ペイロードマーカの各ペアは１つのペイロードポジションを定義し、ベースリクエストのどこかのテキストを囲んでいる場合、ペイロードポジションが使われる際にそこがペイロードのコンテンツに置き換えられます。詳細については、<a href="../intruder/positions.html">ペイロードポジション</a>のヘルプを参照してください。
         </p>
         <div class="section-small">
-            <img src="../../images/intruder-config-positions.png" alt="ペイロードポジ書院を追加" class="center-block">
+            <img src="../../images/intruder-config-positions-940.png" alt="ペイロードポジ書院を追加" class="center-block">
         </div>
         <p>
             リクエストエディタの横にあるボタンでペイロードマーカの"追加"や"削除"ができます。リクエスト内の新しい場所にペイロードマーカを追加したり、他のマーカを削除してみて、効果を確認してください。ペイロードマーカの動作を理解したら、"自動§"ボタンをクリックしてBurpのデフォルトのペイロードポジションに戻してください。
         </p>
         <div class="section-small">
-            <img src="../../images/intruder-config-positions-add.png" alt="Intruderボタン" class="center-block">
+            <img src="../../images/intruder-config-positions-add-940.png" alt="Intruderボタン" class="center-block">
         </div>
         <p>
             次に、"ペイロード"タブに移動します。定義されたペイロードポジションに配置されるペイロードを定義します。デフォルト設定(ペイロードに"単純リスト"を使う)のままにし、リストにいくつかテスト文字列を追加します。"新規アイテムを入力"ボックスに独自の文字列を入力し、"追加"ボタンをクリックします。あるいは、"Add from list"プルダウンメニューを使い、組み込みペイロード文字列から"Fuzzing - quick"の選択します [Pro version]
         </p>
         <div class="section-small">
-            <img src="../../images/intruder-config-payloads.png" alt="ペイロードオプション" class="center-block">
+            <img src="../../images/intruder-config-payloads-940.png" alt="ペイロードオプション" class="center-block">
         </div>
         <p>
             Burp Intruderには攻撃設定を管理する多くの機能があります。これらの機能はIntruderメニューから使用できます。
         </p>
         <div class="section-small">
-            <img src="../../images/intruder-config-menu.png" alt="Intruderメニュー" class="center-block">
+            <img src="../../images/intruder-config-menu-940.png" alt="Intruderメニュー" class="center-block">
         </div>
         <p>
             現在のタブの攻撃設定を保存して、後でそれを再読み込みできます。読み込みや保存の際に、ペイロードポジション設定を含めるか除外するか選択できます。
@@ -92,13 +92,13 @@
             ペイロードポジションを含んだ設定は、特定の攻撃についての完全な設定を保存できます。ペイロードを除外した設定は、他のベースリクエストテンプレートやペイロードポジションで再利用できる、汎用的な攻撃設定を保存できます。 - 例えば、リクエストの特定タイプをファジングする好みの設定などです。
         </p>
         <div class="section-small">
-            <img src="../../images/intruder-config-save.png" alt="攻撃設定を保存" class="center-block">
+            <img src="../../images/intruder-config-save-940.png" alt="攻撃設定を保存" class="center-block">
         </div>
         <p>
             2つの既存のタブ間や新しいタブに、攻撃設定をコピーできます。上記同様、"ペイロードポジション"を含めるか除外するか選択できます。
         </p>
         <div class="section-small">
-            <img src="../../images/intruder-config-copy.png" alt="攻撃設定をコピー" class="center-block">
+            <img src="../../images/intruder-config-copy-940.png" alt="攻撃設定をコピー" class="center-block">
         </div>
         <p>
             新規攻撃タブを開いた際に、Intruderがどのように攻撃設定を扱うか制御できます。デフォルトの攻撃設定を使う、または最初もしくは最後に開いたタブからコピーするか選択できます。
@@ -107,7 +107,7 @@
             後者のオプションを使用すると、一般的な攻撃設定(例えばファジング用)を作成し、Intruderに送信した各新規リクエストに自動的に適用できます。
         </p>
         <div class="section-small">
-            <img src="../../images/intruder-config-behaviour.png" alt="新規タブの動作" class="center-block">
+            <img src="../../images/intruder-config-behaviour-940.png" alt="新規タブの動作" class="center-block">
         </div>
         <p>
             攻撃タブ自身の管理も簡単です。以下が可能です:
