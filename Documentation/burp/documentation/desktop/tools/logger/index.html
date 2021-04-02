@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/pssupportnav.css">
+</head>
+<body>
+<section class="container ps-breadcrumbs">
+    <ol>
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Logger</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">プロフェッショナル</label>
+    <label class="label-edition is-community">コミュニティ</label>
+</section>
+<section class="maincontainer">
+    <div class="container main">
+        <h1>Logger</h1>
+        <p>
+            Loggerは、ネットワークアクティビティを記録するためのツールです。Loggerは、調査や分析のために、Burp Suiteが生成するすべてのHTTPトラフィックを記録しますが、特に次の場合に便利です:
+        </p>
+        <ul>
+            <li>
+                Burp Suiteの結果が予期しない結果だったとき、何が起こったかを調査する場合。
+            </li>
+            <li>
+                作業にセッション処理が含まれるとき、Burp Suiteが送信する内容の詳細を確認する場合。
+            </li>
+            <li>
+                長期的に進行中のタスク(バックグラウンドスキャンなど)がまだ実行されているか確認する場合。
+            </li>
+            <li>
+                Burp Suiteが行っていることを可視化する必要がある問題を分析する場合。
+            </li>
+        </ul>
+        <div class="section-small">
+            <img src="../../images/logger-1-940.png" alt="Loggerツール" class="center-block">
+        </div>
+        <h2 id="logging-and-memory">ログとメモリ</h2>
+        <p>
+            Loggerは、割り当てられたメモリの制限までHTTPネットワークトラフィックの記録を保持します。制限に達した後、新しいレコードが作成されると、Loggerは最も古いレコードを破棄します。Loggerのデフォルトのメモリ制限は50MB、またはBurp Suiteに1GB以上のメモリを割り当てた場合は100MBです。キャプチャフィルタをクリックすると、メモリ制限を変更できます。多数のレコードをログに記録すると、大量のメモリが使用される可能性があるため、パフォーマンスの問題が発生する可能性がある点に注意してください。デフォルトのメモリ量でログを開始し、大量のレコードを必要とする問題がある場合にのみ増やすことをお勧めします。
+        </p>
+        <h2 id="logger-functionality">Logger機能</h2>
+        <p>
+            Loggerのレコードは読み取り専用です(注目する項目に注釈を付けること以外:以下参照)が、それ以外は<a href="../../functions/message-editor/index.html">メッセージエディタ</a>のすべての機能が有効で、<a href="../../functions/message-editor/inspector.html">メッセージインスペクタ</a>も使えます。Loggerのレコードを、<a href="../repeater/index.html">Repeater</a>や<a href="../intruder/index.html">Intruder</a>など他のツールに送信もできます。
+        </p>
+        <p>
+            レコードに関する情報が、複数の列に表示されます。すべての列が各レコードに関連するわけではありません。"列"ドロップダウンメニューをクリックすると、表示する列を調整できます。列ヘッダのクリックや列の境界線をドララッグすると、列のソートやサイズ変更ができます。
+        </p>
+        <p>
+            #でマークされた左端の列は、このセッションでログに記録されたレコード数をカウントします。すべてのレコードをキャプチャしないよう選択した場合(<a href="options.html">オプションｎ</a>参照)、カウントが連続しない可能性があります。カウントは、実際にキャプチャされたイベントではなく、キャプチャされる可能性のあるイベント数を参照しているためです。
+        </p>
+        <p>
+            "ログをクリア"アイコンをクリックすると、現在のすべてのレコードを削除します。
+        </p>
+        <p>
+            後で確認できるようにレコードにマークが付けられます。レコードの"#"列を苦陸すると、そのレコードの色を変えて強調表示できます。レコードの"コメント"列のダブルクリックすると、そのレコードにコメントを残せます。
+        </p>
+        <div class="section-small">
+            <img src="../../images/logger-2-940.png" alt="Logger注釈" class="center-block">
+        </div>
+        <h2 id="logger-configuration">Logger設定</h2>
+        <p>
+            Loggerは、キャプチャするものと表示するものをそれぞれ設定できるよう個別のコントロールがあります。Loggerオプションの詳細は、<a href="options.html">こちら</a>を参照してください。
+        </p>
+    </div>
+</section>
+</body>
+</html>
