@@ -36,7 +36,11 @@
     <div class="container main">
         <h1>攻撃オプション</h1>
         <p>
-            このタブにはIntruderの攻撃オプションの、<a href="#attack-request-headers">Request Headers</a>、<a href="#request-engine">Request Engine</a>、<a href="#attack-results-options"> Attack Results</a>、<a href="#grep-match">Grep - Match</a>、<a href="#grep-extract">Grep - Extract</a>、<a href="#grep-payloads">Grep - Payloads</a>、<a href="#handling-redirections-during-attacks">Redirections</a>があります。攻撃を起動する前にメインのIntruder UI でこれらのオプションを編集でき、攻撃が既に実行されているときは攻撃ウィンドウでほとんどの設定を変更できます。
+            このタブには、Intruderの攻撃オプションの、<a href="#save-options">オプションの保存</a>・<a href="#attack-request-headers">リクエストヘッダ</a>・<a href="#error-handling">エラーハンドリング</a>・<a href="#attack-results-options">攻撃結果</a>・<a href="#grep-match">Grep - Match</a>・<a href="#grep-extract">Grep - Extract</a>・<a href="#grep-payloads">Grep - Payloads</a>・<a href="#handling-redirections-during-attacks">リダイレクト</a>があります。攻撃を起動する前にメインのIntruder UI でこれらのオプションを編集でき、攻撃が既に実行されているときは攻撃ウィンドウでほとんどの設定を変更できます。
+        </p>
+        <h2 id="save-options">オプション保存</h2>
+        <p>
+            "攻撃をプロジェクトファイルに保存する"チェックボックスは、現在の攻撃をプロジェクトファイルに保存するかどうかを制御します。デフォルトでは保存されません。プロジェクトファイルに大量の攻撃を保存するとファイルが肥大化する可能性があるため、何か興味深い物を見つけた場合にのみ、プロジェクトファイルへの攻撃の保存を推奨します。
         </p>
         <h2 id="attack-request-headers">攻撃リクエストのヘッダ</h2>
         <p>
@@ -53,31 +57,18 @@
                 <strong>Connection:をcloseにセットする</strong> - Connectionヘッダをcloseにしたヘッダを追加または更新します。一部の場合(サーバが有効な Content-LengthまたはTransfer-Encodingヘッダを返さないとき)、このオプションで攻撃速度を上げられます。
             </li>
         </ul>
-        <h2 id="request-engine">リクエストエンジン</h2>
+        <h2 id="error-handling">エラーハンドリング</h2>
         <p>
-            Intruderの攻撃でHTTPリクエストを生成するエンジンを制御します。次のオプションがあります:
+            攻撃中にネットワークエラーを処理する方法を制御します。
         </p>
         <ul>
-            <li>
-                <label class="label-edition is-professional">プロフェッショナル</label>
-                <strong>スレッド数</strong> - 攻撃で生成できる同時リクエスト数を制御します。
-            </li>
             <li>
                 <strong>ネットワークエラー時のリトライ回数</strong> - 接続エラーやその他のネットワークの問題が発生した場合、Burpがリクエストを諦めるまでの回数を指定します。テスト中に断続的にネットワーク障害が起こる場合は、失敗時に数回リクエストの再試行をお勧めします。
             </li>
             <li>
                 <strong>リトライ前の一次停止</strong> - 失敗したリクエストを再試行する場合、Burpは再試行する前に指定した時間(ミリ秒)待ちます。サーバのトラフィックを圧迫している場合、または断続的に問題が起きている場合は、再試行前に短時間のウェイトをお勧めします。
             </li>
-            <li>
-                <strong>リクエスト間のウェイト</strong> - 必要に応じて、すべてのリクエストの前に指定した時間(ミリ秒)のウェイトを入れられます。アプリケーションの負荷を避けたい場合や、こっそりと実行したい場合、このオプションが便利です。または、(開始値と増分を指定して)可変の遅延を設定できます。このオプションで、アプリケーションによって適用されているセッションのタイムアウト間隔をテストできます。
-            </li>
-            <li>
-                <strong>開始時間</strong> - 攻撃をすぐに開始するか、指定した時間後に開始するか、一時停止した状態で起動するか設定します。これらの選択肢は、攻撃をいつ実行するか未定だが、将来使用するときのために設定を保存しておく場合に便利です。
-            </li>
         </ul>
-        <p>
-            アプリケーションのパフォーマンスに与える影響やあなた自身の処理能力と帯域幅に応じて慎重に設定すると、攻撃エンジンのパフォーマンスの微調整ができます。もし攻撃の動作が遅い場合で、ただしアプリケーションのパフォーマンスが良く自分のCPU利用率も低いようであれば、攻撃をするスレッド数を増やせます。接続エラーの発生を見つけた場合で、アプリケーションが遅い場合、または自分のコンピュータがハングアップする場合、スレッド数を減らし、ネットワーク障害時のリトライ回数と再送間隔を増やすべきです。
-        </p>
         <h2 id="attack-results-options">攻撃結果オプション</h2>
         <p>
             <a href="attack-results.html">攻撃結果</a>でどのような情報がキャプチャされるか制御します。次のオプションがあります:
