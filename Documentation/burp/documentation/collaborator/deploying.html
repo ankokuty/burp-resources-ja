@@ -817,7 +817,7 @@
             TXTとCNAMEのカスタムDNSレコードを追加できます。これはドメイン検証の際にDNSチャレンジが行われる場合にCollaboratorが対応できることを目的としています。1つのラベルに複数のTXTレコードを指定できますが、CNAMEレコードは1つだけです。設定例は次の通りです:
         </p>
         <p>
-            <code> "customDnsRecords": [ <br>&nbsp;{ <br>&nbsp;&nbsp;"label": "_acme-challenge", <br>&nbsp;&nbsp;"record": "275fe5b909adb10e41c78066e9485f7d", <br>&nbsp;&nbsp;"type": "TXT", <br>&nbsp;&nbsp;"ttl": 60 <br>&nbsp;}, <br>&nbsp;{ <br>&nbsp;&nbsp;"label": "patrick", <br>&nbsp;&nbsp;"record": "dolphin", <br>&nbsp;&nbsp;"type": "TXT" <br>&nbsp; }, <br>&nbsp;{ <br>&nbsp;&nbsp; "label": "test, <br>&nbsp;&nbsp;"record": "hackxor.net", <br>&nbsp;&nbsp;"type": "CNAME" <br>&nbsp; } <br>] </code>
+            <code> "customDnsRecords": [ <br>&nbsp;{ <br>&nbsp;&nbsp;"label": "_acme-challenge", <br>&nbsp;&nbsp;"record": "275fe5b909adb10e41c78066e9485f7d", <br>&nbsp;&nbsp;"type": "TXT", <br>&nbsp;&nbsp;"ttl": 60 <br>&nbsp;}, <br>&nbsp;{ <br>&nbsp;&nbsp;"label": "patrick", <br>&nbsp;&nbsp;"record": "dolphin", <br>&nbsp;&nbsp;"type": "TXT" <br>&nbsp; }, <br>&nbsp;{ <br>&nbsp;&nbsp; "label": "test", <br>&nbsp;&nbsp;"record": "hackxor.net", <br>&nbsp;&nbsp;"type": "CNAME" <br>&nbsp; } <br>] </code>
         </p>
         <p>
             <code>ttl</code>の値はオプションで、秒単位です。
