@@ -132,192 +132,196 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="../burp/IHttpHeader.html" title="burp 内のインタフェース">IHttpHeader</a></td>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="../burp/IHttpListener.html" title="burp 内のインタフェース">IHttpListener</a></td>
 <td class="colLast">
 <div class="block">拡張はこのインタフェースを実装して、<code>IBurpExtenderCallbacks.registerHttpListener()</code>を呼び出すと、HTTPリスナーに登録できます。</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../burp/IHttpRequestResponse.html" title="burp 内のインタフェース">IHttpRequestResponse</a></td>
 <td class="colLast">
 <div class="block">HTTPメッセージに関する詳細の取得や更新に使用されます。</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../burp/IHttpRequestResponsePersisted.html" title="burp 内のインタフェース">IHttpRequestResponsePersisted</a></td>
 <td class="colLast">
 <div class="block"><code>IBurpExtenderCallbacks.saveBuffersToTempFiles()</code>を使用して一時ファイルにリクエストやレスポンスメッセージを保存した、<code>IHttpRequestResponse</code>オブジェクトに使われます。</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../burp/IHttpRequestResponseWithMarkers.html" title="burp 内のインタフェース">IHttpRequestResponseWithMarkers</a></td>
 <td class="colLast">
 <div class="block">マーカが適用された<code>IHttpRequestResponse</code>オブジェクトに使用します。</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../burp/IHttpService.html" title="burp 内のインタフェース">IHttpService</a></td>
 <td class="colLast">
 <div class="block">HTTPリクエストを送信できるよう、HTTPサービスに関する詳細を提供します。</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../burp/IInterceptedProxyMessage.html" title="burp 内のインタフェース">IInterceptedProxyMessage</a></td>
 <td class="colLast">
 <div class="block">このインターフェイスは、Burp ProxyがインターセプトされたHTTPメッセージを表すために使用されます。</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../burp/IIntruderAttack.html" title="burp 内のインタフェース">IIntruderAttack</a></td>
 <td class="colLast">
 <div class="block">Intruder攻撃の詳細の保持に使用されます。</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../burp/IIntruderPayloadGenerator.html" title="burp 内のインタフェース">IIntruderPayloadGenerator</a></td>
 <td class="colLast">
 <div class="block">カスタムIntruderペイロードジェネレータに使用されます。</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../burp/IIntruderPayloadGeneratorFactory.html" title="burp 内のインタフェース">IIntruderPayloadGeneratorFactory</a></td>
 <td class="colLast">
 <div class="block">拡張はこのインタフェースを実装して、<code>IBurpExtenderCallbacks.registerIntruderPayloadGeneratorFactory()</code>を呼び出すと、カスタムIntruderペイロードファクトリーに登録できます。</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../burp/IIntruderPayloadProcessor.html" title="burp 内のインタフェース">IIntruderPayloadProcessor</a></td>
 <td class="colLast">
 <div class="block">拡張がこのインタフェースを実装して、<code>IBurpExtenderCallbacks.registerIntruderPayloadProcessor()</code>を呼び出すと、カスタムIntruderペイロードプロセッサに登録できます。</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../burp/IMenuItemHandler.html" title="burp 内のインタフェース">IMenuItemHandler</a></td>
 <td class="colLast">非推奨
 <div class="block"><span class="deprecationComment">代わりに<code>IContextMenuFactory</code>を使用してください。</span></div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../burp/IMessageEditor.html" title="burp 内のインタフェース">IMessageEditor</a></td>
 <td class="colLast">
 <div class="block">独自のUIを使う拡張の、BurpのHTTPメッセージエディタのインスタンスを提供します。</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../burp/IMessageEditorController.html" title="burp 内のインタフェース">IMessageEditorController</a></td>
 <td class="colLast">
 <div class="block">現在表示されたメッセージの詳細を取得するために、<code>IMessageEditor</code>が呼び出します。</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../burp/IMessageEditorTab.html" title="burp 内のインタフェース">IMessageEditorTab</a></td>
 <td class="colLast">
 <div class="block"><code>IMessageEditorTabFactory</code>に登録される拡張は、このインタフェースのインスタンスを返す必要があり、そのHTTPメッセージエディタにカスタムタブを生成する際にBurpが使用します。</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../burp/IMessageEditorTabFactory.html" title="burp 内のインタフェース">IMessageEditorTabFactory</a></td>
 <td class="colLast">
 <div class="block">拡張はこのインタフェースを実装して、<code>IBurpExtenderCallbacks.registerMessageEditorTabFactory()</code>を呼び出すと、カスタムメッセージエディタタブのファクトリーを登録できます。</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../burp/IParameter.html" title="burp 内のインタフェース">IParameter</a></td>
 <td class="colLast">
 <div class="block">HTTPリクエストパラメータの詳細を保持します。</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../burp/IProxyListener.html" title="burp 内のインタフェース">IProxyListener</a></td>
 <td class="colLast">
 <div class="block">拡張はこのインタフェースを実装して、<code>IBurpExtenderCallbacks.registerProxyListener()</code>を呼び出すと、Proxyリスナーに登録できます。</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../burp/IRequestInfo.html" title="burp 内のインタフェース">IRequestInfo</a></td>
 <td class="colLast">
 <div class="block">HTTPリクエストに関する重要な詳細を取得します。</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../burp/IResponseInfo.html" title="burp 内のインタフェース">IResponseInfo</a></td>
 <td class="colLast">
 <div class="block">HTTPレスポンスに関する重要な詳細を取得します。</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../burp/IResponseKeywords.html" title="burp 内のインタフェース">IResponseKeywords</a></td>
 <td class="colLast">
 <div class="block">複数のHTTPレスポンスに現れるキーワードの数を表します。</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../burp/IResponseVariations.html" title="burp 内のインタフェース">IResponseVariations</a></td>
 <td class="colLast">
 <div class="block">さまざまな属性に応じた、HTTPレスポンス間の変化を表現します。</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../burp/IScanIssue.html" title="burp 内のインタフェース">IScanIssue</a></td>
 <td class="colLast">
 <div class="block">Scannerが発見した問題の詳細を取得します。</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../burp/IScannerCheck.html" title="burp 内のインタフェース">IScannerCheck</a></td>
 <td class="colLast">
 <div class="block">拡張はこのインタフェースを実装して、<code>IBurpExtenderCallbacks.registerScannerCheck()</code>を呼び出すと、カスタムScannerチェックを登録できます。</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../burp/IScannerInsertionPoint.html" title="burp 内のインタフェース">IScannerInsertionPoint</a></td>
 <td class="colLast">
 <div class="block">アクティブスキャンで使用する挿入ポイントを定義します。</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../burp/IScannerInsertionPointProvider.html" title="burp 内のインタフェース">IScannerInsertionPointProvider</a></td>
 <td class="colLast">
 <div class="block">拡張はこのインタフェースを実装して、 <code>IBurpExtenderCallbacks.registerScannerInsertionPointProvider()</code>を呼び出すと、カスタムのScanner挿入ポイントのファクトリーを登録できます。</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../burp/IScannerListener.html" title="burp 内のインタフェース">IScannerListener</a></td>
 <td class="colLast">
 <div class="block">拡張はこのインタフェースを実装して、<code>IBurpExtenderCallbacks.registerScannerListener()</code>を呼び出すと、Scannerリスナーに登録できます。</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../burp/IScanQueueItem.html" title="burp 内のインタフェース">IScanQueueItem</a></td>
 <td class="colLast">
 <div class="block">Burp Scannerのアクティブスキャンキュー内アイテムの詳細を取得します。</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../burp/IScopeChangeListener.html" title="burp 内のインタフェース">IScopeChangeListener</a></td>
 <td class="colLast">
 <div class="block">拡張はこのインタフェースを実装して、<code>IBurpExtenderCallbacks.registerScopeChangeListener()</code>を呼び出すと、スコープ変更リスナーに登録できます。</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../burp/ISessionHandlingAction.html" title="burp 内のインタフェース">ISessionHandlingAction</a></td>
 <td class="colLast">
 <div class="block">拡張がこのインタフェースを実装して、<code>IBurpExtenderCallbacks.registerSessionHandlingActionerPayloadProcessor()</code>を呼び出すと、カスタムセッションハンドリングアクションに登録できます。</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../burp/ITab.html" title="burp 内のインタフェース">ITab</a></td>
 <td class="colLast">
 <div class="block"><code>IBurpExtenderCallbacks.addSuiteTab()</code>のようなメソッドを使用して、BurpのUIに追加されるカスタムタブの詳細をBurpに提供します。</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../burp/ITempFile.html" title="burp 内のインタフェース">ITempFile</a></td>
 <td class="colLast">
 <div class="block"><code>IBurpExtenderCallbacks.saveToTempFile()</code>が呼び出されて作成された、一時ファイルの詳細を保持します。</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../burp/ITextEditor.html" title="burp 内のインタフェース">ITextEditor</a></td>
 <td class="colLast">
 <div class="block">拡張の独自のUI内でBurpのRawテキストエディタを使う場合、そのインスタンスを提供するために使用されます。</div>

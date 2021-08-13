@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6,"i14":6,"i15":6,"i16":6,"i17":6,"i18":6,"i19":6,"i20":6,"i21":6,"i22":6,"i23":6,"i24":6,"i25":6,"i26":6,"i27":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6,"i14":6,"i15":6,"i16":6,"i17":6,"i18":6,"i19":6,"i20":6,"i21":6,"i22":6,"i23":6,"i24":6,"i25":6,"i26":6,"i27":6,"i28":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -186,19 +186,26 @@ var activeTableTab = "activeTableTab";
 </td>
 </tr>
 <tr id="i11" class="rowColor">
+<td class="colFirst"><code><a href="../burp/IHttpHeader.html" title="burp 内のインタフェース">IHttpHeader</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#buildHeader-java.lang.String-java.lang.String-">buildHeader</a></span>(java.lang.String&nbsp;name,
+           java.lang.String&nbsp;value)</code>
+<div class="block">指定された詳細情報に基づいて<code>IHttpHeader</code>オブジェクトを構築します。</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>byte[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#buildHttpMessage-java.util.List-byte:A-">buildHttpMessage</a></span>(java.util.List&lt;java.lang.String&gt;&nbsp;headers,
                 byte[]&nbsp;body)</code>
 <div class="block">指定されたヘッダとメッセージ本文を含むHTTPメッセージを構築します。</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>byte[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#buildHttpRequest-java.net.URL-">buildHttpRequest</a></span>(java.net.URL&nbsp;url)</code>
 <div class="block">指定されたURLへの GET リクエストを作成します。</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="../burp/IHttpService.html" title="burp 内のインタフェース">IHttpService</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#buildHttpService-java.lang.String-int-boolean-">buildHttpService</a></span>(java.lang.String&nbsp;host,
                 int&nbsp;port,
@@ -206,7 +213,7 @@ var activeTableTab = "activeTableTab";
 <div class="block">指定された詳細情報に基づいて<code>IHttpService</code>オブジェクトを構築します。</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="../burp/IHttpService.html" title="burp 内のインタフェース">IHttpService</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#buildHttpService-java.lang.String-int-java.lang.String-">buildHttpService</a></span>(java.lang.String&nbsp;host,
                 int&nbsp;port,
@@ -214,7 +221,7 @@ var activeTableTab = "activeTableTab";
 <div class="block">指定された詳細情報に基づいて<code>IHttpService</code>オブジェクトを構築します。</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code><a href="../burp/IParameter.html" title="burp 内のインタフェース">IParameter</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#buildParameter-java.lang.String-java.lang.String-byte-">buildParameter</a></span>(java.lang.String&nbsp;name,
               java.lang.String&nbsp;value,
@@ -222,20 +229,20 @@ var activeTableTab = "activeTableTab";
 <div class="block">指定された詳細情報に基づいて<code>IParameter</code>オブジェクトを構築します。</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#bytesToString-byte:A-">bytesToString</a></span>(byte[]&nbsp;data)</code>
 <div class="block">バイト配列から文字列形式にデータを変換します。</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code><a href="../burp/IParameter.html" title="burp 内のインタフェース">IParameter</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#getRequestParameter-byte:A-java.lang.String-">getRequestParameter</a></span>(byte[]&nbsp;request,
                    java.lang.String&nbsp;parameterName)</code>
 <div class="block">HTTPリクエスト内の指定したパラメータの詳細を取得します。</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#indexOf-byte:A-byte:A-boolean-int-int-">indexOf</a></span>(byte[]&nbsp;data,
        byte[]&nbsp;pattern,
@@ -245,7 +252,7 @@ var activeTableTab = "activeTableTab";
 <div class="block">指定したパターンがデータ内で最初に出現する部分を検索します。</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code><a href="../burp/IScannerInsertionPoint.html" title="burp 内のインタフェース">IScannerInsertionPoint</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#makeScannerInsertionPoint-java.lang.String-byte:A-int-int-">makeScannerInsertionPoint</a></span>(java.lang.String&nbsp;insertionPointName,
                          byte[]&nbsp;baseRequest,
@@ -254,51 +261,51 @@ var activeTableTab = "activeTableTab";
 <div class="block">指定された詳細に基づいて<code>IScannerInsertionPoint</code>オブジェクトを構築します。</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>byte[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#removeParameter-byte:A-burp.IParameter-">removeParameter</a></span>(byte[]&nbsp;request,
                <a href="../burp/IParameter.html" title="burp 内のインタフェース">IParameter</a>&nbsp;parameter)</code>
 <div class="block">HTTPリクエストからパラメータを削除し、必要に応じてContent-Lengthヘッダを更新します。</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i22" class="altColor">
 <td class="colFirst"><code>byte[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#stringToBytes-java.lang.String-">stringToBytes</a></span>(java.lang.String&nbsp;data)</code>
 <div class="block">データを文字列からバイト配列に変換します。</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i23" class="rowColor">
 <td class="colFirst"><code>byte[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#toggleRequestMethod-byte:A-">toggleRequestMethod</a></span>(byte[]&nbsp;request)</code>
 <div class="block">リクエストのメソッドのGETとPOSTを切り替えます。</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i24" class="altColor">
 <td class="colFirst"><code>byte[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#updateParameter-byte:A-burp.IParameter-">updateParameter</a></span>(byte[]&nbsp;request,
                <a href="../burp/IParameter.html" title="burp 内のインタフェース">IParameter</a>&nbsp;parameter)</code>
 <div class="block">HTTPリクエスト内のパラメータ値を更新し、必要に応じてContent-Lengthヘッダを更新します。</div>
 </td>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code>byte[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#urlDecode-byte:A-">urlDecode</a></span>(byte[]&nbsp;data)</code>
 <div class="block">指定したデータをURLデコードします。</div>
 </td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#urlDecode-java.lang.String-">urlDecode</a></span>(java.lang.String&nbsp;data)</code>
 <div class="block">指定したデータをURLデコードします。</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code>byte[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#urlEncode-byte:A-">urlEncode</a></span>(byte[]&nbsp;data)</code>
 <div class="block">指定したデータをURLエンコードします。</div>
 </td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i28" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#urlEncode-java.lang.String-">urlEncode</a></span>(java.lang.String&nbsp;data)</code>
 <div class="block">指定したデータをURLエンコードします。</div>
@@ -748,6 +755,24 @@ var activeTableTab = "activeTableTab";
 <dd><code>type</code> - <code>IParameter</code>インタフェースで定義されている、パラメータタイプ。</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>指定された詳細に基づく<code>IParameter</code>オブジェクト。</dd>
+</dl>
+</li>
+</ul>
+<a name="buildHeader-java.lang.String-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>buildHeader</h4>
+<pre><a href="../burp/IHttpHeader.html" title="burp 内のインタフェース">IHttpHeader</a>&nbsp;buildHeader(java.lang.String&nbsp;name,
+                        java.lang.String&nbsp;value)</pre>
+<div class="block">指定された詳細情報に基づいて<code>IHttpHeader</code>オブジェクトを構築します。</div>
+<dl>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>name</code> - ヘッダ名。</dd>
+<dd><code>value</code> - ヘッダ値。</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>指定された詳細に基づく<code>IHttpHeader</code>オブジェクト。</dd>
 </dl>
 </li>
 </ul>

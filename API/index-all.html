@@ -163,6 +163,10 @@
 <dd>
 <div class="block">指定されたデータをBase64エンコードします。</div>
 </dd>
+<dt><span class="memberNameLink"><a href="burp/IExtensionHelpers.html#buildHeader-java.lang.String-java.lang.String-">buildHeader(String, String)</a></span> - インタフェース burp.<a href="burp/IExtensionHelpers.html" title="burp 内のインタフェース">IExtensionHelpers</a> のメソッド</dt>
+<dd>
+<div class="block">指定された詳細情報に基づいて<code>IHttpHeader</code>オブジェクトを構築します。</div>
+</dd>
 <dt><span class="memberNameLink"><a href="burp/IExtensionHelpers.html#buildHttpMessage-java.util.List-byte:A-">buildHttpMessage(List&lt;String&gt;, byte[])</a></span> - インタフェース burp.<a href="burp/IExtensionHelpers.html" title="burp 内のインタフェース">IExtensionHelpers</a> のメソッド</dt>
 <dd>
 <div class="block">指定されたヘッダとメッセージ本文を含むHTTPメッセージを構築します。</div>
@@ -637,6 +641,10 @@
 <dd>
 <div class="block">cookieの名前を取得します。</div>
 </dd>
+<dt><span class="memberNameLink"><a href="burp/IHttpHeader.html#getName--">getName()</a></span> - インタフェース burp.<a href="burp/IHttpHeader.html" title="burp 内のインタフェース">IHttpHeader</a> のメソッド</dt>
+<dd>
+<div class="block">ヘッダ名を取得します。</div>
+</dd>
 <dt><span class="memberNameLink"><a href="burp/IParameter.html#getName--">getName()</a></span> - インタフェース burp.<a href="burp/IParameter.html" title="burp 内のインタフェース">IParameter</a> のメソッド</dt>
 <dd>
 <div class="block">パラメータ名を取得します。</div>
@@ -883,6 +891,10 @@
 <dd>
 <div class="block">cookieの値を取得します。</div>
 </dd>
+<dt><span class="memberNameLink"><a href="burp/IHttpHeader.html#getValue--">getValue()</a></span> - インタフェース burp.<a href="burp/IHttpHeader.html" title="burp 内のインタフェース">IHttpHeader</a> のメソッド</dt>
+<dd>
+<div class="block">ヘッダ値を取得します。</div>
+</dd>
 <dt><span class="memberNameLink"><a href="burp/IParameter.html#getValue--">getValue()</a></span> - インタフェース burp.<a href="burp/IParameter.html" title="burp 内のインタフェース">IParameter</a> のメソッド</dt>
 <dd>
 <div class="block">パラメータ値を取得します。</div>
@@ -955,6 +967,8 @@
 <dd>
 <div class="block">拡張はこのインタフェースを実装して、<code>IBurpExtenderCallbacks.registerExtensionStateListener()</code>を呼び出すと、拡張状態リスナーに登録できます。</div>
 </dd>
+<dt><a href="burp/IHttpHeader.html" title="burp 内のインタフェース"><span class="typeNameLink">IHttpHeader</span></a> - <a href="burp/package-summary.html">burp</a> のインタフェース</dt>
+<dd>&nbsp;</dd>
 <dt><a href="burp/IHttpListener.html" title="burp 内のインタフェース"><span class="typeNameLink">IHttpListener</span></a> - <a href="burp/package-summary.html">burp</a> のインタフェース</dt>
 <dd>
 <div class="block">拡張はこのインタフェースを実装して、<code>IBurpExtenderCallbacks.registerHttpListener()</code>を呼び出すと、HTTPリスナーに登録できます。</div>
@@ -1219,6 +1233,14 @@
 </a>
 <h2 class="title">M</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="burp/IBurpExtenderCallbacks.html#makeHttp2Request-burp.IHttpService-java.util.List-byte:A-">makeHttp2Request(IHttpService, List&lt;IHttpHeader&gt;, byte[])</a></span> - インタフェース burp.<a href="burp/IBurpExtenderCallbacks.html" title="burp 内のインタフェース">IBurpExtenderCallbacks</a> のメソッド</dt>
+<dd>
+<div class="block">HTTP/2リクエストを発行し、レスポンスを取得します。</div>
+</dd>
+<dt><span class="memberNameLink"><a href="burp/IBurpExtenderCallbacks.html#makeHttp2Request-burp.IHttpService-java.util.List-byte:A-boolean-">makeHttp2Request(IHttpService, List&lt;IHttpHeader&gt;, byte[], boolean)</a></span> - インタフェース burp.<a href="burp/IBurpExtenderCallbacks.html" title="burp 内のインタフェース">IBurpExtenderCallbacks</a> のメソッド</dt>
+<dd>
+<div class="block">HTTP/2リクエストを発行し、レスポンスを取得します。</div>
+</dd>
 <dt><span class="memberNameLink"><a href="burp/IBurpExtenderCallbacks.html#makeHttpRequest-burp.IHttpService-byte:A-">makeHttpRequest(IHttpService, byte[])</a></span> - インタフェース burp.<a href="burp/IBurpExtenderCallbacks.html" title="burp 内のインタフェース">IBurpExtenderCallbacks</a> のメソッド</dt>
 <dd>
 <div class="block">HTTPリクエストを発行し、レスポンスを取得します。</div>
