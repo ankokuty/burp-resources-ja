@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Burp Suite Professional / Burp Suite Community Edition">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE" ignore-validation="OFFSITE_LINKS,STACKED_HEADINGS,ALLOWED_CHARACTERS"></cms><title>Burp ProxyによるHTTPトラフィックのインターセプト</title>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">入門</a>
+        </li>
+        <li>
+            <a href="intercepting-http-traffic.html">Burp ProxyによるHTTPトラフィックのインターセプト</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1 class="heading-2" cms-ignore-validation="HEADING_CAPITALIZATION" no-keyword-injection>2. Burp ProxyによるHTTPトラフィックのインターセプト</h1>
+<div no-keyword-injection>
+    <p>
+        このチュートリアルでは、意図的に脆弱性を作り込んだライブWebサイトを使用して、Burp ProxyでHTTPリクエストをインターセプトし、変更する方法を学びます。
+    </p>
+    <h2 id="intercepting-a-request">リクエストのインターセプト</h2>
+    <p>
+        Burp Proxyは、ブラウザと対象サーバ間で送信されるHTTPリクエストとレスポンスをインターセプトできます。これにより、さまざまな操作をしたときに、Webサイトがどのように動作するかを調査できます。
+    </p>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: Burpの内蔵ブラウザを起動する</h3>
+    <p>
+        <strong>Proxy &gt; インターセプト</strong>タブに移動します。
+    </p>
+    <p>
+        <strong>インターセプト無効</strong>ボタンをクリックすると、<strong>インターセプト有効</strong>に変わります。
+    </p>
+    <img src="../images/getting-started/quick-start-pro-intercept-on.png" alt="インターセプト有効">
+    <p>
+        <strong>ブラウザを開く</strong>をクリックします。これにより、Burpに内蔵されたChromiumブラウザが起動します。これはBurpと連動するようにあらかじめ設定されています。
+    </p>
+    <p>
+        Burpとブラウザの両方が見えるように、ウィンドウの位置を調整します。
+    </p>
+    <img src="../images/getting-started/quick-start-pro-browser.png" alt="Burp Suiteの組み込みブラウザを開く">
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: リクエストをインターセプトする</h3>
+    <p>
+        内蔵ブラウザを使って<code>https://portswigger.net</code>にアクセスしてみて、サイトが読み込まれないことを確認してください。Burp Proxyは、ブラウザが発行したHTTPリクエストを、サーバに到達する前にインターセプトしています。このインターセプトされたリクエストは、<strong>Proxy &gt; インターセプト</strong>タブで確認できます。
+    </p>
+    <img src="../images/getting-started/quick-start-pro-intercepted-request.png" alt="Burp Proxyでインターセプトされたリクエストの表示">
+    <p>
+        リクエストはここにとどまっており、対象サーバに転送する前に調査や変更ができます。
+    </p>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: リクエストを転送する</h3>
+    <p>
+        ブラウザにページが表示されるまで、<strong>転送</strong>ボタンを何度かクリックします。インターセプトされたリクエストとその後に発生したリクエストが送信されます。
+    </p>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ4: インターセプトを無効にする</h3>
+    <p>
+        通常、ブラウザは多くのリクエストを送信するため、すべてのリクエストのインターセプトはしたくないでしょう。<strong>インターセプト有効</strong>ボタンをクリックすると、<strong>インターセプト無効</strong>と表示されます。
+    </p>
+    <img src="../images/getting-started/quick-start-pro-intercept-off.png" alt="Proxyインターセプト無効">
+    <p>
+        内蔵ブラウザに戻り、通常通りにサイトを操作できることを確認します。
+    </p>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ5: HTTP履歴を表示する</h3>
+    <p>
+        Burpで、<strong>Proxy &gt; HTTP履歴</strong>タブを開きます。インターセプトを無効にしていた場合でも、Burp Proxyを通過したすべてのHTTPトラフィックの履歴をここで確認できます。
+    </p>
+    <p>
+        履歴のいずれかのアイテムをクリックすると、生のHTTPリクエストと、それに対応するサーバからのレスポンスが表示されます。
+    </p>
+    <img src="../images/getting-started/quick-start-pro-proxy-history.png" alt="Burp ProxyでのHTTP履歴の表示">
+    <p>
+        これにより、通常通りにWebサイトを探索し、ブラウザとサーバの間のやり取りを後から調査できます。多くの場合その方が便利です。
+    </p>
+    <hr>
+    <h2 id="modifying-requests-in-burp-proxy">Burp Proxyによるリクエストの変更</h2>
+    <p>
+        このセクションでは、Burp Proxyがインターセプトしたリクエストを変更する方法を説明します。これにより、Webサイトが想定していない方法でリクエストを操作した場合の反応を確認できます。"ラボ"と呼ばれる意図的に脆弱性を作り込んだWebサイトを使用して、実際の脆弱性を発見し、悪用する方法が確認できます。
+    </p>
+    <div class="highlightedarea">
+        <h4>Webセキュリティアカデミー</h4>
+        <p>
+            この先に進むには<code>portswigger.net</code>のアカウントが必要です。まだ持っていない場合は、<a href="https://portswigger.net/users/register">登録は無料</a>で、Webセキュリティアカデミーへのフルアクセスが可能となります。
+        </p>
+    </div>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: 内蔵ブラウザで脆弱性のあるWebサイトにアクセスする</h3>
+    <p>
+        Burpで、<strong>Proxy &gt; インターセプト</strong>タブを開き、<a href="../tools/proxy/intercept.html#controls">インターセプトが無効</a>になっていることを確認します。
+    </p>
+    <p>
+        内蔵ブラウザを起動し、そのブラウザを使って次のURLにアクセスし、プロンプトが表示されたらログインします。
+    </p>
+    <p>
+        <code>https://portswigger.net/web-security/logic-flaws/examples/lab-logic-flaws-excessive-trust-in-client-side-controls</code>
+    </p>
+    <p>
+        ページが読み込まれたら、<strong>Access the lab</strong>をクリックして、偽のショッピングサイトのインスタンスを起動します。読み込みに数秒かかる場合があります。
+    </p>
+    <img src="../images/getting-started/quick-start-pro-logic-lab-home.png" alt="Labのホームページ">
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: ショッピングアカウントにログインする</h3>
+    <p>
+        ショッピングサイトで、<strong>My account</strong>をクリックし、次の認証情報を使ってログインします。
+    </p>
+    <p>
+        <strong>ユーザ名: </strong><code>wiener</code>
+    </p>
+    <p>
+        <strong>パスワード: </strong><code>peter</code>
+    </p>
+    <p>
+        ちょうど100ドルのストアクレジットを持っていることに注目してください。
+    </p>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: 買いたいものを探す</h3>
+    <p>
+        <strong>ホーム</strong>をクリックすると、トップページに戻ります。オプションを選択すると、<strong>Lightweight "l33t" leather jacket</strong>の商品詳細が表示されます。
+    </p>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ4: カートに入れる機能を調査する</h3>
+    <p>
+        Burpで、<strong>Proxy &gt; Intercept</strong>タブを開き、インターセプトを有効にします。ブラウザで、レザージャケットをカートに入れて、<code>POST /cart</code>リクエストをインターセプトします。
+    </p>
+    <img src="../images/getting-started/quick-start-pro-add-to-cart.png" alt="カートに入れる機能の調査">
+    <div class="highlightedarea">
+        <h4>注</h4>
+        <p>
+            ブラウザがバックグラウンドで何か他のことをしていると、最初に<strong>Proxy &gt; インターセプト</strong>タブに別のリクエストが表示されることがあります。この場合は、上のスクリーンショットにあるように<code>POST /cart</code>リクエストが表示されるまで<strong>転送</strong>をクリックします。
+        </p>
+    </div>
+    <p>
+        インターセプトされたリクエストを調べると、ボディに<code>price</code>というパラメータがあり、これが商品の価格(セント)と一致していることに気づきます。
+    </p>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ5: リクエストを変更する</h3>
+    <p>
+        <code>price</code>パラメータの値を1に変更し、<strong>転送</strong>をクリックすると、変更したリクエストがサーバに送信されます。
+    </p>
+    <img src="../images/getting-started/quick-start-pro-change-price.png" alt="価格パラメータの変更">
+    <p>
+        再度インターセプトを無効にして、以降のリクエストが中断せずBurp Proxyを通過できるようにします。
+    </p>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ6: 脆弱性を悪用する</h3>
+    <p>
+        内蔵ブラウザで、右上のバスケットアイコンをクリックすると、カートが表示されます。ジャケットが1セントで追加されていることに注目してください。
+    </p>
+    <div class="highlightedarea">
+        <h4>注</h4>
+        <p>
+            Webインターフェースで価格を変更する方法はありません。この変更ができたのは、Burp Proxyのおかげです。
+        </p>
+    </div>
+    <p>
+        <strong>注文する</strong>ボタンをクリックすると、非常にリーズナブルな価格でジャケットを購入できます。
+    </p>
+    <p>
+        おめでとうございます。Webセキュリティアカデミーの最初のラボを突破しました。また、Burp Proxyを使ってHTTPトラフィックをインターセプト、レビュー、変更する方法も学びました。
+    </p>
+    <div class="callout theme-community-6">
+        <div class="container-columns-3 align-vertically-center">
+            <p class="heading-navy-1">
+                <strong>次のステップ - </strong>Burp Repeaterでリクエストを再発行する
+            </p>
+            <a href="reissuing-http-requests.html" class="button-orange">次へ</a>
+        </div>
+    </div>
+    <h3 cms-ignore-validation="DUPLICATE_HEADINGS">このチュートリアルの内容</h3>
+    <ol>
+        <li>
+            <a href="index.html">初期インストール</a>
+        </li>
+        <li>
+            Burp ProxyによるHTTPトラフィックのインターセプト
+        </li>
+        <li>
+            <a href="reissuing-http-requests.html">Burp Repeaterによるリクエストの再発行</a>
+        </li>
+        <li>
+            <a href="running-your-first-scan.html">初めてのスキャン実行</a>
+        </li>
+    </ol>
+</div>
+</body>
+</html>

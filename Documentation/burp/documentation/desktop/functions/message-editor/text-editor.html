@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -30,155 +31,164 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
-    <label class="label-edition is-community">コミュニティ</label>
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>テキストエディタ</h1>
-        <p>
-            テキストエディタは、<a href="index.html">HTTPメッセージエディタ</a>で、リクエストとレスポンスを表示する際や、その他Burpがプレーンテキストのコンテンツを表示する際に使用されます。さまざまな種類のテキストを読みやすくし、コンテンツの分析に役立つ便利な機能を多数実装しています。
-        </p>
-        <h2 id="syntax-analysis">構文解析</h2>
-        <p>
-            HTTPリクエストとレスポンスの構文は自動的に色付けされ、リクエストのパラメータやレスポンスのHTML要素などの気になるアイテムを強調表示します。JavaScript・JSON・CSSのコンテンツも完全に色付けされます。<a href="../../options/display.html#http-message-display">メッセージ表示オプション</a>で、この挙動とフォントを設定できます。
-        </p>
-        <p>
-            構文の色づけが有効になっている場合、場所によっては構文アイテムのデコードされた値を表示するマウスオーバーポップアップも表示します。HTTPリクエストの場合、ポップアップはURLデコードを行い、レスポンスの場合はHTMLデコードを実行します。
-        </p>
-        <h2 id="pretty-printing">整形表示</h2>
-        <p>
-            "Pretty"ビューでは、テキストエディタでサポートされているテキスト形式が、自動的に整形されます。エディタは現在、次の形式の整形表示をサポートしています:
-        </p>
-        <ul>
-            <li>
-                JSON
-            </li>
-            <li>
-                XML (<code>image/svg+xml</code>コンテンツを含む)
-            </li>
-            <li>
-                HTML
-            </li>
-            <li>
-                CSS
-            </li>
-            <li>
-                JavaScript
-            </li>
-        </ul>
-        <p>
-            これにより、HTTPメッセージ内のデータ・マークアップ・コードが標準化されたインデントと改行で表示されるため、可読性が大幅に向上します。Burp Repeaterなどの編集可能なメッセージでは、サポートされているテキスト形式であれば、入力したときに可能な限り動的に整形されます。それ以外の場合、リクエストを送信するときにテキストが整形されます。
-        </p>
-        <p>
-            デフォルトでは、サポートされている形式がコンテンツ内にあることをBurpが検出すると、メッセージは"Pretty"ビューに表示されます。メッセージエディタのボタンを使用して、整形バージョンと生コンテンツを手動で切り替えられます。
-        </p>
-        <p>
-            整形表示をデフォルトで使用したくない場合は、"ユーザオプション" &gt; "表示" &gt; "HTTPメッセージ表示"でこの設定を無効にできます。
-        </p>
-        <h2 id="non-printing-characters">印字不可文字</h2>
-        <p>
-            デフォルトで、HTTPリクエストおよびレスポンスの印字不可文字は非表示になっています。しかし、"\n"ボタンを使用すると、メッセージ内でこれらの文字を小さな"四角"で表示するかどうかを切り替えられます。これは、タブ・改行・復帰・ヌルバイトなど、16進コードポイントが20未満のすべてのバイトがサポートされます。コードポイント7FからFFまでの文字もサポートされています。
-        </p>
-        <p>
-            この機能は、次のような多くのユースケースで有用です:
-        </p>
-        <ul>
-            <li>
-                レスポンスのバイト値の微妙な違いを見抜く
-            </li>
-            <li>
-                HTTP Request Smuggling脆弱性の実験
-            </li>
-            <li>
-                潜在的なHTTPヘッダインジェクション脆弱性を特定するための行末の調査
-            </li>
-            <li>
-                ヌルバイトインジェクションがサーバによってどのように処理されるかの観察
-            </li>
-        </ul>
-        <h2 id="text-editor-hotkeys">テキストエディタのホットキー</h2>
-        <p>
-            テキストエディタは、さまざまな一般的な操作でホットキーをサポートしています。これらは、<a href="../../options/misc-user.html#hotkeys">ホットキーオプション</a>で設定でき、テキストエディタに関連するデフォルトのホットキーは次の通りです:
-        </p>
-        <ul>
-            <li>
-                Ctrl + A, すべて選択
-            </li>
-            <li>
-                Ctrl + X, 選択したテキストをカット
-            </li>
-            <li>
-                Ctrl + C, 選択したテキストをコピー
-            </li>
-            <li>
-                Ctrl + V, ペースト
-            </li>
-            <li>
-                Ctrl + S, メッセージ全体から選択したテキスト検索して強調表示
-            </li>
-            <li>
-                Ctrl + Z, 最後の編集を元に戻す
-            </li>
-            <li>
-                Ctrl + Y, 最後に元に戻した編集をやり直す
-            </li>
-            <li>
-                Ctrl + U, 選択したテキストをURLエンコード (デコードはShiftキーも押す)
-            </li>
-            <li>
-                Ctrl + H, 選択したテキストをHTMLエンコード (デコードはShiftキーも押す)
-            </li>
-            <li>
-                Ctrl + B, 選択したテキストをBase64エンコード (デコードはShiftキーも押す)
-            </li>
-            <li>
-                Ctrl + ←, 前の単語に移動
-            </li>
-            <li>
-                Ctrl + →, 次の単語に移動
-            </li>
-            <li>
-                Ctrl + ↑, 前の段落に移動
-            </li>
-            <li>
-                Ctrl + ↓, 次の段落に移動
-            </li>
-            <li>
-                Ctrl + Home, メッセージの先頭に移動
-            </li>
-            <li>
-                Ctrl + End, メッセージの末尾に移動
-            </li>
-            <li>
-                Ctrl + Backspace, 前の単語を削除
-            </li>
-            <li>
-                Ctrl + Del, 次の単語を削除
-            </li>
-        </ul>
-        <h2 id="quick-search">クイック検索</h2>
-        <p>
-            テキストエディタの下部には、表示されたテキスト内から文字列をすばやく見つけるための検索バーがあります。検索ボックスに入力すると、エディタはテキスト内の一致するアイテムを自動的に強調表示します。"&lt;"と"&gt;"ボタンを使用して、前または次の一致箇所に移動ができます。"+"ボタンは次のオプションを表示します:
-        </p>
-        <ul>
-            <li>
-                <strong>大文字小文字を区別</strong> - 検索で大文字と小文字を区別するかどうかを指定します。
-            </li>
-            <li>
-                <strong>正規表現</strong> - 検索語が正規表現かリテラル文字列かを指定します。
-            </li>
-            <li>
-                <strong>テキスト変更時にマッチした箇所に自動スクロール</strong> - 新しいテキストが表示されたときに、最初に強調表示された一致箇所までテキストエディタが自動でスクロールするかどうかを指定します。これは例えば、<a href="../../tools/proxy/history.html">Proxy履歴</a>でレスポンスから特定の文字列を探してアイテムを順に見ている際に便利です。このオプションを選択して新しいアイテムを選択すると、最初の検索一致箇所に自動で表示がスクロールします。
-            </li>
-        </ul>
-        <p>
-            これらのオプションのデフォルトはオフです。デフォルトは、"ユーザーオプション" / "その他"に移動し、。<a href="../../options/misc-user.html#message-search">メッセージ検索</a>まで下にスクロールして変更できます。
-        </p>
-        <p>
-            検索の強調表示に加え、Burpツールの中には、リクエストとレスポンスに独自の強調表示を適用するものがあります。例えば、<a href="../../../scanner/index.html">Burp Scanner</a>は<a href="../../tools/target/site-map/index.html#issues-view">問題の報告</a>内で、HTTPメッセージの関連部分を強調表示します。検索機能を使用していない場合は、"&lt;"と"&gt;"を使用して、ツールが生成した強調表示間で選択範囲を移動できます。
-        </p>
-    </div>
-</section>
+<h1>テキストエディタ</h1>
+<p>
+    テキストエディタは、<a href="index.html">HTTPメッセージエディタ</a>で使われていて、リクエストとレスポンスを表示する際や、その他Burpがプレーンテキストのコンテンツを表示する際に使用されます。さまざまな種類のテキストを読みやすくし、コンテンツの分析に役立つ便利な機能を多数実装しています。
+</p>
+<h2 id="syntax-analysis">構文分析</h2>
+<p>
+    HTTPリクエストとレスポンスの構文は自動的に色付けされ、リクエストのパラメータやレスポンスのHTML要素などの気になるアイテムを強調表示します。JavaScript、JSON、CSSのコンテンツも完全に色付けされます。<a href="../../options/display.html#http-message-display">メッセージ表示オプション</a>で、この挙動とフォントを設定できます。
+</p>
+<p>
+    構文の色づけが有効になっている場合、場所によっては構文アイテムのデコードされた値を表示するマウスオーバーポップアップも表示します。HTTPリクエストの場合、ポップアップはURLデコードを行い、レスポンスの場合はHTMLデコードを実行します。
+</p>
+<h2 id="pretty-printing">整形表示</h2>
+<p>
+    <strong>Pretty</strong>ビューでは、テキストエディタがサポートしているテキスト形式が、自動的に整形されます。エディタは現在、次の形式の整形表示をサポートしています:
+</p>
+<ul>
+    <li>
+        JSON
+    </li>
+    <li>
+        XML (<code>image/svg+xml</code>コンテンツを含む)
+    </li>
+    <li>
+        HTML
+    </li>
+    <li>
+        CSS
+    </li>
+    <li>
+        JavaScript
+    </li>
+</ul>
+<p>
+    これにより、HTTPメッセージ内のデータ、マークアップ、コードが、標準化されたインデントと改行で表示されるため可読性が大幅に向上します。Burp Repeaterなどの編集可能なメッセージでは、サポートされているテキスト形式であれば、入力したときに可能な限り動的に整形されます。それ以外の場合、リクエストを送信するときにテキストが整形されます。
+</p>
+<p>
+    デフォルトでは、サポートされている形式がコンテンツ内にあることをBurpが検出すると、メッセージは<strong>Pretty</strong>ビューに表示されます。メッセージエディタのボタンを使用して、整形バージョンと生コンテンツを手動で切り替えられます。
+</p>
+<p>
+    整形表示をデフォルトで使用したくない場合は、<strong>ユーザオプション &gt; 表示 &gt; HTTPメッセージ表示</strong>でこの設定を無効にできます。
+</p>
+<h2 id="line-wrapping">行の折り返し</h2>
+<p>
+    <strong>Pretty</strong>ビューと<strong>Raw</strong>ビューでは、リクエストやレスポンスの行は、テキストエディターの幅に合わせて自動的に折り返されます。これにより、1行が長いヘッダ値などが読みやすくなります。
+</p>
+<p>
+    行番号が表示されるので、元の改行位置を把握できます。
+</p>
+<p>
+    このオプションはデフォルトではオンになっていますが、各メッセージの上にあるボタンでオンとオフを切り替えられます。
+</p>
+<h2 id="non-printing-characters">印字不可能文字</h2>
+<p>
+    デフォルトで、HTTPリクエストやレスポンスの印字不可能文字は非表示になっています。しかし、<strong>\n</strong>ボタンを使用すると、メッセージ内でこれらの文字を小さな"四角"で表示するかどうかを切り替えられます。これは、タブ、改行、復帰、ヌルバイトなど、16進コードポイントが20未満のすべてのバイトがサポートされます。コードポイント7FからFFまでの文字もサポートされています。
+</p>
+<p>
+    この機能は、次のような多くのユースケースで有用です:
+</p>
+<ul>
+    <li>
+        レスポンスのバイト値の微妙な違いを見抜く
+    </li>
+    <li>
+        HTTP Request Smuggling脆弱性の実験
+    </li>
+    <li>
+        潜在的なHTTPヘッダインジェクション脆弱性を特定するための行末の調査
+    </li>
+    <li>
+        ヌルバイトインジェクションがサーバによってどのように処理されるかの観察
+    </li>
+</ul>
+<h2 id="text-editor-hotkeys">テキストエディタのホットキー</h2>
+<p>
+    テキストエディタは、さまざまな一般的な操作でホットキーをサポートしています。これらは、<a href="../../options/misc-user.html#hotkeys">ホットキーオプション</a>で設定できます。テキストエディタに関連するデフォルトのホットキーは次の通りです:
+</p>
+<ul>
+    <li>
+        Ctrl + A, すべて選択
+    </li>
+    <li>
+        Ctrl + X, 選択したテキストをカット
+    </li>
+    <li>
+        Ctrl + C, 選択したテキストをコピー
+    </li>
+    <li>
+        Ctrl + V, ペースト
+    </li>
+    <li>
+        Ctrl + S, メッセージ全体から選択したテキスト検索して強調表示
+    </li>
+    <li>
+        Ctrl + Z, 最後の編集を元に戻す
+    </li>
+    <li>
+        Ctrl + Y, 最後に元に戻した編集をやり直す
+    </li>
+    <li>
+        Ctrl + U, 選択したテキストをURLエンコード (デコードはShiftキーも押す)
+    </li>
+    <li>
+        Ctrl + H, 選択したテキストをHTMLエンコード (デコードはShiftキーも押す)
+    </li>
+    <li>
+        Ctrl + B, 選択したテキストをBase64エンコード (デコードはShiftキーも押す)
+    </li>
+    <li>
+        Ctrl + ←, 前の単語に移動
+    </li>
+    <li>
+        Ctrl + →, 次の単語に移動
+    </li>
+    <li>
+        Ctrl + ↑, 前の段落に移動
+    </li>
+    <li>
+        Ctrl + ↓, 次の段落に移動
+    </li>
+    <li>
+        Ctrl + Home, メッセージの先頭に移動
+    </li>
+    <li>
+        Ctrl + End, メッセージの末尾に移動
+    </li>
+    <li>
+        Ctrl + Backspace, 前の単語を削除
+    </li>
+    <li>
+        Ctrl + Del, 次の単語を削除
+    </li>
+</ul>
+<h2 id="quick-search">クイック検索</h2>
+<p>
+    テキストエディタの下部には、表示されたテキスト内から文字列をすばやく見つけるための検索バーがあります。検索ボックスに入力すると、エディタはテキスト内の一致するアイテムを自動的に強調表示します。<strong>&lt;</strong>と<strong>&gt;</strong>ボタンを使用すると、前または次の一致箇所に移動できます。<strong>+</strong>ボタンは次のオプションを表示します:
+</p>
+<ul>
+    <li>
+        <strong>大文字小文字を区別</strong> - 検索で大文字と小文字を区別するかどうかを指定します。
+    </li>
+    <li>
+        <strong>正規表現</strong> - 検索語が正規表現かリテラル文字列かを指定します。
+    </li>
+    <li>
+        <strong>テキスト変更時にマッチした箇所に自動スクロール</strong> - 新しいテキストが表示されたときに、最初に強調表示された一致箇所までテキストエディタが自動でスクロールするかどうかを指定します。これはたとえば、<a href="../../tools/proxy/history.html">Proxy履歴</a>でレスポンスから特定の文字列を探してアイテムを順に見ている際に便利です。このオプションを選択して新しいアイテムを選択すると、最初の検索一致箇所に自動で表示がスクロールします。
+    </li>
+</ul>
+<p>
+    これらのオプションのデフォルトはオフです。デフォルトは、"ユーザーオプション" / "その他"に移動し、。<a href="../../options/misc-user.html#message-search">メッセージ検索</a>まで下にスクロールして変更できます。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        検索の強調表示に加え、Burpツールの中には、リクエストとレスポンスに独自の強調表示を適用するものがあります。たとえば、<a href="../../../scanner/index.html">Burp Scanner</a>は<a href="../../tools/target/site-map/index.html#issues-view">問題の報告</a>内で、HTTPメッセージの関連部分を強調表示します。検索機能を使用していない場合は、<strong>&lt;</strong>と<strong>&gt;</strong>を使用して、ツールが生成した強調表示間で選択範囲を移動できます。
+    </p>
+</div>
 </body>
 </html>

@@ -97,7 +97,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">IExtensionHelpers</span></pre>
-<div class="block">Buurp拡張で起こるさまざまな一般的なタスクの支援に便利な、数々のヘルパーメソッドが含まれています。拡張から<code>IBurpExtenderCallbacks.getHelpers</code>を呼び出すと、このインタフェースのインスタンスを取得できます。</div>
+<div class="block">Buurp拡張で起こるさまざまな一般的なタスクの支援に便利な、数々のヘルパーメソッドが含あります。拡張から<code>IBurpExtenderCallbacks.getHelpers</code>を呼び出すと、このインタフェースのインスタンスを取得できます。</div>
 </li>
 </ul>
 </div>
@@ -152,13 +152,13 @@ var activeTableTab = "activeTableTab";
 <td class="colFirst"><code><a href="../burp/IResponseKeywords.html" title="burp 内のインタフェース">IResponseKeywords</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#analyzeResponseKeywords-java.util.List-byte:A...-">analyzeResponseKeywords</a></span>(java.util.List&lt;java.lang.String&gt;&nbsp;keywords,
                        byte[]...&nbsp;responses)</code>
-<div class="block">1つ以上のレスポンスを解析して指定したキーワードの出現回数を調べ、各キーワードの出現回数の詳細を取得できる<code>IResponseKeywords</code>オブジェクトを返します。</div>
+<div class="block">1つ以上のレスポンスを分析して指定したキーワードの出現回数を調べ、各キーワードの出現回数の詳細を取得できる<code>IResponseKeywords</code>オブジェクトを返します。</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code><a href="../burp/IResponseVariations.html" title="burp 内のインタフェース">IResponseVariations</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IExtensionHelpers.html#analyzeResponseVariations-byte:A...-">analyzeResponseVariations</a></span>(byte[]...&nbsp;responses)</code>
-<div class="block">1つ以上のレスポンスを解析して属性の種類数を調べ、その種類の出現回数を取得できる<code>IResponseVariations</code>オブジェクトを返します。</div>
+<div class="block">1つ以上のレスポンスを分析して属性の種類数を調べ、その種類の出現回数を取得できる<code>IResponseVariations</code>オブジェクトを返します。</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
@@ -336,7 +336,7 @@ var activeTableTab = "activeTableTab";
 <div class="block">HTTPリクエストを分析し、それについて各種のキーの詳細を取得します。</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>request</code> - 解析するリクエストを含んだ<code>IHttpRequestResponse</code>オブジェクト。</dd>
+<dd><code>request</code> - 分析するリクエストを含んだ<code>IHttpRequestResponse</code>オブジェクト。</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>リクエストの詳細を取得できる<code>IRequestInfo</code>オブジェクト。</dd>
 </dl>
@@ -354,7 +354,7 @@ var activeTableTab = "activeTableTab";
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>httpService</code> - リクエストに関連付けられたHTTPサービス。これはオプションで、<code>null</code>の場合は<code>IRequestInfo</code>オブジェクトは完全なリクエストURLを持ちません。</dd>
-<dd><code>request</code> - 解析するリクエスト。</dd>
+<dd><code>request</code> - 分析するリクエスト。</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>リクエストの詳細を取得できる<code>IRequestInfo</code>オブジェクト。</dd>
 </dl>
@@ -370,7 +370,7 @@ var activeTableTab = "activeTableTab";
 <div class="block">HTTPリクエストを分析し、それについて各種のキーの詳細を取得します。結果の<code>IRequestInfo</code>オブジェクトは、完全なURLを持ちません。完全なURLを取得するには、<code>analyzeRequest()</code>をオーバーロードした他のメソッドを使用してください。</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>request</code> - 解析するリクエスト。</dd>
+<dd><code>request</code> - 分析するリクエスト。</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>リクエストの詳細を取得できる<code>IRequestInfo</code>オブジェクト。</dd>
 </dl>
@@ -386,7 +386,7 @@ var activeTableTab = "activeTableTab";
 <div class="block">HTTPレスポンスを分析し、それについて各種のキーの詳細を取得します。</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>response</code> - 解析するレスポンス。</dd>
+<dd><code>response</code> - 分析するレスポンス。</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>レスポンスの詳細を取得できる<code>IResponseInfo</code>オブジェクト。</dd>
 </dl>
@@ -805,10 +805,10 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>analyzeResponseVariations</h4>
 <pre><a href="../burp/IResponseVariations.html" title="burp 内のインタフェース">IResponseVariations</a>&nbsp;analyzeResponseVariations(byte[]...&nbsp;responses)</pre>
-<div class="block">1つ以上のレスポンスを解析して属性の種類数を調べ、その種類の出現回数を取得できる<code>IResponseVariations</code>オブジェクトを返します。</div>
+<div class="block">1つ以上のレスポンスを分析して属性の種類数を調べ、その種類の出現回数を取得できる<code>IResponseVariations</code>オブジェクトを返します。</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>responses</code> - 解析するレスポンス。</dd>
+<dd><code>responses</code> - 分析するレスポンス。</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>レスポンスの変化を表す<code>IResponseVariations</code>オブジェクト。</dd>
 </dl>
@@ -822,11 +822,11 @@ var activeTableTab = "activeTableTab";
 <h4>analyzeResponseKeywords</h4>
 <pre><a href="../burp/IResponseKeywords.html" title="burp 内のインタフェース">IResponseKeywords</a>&nbsp;analyzeResponseKeywords(java.util.List&lt;java.lang.String&gt;&nbsp;keywords,
                                           byte[]...&nbsp;responses)</pre>
-<div class="block">1つ以上のレスポンスを解析して指定したキーワードの出現回数を調べ、各キーワードの出現回数の詳細を取得できる<code>IResponseKeywords</code>オブジェクトを返します。</div>
+<div class="block">1つ以上のレスポンスを分析して指定したキーワードの出現回数を調べ、各キーワードの出現回数の詳細を取得できる<code>IResponseKeywords</code>オブジェクトを返します。</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>keywords</code> - 検索するキーワード。</dd>
-<dd><code>responses</code> - 解析するレスポンス。</dd>
+<dd><code>responses</code> - 分析するレスポンス。</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>レスポンス内にキーワードが出現した回数を表す<code>IResponseKeywords</code>オブジェクト。</dd>
 </dl>

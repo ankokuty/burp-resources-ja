@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">入門</a>
+        </li>
+        <li>
+            <a href="startup-wizard.html">スタートアップウィザード</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>スタートアップウィザード</h1>
+<p>
+    Burpを起動すると必ず、起動ウィザードが表示されます。ここにはさまざまな起動オプションがあり、特に、作業する<a href="../projects.html">プロジェクト</a>と、使用する<a href="../configurations.html">設定</a>を選択します。Burpを初めて起動したときには、ライセンスのアクティベーションも求められます。
+</p>
+<ul>
+    <li>
+        <a href="activating-burp-license.html">ライセンスのアクティベーション</a>
+    </li>
+    <li>
+        <a href="#selecting-a-project">プロジェクトの選択</a>
+    </li>
+    <li>
+        <a href="#selecting-a-configuration">設定の選択</a>
+    </li>
+</ul>
+<h2 id="selecting-a-project">プロジェクトの選択</h2>
+<p>
+    ライセンスのアクティベーションが完了したら、起動ウィザードの最初のステップとして、作業するBurpプロジェクトを選択または作成します。使用しているBurp Suiteのエディションに応じて、次の選択肢があります:
+</p>
+<ul>
+    <li>
+        <strong>一時プロジェクト</strong> - 保存する必要がない素早いタスクに適しています。すべてのデータはメモリ内に保持され、Burpを閉じると失われます。これは、Burp Suite Community Editionで利用できる唯一のオプションです。
+    </li>
+    <li>
+        <strong>新規ディスクプロジェクト</strong> - 新しいプロジェクトが作成され、データをBurp<a href="../projects.html">プロジェクトファイル</a>に保存します。このファイルには、プロジェクトのすべてのデータと設定が含まれます。作業している間、データが追記されていきます。プロジェクト名は後でBurpメニューから変更できます。
+    </li>
+    <li>
+        <strong>既存のプロジェクトを開く</strong> - Burpプロジェクトファイルから既存のプロジェクトを再開します。最近開いたプロジェクトのリストが表示され、簡単に選択できます。デフォルトでは、既存のプロジェクトを開くと、進行中の自動化されたタスクは最初は一時停止されます。これは、以前設定されていた対象に意図せずリクエストを送信しないためです。デフォルトの動作は、Burp Suiteの<strong>ユーザオプション</strong>の<strong>その他</strong>タブで変更できます。
+    </li>
+</ul>
+<div class="container">
+    <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/s3j1VvJlx9E?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
+    </div>
+</div>
+<h2 id="opening-a-project-from-a-different-burp-installation">別のBurpインストールからのプロジェクトを開始</h2>
+<p>
+    別のBurpインストールで作成された既存のプロジェクトを開いた場合、プロジェクトの完全な所有権を取得するかどうかプロンプトが表示されます。
+</p>
+<p>
+    プロジェクトファイル内には、プロジェクトに関連付けられた識別子が保存されており、それを使ってBurp Collaboratorの通信を検索します。2つのBurpインスタンスで同じ識別子を共有し作業すると、Collaboratorベースの診断項目を見逃す、または正しく報告されない可能性があります。他のBurpインスタンスがそのプロジェクトで作業していない場合のみ、他のBurpインストールからプロジェクトの完全な所有権を取得してください。
+</p>
+<h2 id="selecting-a-configuration">設定の選択</h2>
+<p>
+    スタートアップウィザードの次のステップは、プロジェクトに使用する<a href="../configurations.html">設定ファイル</a>の選択です。設定ファイルは、ユーザやプロジェクトの設定など、Burpのさまざまなカスタム設定を保存するために使用されます。たとえば、作業している各クライアントに合わせてさまざまなプロジェクト設定を調整した、固有の設定ファイルを用意できます。また一部のバグバウンティプログラムでは、プロジェクトの正しいスコープを自動的に設定するためのBurp設定ファイルを提供しています。
+</p>
+<p>
+    Burpを使い始めると、最初はデフォルトの設定を使うことになるでしょう。さまざまなオプションに慣れてきたら、自分用の設定ファイルを保存して、他のプロジェクトで再利用してもいいでしょう。
+</p>
+<p>
+    プロジェクト設定を、次のオプションから選択できます:
+</p>
+<ul>
+    <li>
+        <strong>Burpのデフォルトを使用する</strong> - Burpのデフォルトオプションを使用してプロジェクトを開きます。
+    </li>
+    <li>
+        <strong>プロジェクトに保存されたオプションを使用する</strong> - 既存のプロジェクトを再開する場合のみ使用できます。選択したプロジェクトファイルに保存されたオプションを使用して、プロジェクトを開きます。
+    </li>
+    <li>
+        <strong>ファイルから設定を読み込む</strong> - 選択したBurp設定ファイルのオプションを使用してプロジェクトを開始します。設定ファイル内のプロジェクトレベルのオプションのみ読み込まれる点に注意してください。ユーザレベルのオプションは無視されます。素早く選択できるよう、最近使用された設定ファイルのリストが表示されます。
+    </li>
+</ul>
+</body>
+</html>

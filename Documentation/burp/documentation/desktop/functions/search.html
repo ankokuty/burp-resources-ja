@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms><cms ignore-validation="STACKED_HEADINGS"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -27,87 +28,81 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
+    <label class="label-edition is-professional">Professional</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>検索</h1>
-        <div class="highlightedarea">
-            <p>
-                Burpはには、さまざまなアイテムを検索する、さまざまな機能があります:
-            </p>
-            <ul class="link-list">
-                <li>
-                    <a href="#text-search">単純なテキスト検索</a>
-                </li>
-                <li>
-                    <a href="#find-comments-and-scripts">コメント検索</a>
-                </li>
-                <li>
-                    <a href="#find-comments-and-scripts">スクリプト検索</a>
-                </li>
-                <li>
-                    <a href="#find-references">特定URLへの参照元(リンク)検索</a>
-                </li>
-            </ul>
-        </div>
-        <h2 id="text-search">テキスト検索</h2>
-        <p>
-            Burpメニューの"検索"を選択すると、スイート全体からの検索が実行できます。対象<a href="../tools/target/site-map/index.html">サイトマップ</a>内の選択したブランチ内からの検索も可能で、コンテキストメニューの"関連ツール"から"検索"を選択します。
-        </p>
-        <p>
-            検索ダイアログでは、次のオプションを設定できます:
-        </p>
-        <ul>
-            <li>
-                検索する文字列
-            </li>
-            <li>
-                検索で大文字と小文字を区別するかどうか
-            </li>
-            <li>
-                検索語がリテラル文字列か正規表現か
-            </li>
-            <li>
-                "一致しない"もの(検索語を含まないアイテム)を検索し表示するかどうか
-            </li>
-            <li>
-                <a href="../tools/target/scope.html">スコープ内</a>のアイテムのみ検索するかどうか
-            </li>
-            <li>
-                Burpのツールで新たなHTTPメッセージが処理されたとき、検索結果を動的に更新するかどうか
-            </li>
-            <li>
-                HTTPメッセージ内で検索する箇所(リクエストとレスポンス、ヘッダとボディ)
-            </li>
-            <li>
-                検索するツール
-            </li>
-        </ul>
-        <p>
-            "送信"をクリックすると、検索が開始し、検索結果の詳細がソート可能な一覧に表示されます。プレビューペインには、選択したアイテムの完全なリクエストとレスポンスが表示され、検索語にマッチした箇所が強調表示されます。コンテキストメニューで、他のツールへのリクエスト送信や、その他のアクションの実行ができます。
-        </p>
-        <h2 id="find-comments-and-scripts">コメントやスクリプトの検索</h2>
-        <p>
-            これらの機能で、対象<a href="../tools/target/site-map/index.html">サイトマップ</a>の一部またはすべてから、コメントやスクリプトを検索できます。サイトマップツリーの一部またはすべてを選択し、サイトマップのコンテキストメニューの"関連ツール"で"コメント検索"はたは"スクリプト検索"を選択すると、検索を開始できます。
-        </p>
-        <p>
-            検索ダイアログで、"検索"ボタンを使用して検索を実行します(または後で再実行します)。探索されたアイテムの詳細は、ソート可能な一覧に表示されます。プレビューペインには、選択したアイテムの完全なリクエストとレスポンスが表示され、関連する項目が自動的に強調捧持され、独自のタブにも抽出されます。コンテキストメニューで、他のツールへのリクエスト送信や、その他のアクションの実行ができます。
-        </p>
-        <p>
-            "動的に更新"オプションを選択すると、Burpのツールで新たなHTTPメッセージが処理されたとき、結果を動的に更新します。"エクスポート"ボタンで、すべてのスクリプトまたはコメントをファイルまたはクリップボードに保存でき、設定によって重複したアイテムを統合できます。
-        </p>
-        <h2 id="find-references">参照元検索</h2>
-        <p>
-            この機能で、特定のアイテムにリンクするHTTPレスポンスを、すべてのBurpツールから検索できます。この機能にアクセスするには、Burpの任意の場所か、Targetの<a href="../tools/target/site-map/index.html">サイトマップ</a>でHTTPリクエストを選択し、コンテキストメニューの"関連ツール"から"参照元検索"を選択します。
-        </p>
-        <p>
-            検索結果ウィンドウには、選択したアイテムにリンクしている(すべてのBurpツールの)レスポンスが表示されます。個々の検索結果を表示すると、どこからリンク参照されているか自動的にレスポンスがハイライトされます。
-        </p>
-        <p>
-            この機能は、リンクの検索時に元のURLをプレフィックスとして扱うため、ホストを選択するとそのホストへのすべての参照を、フォルダを選択するとそのフォルダ以下のアイテムへのすべての参照が検索できます。
-        </p>
-    </div>
-</section>
+<h1>検索</h1>
+<div class="highlightedarea">
+    <h4>このセクションの内容</h4>
+    <ul>
+        <li>
+            <a href="#text-search">単純なテキスト検索</a>
+        </li>
+        <li>
+            <a href="#find-comments-and-scripts">コメント検索</a>
+        </li>
+        <li>
+            <a href="#find-comments-and-scripts">スクリプト検索</a>
+        </li>
+        <li>
+            <a href="#find-references">特定URLへの参照元(リンク)検索</a>
+        </li>
+    </ul>
+</div>
+<h2 id="text-search">テキスト検索</h2>
+<p>
+    Burpメニューの<strong>検索</strong>を選択すると、Suite全体からの検索が実行できます。対象<a href="../tools/target/site-map/index.html">サイトマップ</a>内の選択したブランチ内からの検索も可能で、コンテキストメニューの<strong>関連ツール</strong>から<strong>検索</strong>を選択します。
+</p>
+<p>
+    検索ダイアログでは、次のオプションを設定できます:
+</p>
+<ul>
+    <li>
+        検索する文字列
+    </li>
+    <li>
+        検索で大文字と小文字を区別するかどうか
+    </li>
+    <li>
+        検索語がリテラル文字列か正規表現か
+    </li>
+    <li>
+        <strong>一致しない</strong>もの(検索語を含まないアイテム)を検索し表示するかどうか
+    </li>
+    <li>
+        <a href="../tools/target/scope.html">スコープ内</a>のアイテムのみ検索するかどうか
+    </li>
+    <li>
+        Burpのツールで新たなHTTPメッセージが処理されたとき、検索結果を動的に更新するかどうか
+    </li>
+    <li>
+        HTTPメッセージ内で検索する箇所(リクエストとレスポンス、ヘッダとボディ)
+    </li>
+    <li>
+        検索するツール
+    </li>
+</ul>
+<p>
+    <strong>送信</strong>をクリックすると検索が開始し、検索結果の詳細がソート可能な一覧に表示されます。プレビューペインには、選択したアイテムの完全なリクエストとレスポンスが表示され、検索語にマッチした箇所が強調表示されます。コンテキストメニューから、他のツールへのリクエスト送信や、その他のアクションを実行できます。
+</p>
+<h2 id="find-comments-and-scripts">コメントやスクリプトの検索</h2>
+<p>
+    これらの機能で、対象<a href="../tools/target/site-map/index.html">サイトマップ</a>の一部またはすべてから、コメントやスクリプトを検索できます。サイトマップツリーの一部またはすべてを選択し、サイトマップのコンテキストメニューの<strong>関連ツール</strong>で<strong>コメント検索</strong>はたは<strong>スクリプト検索</strong>を選択すると、検索を開始できます。
+</p>
+<p>
+    検索ダイアログで、<strong>検索</strong>ボタンを使用して検索を実行します(または後で再実行します)。探索されたアイテムの詳細は、ソート可能な一覧に表示されます。プレビューペインには、選択したアイテムの完全なリクエストとレスポンスが表示され、関連する項目が自動的に強調捧持され、独自のタブにも抽出されます。コンテキストメニューから、他のツールへのリクエスト送信や、その他のアクションを実行できます。
+</p>
+<p>
+    <strong>動的に更新</strong>オプションを選択すると、Burpのツールで新たなHTTPメッセージが処理されたとき、結果を動的に更新します。<strong>エクスポート</strong>ボタンで、すべてのスクリプトまたはコメントをファイルまたはクリップボードに保存でき、設定によって重複したアイテムを統合できます。
+</p>
+<h2 id="find-references">参照元検索</h2>
+<p>
+    この機能で、特定のアイテムにリンクするHTTPレスポンスを、すべてのBurpツールから検索できます。この機能にアクセスするには、Burpの任意の場所か、Targetの<a href="../tools/target/site-map/index.html">サイトマップ</a>でHTTPリクエストを選択し、コンテキストメニューの<strong>関連ツール</strong>から<strong>参照元検索</strong>を選択します。
+</p>
+<p>
+    検索結果ウィンドウには、選択したアイテムにリンクしている(すべてのBurpツールの)レスポンスが表示されます。個々の検索結果を表示すると、どこからリンク参照されているか自動的にレスポンスがハイライトされます。
+</p>
+<p>
+    この機能は、リンクの検索時に元のURLをプレフィックスとして扱うため、ホストを選択するとそのホストへのすべての参照を、フォルダを選択するとそのフォルダ以下のアイテムへのすべての参照を検索できます。
+</p>
 </body>
 </html>

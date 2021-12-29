@@ -473,7 +473,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>getSelectedMessages</h4>
 <pre><a href="../burp/IHttpRequestResponse.html" title="burp 内のインタフェース">IHttpRequestResponse</a>[]&nbsp;getSelectedMessages()</pre>
-<div class="block">コンテキストメニューが呼び出されたときにユーザが表示または選択したHTTPリクエスト/レスポンスの詳細を取得します。<b>注:</b> パフォーマンスの理由で、このメソッドが返すオブジェクトはBurp UI内のオリジナルメッセージコンテキストに関連付けられます。例えば、Proxyインターセプトパネルでコンテキストメニューが起動された場合、このメソッドが返した<code>IHttpRequestResponse</code>はインターセプトパネルの現在のコンテンツを反映しており、現在のメッセージが転送や破棄されると変わります。コンテキストメニューが呼び出されたメッセージの詳細を拡張が保存する必要がある場合は、呼び出し時に<code>IHttpRequestResponse</code>から詳細を取得するか、<code>IBurpExtenderCallbacks.saveBuffersToTempFiles()</code>を使用して、永続的で読み取り専用な<code>IHttpRequestResponse</code>のコピーを作成する必要があります。</div>
+<div class="block">コンテキストメニューが呼び出されたときにユーザが表示または選択したHTTPリクエスト/レスポンスの詳細を取得します。<b>注:</b> パフォーマンスの理由で、このメソッドが返すオブジェクトはBurp UI内のオリジナルメッセージコンテキストに関連付けられます。たとえば、Proxyインターセプトパネルでコンテキストメニューが起動された場合、このメソッドが返した<code>IHttpRequestResponse</code>はインターセプトパネルの現在のコンテンツを反映しており、現在のメッセージが転送や破棄されると変わります。コンテキストメニューが呼び出されたメッセージの詳細を拡張が保存する必要がある場合は、呼び出し時に<code>IHttpRequestResponse</code>から詳細を取得するか、<code>IBurpExtenderCallbacks.saveBuffersToTempFiles()</code>を使用して、永続的で読み取り専用な<code>IHttpRequestResponse</code>のコピーを作成する必要があります。</div>
 <dl>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>コンテキストメニューが呼ばれたときにユーザが表示または選択していた、<code>IHttpRequestResponse</code>オブジェクトの配列。呼び出しに該当するメッセージがない場合、<code>null</code>を返します。</dd>

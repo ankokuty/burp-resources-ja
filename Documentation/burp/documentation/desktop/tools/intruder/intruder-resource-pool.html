@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -30,24 +31,37 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
+    <label class="label-edition is-professional">Professional</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>Intruderのリソースプール</h1>
-        <p>
-            リソースプールは、リソースの割り当てを共有するタスクをグループ化したものです。各リソースプールはそれぞれ、同時リクエスト数、またはリクエストの生成頻度、またはその両方を調整する設定ができます。リクエスト間に遅延を入れる場合は、その遅延をランダムにするよう指定も可能です。IntruderもBurp Scannerもどちらもリソースプールを利用します。
-        </p>
-        <p>
-            各タスクは作成時にリソースプールに割り当てられ、いつでもリソースプール間で移動できます。
-        </p>
-        <p>
-            リソースプールは、異なる速度で自動化リクエストを受け付ける、異なるアプリケーションをテストする場合に特に便利です。また、さまざまなテスト範囲に優先順位を付ける場合も便利です。例えば、同時リクエスト数を少なくしたタスクを作成しアプリケーション全体のクロールと診断をバックグランドで実行しておき、Intruder攻撃用に別のタスクを作成し、こちらは同時リクエスト数をより多くすれば優先度を上げられます。
-        </p>
-        <p>
-            進行中または終了した攻撃からは、新しいリソースプールを作成できないことに注意してください。攻撃開始後にリソースプールを新たに作成した場合は、ダッシュボードに移動し、歯車設定アイコンをクリックしてプールを作成してください。
-        </p>
-    </div>
-</section>
+<h1>Intruderのリソースプール</h1>
+<p>
+    リソースプールは、リソースの割り当てを共有するタスクをグループ化したものです。各リソースプールはそれぞれ、同時リクエスト数、またはリクエストの生成頻度、またはその両方を調整できます。
+</p>
+<p>
+    リクエスト間に遅延を入れる場合は、次のオプションから選択できます:
+</p>
+<ul>
+    <li>
+        固定の遅延。
+    </li>
+    <li>
+        ランダムに変動する遅延。
+    </li>
+    <li>
+        遅延を段階的に増加。このオプションは、リクエストが送信されない場合にセッションが有効期限切れになるまでの時間を調べる際に、特に有用です。
+    </li>
+</ul>
+<p no-keyword-injection>
+    IntruderもBurp Scannerもどちらもリソースプールを利用します。
+</p>
+<p>
+    各タスクは作成時にリソースプールに割り当てられ、いつでもリソースプール間で移動できます。
+</p>
+<p>
+    リソースプールは、異なる速度で自動化リクエストを受け付ける、異なるアプリケーションをテストする場合に特に便利です。また、さまざまなテスト範囲に優先順位を付ける場合も便利です。たとえば、同時リクエスト数を少なくしたタスクを作成しアプリケーション全体のクロールと診断をバックグランドで実行しておき、Intruder攻撃用に別のタスクを作成し、こちらは同時リクエスト数をより多くすれば優先度を上げられます。
+</p>
+<p>
+    進行中または終了した攻撃から、新しいリソースプールは作成できません。攻撃開始後にリソースプールを新たに作成した場合は、ダッシュボードに移動し、歯車設定アイコンをクリックしてプールを作成してください。
+</p>
 </body>
 </html>

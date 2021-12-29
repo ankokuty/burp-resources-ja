@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -27,41 +28,37 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
-    <label class="label-edition is-community">コミュニティ</label>
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>タスク実行設定</h1>
-        <p>
-            Burp Suiteでは、複数の自動化タスクを同時に設定できます。大量の作業を並行して実行すると、自分のマシン(CPU、メモリー、ネットワーク接続を使い切る)、またはテスト対象のアプリケーションで問題が発生する可能性があります。Burpは、タスクの実行とリソースの割り当て方法を管理して、このような事態を回避します。
-        </p>
-        <p>
-            タスク実行設定にアクセスするには、Burp<a href="index.html">ダッシュボード</a>のタスクパネルの上部にある歯車をクリックしてください。
-        </p>
-        <h2 id="task-auto-start">タスク自動開始</h2>
-        <p>
-            Burpの<a href="index.html">ダッシュボード</a>で、タスクを個別に一時停止または再開ができます。タスクが新しく作成された際に、自動的にタスクを開始するように設定もできます。次のオプションがあります:
-        </p>
-        <ul>
-            <li>
-                停止状態のタスクを作成する
-            </li>
-            <li>
-                タスク作成時に開始する
-            </li>
-        </ul>
-        <h2 id="resource-pools">リソースプール</h2>
-        <p>
-            リソースプールは、ネットワークリソースの割り当てを共有するタスクをグループ化したものです。各リソースプールはそれぞれ、同時リクエスト数、またはリクエストの速度、またはその両方を調整する設定ができます。
-        </p>
-        <p>
-            各タスクは作成時にリソースプールに割り当てられ、いつでもリソースプール間で移動できます。
-        </p>
-        <p>
-            リソースプールは、異なる速度で自動化リクエストを受け付ける、異なるアプリケーションをテストする場合に特に便利です。また、さまざまなテスト範囲に優先順位を付ける場合も便利です。例えば、同時リクエスト数を少なくしたタスクを作成しアプリケーション全体のクロールと診断をバックグランドで実行しておき、選択した特定のリクエストを診断するために別のタスクを作成し、こちらは同時リクエスト数をより多くして優先度を上げられます。
-        </p>
-    </div>
-</section>
+<h1>タスク実行設定</h1>
+<p>
+    Burp Suiteでは、複数の自動化タスクを同時に設定できます。大量の作業を並行して実行すると、自分のマシン(CPU、メモリ、ネットワーク接続)を使い切る、またはテスト対象のアプリケーションで問題が発生する可能性があります。Burpは、タスクの実行とリソースの割り当て方法を管理して、このような事態を回避します。
+</p>
+<p>
+    タスク実行設定にアクセスするには、Burp<a href="index.html">ダッシュボード</a>のタスクパネル上部にある歯車をクリックしてください。
+</p>
+<h2 id="task-auto-start">タスク自動開始</h2>
+<p>
+    Burpの<a href="index.html">ダッシュボード</a>で、タスクを個別に一時停止または再開できます。タスクが新しく作成された際に、自動的にタスクを開始するようにも設定できます。次のオプションがあります:
+</p>
+<ul>
+    <li>
+        停止状態のタスクを作成する
+    </li>
+    <li>
+        タスク作成時に開始する
+    </li>
+</ul>
+<h2 id="resource-pools">リソースプール</h2>
+<p>
+    リソースプールは、ネットワークリソースの割り当てを共有するタスクをグループ化したものです。各リソースプールはそれぞれ、同時リクエスト数、またはリクエストの速度、またはその両方を調整できます。
+</p>
+<p>
+    各タスクは作成時にリソースプールに割り当てられ、いつでもリソースプール間で移動できます。
+</p>
+<p>
+    リソースプールは、異なる速度で自動化リクエストを受け付ける、異なるアプリケーションをテストする場合に特に便利です。また、さまざまなテスト範囲に優先順位を付ける場合も便利です。たとえば、同時リクエスト数を少なくしたタスクを作成しアプリケーション全体のクロールと診断をバックグランドで実行しておき、選択した特定のリクエストを診断するために別のタスクを作成し、こちらは同時リクエスト数をより多くして優先度を上げられます。
+</p>
 </body>
 </html>

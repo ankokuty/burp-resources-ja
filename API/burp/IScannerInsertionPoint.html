@@ -125,7 +125,7 @@ var activeTableTab = "activeTableTab";
 <tr class="rowColor">
 <td class="colFirst"><code>static byte</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IScannerInsertionPoint.html#INS_EXTENSION_PROVIDED">INS_EXTENSION_PROVIDED</a></span></code>
-<div class="block">ペイロードの挿入ポイントを<code>IScannerInsertionPointProvider</code>に登録された拡張が提供することを示します。</div>
+<div class="block"><code>IScannerInsertionPointProvider</code>に登録された拡張にペイロードの挿入ポイントを示すために使用されます。</div>
 </td>
 </tr>
 <tr class="altColor">
@@ -517,7 +517,7 @@ static final&nbsp;byte INS_URL_PATH_REST</pre>
 <li class="blockList">
 <h4>INS_EXTENSION_PROVIDED</h4>
 <pre>static final&nbsp;byte INS_EXTENSION_PROVIDED</pre>
-<div class="block">ペイロードの挿入ポイントを<code>IScannerInsertionPointProvider</code>に登録された拡張が提供することを示します。</div>
+<div class="block"><code>IScannerInsertionPointProvider</code>に登録された拡張にペイロードの挿入ポイントを示すために使用されます。</div>
 <dl>
 <dt><span class="seeLabel">関連項目:</span></dt>
 <dd><a href="../constant-values.html#burp.IScannerInsertionPoint.INS_EXTENSION_PROVIDED">定数フィールド値</a></dd>
@@ -556,7 +556,7 @@ static final&nbsp;byte INS_URL_PATH_REST</pre>
 <div class="block">挿入ポイントの名前を返します。</div>
 <dl>
 <dt><span class="returnLabel">戻り値:</span></dt>
-<dd>挿入ポイントの名前 (例えば、特定のリクエストパラメータの説明など)。</dd>
+<dd>挿入ポイントの名前 (たとえば、特定のリクエストパラメータの説明など)。</dd>
 </dl>
 </li>
 </ul>
@@ -602,7 +602,7 @@ static final&nbsp;byte INS_URL_PATH_REST</pre>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>payload</code> - 挿入ポイントに配置されるペイロード。</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
-<dd>リクエスト内のペイロードの、開始と終了オフセットを含んだint[2]配列、または適用できない場合(例えば、シリアライズされたデータ構造内にペイロードが配置されて結果のレスポンス内のどこにも生のペイロードが出現しない場合など)はnull。</dd>
+<dd>リクエスト内のペイロードの、開始と終了オフセットを含んだint[2]配列、または適用できない場合(たとえば、シリアライズされたデータ構造内にペイロードが配置されて結果のレスポンス内のどこにも生のペイロードが出現しない場合など)はnull。</dd>
 </dl>
 </li>
 </ul>

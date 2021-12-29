@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -24,307 +25,306 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
-    <label class="label-edition is-community">コミュニティ</label>
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>ペネトレーションテストでのBurp Suiteの使用方法</h1>
-        <p>
-            このセクションでは、Web アプリケーションのテストワークフローにおけるBurp Suiteの使い方の基本を説明します。Burpのインストールと起動、プロジェクトの開始、表示設定については、<a href="../getting-started/index.html">Burp Suite入門</a>のヘルプを参照してください。
-        </p>
-        <p>
-            初めてBurp Suiteをご利用になる場合は、以下のビデオを見て、ユーザインタフェースに慣れることを推奨します。
-        </p>
-        <div class="container">
-            <div class="youtube-wrapper">
-                <iframe src="https://www.youtube.com/embed/nECt-0zW0O4?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
-            </div>
-        </div>
-        <p>
-            YouTubeで"Burp Suite Essentials"の残りのプレイリストをチェックできます。
-        </p>
-        <div class="component-links">
-            <h4>ビデオチュートリアル</h4>
-            <a href="https://www.youtube.com/playlist?list=PLoX0sUafNGbH9bmbIANk3D50FNUmuJIF3">Burp Suite Essentialsプレイリスト</a>
-        </div>
-        <p>
-            ペネトレーションテストにBurpを使用するには、次のいずれかを実行します:
-        </p>
-        <ul>
-            <li>
-                追加の設定が不要な、<strong>Burpの<a href="../functions/embedded-browser.html">内蔵ブラウザ</a>を使用</strong>する。"Proxy" &gt; "インターセプト"タブに移動し、"ブラウザを開く"をクリックします。新しいブラウザセッションが開き、すべてのトラフィックが自動的にBurpを経由するようプロキシされます。BurpのCA証明書をインストールしなくても、これを使ってHTTPSでテストもできます。
-            </li>
-            <li>
-                お好みの<strong>外部のブラウザを使用する</strong>。さまざまな理由でBurpの内蔵ブラウザを使用したくない場合があります。この場合追加の手順が必要で、Burpと共に動作するよう<a href="../getting-started/proxy-setup/browser/index.html">ブラウザを設定</a>し、使用するブラウザに<a href="../getting-started/proxy-setup/certificate/index.html">BurpのCA証明書をインストール</a>する必要があります。
-            </li>
-        </ul>
-        <p>
-            Burpを実行し、<a href="../functions/embedded-browser.html">内蔵ブラウザか</a>設定した独自の外部ブラウザを開いたら、"Proxy" &gt; "インターセプト"タブに移動し、インターセプトがオンになっているか確認します (ボタンに"Interceptオフ"と表示されている場合は、クリックしてステータスを切り替えます)。次に、ブラウザに移動して、任意のURLにアクセスします。
-        </p>
-        <div class="container">
-            <div class="youtube-wrapper">
-                <iframe src="https://www.youtube.com/embed/ouDe5sJ_uC8?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
-            </div>
-        </div>
-        <p>
-            ブラウザによって行われた各HTTPリクエストは、"インターセプト"タブに表示されます。それぞれのメッセージを確認し、必要なら編集もできます。編集が完了したら、"転送"ボタンをクリックして、宛先Webサーバにリクエストを送信します。インターセプトされたメッセージが保留されている場合、ブラウザが読み込みを完了させるためには、すべてのメッセージを転送する必要があります。
-        </p>
-        <p>
-            インターセプトの必要に応じて"インターセプト有効/無効"ボタンを変更してください。詳細は、<a href="../tools/proxy/getting-started.html">Burp Proxy入門</a>を参照してください。
-        </p>
-        <div class="section-small">
-            <img src="../images/pentesting-intercept-940.png" alt="ペネトレーションテスト: リクエストの傍受" class="center-block">
-        </div>
-        <p>
-            Burpを実行している状態でアプリケーションをブラウズすると、"Proxy" &gt; "HTTP履歴"タブには、インターセプト機能がオフになっている場合でも、すべてのリクエストとレスポンスが保持されます。このタブから、生成された一連のリクエストを確認できます。
-        </p>
-        <p>
-            <a href="../functions/message-editor/index.html">メッセージエディタ</a>パネルでテーブル内のアイテムを選択して、完全なリクエストとレスポンスを表示します。
-        </p>
-        <div class="section-small">
-            <img src="../images/pentesting-history-940.png" alt="ペネトレーションテスト: プロキシ履歴" class="center-block">
-        </div>
-        <p>
-            <a href="../functions/message-editor/inspector.html">メッセージインスペクタ</a>を使用すると、メッセージで見つかった潜在的に興味深いアイテムを分析するのに役立つさまざまな機能にすばやくアクセスできます。たとえば、エンコードされたアイテムをインスペクタでドリルダウンすると、適切なデコード手順のシーケンスが適用されるため、より人間が読める形式で値を調べられます。
-        </p>
-        <p>
-            Burp Repeaterなどの編集可能なメッセージの場合、インスペクタでこのデコードされた値の編集もできます。関連するエンコーディングは、入力した値に対して<a href="../functions/message-editor/inspector.html#editing-encoded-data">自動的に再適用されます</a>。
-        </p>
-        <div class="section-small">
-            <img src="../images/pentesting-inspector-940.png" alt="ペネトレーションテスト: インスペクタ" class="center-block">
-        </div>
-        <p>
-            ブラウズをしていると、Burpはデフォルトで対象アプリケーションのサイトマップも作成します。これは、"Target" &gt; "サイトマップ"タブで確認できます。
-        </p>
-        <p>
-            このサイトマップには、あなたがブラウザでアクセスしたすべてのURLと、Burpがレスポンスから推測したコンテンツ(例えば、HTMLレスポンスから解析したリンクなど)が含まれます。既にアクセスしたアイテムは黒で、その他のアイテムは灰色で表示されます。ツリーを展開し、個々のアイテムを選択すると、完全なリクエストとレスポンスが(存在していれば)表示されます。
-        </p>
-        <p>
-            詳細は、<a href="../tools/target/using.html">Targetツールの使い方</a>を参照してください。<a href="../scanning/live-scans.html">ライブスキャンタスク</a>を適切に設定すると、ブラウズ時にサイトマップに追加するコンテンツを制御できます。
-        </p>
-        <div class="section-small">
-            <img src="../images/pentesting-sitemap-940.png" alt="ペネトレーションテスト: サイトマップ" class="center-block">
-        </div>
-        <p>
-            Burp Suiteは補助ツールとして設計されており、ユーザが実行しようとする操作を制御できます。Burpのペネトレーションテストワークフローの中核は、特定のタスクを実行するために各ツール間でHTTPリクエストを転送する機能です。
-        </p>
-        <p>
-            "Proxy" &gt; "インターセプト"タブや"HTTP履歴"、"サイトマップ"タブなど、HTTPメッセージが表示されるどこからでも、メッセージを転送できます。１つまたは複数のメッセージを選択し、コンテキストメニューから他のツールに転送ができます。
-        </p>
-        <div class="section-small">
-            <img src="../images/pentesting-repeater-940.png" alt="ペネトレーションテスト: 手動ツールへのリクエスト送信" class="center-block">
-        </div>
-        <div class="container">
-            <div class="highlightedarea">
-                <p>
-                    特定のタスクに使用するBurpツールは次の通りです:
-                </p>
-                <ul>
-                    <li>
-                        <strong><a href="../../scanner/index.html">Scanner</a></strong> - 自動でウェブサイトをスキャンし、コンテンツと脆弱性を探し出します。
-                    </li>
-                    <li>
-                        <strong><a href="../tools/intruder/getting-started.html">Intruder</a></strong> - カスタマイズされた自動攻撃をし、さまざまな種類のテストタスクを実行します。
-                    </li>
-                    <li>
-                        <strong><a href="../tools/repeater/using.html">Repeater</a></strong> - HTTPリクエストを手動で変更し再送します。
-                    </li>
-                    <li>
-                        <strong><a href="../tools/collaborator-client.html">Collaboratorクライアント</a></strong> - Burp Collaboratorのペイロードを作成し、帯域外通信の結果を監視します。
-                    </li>
-                    <li>
-                        <strong><a href="../tools/clickbandit.html">Clickbandit</a></strong> - 脆弱なアプリケーションに対するクリックジャッキング攻撃を生成します。
-                    </li>
-                    <li>
-                        <strong><a href="../tools/sequencer/getting-started.html">Sequencer</a></strong> - アプリケーションのセッショントークンの、乱数の質を解析します。
-                    </li>
-                    <li>
-                        <strong><a href="../tools/decoder.html">Decoder</a></strong> - 一般的なアプリケーションデータの変換やデコードをします。
-                    </li>
-                    <li>
-                        <strong><a href="../tools/comparer.html">Comparer</a></strong> - アプリケーションデータの変更点を視覚的に表示します。
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <p>
-            とても簡単なものから高度で専門的なものまで、さまざまなテストタスクを実行する際に、Burpのツールを組み合わせて使用できます。
-        </p>
-        <h2 id="testing-workflow">テストワークフロー</h2>
-        <p>
-            手動および自動の技術を効果的に組み合わせられ、Burpの動作を完全に制御でき、テストするすべてのアプリケーションについて詳細な情報と分析を提供します。
-        </p>
-        <p>
-            一部のユーザは、Burpをこのように使うのではなく、高速かつ簡単にアプリケーションの脆弱性スキャンを実行したいだけかもしれません。もしそうなら、<a href="../scanning/index.html">ウェブサイトのスキャン</a>を参照してください。
-        </p>
-        <p>
-            次の図は、Burpのペネトレーションテストワークフローの主要部分の概要です。
-        </p>
-        <img src="../images/burp-workflow.jpg" alt="Burp Suiteのテストワークフロー" class="center-block">
-        <h2 id="recon-and-analysis">情報収集・分析</h2>
-        <p>
-            <a href="../tools/proxy/using.html">Proxyツール</a>はBurpのワークフローの中心部に位置します。Burpの<a href="../functions/embedded-browser.html">内蔵ブラウザ</a>や自身の外部ブラウザでアプリケーションをブラウズしている間、Burpはすべての関連情報を収集しており、他のアクションを簡単に開始できます。典型的なテストで、情報収集・分析フェーズには次のタスクが行われます。
-        </p>
-        <h3>アプリケーションの手動マッピング</h3>
-        <p>
-            ブラウザがBurp Proxyを経由している間に、リンクを辿る、フォームをサブミットする、複数手順の処理を実行するなど、<a href="../tools/target/using.html#manual-application-mapping">アプリケーションを手動でマッピング</a>します。このプロセスで、リクエストしたコンテンツがProxy<a href="../tools/proxy/using.html#using-the-proxy-history">履歴</a>とTarget<a href="../tools/target/site-map/index.html">サイトマップ</a>に取り込まれ、レスポンスから推測できる追加のコンテンツ(リンク、フォームなど)が、(<a href="../scanning/live-scans.html">ライブスキャン</a>によって)サイトマップに追加されます。<a href="../tools/target/using.html#reviewing-unrequested-items">リクエストされていないアイテム</a>(サイトマップでグレーで表示される)を確認し、ブラウザでこれらをリクエストします。
-        </p>
-        <h3>必要な箇所で自動マッピングを実行</h3>
-        <p>
-            必要に応じて、さまざまな方法でマッピングプロセスを自動化できます。以下が可能です:
-        </p>
-        <ul>
-            <li>
-                <a href="../scanning/index.html">自動スキャン</a>を実行して、アプリケーションのコンテンツをクロールする。
-            </li>
-            <li>
-                ブラウザやクローラが見つけたどのコンテンツからもリンクされていないコンテンツを探し出すために、<a href="../functions/content-discovery.html">コンテンツ探索</a>が使えます。
-            </li>
-            <li>
-                Burp Intruderを使うと、一般的なファイルとディレクトリのリストを順番に使ってアクセスする<a href="../tools/intruder/using.html#enumerating-identifiers">カスタム探索</a>ができます。
-            </li>
-        </ul>
-        <p>
-            自動アクションを実行する前に、<a href="../tools/target/using.html#defining-target-scope">ターゲットスコープ</a>や<a href="../options/sessions/index.html">セッションハンドリング</a>などBurpのさまざまな挙動の<a href="#tool-configuration">設定</a>を更新する必要があります。
-        </p>
-        <h3>アプリケーションの攻撃経路の分析</h3>
-        <p>
-            マッピングプロセスでは、アプリケーションについて収集したすべての情報を、Proxy<a href="../tools/proxy/using.html#using-the-proxy-history">履歴</a>やTarget<a href="../tools/target/site-map/index.html">サイトマップ</a>へ取り込みます。どちらのリポジトリにも、含まれている情報の<a href="../tools/target/using.html#analyzing-the-attack-surface">解析</a>を<a href="../tools/proxy/using.html#using-the-proxy-history">サポート</a>する機能や、アプリケーションが晒している攻撃経路を評価する機能があります。さらに、Burpの<a href="../functions/target-analyzer.html">対象解析</a>を使用すると、攻撃経路の範囲やアプリケーションが使用しているさまざまな種類のURLを見つけられます。
-        </p>
-        <h2 id="tool-configuration">ツールの設定</h2>
-        <p>
-            対象アプリケーションに応じた動作をBurpにさせるために必要なさまざまな<a href="../options/index.html">設定オプション</a>があり、テストの各段階で使用する必要があります。例:
-        </p>
-        <ul>
-            <li>
-                <strong>表示</strong> - HTTPメッセージを表示する<a href="../options/display.html#http-message-display">フォント</a>と<a href="../options/display.html#character-sets">文字コード</a>や、Burp自身のUI<a href="../options/display.html#user-interface">フォント</a>が設定できます。
-            </li>
-            <li>
-                <strong>ターゲットスコープ</strong> - 今注目し攻撃をしようとしているアイテムを<a href="../tools/target/scope.html">ターゲットスコープ</a>に設定します。テストの初期段階で設定すべきで、Proxy<a href="../tools/proxy/history.html#proxy-history-display-filter">履歴</a>やTarget <a href="../tools/target/site-map/index.html#site-map-display-filter">サイトマップ</a>に表示されるアイテム、Proxyが<a href="../tools/proxy/options/index.html#intercepting-http-requests-and-responses">インターセプト</a>するメッセージ、<a href="../scanning/index.html">スキャン</a>されるメッセージを制御できます。
-            </li>
-            <li>
-                <strong>プラットフォーム認証</strong> - アプリケーションサーバがプラットフォームレベル(HTTP)認証を使用している場合、Burpが自動的に<a href="../options/connections.html#platform-authentication">認証</a>するよう設定します。
-            </li>
-            <li>
-                <strong>セッションハンドリング</strong> - 多くのアプリケーションには、セッション終了応答、リクエストトークン、状態が維持された多段階のプロセスのような、自動または手動テストを実行しづらくする機能があります。<a href="../options/sessions/index.html#session-handling-rules">セッションハンドリングルール</a>と<a href="../options/sessions/index.html#macros">マクロ</a>を組み合わせて、これらの状況にシームレスに対応できるよう<a href="../options/sessions/index.html">Burpを設定</a>できます。
-            </li>
-            <li>
-                <strong>タスクスケジューリング</strong> - 指定した時間帯だけテストをするよう、決まった時間や間隔で<a href="../functions/task-scheduler.html">タスクをスケジュールする</a>ようBurpを設定できます。
-            </li>
-        </ul>
-        <h2 id="vulnerability-detection-and-exploitation">脆弱性の検出とエクスプロイト</h2>
-        <p>
-            対象アプリケーションの<a href="#recon-and-analysis">情報収集と分析</a>、必要なBurpの<a href="#tool-configuration">設定</a>が終わったら、アプリケーションの脆弱性調査を開始できます。この段階では多くの場合、一度に複数のBurpツールを使用し、ツール間で個々のリクエストを受け渡してさまざまなタスクを実行し、ブラウザに戻って追加のテストを実行するのが最も効果的です。Burp全体で<a href="../functions/message-editor/index.html#context-specific-actions">コンテキストメニュー</a>を使用すると、ツール間のアイテムの受け渡しや他のアクションが実行できます。
-        </p>
-        <p>
-            Burpのデフォルト設定で、Proxyを通過したすべてのリクエストレスポンスに<a href="../scanning/live-scans.html">ライブパッシブスキャン</a>が自動的に実行されます。アプリケーションを積極的に調査する前から既に、詳細な調査に裏付けられた<a href="../tools/target/site-map/index.html#issues-view">問題点</a>が登録される場合があります。
-        </p>
-        <p>
-            Burpのツールはさまざまな方法で使用でき、積極的に脆弱性をテストするプロセスをサポートします。さまざまな種類の問題点における例を挙げます。
-        </p>
-        <h3>入力値ベースのバグ</h3>
-        <p>
-            SQLインジェクション、クロスサイトスクリプティング、ファイルパストラバーサルのような問題で、さまざまな方法でBurpを使用できます:
-        </p>
-        <ul>
-            <li>
-                Burp Scannerで<a href="../scanning/index.html">スキャン</a>を実行できます。Burpの任意の場所でアイテムを選択し、コンテキストメニューから<a href="../scanning/index.html#launching-scans">スキャンを開始</a>できます。Proxyを通過したすべてのスコープ内リクエストに<a href="../scanning/live-scans.html">ライブスキャン</a>をするよう設定もできます。
-            </li>
-            <li>
-                Burp Intruderで、独自のテスト文字列やペイロードポジションを指定して、<a href="../tools/intruder/using.html#fuzzing-for-vulnerabilities">ファジング</a>が実行できます。
-            </li>
-            <li>
-                個々のリクエストを<a href="../tools/repeater/using.html">Burp Repeater</a>に送信し、手動でリクエストを編集し何度も再送信できます。
-            </li>
-            <li>
-                一部の種類のバグを発見した場合には、<a href="../tools/intruder/using.html">Burp Intruder</a>で積極的に攻撃ができます。例えば、SQLインジェクション脆弱性を攻撃するには、多くの場合<a href="../tools/intruder/payloads/types.html#recursive-grep">再帰検索</a>ペイロードを使用します。
-            </li>
-        </ul>
-        <h3>ロジックと設計の欠陥</h3>
-        <p>
-            クライアント側のコントロールを安全に使用していない問題、アカウントロックアウトの欠如、多段階処理で重要な処理を省略できる問題などは、通常手動で作業する必要があります:
-        </p>
-        <ul>
-            <li>
-                典型的には、<a href="../tools/proxy/using.html#using-the-proxy-history">Proxy履歴</a>を詳細に評価し、調査する関連リクエストを特定します。
-            </li>
-            <li>
-                予期せぬリクエストによるアプリケーションの挙動を調査するには、<a href="../tools/repeater/using.html">Burp Repeater</a>で個々のリクエストを発行するか、<a href="../tools/proxy/using.html#intercepting-requests-and-responses">Proxyインターセプト</a>をオンにしてブラウザを使用しながらその場でリクエストを編集します。
-            </li>
-            <li>
-                <a href="../tools/intruder/using.html">Burp Intruder</a>を使用して、ロジックや設計の欠陥を積極的に攻撃できます。例えば、有効なユーザ名の列挙、パスワード推測、セッショントークンやパスワードリカバリトークンの推測、あるいは同一リクエストを単に大量再送信(<a href="../tools/intruder/payloads/types.html#null-payloads">ペイロードなし</a>タイプを使用)するために、Intruderが使用できます。
-            </li>
-            <li>
-                ロジックや設計の欠陥を確認後、Burp Proxyの<a href="../tools/proxy/options/index.html#match-and-replace">検索/置換機能</a>や<a href="../options/sessions/index.html#session-handling-rules">セッションハンドリングルール</a>を使用してリクエストを機械的に変更し、積極的に攻撃ができます。
-            </li>
-        </ul>
-        <h3>アクセス制御の問題</h3>
-        <p>
-            Burpには、アクセス制御の脆弱性をテストする際に便利な機能があります:
-        </p>
-        <ul>
-            <li>
-                あるユーザがアクセスでき他のユーザができない機能の特定、高権限のユーザだけにアクセスが制限されている機能に低権限のユーザがアクセスできるかのテスト、同じタイプの2人のユーザがアクセスするデータを分離するために使用している識別子の探索など、さまざまなタスクで<a href="../tools/target/site-map/comparing.html">サイトマップ比較</a>機能が使用できます。
-            </li>
-            <li>
-                各ブラウザごとに(異なるポートを使用する)<a href="../tools/proxy/options/index.html#proxy-listeners">Burp Proxyリスナー</a>を分離すると、異なるブラウザを使用し異なるユーザコンテキストでアプリケーションにアクセスできます。追加の<a href="../tools/proxy/history.html">Proxy履歴</a>ウィンドウを(コンテキストメニューから)開き、各ウィンドウで<a href="../tools/proxy/history.html#proxy-history-display-filter">ディスプレイフィルター</a>を設定すると、特定のプロキシリスナーが受信したアイテムのみを表示できます。各ブラウザでアプリケーションを使用すると、各履歴ウィンドウには関連するユーザコンテキストのアイテムだけが表示されます。次に、(コンテキストメニューから)"現在のブラウザセッションでリクエスト"機能を使用すると、ブラウザ間でリクエストを切り替え、ブラウザのユーザコンテキストでどのように処理されるか判断できます。
-            </li>
-            <li>
-                多くの権限昇格の脆弱性は、アプリケーションがユーザパラメータ内にユーザ識別子を渡し、現在のユーザコンテキストによらずその識別子で権限を特定している場合に発生します。このタイプの脆弱性を攻撃するには、<a href="../tools/intruder/using.html"> Burp Intruder</a>で(例えば、<a href="../tools/intruder/payloads/types.html#numbers">数値</a>や<a href="../tools/intruder/payloads/types.html#custom-iterator">カスタムイテレーター</a>ペイロードタイプを使用して)適切な形式の識別子を一通り送信し、<a href="../tools/intruder/options.html#grep-extract">抽出grep</a>アイテムを設定し、アプリケーションのレスポンスからユーザ固有の気になるデータを取得します。
-            </li>
-        </ul>
-        <h3>その他の脆弱性</h3>
-        <p>
-            その他の種類の脆弱性を調査する際に発生するほぼすべてのタスクで使用できる機能がBurpにはあり、多くは自動化ができます。例:
-        </p>
-        <ul>
-            <li>
-                情報漏洩問題は、対象の<a href="../tools/target/site-map/index.html">サイトマップ</a>で確認でき、<a href="../functions/search.html#text-search">検索</a>や<a href="../functions/search.html#find-comments-and-scripts">コメント検索</a>機能が支援します。
-            </li>
-            <li>
-                CSRF脆弱性が特定できた場合、<a href="../functions/generate-csrf-poc.html">CSRFジェネレータ</a>を使用するとHTMLで攻撃の概念実証(proof-of-concept)を素早く生成でき、"ブラウザでテスト"機能を使用してブラウザに攻撃を読み込ませ、ブラウザの結果と<a href="../tools/proxy/using.html#using-the-proxy-history">Proxy履歴</a>を確認して攻撃が成功したか確認できます。
-            </li>
-            <li>
-                <a href="../tools/sequencer/index.html">Burp Sequencer</a>を使用すると、アプリケーションのセッショントークンを解析し、その乱数品質を評価できます。
-            </li>
-            <li>
-                セッショントークンやその他の種類のパラメータが暗号化されている場合、Burp Intruderの<a href="../tools/intruder/payloads/types.html#bit-flipper">ビットフリッパー</a>や<a href="../tools/intruder/payloads/types.html#ecb-block-shuffler">ECBブロックシャッフル</a>ペイロードタイプを使用すると、アプリケーションが復号した際に意味のあるデータになることを期待して、暗号化されたデータを手当たり次第変更ができます。
-            </li>
-            <li>
-                独自の<a href="../tools/extender/index.html">Burp拡張</a>を書くと、より特化した、またはカスタマイズされたタスクを実行できます。
-            </li>
-        </ul>
-        <h2 id="read-more">続きを読む</h2>
-        <p>
-            Burpの全ツールと機能、Burpでテストする際の一般的なワークフローについて、豊富なドキュメントがあります。
-        </p>
-        <div class="highlightedarea">
-            <p>
-                Burpのメインツールの詳細については、次のリンクを参照してください:
-            </p>
-            <ul class="link-list">
-                <li>
-                    <a href="../tools/target/using.html">Targetツールの使い方</a>
-                </li>
-                <li>
-                    <a href="../tools/proxy/using.html">Burp Proxyの使い方</a>
-                </li>
-                <li>
-                    <a href="../tools/intruder/using.html">Burp Intruderの使い方</a>
-                </li>
-                <li>
-                    <a href="../tools/repeater/using.html">Burp Repeaterの使い方</a>
-                </li>
-                <li>
-                    <a href="../scanning/index.html">ウェブサイトのスキャン</a>
-                </li>
-            </ul>
-            <p>
-                さらに、<a href="../../../../support/using-burp-suite.html">Burp Suiteの使用に関するサポートセンタの記事</a>もチェックしてください。
-            </p>
-        </div>
+<h1>ペネトレーションテストでのBurp Suiteの使用方法</h1>
+<p>
+    このセクションでは、Web アプリケーションのテストワークフローにおけるBurp Suiteの使い方の基本を説明します。Burpのインストールと起動、プロジェクトの開始、表示設定は、<a href="../getting-started/index.html">Burp Suite入門</a>のヘルプを参照してください。
+</p>
+<p>
+    Burp Suiteを初めて使用する場合は、以下のビデオを見て、ユーザインタフェースに慣れることを推奨します。
+</p>
+<div class="container">
+    <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/nECt-0zW0O4?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
     </div>
-</section>
+</div>
+<p>
+    YouTubeで"Burp Suite Essentials"の残りのプレイリストをチェックできます。
+</p>
+<div class="highlightedarea">
+    <h4>ビデオチュートリアル</h4>
+    <a href="https://www.youtube.com/playlist?list=PLoX0sUafNGbH9bmbIANk3D50FNUmuJIF3">Burp Suite Essentialsプレイリスト</a>
+</div>
+<p>
+    ペネトレーションテストにBurpを使用するには、次のいずれかを実行します:
+</p>
+<ul>
+    <li>
+        追加の設定が不要な、<strong>Burpの<a href="../functions/embedded-browser.html">内蔵ブラウザ</a>を使用</strong>する。<strong>Proxy &gt; インターセプト</strong>タブに移動し、<strong>ブラウザを開く</strong>をクリックします。新しいブラウザセッションが開き、すべてのトラフィックが自動的にBurpを経由するようプロキシされます。BurpのCA証明書をインストールしなくても、これでHTTPSもテストできます。
+    </li>
+    <li>
+        お好みの<strong>外部のブラウザを使用する</strong>。さまざまな理由でBurpの内蔵ブラウザを使用したくない場合があります。この場合追加の手順が必要で、Burpと共に動作するよう<a href="../external-browser-config/index.html">ブラウザを設定</a>し、使用するブラウザに<a href="../external-browser-config/certificate/index.html">BurpのCA証明書をインストール</a>する必要があります。
+    </li>
+</ul>
+<p>
+    Burpを実行し、<a href="../functions/embedded-browser.html">内蔵ブラウザか</a>設定した独自の外部ブラウザを開いたら、<strong>Proxy &gt; インターセプト</strong>タブに移動し、インターセプトが有効になっているか確認します (ボタンに<strong>Intercept無効</strong>と表示されている場合は、クリックしてステータスを切り替えます)。次に、ブラウザに移動して、任意のURLにアクセスします。
+</p>
+<div class="container">
+    <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/ouDe5sJ_uC8?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
+    </div>
+</div>
+<p>
+    ブラウザが送信した各HTTPリクエストが、<strong>インターセプト</strong>タブに表示されます。それぞれのメッセージを確認し、必要なら編集もできます。編集が完了したら、<strong>転送</strong>ボタンをクリックして、宛先Webサーバにリクエストを送信します。インターセプトされたメッセージが保留されている場合、ブラウザが読み込みを完了させるためには、すべてのメッセージを転送する必要があります。
+</p>
+<p>
+    インターセプトの必要に応じて<strong>インターセプト有効/無効</strong>ボタンを変更してください。詳細は、<a href="../tools/proxy/getting-started.html">Burp Proxy入門</a>を参照してください。
+</p>
+<div class="section-small">
+    <img src="../images/pentesting-intercept-940.png" alt="ペネトレーションテスト: リクエストの傍受" class="center-block">
+</div>
+<p>
+    Burpを実行している状態でアプリケーションをブラウズすると、<strong>Proxy &gt; HTTP履歴</strong>タブには、インターセプト機能が無効になっている場合でも、すべてのリクエストとレスポンスが保持されます。このタブから、生成された一連のリクエストを確認できます。
+</p>
+<p>
+    <a href="../functions/message-editor/index.html">メッセージエディタ</a>パネルでテーブル内のアイテムを選択して、完全なリクエストとレスポンスを表示します。
+</p>
+<div class="section-small">
+    <img src="../images/pentesting-history-940.png" alt="ペネトレーションテスト: Proxy履歴" class="center-block">
+</div>
+<p>
+    <a href="../functions/message-editor/inspector.html">Inspector</a>を使用すると、メッセージで見つかった潜在的に興味深いアイテムを分析するのに役立つさまざまな機能にすばやくアクセスできます。たとえば、エンコードされたアイテムをInspectorでドリルダウンすると、適切なデコード手順のシーケンスが適用されるため、より人間が読める形式で値を調べられます。
+</p>
+<p>
+    Burp Repeaterなどの編集可能なメッセージの場合、Inspectorでこのデコードされた値も編集できます。関連するエンコーディングは、入力した値に対して自動的に再適用されます。
+</p>
+<div class="section-small">
+    <img src="../images/pentesting-inspector-940.png" alt="ペネトレーションテスト: Inspector" class="center-block">
+</div>
+<p>
+    ブラウズをしていると、Burpはデフォルトで対象アプリケーションのサイトマップも作成します。これは、<strong>Target &gt; サイトマップ</strong>タブで確認できます。
+</p>
+<p>
+    このサイトマップには、あなたがブラウザでアクセスしたすべてのURLと、Burpがレスポンスから推測したコンテンツ(たとえば、HTMLレスポンスから分析したリンクなど)が含まれます。既にアクセスしたアイテムは黒で、その他のアイテムは灰色で表示されます。ツリーを展開し個々のアイテムを選択すると、完全なリクエストとレスポンスが(存在していれば)表示されます。
+</p>
+<p>
+    詳細は、<a href="../tools/target/using.html">Targetツールの使い方</a>を参照してください。<a href="../scanning/live-scans.html">ライブスキャンタスク</a>を適切に設定すると、ブラウズ時にサイトマップに追加するコンテンツを制御できます。
+</p>
+<div class="section-small">
+    <img src="../images/pentesting-sitemap-940.png" alt="ペネトレーションテスト: サイトマップ" class="center-block">
+</div>
+<p>
+    Burp Suiteは補助ツールとして設計されており、ユーザが実行しようとする操作を制御できます。Burpのペネトレーションテストワークフローの中核は、特定のタスクを実行するために各ツール間でHTTPリクエストを転送する機能です。
+</p>
+<p>
+    <strong>Proxy &gt; インターセプト</strong>タブや<strong>HTTP履歴</strong>、<strong>サイトマップ</strong>タブなど、HTTPメッセージが表示されるどこからでも、メッセージを転送できます。1つまたは複数のメッセージを選択し、コンテキストメニューから他のツールに転送できます。
+</p>
+<div class="section-small">
+    <img src="../images/pentesting-repeater-940.png" alt="ペネトレーションテスト: 手動ツールへのリクエスト送信" class="center-block">
+</div>
+<div class="container">
+    <div class="highlightedarea">
+        <p>
+            特定のタスクに使用するBurpツールは次の通りです:
+        </p>
+        <ul>
+            <li>
+                <strong><a href="../../scanner/index.html">Scanner</a></strong> - 自動でWebサイトをスキャンし、コンテンツと脆弱性を探し出します。
+            </li>
+            <li>
+                <strong><a href="../tools/intruder/getting-started.html">Intruder</a></strong> - カスタマイズされた自動攻撃をし、さまざまな種類のテストタスクを実行します。
+            </li>
+            <li>
+                <strong><a href="../tools/repeater/using.html">Repeater</a></strong> - HTTPリクエストを手動で変更し再送します。
+            </li>
+            <li>
+                <strong><a href="../tools/collaborator-client.html">Collaboratorクライアント</a></strong> - Burp Collaboratorのペイロードを作成し、帯域外通信の結果を監視します。
+            </li>
+            <li>
+                <strong><a href="../tools/clickbandit.html">Clickbandit</a></strong> - 脆弱なアプリケーションに対するクリックジャッキング攻撃を生成します。
+            </li>
+            <li>
+                <strong><a href="../tools/sequencer/getting-started.html">Sequencer</a></strong> - アプリケーションのセッショントークンの、乱数の質を分析します。
+            </li>
+            <li>
+                <strong><a href="../tools/decoder.html">Decoder</a></strong> - 一般的なアプリケーションデータの変換やデコードをします。
+            </li>
+            <li>
+                <strong><a href="../tools/comparer.html">Comparer</a></strong> - アプリケーションデータの変更点を視覚的に表示します。
+            </li>
+        </ul>
+    </div>
+</div>
+<p>
+    とても簡単なものから高度で専門的なものまで、さまざまなテストタスクを実行する際に、Burpのツールを組み合わせて使用できます。
+</p>
+<h2 id="testing-workflow">テストワークフロー</h2>
+<p>
+    手動や自動の技術を効果的に組み合わせられ、Burpの動作を完全に制御でき、テストするすべてのアプリケーションについて詳細な情報と分析を提供します。
+</p>
+<p>
+    一部のユーザは、Burpをこのように使うのではなく、高速かつ簡単にアプリケーションの脆弱性スキャンを実行したいだけかもしれません。もしそうなら、<a href="../scanning/index.html">Webサイトのスキャン</a>を参照してください。
+</p>
+<p>
+    次の図は、Burpのペネトレーションテストワークフローの主要部分の概要です。
+</p>
+<img src="../images/burp-workflow.jpg" alt="Burp Suiteのテストワークフロー" class="center-block">
+<h2 id="recon-and-analysis">情報収集、分析</h2>
+<p>
+    <a href="../tools/proxy/using.html">Proxyツール</a>はBurpのワークフローの中心部に位置します。Burpの<a href="../functions/embedded-browser.html">内蔵ブラウザ</a>や自身の外部ブラウザでアプリケーションをブラウズしている間、Burpはすべての関連情報を収集しており、他のアクションを簡単に開始できます。典型的なテストで、情報収集、分析フェーズには次のタスクが行われます。
+</p>
+<h3>アプリケーションの手動マッピング</h3>
+<p>
+    ブラウザがBurp Proxyを経由している間に、リンクを辿る、フォームをサブミットする、複数手順の処理を実行するなどの操作によって、<a href="../tools/target/using.html#manual-application-mapping">アプリケーションを手動でマッピング</a>します。このプロセスで、リクエストしたコンテンツがProxy<a href="../tools/proxy/using.html#using-the-proxy-history">履歴</a>とTarget<a href="../tools/target/site-map/index.html">サイトマップ</a>に取り込まれ、レスポンスから推測できる追加のコンテンツ(リンク、フォームなど)が、(<a href="../scanning/live-scans.html">ライブスキャン</a>によって)サイトマップに追加されます。<a href="../tools/target/using.html#reviewing-unrequested-items">リクエストされていないアイテム</a>(サイトマップでグレーで表示される)を確認し、ブラウザでこれらをリクエストします。
+</p>
+<h3>必要な箇所で自動マッピングを実行</h3>
+<p>
+    必要に応じて、さまざまな方法でマッピングプロセスを自動化できます。以下が可能です:
+</p>
+<ul>
+    <li>
+        <a href="../scanning/index.html">自動スキャン</a>を実行して、アプリケーションのコンテンツをクロールする。
+    </li>
+    <li>
+        ブラウザやクローラが見つけたどのコンテンツからもリンクされていないコンテンツを探し出すために、<a href="../functions/content-discovery.html">コンテンツ探索</a>が使えます。
+    </li>
+    <li>
+        Burp Intruderを使うと、一般的なファイルとディレクトリのリストを順番に使ってアクセスする<a href="../tools/intruder/using.html#enumerating-identifiers">カスタム探索</a>ができます。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        自動アクションを実行する前に、<a href="../tools/target/using.html#defining-target-scope">ターゲットスコープ</a>や<a href="../options/sessions/index.html">セッションハンドリング</a>などBurpのさまざまな挙動の<a href="#tool-configuration">設定</a>を更新する必要があります。
+    </p>
+</div>
+<h3>アプリケーションの攻撃経路の分析</h3>
+<p>
+    マッピングプロセスでは、アプリケーションについて収集したすべての情報を、Proxy<a href="../tools/proxy/using.html#using-the-proxy-history">履歴</a>やTarget<a href="../tools/target/site-map/index.html">サイトマップ</a>へ取り込みます。どちらのリポジトリにも、含まれている情報の<a href="../tools/target/using.html#analyzing-the-attack-surface">分析</a>を<a href="../tools/proxy/using.html#using-the-proxy-history">サポート</a>する機能や、アプリケーションが晒している攻撃経路を評価する機能があります。さらに、Burpの<a href="../functions/target-analyzer.html">対象分析</a>を使用すると、攻撃経路の範囲やアプリケーションが使用しているさまざまな種類のURLを見つけられます。
+</p>
+<h2 id="tool-configuration">ツールの設定</h2>
+<p>
+    対象アプリケーションに応じた動作をBurpにさせるために必要なさまざまな<a href="../options/index.html">設定オプション</a>があり、テストの各段階で使用する必要があります。例:
+</p>
+<ul>
+    <li>
+        <strong>表示</strong> - HTTPメッセージを表示する<a href="../options/display.html#http-message-display">フォント</a>と<a href="../options/display.html#character-sets">文字コード</a>や、Burp自身のUI<a href="../options/display.html#user-interface">フォント</a>が設定できます。
+    </li>
+    <li>
+        <strong>ターゲットスコープ</strong> - 今注目し攻撃をしようとしているアイテムを<a href="../tools/target/scope.html">ターゲットスコープ</a>に設定します。テストの初期段階で設定すべきで、Proxy<a href="../tools/proxy/history.html#proxy-history-display-filter">履歴</a>やTarget <a href="../tools/target/site-map/index.html#site-map-display-filter">サイトマップ</a>に表示されるアイテム、Proxyが<a href="../tools/proxy/options/index.html#intercepting-http-requests-and-responses">インターセプト</a>するメッセージ、<a href="../scanning/index.html">スキャン</a>されるメッセージを制御できます。
+    </li>
+    <li>
+        <strong>プラットフォーム認証</strong> - アプリケーションサーバがプラットフォームレベル(HTTP)認証を使用している場合、Burpが自動的に<a href="../options/connections.html#platform-authentication">認証</a>するよう設定します。
+    </li>
+    <li>
+        <strong>セッションハンドリング</strong> - 多くのアプリケーションには、セッション終了応答、リクエストトークン、状態が維持された多段階のプロセスのような、自動または手動テストを実行しづらくする機能があります。<a href="../options/sessions/index.html#session-handling-rules">セッションハンドリングルール</a>と<a href="../options/sessions/index.html#macros">マクロ</a>を組み合わせて、これらの状況にシームレスに対応できるよう<a href="../options/sessions/index.html">Burpを設定</a>できます。
+    </li>
+    <li>
+        <strong>タスクスケジューリング</strong> - 決まった時間や間隔で<a href="../functions/task-scheduler.html">タスクをスケジュールする</a>ようBurpを設定し、指定した時間帯だけテストをするようにできます。
+    </li>
+</ul>
+<h2 id="vulnerability-detection-and-exploitation">脆弱性の検出とエクスプロイト</h2>
+<p>
+    対象アプリケーションの<a href="#recon-and-analysis">情報収集と分析</a>、必要なBurpの<a href="#tool-configuration">設定</a>が終わったら、アプリケーションの脆弱性調査を開始できます。この段階では多くの場合、一度に複数のBurpツールを使用し、ツール間で個々のリクエストを受け渡してさまざまなタスクを実行し、ブラウザに戻って追加のテストを実行するのが最も効果的です。Burp全体で<a href="../functions/message-editor/index.html#context-specific-actions">コンテキストメニュー</a>を使用すると、ツール間のアイテムの受け渡しや他のアクションが実行できます。
+</p>
+<p>
+    Burpのデフォルト設定で、Proxyを通過したすべてのリクエストとレスポンスに<a href="../scanning/live-scans.html">ライブパッシブスキャン</a>が自動的に実行されます。アプリケーションを積極的に調査する前から既に、詳細な調査に裏付けられた<a href="../tools/target/site-map/index.html#issues-view">問題点</a>が登録される場合があります。
+</p>
+<p>
+    Burpのツールはさまざまな方法で使用でき、積極的に脆弱性をテストするプロセスをサポートします。さまざまな種類の問題点における例を挙げます。
+</p>
+<h3>入力値ベースのバグ</h3>
+<p>
+    SQLインジェクション、クロスサイトスクリプティング、ファイルパストラバーサルのような問題で、さまざまな方法でBurpを使用できます:
+</p>
+<ul>
+    <li>
+        Burp Scannerで<a href="../scanning/index.html">スキャン</a>を実行できます。Burpの任意の場所でアイテムを選択し、コンテキストメニューから<a href="../scanning/index.html#launching-scans">スキャンを開始</a>できます。Proxyを通過したすべてのスコープ内リクエストに<a href="../scanning/live-scans.html">ライブスキャン</a>をするようにも設定できます。
+    </li>
+    <li>
+        Burp Intruderで、独自のテスト文字列やペイロードポジションを指定して、<a href="../tools/intruder/using.html#fuzzing-for-vulnerabilities">ファジング</a>が実行できます。
+    </li>
+    <li>
+        個々のリクエストを<a href="../tools/repeater/using.html">Burp Repeater</a>に送信し、手動でリクエストを編集し何度も再送信できます。
+    </li>
+    <li>
+        一部の種類のバグを発見した場合には、<a href="../tools/intruder/using.html">Burp Intruder</a>で積極的に攻撃できます。たとえば、SQLインジェクション脆弱性を攻撃するには、多くの場合<a href="../tools/intruder/payloads/types.html#recursive-grep">再帰検索</a>ペイロードを使用します。
+    </li>
+</ul>
+<h3>ロジックと設計の欠陥</h3>
+<p>
+    クライアント側のコントロールを安全に使用していない問題、アカウントロックアウトの欠如、多段階処理で重要な処理を省略できる問題などは、通常手動で作業する必要があります:
+</p>
+<ul>
+    <li>
+        典型的には、<a href="../tools/proxy/using.html#using-the-proxy-history">Proxy履歴</a>を詳細に評価し、調査する関連リクエストを特定します。
+    </li>
+    <li>
+        予期せぬリクエストによるアプリケーションの挙動を調査するには、<a href="../tools/repeater/using.html">Burp Repeater</a>で個々のリクエストを発行するか、<a href="../tools/proxy/using.html#intercepting-requests-and-responses">Proxyインターセプト</a>を有効にしてブラウザを使用しながらその場でリクエストを編集します。
+    </li>
+    <li>
+        <a href="../tools/intruder/using.html">Burp Intruder</a>を使用して、ロジックや設計の欠陥を積極的に攻撃できます。たとえば、有効なユーザ名の列挙、パスワード推測、セッショントークンやパスワードリカバリトークンの推測、あるいは同一リクエストを単に大量再送信(<a href="../tools/intruder/payloads/types.html#null-payloads">ペイロードなし</a>タイプを使用)するために、Intruderが使用できます。
+    </li>
+    <li>
+        ロジックや設計の欠陥を確認後、Burp Proxyの<a href="../tools/proxy/options/index.html#match-and-replace">検索/置換機能</a>や<a href="../options/sessions/index.html#session-handling-rules">セッションハンドリングルール</a>を使用してリクエストを機械的に変更し、積極的に攻撃できます。
+    </li>
+</ul>
+<h3>アクセス制御の問題</h3>
+<p>
+    Burpには、アクセス制御の脆弱性をテストする際に便利な機能があります:
+</p>
+<ul>
+    <li>
+        あるユーザがアクセスでき他のユーザができない機能の特定、高権限のユーザだけにアクセスが制限されている機能に低権限のユーザがアクセスできるかのテスト、同じタイプの2人のユーザがアクセスするデータを分離するために使用している識別子の探索など、さまざまなタスクで<a href="../tools/target/site-map/comparing.html">サイトマップ比較</a>機能が使用できます。
+    </li>
+    <li>
+        各ブラウザごとに(異なるポートを使用する)<a href="../tools/proxy/options/index.html#proxy-listeners">Burp Proxyリスナー</a>を分離すると、異なるブラウザを使用しそれぞれのユーザコンテキストでアプリケーションにアクセスできます。追加の<a href="../tools/proxy/history.html">Proxy履歴</a>ウィンドウを(コンテキストメニューから)開き、各ウィンドウで<a href="../tools/proxy/history.html#proxy-history-display-filter">ディスプレイフィルター</a>を設定すると、特定のProxyリスナーが受信したアイテムのみを表示できます。各ブラウザでアプリケーションを使用すると、各履歴ウィンドウには関連するユーザコンテキストのアイテムだけが表示されます。次に、(コンテキストメニューから)<strong>現在のブラウザセッションでリクエスト</strong>機能を使用すると、ブラウザ間でリクエストを切り替えて、ブラウザのユーザコンテキストでどのように処理されるか判断できます。
+    </li>
+    <li>
+        多くの権限昇格の脆弱性は、アプリケーションがユーザパラメータ内にユーザ識別子を渡し、現在のユーザコンテキストによらずその識別子で権限を特定している場合に発生します。このタイプの脆弱性を攻撃するには、<a href="../tools/intruder/using.html"> Burp Intruder</a>で(たとえば、<a href="../tools/intruder/payloads/types.html#numbers">数値</a>や<a href="../tools/intruder/payloads/types.html#custom-iterator">カスタムイテレーター</a>ペイロードタイプを使用して)適切な形式の識別子を一通り送信し、<a href="../tools/intruder/options.html#grep-extract">抽出grep</a>アイテムを設定し、アプリケーションのレスポンスからユーザ固有の気になるデータを取得します。
+    </li>
+</ul>
+<h3>その他の脆弱性</h3>
+<p>
+    その他の種類の脆弱性を調査する際に発生するほぼすべてのタスクで使用できる機能がBurpにはあり、多くは自動化できます。例:
+</p>
+<ul>
+    <li>
+        情報漏洩問題は、対象の<a href="../tools/target/site-map/index.html">サイトマップ</a>で確認でき、<a href="../functions/search.html#text-search">検索</a>や<a href="../functions/search.html#find-comments-and-scripts">コメント検索</a>機能が支援します。
+    </li>
+    <li>
+        CSRF脆弱性が特定できた場合、<a href="../functions/generate-csrf-poc.html">CSRFジェネレータ</a>を使用するとHTMLで攻撃の概念実証(proof-of-concept)を素早く生成でき、<strong>ブラウザでテスト</strong>機能を使用してブラウザに攻撃を読み込ませ、ブラウザの結果と<a href="../tools/proxy/using.html#using-the-proxy-history">Proxy履歴</a>を確認して攻撃が成功したか確認できます。
+    </li>
+    <li>
+        <a href="../tools/sequencer/index.html">Burp Sequencer</a>を使用すると、アプリケーションのセッショントークンを分析し、その乱数品質を評価できます。
+    </li>
+    <li>
+        セッショントークンやその他の種類のパラメータが暗号化されている場合、Burp Intruderの<a href="../tools/intruder/payloads/types.html#bit-flipper">ビットフリッパー</a>や<a href="../tools/intruder/payloads/types.html#ecb-block-shuffler">ECBブロックシャッフル</a>ペイロードタイプを使用すると、アプリケーションが復号した際に意味のあるデータになることを期待して、暗号化されたデータを手当たり次第変更できます。
+    </li>
+    <li>
+        独自の<a href="../tools/extender/index.html">Burp拡張</a>を書くと、より特化した、またはカスタマイズされたタスクを実行できます。
+    </li>
+</ul>
+<h2 id="read-more">続きを読む</h2>
+<p>
+    Burpの全ツールと機能、Burpでテストする際の一般的なワークフローについて、豊富なドキュメントがあります。
+</p>
+<div class="highlightedarea">
+    <p>
+        Burpのメインツールの詳細は、次のリンクを参照してください:
+    </p>
+    <ul>
+        <li>
+            <a href="../tools/target/using.html">Targetツールの使い方</a>
+        </li>
+        <li>
+            <a href="../tools/proxy/using.html">Burp Proxyの使い方</a>
+        </li>
+        <li>
+            <a href="../tools/intruder/using.html">Burp Intruderの使い方</a>
+        </li>
+        <li>
+            <a href="../tools/repeater/using.html">Burp Repeaterの使い方</a>
+        </li>
+        <li>
+            <a href="../scanning/index.html">Webサイトのスキャン</a>
+        </li>
+    </ul>
+    <p>
+        さらに、<a href="../../../../support/using-burp-suite.html">Burp Suiteの使用に関するサポートセンタの記事</a>もチェックしてください。
+    </p>
+</div>
 </body>
 </html>

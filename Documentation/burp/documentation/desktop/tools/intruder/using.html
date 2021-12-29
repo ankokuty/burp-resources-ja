@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -30,206 +31,211 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
+    <label class="label-edition is-professional">Professional</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>Burp Intruderの使い方</h1>
-        <p>
-            Burp Intruderは、Web アプリケーションに対するカスタマイズした攻撃を自動化するツールです。非常に強力で自由にカスタマイズでき、単純なWebディレクトリの推測から複雑なブラインドSQLインジェクションによる情報窃取まで、広範囲のタスクに利用できます。
-        </p>
-        <h2 id="how-intruder-works">Intruderの仕組み</h2>
-        <p>
-            Burp Intruderは、1つのHTTPリクエスト("ベースリクエスト"と呼びます)を受け取り、さまざまな体系的な方法でリクエストを編集し、それぞれの編集されたバージョンのリクエストを発行し、アプリケーションのレスポンスを分析して気になる挙動を特定します。
-        </p>
-        <p>
-            各攻撃では、1つ以上の<a href="payloads/index.html">ペイロード</a>セットと、ペイロードに置き換えられるベースリクエスト内の<a href="positions.html">ポジション</a>を指定する必要があります。ペイロードを生成する多数の方法(単純な文字列のリスト、数値、日付、総当たり、ビット反転、その他多数)があります。ペイロードは<a href="positions.html#attack-type">異なるアルゴリズム</a>を使ってペイロードポジションに配置できます。結果の分析や、後で深掘りするアイテムの特定を補助するさまざまなツールがあります。
-        </p>
-        <h2 id="saving-an-attack">攻撃の保存</h2>
-        <p>
-            Intruder攻撃はデフォルトでプロジェクトファイルに保存されません。プロジェクトファイルを使用している場合は、次のいずれかを行うと攻撃を保存できます:
-        </p>
-        <ul>
-            <li>
-                Intruder攻撃ウィンドウから、"保存"タブをクリックします。ここでは、プロジェクトファイルへの保存や、結果テーブル・サーバレスポンス・攻撃設定の保存ができます。
-            </li>
-            <li>
-                Intruder攻撃ウィンドウから、"オプション"タブをクリックします。"オプション保存"で、チェックボックスを選択してプロジェクトに保存します。これは、攻撃前または攻撃中に可能です。
-            </li>
-            <li>
-                ダッシュボードのタスクリストで攻撃タスクまでスクロールし、保存アイコンをクリックします。これは、攻撃前または攻撃中に可能です。
-            </li>
-            <li>
-                Intruderで、"オプション"タブを選択します。"オプション保存"で、チェックボックスを選択してプロジェクトに保存します。
-            </li>
-            <li>
-                攻撃が終了し、攻撃ウィンドウを閉じる際に、Burpはプロジェクトファイルに攻撃を保存するかどうか尋ねます。
-            </li>
-        </ul>
-        <p>
-            一旦プロジェクトファイルに攻撃が保存されると、攻撃の状態はその時点から常に保存されます。保存された攻撃を閉じても、ダッシュボードのタスクリストから再度開けます。
-        </p>
-        <p>
-            大量の攻撃を保存するとプロジェクトファイルが肥大化する可能性があるため、Intruderはデフォルトで攻撃をプロジェクトファイルへ保存しません。何か興味深い物を見つけた場合にのみ、プロジェクトファイルへの攻撃の保存を推奨します。この保存のオプトインはIntruder固有であることに注意してください: (スキャンなど)他のタスクはプロジェクトファイルのサイズへの影響が小さいため、デフォルトでプロジェクトファイルに保存されます。
-        </p>
-        <p>
-            <strong>注:</strong> Intruder攻撃はステートファイルへは保存できなくなりました。ただし引き続き、過去のステートファイルの読み込みは可能です。過去のステートファイルを読み込むには、最上部のIntruderメニューから"保存した攻撃を開く"をクリックしてください。
-        </p>
-        <h3>攻撃ウィンドウを閉じる</h3>
-        <p>
-            攻撃の進行中に攻撃ウィンドウを閉じると、攻撃をバックグラウンドで続行するか、攻撃を破棄するかを確認するメッセージが表示されます。攻撃が終了した後に攻撃をウィンドウを閉じると、攻撃を破棄するか、メモリに保持するか、プロジェクトファイルに保存するかを確認するメッセージが表示されます。
-        </p>
-        <p>
-            毎回尋ねられたくない場合は、デフォルトの回答を設定できます。Intruderメニューの"攻撃結果のクロース設定"で、攻撃ウィンドウを閉じる際のデフォルト動作を設定できます。
-        </p>
-        <h2 id="typical-uses">一般的な用途</h2>
-        <p>
-            Burp Intruderは非常に柔軟なツールで、Web アプリケーションをテストする際のすべてのタイプのタスクを自動化できます。Intruderの最も一般的な使用例は、次のカテゴリに分類されます。
-        </p>
-        <ul>
-            <li>
-                <a href="#enumerating-identifiers">識別子の列挙</a>
-            </li>
-            <li>
-                <a href="#harvesting-useful-data">有用なデータの収集</a>
-            </li>
-            <li>
-                <a href="#fuzzing-for-vulnerabilities">脆弱性のファジング</a>
-            </li>
-        </ul>
-        <h3 id="enumerating-identifiers">識別子の列挙</h3>
-        <p>
-            Webアプリケーションは、データやリソースアイテムを参照するための識別子を頻繁に使用します。例えば、ユーザ名、ドキュメントID、口座番号などです。多くの場合、有効な識別子や、さらに調査する価値がある識別子を列挙するため、可能性のある多くの識別子を繰り返し試す必要があります。Burp Intruderでこれを行うには、次の手順を実行します:
-        </p>
-        <p>
-            識別子をパラメータに含み、識別子が有効かどうかレスポンス内に示されるような、アプリケーションのリクエストを探します。
-        </p>
-        <p>
-            そのパラメータの値を単一の<a href="positions.html">ペイロードポジション</a>に設定します。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-enumerating-positions-940.png" alt="ペイロードポジションの追加" class="center-block">
-        </div>
-        <p>
-            正しいフォーマットやスキームの識別子候補がテストで生成されるように、適切な<a href="payloads/index.html">ペイロードタイプ</a>を使います。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-enumerating-payloads-940.png" alt="ペイロードタイプの設定" class="center-block">
-        </div>
-        <p>
-            有効な識別子であることを確実に推測できるレスポンスの特徴をみつけ、それに応じてBurpを設定します。
-        </p>
-        <p>
-            例えば、有効な識別子だとHTTPステータスコードやレスポンスサイズが異なる場合、この属性で<a href="attack-results.html#results-table">結果をソート</a>します。または、有効な識別子の場合に特定の文字列を含むレスポンスが返ってくる場合は、この文字列に一致するレスポンスを取り出すよう<a href="options.html#grep-match">match grep</a>アイテムを定義します。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-enumerating-results-940.png" alt="Intruder結果のレビュー" class="center-block">
-        </div>
-        <p>
-            アプリケーションのログイン失敗メッセージで有効なユーザ名の列挙ができる場合、<a href="payloads/types.html#username-generator">ユーザ名生成</a>ペイロードタイプを使って、使用可能なユーザ名の長いリストを流し、有効なものを探し出します。
-        </p>
-        <p>
-            有効なユーザ名のリストを特定した後、一般的なパスワードのセットの<a href="payloads/types.html#simple-list">シンプルリスト</a>ペイロードタイプを使って、ユーザのパスワードを推測できます。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-username-generator-940.png" alt="ユーザ名ジェネレータ" class="center-block">
-        </div>
-        <p>
-            有効な注文IDを送信するとその注文の詳細が表示されるアプリケーションの場合、カスタムイテレーターペイロードタイプを使って、有効なフォーマットの潜在的な注文IDを生成し、他のユーザの注文を探せます。
-        </p>
-        <p>
-            複数のアイテムリストを設定し、リスト内のアイテムすべてを組み合わせてペイロードを生成できます。指定されたテンプレートに従って、文字やその他のアイテムを組み合わせて、カスタマイズした文字列を生成できる強力な方法です。例えば給与アプリケーションで、AB/12 という形式の個人番号で個人を特定してる場合、全員の詳細情報を取得するために、可能性のあるすべての個人番号を列挙する必要があるとします。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-custom-iterator-940.png" alt="カスタムイテレータ" class="center-block">
-        </div>
-        <p>
-            アプリケーションが、CBC暗号を使って暗号化された意味のある構造をしたセッショントークンを使っている場合、ビットフリッパーペイロードタイプを使い有効なトークンを体系的に変更し、復号した値が意味のある値になるよう操作を試行します。
-        </p>
-        <p>
-            このペイロードタイプは入力値に対して、各ビット位置の値を順番に変更していきます。これはペイロードポジションで指定された既存の文字列をベースにもできますし、指定した文字列でも可能です。１回あたり、ベース文字列の１文字を対象として、各(指定された)ビットを順番に反転します。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-bit-flipper-940.png" alt="ビットフリッパー" class="center-block">
-        </div>
-        <h3 id="harvesting-useful-data">有用なデータの収集</h3>
-        <p>
-            多くの場合単に有効な識別子を特定するよりも、最も重要なアイテムに努力を集中したり、他の攻撃に反映させるための気になるデータを、各アイテムから抽出する必要があるでしょう。Burp Intruderでこれを行うには、次の手順を実行します:
-        </p>
-        <p>
-            パラメータに識別子を含むリクエストと、リクエストしたアイテムに関するレスポンスの、気になるデータが含まれている部分を探します。
-        </p>
-        <p>
-            そのパラメータの値を単一の<a href="positions.html">ペイロードポジション</a>に設定します。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-gettingstarted-7-940.png" alt="IDペイロードポジション" class="center-block">
-        </div>
-        <p>
-            正しいフォーマットやスキームの識別子候補がテストで生成されるように、適切な<a href="payloads/index.html">ペイロードタイプ</a>を使います。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-gettingstarted-8-940.png" alt="数値ペイロードタイプ" class="center-block">
-        </div>
-        <p>
-            <a href="options.html#grep-extract">extract grep</a>アイテムを設定して各レスポンスから関連データを取得し、<a href="attack-results.html">攻撃結果</a>に一覧表示します。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-gettingstarted-9-940.png" alt="抽出grep" class="center-block">
-        </div>
-        <p>
-            アプリケーションに"パスワードを忘れた"機能があり、ユーザネームをパラメータで受け取りそのユーザのパスワードヒントを表示する場合、<a href="payloads/types.html#simple-list">シンプルリスト</a>で一般的なユーザ名を流し、有効な各ユーザのパスワードヒントを抽出できます。
-        </p>
-        <p>
-            検索されたヒントのリストを素早くスキャンして、簡単に推測できるものが見つけられます。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-gettingstarted-10-940.png" alt="単純リスト" class="center-block">
-        </div>
-        <p>
-            URLに含まれる数値のページIDパラメータによって、アプリケーションが動的にコンテンツを出し分けている場合、<a href="payloads/types.html#numbers">数値</a>ペイロードタイプを使ってすべての有効な識別子を流し、各ページのHTMLタイトルタグを検索できます。その有効なページのリストを素早くレビューし、特に気になるページやアクセスが許可されていないページを特定できます。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-gettingstarted-11-940.png" alt="IDの循環" class="center-block">
-        </div>
-        <p>
-            アプリケーションに各ユーザの情報を含んだ"ユーザプロフィール"ページがあり、アプリケーション上での権限も書かれている場合、既に抽出したユーザ名のリストを流し各ユーザの権限を検索すると、標的型攻撃の管理者アカウントを素早く特定できます。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-gettingstarted-12-940.png" alt="保存したワードリストの読み込み" class="center-block">
-        </div>
-        <h3 id="fuzzing-for-vulnerabilities">脆弱性のファジング</h3>
-        <p>
-            SQLインジェクション・クロスサイトスクリプティング・パストラバーサルのような入力ベースの脆弱性の多くは、リクエストパラメータにさまざまなテスト文字列を入れ送信し、アプリケーションのレスポンスのエラーメッセージや異常を分析して検出します。最近のアプリケーションのサイズや複雑さを考えると、手動テストの実行は時間がかかり、退屈なプロセスです。
-        </p>
-        <p>
-            Burp IntruderでWebアプリケーションのファジングを自動化するには、次の手順を行います:
-        </p>
-        <p>
-            まず、すべてのリクエストパラメータ値にペイロードポジションを設定します。次に、<a href="payloads/types.html#simple-list">simple list</a>ペイロードタイプを使います。
-        </p>
-        <p>
-            一般的なファズ文字列を含むBurpの<a href="payloads/types.html#predefined-payload-lists">定義済みペイロード一覧</a>の１つか、独自の攻撃文字列のリストを、ペイロードリストに使うよう設定します。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-fuzzing-lists-940.png" alt="ファジングリスト" class="center-block">
-        </div>
-        <p>
-            一般的なエラーメッセージ文字列を<a href="options.html#grep-match">match grep</a>アイテムに設定します。match grepのUIのデフォルトオプションに、この目的に有用な文字列リストがあります。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-fuzzing-grep-match-940.png" alt="grepマッチリストの追加" class="center-block">
-        </div>
-        <p>
-            攻撃の起動後、気になるエラーやその他の異常がないか<a href="attack-results.html">攻撃結果</a>をレビューします。各match grep列・レスポンス長・HTTPステータスコード・応答時間など、その他の関連する列で結果一覧をソートしてみてください。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-gettingstarted-16-large-940.png" alt="ファジング結果" class="center-block">
-        </div>
-        <p>
-            <strong>注:</strong>一般的にファジングする際は、Intruderの同じペイロードとmatch grep設定で大量のリクエストをテストしたいでしょう。それには、Intruderメニューの" 新規タブの動作"オプションの"最後のタブから設定をコピー"が便利です。ペイロードおよびgrepの文字列を１つのリクエストに設定すると、その後Intruderに送信する後続のリクエストで、同じ設定オプションが使われるようになります。複数のリクエストをファジングするには、単純にそれぞれをIntruderに送信し、Intruderメニューから"攻撃開始"を選択してください。
-        </p>
-    </div>
-</section>
+<h1>Burp Intruderの使い方</h1>
+<p>
+    Burp Intruderは、Web アプリケーションに対するカスタマイズした攻撃を自動化するツールです。非常に強力で自由にカスタマイズでき、単純なWebディレクトリの推測から複雑なブラインドSQLインジェクションによる情報窃取まで、広範囲のタスクに利用できます。
+</p>
+<h2 id="how-intruder-works">Intruderの仕組み</h2>
+<p>
+    Burp Intruderは、1つのHTTPリクエスト("ベースリクエスト"と呼びます)を受け取り、さまざまな体系的な方法でリクエストを編集し、それぞれの編集されたバージョンのリクエストを発行し、アプリケーションのレスポンスを分析して気になる挙動を特定します。
+</p>
+<p>
+    各攻撃では、1つ以上の<a href="payloads/index.html">ペイロード</a>セットと、ベースリクエスト内でペイロードに置き換えられる<a href="positions.html">ポジション</a>を指定する必要があります。ペイロードを生成する多数の方法(単純な文字列のリスト、数値、日付、総当たり、ビット反転、その他多数)があります。ペイロードは<a href="attack-types.html">異なるアルゴリズム</a>を使ってペイロードポジションに配置できます。結果の分析や、後で深掘りするアイテムの特定を補助するさまざまなツールがあります。
+</p>
+<h2 id="saving-an-attack">攻撃の保存</h2>
+<p>
+    Intruder攻撃はデフォルトでプロジェクトファイルに保存されません。プロジェクトファイルを使用している場合は、次のいずれかを行うと攻撃を保存できます:
+</p>
+<ul>
+    <li>
+        Intruder攻撃ウィンドウから、"保存"タブをクリックします。ここでは、プロジェクトファイルへの保存や、結果テーブル、サーバレスポンス、攻撃設定の保存ができます。
+    </li>
+    <li>
+        Intruder攻撃ウィンドウから、"オプション"タブをクリックします。"オプション保存"で、チェックボックスを選択してプロジェクトに保存します。これは、攻撃前または攻撃中に可能です。
+    </li>
+    <li>
+        ダッシュボードのタスクリストで攻撃タスクまでスクロールし、保存アイコンをクリックします。これは、攻撃前または攻撃中に可能です。
+    </li>
+    <li>
+        Intruderで、"オプション"タブを選択します。"オプション保存"で、チェックボックスを選択してプロジェクトに保存します。
+    </li>
+    <li>
+        攻撃が終了し攻撃ウィンドウを閉じる際に、Burpはプロジェクトファイルに攻撃を保存するかどうか尋ねます。
+    </li>
+</ul>
+<p>
+    一旦プロジェクトファイルに攻撃が保存されると、攻撃の状態はその時点から常に保存されます。保存された攻撃を閉じても、ダッシュボードのタスクリストから再度開けます。
+</p>
+<p>
+    大量の攻撃を保存するとプロジェクトファイルが肥大化する可能性があるため、Intruderはデフォルトで攻撃をプロジェクトファイルへ保存しません。何か興味深い物を見つけた場合にのみ、プロジェクトファイルへの攻撃の保存を推奨します。この保存のオプトインはIntruder固有であることに注意してください: (スキャンなど)他のタスクはプロジェクトファイルのサイズへの影響が小さいため、デフォルトでプロジェクトファイルに保存されます。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Intruder攻撃はステートファイルへは保存できなくなりました。ただし引き続き、過去のステートファイルの読み込みは可能です。過去のステートファイルを読み込むには、最上部のIntruderメニューから"保存した攻撃を開く"をクリックしてください。
+    </p>
+</div>
+<h3>攻撃ウィンドウを閉じる</h3>
+<p>
+    攻撃の進行中に攻撃ウィンドウを閉じると、攻撃をバックグラウンドで続行するか、攻撃を破棄するかを確認するメッセージが表示されます。攻撃が終了した後に攻撃をウィンドウを閉じると、攻撃を破棄するか、メモリに保持するか、プロジェクトファイルに保存するかを確認するメッセージが表示されます。
+</p>
+<p>
+    毎回尋ねられたくない場合は、デフォルトの回答を設定できます。Intruderメニューの"攻撃結果のクロース設定"で、攻撃ウィンドウを閉じる際のデフォルト動作を設定できます。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        攻撃結果ページに情報がない場合は、攻撃の進行中にBurp Suiteをシャットダウンし、リクエストが1つも送信されなかったのかもしれません。
+    </p>
+</div>
+<h2 id="typical-uses">一般的な用途</h2>
+<p>
+    Burp Intruderは非常に柔軟なツールで、Webアプリケーションをテストする際のすべてのタイプのタスクを自動化できます。Intruderの最も一般的な使用例は、次のカテゴリに分類されます。
+</p>
+<ul>
+    <li>
+        <a href="#enumerating-identifiers">識別子の列挙</a>
+    </li>
+    <li>
+        <a href="#harvesting-useful-data">有用なデータの収集</a>
+    </li>
+    <li>
+        <a href="#fuzzing-for-vulnerabilities">脆弱性のファジング</a>
+    </li>
+</ul>
+<h3 id="enumerating-identifiers">識別子の列挙</h3>
+<p>
+    Webアプリケーションは、データやリソースアイテムを参照するための識別子を頻繁に使用します。たとえば、ユーザ名、ドキュメントID、口座番号などです。多くの場合、有効な識別子や、さらに調査する価値がある識別子を列挙するため、可能性のある多くの識別子を繰り返し試す必要があります。Burp Intruderでこれを行うには、次の手順を実行します:
+</p>
+<p>
+    識別子をパラメータに含み、識別子が有効かどうかレスポンス内に示されるような、アプリケーションのリクエストを探します。
+</p>
+<p>
+    そのパラメータの値を単一の<a href="positions.html">ペイロードポジション</a>に設定します。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-enumerating-positions-940.png" alt="ペイロードポジションの追加" class="center-block">
+</div>
+<p>
+    正しいフォーマットやスキームの識別子候補がテストで生成されるように、適切な<a href="payloads/index.html">ペイロードタイプ</a>を使います。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-enumerating-payloads-940.png" alt="ペイロードタイプの設定" class="center-block">
+</div>
+<p>
+    有効な識別子であることを確実に推測できるレスポンスの特徴をみつけ、それに応じてBurpを設定します。
+</p>
+<p>
+    たとえば、有効な識別子だとHTTPステータスコードやレスポンスサイズが異なる場合、この属性で<a href="attack-results.html#results-table">結果をソート</a>します。または、有効な識別子の場合に特定の文字列を含むレスポンスが返ってくる場合は、この文字列に一致するレスポンスを取り出すよう<a href="options.html#grep-match">match grep</a>アイテムを定義します。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-enumerating-results-940.png" alt="Intruder結果のレビュー" class="center-block">
+</div>
+<p>
+    アプリケーションのログイン失敗メッセージで有効なユーザ名の列挙ができる場合、<a href="payloads/types.html#username-generator">ユーザ名生成</a>ペイロードタイプを使って、使用可能なユーザ名の長いリストを流し、有効なものを探し出します。
+</p>
+<p>
+    有効なユーザ名のリストを特定した後、一般的なパスワードセットの<a href="payloads/types.html#simple-list">シンプルリスト</a>ペイロードタイプを使って、ユーザのパスワードを推測できます。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-username-generator-940.png" alt="ユーザ名ジェネレータ" class="center-block">
+</div>
+<p>
+    有効な注文IDを送信するとその注文の詳細が表示されるアプリケーションの場合、カスタムイテレーターペイロードタイプを使って、有効なフォーマットの潜在的な注文IDを生成し、他のユーザの注文を探せます。
+</p>
+<p>
+    複数のアイテムリストを設定し、リスト内のアイテムすべてを組み合わせてペイロードを生成できます。指定されたテンプレートに従って、文字やその他のアイテムを組み合わせて、カスタマイズした文字列を生成できる強力な方法です。たとえば給与アプリケーションで、AB/12 という形式の個人番号で個人を特定してる場合、全員の詳細情報を取得するために、可能性のあるすべての個人番号を列挙する必要があります。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-custom-iterator-940.png" alt="カスタムイテレータ" class="center-block">
+</div>
+<p>
+    アプリケーションが、CBC暗号を使って暗号化された意味のある構造をしたセッショントークンを使っている場合、ビットフリッパーペイロードタイプを使い有効なトークンを体系的に変更し、復号した値が意味のある値になるよう操作を試行します。
+</p>
+<p>
+    このペイロードタイプは入力値に対して、各ビット位置の値を順番に変更していきます。これはペイロードポジションで指定された既存の文字列をベースにもできますし、指定した文字列でも可能です。1回あたり、ベース文字列の1文字を対象として、各(指定された)ビットを順番に反転します。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-bit-flipper-940.png" alt="ビットフリッパー" class="center-block">
+</div>
+<h3 id="harvesting-useful-data">有用なデータの収集</h3>
+<p>
+    多くの場合単に有効な識別子を特定するよりも、最も重要なアイテムに努力を集中したり、他の攻撃に反映させるための気になるデータを、各アイテムから抽出する必要があるでしょう。Burp Intruderでこれを行うには、次の手順を実行します:
+</p>
+<p>
+    パラメータに識別子を含むリクエストと、リクエストしたアイテムに関するレスポンスの、気になるデータが含まれている部分を探します。
+</p>
+<p>
+    そのパラメータの値を単一の<a href="positions.html">ペイロードポジション</a>に設定します。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-gettingstarted-7-940.png" alt="IDペイロードポジション" class="center-block">
+</div>
+<p>
+    正しいフォーマットやスキームの識別子候補がテストで生成されるように、適切な<a href="payloads/index.html">ペイロードタイプ</a>を使います。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-gettingstarted-8-940.png" alt="数値ペイロードタイプ" class="center-block">
+</div>
+<p>
+    <a href="options.html#grep-extract">extract grep</a>アイテムを設定して各レスポンスから関連データを取得し、<a href="attack-results.html">攻撃結果</a>に一覧表示します。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-gettingstarted-9-940.png" alt="抽出grep" class="center-block">
+</div>
+<p>
+    アプリケーションに"パスワードを忘れた"機能があり、ユーザネームをパラメータで受け取りそのユーザのパスワードヒントを表示する場合、<a href="payloads/types.html#simple-list">シンプルリスト</a>で一般的なユーザ名を流し、有効な各ユーザのパスワードヒントを抽出できます。
+</p>
+<p>
+    検索されたヒントのリストを素早くスキャンして、簡単に推測できるものが見つけられます。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-gettingstarted-10-940.png" alt="単純リスト" class="center-block">
+</div>
+<p>
+    URLに含まれる数値のページIDパラメータによって、アプリケーションが動的にコンテンツを出し分けている場合、<a href="payloads/types.html#numbers">数値</a>ペイロードタイプを使ってすべての有効な識別子を流し、各ページのHTMLタイトルタグを検索できます。その有効なページのリストを素早くレビューし、特に気になるページやアクセスが許可されていないページを特定できます。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-gettingstarted-11-940.png" alt="IDの循環" class="center-block">
+</div>
+<p>
+    アプリケーションに各ユーザの情報を含んだ"ユーザプロフィール"ページがあり、アプリケーション上での権限も書かれている場合、既に抽出したユーザ名のリストを流し各ユーザの権限を検索すると、標的型攻撃の管理者アカウントを素早く特定できます。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-gettingstarted-12-940.png" alt="保存したワードリストの読み込み" class="center-block">
+</div>
+<h3 id="fuzzing-for-vulnerabilities">脆弱性のファジング</h3>
+<p>
+    SQLインジェクション、クロスサイトスクリプティング、パストラバーサルのような入力ベースの脆弱性の多くは、リクエストパラメータにさまざまなテスト文字列を入れ送信し、アプリケーションのレスポンスのエラーメッセージや異常を分析して検出します。最近のアプリケーションのサイズや複雑さを考えると、手動テストの実行は時間がかかり、退屈なプロセスです。
+</p>
+<p>
+    Burp IntruderでWebアプリケーションのファジングを自動化するには、次の手順を行います:
+</p>
+<p>
+    まず、すべてのリクエストパラメータ値にペイロードポジションを設定します。次に、<a href="payloads/types.html#simple-list">シンプルリスト</a>ペイロードタイプを使います。
+</p>
+<p>
+    一般的なファズ文字列を含むBurpの<a href="payloads/types.html#predefined-payload-lists">定義済みペイロード一覧</a>の1つか独自の攻撃文字列のリストを、ペイロードリストに使うよう設定します。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-fuzzing-lists-940.png" alt="ファジングリスト" class="center-block">
+</div>
+<p>
+    一般的なエラーメッセージ文字列を<a href="options.html#grep-match">match grep</a>アイテムに設定します。match grepのUIのデフォルトオプションに、この目的に有用な文字列リストがあります。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-fuzzing-grep-match-940.png" alt="grepマッチリストの追加" class="center-block">
+</div>
+<p>
+    攻撃の起動後、気になるエラーやその他の異常がないか<a href="attack-results.html">攻撃結果</a>をレビューします。各match grep列、レスポンス長、HTTPステータスコード、応答時間、その他の関連する列などで結果一覧をソートしてみてください。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-gettingstarted-16-large-940.png" alt="ファジング結果" class="center-block">
+</div>
+<p>
+    一般的にファジングする際は、Intruderの同じペイロードとmatch grep設定で大量のリクエストをテストしたいでしょう。それには、Intruderメニューの" 新規タブの動作"オプションの"最後のタブから設定をコピー"が便利です。ペイロードやgrepの文字列を1つのリクエストに設定すると、その後Intruderに送信する後続のリクエストで、同じ設定オプションが使われるようになります。複数のリクエストをファジングするには、単純にそれぞれをIntruderに送信し、Intruderメニューから"攻撃開始"を選択してください。
+</p>
 </body>
 </html>

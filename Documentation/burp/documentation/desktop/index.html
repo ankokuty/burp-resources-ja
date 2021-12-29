@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body no-keyword-injection class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -21,70 +22,93 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
-    <label class="label-edition is-community">コミュニティ</label>
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>Burp Suiteドキュメント: デスクトップ版</h1>
-        <p>
-            Burp Suiteには、手動および自動のセキュリティテストをサポートする豊富な機能と能力があります。詳細は、次のリンクを参照してください。
-        </p>
-        <h3>ビデオチュートリアル</h3>
-        <p>
-            短い<a href="tutorials.html">ビデオチュートリアル</a>を見て、Burp Suiteと旅立ちましょう
-        </p>
-        <h3>どうすればいい？</h3>
-        <ul class="link-list">
-            <li>
-                <a href="getting-started/index.html">Burp Suite入門</a>
-            </li>
-            <li>
-                <a href="scanning/index.html">ウェブサイトをスキャン</a>
-            </li>
-            <li>
-                <a href="penetration-testing/index.html">ペネトレーションテストにBurp Suiteを使用する</a>
-            </li>
-            <li>
-                <a href="mobile-testing.html">モバイルアプリケーションのテスト</a>
-            </li>
-            <li>
-                <a href="extensibility.html">Burp Suiteの機能を拡張する</a>
-            </li>
-            <li>
-                <a href="troubleshooting.html">一般的なエラーのトラブルシューティング</a>
-            </li>
-            <li>
-                <a href="performance.html">パフォーマンス問題のトラブルシューティング</a>
-            </li>
-            <li>
-                <a href="early-adopter.html">アーリーアダプタになる</a>
-            </li>
-        </ul>
-        <h3>参照</h3>
-        <ul class="link-list">
-            <li>
-                <a href="dashboard/index.html">Burp Suiteダッシュボード</a>
-            </li>
-            <li>
-                <a href="tools/index.html">Burp Suiteツール</a>
-            </li>
-            <li>
-                <a href="functions/index.html">便利な機能</a>
-            </li>
-            <li>
-                <a href="options/index.html">オプション</a>
-            </li>
-            <li>
-                <a href="../contents.html">すべてのドキュメントコンテンツ</a>
-            </li>
-        </ul>
-        <div class="highlightedarea">
-            <p>
-                <strong>注:</strong> 他のセキュリティテストツールと同様、Burp Suite には対象システムに損害を与えるおそれのある機能が含まれています。セキュリティテストではその性質上、一部の脆弱性な対象で問題を起こす可能性のある、異常な通信を伴います。Burpを使う際は十分注意し、使用前にすべてのドキュメントを読み、テスト前に対象システムのバックアップを行い、システム管理者の許可がないシステムや障害のリスクを許容できないシステムには使用しないでください。
-            </p>
-        </div>
-    </div>
-</section>
+<h1>Burp Suiteドキュメント: デスクトップ版</h1>
+<p>
+    Burp Suiteには、手動や自動のセキュリティテストをサポートする豊富な機能と能力があります。詳細は、次のリンクを参照してください。
+</p>
+<h3>入門</h3>
+<ul>
+    <li>
+        <a href="getting-started/index.html">クイックスタートガイド</a>
+    </li>
+    <li>
+        <a href="getting-started/activating-burp-license.html">ライセンスのアクティベーション</a>
+    </li>
+    <li>
+        <a href="getting-started/startup-wizard.html">スタートアップウィザード</a>
+    </li>
+    <li>
+        <a href="video-tutorials/index.html">ビデオチュートリアル</a>
+    </li>
+    <li>
+        <a href="getting-started/launch-from-command-line.html">コマンドラインからBurpを起動</a>
+    </li>
+</ul>
+<h3>どうすればいい？</h3>
+<ul>
+    <li>
+        <a href="scanning/index.html">Webサイトをスキャン</a>
+    </li>
+    <li>
+        <a href="penetration-testing/index.html">ペネトレーションテストにBurp Suiteを使用する</a>
+    </li>
+    <li>
+        <a href="http2/index.html">HTTP/2を使用したWebサイトのテスト</a>
+    </li>
+    <li>
+        <a href="external-browser-config/index.html">Burpで別のブラウザを使用する</a>
+    </li>
+    <li>
+        <a href="mobile/index.html">モバイルアプリケーションのテスト</a>
+    </li>
+    <li>
+        <a href="extensibility.html">Burp Suiteの機能を拡張する</a>
+    </li>
+    <li>
+        <a href="projects.html">プロジェクトファイルの利用</a>
+    </li>
+    <li>
+        <a href="configurations.html">カスタム設定ファイルの保存</a>
+    </li>
+    <li>
+        <a href="troubleshooting.html">一般的なエラーのトラブルシューティング</a>
+    </li>
+    <li>
+        <a href="performance.html">パフォーマンス問題のトラブルシューティング</a>
+    </li>
+    <li>
+        <a href="early-adopter.html">アーリーアダプタになる</a>
+    </li>
+</ul>
+<h3>参照</h3>
+<ul>
+    <li>
+        <a href="dashboard/index.html">Burp Suiteダッシュボード</a>
+    </li>
+    <li>
+        <a href="tools/index.html">Burp Suiteツール</a>
+    </li>
+    <li>
+        <a href="functions/index.html">便利な機能</a>
+    </li>
+    <li>
+        <a href="options/index.html">オプション</a>
+    </li>
+    <li>
+        <a href="reference/index.html">すべてのデスクトップ版リファレンスドキュメントを表示</a>
+    </li>
+    <li>
+        <a href="../contents.html">すべてのドキュメントコンテンツ</a>
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        他のセキュリティテストツールと同様、Burp Suite には対象システムに損害を与えるおそれのある機能があります。セキュリティテストではその性質上、一部の脆弱な対象で問題を起こす可能性のある、異常な通信を伴います。Burpを使う際は十分注意し、使用前にすべてのドキュメントを読み、テスト前に対象システムのバックアップを行い、システム管理者の許可がないシステムや障害のリスクを許容できないシステムには使用しないでください。
+    </p>
+</div>
 </body>
 </html>

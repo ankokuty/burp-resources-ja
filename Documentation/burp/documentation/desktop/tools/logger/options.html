@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -30,92 +31,88 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
-    <label class="label-edition is-community">コミュニティ</label>
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>Loggerオプション</h1>
-        <p>
-            Loggerは、キャプチャするものと表示するものをそれぞれ設定できるよう個別のコントロールがあります。特定の何かを探す場合に、Loggerがキャプチャや表示するものを絞り込めます。
-        </p>
-        <h2 id="capture-options">キャプチャオプション</h2>
-        <p>
-            "キャプチャフィルタ"バーをクリックすると、キャプチャするレコードの設定画面が開きます。
-        </p>
-        <div class="section-small">
-            <img src="../../images/logger-c-options-940.png" alt="Loggerキャプチャオプション" class="center-block">
-        </div>
-        <h3>キャプチャ制限</h3>
-        <p>
-            レコードを保持するためにLoggerに割り当てるメモリ量を調整します。デフォルト50MB、またはBurp Suiteに1GB以上のメモリを割り当てた場合は100MBです。ドロップダウンメニューで制限を変更するか、特定のメモリ量を入力できます。パフォーマンスの問題を回避するために、大量のレコードが必要になる特定の問題がある場合にのみ、Loggerに割り当てられるメモリの量を増やしてください。
-        </p>
-        <h3>リクエストタイプによるキャプチャ</h3>
-        <p>
-            スコープ内のレコードのみをキャプチャ、応答のないアイテムを破棄、パラメータを含むリクエストのみをキャプチャする設定ができます。
-        </p>
-        <h3>MIMEタイプによるキャプチャ</h3>
-        <p>
-            HTMLやXMLなど、LoggerがキャプチャするMIMEタイプを選択できます。
-        </p>
-        <h3>ステータスコードによるキャプチャ</h3>
-        <p>
-            Loggerがキャプチャするステータスコードを選択できます。
-        </p>
-        <h3>ツールによるキャプチャ</h3>
-        <p>
-            Loggerがレコードをキャプチャするツールを選択できます。デフォルトで、Loggerは全ツールからのレコードをキャプチャします。このコントロールを使用すると、ノイズの多いツールのレコードを破棄したり、1つのツールのレコードのみをキャプチャなどができます。
-        </p>
-        <h3>検索語でキャプチャ</h3>
-        <p>
-            <label class="label-edition is-professional">プロフェッショナル</label>
-            検索ボックスに何か指定されている場合、レコードに検索語が含まれている場合にのみレコードをキャプチャします。(リテラル文字列ではなく)正規表現で検索するか、および検索で大文字と小文字を区別するか、一致しないものを検索(検索語を含むレコードを破棄)するかを制御するチェックボックスがあります。
-        </p>
-        <h3 cms-ignore-validation="DUPLICATE_HEADINGS">セッションハンドリング</h3>
-        <p>
-            このチェックボックスを使用すると、Loggerは<a href="../../options/sessions/index.html">セッション処理要求</a>を破棄します。
-        </p>
-        <h3>リクエスト/レスポンスのサイズ制限</h3>
-        <p>
-            これらのコントロールを使用すると、Loggerがキャプチャするリクエストやレスポンスのサイズを制限できます。それぞれのデフォルトは1MBです。
-        </p>
-        <h2 id="view-options">表示オプション</h2>
-        <p>
-            レコードがキャプチャされると、表示できるようになります。ただし、キャプチャされたレコードのどれを表示するかは、いつでもフィルタリングできます。"表示フィルタ"バーをクリックすると、表示するレコードをの設定画面が開きます。
-        </p>
-        <div class="section-small">
-            <img src="../../images/logger-v-options-940.png" alt="Logger表示オプション" class="center-block">
-        </div>
-        <h3>リクエストタイプでフィルタ</h3>
-        <p>
-            スコープ内のレコードのみを表示、応答のないアイテムを破棄、パラメータを含むリクエストのみを表示する設定ができます。
-        </p>
-        <h3>MIMEタイプでフィルタ</h3>
-        <p>
-            HTMLやXMLなど、Loggerが表示するMIMEタイプを選択できます。
-        </p>
-        <h3>ステータスコードでフィルタ</h3>
-        <p>
-            Loggerが表示するステータスコードを選択できます。
-        </p>
-        <h3>ツールでフィルタ</h3>
-        <p>
-            Loggerがレコードを表示するツールを選択できます。デフォルトで、Loggerは全ツールからのレコードを表示します。このコントロールを使用すると、ノイズの多いツールのレコードを非表示にしたり、1つのツールのレコードのみを表示などができます。
-        </p>
-        <h3>検索語でフィルタ</h3>
-        <p>
-            <label class="label-edition is-professional">プロフェッショナル</label>
-            検索ボックスに何か指定されている場合、レコードに検索語が含まれている場合にのみレコードを表示します。(リテラル文字列ではなく)正規表現で検索するか、および検索で大文字と小文字を区別するか、一致しないものを検索(検索語を含むレコードを非表示)するかを制御するチェックボックスがあります。
-        </p>
-        <h3>拡張子でフィルタ</h3>
-        <p>
-            ファイル拡張子に基づいてレコードを表示または非表示にできます。
-        </p>
-        <h3>注釈でフィルタ</h3>
-        <p>
-            レコードへのコメントや色づけなど注釈が付けられたレコードのみを表示できます。
-        </p>
-    </div>
-</section>
+<h1>Loggerオプション</h1>
+<p>
+    Loggerは、キャプチャするものと表示するものをそれぞれ設定できるよう個別のコントロールがあります。特定の何かを探す場合に、Loggerがキャプチャや表示するものを絞り込めます。
+</p>
+<h2 id="capture-options">キャプチャオプション</h2>
+<p>
+    "キャプチャフィルタ"バーをクリックすると、キャプチャするレコードの設定画面が開きます。
+</p>
+<div class="section-small">
+    <img src="../../images/logger-c-options-940.png" alt="Loggerキャプチャオプション" class="center-block">
+</div>
+<h3>キャプチャ制限</h3>
+<p>
+    レコードを保持するためにLoggerに割り当てるメモリ量を調整します。デフォルト50MB、またはBurp Suiteに1GB以上のメモリを割り当てた場合は100MBです。ドロップダウンメニューで制限を変更するか、特定のメモリ量を入力できます。パフォーマンスの問題を回避するために、大量のレコードが必要になる特定の問題がある場合にのみ、Loggerに割り当てられるメモリの量を増やしてください。
+</p>
+<h3>リクエストタイプによるキャプチャ</h3>
+<p>
+    スコープ内のレコードのみをキャプチャ、応答のないアイテムを破棄、パラメータを含むリクエストのみをキャプチャする設定ができます。
+</p>
+<h3>MIMEタイプによるキャプチャ</h3>
+<p>
+    HTMLやXMLなど、LoggerがキャプチャするMIMEタイプを選択できます。
+</p>
+<h3>ステータスコードによるキャプチャ</h3>
+<p>
+    Loggerがキャプチャするステータスコードを選択できます。
+</p>
+<h3>ツールによるキャプチャ</h3>
+<p>
+    Loggerがレコードをキャプチャするツールを選択できます。デフォルトで、Loggerは全ツールからのレコードをキャプチャします。このコントロールを使用すると、ノイズの多いツールのレコードを破棄したり、1つのツールのレコードのみキャプチャなどができます。
+</p>
+<h3>検索語でキャプチャ</h3>
+<p>
+    <label class="label-edition is-professional">Professional</label>
+    検索ボックスに何か指定されている場合、レコードに検索語が含まれている場合にのみレコードをキャプチャします。(リテラル文字列ではなく)正規表現で検索するか、検索で大文字と小文字を区別するか、一致しないものを検索(検索語を含むレコードを破棄)するかを制御するチェックボックスがあります。
+</p>
+<h3 cms-ignore-validation="DUPLICATE_HEADINGS">セッションハンドリング</h3>
+<p>
+    このチェックボックスを使用すると、Loggerは<a href="../../options/sessions/index.html">セッションハンドリングリクエスト</a>を破棄します。
+</p>
+<h3>リクエスト/レスポンスのサイズ制限</h3>
+<p>
+    これらのコントロールを使用すると、Loggerがキャプチャするリクエストやレスポンスのサイズを制限できます。それぞれのデフォルトは1MBです。
+</p>
+<h2 id="view-options">表示オプション</h2>
+<p>
+    レコードがキャプチャされると、表示できるようになります。ただし、キャプチャされたレコードのどれを表示するかは、いつでもフィルタリングできます。"表示フィルタ"バーをクリックすると、表示するレコードの設定画面が開きます。
+</p>
+<div class="section-small">
+    <img src="../../images/logger-v-options-940.png" alt="Logger表示オプション" class="center-block">
+</div>
+<h3>リクエストタイプでフィルタ</h3>
+<p>
+    スコープ内のレコードのみを表示、応答のないアイテムを破棄、パラメータを含むリクエストのみを表示する設定ができます。
+</p>
+<h3>MIMEタイプでフィルタ</h3>
+<p>
+    HTMLやXMLなど、Loggerが表示するMIMEタイプを選択できます。
+</p>
+<h3>ステータスコードでフィルタ</h3>
+<p>
+    Loggerが表示するステータスコードを選択できます。
+</p>
+<h3>ツールでフィルタ</h3>
+<p>
+    Loggerがレコードを表示するツールを選択できます。デフォルトで、Loggerは全ツールからのレコードを表示します。このコントロールを使用すると、ノイズの多いツールのレコードを非表示にしたり、1つのツールのレコードのみを表示などができます。
+</p>
+<h3>検索語でフィルタ</h3>
+<p>
+    <label class="label-edition is-professional">Professional</label>
+    検索ボックスに何か指定されている場合、レコードに検索語が含まれている場合にのみレコードを表示します。(リテラル文字列ではなく)正規表現で検索するか、検索で大文字と小文字を区別するか、一致しないものを検索(検索語を含むレコードを非表示)するかを制御するチェックボックスがあります。
+</p>
+<h3>拡張子でフィルタ</h3>
+<p>
+    ファイル拡張子に基づいてレコードを表示または非表示にできます。
+</p>
+<h3>注釈でフィルタ</h3>
+<p>
+    レコードへのコメントや色づけなど注釈が付けられたレコードのみを表示できます。
+</p>
 </body>
 </html>

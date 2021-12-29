@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">HTTP/2</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>BurpでのHTTP/2の操作</h1>
+<p>
+    現在、多くのサーバがHTTP/2をサポートしています。そのせいで、HTTP/1しかサポートしていないツールでは見つけられない脆弱性が放置されている可能性があります。Burp Suiteは、HTTP/2ベースのテストに対して比類のないサポートを提供し、他のツールではできない方法でHTTP/2リクエストを操作できます。次のどちらでも可能です:
+</p>
+<ul>
+    <li>
+        <p>
+            <strong>メッセージエディタで、リクエストをHTTP/1スタイルで操作する</strong>
+        </p>
+        <p>
+            加えたすべての変更を<a href="http2-normalization-in-the-message-editor.html">正規化</a>し、同等のHTTP/2リクエストをサーバに送信します。使用しているプロトコルを気にしない一般的なテストに最適です。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Inspectorで、HTTP/2ビューで操作する</strong>
+        </p>
+        <p>
+            サーバに送信されるヘッダと疑似ヘッダをより正確な表現で表示します。このビューはHTTP/1構文に依存しないため、<a href="performing-http2-exclusive-attacks.html">HTTP/2特有の手法</a>を使用したさまざまな攻撃も構築できます。
+        </p>
+    </li>
+</ul>
+<div class="container">
+    <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/vnwxsbmadCo?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
+    </div>
+</div>
+<p>
+    BurpのユニークなHTTP/2機能は、これまで適切なツールがまったくなかったためほとんど診断されていなかった、まったく新しい攻撃経路を探索する機会を与えてくれます。実際の例として、ある研究者がこれらの機能を利用して、リクエストスマグリングを行う新たな方法を発見し、悪用に成功した例を見てください。
+</p>
+<div class="highlightedarea">
+    <h4>PortSwigger Research</h4>
+    <div>
+        <a href="https://portswigger.net/research/http2">HTTP/2: The Sequel Is Always Worse</a>
+    </div>
+</div>
+<h2 id="background-concepts">背景の概念</h2>
+<p>
+    内部では、HTTP/2はHTTP/1と大きく異なります。これらの機能を最大限に活用するために、背景の関連する概念を<a href="http2-basics-for-burp-users.html">簡単に説明</a>しています。
+</p>
+<h2 id="default-protocol">デフォルトプロトコル</h2>
+<p>
+    デフォルトでBurpは、TLSハンドシェイク時にALPNでHTTP/2のサポートを表明するサーバとの通信に、HTTP/2を使用します。これにより、プロトコルに特化したテストを行っていない場合でも、HTTP/2のおかげでパフォーマンスが向上します。
+</p>
+<p>
+    プロジェクトの<a href="#changing-the-default-protocol">デフォルトのプロトコルを変更</a>すれば、現在のニーズに合わせてこの動作を調整できます。これは、常にHTTP/1を使用する必要があるテストを行っている場合に便利です。必要に応じて個別にHTTP/2リクエストを送信する場合は、<a href="#changing-the-protocol-for-a-request">Inspectorでプロトコルの切り替え</a>ができます。
+</p>
+<h2 id="keeping-track-of-which-protocol-you-re-using">どのプロトコルを使用しているかを把握する</h2>
+<p>
+    プロトコルレベルの脆弱性をテストする際には、各リクエストにどのプロトコルが使用されているかの認識が重要です。この情報が表示される場所はいくつかあります。
+</p>
+<ul>
+    <li>
+        <p>
+            メッセージエディタでは、リクエスト行とステータス行にプロトコルバージョンが表示されます。これは、HTTP/1メッセージでは標準ですが、HTTP/2メッセージのエディタでの表現にも適用されます。
+        </p>
+    </li>
+    <li>
+        <p>
+            Burp Repeaterでは、画面の右上にある対象ホストの横に現在のプロトコルが表示されます。
+        </p>
+    </li>
+    <li>
+        <p>
+            Inspectorでは、<strong>リクエスト属性</strong>セクションにプロトコルバージョンが表示されます。Proxy履歴のような編集できない文脈では、ハイライトされたプロトコルは単なる情報です。Burp Proxyでインターセプトしたリクエストや、Burp Repeaterに送信したリクエストでは、<a href="#changing-the-protocol-for-a-request">どのプロトコル</a>を使って送信するかを切り替えられます。
+        </p>
+    </li>
+</ul>
+<h2 id="changing-the-protocol-for-a-request">リクエストのプロトコル変更</h2>
+<p>
+    <a href="#changing-the-default-protocol">デフォルトのプロトコル設定</a>にかかわらず、各リクエストの送信に使用するプロトコルを手動で選択できます。これを行うには、<strong>Inspector &gt; リクエスト属性</strong>のトグルスイッチを使います。
+</p>
+<p>
+    プロトコルを変更すると、Burpは必要な変換を行い、新しいプロトコルでの同等のリクエストを生成します。つまり、必要に応じて個々のリクエストを簡単にアップグレードやダウングレードできます。
+</p>
+<p>
+    デフォルトでは、サーバがTLSハンドシェイク中にALPNでHTTP/2のサポートを明示した場合にのみ、リクエストをアップグレードできます。こっそりHTTP/2をサポートしているかをテストするために、HTTP/2リクエストを送信してみたい場合は、まず<strong>Repeater</strong>メニューから<strong>HTTP/2 ALPNを上書きする</strong>オプションを有効にする必要があります。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Inspectorで作業すると、HTTP/1の構文では正確に表現できないHTTP/2リクエストを、情報を失うことなく作成できます。Burpではこれを"<a href="#kettled-requests">ケトルな</a>"リクエストと呼んでいます。このようなリクエストをダウングレードしようとすると、エディタで表示できるようにリクエストを正規化する必要があるとBurpが警告します。
+    </p>
+</div>
+<h2 id="kettled-requests">ケトルなリクエスト</h2>
+<p>
+    Inspectorを使えば、HTTP/1の構文では正確に表現できないようなHTTP/2リクエストを、情報を失うことなく作成できます。悪名高きDirector of ResearchのJames Kettleにちなんで、私たちはこのようなリクエストを"ケトルな"という言葉で表現しています。
+</p>
+<p>
+    たとえば、HTTP/2ではヘッダ値の<strong>中</strong>に改行文字を入れることが技術的には可能です。HTTP/1では、改行がヘッダの終わりを示すため、それ以降は次のヘッダ名の始まりにしか見えず、これを表示する方法がありません。
+</p>
+<p>
+    一度リクエストがケトル化されると、メッセージエディタはもうそのリクエストに相当するHTTP/1を表示しようとはしません。メッセージの本文は見られます。そのリクエストがなぜケトルなリクエストだと判断されたのかを伝える通知が、ヘッダの代わりに表示されます。ケトルなリクエストのヘッダにさらに変更を加えたい場合は、Inspectorを使用する必要があります。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        現在、Burp Proxy、Repeater、Logger、Scannerは、ケトルなリクエストをサポートしています。Intruderなどのケトルなリクエストをサポートしていないツールに送ると、エディタで表示できるように正規化されます。
+    </p>
+</div>
+<h3 id="what-can-cause-a-request-to-become-kettled">リクエストがケトル化する原因は?</h3>
+<p>
+    Inspectorを使って次のような変更を行うと、ケトルなリクエストになります:
+</p>
+<ul>
+    <li>
+        <p>
+            ヘッダ名に大文字やコロンをつける。
+        </p>
+    </li>
+    <li>
+        <p>
+            ヘッダ名や値に改行文字を追加する。
+        </p>
+    </li>
+    <li>
+        <p>
+            <code>:scheme</code>擬似ヘッダの値を変更する。
+        </p>
+    </li>
+    <li>
+        <p>
+            <code>:path</code>や<code>:method</code>擬似ヘッダに空白文字を追加する。
+        </p>
+    </li>
+    <li>
+        <p>
+            重複する疑似ヘッダを追加する。
+        </p>
+    </li>
+    <li>
+        <p>
+            cookieの値にセミコロンや空白文字を追加する。
+        </p>
+    </li>
+</ul>
+<h3 id="unkettling-a-request">リクエストの逆ケトル化</h3>
+<p>
+    リクエストを誤ってケトル化してしまった場合、それを復元する方法がいくつか有ります。以下が可能です:
+</p>
+<ul>
+    <li>
+        <p>
+            <code>Ctrl/Cmd + Z</code>キーで、変更内容を元に戻す。
+        </p>
+    </li>
+    <li>
+        <p>
+            Inspectorを使用して、ケトルなリクエストになる原因となった特定の変更を手動で取り消す。エディターの通知を確認し、どのような変更が必要か確認してください。
+        </p>
+    </li>
+    <li>
+        <p>
+            InspectorのトグルでリクエストをHTTP/1にダウングレードし、変更内容が失われるという警告を受け入れる。Burpはリクエストを正規化し、HTTP/1と互換性のない変更は効果的に破棄されます。
+        </p>
+    </li>
+</ul>
+<h3 id="kettled-requests-and-extensions">ケトルなリクエストと拡張</h3>
+<p>
+    拡張は、ケトルなリクエストを新たに生成し送信できるので、HTTP/2ベースのテストをする拡張を開発できます。ただし現在のところ、Burpが最初に発行したケトルなリクエストを、拡張で修正はできません。これは、Burpのリクエストに対して、正規化されたHTTP/1スタイルの表現でしかアクセスできないためです。
+</p>
+<h2 id="http-2-settings">HTTP/2設定</h2>
+<p>
+    Burpには、HTTP/2の動作を調整する設定がいくつかあります。
+</p>
+<h3 id="changing-the-default-protocol">デフォルトプロトコルの変更</h3>
+<p>
+    デフォルトでBurpは、TLSハンドシェイク時にALPNでHTTP/2のサポートを表明するサーバとの通信に、HTTP/2を使用します。しかしデフォルトのプロトコルを変更すれば、HTTP/2リクエストを送信するよう明示的に指示しない限り、HTTP/1を使用するようにできます。これを行うには、<strong>Projectオプション &gt; HTTP &gt; HTTP/2</strong>を開き、<strong>サーバがサポートしている場合、デフォルトでHTTP/2にする</strong>オプションの選択を解除します。
+</p>
+<p>
+    古典的な<a href="https://portswigger.net/web-security/request-smuggling">CL.TEやTE.CLのリクエストスマグリング</a>のような、特にHTTP/1を必要とする脆弱性に焦点を当てている場合は、これが必要でしょう。
+</p>
+<p>
+    個々のリクエストでこのグローバル設定を上書きするには、<strong>Inspector &gt; リクエスト属性</strong>で、<strong>プロトコル</strong>のトグルを使用してください。
+</p>
+<h3 id="repeater-options-for-http-2">RepeaterのHTTP/2オプション</h3>
+<p>
+    画面上部の<strong>Repeater</strong>メニューから、HTTP/2リクエストを処理する際のBurp Repeaterの動作を制御する次のオプションにアクセスできます。
+</p>
+<h4 id="enforce-protocol-choice-on-cross-domain-redirections">クロスドメインのリダイレクトでプロトコル選択を強制する</h4>
+<p>
+    デフォルトでは、Repeaterはクロスドメインでリダイレクトされた場合、通常通りプロトコルをネゴシエートします。このオプションを有効にすると、<strong>Inspector &gt; リクエスト属性</strong>で選択されているのと同じプロトコルを使用してクロスドメインのリダイレクトをたどります。これは、クロスドメインリクエストを引き起こすようなHTTP/2特有の脆弱性をテストしている場合に重要です。
+</p>
+<h4 id="enable-http-2-connection-reuse">HTTP/2接続を再利用する</h4>
+<p>
+    Repeaterはデフォルトで、複数のHTTP/2リクエストに同じ接続を再利用します。サーバによっては、各接続の最初のリクエストとそれ以降のリクエストの扱いが異なるため、脆弱性が断続的に現れたり、完全に見逃すこともあります。あるいは、あるリクエストがサーバは落とさずに接続を破壊していて、その後のすべてのリクエストの処理が裏で影響を受けていることがあります。
+</p>
+<p>
+    これらの問題が発生した場合はこのオプションを無効にして、送信するリクエストが常に接続後の最初のリクエストになるようにすると、問題を軽減できるかもしれません。
+</p>
+<h4 id="strip-connection-header-over-http-2">HTTP/2接続でConnectionヘッダを削除</h4>
+<p>
+    デフォルトで、HTTP/2リクエストに<code>Connection</code>ヘッダがある場合、Burpはリクエストをサーバに送信する前にこれを削除します。これは、多くのHTTP/2サーバがこのヘッダを含むリクエストを拒否するためです。
+</p>
+<p>
+    それでも<code>Connection</code>ヘッダを送信する実験をしたい場合は、このオプションを無効にしてください。
+</p>
+<h4 id="allow-http-2-alpn-override">HTTP/2 ALPNを上書きする</h4>
+<p>
+    このオプションを選択すると、サーバがHTTP/2をサポートしていることをALPNで広告していない場合でも、Burp RepeaterからHTTP/2リクエストを送信できます。これにより、Burp Scannerが報告する"隠れたHTTP/2"の攻撃経路の探索や、隠れたHTTP/2サポートを手動でテストできます。
+</p>
+<h3 id="disabling-http-2-for-proxy-listeners">ProxyリスナーでHTTP/2の無効化</h3>
+<p>
+    まれに、クライアントのHTTP/2実装に問題がある場合など、クライアントとBurpのProxyリスナーとの接続でHTTP/2を無効にしたい場合があります。その場合は、<strong>ユーザオプション &gt; その他</strong>に移動し、該当するリスナーを選択し、<strong>編集</strong>をクリックします。ダイアログで、HTTP/2タブに移動し、<strong>HTTP/2のサポート</strong>チェックボックスの選択を解除します。これによりBurpは、クライアントがHTTP/2を使用したい場合でも、HTTP/1しか受け付けません。
+</p>
+<p>
+    これはBurpとサーバ間の接続には影響しないことに注意してください。
+</p>
+<h2 id="upcoming-enhancements-for-http-2-in-burp">今後のBurpのHTTP/2機能の強化について</h2>
+<p>
+    BurpのHTTP/2サポートにはいくつかの制限があります。現在、以下のような機能拡張を行っています。
+</p>
+<h3 id="increased-support-for-kettled-requests">ケトルなのリクエストへの対応強化</h3>
+<p>
+    現時点では、Burpのツールの中には、ケトルなリクエストを処理できないツールが、Burp Intruderなどいくつかあります。今後のリリースでは、Burpのすべてのツールで、ケトルなリクエストを扱えることを目指しています。
+</p>
+</body>
+</html>

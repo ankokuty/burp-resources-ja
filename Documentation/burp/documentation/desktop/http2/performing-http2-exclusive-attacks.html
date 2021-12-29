@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">HTTP/2</a>
+        </li>
+        <li>
+            <a href="performing-http2-exclusive-attacks.html">HTTP/2特有の実行</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>HTTP/2特有の実行</h1>
+<p>
+    Burp Proxyでリクエストをインターセプトする場合やBurp Repeaterにリクエストを送信する場合に、InspectorはHTTP/2ヘッダや疑似ヘッダを、実際のリクエストに近い形で扱えます。
+</p>
+<p>
+    各ヘッダと疑似ヘッダは、<strong>リクエストヘッダ</strong>にそれぞれの項目があり、<strong>名前</strong>と<strong>値</strong>のフィールドに分かれています。実際のバイナリは表示していませんが、これはサーバに送信される内容を正確に表しています。次のビデオデモンストレーションで、その様子が確認できます:
+</p>
+<div class="container">
+    <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/vnwxsbmadCo?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
+    </div>
+</div>
+<div>
+    <p>
+        この表現方法はHTTP/1から完全に切り離されているため、悪意のあるリクエストを構築する際に、HTTP/1構文の制限に縛られることはありません。これにより、一部の<a href="https://portswigger.net/research/http2">高度な、HTTP/2特有の攻撃</a>が行えます。
+    </p>
+    <p>
+        たとえば、次が可能です:
+    </p>
+    <ul>
+        <li>
+            <p>
+                ヘッダ名にコロンを入れる。
+            </p>
+        </li>
+        <li>
+            <p>
+                メソッドやパス内に任意のスペースや改行を入れる。
+            </p>
+        </li>
+        <li>
+            <p>
+                ヘッダ名や値の任意の位置に<a href="#injecting-newlines-into-headers">改行を挿入</a>する。
+            </p>
+        </li>
+    </ul>
+    <p>
+        これらの変更のほとんどは、メインのInspectorビューでヘッダの名前や値をダブルクリックするだけで行えます。
+    </p>
+    <p>
+        仕様書によると、このような種類のインジェクションは、サーバによってリクエストが拒否されるはずですが、一部のサーバはこのようなインジェクションを許容しています。現在のところ、この動作を利用できるツールはBurpだけです。
+    </p>
+    <div class="highlightedarea">
+        <h4>注</h4>
+        <p>
+            これらの変更を適用するとメッセージエディタでは、HTTP/1の構文では情報を失わずにリクエストを正確に表現できなくなります。この場合、<a href="index.html#kettled-requests">ケトル</a>なリクエストとみなされます。
+        </p>
+    </div>
+    <h2 id="injecting-newlines-into-headers">ヘッダへの改行の挿入</h2>
+    <p>
+        HTTP/2のヘッダや値に改行を入れるには、Inspectorのエントリーの右側にあるマークをクリックして、ヘッダを掘り下げます。この画面で、<strong>名前</strong>または<strong>値</strong>のフィールドを選択し、<code>Shift+Return</code>キーを押すと<code>\r\n</code>というシーケンスを入力できます。
+    </p>
+</div>
+</body>
+</html>

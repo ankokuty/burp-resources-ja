@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -27,78 +28,98 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
-    <label class="label-edition is-community">コミュニティ</label>
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>Logger</h1>
-        <p>
-            Loggerは、ネットワークアクティビティを記録するためのツールです。Loggerは、調査や分析のために、Burp Suiteが生成するすべてのHTTPトラフィックを記録しますが、特に次の場合に便利です:
-        </p>
-        <ul>
-            <li>
-                Burp Suiteの結果が予期しない結果だったとき、何が起こったかを調査する場合。
-            </li>
-            <li>
-                作業にセッション処理が含まれるとき、Burp Suiteが送信する内容の詳細を確認する場合。
-            </li>
-            <li>
-                長期的に進行中のタスク(バックグラウンドスキャンなど)がまだ実行されているか確認する場合。
-            </li>
-            <li>
-                Burp Suiteが行っていることを可視化する必要がある問題を分析する場合。
-            </li>
-        </ul>
-        <div class="section-small">
-            <img src="../../images/logger-1-940.png" alt="Loggerツール" class="center-block">
-        </div>
-        <h2 id="logging-and-memory">ログとメモリ</h2>
-        <p>
-            Loggerは、割り当てられたメモリの制限までHTTPネットワークトラフィックの記録を保持します。制限に達した後、新しいエントリが作成されると、Loggerは最も古いエントリを破棄します。Loggerのデフォルトのメモリ制限は50MB、またはBurp Suiteに1GB以上のメモリを割り当てた場合は100MBです。キャプチャフィルタをクリックすると、メモリ制限を変更できます。ログ取得に大量のメモリを割り当てると、パフォーマンスの問題が発生する可能性がある点に注意してください。デフォルトのメモリ量でログを開始し、大量のエントリを必要とする問題がある場合にのみ増やすことをお勧めします。
-        </p>
-        <h2 id="logger-functionality">Logger機能</h2>
-        <p>
-            Loggerエントリは読み取り専用です(注目する項目に注釈を付けること以外:以下参照)が、それ以外は<a href="../../functions/message-editor/index.html">メッセージエディタ</a>のすべての機能が有効で、<a href="../../functions/message-editor/inspector.html">メッセージインスペクタ</a>も使えます。Loggerエントリを、<a href="../repeater/index.html">Repeater</a>や<a href="../intruder/index.html">Intruder</a>など他のツールに送信もできます。
-        </p>
-        <p>
-            エントリに関する情報が、複数の列に表示されます。すべての列が各エントリに関連するわけではありません。"列"ドロップダウンメニューをクリックすると、表示する列を調整できます。列ヘッダのクリックや列の境界線をドラッグすると、列のソートやサイズ変更ができます。
-        </p>
-        <p>
-            #でマークされた左端の列は、このセッションでログに記録されたエントリ数をカウントします。すべてのエントリをキャプチャしないよう選択した場合(<a href="options.html">オプション</a>参照)、カウントが連続しない可能性があります。カウントは、実際にキャプチャされたイベントではなく、キャプチャされる可能性のあるイベント数を参照しているためです。
-        </p>
-        <p>
-            "ログをクリア"アイコンをクリックすると、現在のすべてのエントリを削除します。
-        </p>
-        <p>
-            後で確認できるようにエントリにマークが付けられます。エントリの"#"列をクリックすると、そのエントリの色を変えて強調表示できます。エントリの"コメント"列のダブルクリックすると、そのエントリにコメントを残せます。
-        </p>
-        <div class="section-small">
-            <img src="../../images/logger-2-940.png" alt="Logger注釈" class="center-block">
-        </div>
-        <h2 id="task-logger">タスクロガー</h2>
-        <p>
-            Loggerは、Burp Suite全体のトラフィックをキャプチャします。さらにタスクロガーを使用すると、単一のタスクによって生成されたトラフィックを調べられます。タスクログのエントリを調べるには、次の手順を実行します:
-        </p>
-        <ul>
-            <li>
-                <a href="../../dashboard/index.html">ダッシュボード</a>から、タスクの"詳細表示"アイコンをクリックします。
-            </li>
-            <li>
-                タスクウィンドウ内の"Logger"タブを選択します。
-            </li>
-        </ul>
-        <p>
-            タスクロガーはBurp Loggerと同じ機能を備えていますが、タスクごとに個別にメモリを割り当てます。各タスクをログに記録するためのデフォルトのメモリ割り当ては10MB、またはBurp Suiteに1GB以上のメモリアクセスを許可した場合は20MBです。タスクロガーを使用すると、予期しない動作をしているタスクの調査や、タスクの進行状況の監視ができます。
-        </p>
-        <p>
-            タスクロガーにもBurp Loggerと同様の<a href="options.html">キャプチャ及び表示オプション</a>がありますが、"ツールでキャプチャ"や"ツールでフィルタ"オプションはありません。これは、タスクに使用されるツールからのトラフィックのみをキャプチャして表示するためです。
-        </p>
-        <h2 id="logger-configuration">Logger設定</h2>
-        <p>
-            Loggerは、キャプチャするものと表示するものをそれぞれ設定できるよう個別のコントロールがあります。Loggerオプションの詳細は、<a href="options.html">こちら</a>を参照してください。
-        </p>
-    </div>
-</section>
+<h1>Logger</h1>
+<p>
+    Loggerは、ネットワークアクティビティを記録するためのツールです。Loggerは、調査や分析のために、Burp Suiteが生成するすべてのHTTPトラフィックを記録しますが、特に次の場合に便利です:
+</p>
+<ul>
+    <li>
+        Burp Suiteの結果が予期しない結果だったとき、何が起こったかを調査する場合。
+    </li>
+    <li>
+        作業にセッション処理が含まれるとき、Burp Suiteが送信する内容の詳細を確認する場合。
+    </li>
+    <li>
+        長期的に進行中のタスク(バックグラウンドスキャンなど)がまだ実行されているか確認する場合。
+    </li>
+    <li>
+        Burp Suiteが行っていることを可視化する必要がある問題を分析する場合。
+    </li>
+</ul>
+<div class="section-small">
+    <img src="../../images/logger-1-940.png" alt="Loggerツール" class="center-block">
+</div>
+<h2 id="logging-and-memory">ログとメモリ</h2>
+<p>
+    Loggerは、割り当てられたメモリの制限までHTTPネットワークトラフィックの記録を保持します。制限に達した後、新しいエントリが作成されると、Loggerは最も古いエントリを破棄します。Loggerのデフォルトのメモリ制限は50MB、またはBurp Suiteに1GB以上のメモリを割り当てた場合は100MBです。キャプチャフィルタをクリックすると、メモリ制限を変更できます。ログ取得に大量のメモリを割り当てると、パフォーマンスの問題が発生する可能性がある点に注意してください。デフォルトのメモリ量でログを開始し、大量のエントリを必要とする問題がある場合にのみ増やすことをお勧めします。
+</p>
+<h2 id="logger-functionality">Logger機能</h2>
+<p>
+    Loggerエントリは読み取り専用です(注目する項目に注釈を付けること以外:以下参照)が、それ以外は<a href="../../functions/message-editor/index.html">メッセージエディタ</a>のすべての機能が有効で、<a href="../../functions/message-editor/inspector.html">Inspector</a>も使えます。Loggerエントリを、<a href="../repeater/index.html">Repeater</a>や<a href="../intruder/index.html">Intruder</a>など他のツールに送信もできます。
+</p>
+<p>
+    エントリに関する情報が、複数の列に表示されます。すべての列が各エントリに関連するわけではありません。"列"ドロップダウンメニューをクリックすると、表示する列を調整できます。列ヘッダのクリックや列の境界線をドラッグすると、列のソートやサイズ変更ができます。
+</p>
+<p>
+    #でマークされた左端の列は、このセッションでログに記録されたエントリ数をカウントします。すべてのエントリをキャプチャしないよう選択した場合(<a href="options.html">オプション</a>参照)、カウントが連続しない可能性があります。カウントは、実際にキャプチャされたイベントではなく、キャプチャされる可能性のあるイベント数を参照しているためです。
+</p>
+<p>
+    "ログをクリア"アイコンをクリックすると、現在のすべてのエントリを削除します。
+</p>
+<p>
+    後で確認できるようにエントリにマークが付けられます。エントリの"#"列をクリックすると、そのエントリの色を変えて強調表示できます。エントリの"コメント"列のダブルクリックすると、そのエントリにコメントを残せます。
+</p>
+<div class="section-small">
+    <img src="../../images/logger-2-940.png" alt="Logger注釈" class="center-block">
+</div>
+<h3>LoggerエントリのCSVエクスポート</h3>
+<p>
+    LoggerエントリをCSVファイルとしてエクスポートするには、関連するエントリをテーブルで選択し、右クリックして"CSVとしてエクスポート"を選択します。0または1つのエントリを選択している場合は、テーブル全体がエクスポートされることに注意してください。
+</p>
+<p>
+    エントリをCSV形式でエクスポートする場合、Loggerは特定のデータを次のようにエンコードします:
+</p>
+<ul>
+    <li>
+        日時は、UTCオフセットでISO 8601フォーマットになります: <code>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</code>。
+    </li>
+    <li>
+        バイナリデータ(HTTP/2リクエストやレスポンスなど)は、Base64エンコードされた文字列になります。
+    </li>
+    <li>
+        カンマを含むデータは、データをダブルクオートで囲みエスケープされます。たとえば、a,b は "a,b" になります。
+    </li>
+    <li>
+        ダブルクーオートを含むデータは、ダブルクオートを追加してエスケープされます。たとえば、"a" は """a""" になります。
+    </li>
+    <li>
+        -、+、=、@で始まるデータは、Excel用にシングルクオート(')を前に付けてエスケープされます。
+    </li>
+</ul>
+<h2 id="task-logger">タスクロガー</h2>
+<p>
+    Loggerは、Burp Suite全体のトラフィックをキャプチャします。さらにタスクロガーを使用すると、単一のタスクによって生成されたトラフィックを調べられます。タスクログのエントリを調べるには、次の手順を実行します:
+</p>
+<ul>
+    <li>
+        <a href="../../dashboard/index.html">ダッシュボード</a>から、タスクの"詳細表示"アイコンをクリックします。
+    </li>
+    <li>
+        タスクウィンドウ内の"Logger"タブを選択します。
+    </li>
+</ul>
+<p>
+    タスクロガーはBurp Loggerと同じ機能を備えていますが、タスクごとに個別にメモリを割り当てます。各タスクをログに記録するためのデフォルトのメモリ割り当ては10MB、またはBurp Suiteに1GB以上のメモリアクセスを許可した場合は20MBです。タスクロガーを使用すると、予期しない動作をしているタスクの調査や、タスクの進行状況を監視できます。
+</p>
+<p>
+    タスクロガーにもBurp Loggerと同様の<a href="options.html">キャプチャと表示オプション</a>がありますが、"ツールでキャプチャ"や"ツールでフィルタ"オプションはありません。これは、タスクに使用されるツールからのトラフィックのみをキャプチャして表示するためです。
+</p>
+<h2 id="logger-configuration">Logger設定</h2>
+<p>
+    Loggerは、キャプチャするものと表示するものをそれぞれ設定できるよう個別のコントロールがあります。Loggerオプションの詳細は、<a href="options.html">こちら</a>を参照してください。
+</p>
 </body>
 </html>

@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -27,41 +28,37 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
-    <label class="label-edition is-community">コミュニティ</label>
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>内蔵ブラウザ</h1>
-        <p>
-            Burp Suiteには、独自のChromiumブラウザが内蔵されており、手動及び自動化されたさまざまなテストで使用できます。
-        </p>
-        <h2 id="manual-testing-with-burp-s-embedded-browser">Burpの内蔵ブラウザを使用した手動テスト</h2>
-        <p>
-            外部ブラウザを使用する代わりに、Burpの内蔵ブラウザを使用して、対象Webサイトやアプリケーションを手動でテストできます。これにはいくつかの重要な利点があります。特に、内蔵ブラウザはBurp Suiteの全機能がすぐに使えるように事前に設定されています。必要なプロキシリスナー設定はすべて自動的に調整されます。つまり、Burpを初めて起動し、特に設定を行う必要なく、すぐにテストを開始できるというこです。HTTPSのテストも、です。
-        </p>
-        <p>
-            内蔵ブラウザを使用するには、"Proxy" &gt; "インターセプト"タブに移動し、"Open browser"をクリックします。その後、他のブラウザの場合と同じように、Webサイトにアクセスして、手動でアクションを実行できます。スコープ内のすべてのトラフィックは、Burpに自動的にプロキシされます。つまり、対象Webサイトを閲覧しているうちに、Burp Suiteの手動テスト機能を活用できるということです。たとえば、<a href="../tools/proxy/index.html">Burp Proxy</a>を使用してリクエストのインターセプトや変更ができ、HTTP履歴のタブから完全なHTTPリクエストを調査できます。その後、興味深いアイテムがあれば、それらのリクエストを<a href="../tools/repeater/index.html">Burp Repeater</a>や<a href="../tools/intruder/index.html">Burp Intruder</a>など他のツールに送信し、追加のテストが実施できます。
-        </p>
-        <p>
-            ブラウザ中、Burpのデフォルト<a href="../scanning/live-scans.html">ライブタスク</a>が、アクセスした場所を受動的にクロールし診断しています。自動的に<a href="../tools/target/site-map/index.html">サイトマップ</a>にデータが入力され、<a href="../dashboard/issue-activity.html">潜在的なセキュリティ問題</a>が発見されると報告されます。
-        </p>
-        <div class="component-links">
-            <h4>続きを読む</h4>
-            <a href="../penetration-testing/index.html">ペネトレーションテストでのBurp Suiteの使用方法</a>
-        </div>
-        <p>
-            必要に応じて、外部ブラウザもテストに使用できます。ただしこの場合、<a href="../getting-started/proxy-setup/index.html">追加の設定手順</a>を実行する必要があります。
-        </p>
-        <h2 id="scanning-websites-with-burp-s-embedded-browser">Burpの内蔵ブラウザによるWebサイトのスキャン</h2>
-        <p>
-            Burpの内蔵ブラウザは、手動テストを最小限の設定で行う便利な方法を提供しています。しかしおそらく、<a href="../scanning/browser-powered.html">Burp Scannerのブラウザを利用したスキャン</a>による自動テストワークフローに統合すると、さらに強力になります。
-        </p>
-        <h2 id="embedded-browser-health-check">内蔵ブラウザのヘルスチェック</h2>
-        <p>
-            内蔵ブラウザで問題が発生している場合は、"内蔵ブラウザのヘルスチェック"ツールを使って診断できます。このツールには、"ヘルプ"メニューからアクセスできます。ヘルスチェックでは、内蔵ブラウザが正しく動作しているかどうかを確認する一連のテストを実行し、問題が発生した場合にはフィードバックを提供します。
-        </p>
-    </div>
-</section>
+<h1>内蔵ブラウザ</h1>
+<p>
+    Burp Suiteには、独自のChromiumブラウザが内蔵されており、手動や自動化されたさまざまなテストで使用できます。
+</p>
+<h2 id="manual-testing-with-burp-s-embedded-browser">Burpの内蔵ブラウザを使用した手動テスト</h2>
+<p>
+    外部ブラウザを使用する代わりにBurpの内蔵ブラウザを使用して、対象Webサイトやアプリケーションを手動でテストできます。これにはいくつかの重要な利点があります。特に、内蔵ブラウザはBurp Suiteの全機能がすぐに使えるように事前に設定されています。必要なProxyリスナー設定はすべて自動的に調整されます。つまり、Burpを初めて起動し、特に設定を行う必要なく、すぐにテストを開始できるというこです。HTTPSのテストも、です。
+</p>
+<p>
+    内蔵ブラウザを使用するには、<strong>Proxy &gt; インターセプト</strong>タブに移動し、<strong>ブラウザを開く</strong>をクリックします。その後、他のブラウザの場合と同じように、Webサイトにアクセスして、手動でアクションを実行できます。スコープ内のすべてのトラフィックは、Burpに自動的にプロキシされます。つまり、対象Webサイトを閲覧しているうちに、Burp Suiteの手動テスト機能を活用できるということです。たとえば、<a href="../tools/proxy/index.html">Burp Proxy</a>を使用してリクエストのインターセプトや変更ができ、HTTP履歴のタブから完全なHTTPリクエストを調査できます。その後、興味深いアイテムがあれば、それらのリクエストを<a href="../tools/repeater/index.html">Burp Repeater</a>や<a href="../tools/intruder/index.html">Burp Intruder</a>など他のツールに送信し、追加のテストが実施できます。
+</p>
+<p>
+    ブラウズ中、Burpのデフォルト<a href="../scanning/live-scans.html">ライブタスク</a>が、アクセスした場所を受動的にクロールし診断しています。自動的に<a href="../tools/target/site-map/index.html">サイトマップ</a>にデータが入力され、<a href="../dashboard/issue-activity.html">潜在的なセキュリティ問題</a>が発見されると報告されます。
+</p>
+<div class="highlightedarea">
+    <h4>続きを読む</h4>
+    <a href="../penetration-testing/index.html">ペネトレーションテストでのBurp Suiteの使用方法</a>
+</div>
+<p>
+    必要に応じて、外部ブラウザもテストに使用できます。ただしこの場合、<a href="../external-browser-config/index.html">追加の設定手順</a>を実行する必要があります。
+</p>
+<h2 id="scanning-websites-with-burp-s-embedded-browser">Burpの内蔵ブラウザによるWebサイトのスキャン</h2>
+<p>
+    Burpの内蔵ブラウザは、手動テストを最小限の設定で行う便利な方法を提供しています。しかしおそらく、<a href="../scanning/browser-powered.html">Burp Scannerのブラウザを利用したスキャン</a>による自動テストワークフローに統合すると、さらに強力になります。
+</p>
+<h2 id="embedded-browser-health-check">内蔵ブラウザのヘルスチェック</h2>
+<p>
+    内蔵ブラウザで問題が発生している場合は、<strong>内蔵ブラウザのヘルスチェック</strong>ツールを使って診断できます。このツールには、<strong>ヘルプ</strong>メニューからアクセスできます。ヘルスチェックでは、内蔵ブラウザが正しく動作しているかどうかを確認する一連のテストを実行し、問題が発生した場合にはフィードバックを提供します。
+</p>
 </body>
 </html>

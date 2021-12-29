@@ -262,7 +262,7 @@ byte&nbsp;getPercentageComplete()</pre>
 <li class="blockList">
 <h4>getIssues</h4>
 <pre><a href="../burp/IScanIssue.html" title="burp 内のインタフェース">IScanIssue</a>[]&nbsp;getIssues()</pre>
-<div class="block">スキャンキューアイテムに対して生成された問題の詳細を返します。<b>注:</b> スキャンキュー内のアイテムには、同じ問題が重複して含まれる場合があります - 例えば、同じリクエストが複数回スキャンされた場合などです。重複した問題は、スキャン結果のメインビューで統合されます。拡張が<code>IScannerListener</code>を登録すると、発見されたScannerの問題が統合された後の、ユニークな詳細だけが取得できます。</div>
+<div class="block">スキャンキューアイテムに対して生成された問題の詳細を返します。<b>注:</b> スキャンキュー内のアイテムには、同じ問題が重複して存在する場合があります - たとえば、同じリクエストが複数回スキャンされた場合などです。重複した問題は、スキャン結果のメインビューで統合されます。拡張が<code>IScannerListener</code>を登録すると、発見されたScannerの問題が統合された後の、ユニークな詳細だけが取得できます。</div>
 <dl>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>スキャンキューアイテムに対して生成された問題の詳細。</dd>

@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -30,139 +31,134 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
-    <label class="label-edition is-community">コミュニティ</label>
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>Burp Proxy入門</h1>
-        <p>
-            Burp Proxyは、Burpの<a href="../../penetration-testing/index.html">ユーザ主導ワークフロー</a>の中心部分に位置します。ブラウザと対象アプリケーションの間でWebプロキシサーバとして動作し、双方向に通過する生トラフィックの監視・解析・変更ができます。このセクションでは、Burp Proxyのコア機能のいくつかを紹介し、その仕組みを理解できるようにします。
-        </p>
-        <div class="highlightedarea">
-            <p>
-                <strong>注:</strong> Burp Proxyを使うと、一部のアプリケーションで予期しない影響が出る可能性があります。機能や設定にしっかり慣れるまで、本番以外のシステムだけで使うべきです。
-            </p>
-        </div>
-        <p>
-            Burp Proxyは、ターゲットアプリケーションにアクセスするために使用しているブラウザと連動して動作します。次のどちらでも可能です:
-        </p>
+<h1>Burp Proxy入門</h1>
+<p>
+    Burp Proxyは、Burpの<a href="../../penetration-testing/index.html">ユーザ主導ワークフロー</a>の中心部分に位置します。ブラウザと対象アプリケーションの間でWebプロキシサーバとして動作し、通過する双方向の生トラフィックを監視、分析、変更できます。このセクションでは、Burp Proxyのコア機能のいくつかを紹介し、その仕組みを理解できるようにします。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Burp Proxyを使うと、一部のアプリケーションで予期しない影響が出る可能性があります。機能や設定にしっかり慣れるまで、本番以外のシステムだけで使うべきです。
+    </p>
+</div>
+<p>
+    Burp Proxyは、対象アプリケーションにアクセスするために使用しているブラウザと連動して動作します。次のどちらでも可能です:
+</p>
+<ul>
+    <li>
+        追加の設定が不要な、<strong>Burpの<a href="../../functions/embedded-browser.html">内蔵ブラウザ</a>を使用</strong>する。<strong>Proxy &gt; インターセプト</strong>タブに移動し、<strong>ブラウザを開く</strong>をクリックします。新しいブラウザセッションが開き、すべてのトラフィックが自動的にBurpを経由するようプロキシされます。BurpのCA証明書をインストールしなくても、これでHTTPSもテストできます。
+    </li>
+    <li>
+        お好みの<strong>外部のブラウザを使用する</strong>。さまざまな理由でBurpの内蔵ブラウザを使用したくない場合があります。この場合追加の手順が必要で、Burpと共に動作するよう<a href="../../external-browser-config/index.html">ブラウザを設定</a>し、使用するブラウザに<a href="../../external-browser-config/certificate/index.html">BurpのCA証明書をインストール</a>する必要があります。
+    </li>
+</ul>
+<div class="container">
+    <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/ouDe5sJ_uC8?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
+    </div>
+</div>
+<p>
+    ブラウザのトラフィックをBurpが正常にプロキシしていることを確認したら、次の手順でBurp Proxyの使用方法を修得できます:
+</p>
+<p>
+    Burpで、<strong>Proxy &gt; インターセプト</strong>タブに移動し、ボタンが<strong>インターセプト有効</strong>か確認します。(ボタンが<strong>インターセプト無効</strong>となっていたら、クリックしてインターセプト状態を反転させます)
+</p>
+<div class="section-small">
+    <img src="../../images/proxy-get-started-intercept-off-940.png" alt="インターセプト無効" class="center-block">
+</div>
+<p>
+    ブラウザでどこかのURLにアクセスします。ブラウザはリクエストを送信しますが、レスポンスを待って停止します。
+</p>
+<div class="section-small">
+    <img src="../../images/proxy-get-started-intercepted-940.png" alt="Proxyにインターセプトされたリクエスト" class="center-block">
+</div>
+<p>
+    Burpの<strong>Proxy &gt; インターセプト</strong>タブに戻ります。閲覧や編集用にブラウザのリクエストが表示されているでしょう。<a href="../../functions/message-editor/inspector.html">Inspector</a>ツールを使用して、メッセージをさまざまな方法で分析します。
+</p>
+<div class="section-small">
+    <img src="../../images/proxy-get-started-inspector-940.png" alt="Proxy Inspector" class="center-block">
+</div>
+<p>
+    "転送"ボタンをクリックしてサーバにリクエストを送信します。多くの場合ブラウザは、ページを表示するために(画像など)1つ以上のリクエストを送信します。それらの後続のリクエストを確認し、サーバに転送します。転送するリクエストがなくなったら、リクエストしたURLがブラウザに表示されているはずです。
+</p>
+<div class="section-small">
+    <img src="../../images/proxy-get-started-forward-940.png" alt="リクエストの転送" class="center-block">
+</div>
+<p>
+    ブラウザで、"更新"ボタンをクリックして現在のページをリロードします。
+</p>
+<p>
+    Burpで、今回は<strong>Proxy &gt; インターセプト</strong>タブでリクエストを編集します。リクエスト1行目のURLを、存在しないページに変更します。サーバにそのリクエスト(および後続のリクエスト)を転送し、ブラウザに戻って確認します。ブラウザは以前と同じURLをリクエストしましたが、今度は"Not Found"メッセージが表示されるはずです。これは、送信リクエストをBurp内でその場で変更したためです。
+</p>
+<div class="section-small">
+    <img src="../../images/proxy-get-started-edit-940.png" alt="存在しないアイテムをリクエスト" class="center-block">
+</div>
+<p>
+    Burpで、<strong>Proxy &gt; HTTP履歴</strong>タブを開きます。ここには、Proxyを通過したすべてのHTTPメッセージがあります。一覧から1つのアイテムを選択し、<a href="../../functions/message-editor/index.html">メッセージエディタ</a>でHTTPメッセージを見てください。編集したメッセージを選択した場合、元のリクエストと編集されたリクエストのどちらを表示するかドロップダウンメニューから選択できます。
+</p>
+<div class="section-small">
+    <img src="../../images/proxy-get-started-edited-req-940.png" alt="元のリクエストと編集されたリクエスト" class="center-block">
+</div>
+<p>
+    Proxy履歴の、列名のどれかをクリックしてください。すると、クリックした列で一覧がソートされます。同じ列名をもう一度クリックすると逆順に、さらにクリックするとソートが解除されデフォルト順に戻ります。別の列でも試してみてください。
+</p>
+<div class="section-small">
+    <img src="../../images/proxy-get-started-sort-940.png" alt="Proxy履歴列の並べ替え" class="center-block">
+</div>
+<p>
+    履歴一覧の中で、一番左のセルをクリックし、ドロップダウンメニューから色を選択します。すると選択した色でその行が色付け表示されます。
+</p>
+<div class="section-small">
+    <img src="../../images/proxy-history-annotate-940.png" alt="Proxy履歴の注釈" class="center-block">
+</div>
+<p>
+    別の行で、"Comment"列をダブルクリックして、コメントを入力します。色付けとコメントで履歴に注釈を付けておくと、気になるアイテムを識別できます。
+</p>
+<div class="section-small">
+    <img src="../../images/proxy-get-started-comment-940.png" alt="コメントを追加" class="center-block">
+</div>
+<p>
+    履歴一覧の上に、フィルターバーがあります。フィルターバーをクリックすると、利用可能なオプションが表示されます。フィルター設定をいろいろと変更し、何が履歴一覧に表示されるか確認してみてください。Proxy履歴が肥大化してきたとき、特定の種類のアイテムを非表示化すると、目的のアイテムが探しやすくなります。
+</p>
+<div class="section-small">
+    <img src="../../images/proxy-history-filter-940.png" alt="フィルタを適用" class="center-block">
+</div>
+<p>
+    履歴からアイテムを選択し、コンテキストメニューを表示します(通常、マウスを右クリックします)。コンテキストメニューのオプションはBurpでのテストフロー推進に使われます。"Repeaterへ送信"を選択し、"Repeater"タブへ移動します。
+</p>
+<div class="section-small">
+    <img src="../../images/pentesting-repeater-940.png" alt="Repeaterへアイテムの送信" class="center-block">
+</div>
+<p>
+    Burp Repeaterには、選択したリクエストが、次のテストのために<a href="../repeater/using.html">Repeater</a>ツールにコピーされているでしょう。Burpツール間のアイテム転送に関する詳細やテストワークフローの全体概要は、<a href="../../penetration-testing/index.html"> Burp Suiteの使い方</a>を参照してください。
+</p>
+<div class="section-small">
+    <img src="../../images/proxy-get-started-repeater-940.png" alt="Burp Repeaterでリクエストを調査" class="center-block">
+</div>
+<p>
+    <strong>Proxy &gt; オプション</strong>タブに移動し、利用可能なすべてのオプションを確認してください。ここでProxyリスナーの挙動の変更、Proxyがインターセプトするリクエストとレスポンスのルール、メッセージの自動変更、その他のプロキシの動作を制御できます。詳細は、<a href="../proxy/options/index.html">Burp Proxyオプション</a>を参照してください。
+</p>
+<div class="section-small">
+    <img src="../../images/proxy-get-started-options-940.png" alt="Proxyオプション" class="center-block">
+</div>
+<div class="container">
+    <div class="highlightedarea">
+        <h4>続きを読む</h4>
         <ul>
             <li>
-                追加の設定が不要な、<strong>Burpの<a href="../../functions/embedded-browser.html">内蔵ブラウザ</a>を使用</strong>する。"Proxy" &gt; "インターセプト"タブに移動し、"ブラウザを開く"をクリックします。新しいブラウザセッションが開き、すべてのトラフィックが自動的にBurpを経由するようプロキシされます。BurpのCA証明書をインストールしなくても、これを使ってHTTPSでテストもできます。
+                <a href="using.html">Burp Proxyの使い方</a>
             </li>
             <li>
-                お好みの<strong>外部のブラウザを使用する</strong>。さまざまな理由でBurpの内蔵ブラウザを使用したくない場合があります。この場合追加の手順が必要で、Burpと共に動作するよう<a href="../../getting-started/proxy-setup/browser/index.html">ブラウザを設定</a>し、使用するブラウザに<a href="../../getting-started/proxy-setup/certificate/index.html">BurpのCA証明書をインストール</a>する必要があります。
+                <a href="../../penetration-testing/index.html">Burp Suiteの使い方</a>
+            </li>
+            <li>
+                <a href="../../troubleshooting.html">一般的な問題のトラブルシューティング</a>
             </li>
         </ul>
-        <div class="container">
-            <div class="youtube-wrapper">
-                <iframe src="https://www.youtube.com/embed/ouDe5sJ_uC8?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
-            </div>
-        </div>
-        <p>
-            ブラウザのトラフィックをBurpが正常にプロキシしていることを確認したら、次の手順でBurp Proxyの使用方法を修得できます:
-        </p>
-        <p>
-            Burpで、"Proxy" &gt; "インターセプト"タブに移動し、インターセプトが有効か確認します。(ボタンが"インターセプト無効"となっていたら、クリックしてインターセプト状態を反転させます)
-        </p>
-        <div class="section-small">
-            <img src="../../images/proxy-get-started-intercept-off-940.png" alt="インターセプト無効" class="center-block">
-        </div>
-        <p>
-            ブラウザでどこかのURLにアクセスします。ブラウザはリクエストを送信しますが、レスポンスを待って停止します。
-        </p>
-        <div class="section-small">
-            <img src="../../images/proxy-get-started-intercepted-940.png" alt="Proxyにインターセプトされたリクエスト" class="center-block">
-        </div>
-        <p>
-            Burpで、"Proxy" &gt; "インターセプト"タブに戻ります。閲覧や編集用にブラウザのリクエストが表示されているでしょう。<a href="../../functions/message-editor/inspector.html">Inspector</a>ツールを使用して、メッセージをさまざまな方法で分析します。
-        </p>
-        <div class="section-small">
-            <img src="../../images/proxy-get-started-inspector-940.png" alt="Proxyメッセージインスペクタ" class="center-block">
-        </div>
-        <p>
-            "転送"ボタンをクリックしてサーバにリクエストを送信します。多くの場合ブラウザは、ページを表示するために(画像など)１つ以上のリクエストを送信します。それらの後続のリクエストを確認し、サーバに転送します。転送するリクエストがなくなったら、リクエストしたURLがブラウザに表示されているはずです。
-        </p>
-        <div class="section-small">
-            <img src="../../images/proxy-get-started-forward-940.png" alt="リクエストの転送" class="center-block">
-        </div>
-        <p>
-            ブラウザで、"更新"ボタンをクリックして現在のページをリロードします。
-        </p>
-        <p>
-            Burpで、今回は"Proxy" &gt; "インターセプト"タブでリクエストを編集します。リクエスト１行目のURLを、存在しないページに変更します。サーバにそのリクエスト(および後続のリクエスト)を転送し、ブラウザに戻って確認します。ブラウザは以前と同じURLをリクエストましたが、今度は"Not Found"メッセージが表示されるはずです。これは、送信リクエストをBurp内でその場で変更したためです。
-        </p>
-        <div class="section-small">
-            <img src="../../images/proxy-get-started-edit-940.png" alt="存在しないアイテムをリクエスト" class="center-block">
-        </div>
-        <p>
-            Burpで、"Proxy" &gt; "HTTP履歴"タブに移動します。ここには、Proxyを通過したすべてのHTTPメッセージがあります。一覧から1つのアイテムを選択し、<a href="../../functions/message-editor/index.html">メッセージエディタ</a>でHTTPメッセージを見てください。編集したメッセージを選択した場合、元のリクエストと編集されたリクエストのどちらを表示するかドロップダウンメニューから選択できます。
-        </p>
-        <div class="section-small">
-            <img src="../../images/proxy-get-started-edited-req-940.png" alt="元のリクエストと編集されたリクエスト" class="center-block">
-        </div>
-        <p>
-            Proxy履歴の、列名のどれかをクリックしてください。すると、クリックした列で一覧がソートされます。同じ列名をもう一度クリックすると逆順に、さらにクリックするとソートが解除されデフォルト順に戻ります。別の列でも試してみてください。
-        </p>
-        <div class="section-small">
-            <img src="../../images/proxy-get-started-sort-940.png" alt="Proxy履歴列の並べ替え" class="center-block">
-        </div>
-        <p>
-            履歴一覧の中で、一番左のセルをクリックし、ドロップダウンメニューから色を選択します。すると選択した色でその行が色付け表示されます。
-        </p>
-        <div class="section-small">
-            <img src="../../images/proxy-history-annotate-940.png" alt="Proxy履歴の注釈" class="center-block">
-        </div>
-        <p>
-            別の行で、"Comment"列をダブルクリックして、コメントを入力します。色付けとコメントで履歴に注釈を付けておくと、気になるアイテムの識別ができます。
-        </p>
-        <div class="section-small">
-            <img src="../../images/proxy-get-started-comment-940.png" alt="コメントを追加" class="center-block">
-        </div>
-        <p>
-            履歴一覧の上に、フィルターバーがあります。フィルターバーをクリックすると、利用可能なオプションが表示されます。フィルター設定をいろいろと変更し、何が履歴一覧に表示されるか確認してみてください。Proxy履歴が肥大化してきたとき、特定の種類のアイテムを非表示化すると、目的のアイテムが探しやすくなります。
-        </p>
-        <div class="section-small">
-            <img src="../../images/proxy-history-filter-940.png" alt="フィルタを適用" class="center-block">
-        </div>
-        <p>
-            履歴からアイテムを選択し、コンテキストメニューを表示します(通常、マウスを右クリックします)。コンテキストメニューのオプションはBurpでのテストフロー推進に使われます。"Repeaterへ送信"を選択し、"Repeater"タブへ移動します。
-        </p>
-        <div class="section-small">
-            <img src="../../images/pentesting-repeater-940.png" alt="Repeaterへアイテムの送信" class="center-block">
-        </div>
-        <p>
-            Burp Repeaterには、選択したリクエストが、次のテストのために<a href="../repeater/using.html">Repeater</a>ツールにコピーされているでしょう。Burpツール間のアイテム転送に関する詳細やテストワークフローの全体概要は、<a href="../../penetration-testing/index.html"> Burp Suiteの使い方</a>を参照してください。
-        </p>
-        <div class="section-small">
-            <img src="../../images/proxy-get-started-repeater-940.png" alt="Burp Repeaterでリクエストを検討" class="center-block">
-        </div>
-        <p>
-            "Proxy" &gt; "オプション"タブに移動し、利用可能なすべてのオプションを確認してください。ここでProxyリスナーの挙動の変更・Proxyがインターセプトするリクエストとレスポンスのルール・メッセージの自動変更・その他のプロキシの動作を制御します。詳細は、<a href="../proxy/options/index.html">Burp Proxyオプション</a>を参照してください。
-        </p>
-        <div class="section-small">
-            <img src="../../images/proxy-get-started-options-940.png" alt="Proxyオプション" class="center-block">
-        </div>
-        <div class="container">
-            <div class="highlightedarea">
-                <p>
-                    Burp Proxyを使い始めるには、次のリンクを参照してください:
-                </p>
-                <ul class="link-list">
-                    <li>
-                        <a href="using.html">Burp Proxyの使い方</a>
-                    </li>
-                    <li>
-                        <a href="../../penetration-testing/index.html">Burp Suiteの使い方</a>
-                    </li>
-                    <li>
-                        <a href="../../troubleshooting.html">一般的な問題のトラブルシューティング</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </div>
-</section>
+</div>
 </body>
 </html>

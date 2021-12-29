@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -24,80 +25,72 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
-    <label class="label-edition is-community">コミュニティ</label>
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>Burp Suiteオプション</h1>
-        <p>
-            Burpには、すべてのツールの動作に影響を与える多数のSuite全体オプションがあります。これらは、プロジェクトレベルおよびユーザレベルのオプションに分かれています。
-        </p>
-        <p>
-            以下のリンクで、利用可能なさまざまなオプションすべての詳細情報が確認できます。完全なリストは最初は気が遠くなるかもしれませんが、使用する可能性の高い主要な設定オプションの概要も紹介しています。
-        </p>
-        <div class="component-links">
-            <h4>続きを読む</h4>
-            <a href="key-options.html">重要な設定</a>
-        </div>
-        <p>
-            一部のオプションは、プロジェクトとユーザレベル両方で定義できます。ユーザレベルで通常のオプションを設定し、必要な場合プロジェクトごとに上書きができます。例えば、通常はインターネットへの接続に社内LANのプロキシを使用していて、それをユーザレベルで設定します。特定のプロジェクトで、内部アプリケーションや特定のアプリケーションをオンサイトでテストするときは、異なる上位プロキシを使用する必要があるか、上位プロキシを全く使用しないかもしれません。この場合は、関連するプロジェクトのプロジェクトレベルの設定でこれを設定できます。
-        </p>
-        <h2 id="project-options">プロジェクトオプション</h2>
-        <p>
-            プロジェクトレベルのオプションは、ディスクベースプロジェクトの<a href="../getting-started/launching/projects.html#project-files">Burpプロジェクトファイル</a>に格納されます。プロジェクトの<a href="../getting-started/launching/configurations.html">設定ファイル</a>に保存や読み込みもできます。
-        </p>
-        <div class="highlightedarea">
-            <p>
-                プロジェクトレベルオプションのヘルプは、次のリンクを参照してください:
-            </p>
-            <ul class="link-list">
-                <li>
-                    <a href="connections.html">接続</a>
-                </li>
-                <li>
-                    <a href="http.html">HTTP</a>
-                </li>
-                <li>
-                    <a href="tls.html">TLS</a>
-                </li>
-                <li>
-                    <a href="sessions/index.html">セッション</a>
-                </li>
-                <li>
-                    <a href="misc-project.html">その他</a>
-                </li>
-            </ul>
-        </div>
-        <div class="container">
-            <div class="youtube-wrapper">
-                <iframe src="https://www.youtube.com/embed/CdcJcdp-ObQ?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
-            </div>
-        </div>
-        <h2 id="user-options">ユーザオプション</h2>
-        <p>
-            ユーザレベルオプションは、Burpのローカルインストールに格納され、Burp起動時に自動的に再読み込みされます。<a href="../getting-started/launching/configurations.html">設定ファイル</a>に保存や読み込みもできます。
-        </p>
-        <div class="highlightedarea">
-            <p>
-                ユーザレベルオプションのヘルプは、次のリンクを参照してください:
-            </p>
-            <ul class="link-list">
-                <li>
-                    <a href="connections.html">接続</a>
-                </li>
-                <li>
-                    <a href="tls.html">TLS</a>
-                </li>
-                <li>
-                    <a href="display.html">表示</a>
-                </li>
-                <li>
-                    <a href="misc-user.html">その他</a>
-                </li>
-            </ul>
-        </div>
+<h1>Burp Suiteオプション</h1>
+<p>
+    Burpには、すべてのツールの動作に影響を与える多数のSuite全体オプションがあります。これらは、プロジェクトレベルとユーザレベルのオプションに分かれています。
+</p>
+<p>
+    以下のリンクで、利用可能なさまざまなオプションすべての詳細情報が確認できます。完全なリストは最初は気が遠くなるかもしれませんが、使用する可能性の高い主要な設定オプションの概要も紹介しています。
+</p>
+<div class="highlightedarea">
+    <h4>続きを読む</h4>
+    <a href="key-options.html">重要な設定</a>
+</div>
+<p>
+    一部のオプションは、プロジェクトとユーザレベル両方で定義できます。ユーザレベルで通常のオプションを設定し、必要な場合はプロジェクトごとに上書きできます。たとえば、通常はインターネットへの接続に社内LANのプロキシを使用している場合は、それをユーザレベルで設定します。特定のプロジェクトで、内部アプリケーションや特定のアプリケーションをオンサイトでテストするときは、異なる上位プロキシを使用する必要があるか、上位プロキシをまったく使用しないかもしれません。この場合は、関連するプロジェクトのプロジェクトレベルの設定でこれを設定できます。
+</p>
+<h2 id="project-options">プロジェクトオプション</h2>
+<p>
+    プロジェクトレベルのオプションは、ディスクベースプロジェクトの<a href="../projects.html#project-files">Burpプロジェクトファイル</a>に格納されます。プロジェクトの<a href="../configurations.html">設定ファイル</a>に保存や読み込みもできます。
+</p>
+<div class="highlightedarea">
+    <h4>続きを読む</h4>
+    <ul>
+        <li>
+            <a href="connections.html">接続</a>
+        </li>
+        <li>
+            <a href="http.html">HTTP</a>
+        </li>
+        <li>
+            <a href="tls.html">TLS</a>
+        </li>
+        <li>
+            <a href="sessions/index.html">セッション</a>
+        </li>
+        <li>
+            <a href="misc-project.html">その他</a>
+        </li>
+    </ul>
+</div>
+<div class="container">
+    <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/CdcJcdp-ObQ?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
     </div>
-</section>
+</div>
+<h2 id="user-options">ユーザオプション</h2>
+<p>
+    ユーザレベルオプションは、Burpのローカルインストールに格納され、Burp起動時に自動的に再読み込みされます。<a href="../configurations.html">設定ファイル</a>に保存や読み込みもできます。
+</p>
+<div class="highlightedarea">
+    <h4>続きを読む</h4>
+    <ul>
+        <li>
+            <a href="connections.html">接続</a>
+        </li>
+        <li>
+            <a href="tls.html">TLS</a>
+        </li>
+        <li>
+            <a href="display.html">表示</a>
+        </li>
+        <li>
+            <a href="misc-user.html">その他</a>
+        </li>
+    </ul>
+</div>
 </body>
 </html>

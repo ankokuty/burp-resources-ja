@@ -97,7 +97,7 @@ var activeTableTab = "activeTableTab";
 <hr>
 <br>
 <pre>public interface <span class="typeNameLabel">IMessageEditorController</span></pre>
-<div class="block">現在表示されたメッセージの詳細を取得するために、<code>IMessageEditor</code>が呼び出します。拡張が作成したBurpのHTTPメッセージエディタのインスタンスは、<code>IMessageEditorController</code>の実装も提供でき、現在のメッセージについて追加情報が必要な場合(例えば他のBurpツールに送信する場合など)にエディタによって呼び出されます。<code>IMessageEditorTabFactory</code>経由でカスタムエディタタブを提供する拡張は、各タブインスタンスが生成される度に<code>IMessageEditorController</code>オブジェクトへの参照を受け取り、現在のメッセージに関する追加情報が必要な場合は呼び出せます。</div>
+<div class="block">現在表示されたメッセージの詳細を取得するために、<code>IMessageEditor</code>が呼び出します。拡張が作成したBurpのHTTPメッセージエディタのインスタンスは、<code>IMessageEditorController</code>の実装も提供でき、現在のメッセージについて追加情報が必要な場合(たとえば他のBurpツールに送信する場合など)にエディタによって呼び出されます。<code>IMessageEditorTabFactory</code>経由でカスタムエディタタブを提供する拡張は、各タブインスタンスが生成される度に<code>IMessageEditorController</code>オブジェクトへの参照を受け取り、現在のメッセージに関する追加情報が必要な場合は呼び出せます。</div>
 </li>
 </ul>
 </div>

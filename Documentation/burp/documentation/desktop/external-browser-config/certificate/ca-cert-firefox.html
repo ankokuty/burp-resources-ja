@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">外部ブラウザの設定</a>
+        </li>
+        <li>
+            <a href="index.html">BurpのCA証明書をインストール</a>
+        </li>
+        <li>
+            <a href="ca-cert-firefox.html">Chrome</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>FirefoxへBurpのCA証明書をインストール</h1>
+<p>
+    BurpのCA証明書をインストールする前に、<a href="../check-listener.html">Proxyリスナーが動作</a>しており、<a href="../index.html">Burpが使われるようブラウザの設定</a>ができているか確認します。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        以前、Burpが生成した別のCA証明書をインストールしている場合は、新しいものをインストールする前に<a href="#removing-burp-s-ca-certificate-from-firefox">それを削除する</a>必要があります。
+    </p>
+</div>
+<p>
+    FirefoxにBurpのCA証明書をインストールするには、次の手順に従います:
+</p>
+<p>
+    Burpを実行している状態で、Firefoxで<code>http://burpsuite</code>にアクセスします。"Welcome to Burp Suite Professional"というWebページが表示されるはずです。表示されない場合は、<a href="proxy-troubleshooting.html">プロキシのトラブルシューティング</a>ページを参照してください。何が悪かったかによっては、自動的にそこに遷移するかもしれません。
+</p>
+<p>
+    ページの右上隅にある<strong>CA Certificate</strong>をクリックして、独自のBurp CA証明書をダウンロードします。保存する場所をメモしておいてください。
+</p>
+<div class="section-small">
+    <img src="../../images/support/InstallingandConfiguring_InstallingBurpsCACertificate_FF_1.jpg" alt="FirefoxでCA証明書をダウンロード" class="center-block">
+</div>
+<p>
+    Firefoxでハンバーガーメニューを開き、<strong>設定</strong>または<strong>オプション</strong>をクリックします。
+</p>
+<div class="section-small">
+    <img src="../../images/support/InstallingandConfiguring_InstallingBurpsCACertificate_FF_2.jpg" alt="Firefoxで設定を開く" class="center-block">
+</div>
+<p>
+    画面左のナビゲーションバーから<strong>プライバシーとセキュリティ</strong>の設定を開きます。
+</p>
+<p>
+    <strong>証明書</strong>セクションまでスクロールし、<strong>証明書の表示</strong>ボタンをクリックします。
+</p>
+<div class="section-small">
+    <img src="../../images/support/InstallingandConfiguring_InstallingBurpsCACertificate_FF_3.jpg" alt="Firefoxで証明書を表示" class="center-block">
+</div>
+<p>
+    開いたダイアログで、<strong>認証局証明書</strong>タブに移動し、<strong>インポート</strong>をクリックします。先程ダウンロードしたBurp CA証明書を選択し、<strong>開く</strong>をクリックします。
+</p>
+<div class="section-small">
+    <img src="../../images/support/InstallingandConfiguring_InstallingBurpsCACertificate_FF_4.jpg" alt="Firefoxで証明書のインポート" class="center-block">
+</div>
+<p>
+    信頼設定の編集を求められたら、<strong>この認証局によるWebサイトの識別を信頼する</strong>のチェックボックスが選択されていることを確認し、<strong>OK</strong>をクリックします。
+</p>
+<p>
+    Firefoxを閉じて再起動します。Burpを実行したまま、HTTPSのURLにアクセスしてみてください。すべて正常に動作していれば、セキュリティ警告なしでページを参照できるはずです。
+</p>
+<div class="section-small">
+    <img src="../../images/support/InstallingandConfiguring_InstallingBurpsCACertificate_FF_5.jpg" alt="Firefoxで証明書を表示" class="center-block">
+</div>
+<h2 id="removing-burp-s-ca-certificate-from-firefox">FirefoxからBurpのCA証明書を削除</h2>
+<p>
+    BurpのCA証明書をFirefoxから削除するには、<strong>証明書の表示 &gt; 認証局証明書</strong>ダイアログに戻り、<strong>PortSwigger CA</strong>を選択します。次に、<strong>削除または信頼しない</strong>をクリックし、<strong>OK</strong>をクリックして、Firefoxを再起動します。
+</p>
+</body>
+</html>

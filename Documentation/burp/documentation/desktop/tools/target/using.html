@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -30,92 +31,91 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
-    <label class="label-edition is-community">コミュニティ</label>
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>Targetツールの使い方</h1>
-        <p>
-            Targetツールは、対象アプリケーションのコンテンツや機能の概要を提供し、テストワークフローの主要部分を推進させます。Targetタブに関連する主な手順は次の通りです:
-        </p>
-        <h2 id="manual-application-mapping">手動アプリケーションマッピング</h2>
-        <p>
-            まず、対象アプリケーションを手動でマッピングします。これを行うには、次の手順を実行します:
-        </p>
-        <ul>
-            <li>
-                Burpの<a href="../../functions/embedded-browser.html">内蔵ブラウザ</a>を起動、または<a href="../../getting-started/proxy-setup/index.html">外部ブラウザでBurp Proxyが動作するよう設定</a>します。
-            </li>
-            <li>
-                <a href="../proxy/using.html#intercepting-requests-and-responses">Proxyインターセプト</a>をオフにし、手動でアプリケーション全体をブラウズします。
-            </li>
-            <li>
-                すべてのリンクをたどり、すべてのフォームを送信し、すべての多段階プロセス実行し、すべての保護エリアにログインします。
-            </li>
-        </ul>
-        <p>
-            この手動マッピングプロセスによって、Proxy経由でリクエストしたすべてのコンテンツや、(<a href="../../scanning/live-scans.html#live-passive-crawl">パッシブクロール</a>によって)アプリケーションのレスポンス(リンクやフォームなど)から推測できるその他のコンテンツが、Target <a href="site-map/index.html">サイトマップに</a>追加されます。この手動マッピングプロセスによって、目に見えるすべてのアプリケーションコンテンツのほぼ完全なサイトマップを作成し、アプリケーションについて完全に把握できるようになります。
-        </p>
-        <p>
-            <strong>注:</strong> アプリケーションの診断中にBurp Scannerが自動的にセッションを維持できるような方法で、アプリケーションのナビゲーションをパスを取得するため、一部のケースでは手動でのアプリケーションマッピングよりBurpの<a href="../../../scanner/crawling.html">自動クロール</a>の方が優れています。一方で手動マッピングでは、人間のユーザが処理を誘導し、潜在的に危険な機能を回避し、ナビゲーション動作が期待した結果になっているか検証できます。手動マッピングと自動マッピング、どちらを選択するかは、アプリケーションの性質や結果の使用目的によって大きく異なります。
-        </p>
-        <h2 id="defining-target-scope">ターゲットスコープの定義</h2>
-        <p>
-            最初のアプリケーションマッピングが完了したら、サイトマップでブランチを選択し、コンテキストメニューから"スコープに追加"または"スコープから削除"コマンドを選択し、<a href="scope.html">ターゲットスコープ</a>を定義します。<a href="site-map/index.html#site-map-display-filter">サイトマップ</a>や<a href="../proxy/history.html#proxy-history-display-filter">Proxy履歴</a>に適切なディスプレイフィルターを設定して、現在興味のないアイテムを非表示にできます。
-        </p>
-        <div class="container">
-            <div class="youtube-wrapper">
-                <iframe src="https://www.youtube.com/embed/0mTg2BsYVmg?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
-            </div>
-        </div>
-        <h2 id="reviewing-unrequested-items">リクエストされていないアイテムのレビュー</h2>
-        <p>
-            パッシブクロールで検出したがまだリクエストされていない対象内のアイテムを、サイトマップでレビューします。これらのアイテムは、サイトマップに灰色で表示されます。ツリービューでアプリケーション全体を選択し、一覧ビューを"リクエスト時刻"カラムでソート(カラムヘッダをクリック)すると、リクエストされていないアイテムをがグループ化され素早く検索できます。これらのアイテムを手動でレビュー(例えば、各URLをブラウザにコピーするなど)して、さらに気になるコンテンツが含まれているかどうかを確認する必要があります。
-        </p>
-        <h2 id="discovering-hidden-content">隠しコンテンツの探索</h2>
-        <p>
-            アプリケーションの可視コンテンツ(つまり、アプリケーションをブラウズしリンクをたどって観察できたコンテンツ)をマッピングした後、次の自動アクションを実行し可視コンテンツからリンクされていない"隠れた"コンテンツを特定できます:
-        </p>
-        <ul>
-            <li>
-                さらなるアイテムを推測するには、サイトマップのフォルダを選択し、Burpの<a href="../../functions/content-discovery.html">コンテンツ探索</a>機能を使用できます。
-            </li>
-            <li>
-                <a href="../intruder/using.html#enumerating-identifiers">カスタマイズされたコンテンツ探索</a>を実行するには、サイトマップのアイテムをBurp Intruderに送信できます。
-            </li>
-        </ul>
-        <h2 id="analyzing-the-attack-surface">攻撃経路の分析</h2>
-        <p>
-            アプリケーションのすべてのコンテンツと機能を十分にマッピングできたら、<a href="site-map/index.html">サイトマップ</a>のコンテンツ(および<a href="../proxy/history.html">Proxy履歴</a>)をレビューし、アプリケーションが公開している攻撃経路を理解します。次のサイトマップの機能でこのタスクをサポートできます:
-        </p>
-        <ul>
-            <li>
-                サイトマップツリーのブランチを選択し<a href="../../functions/target-analyzer.html">対象の解析</a>機能で、すべての動的URLとパラメータを特定できます。
-            </li>
-            <li>
-                <a href="site-map/index.html#site-map-display-filter">ディスプレイフィルター</a>とソート可能な<a href="site-map/index.html#target-information">一覧ビュー</a>を使用すると、複雑なサイトマップを体系的に処理し、さまざまな種類の気になるコンテンツがどこにあるのか理解できます。
-            </li>
-            <li>
-                用途の説明や後で戻ってきたときに気になるアイテムを特定しやすいように、色付けとコメントでアイテムに<a href="site-map/index.html#site-map-annotations">注釈</a>を付けられます。
-            </li>
-        </ul>
-        <h2 id="target-tool-testing-workflow">Targetツールのテストワークフロー</h2>
-        <p>
-            アプリケーションを完全にマッピングし攻撃経路を評価した後、サイトマップから詳細な<a href="../../penetration-testing/index.html">脆弱性テストワークフロー</a>を進められます:
-        </p>
-        <ul>
-            <li>
-                ブランチでアイテムを選択しコンテキストメニューからBurpの他のツールへ送信すると、Burp Scannerによる<a href="../../scanning/index.html#launching-scans">自動脆弱性スキャン</a>、<a href="../intruder/using.html#fuzzing-for-vulnerabilities">Burp Intruderによるファジング</a>、<a href="../repeater/using.html">Burp Repeater</a>を使用した手動テストのような、詳細なタスクを実行できます。
-            </li>
-            <li>
-                異なる<a href="../../options/sessions/index.html#session-handling-rules">セッションコンテキスト</a>でサイトマップを再リクエストし、<a href="site-map/comparing.html">サイトマップの比較</a>をするとアクセス制御の脆弱性の発見に役立ちます。
-            </li>
-            <li>
-                サイトマップのブランチを、<a href="../../functions/search.html#text-search">特定の文字列</a>や<a href="../../functions/search.html#find-comments-and-scripts">スクリプトやコメント</a>で検索できます。
-            </li>
-        </ul>
+<h1>Targetツールの使い方</h1>
+<p>
+    Targetツールは、対象アプリケーションのコンテンツや機能の概要を表示し、テストワークフローの主要部分を推進させます。Targetタブに関連する主な手順は次の通りです:
+</p>
+<h2 id="manual-application-mapping">手動アプリケーションマッピング</h2>
+<p>
+    まず、対象アプリケーションを手動でマッピングします。これを行うには、次の手順を実行します:
+</p>
+<ul>
+    <li>
+        Burpの<a href="../../functions/embedded-browser.html">内蔵ブラウザ</a>を起動、または<a href="../../external-browser-config/index.html">外部ブラウザでBurp Proxyが動作するよう設定</a>します。
+    </li>
+    <li>
+        アプリケーション全体を手動でブラウズします。
+    </li>
+    <li>
+        すべてのリンクをたどり、すべてのフォームを送信し、すべての多段階プロセス実行し、すべての保護エリアにログインします。
+    </li>
+</ul>
+<p>
+    この手動マッピングプロセスによって、Proxy経由でリクエストしたすべてのコンテンツや、(<a href="../../scanning/live-scans.html#live-passive-crawl">パッシブクロール</a>によって)アプリケーションのレスポンス(リンクやフォームなど)から推測できるその他のコンテンツが、Target <a href="site-map/index.html">サイトマップに</a>追加されます。この手動マッピングプロセスによって、目に見えるすべてのアプリケーションコンテンツのほぼ完全なサイトマップを作成し、アプリケーションについて完全に把握できるようになります。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        アプリケーションの<a href="../../../scanner/auditing.html">診断中</a>にBurp Scannerが自動的にセッションを維持できるような方法で、アプリケーションのナビゲーションをパスを取得するため、一部のケースでは手動でのアプリケーションマッピングよりBurpの<a href="../../../scanner/crawling.html">自動クロール</a>の方が優れています。一方で手動マッピングでは、人間が処理を誘導し、潜在的に危険な機能を回避し、ナビゲーション動作が期待した結果になっているか検証できます。手動マッピングと自動マッピング、どちらを選択するかは、アプリケーションの性質や結果の使用目的によって大きく異なります。
+    </p>
+</div>
+<h2 id="defining-target-scope">ターゲットスコープの定義</h2>
+<p>
+    最初のアプリケーションマッピングが完了したら、サイトマップでブランチを選択し、コンテキストメニューから"スコープに追加"または"スコープから削除"コマンドを選択し、<a href="scope.html">ターゲットスコープ</a>を定義します。<a href="site-map/index.html#site-map-display-filter">サイトマップ</a>や<a href="../proxy/history.html#proxy-history-display-filter">Proxy履歴</a>に適切なディスプレイフィルターを設定して、現在興味のないアイテムを非表示にできます。
+</p>
+<div class="container">
+    <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/0mTg2BsYVmg?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
     </div>
-</section>
+</div>
+<h2 id="reviewing-unrequested-items">リクエストされていないアイテムのレビュー</h2>
+<p>
+    パッシブクロールで検出したがまだリクエストされていない対象内のアイテムを、サイトマップでレビューします。これらのアイテムは、サイトマップに灰色で表示されます。ツリービューでアプリケーション全体を選択し、一覧ビューを"リクエスト時刻"カラムでソート(カラムヘッダをクリック)すると、リクエストされていないアイテムがグループ化され素早く検索できます。これらのアイテムを手動でレビュー(たとえば、各URLをブラウザにコピーするなど)して、さらに気になるコンテンツが含まれているかどうかを確認する必要があります。
+</p>
+<h2 id="discovering-hidden-content">隠しコンテンツの探索</h2>
+<p>
+    アプリケーションの可視コンテンツ(つまり、アプリケーションをブラウズしリンクをたどって観察できたコンテンツ)をマッピングした後、次の自動アクションを実行し可視コンテンツからリンクされていない"隠れた"コンテンツを特定できます:
+</p>
+<ul>
+    <li>
+        さらなるアイテムを推測するには、サイトマップのフォルダを選択し、Burpの<a href="../../functions/content-discovery.html">コンテンツ探索</a>機能を使用できます。
+    </li>
+    <li>
+        <a href="../intruder/using.html#enumerating-identifiers">カスタマイズされたコンテンツ探索</a>を実行するには、サイトマップのアイテムをBurp Intruderに送信できます。
+    </li>
+</ul>
+<h2 id="analyzing-the-attack-surface">攻撃経路の分析</h2>
+<p>
+    アプリケーションのすべてのコンテンツと機能を十分にマッピングできたら、<a href="site-map/index.html">サイトマップ</a>のコンテンツ(および<a href="../proxy/history.html">Proxy履歴</a>)をレビューし、アプリケーションが公開している攻撃経路を理解します。次のサイトマップの機能でこのタスクをサポートできます:
+</p>
+<ul>
+    <li>
+        サイトマップツリーのブランチを選択し<a href="../../functions/target-analyzer.html">対象の分析</a>機能で、すべての動的URLとパラメータを特定できます。
+    </li>
+    <li>
+        <a href="site-map/index.html#site-map-display-filter">ディスプレイフィルター</a>とソート可能な<a href="site-map/index.html#target-information">一覧ビュー</a>を使用すると、複雑なサイトマップを体系的に処理し、さまざまな種類の気になるコンテンツがどこにあるのか理解できます。
+    </li>
+    <li>
+        用途の説明や後で戻ってきたときに気になるアイテムを特定しやすいように、色付けとコメントでアイテムに<a href="site-map/index.html#site-map-annotations">注釈</a>を付けられます。
+    </li>
+</ul>
+<h2 id="target-tool-testing-workflow">Targetツールのテストワークフロー</h2>
+<p>
+    アプリケーションを完全にマッピングし攻撃経路を評価した後、サイトマップから詳細な<a href="../../penetration-testing/index.html">脆弱性テストワークフロー</a>を進められます:
+</p>
+<ul>
+    <li>
+        ブランチでアイテムを選択しコンテキストメニューからBurpの他のツールへ送信すると、Burp Scannerによる<a href="../../scanning/index.html#launching-scans">自動脆弱性スキャン</a>、<a href="../intruder/using.html#fuzzing-for-vulnerabilities">Burp Intruderによるファジング</a>、<a href="../repeater/using.html">Burp Repeater</a>を使用した手動テストのような、詳細なタスクを実行できます。
+    </li>
+    <li>
+        異なる<a href="../../options/sessions/index.html#session-handling-rules">セッションコンテキスト</a>でサイトマップを再リクエストし、<a href="site-map/comparing.html">サイトマップの比較</a>をするとアクセス制御の脆弱性の発見に役立ちます。
+    </li>
+    <li>
+        サイトマップのブランチを、<a href="../../functions/search.html#text-search">特定の文字列</a>や<a href="../../functions/search.html#find-comments-and-scripts">スクリプトやコメント</a>で検索できます。
+    </li>
+</ul>
 </body>
 </html>

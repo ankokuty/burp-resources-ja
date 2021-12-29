@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">モバイルテスト</a>
+        </li>
+        <li>
+            <a href="troubleshooting.html">モバイルデバイスのトラブルシューティング</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>モバイルデバイスのトラブルシューティング</h1>
+<p>
+    このセクションでは、Burp Suiteを使用してモバイルアプリをテストしようとする際の、一般的な問題を解決する簡単な手順をいくつか紹介します。
+</p>
+<h4 id="i-can-t-access-https-urls-on-ios-even-after-installing-burp-s-ca-certificate">BurpのCA証明書をインストールしたのに、iOSでHTTPS URLにアクセスできない</h4>
+<p>
+    Burpで、<strong>ダッシュボード</strong>タブに移動し、イベントログを見てください。<code>接続リセット</code>や<code>リモートホストがハンドシェイクを終了しました</code>などのエラーが大量に見つかる場合は、TLS 1.3との互換性が原因である可能性があります。
+</p>
+<p>
+    Proxyリスナー設定で、ProxyがTLS1.3を使用しないよう無効に設定できます。
+</p>
+<ol>
+    <li>
+        <p>
+            Burpで、<strong>Proxy &gt; オプション</strong>タブに移動します。
+        </p>
+    </li>
+    <li>
+        <p>
+            モバイルデバイスに使用するProxyリスナーを選択し、<strong>編集</strong>をクリックします。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Proxyリスナーを編集</strong>ダイアログで、<strong>TLSプロトコル</strong>タブに移動します。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>カスタムプロトコルを使用する</strong>を選択し、リストから<strong>TLSv1.3</strong>の選択を解除します。
+        </p>
+    </li>
+</ol>
+<p>
+    これが問題だった場合は、通常どおりHTTPS URLにアクセスできるようになり、イベントログに表示されるエラーが少なくなります。それでも問題が解決しない場合は、<a href="https://portswigger.net/support">サポートチーム</a>にお問い合わせください。
+</p>
+</body>
+</html>

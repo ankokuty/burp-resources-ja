@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6,"i14":6,"i15":6,"i16":6,"i17":6,"i18":6,"i19":6,"i20":38,"i21":6,"i22":6,"i23":6,"i24":6,"i25":6,"i26":38,"i27":6,"i28":6,"i29":6,"i30":6,"i31":6,"i32":6,"i33":6,"i34":6,"i35":6,"i36":6,"i37":6,"i38":6,"i39":6,"i40":6,"i41":6,"i42":6,"i43":38,"i44":6,"i45":6,"i46":6,"i47":6,"i48":6,"i49":6,"i50":6,"i51":6,"i52":6,"i53":6,"i54":6,"i55":6,"i56":6,"i57":6,"i58":6,"i59":38,"i60":6,"i61":6,"i62":6,"i63":6,"i64":6,"i65":6,"i66":6,"i67":6,"i68":6,"i69":6,"i70":6,"i71":6,"i72":6,"i73":6,"i74":6,"i75":6,"i76":6,"i77":6,"i78":6,"i79":6,"i80":38,"i81":6,"i82":38,"i83":6,"i84":6,"i85":38,"i86":6,"i87":6,"i88":6,"i89":6,"i90":6,"i91":6,"i92":6,"i93":6,"i94":6,"i95":6};
+var methods = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6,"i5":6,"i6":6,"i7":6,"i8":6,"i9":6,"i10":6,"i11":6,"i12":6,"i13":6,"i14":6,"i15":6,"i16":6,"i17":6,"i18":6,"i19":6,"i20":38,"i21":6,"i22":6,"i23":6,"i24":6,"i25":6,"i26":38,"i27":6,"i28":6,"i29":6,"i30":6,"i31":6,"i32":6,"i33":6,"i34":6,"i35":6,"i36":6,"i37":6,"i38":6,"i39":6,"i40":6,"i41":6,"i42":6,"i43":38,"i44":6,"i45":6,"i46":6,"i47":6,"i48":6,"i49":6,"i50":6,"i51":6,"i52":6,"i53":6,"i54":6,"i55":6,"i56":6,"i57":6,"i58":6,"i59":6,"i60":38,"i61":6,"i62":6,"i63":6,"i64":6,"i65":6,"i66":6,"i67":6,"i68":6,"i69":6,"i70":6,"i71":6,"i72":6,"i73":6,"i74":6,"i75":6,"i76":6,"i77":6,"i78":6,"i79":6,"i80":6,"i81":38,"i82":6,"i83":38,"i84":6,"i85":6,"i86":38,"i87":6,"i88":6,"i89":6,"i90":6,"i91":6,"i92":6,"i93":6,"i94":6,"i95":6,"i96":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"],32:["t6","Deprecated Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -286,7 +286,7 @@ var activeTableTab = "activeTableTab";
 <tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#exitSuite-boolean-">exitSuite</a></span>(boolean&nbsp;promptUser)</code>
-<div class="block">Burpプログラムをシャットダウンします。ユーザにプロンプトの表示もできます。</div>
+<div class="block">Burpプログラムをシャットダウンします。ユーザにプロンプトも表示できます。</div>
 </td>
 </tr>
 <tr id="i13" class="rowColor">
@@ -513,13 +513,23 @@ var activeTableTab = "activeTableTab";
 </td>
 </tr>
 <tr id="i48" class="altColor">
+<td class="colFirst"><code>byte[]</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#makeHttp2Request-burp.IHttpService-java.util.List-byte:A-boolean-java.lang.String-">makeHttp2Request</a></span>(<a href="../burp/IHttpService.html" title="burp 内のインタフェース">IHttpService</a>&nbsp;httpService,
+                java.util.List&lt;<a href="../burp/IHttpHeader.html" title="burp 内のインタフェース">IHttpHeader</a>&gt;&nbsp;headers,
+                byte[]&nbsp;body,
+                boolean&nbsp;forceHttp2,
+                java.lang.String&nbsp;connectionIdentifier)</code>
+<div class="block">HTTP/2リクエストを発行し、レスポンスを取得します。</div>
+</td>
+</tr>
+<tr id="i49" class="rowColor">
 <td class="colFirst"><code><a href="../burp/IHttpRequestResponse.html" title="burp 内のインタフェース">IHttpRequestResponse</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#makeHttpRequest-burp.IHttpService-byte:A-">makeHttpRequest</a></span>(<a href="../burp/IHttpService.html" title="burp 内のインタフェース">IHttpService</a>&nbsp;httpService,
                byte[]&nbsp;request)</code>
 <div class="block">HTTPリクエストを発行し、レスポンスを取得します。</div>
 </td>
 </tr>
-<tr id="i49" class="rowColor">
+<tr id="i50" class="altColor">
 <td class="colFirst"><code><a href="../burp/IHttpRequestResponse.html" title="burp 内のインタフェース">IHttpRequestResponse</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#makeHttpRequest-burp.IHttpService-byte:A-boolean-">makeHttpRequest</a></span>(<a href="../burp/IHttpService.html" title="burp 内のインタフェース">IHttpService</a>&nbsp;httpService,
                byte[]&nbsp;request,
@@ -527,7 +537,7 @@ var activeTableTab = "activeTableTab";
 <div class="block">HTTPリクエストを発行し、レスポンスを取得します。</div>
 </td>
 </tr>
-<tr id="i50" class="altColor">
+<tr id="i51" class="rowColor">
 <td class="colFirst"><code>byte[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#makeHttpRequest-java.lang.String-int-boolean-byte:A-">makeHttpRequest</a></span>(java.lang.String&nbsp;host,
                int&nbsp;port,
@@ -536,7 +546,7 @@ var activeTableTab = "activeTableTab";
 <div class="block">HTTPリクエストを発行し、レスポンスを取得します。</div>
 </td>
 </tr>
-<tr id="i51" class="rowColor">
+<tr id="i52" class="altColor">
 <td class="colFirst"><code>byte[]</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#makeHttpRequest-java.lang.String-int-boolean-byte:A-boolean-">makeHttpRequest</a></span>(java.lang.String&nbsp;host,
                int&nbsp;port,
@@ -546,49 +556,49 @@ var activeTableTab = "activeTableTab";
 <div class="block">HTTPリクエストを発行し、レスポンスを取得します。</div>
 </td>
 </tr>
-<tr id="i52" class="altColor">
+<tr id="i53" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#printError-java.lang.String-">printError</a></span>(java.lang.String&nbsp;error)</code>
 <div class="block">この拡張の標準エラーストリームに、1行出力します。</div>
 </td>
 </tr>
-<tr id="i53" class="rowColor">
+<tr id="i54" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#printOutput-java.lang.String-">printOutput</a></span>(java.lang.String&nbsp;output)</code>
 <div class="block">この拡張の標準出力ストリームに、1行出力します。</div>
 </td>
 </tr>
-<tr id="i54" class="altColor">
+<tr id="i55" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#registerContextMenuFactory-burp.IContextMenuFactory-">registerContextMenuFactory</a></span>(<a href="../burp/IContextMenuFactory.html" title="burp 内のインタフェース">IContextMenuFactory</a>&nbsp;factory)</code>
 <div class="block">カスタムコンテキストメニューアイテムのファクトリーを登録します。</div>
 </td>
 </tr>
-<tr id="i55" class="rowColor">
+<tr id="i56" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#registerExtensionStateListener-burp.IExtensionStateListener-">registerExtensionStateListener</a></span>(<a href="../burp/IExtensionStateListener.html" title="burp 内のインタフェース">IExtensionStateListener</a>&nbsp;listener)</code>
 <div class="block">拡張の状態変化を通知されるリスナーを登録します。</div>
 </td>
 </tr>
-<tr id="i56" class="altColor">
+<tr id="i57" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#registerHttpListener-burp.IHttpListener-">registerHttpListener</a></span>(<a href="../burp/IHttpListener.html" title="burp 内のインタフェース">IHttpListener</a>&nbsp;listener)</code>
-<div class="block">任意のBurpツールが作成したリクエスト及びレスポンスが通知されるリスナーを登録します。</div>
+<div class="block">任意のBurpツールが作成したリクエストやレスポンスが通知されるリスナーを登録します。</div>
 </td>
 </tr>
-<tr id="i57" class="rowColor">
+<tr id="i58" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#registerIntruderPayloadGeneratorFactory-burp.IIntruderPayloadGeneratorFactory-">registerIntruderPayloadGeneratorFactory</a></span>(<a href="../burp/IIntruderPayloadGeneratorFactory.html" title="burp 内のインタフェース">IIntruderPayloadGeneratorFactory</a>&nbsp;factory)</code>
 <div class="block">Intruderペイロードのファクトリーを登録します。</div>
 </td>
 </tr>
-<tr id="i58" class="altColor">
+<tr id="i59" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#registerIntruderPayloadProcessor-burp.IIntruderPayloadProcessor-">registerIntruderPayloadProcessor</a></span>(<a href="../burp/IIntruderPayloadProcessor.html" title="burp 内のインタフェース">IIntruderPayloadProcessor</a>&nbsp;processor)</code>
 <div class="block">拡張が登録したIntruderペイロードプロセッサを取得します。カスタムIntruderペイロードプロセッサを登録します。</div>
 </td>
 </tr>
-<tr id="i59" class="rowColor">
+<tr id="i60" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#registerMenuItem-java.lang.String-burp.IMenuItemHandler-">registerMenuItem</a></span>(java.lang.String&nbsp;menuItemCaption,
                 <a href="../burp/IMenuItemHandler.html" title="burp 内のインタフェース">IMenuItemHandler</a>&nbsp;menuItemHandler)</code>
@@ -597,127 +607,127 @@ var activeTableTab = "activeTableTab";
 </div>
 </td>
 </tr>
-<tr id="i60" class="altColor">
+<tr id="i61" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#registerMessageEditorTabFactory-burp.IMessageEditorTabFactory-">registerMessageEditorTabFactory</a></span>(<a href="../burp/IMessageEditorTabFactory.html" title="burp 内のインタフェース">IMessageEditorTabFactory</a>&nbsp;factory)</code>
 <div class="block">カスタムメッセージエディタタブのファクトリーを登録します。</div>
 </td>
 </tr>
-<tr id="i61" class="rowColor">
+<tr id="i62" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#registerProxyListener-burp.IProxyListener-">registerProxyListener</a></span>(<a href="../burp/IProxyListener.html" title="burp 内のインタフェース">IProxyListener</a>&nbsp;listener)</code>
 <div class="block">Proxyツールに処理されているリクエストとレスポンスが通知されるリスナーを登録します。</div>
 </td>
 </tr>
-<tr id="i62" class="altColor">
+<tr id="i63" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#registerScannerCheck-burp.IScannerCheck-">registerScannerCheck</a></span>(<a href="../burp/IScannerCheck.html" title="burp 内のインタフェース">IScannerCheck</a>&nbsp;check)</code>
 <div class="block">カスタムScannerチェックを登録します。</div>
 </td>
 </tr>
-<tr id="i63" class="rowColor">
+<tr id="i64" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#registerScannerInsertionPointProvider-burp.IScannerInsertionPointProvider-">registerScannerInsertionPointProvider</a></span>(<a href="../burp/IScannerInsertionPointProvider.html" title="burp 内のインタフェース">IScannerInsertionPointProvider</a>&nbsp;provider)</code>
 <div class="block">Scanner挿入ポイントのプロバイダーを登録します。</div>
 </td>
 </tr>
-<tr id="i64" class="altColor">
+<tr id="i65" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#registerScannerListener-burp.IScannerListener-">registerScannerListener</a></span>(<a href="../burp/IScannerListener.html" title="burp 内のインタフェース">IScannerListener</a>&nbsp;listener)</code>
 <div class="block">Scannerツールが報告した新規の問題が通知されるリスナーを登録します。</div>
 </td>
 </tr>
-<tr id="i65" class="rowColor">
+<tr id="i66" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#registerScopeChangeListener-burp.IScopeChangeListener-">registerScopeChangeListener</a></span>(<a href="../burp/IScopeChangeListener.html" title="burp 内のインタフェース">IScopeChangeListener</a>&nbsp;listener)</code>
-<div class="block">Burpのスイート全体のターゲットスコープの変更が通知されるリスナーを登録します。</div>
+<div class="block">BurpのSuite全体のターゲットスコープの変更が通知されるリスナーを登録します。</div>
 </td>
 </tr>
-<tr id="i66" class="altColor">
+<tr id="i67" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#registerSessionHandlingAction-burp.ISessionHandlingAction-">registerSessionHandlingAction</a></span>(<a href="../burp/ISessionHandlingAction.html" title="burp 内のインタフェース">ISessionHandlingAction</a>&nbsp;action)</code>
 <div class="block">カスタムセッションハンドリングアクションを登録します。</div>
 </td>
 </tr>
-<tr id="i67" class="rowColor">
+<tr id="i68" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#removeContextMenuFactory-burp.IContextMenuFactory-">removeContextMenuFactory</a></span>(<a href="../burp/IContextMenuFactory.html" title="burp 内のインタフェース">IContextMenuFactory</a>&nbsp;factory)</code>
 <div class="block">拡張が登録したコンテキストメニューファクトリーを削除します。</div>
 </td>
 </tr>
-<tr id="i68" class="altColor">
+<tr id="i69" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#removeExtensionStateListener-burp.IExtensionStateListener-">removeExtensionStateListener</a></span>(<a href="../burp/IExtensionStateListener.html" title="burp 内のインタフェース">IExtensionStateListener</a>&nbsp;listener)</code>
 <div class="block">拡張が登録した拡張状態リスナーを削除します。</div>
 </td>
 </tr>
-<tr id="i69" class="rowColor">
+<tr id="i70" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#removeHttpListener-burp.IHttpListener-">removeHttpListener</a></span>(<a href="../burp/IHttpListener.html" title="burp 内のインタフェース">IHttpListener</a>&nbsp;listener)</code>
 <div class="block">拡張が登録したHTTPリスナーを削除します。</div>
 </td>
 </tr>
-<tr id="i70" class="altColor">
+<tr id="i71" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#removeIntruderPayloadGeneratorFactory-burp.IIntruderPayloadGeneratorFactory-">removeIntruderPayloadGeneratorFactory</a></span>(<a href="../burp/IIntruderPayloadGeneratorFactory.html" title="burp 内のインタフェース">IIntruderPayloadGeneratorFactory</a>&nbsp;factory)</code>
 <div class="block">拡張が登録したIntruderペイロードジェネレータファクトリを削除します。</div>
 </td>
 </tr>
-<tr id="i71" class="rowColor">
+<tr id="i72" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#removeIntruderPayloadProcessor-burp.IIntruderPayloadProcessor-">removeIntruderPayloadProcessor</a></span>(<a href="../burp/IIntruderPayloadProcessor.html" title="burp 内のインタフェース">IIntruderPayloadProcessor</a>&nbsp;processor)</code>
 <div class="block">拡張が登録したIntruderペイロードプロセッサを削除します。</div>
 </td>
 </tr>
-<tr id="i72" class="altColor">
+<tr id="i73" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#removeMessageEditorTabFactory-burp.IMessageEditorTabFactory-">removeMessageEditorTabFactory</a></span>(<a href="../burp/IMessageEditorTabFactory.html" title="burp 内のインタフェース">IMessageEditorTabFactory</a>&nbsp;factory)</code>
 <div class="block">拡張が登録したメッセージエディタタブのファクトリを削除します。</div>
 </td>
 </tr>
-<tr id="i73" class="rowColor">
+<tr id="i74" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#removeProxyListener-burp.IProxyListener-">removeProxyListener</a></span>(<a href="../burp/IProxyListener.html" title="burp 内のインタフェース">IProxyListener</a>&nbsp;listener)</code>
 <div class="block">拡張が登録したProxyリスナーを削除します。</div>
 </td>
 </tr>
-<tr id="i74" class="altColor">
+<tr id="i75" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#removeScannerCheck-burp.IScannerCheck-">removeScannerCheck</a></span>(<a href="../burp/IScannerCheck.html" title="burp 内のインタフェース">IScannerCheck</a>&nbsp;check)</code>
 <div class="block">拡張が登録したScannerチェックを削除します。</div>
 </td>
 </tr>
-<tr id="i75" class="rowColor">
+<tr id="i76" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#removeScannerInsertionPointProvider-burp.IScannerInsertionPointProvider-">removeScannerInsertionPointProvider</a></span>(<a href="../burp/IScannerInsertionPointProvider.html" title="burp 内のインタフェース">IScannerInsertionPointProvider</a>&nbsp;provider)</code>
 <div class="block">拡張が登録したScanner挿入ポイントプロバイダーを削除します。</div>
 </td>
 </tr>
-<tr id="i76" class="altColor">
+<tr id="i77" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#removeScannerListener-burp.IScannerListener-">removeScannerListener</a></span>(<a href="../burp/IScannerListener.html" title="burp 内のインタフェース">IScannerListener</a>&nbsp;listener)</code>
 <div class="block">拡張が登録したScannerリスナーを削除します。</div>
 </td>
 </tr>
-<tr id="i77" class="rowColor">
+<tr id="i78" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#removeScopeChangeListener-burp.IScopeChangeListener-">removeScopeChangeListener</a></span>(<a href="../burp/IScopeChangeListener.html" title="burp 内のインタフェース">IScopeChangeListener</a>&nbsp;listener)</code>
 <div class="block">拡張が登録したスコープ変更リスナーを削除します。</div>
 </td>
 </tr>
-<tr id="i78" class="altColor">
+<tr id="i79" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#removeSessionHandlingAction-burp.ISessionHandlingAction-">removeSessionHandlingAction</a></span>(<a href="../burp/ISessionHandlingAction.html" title="burp 内のインタフェース">ISessionHandlingAction</a>&nbsp;action)</code>
 <div class="block">拡張が登録したセッションハンドリングアクションを削除します。</div>
 </td>
 </tr>
-<tr id="i79" class="rowColor">
+<tr id="i80" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#removeSuiteTab-burp.ITab-">removeSuiteTab</a></span>(<a href="../burp/ITab.html" title="burp 内のインタフェース">ITab</a>&nbsp;tab)</code>
 <div class="block">Burp Suiteのメインウィンドウに以前追加したタブを削除します。</div>
 </td>
 </tr>
-<tr id="i80" class="altColor">
+<tr id="i81" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#restoreState-java.io.File-">restoreState</a></span>(java.io.File&nbsp;file)</code>
 <div class="block"><span class="deprecatedLabel">非推奨。</span>&nbsp;
@@ -725,13 +735,13 @@ var activeTableTab = "activeTableTab";
 </div>
 </td>
 </tr>
-<tr id="i81" class="rowColor">
+<tr id="i82" class="altColor">
 <td class="colFirst"><code><a href="../burp/IHttpRequestResponsePersisted.html" title="burp 内のインタフェース">IHttpRequestResponsePersisted</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#saveBuffersToTempFiles-burp.IHttpRequestResponse-">saveBuffersToTempFiles</a></span>(<a href="../burp/IHttpRequestResponse.html" title="burp 内のインタフェース">IHttpRequestResponse</a>&nbsp;httpRequestResponse)</code>
 <div class="block"><code>IHttpRequestResponse</code>オブジェクトのリクエストとレスポンスを一時ファイルに保存し、メモリに保持しないようにします。</div>
 </td>
 </tr>
-<tr id="i82" class="altColor">
+<tr id="i83" class="rowColor">
 <td class="colFirst"><code>java.util.Map&lt;java.lang.String,java.lang.String&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#saveConfig--">saveConfig</a></span>()</code>
 <div class="block"><span class="deprecatedLabel">非推奨。</span>&nbsp;
@@ -739,20 +749,20 @@ var activeTableTab = "activeTableTab";
 </div>
 </td>
 </tr>
-<tr id="i83" class="rowColor">
+<tr id="i84" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#saveConfigAsJson-java.lang.String...-">saveConfigAsJson</a></span>(java.lang.String...&nbsp;configPaths)</code>
 <div class="block">現在のプロジェクトレベルの設定をJSON形式で保存します。</div>
 </td>
 </tr>
-<tr id="i84" class="altColor">
+<tr id="i85" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#saveExtensionSetting-java.lang.String-java.lang.String-">saveExtensionSetting</a></span>(java.lang.String&nbsp;name,
                     java.lang.String&nbsp;value)</code>
 <div class="block">拡張やBurp Suiteがリロードされても残り続けるように、拡張の設定を保存します。</div>
 </td>
 </tr>
-<tr id="i85" class="rowColor">
+<tr id="i86" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#saveState-java.io.File-">saveState</a></span>(java.io.File&nbsp;file)</code>
 <div class="block"><span class="deprecatedLabel">非推奨。</span>&nbsp;
@@ -760,19 +770,19 @@ var activeTableTab = "activeTableTab";
 </div>
 </td>
 </tr>
-<tr id="i86" class="altColor">
+<tr id="i87" class="rowColor">
 <td class="colFirst"><code><a href="../burp/ITempFile.html" title="burp 内のインタフェース">ITempFile</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#saveToTempFile-byte:A-">saveToTempFile</a></span>(byte[]&nbsp;buffer)</code>
 <div class="block">指定されたデータを含む一時ファイルをディスクに作成します。</div>
 </td>
 </tr>
-<tr id="i87" class="rowColor">
+<tr id="i88" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#sendToComparer-byte:A-">sendToComparer</a></span>(byte[]&nbsp;data)</code>
 <div class="block">Compareツールにデータを送信します。</div>
 </td>
 </tr>
-<tr id="i88" class="altColor">
+<tr id="i89" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#sendToIntruder-java.lang.String-int-boolean-byte:A-">sendToIntruder</a></span>(java.lang.String&nbsp;host,
               int&nbsp;port,
@@ -781,7 +791,7 @@ var activeTableTab = "activeTableTab";
 <div class="block">HTTPリクエストをBurp Intruderツールに送信します。</div>
 </td>
 </tr>
-<tr id="i89" class="rowColor">
+<tr id="i90" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#sendToIntruder-java.lang.String-int-boolean-byte:A-java.util.List-">sendToIntruder</a></span>(java.lang.String&nbsp;host,
               int&nbsp;port,
@@ -791,7 +801,7 @@ var activeTableTab = "activeTableTab";
 <div class="block">HTTPリクエストをBurp Intruderツールに送信します。</div>
 </td>
 </tr>
-<tr id="i90" class="altColor">
+<tr id="i91" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#sendToRepeater-java.lang.String-int-boolean-byte:A-java.lang.String-">sendToRepeater</a></span>(java.lang.String&nbsp;host,
               int&nbsp;port,
@@ -801,31 +811,31 @@ var activeTableTab = "activeTableTab";
 <div class="block">HTTPリクエストをBurp Repaterツールに送信します。</div>
 </td>
 </tr>
-<tr id="i91" class="rowColor">
+<tr id="i92" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#sendToSpider-java.net.URL-">sendToSpider</a></span>(java.net.URL&nbsp;url)</code>
 <div class="block">開始URLをBurp Spiderツールに送信します。</div>
 </td>
 </tr>
-<tr id="i92" class="altColor">
+<tr id="i93" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#setExtensionName-java.lang.String-">setExtensionName</a></span>(java.lang.String&nbsp;name)</code>
 <div class="block">Extenderツールのユーザインタフェース内に表示される、この拡張の表示名を設定します。</div>
 </td>
 </tr>
-<tr id="i93" class="rowColor">
+<tr id="i94" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#setProxyInterceptionEnabled-boolean-">setProxyInterceptionEnabled</a></span>(boolean&nbsp;enabled)</code>
 <div class="block">Burp Proxyのマスターインターセプトを設定します。</div>
 </td>
 </tr>
-<tr id="i94" class="altColor">
+<tr id="i95" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#unloadExtension--">unloadExtension</a></span>()</code>
 <div class="block">拡張をBurp Suiteからアンロードします。</div>
 </td>
 </tr>
-<tr id="i95" class="rowColor">
+<tr id="i96" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../burp/IBurpExtenderCallbacks.html#updateCookieJar-burp.ICookie-">updateCookieJar</a></span>(<a href="../burp/ICookie.html" title="burp 内のインタフェース">ICookie</a>&nbsp;cookie)</code>
 <div class="block">Burpのセッションハンドリングcookie jarのコンテンツを更新します。</div>
@@ -1018,7 +1028,7 @@ var activeTableTab = "activeTableTab";
 <div class="block">Extenderツールのユーザインタフェース内に表示される、この拡張の表示名を設定します。</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>name</code> - The extension name.</dd>
+<dd><code>name</code> - 拡張名。</dd>
 </dl>
 </li>
 </ul>
@@ -1032,7 +1042,7 @@ var activeTableTab = "activeTableTab";
 <div class="block">多数の有用なタスクを拡張で実行するために使われる<code>IExtensionHelpers</code>オブジェクトを取得します。</div>
 <dl>
 <dt><span class="returnLabel">戻り値:</span></dt>
-<dd>HTTPリクエストの構築や解析などのタスク用の、さまざまなヘルパーメソッドを持ったオブジェクト。</dd>
+<dd>HTTPリクエストの構築や分析などのタスク用の、さまざまなヘルパーメソッドを持ったオブジェクト。</dd>
 </dl>
 </li>
 </ul>
@@ -1141,7 +1151,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>registerHttpListener</h4>
 <pre>void&nbsp;registerHttpListener(<a href="../burp/IHttpListener.html" title="burp 内のインタフェース">IHttpListener</a>&nbsp;listener)</pre>
-<div class="block">任意のBurpツールが作成したリクエスト及びレスポンスが通知されるリスナーを登録します。HTTPリスナーを登録すると、これらのメッセージの解析や変更を拡張が実行できます。</div>
+<div class="block">任意のBurpツールが作成したリクエストやレスポンスが通知されるリスナーを登録します。HTTPリスナーを登録すると、これらのメッセージの分析や変更を拡張が実行できます。</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>listener</code> - 拡張が作成した、<code>IHttpListener</code>インタフェースを実装したオブジェクト。</dd>
@@ -1183,7 +1193,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>registerProxyListener</h4>
 <pre>void&nbsp;registerProxyListener(<a href="../burp/IProxyListener.html" title="burp 内のインタフェース">IProxyListener</a>&nbsp;listener)</pre>
-<div class="block">Proxyツールに処理されているリクエストとレスポンスが通知されるリスナーを登録します。Proxyリスナーを登録すると、これらのメッセージの解析や変更を拡張が実行できます。</div>
+<div class="block">Proxyツールに処理されているリクエストとレスポンスが通知されるリスナーを登録します。Proxyリスナーを登録すると、これらのメッセージの分析や変更を拡張が実行できます。</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>listener</code> - 拡張が作成した、<code>IProxyListener</code>インタフェースを実装したオブジェクト。</dd>
@@ -1225,7 +1235,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>registerScannerListener</h4>
 <pre>void&nbsp;registerScannerListener(<a href="../burp/IScannerListener.html" title="burp 内のインタフェース">IScannerListener</a>&nbsp;listener)</pre>
-<div class="block">Scannerツールが報告した新規の問題が通知されるリスナーを登録します。Scannerリスナーを登録すると、これらのメッセージの解析やログ記録を拡張が実行できます。</div>
+<div class="block">Scannerツールが報告した新規の問題が通知されるリスナーを登録します。Scannerリスナーを登録すると、これらのメッセージの分析やログ記録を拡張が実行できます。</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>listener</code> - 拡張が作成した、<code>IScannerListener</code>インタフェースを実装したオブジェクト。</dd>
@@ -1267,7 +1277,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>registerScopeChangeListener</h4>
 <pre>void&nbsp;registerScopeChangeListener(<a href="../burp/IScopeChangeListener.html" title="burp 内のインタフェース">IScopeChangeListener</a>&nbsp;listener)</pre>
-<div class="block">Burpのスイート全体のターゲットスコープの変更が通知されるリスナーを登録します。</div>
+<div class="block">BurpのSuite全体のターゲットスコープの変更が通知されるリスナーを登録します。</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>listener</code> - 拡張が作成した、<code>IScopeChangeListener</code>インタフェースを実装したオブジェクト。</dd>
@@ -1561,7 +1571,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <h4>registerSessionHandlingAction</h4>
 <pre>void&nbsp;registerSessionHandlingAction(<a href="../burp/ISessionHandlingAction.html" title="burp 内のインタフェース">ISessionHandlingAction</a>&nbsp;action)</pre>
-<div class="block">カスタムセッションハンドリングアクションを登録します。登録された各アクションはセッションハンドリングルールのUI内で使用でき、ユーザはルールのアクションとして選択できます。ユーザはアクションを直接呼び出すことも、マクロを実行した後に呼び出すこともできます。</div>
+<div class="block">カスタムセッションハンドリングアクションを登録します。登録された各アクションはセッションハンドリングルールのUI内で使用でき、ユーザはルールのアクションとして選択できます。ユーザはアクションの直接呼び出しも、マクロを実行した後の呼び出しもできます。</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>action</code> - 拡張が作成した、<code>ISessionHandlingAction</code>インタフェースを実装したオブジェクト。</dd>
@@ -2012,6 +2022,30 @@ var activeTableTab = "activeTableTab";
 </dl>
 </li>
 </ul>
+<a name="makeHttp2Request-burp.IHttpService-java.util.List-byte:A-boolean-java.lang.String-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>makeHttp2Request</h4>
+<pre>byte[]&nbsp;makeHttp2Request(<a href="../burp/IHttpService.html" title="burp 内のインタフェース">IHttpService</a>&nbsp;httpService,
+                        java.util.List&lt;<a href="../burp/IHttpHeader.html" title="burp 内のインタフェース">IHttpHeader</a>&gt;&nbsp;headers,
+                        byte[]&nbsp;body,
+                        boolean&nbsp;forceHttp2,
+                        java.lang.String&nbsp;connectionIdentifier)</pre>
+<div class="block">HTTP/2リクエストを発行し、レスポンスを取得します。ネットワークスタックは、指定した名前の接続を使用して、このリクエストを送信します。</div>
+<dl>
+<dt><span class="paramLabel">パラメータ:</span></dt>
+<dd><code>httpService</code> - 送信されるリクエストのHTTPサービス。</dd>
+<dd><code>headers</code> - リクエストヘッダ。</dd>
+<dd><code>body</code> - リクエストボディ。</dd>
+<dd><code>forceHttp2</code> - このリクエストに対してHTTP/2を強制するかどうか。</dd>
+<dd><code>connectionIdentifier</code> - 使用したい接続の識別子。</dd>
+<dt><span class="returnLabel">戻り値:</span></dt>
+<dd>リモートサーバから取得したレスポンス全体。</dd>
+</dl>
+</li>
+</ul>
 <a name="isInScope-java.net.URL-">
 <!--   -->
 </a>
@@ -2247,7 +2281,7 @@ void&nbsp;loadConfig(java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp
 <li class="blockList">
 <h4>saveConfigAsJson</h4>
 <pre>java.lang.String&nbsp;saveConfigAsJson(java.lang.String...&nbsp;configPaths)</pre>
-<div class="block">現在のプロジェクトレベルの設定をJSON形式で保存します。これは、Burpのユーザインタフェースで保存や読み込む形式と同じです。設定の特定のセクションのみを含めるには、例えば: "project_options.connections"のように、含めたい各セクションのパスを指定してください。パスが指定されていない場合は、設定全体が保存されます。</div>
+<div class="block">現在のプロジェクトレベルの設定をJSON形式で保存します。これは、Burpのユーザインタフェースで保存や読み込む形式と同じです。設定の特定のセクションのみを含めるには、たとえば: "project_options.connections"のように、含めたい各セクションのパスを指定してください。パスが指定されていない場合は、設定全体が保存されます。</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>configPaths</code> - 含める各設定セクションへのパスを表す、文字列のリスト。</dd>
@@ -2333,7 +2367,7 @@ void&nbsp;loadConfig(java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp
 <li class="blockList">
 <h4>exitSuite</h4>
 <pre>void&nbsp;exitSuite(boolean&nbsp;promptUser)</pre>
-<div class="block">Burpプログラムをシャットダウンします。ユーザにプロンプトの表示もできます。ユーザがシャットダウンプロンプトでキャンセルした場合、メソッドが返ってきます。</div>
+<div class="block">Burpプログラムをシャットダウンします。ユーザにプロンプトも表示できます。ユーザがシャットダウンプロンプトでキャンセルした場合、メソッドが返ってきます。</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>promptUser</code> - ユーザにシャットダウンの確認をするかどうか。</dd>
@@ -2368,8 +2402,7 @@ void&nbsp;loadConfig(java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp
 <dt><span class="paramLabel">パラメータ:</span></dt>
 <dd><code>httpRequestResponse</code> - 一時ファイルに保存するリクエストとレスポンスメッセージの<code>IHttpRequestResponse</code>オブジェクト。</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
-<dd>An object that implements the
- <code>IHttpRequestResponsePersisted</code> interface.</dd>
+<dd><code>IHttpRequestResponsePersisted</code>インタフェースを実装したオブジェクト。</dd>
 </dl>
 </li>
 </ul>
@@ -2446,10 +2479,10 @@ void&nbsp;loadConfig(java.util.Map&lt;java.lang.String,java.lang.String&gt;&nbsp
 <pre>@Deprecated
 java.lang.String[][]&nbsp;getParameters(byte[]&nbsp;request)</pre>
 <div class="block"><span class="deprecatedLabel">非推奨。</span>&nbsp;<span class="deprecationComment">代わりに<code>IExtensionHelpers.analyzeRequest()</code>を使用してください。</span></div>
-<div class="block">指定されたリクエストを解析し、各リクエストパラメータの詳細を返します。</div>
+<div class="block">指定されたリクエストを分析し、各リクエストパラメータの詳細を返します。</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>request</code> - 解析するリクエスト。</dd>
+<dd><code>request</code> - 分析するリクエスト。</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>リクエスト内のパラメータの詳細を含んだ、<code>String[] { name, value, type }</code>配列。</dd>
 </dl>
@@ -2464,10 +2497,10 @@ java.lang.String[][]&nbsp;getParameters(byte[]&nbsp;request)</pre>
 <pre>@Deprecated
 java.lang.String[]&nbsp;getHeaders(byte[]&nbsp;message)</pre>
 <div class="block"><span class="deprecatedLabel">非推奨。</span>&nbsp;<span class="deprecationComment">代わりに<code>IExtensionHelpers.analyzeRequest()</code>または<code>IExtensionHelpers.analyzeResponse()</code>を使用してください。</span></div>
-<div class="block">指定されたリクエストを解析し、各HTTPヘッダの詳細を返します。</div>
+<div class="block">指定されたリクエストを分析し、各HTTPヘッダの詳細を返します。</div>
 <dl>
 <dt><span class="paramLabel">パラメータ:</span></dt>
-<dd><code>message</code> - 解析するリクエスト。</dd>
+<dd><code>message</code> - 分析するリクエスト。</dd>
 <dt><span class="returnLabel">戻り値:</span></dt>
 <dd>HTTPヘッダの配列。</dd>
 </dl>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">HTTP/2</a>
+        </li>
+        <li>
+            <a href="http2-basics-for-burp-users.html">BurpユーザのためのHTTP/2基礎</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>BurpユーザのためのHTTP/2基礎</h1>
+<p>
+    このセクションでは、HTTP/2の基礎について簡単に説明します。ここでは、Burpに関連する部分だけを取り上げます。背景となる基礎的な概念を理解すると、<a href="performing-http2-exclusive-attacks.html">HTTP/2特有の攻撃手法</a>を行うための、Burpの<a href="index.html">個性的な機能</a>を最大限に活用できます。
+</p>
+<h2 id="binary-protocol">バイナリプロトコル</h2>
+<p>
+    HTTP/1リクエストは単一の、テキストベースのエンティティです。そのためサーバは、一連の特殊な区切り文字による文字列操作を行い、必要なデータの識別や抽出をする必要があります。たとえば、各ヘッダは改行で区切られ、名前と値はコロンで区切られています。
+</p>
+<p>
+    BurpはHTTP/2のリクエストを<a href="index.html">人間が読める</a>で2通りの形式で表示していますが、実際には内部でバイナリ形式を使用しています。これは、あらかじめ決められたオフセットに基づいて、サーバがリクエストからデータを読み取れるということです。つまり、それぞれの情報の開始と終了位置が明確に定義されているので、区切り文字は必要ありません。
+</p>
+<p>
+    その結果、HTTP/2のリクエスト内で改行やコロンなどは特別な意味を持たなくなり、HTTP/1では不可能な方法で挿入できます。たとえば、HTTP/2のヘッダ名と値は、技術的には改行文字を保持できます。これは仕様上、公式には禁止されていますが、一部のサーバでこれが許容されている場合に、Inspectorを使えばできてしまいます。これは多くの<a href="performing-http2-exclusive-attacks.html">HTTP/2特有の攻撃</a>や、一部の<a href="https://portswigger.net/research/http2">最新の研究</a>の基礎になっています。
+</p>
+<h2 id="frames">フレーム</h2>
+<p>
+    ネットワーク上で、HTTP/2メッセージは1つまたは複数の独立した"フレーム"として送信されます。HEADERSフレームは、HTTP/1リクエストのリクエスト行とヘッダセクションに相当します。これに続いて、メッセージボディデータを含むいくつかのDATAフレームが続くかもしれません。
+</p>
+<p>
+    簡単にするために、BurpではHTTP/2メッセージの個々のフレームを表示していません。それらを組み合わせて、1つのリクエストやレスポンスを構成し表示します。
+</p>
+<h2 id="message-length">メッセージ長</h2>
+<p>
+    HTTP/2メッセージの各フレームの前には、何バイト読み込むかを明示的に示す長さフィールドがあります。したがって、サーバはフレーム長の合計を計算するだけで、メッセージの全体の長さを簡単に算出できます。
+</p>
+<p>
+    これは、HTTP/1で使用されている<code>Content-Length</code>や<code>Transfer-Encoding</code>の仕組みよりもはるかにシンプルで堅牢です。
+</p>
+<h2 id="header-capitalization">ヘッダの大文字化</h2>
+<p>
+    HTTP/1では、ヘッダ名は通常、大文字と小文字を区別しません。HTTP/2では、技術的にはヘッダ名に大文字が使えますが、HTTP/2の仕様に準拠していないため、サーバでリクエストが拒否される可能性があります。
+</p>
+<h2 id="pseudo-headers">疑似ヘッダ</h2>
+<p>
+    HTTP/2では、一連の"疑似ヘッダ"を使用して、メッセージに関する重要な情報を送信します。最も注目すべきは、一部の疑似ヘッダがHTTP/1のリクエスト行とステータス行を効果的に置き換えていることです。
+</p>
+<p>
+    全部で5つの疑似ヘッダがあります:
+</p>
+<ul>
+    <li>
+        <p>
+            <code>:method</code> - <code>GET</code>や<code>POST</code>など、リクエストのHTTPメソッドです。
+        </p>
+    </li>
+    <li>
+        <p>
+            <code>:path</code> - リクエストパスです。これには、クエリストリングも含まれます。
+        </p>
+    </li>
+    <li>
+        <p>
+            <code>:authority</code> - HTTP/1の<code>Host</code>ヘッダとほぼ同等です。
+        </p>
+    </li>
+    <li>
+        <p>
+            <code>:scheme</code> - リクエストのスキームで、<code>http</code>または<code>https</code>です。HTTP/1にこれに相当するものはありません。
+        </p>
+    </li>
+    <li>
+        <p>
+            <code>:status</code> - レスポンスのステータスコードです。
+        </p>
+    </li>
+</ul>
+<p>
+    仕様によると、すべての疑似ヘッダは通常のヘッダの前に送信されるべきであるとされています。Burpは、Inspectorで手動で上書きしない限り、これらの疑似ヘッダを固定の順序で送信します。
+</p>
+<p>
+    疑似ヘッダを参照する際は、通常のヘッダと区別するために、名前の前にコロンを付けるのが一般的です。これは、この情報を人間が読める形式で表示するための1つの方法に過ぎないことに注意してください。ネットワーク上では、これらの名前は単なるバイナリバイトで、実際にはコロンを含んでいません。
+</p>
+</body>
+</html>

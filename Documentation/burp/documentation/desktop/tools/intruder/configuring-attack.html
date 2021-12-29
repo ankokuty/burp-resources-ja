@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -30,110 +31,110 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
+    <label class="label-edition is-professional">Professional</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>Burp Intruder攻撃の設定</h1>
-        <p>
-            メインのIntruder UIでは、複数の攻撃をそれぞれ個別のタブで同時に設定できます。Intruderにリクエストを送信すると、それぞれ独自の番号付きタブで開かれます。各攻撃設定タブには、攻撃を設定する複数のサブタブがあります。各タブの詳細は、次のリンクを参照してください:
-        </p>
-        <ul>
-            <li>
-                <strong><a href="target.html">Target</a></strong> - 攻撃対象サーバの詳細を設定します。
-            </li>
-            <li>
-                <strong><a href="positions.html">Positions</a></strong> - ペイロードポジションを含む攻撃用のリクエストテンプレートと、攻撃タイプ(ペイロードポジションにペイロードを適用する方法)を設定します。
-            </li>
-            <li>
-                <strong><a href="payloads/index.html">Payloads</a></strong> - 攻撃中にペイロードポジションに配置される、１つまたは複数のペイロードセットを設定します。
-            </li>
-            <li>
-                <strong><a href="options.html">Options</a></strong> - この攻撃に影響を与える他の多くのオプションを設定します。
-            </li>
-        </ul>
-        <p>
-            Intruderでの新たな攻撃を簡単に作成するには、他のBurpツール(<a href="../proxy/history.html">Proxy履歴</a> やTarget<a href="../target/site-map/index.html">サイトマップ</a>など)で関連するベースリクエストを選択し、コンテキストメニューのオプションで"Intruderに送信"を使います。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-config-send-940.png" alt="Intruderに送信" class="center-block">
-        </div>
-        <p>
-            新しい攻撃タブが作成され、自動的に<a href="target.html">Target</a>と<a href="positions.html">ポジション</a>タブに、ベースリクエストに関連する詳細が設定されます。必要に応じて自動設定されたペイロードポジション、<a href="payloads/index.html">ペイロード</a>サブテーブル、その他の<a href="payloads/index.html">オプション</a>を変更できます。
-        </p>
-        <p>
-            ペイロードを配置するであろう箇所をBurpが自動的に推測した結果が表示されているはずです。デフォルトで、すべてのリクエストパラメータとcookieの値にペイロードが配置されます。ペイロードマーカの各ペアは１つのペイロードポジションを定義し、ベースリクエストのどこかのテキストを囲んでいる場合、ペイロードポジションが使われる際にそこがペイロードのコンテンツに置き換えられます。詳細については、<a href="../intruder/positions.html">ペイロードポジション</a>のヘルプを参照してください。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-config-positions-940.png" alt="ペイロードポジ書院を追加" class="center-block">
-        </div>
-        <p>
-            リクエストエディタの横にあるボタンでペイロードマーカの"追加"や"削除"ができます。リクエスト内の新しい場所にペイロードマーカを追加したり、他のマーカを削除してみて、効果を確認してください。ペイロードマーカの動作を理解したら、"自動§"ボタンをクリックしてBurpのデフォルトのペイロードポジションに戻してください。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-config-positions-add-940.png" alt="Intruderボタン" class="center-block">
-        </div>
-        <p>
-            次に、"ペイロード"タブに移動します。定義されたペイロードポジションに配置されるペイロードを定義します。デフォルト設定(ペイロードに"単純リスト"を使う)のままにし、リストにいくつかテスト文字列を追加します。"新規アイテムを入力"ボックスに独自の文字列を入力し、"追加"ボタンをクリックします。あるいは、"Add from list"プルダウンメニューを使い、組み込みペイロード文字列から"Fuzzing - quick"の選択します [Pro version]
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-config-payloads-940.png" alt="ペイロードオプション" class="center-block">
-        </div>
-        <p>
-            Burp Intruderには攻撃設定を管理する多くの機能があります。これらの機能はIntruderメニューから使用できます。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-config-menu-940.png" alt="Intruderメニュー" class="center-block">
-        </div>
-        <p>
-            現在のタブの攻撃設定を保存して、後でそれを再読み込みできます。読み込みや保存の際に、ペイロードポジション設定を含めるか除外するか選択できます。
-        </p>
-        <p>
-            ペイロードポジションを含んだ設定は、特定の攻撃についての完全な設定を保存できます。ペイロードを除外した設定は、他のベースリクエストテンプレートやペイロードポジションで再利用できる、汎用的な攻撃設定を保存できます。 - 例えば、リクエストの特定タイプをファジングする好みの設定などです。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-config-save-940.png" alt="攻撃設定を保存" class="center-block">
-        </div>
-        <p>
-            2つの既存のタブ間や新しいタブに、攻撃設定をコピーできます。上記同様、"ペイロードポジション"を含めるか除外するか選択できます。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-config-copy-940.png" alt="攻撃設定をコピー" class="center-block">
-        </div>
-        <p>
-            新規攻撃タブを開いた際に、Intruderがどのように攻撃設定を扱うか制御できます。デフォルトの攻撃設定を使う、または最初もしくは最後に開いたタブからコピーするか選択できます。
-        </p>
-        <p>
-            後者のオプションを使用すると、一般的な攻撃設定(例えばファジング用)を作成し、Intruderに送信した各新規リクエストに自動的に適用できます。
-        </p>
-        <div class="section-small">
-            <img src="../../images/intruder-config-behaviour-940.png" alt="新規タブの動作" class="center-block">
-        </div>
-        <p>
-            攻撃タブ自身の管理も簡単です。以下が可能です:
-        </p>
-        <ul>
-            <li>
-                タブヘッダをダブルクリックして名前変更
-            </li>
-            <li>
-                ドラッグして並び替え
-            </li>
-            <li>
-                一番右の"..."タブをクリックして新しいタブを開く
-            </li>
-            <li>
-                タブヘッダの X ボタンをクリックしてタブを閉じる
-            </li>
-        </ul>
-        <h2 id="launching-an-attack">攻撃の開始</h2>
-        <p>
-            攻撃がすべて設定できたら、Intruderメニューから"攻撃開始"を選択して攻撃を起動できます。
-        </p>
-        <p>
-            各攻撃は新規ウィンドウで実行され、そこには<a href="attack-results.html">結果</a>の詳細と、(<a href="options.html#attack-results-options">設定</a>されていれば)全リクエストとレスポンスがあります。<a href="attack-results.html#results-table">結果の解析</a>や、後で深掘りするアイテムの特定を補助するさまざまな機能があります。
-        </p>
-    </div>
-</section>
+<h1>Burp Intruder攻撃の設定</h1>
+<p>
+    メインのIntruder UIでは、複数の攻撃をそれぞれ個別のタブで同時に設定できます。Intruderにリクエストを送信すると、それぞれ独自の番号付きタブで開かれます。各攻撃設定タブには、攻撃を設定する複数のサブタブがあります。各タブの詳細は、次のリンクを参照してください:
+</p>
+<ul>
+    <li>
+        <strong><a href="positions.html">ポジション</a></strong> - 攻撃対象サーバの詳細、ペイロードポジションを含む攻撃用のリクエストテンプレート、攻撃タイプ(ペイロードポジションにペイロードを適用する方法)を設定します。
+    </li>
+    <li>
+        <strong><a href="payloads/index.html">ペイロード</a></strong> - 攻撃中にペイロードポジションに配置される、1つまたは複数のペイロードセットを設定します。
+    </li>
+    <li>
+        <strong><a href="intruder-resource-pool.html">リソースプール</a></strong> - Intruderのリソースを割り当てます。スロットリングを含む設定を制御できます。
+    </li>
+    <li>
+        <strong><a href="options.html">オプション</a></strong> - この攻撃に影響を与える他の多くのオプションを設定します。
+    </li>
+</ul>
+<p>
+    Intruderでの新たな攻撃を簡単に作成するには、対象のベースリクエストを他のBurpツール(<a href="../proxy/history.html">Proxy履歴</a> やTarget<a href="../target/site-map/index.html">サイトマップ</a>など)で選択し、コンテキストメニューのオプションで<strong>Intruderに送信</strong>を使います。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-config-send-940.png" alt="Intruderに送信" class="center-block">
+</div>
+<p>
+    新しい攻撃タブが作成され、<a href="positions.html">ポジション</a>タブにベースリクエストに関連する詳細が自動的に設定されます。必要に応じて自動設定されたペイロードポジション、<a href="payloads/index.html">ペイロード</a>サブテーブル、その他の<a href="options.html">オプション</a>を変更できます。
+</p>
+<p>
+    ペイロードを配置するであろう箇所をBurpが自動的に推測した結果が表示されているはずです。デフォルトで、すべてのリクエストパラメータとcookieの値にペイロードが配置されます。ペイロードマーカの各ペアは1つのペイロードポジションを定義していて、ベースリクエストのどこかのテキストを囲んでいる場合、ペイロードポジションが使われる際にそこがペイロードのコンテンツに置き換えられます。詳細は、<a href="../intruder/positions.html">ペイロードポジション</a>のヘルプを参照してください。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-config-positions-940.png" alt="ペイロードポジ書院を追加" class="center-block">
+</div>
+<p>
+    リクエストエディタの横にあるボタンでペイロードマーカを<strong>追加</strong>や<strong>削除</strong>できます。リクエスト内の新しい場所にペイロードマーカを追加したり他のマーカを削除して、効果を確認してみてください。ペイロードマーカの動作を理解したら、<strong>自動§</strong>ボタンをクリックしてBurpのデフォルトのペイロードポジションに戻してください。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-config-positions-add-940.png" alt="Intruderボタン" class="center-block">
+</div>
+<p>
+    次に、<strong>ペイロード</strong>タブに移動します。定義されたペイロードポジションに配置されるペイロードを定義します。デフォルト設定(ペイロードに<strong>単純リスト</strong>を使う)のままにし、リストにいくつかテスト文字列を追加します。<strong>新規アイテムを入力</strong>ボックスに独自の文字列を入力し、<strong>追加</strong>ボタンをクリックします。
+</p>
+<p>
+    <label class="label-edition is-professional">Professional</label>
+    あるいは、<strong>リストから追加</strong>プルダウンメニューを使い、組み込みペイロード文字列から<strong>ファジング - 簡易</strong>を選択します。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-config-payloads-940.png" alt="ペイロードオプション" class="center-block">
+</div>
+<p>
+    Burp Intruderには攻撃設定を管理する多くの機能があります。これらの機能はIntruderメニューから使用できます。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-config-menu-940.png" alt="Intruderメニュー" class="center-block">
+</div>
+<p>
+    現在のタブの攻撃設定を保存して、後でそれを再読み込めます。読み込みや保存の際に、<strong>ペイロードポジション</strong>設定を含めるか除外するか選択できます。
+</p>
+<p>
+    ペイロードポジションを含んだ設定は、特定の攻撃についての完全な設定を保存できます。ペイロードを除外した設定は、他のベースリクエストテンプレートや<strong>ペイロードポジション</strong>で再利用できる、汎用的な攻撃設定を保存できます - たとえば、リクエストの特定タイプをファジングする好みの設定などです。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-config-save-940.png" alt="攻撃設定を保存" class="center-block">
+</div>
+<p>
+    既存の2つのタブ間で、または新しいタブに、攻撃設定をコピーできます。上記同様、<strong>ペイロードポジション</strong>を含めるか除外するか選択できます。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-config-copy-940.png" alt="攻撃設定をコピー" class="center-block">
+</div>
+<p>
+    新規攻撃タブを開いた際に、Intruderがどのように攻撃設定を扱うか制御できます。デフォルトの攻撃設定を使う、または最初もしくは最後に開いたタブからコピーするか選択できます。
+</p>
+<p>
+    後者のオプションを使用すると、一般的な攻撃設定(たとえばファジング用)を作成し、Intruderに送信した各新規リクエストに自動的に適用できます。
+</p>
+<div class="section-small">
+    <img src="../../images/intruder-config-behaviour-940.png" alt="新規タブの動作" class="center-block">
+</div>
+<p>
+    攻撃タブ自身の管理も簡単です。以下が可能です:
+</p>
+<ul>
+    <li>
+        タブヘッダをダブルクリックして名前変更
+    </li>
+    <li>
+        ドラッグして並び替え
+    </li>
+    <li>
+        一番右の"<strong>...</strong>"タブをクリックして新しいタブを開く
+    </li>
+    <li>
+        タブヘッダの X ボタンをクリックしてタブを閉じる
+    </li>
+</ul>
+<h2 id="launching-an-attack">攻撃の開始</h2>
+<p>
+    攻撃がすべて設定できたら、Intruderメニューから<strong>攻撃開始</strong>を選択して攻撃を起動できます。
+</p>
+<p>
+    各攻撃は新規ウィンドウで実行され、そこには<a href="attack-results.html">結果</a>の詳細と、(<a href="options.html#attack-results-options">設定</a>されていれば)全リクエストとレスポンスがあります。<a href="attack-results.html#results-table">結果の分析</a>や、後で深掘りするアイテムの特定を補助するさまざまな機能があります。
+</p>
 </body>
 </html>

@@ -79,7 +79,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="burp/IInterceptedProxyMessage.html#ACTION_DONT_INTERCEPT">ACTION_DONT_INTERCEPT</a></span> - インタフェース burp.<a href="burp/IInterceptedProxyMessage.html" title="burp 内のインタフェース">IInterceptedProxyMessage</a> の static 変数</dt>
 <dd>
-<div class="block">Burp Proxyが、ユーザに表示することなく、メッセージをリモートサーバに転送します。</div>
+<div class="block">Burp Proxyが、ユーザに表示せずに、メッセージをリモートサーバに転送します。</div>
 </dd>
 <dt><span class="memberNameLink"><a href="burp/IInterceptedProxyMessage.html#ACTION_DONT_INTERCEPT_AND_REHOOK">ACTION_DONT_INTERCEPT_AND_REHOOK</a></span> - インタフェース burp.<a href="burp/IInterceptedProxyMessage.html" title="burp 内のインタフェース">IInterceptedProxyMessage</a> の static 変数</dt>
 <dd>
@@ -131,11 +131,11 @@
 </dd>
 <dt><span class="memberNameLink"><a href="burp/IExtensionHelpers.html#analyzeResponseKeywords-java.util.List-byte:A...-">analyzeResponseKeywords(List&lt;String&gt;, byte[]...)</a></span> - インタフェース burp.<a href="burp/IExtensionHelpers.html" title="burp 内のインタフェース">IExtensionHelpers</a> のメソッド</dt>
 <dd>
-<div class="block">1つ以上のレスポンスを解析して指定したキーワードの出現回数を調べ、各キーワードの出現回数の詳細を取得できる<code>IResponseKeywords</code>オブジェクトを返します。</div>
+<div class="block">1つ以上のレスポンスを分析して指定したキーワードの出現回数を調べ、各キーワードの出現回数の詳細を取得できる<code>IResponseKeywords</code>オブジェクトを返します。</div>
 </dd>
 <dt><span class="memberNameLink"><a href="burp/IExtensionHelpers.html#analyzeResponseVariations-byte:A...-">analyzeResponseVariations(byte[]...)</a></span> - インタフェース burp.<a href="burp/IExtensionHelpers.html" title="burp 内のインタフェース">IExtensionHelpers</a> のメソッド</dt>
 <dd>
-<div class="block">1つ以上のレスポンスを解析して属性の種類数を調べ、その種類の出現回数を取得できる<code>IResponseVariations</code>オブジェクトを返します。</div>
+<div class="block">1つ以上のレスポンスを分析して属性の種類数を調べ、その種類の出現回数を取得できる<code>IResponseVariations</code>オブジェクトを返します。</div>
 </dd>
 <dt><span class="memberNameLink"><a href="burp/IBurpExtenderCallbacks.html#applyMarkers-burp.IHttpRequestResponse-java.util.List-java.util.List-">applyMarkers(IHttpRequestResponse, List&lt;int[]&gt;, List&lt;int[]&gt;)</a></span> - インタフェース burp.<a href="burp/IBurpExtenderCallbacks.html" title="burp 内のインタフェース">IBurpExtenderCallbacks</a> のメソッド</dt>
 <dd>
@@ -357,7 +357,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="burp/IBurpExtenderCallbacks.html#exitSuite-boolean-">exitSuite(boolean)</a></span> - インタフェース burp.<a href="burp/IBurpExtenderCallbacks.html" title="burp 内のインタフェース">IBurpExtenderCallbacks</a> のメソッド</dt>
 <dd>
-<div class="block">Burpプログラムをシャットダウンします。ユーザにプロンプトの表示もできます。</div>
+<div class="block">Burpプログラムをシャットダウンします。ユーザにプロンプトも表示できます。</div>
 </dd>
 <dt><span class="memberNameLink"><a href="burp/IExtensionStateListener.html#extensionUnloaded--">extensionUnloaded()</a></span> - インタフェース burp.<a href="burp/IExtensionStateListener.html" title="burp 内のインタフェース">IExtensionStateListener</a> のメソッド</dt>
 <dd>
@@ -937,11 +937,11 @@
 </dd>
 <dt><a href="burp/IBurpCollaboratorInteraction.html" title="burp 内のインタフェース"><span class="typeNameLink">IBurpCollaboratorInteraction</span></a> - <a href="burp/package-summary.html">burp</a> のインタフェース</dt>
 <dd>
-<div class="block">このインターフェイスは、Burp Collaboratorサーバで発生したネットワーク通信です。</div>
+<div class="block">このインタフェースは、Burp Collaboratorサーバで発生したネットワーク通信です。</div>
 </dd>
 <dt><a href="burp/IBurpExtender.html" title="burp 内のインタフェース"><span class="typeNameLink">IBurpExtender</span></a> - <a href="burp/package-summary.html">burp</a> のインタフェース</dt>
 <dd>
-<div class="block">すべての拡張は、このインターフェイスを実装する必要があります。</div>
+<div class="block">すべての拡張は、このインタフェースを実装する必要があります。</div>
 </dd>
 <dt><a href="burp/IBurpExtenderCallbacks.html" title="burp 内のインタフェース"><span class="typeNameLink">IBurpExtenderCallbacks</span></a> - <a href="burp/package-summary.html">burp</a> のインタフェース</dt>
 <dd>
@@ -961,14 +961,16 @@
 </dd>
 <dt><a href="burp/IExtensionHelpers.html" title="burp 内のインタフェース"><span class="typeNameLink">IExtensionHelpers</span></a> - <a href="burp/package-summary.html">burp</a> のインタフェース</dt>
 <dd>
-<div class="block">Buurp拡張で起こるさまざまな一般的なタスクの支援に便利な、数々のヘルパーメソッドが含まれています。</div>
+<div class="block">Buurp拡張で起こるさまざまな一般的なタスクの支援に便利な、数々のヘルパーメソッドが含あります。</div>
 </dd>
 <dt><a href="burp/IExtensionStateListener.html" title="burp 内のインタフェース"><span class="typeNameLink">IExtensionStateListener</span></a> - <a href="burp/package-summary.html">burp</a> のインタフェース</dt>
 <dd>
 <div class="block">拡張はこのインタフェースを実装して、<code>IBurpExtenderCallbacks.registerExtensionStateListener()</code>を呼び出すと、拡張状態リスナーに登録できます。</div>
 </dd>
 <dt><a href="burp/IHttpHeader.html" title="burp 内のインタフェース"><span class="typeNameLink">IHttpHeader</span></a> - <a href="burp/package-summary.html">burp</a> のインタフェース</dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">HTTP/2ヘッダに関する詳細を保持するために使用されます。</div>
+</dd>
 <dt><a href="burp/IHttpListener.html" title="burp 内のインタフェース"><span class="typeNameLink">IHttpListener</span></a> - <a href="burp/package-summary.html">burp</a> のインタフェース</dt>
 <dd>
 <div class="block">拡張はこのインタフェースを実装して、<code>IBurpExtenderCallbacks.registerHttpListener()</code>を呼び出すと、HTTPリスナーに登録できます。</div>
@@ -991,7 +993,7 @@
 </dd>
 <dt><a href="burp/IInterceptedProxyMessage.html" title="burp 内のインタフェース"><span class="typeNameLink">IInterceptedProxyMessage</span></a> - <a href="burp/package-summary.html">burp</a> のインタフェース</dt>
 <dd>
-<div class="block">このインターフェイスは、Burp ProxyがインターセプトされたHTTPメッセージを表すために使用されます。</div>
+<div class="block">このインタフェースは、Burp ProxyがインターセプトされたHTTPメッセージを表すために使用されます。</div>
 </dd>
 <dt><a href="burp/IIntruderAttack.html" title="burp 内のインタフェース"><span class="typeNameLink">IIntruderAttack</span></a> - <a href="burp/package-summary.html">burp</a> のインタフェース</dt>
 <dd>
@@ -1045,7 +1047,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="burp/IScannerInsertionPoint.html#INS_EXTENSION_PROVIDED">INS_EXTENSION_PROVIDED</a></span> - インタフェース burp.<a href="burp/IScannerInsertionPoint.html" title="burp 内のインタフェース">IScannerInsertionPoint</a> の static 変数</dt>
 <dd>
-<div class="block">ペイロードの挿入ポイントを<code>IScannerInsertionPointProvider</code>に登録された拡張が提供することを示します。</div>
+<div class="block"><code>IScannerInsertionPointProvider</code>に登録された拡張にペイロードの挿入ポイントを示すために使用されます。</div>
 </dd>
 <dt><span class="memberNameLink"><a href="burp/IScannerInsertionPoint.html#INS_HEADER">INS_HEADER</a></span> - インタフェース burp.<a href="burp/IScannerInsertionPoint.html" title="burp 内のインタフェース">IScannerInsertionPoint</a> の static 変数</dt>
 <dd>
@@ -1241,6 +1243,10 @@
 <dd>
 <div class="block">HTTP/2リクエストを発行し、レスポンスを取得します。</div>
 </dd>
+<dt><span class="memberNameLink"><a href="burp/IBurpExtenderCallbacks.html#makeHttp2Request-burp.IHttpService-java.util.List-byte:A-boolean-java.lang.String-">makeHttp2Request(IHttpService, List&lt;IHttpHeader&gt;, byte[], boolean, String)</a></span> - インタフェース burp.<a href="burp/IBurpExtenderCallbacks.html" title="burp 内のインタフェース">IBurpExtenderCallbacks</a> のメソッド</dt>
+<dd>
+<div class="block">HTTP/2リクエストを発行し、レスポンスを取得します。</div>
+</dd>
 <dt><span class="memberNameLink"><a href="burp/IBurpExtenderCallbacks.html#makeHttpRequest-burp.IHttpService-byte:A-">makeHttpRequest(IHttpService, byte[])</a></span> - インタフェース burp.<a href="burp/IBurpExtenderCallbacks.html" title="burp 内のインタフェース">IBurpExtenderCallbacks</a> のメソッド</dt>
 <dd>
 <div class="block">HTTPリクエストを発行し、レスポンスを取得します。</div>
@@ -1324,7 +1330,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="burp/IHttpListener.html#processHttpMessage-int-boolean-burp.IHttpRequestResponse-">processHttpMessage(int, boolean, IHttpRequestResponse)</a></span> - インタフェース burp.<a href="burp/IHttpListener.html" title="burp 内のインタフェース">IHttpListener</a> のメソッド</dt>
 <dd>
-<div class="block">HTTPリクエストが発行されようとしているとき、およびHTTPレスポンスを受信したときに呼び出されます。</div>
+<div class="block">HTTPリクエストが発行されようとしているときや、HTTPレスポンスを受信したときに呼び出されます。</div>
 </dd>
 <dt><span class="memberNameLink"><a href="burp/IIntruderPayloadProcessor.html#processPayload-byte:A-byte:A-byte:A-">processPayload(byte[], byte[], byte[])</a></span> - インタフェース burp.<a href="burp/IIntruderPayloadProcessor.html" title="burp 内のインタフェース">IIntruderPayloadProcessor</a> のメソッド</dt>
 <dd>
@@ -1354,7 +1360,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="burp/IBurpExtenderCallbacks.html#registerHttpListener-burp.IHttpListener-">registerHttpListener(IHttpListener)</a></span> - インタフェース burp.<a href="burp/IBurpExtenderCallbacks.html" title="burp 内のインタフェース">IBurpExtenderCallbacks</a> のメソッド</dt>
 <dd>
-<div class="block">任意のBurpツールが作成したリクエスト及びレスポンスが通知されるリスナーを登録します。</div>
+<div class="block">任意のBurpツールが作成したリクエストやレスポンスが通知されるリスナーを登録します。</div>
 </dd>
 <dt><span class="memberNameLink"><a href="burp/IBurpExtenderCallbacks.html#registerIntruderPayloadGeneratorFactory-burp.IIntruderPayloadGeneratorFactory-">registerIntruderPayloadGeneratorFactory(IIntruderPayloadGeneratorFactory)</a></span> - インタフェース burp.<a href="burp/IBurpExtenderCallbacks.html" title="burp 内のインタフェース">IBurpExtenderCallbacks</a> のメソッド</dt>
 <dd>
@@ -1392,7 +1398,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="burp/IBurpExtenderCallbacks.html#registerScopeChangeListener-burp.IScopeChangeListener-">registerScopeChangeListener(IScopeChangeListener)</a></span> - インタフェース burp.<a href="burp/IBurpExtenderCallbacks.html" title="burp 内のインタフェース">IBurpExtenderCallbacks</a> のメソッド</dt>
 <dd>
-<div class="block">Burpのスイート全体のターゲットスコープの変更が通知されるリスナーを登録します。</div>
+<div class="block">BurpのSuite全体のターゲットスコープの変更が通知されるリスナーを登録します。</div>
 </dd>
 <dt><span class="memberNameLink"><a href="burp/IBurpExtenderCallbacks.html#registerSessionHandlingAction-burp.ISessionHandlingAction-">registerSessionHandlingAction(ISessionHandlingAction)</a></span> - インタフェース burp.<a href="burp/IBurpExtenderCallbacks.html" title="burp 内のインタフェース">IBurpExtenderCallbacks</a> のメソッド</dt>
 <dd>

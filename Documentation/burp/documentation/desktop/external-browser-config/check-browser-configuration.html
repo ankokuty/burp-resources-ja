@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">外部ブラウザの設定</a>
+        </li>
+        <li>
+            <a href="check-browser-configuration.html">ブラウザの設定の確認</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>ブラウザのプロキシ設定の確認</h1>
+<ol>
+    <li>
+        Burpで、<strong>Proxy &gt; インターセプト</strong>タブに移動します。<strong>インターセプト無効</strong>ボタンをクリックすると、<strong>インターセプト有効</strong>に変わります。
+    </li>
+    <li>
+        <a href="check-listener.html">Proxyリスナーがアクティブか確認</a>し、選択したブラウザが設定済みか確認します。
+    </li>
+    <li>
+        Burpを実行している状態で、設定したブラウザを開き、ブラウザでどこかHTTPのURL(まだHTTPSは使わないでください)にアクセスします。ブラウザがリクエストの完了を待っている状態、つまりページを読み込もうとしてスタックしているように見えるはずです。これは、ブラウザが送信しようとしているHTTPリクエストをBurpがインターセプトしたためです。
+    </li>
+    <li>
+        Burpで、<strong>Proxy &gt; インターセプト</strong>タブに移動します。<strong>インターセプト</strong>タブでは、インターセプトされたHTTPリクエストがメインパネルに表示されます。
+    </li>
+    <li>
+        Proxy &gt; インターセプトタブで、ボタンが<strong>インターセプト有効</strong>になっているでしょう。クリックすると<strong>インターセプト無効</strong>に変わり、Burpからリクエストが放出されます。
+    </li>
+    <li>
+        ブラウザに戻ります。これで、通常のブラウジング時と同じように、要求されたページが読み込まれ表示されます。
+    </li>
+</ol>
+<p>
+    上記のすべてができた場合、Burp Suiteで外部ブラウザを使用するための必須設定が完了しています。ただし現時点では、HTTPだけを使用するWebアプリケーションのみをテストできます。外部ブラウザを使用してHTTPS URLにアクセスしようとすると、接続がブロックされるでしょう。したがって、HTTPSを使用するアプリケーションをテストできるように、<a href="certificate/index.html">BurpのCA証明書をインストールする</a>最後の追加手順を強く推奨します。
+</p>
+</body>
+</html>

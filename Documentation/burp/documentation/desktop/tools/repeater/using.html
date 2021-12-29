@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -30,115 +31,114 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
-    <label class="label-edition is-community">コミュニティ</label>
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>Burp Repeaterの使い方</h1>
-        <p>
-            Burp Repeaterは、HTTPメッセージやWebSocketメッセージを手動で操作や再発行をし、アプリケーションのレスポンスを分析するための、シンプルなツールです。入力ベースの脆弱性をテストするためにパラメータ値を書き換える、ロジックフローをテストするために特定の順序でリクエストを発行する、Burp Scannerが報告した<a href="../target/site-map/index.html#issues-view">Burp Scanner issue</a>を検証するためにリクエストを再送するなど、さまざまな目的にRepeaterが利用できます。
-        </p>
-        <p>
-            RepeaterのUIのそれぞれ個別のタブで、複数の異なるメッセージを同時に操作できます。Repeaterにメッセージを送信すると、それぞれが個別の番号付きタブで開かれます。タブヘッダをダブルクリックすると名前変更ができます。
-        </p>
-        <h2 id="using-burp-repeater-with-http-messages">Burp Repeaterの使い方(HTTPメッセージ)</h2>
-        <p>
-            Burp RepeaterでHTTPメッセージを使用するには、Burpの任意の場所でHTTPメッセージを選択し、コンテキストメニューから"Repeaterに送信"を選択します。Repeaterに新しいリクエストタブが作成され、対象の詳細や関連する詳細をリクエストメッセージエディタに自動的に設定します。または、手動で新規のRepeaterタブを開き、"HTTP"オプションを選択します。
-        </p>
-        <div class="container">
-            <div class="youtube-wrapper">
-                <iframe src="https://www.youtube.com/embed/_Wifm2g9ugg?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
-            </div>
-        </div>
-        <p>
-            HTTPメッセージでは、各Repeaterタブに次のアイテムがあります:
-        </p>
-        <ul>
-            <li>
-                リクエストの発行とリクエストの履歴をナビゲートするコントロール。
-            </li>
-            <li>
-                リクエストを送信する対象サーバが表示されます - 変更するには対象の詳細をクリックします。
-            </li>
-            <li>
-                発行するリクエストを含む<a href="../../functions/message-editor/index.html">HTTPメッセージエディタ</a>。何度も繰り返してリクエストを編集し再発行できます。
-            </li>
-            <li>
-                最後に発行されたリクエストから受信したレスポンスを表示する<a href="../../functions/message-editor/index.html">HTTPメッセージエディタ</a>
-            </li>
-        </ul>
-        <h3 id="sending-http-requests">HTTPリクエスト送信</h3>
-        <p>
-            リクエストを送信する準備ができたら、"送信"ボタンをクリックしサーバに送信します。レスポンスを受信すると、レスポンス長とタイマー(ミリ秒)とともにレスポンスが表示されます。リクエストとレスポンスのメッセージを分析しさらにアクションを実行するために、通常<a href="../../functions/message-editor/index.html">HTTPメッセージエディタ</a>の機能が使えます。
-        </p>
-        <h3 id="http-request-history">HTTPリクエスト履歴</h3>
-        <p>
-            Repeaterの各タブは、その内で作られたリクエストのタブ固有のヒストリーを保持します。"&lt;"と"&gt;"ボタンをクリックして履歴を後方・前方に移動し、各リクエストとレスポンスを表示できます。ドロップダウンボタンを利用すると、最近の履歴アイテムのリストが表示され、それらに素早く移動できます。履歴の任意の時点で、現在表示されているリクエストを編集して再発行できます。
-        </p>
-        <h2 id="using-burp-repeater-with-websocket-messages">Burp Repeaterの使い方(WebSocketメッセージ)</h2>
-        <p>
-            Burp RepeaterでWebSocketメッセージを使用するには、<a href="../proxy/history.html">Proxy履歴</a>でWebSocketメッセージを選択し、コンテキストメニューから"Repeaterに送信"を選択します。または、新規のRepeaterタブを開き、"WebSockets"オプションを選択します。
-        </p>
-        <div class="container">
-            <div class="youtube-wrapper">
-                <iframe src="https://www.youtube.com/embed/KbaOay1yOH0?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
-            </div>
-        </div>
-        <p>
-            WebSocketメッセージでは、各Repeaterのタブに次のアイテムがあります:
-        </p>
-        <ul>
-            <li>
-                送信されるWebSOcketメッセージを含むメッセージエディタ。何度も繰り返してリメッセージを編集し再発行できます。
-            </li>
-            <li>
-                メッセージを送信するWebSocket接続。
-            </li>
-            <li>
-                送受信したすべてのメッセージを表示する履歴テーブルと、現在選択されているメッセージを表示するメッセージビューア。
-            </li>
-        </ul>
-        <h3>WebSocketメッセージの送信</h3>
-        <p>
-            送信するメッセージの編集や、サーバあるいはクライアントに対して送信するか選択ができます。クライアントにメッセージを送信するオプションは、Burp Proxy経由で接続が開いている場合のみ有効です。
-        </p>
-        <p>
-            メッセージを送信する準備ができたら、"送信"ボタンをクリックしメッセージを送信します。
-        </p>
-        <p>
-            オプションで、メッセージを送信した後に受信した次のメッセージを、履歴テーブルで自動的に選択できます。
-        </p>
-        <h3>WebSocketメッセージ履歴</h3>
-        <p>
-            履歴テーブルには、送受信したすべてのメッセージが表示されます。Burp Repeaterで手動で作成されたメッセージは、"Repeater"列で区別できます。メッセージを選択すると下部のペインに表示ができます。
-        </p>
-        <p>
-            履歴からメッセージを再送信したい場合は、コンテキストメニューの"編集して再送信"オプションを選択します。これにより左側のメッセージエディタの選択したメッセージが表示され、必要に応じてメッセージを変更し、送信できます。
-        </p>
-        <h2 id="repeater-options">Repeaterオプション</h2>
-        <p>
-            Content-Lengthヘッダの自動更新、圧縮コンテンツの展開、リダイレクトの遷移など、Burp Repeaterにはさまざまな<a href="options.html">オプション</a>があります。Repeaterメニュー経由でオプションにアクセスできます。
-        </p>
-        <h2 id="managing-request-tabs">Requestタブの管理</h2>
-        <p>
-            Repeaterのリクエストタブは簡単に管理できます。以下が可能です:
-        </p>
-        <ul>
-            <li>
-                タブヘッダをダブルクリックして名前変更
-            </li>
-            <li>
-                ドラッグして並び替え
-            </li>
-            <li>
-                一番右の"..."タブをクリックして新しいタブを開く
-            </li>
-            <li>
-                タブヘッダの X ボタンをクリックしてタブを閉じる
-            </li>
-        </ul>
+<h1>Burp Repeaterの使い方</h1>
+<p>
+    Burp Repeaterは、HTTPメッセージやWebSocketメッセージを手動で操作や再発行をし、アプリケーションのレスポンスを分析するための、シンプルなツールです。入力ベースの脆弱性をテストするためにパラメータ値を書き換える、ロジックフローをテストするために特定の順序でリクエストを発行する、Burp Scannerが報告した<a href="../target/site-map/index.html#issues-view">Burp Scanner issue</a>を検証するためにリクエストを再送するなど、さまざまな目的にRepeaterが利用できます。
+</p>
+<p>
+    RepeaterのUIのそれぞれ個別のタブで、複数の異なるメッセージを同時に操作できます。Repeaterにメッセージを送信すると、それぞれが個別の番号付きタブで開かれます。タブヘッダをダブルクリックすると名前を変更できます。
+</p>
+<h2 id="using-burp-repeater-with-http-messages">Burp Repeaterの使い方(HTTPメッセージ)</h2>
+<p>
+    Burp RepeaterでHTTPメッセージを使用するには、Burpの任意の場所でHTTPメッセージを選択し、コンテキストメニューから"Repeaterに送信"を選択します。Repeaterに新しいリクエストタブが作成され、対象の詳細や関連する詳細をリクエストメッセージエディタに自動的に設定します。または、手動で新規のRepeaterタブを開き、"HTTP"オプションを選択します。
+</p>
+<div class="container">
+    <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/_Wifm2g9ugg?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
     </div>
-</section>
+</div>
+<p>
+    HTTPメッセージでは、各Repeaterタブに次のアイテムがあります:
+</p>
+<ul>
+    <li>
+        リクエストの発行とリクエストの履歴をナビゲートするコントロール。
+    </li>
+    <li>
+        リクエストを送信する対象サーバが表示されます - 変更するには対象の詳細をクリックします。
+    </li>
+    <li>
+        発行するリクエストを含む<a href="../../functions/message-editor/index.html">HTTPメッセージエディタ</a>。何度も繰り返してリクエストを編集し再発行できます。
+    </li>
+    <li>
+        最後に発行されたリクエストから受信したレスポンスを表示する<a href="../../functions/message-editor/index.html">HTTPメッセージエディタ</a>。
+    </li>
+</ul>
+<h3 id="sending-http-requests">HTTPリクエスト送信</h3>
+<p>
+    リクエストを送信する準備ができたら、"送信"ボタンをクリックしサーバに送信します。レスポンスを受信すると、レスポンス長とタイマー(ミリ秒)とともにレスポンスが表示されます。リクエストとレスポンスのメッセージを分析しさらにアクションを実行するために、通常の<a href="../../functions/message-editor/index.html">HTTPメッセージエディタ</a>の機能が使えます。
+</p>
+<p>
+    <a href="../../http2/index.html#changing-the-protocol-for-a-request">Burpがメッセージの送信に使用するプロトコルを選択</a>もできます。
+</p>
+<h3 id="http-request-history">HTTPリクエスト履歴</h3>
+<p>
+    Repeaterの各タブは、その内で作られたリクエストのタブ固有のヒストリーを保持します。"&lt;"と"&gt;"ボタンをクリックして履歴を後方、前方に移動し、各リクエストとレスポンスを表示できます。ドロップダウンボタンを利用すると、最近の履歴アイテムのリストが表示され、それらに素早く移動できます。履歴の任意の時点で、現在表示されているリクエストを編集して再発行できます。
+</p>
+<h2 id="using-burp-repeater-with-websocket-messages">Burp Repeaterの使い方(WebSocketメッセージ)</h2>
+<p>
+    Burp RepeaterでWebSocketメッセージを使用するには、<a href="../proxy/history.html">Proxy履歴</a>でWebSocketメッセージを選択し、コンテキストメニューから"Repeaterに送信"を選択します。または、新規のRepeaterタブを開き、"WebSocket"オプションを選択します。
+</p>
+<div class="container">
+    <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/KbaOay1yOH0?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
+    </div>
+</div>
+<p>
+    WebSocketメッセージでは、各Repeaterのタブに次のアイテムがあります:
+</p>
+<ul>
+    <li>
+        送信されるWebSocketメッセージを含むメッセージエディタ。何度も繰り返してリメッセージを編集し再発行できます。
+    </li>
+    <li>
+        メッセージを送信するWebSocket接続。
+    </li>
+    <li>
+        送受信したすべてのメッセージを表示する履歴テーブルと、現在選択されているメッセージを表示するメッセージビューア。
+    </li>
+</ul>
+<h3>WebSocketメッセージの送信</h3>
+<p>
+    送信するメッセージの編集や、サーバあるいはクライアントに対して送信するか選択できます。クライアントにメッセージを送信するオプションは、Burp Proxy経由で接続が開いている場合のみ有効です。
+</p>
+<p>
+    メッセージを送信する準備ができたら、"送信"ボタンをクリックしメッセージを送信します。
+</p>
+<p>
+    オプションで、メッセージを送信した後に受信した次のメッセージを、履歴テーブルで自動的に選択できます。
+</p>
+<h3>WebSocketメッセージ履歴</h3>
+<p>
+    履歴テーブルには、送受信したすべてのメッセージが表示されます。Burp Repeaterで手動で作成されたメッセージは、"Repeater"列で区別できます。メッセージを選択すると下部のペインに表示できます。
+</p>
+<p>
+    履歴からメッセージを再送信したい場合は、コンテキストメニューの"編集して再送信"オプションを選択します。これにより左側のメッセージエディタの選択したメッセージが表示され、必要に応じてメッセージを変更し、送信できます。
+</p>
+<h2 id="repeater-options">Repeaterオプション</h2>
+<p>
+    Content-Lengthヘッダの自動更新、圧縮コンテンツの展開、リダイレクトの遷移など、Burp Repeaterにはさまざまな<a href="options.html">オプション</a>があります。Repeaterメニュー経由でオプションにアクセスできます。
+</p>
+<h2 id="managing-request-tabs">Requestタブの管理</h2>
+<p>
+    Repeaterのリクエストタブは簡単に管理できます。以下が可能です:
+</p>
+<ul>
+    <li>
+        タブヘッダをダブルクリックして名前変更
+    </li>
+    <li>
+        ドラッグして並び替え
+    </li>
+    <li>
+        一番右の"..."タブをクリックして新しいタブを開く
+    </li>
+    <li>
+        タブヘッダの X ボタンをクリックしてタブを閉じる
+    </li>
+</ul>
 </body>
 </html>

@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -19,7 +20,7 @@
             <a href="../index.html">デスクトップ版</a>
         </li>
         <li>
-            <a href="index.html">ウェブサイトのスキャン</a>
+            <a href="index.html">Webサイトのスキャン</a>
         </li>
         <li>
             <a href="reporting-results.html">レポート</a>
@@ -27,116 +28,115 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
+    <label class="label-edition is-professional">Professional</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>スキャン結果のレポート</h1>
-        <p>
-            Burp Scannerが生成した問題の一部またはすべてのレポートをエクスポートできます。これを行うには、<a href="../tools/target/site-map/index.html">サイトマップ</a>の<a href="../tools/target/site-map/index.html#issues-view">問題ビュー</a>か<a href="../dashboard/issue-activity.html">問題アクティビティログ</a>で出力したい問題を選択し、コンテキストメニューから"選択した問題をレポート"を選択してください。レポートウィザードでは、以下で説明するように、レポートのさまざまなオプションを選択できます。
-        </p>
-        <ul class="link-list">
-            <li>
-                <a href="https://portswigger.net/burp/samplereport/burpscannersamplereport">サンプルレポートを表示</a>
-            </li>
-        </ul>
-        <h2 id="report-format">レポートの書式</h2>
-        <p>
-            レポートには、次のいずれかの形式を選択できます。
-        </p>
-        <ul>
-            <li>
-                <strong>HTML</strong> - 印刷またはブラウザで表示できる、HTML形式のレポートが生成されます。
-            </li>
-            <li>
-                <strong>XML</strong> - 他のツールやレポートフレームワークにインポートするのに適したXML形式のレポートが生成されます。Base64エンコードしたHTTPリクエストとレスポンスをXML内に出力もできます。HTTPメッセージには、(CDATAブロックであっても)XMドキュメント内では厳密には許可されていない非印字文字が含まれる場合があるため、厳密なXMLパーサーとの互換性が維持されるよう、このオプションの使用を推奨します。
-            </li>
-        </ul>
-        <p>
-            <strong>注: </strong>XML形式では内部DTDを使用しているため、相互運用性コードの作者はサンプルレポートを確認し、最新のDTDの取得を推奨します。次のXMLエレメントに注目してください:
-        </p>
-        <ul>
-            <li>
-                <code>serialNumber</code>エレメントには、個々の問題ごとに固有なlong整数値が入ります。Burpの同じインスタンスから問題を複数回エクスポートする場合は、新たに増えた問題の特定にシリアル番号が使用できます。
-            </li>
-            <li>
-                <code>type</code>エレメントには、問題タイプ(SQLインジェクションやXSSなど)を一意に識別する整数値が入ります。この値はBurpの複数のインスタンス間でも変化しません。すべてのタイプ識別番号のリストは、<a href="https://portswigger.net/kb/issues">スキャン項目タイプ</a>のリストを参照してください。
-            </li>
-            <li>
-                <code>name</code>エレメントには、問題タイプに対応するわかりやすい名前が入ります。すべての項目名のリストは、<a href="https://portswigger.net/kb/issues">スキャン項目タイプ</a> を参照してください。
-            </li>
-            <li>
-                <code>path</code>エレメントには、問題の(クエリーストリングを除く)URLが入ります。
-            </li>
-            <li>
-                <code>location</code>エレメントには、(特定のURLパラメータやリクエストヘッダなど)攻撃のエントリポイントに関連する、URLと説明の両方が入ります。
-            </li>
-            <li>
-                <code>request</code>と<code>response</code>エレメントには<code>base64</code>属性があり、メッセージがBase64エンコードされているかどうかを示す真偽値が入ります。
-            </li>
-        </ul>
-        <h2 id="issue-details">問題の詳細</h2>
-        <p>
-            レポートに含める詳細の種類を選択できます。
-        </p>
-        <ul>
-            <li>
-                <strong>問題のバックグラウンド</strong> - これは標準的な説明で、同じ種類のすべての問題で同じです。
-            </li>
-            <li>
-                <strong>対策のバックグラウンド</strong> - これは標準的な対策方法のアドバイスで、同じ種類のすべての問題で同じです。
-            </li>
-            <li>
-                <strong>問題詳細</strong> - 一部の問題タイプでは、個別の事象に当てはまる特定の詳細に注意を払わせるよう、特定の問題に関するさらに詳しいカスタム情報が含まれます。
-            </li>
-            <li>
-                <strong>対策の詳細</strong> - 問題を観測した個々の機能に応じた、対策方法のアドバイスが含まれます。
-            </li>
-            <li>
-                <strong>脆弱性の分類</strong> - 共通脆弱性タイプ一覧(CWE)に関連するマッピングが含まれます。
-            </li>
-        </ul>
-        <h2 id="http-messages">HTTPメッセージ</h2>
-        <p>
-            レポートでのHTTPメッセージの表示方法を選択できます。リクエストとレスポンスには次のオプションがあります。
-        </p>
-        <ul>
-            <li>
-                <strong>含めない</strong> - 関連するタイプのメッセージをレポートに含めません。
-            </li>
-            <li>
-                <strong>関連する部分を抽出</strong> - ツール内の結果で強調表示されたメッセージ部分と、その前後で文脈の判断に必要なメッセージ部分をレポートに含めます。
-            </li>
-            <li>
-                <strong>完全に含める</strong> - 問題の理解や再現に直接関係のない部分を含む、完全なメッセージをレポートに含めます。各メッセージを指定した最大長に制限して、メッセージが大きすぎる場合にレポートのサイズが大きくならないようにもできます。
-            </li>
-        </ul>
-        <h2 id="selecting-issue-types">問題タイプの選択</h2>
-        <p>
-            ウィザードには、選択に含まれていたさまざまな問題タイプと、各タイプの実証数のカウントが表示されます。含めたくない任意の問題タイプの選択を解除できます。多くの問題を選択していて(例えばアプリケーションホストを選択した場合)、興味のない問題タイプをレポートから削除したい場合に便利です。
-        </p>
-        <h2 id="report-details">レポートの詳細</h2>
-        <p>
-            レポートを保存するファイルを指定できます。
-        </p>
-        <p>
-            HTMLレポートの場合は、次の詳細を指定できます:
-        </p>
-        <ul>
-            <li>
-                レポートタイトル
-            </li>
-            <li>
-                レポート内の問題の整理方法(タイプごと、危険度ごと、URLごと)
-            </li>
-            <li>
-                目次に含める詳細レベルの数
-            </li>
-            <li>
-                サマリーテーブルと棒グラフに含める問題の危険度
-            </li>
-        </ul>
-    </div>
-</section>
+<h1>スキャン結果のレポート</h1>
+<p>
+    一部またはすべての問題のレポートを、Burp Scannerは生成しエクスポートできます。これを行うには、<a href="../tools/target/site-map/index.html">サイトマップ</a>の<a href="../tools/target/site-map/index.html#issues-view">問題ビュー</a>か<a href="../dashboard/issue-activity.html">問題アクティビティログ</a>で、出力したい問題を選択しコンテキストメニューから<strong>選択した問題をレポート</strong>を選択してください。レポートウィザードでは、以下のようにレポートのさまざまなオプションを選択できます。
+</p>
+<ul>
+    <li>
+        <a href="https://portswigger.net/burp/samplereport/burpscannersamplereport">サンプルレポートを表示</a>
+    </li>
+</ul>
+<h2 id="report-format">レポートの書式</h2>
+<p>
+    レポートには、次のいずれかの形式を選択できます。
+</p>
+<ul>
+    <li>
+        <strong>HTML</strong> - 印刷またはブラウザで表示できる、HTML形式のレポートが生成されます。
+    </li>
+    <li>
+        <strong>XML</strong> - 他のツールやレポートフレームワークにインポートするのに適したXML形式のレポートが生成されます。Base64エンコードしたHTTPリクエストとレスポンスもXML内に出力できます。HTTPメッセージには(CDATAブロックであっても)XMドキュメント内では厳密には許可されていない印字不可能文字が含まれる場合があるため、厳密なXMLパーサーとの互換性が維持されるよう、このオプションの使用を推奨します。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        XML形式では内部DTDを使用しているため、相互運用性コードの作者はサンプルレポートを確認し、最新のDTDの取得を推奨します。次のXMLエレメントに注目してください:
+    </p>
+</div>
+<ul>
+    <li>
+        <code>serialNumber</code>エレメントには、個々の問題ごとに固有なlong整数値が入ります。Burpの同じインスタンスから問題を複数回エクスポートする場合は、新規に追加された問題の特定にシリアル番号が使用できます。
+    </li>
+    <li>
+        <code>type</code>エレメントには、問題タイプ(SQLインジェクションやXSSなど)を一意に識別する整数値が入ります。この値はBurpの複数のインスタンス間でも変化しません。すべてのタイプ識別番号のリストは、<a href="https://portswigger.net/kb/issues">スキャン項目タイプ</a>のリストを参照してください。
+    </li>
+    <li>
+        <code>name</code>エレメントには、問題タイプに対応するわかりやすい名前が入ります。すべての項目名のリストは、<a href="https://portswigger.net/kb/issues">スキャン項目タイプ</a>を参照してください。
+    </li>
+    <li>
+        <code>path</code>エレメントには、問題の(クエリーストリングを除く)URLが入ります。
+    </li>
+    <li>
+        <code>location</code>エレメントには、(特定のURLパラメータやリクエストヘッダなど)攻撃のエントリポイントに関連する、URLと説明の両方が入ります。
+    </li>
+    <li>
+        <code>request</code>と<code>response</code>エレメントには<code>base64</code>属性があり、メッセージがBase64エンコードされているかどうかを示す真偽値が入ります。
+    </li>
+</ul>
+<h2 id="issue-details">問題の詳細</h2>
+<p>
+    レポートに含める詳細の種類を選択できます。
+</p>
+<ul>
+    <li>
+        <strong>問題のバックグラウンド</strong> - これは標準的な説明で、同じ種類のすべての問題で同じです。
+    </li>
+    <li>
+        <strong>対策のバックグラウンド</strong> - これは標準的な対策方法のアドバイスで、同じ種類のすべての問題で同じです。
+    </li>
+    <li>
+        <strong>問題詳細</strong> - 一部の問題タイプでは、個別の事象に当てはまる特定の詳細に注意を払わせるよう、特定の問題に関するさらに詳しいカスタム情報が含まれます。
+    </li>
+    <li>
+        <strong>対策の詳細</strong> - 問題を観測した個々の機能に応じて、対策方法のアドバイスが含まれます。
+    </li>
+    <li>
+        <strong>脆弱性の分類</strong> - 共通脆弱性タイプ一覧(CWE)に関連するマッピングが含まれます。
+    </li>
+</ul>
+<h2 id="http-messages">HTTPメッセージ</h2>
+<p>
+    レポートでのHTTPメッセージの表示方法を選択できます。リクエストとレスポンスには次のオプションがあります。
+</p>
+<ul>
+    <li>
+        <strong>含めない</strong> - 関連するタイプのメッセージをレポートに含めません。
+    </li>
+    <li>
+        <strong>関連する部分を抽出</strong> - ツール内の結果で強調表示されたメッセージ部分と、その前後で文脈の判断に必要なメッセージ部分をレポートに含めます。
+    </li>
+    <li>
+        <strong>完全に含める</strong> - 問題の理解や再現に直接関係のない部分を含む、完全なメッセージをレポートに含めます。指定した最大長に各メッセージを制限して、メッセージが大きすぎる場合にレポートのサイズが大きくならないようにもできます。
+    </li>
+</ul>
+<h2 id="selecting-issue-types">問題タイプの選択</h2>
+<p>
+    ウィザードには、選択に含まれていたさまざまな問題タイプと、各タイプの実証数のカウントが表示されます。含めたくない任意の問題タイプの選択を解除できます。多くの問題を選択していて(たとえばアプリケーションホストを選択した場合)、興味のない問題タイプをレポートから削除したい場合に便利です。
+</p>
+<h2 id="report-details">レポートの詳細</h2>
+<p>
+    レポートを保存するファイルを指定できます。
+</p>
+<p>
+    HTMLレポートの場合は、次の詳細を指定できます:
+</p>
+<ul>
+    <li>
+        レポートタイトル
+    </li>
+    <li>
+        レポート内の問題の整理方法(タイプごと、危険度ごと、URLごと)
+    </li>
+    <li>
+        目次に含める詳細レベルの数
+    </li>
+    <li>
+        サマリーテーブルと棒グラフに含める問題の危険度
+    </li>
+</ul>
 </body>
 </html>

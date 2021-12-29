@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">外部ブラウザの設定</a>
+        </li>
+        <li>
+            <a href="index.html">BurpのCA証明書をインストール</a>
+        </li>
+        <li>
+            <a href="ca-cert-chrome.html">Chrome</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>ChromeへBurpのCA証明書をインストール</h1>
+<p>
+    BurpのCA証明書をインストールする前に、<a href="../check-listener.html">Proxyリスナーが動作</a>しており、<a href="../index.html">Burpが使われるようブラウザの設定</a>ができているか確認します。
+</p>
+<p>
+    残念ながら、ChromeにBurpのCA証明書をインストールする手順は、オペレーティングシステムごとに若干異なります。
+</p>
+<h2 id="installing-burp-s-ca-certificate-in-chrome-windows-and-macos">ChromeへBurpのCA証明書をインストール - WindowsとMacOS</h2>
+<p>
+    他のブラウザとは異なり、Chromeには独自のトラストストアがありません。これは、BurpのCA証明書を直接Chromeにインストールしないということです。代わりに、コンピューターの内蔵ブラウザ(Windowsの場合はInternet Explorer、MacOSの場合はSafari)にBurpのCA証明書をインストールすると、Chromeも自動的に証明書を使用します。
+</p>
+<p>
+    ChromeでBurpを使用する場合は、オペレーティングシステムの該当するブラウザにCA証明書をインストールする手順に従ってください:
+</p>
+<ul>
+    <li>
+        <a href="ca-cert-safari.html">MacOS (Safari)</a>
+    </li>
+    <li>
+        <a href="ca-cert-internet-explorer.html">Windows (Internet Explorer)</a>
+    </li>
+</ul>
+<p>
+    BurpのCA証明書をコンピュータの内蔵ブラウザに正常にインストールしたら、Chromeを再起動します。Burpを実行したまま、HTTPSのURLにアクセスしてみてください。すべて正常に動作していれば、セキュリティ警告なしでページを参照できるはずです。
+</p>
+<h2 id="installing-burp-s-ca-certificate-in-chrome-linux">ChromeへBurpのCA証明書をインストール - Linux</h2>
+<p>
+    WindowsとMacOSでは、Chromeブラウザはホストコンピュータから証明書トラストストアを取得します。ただしLinuxでは、ブラウザの設定で証明書をインストールする必要があります。
+</p>
+<p>
+    Burpを実行している状態で、Chromeで<code>http://burpsuite</code>にアクセスします。"Welcome to Burp Suite Professional"という比較的わかりやすいWebページが表示されるはずです。表示されない場合は、<a href="proxy-troubleshooting.html">プロキシのトラブルシューティング</a>ページを参照してください。何が悪かったかによっては、自動的にそこに遷移するかもしれません。
+</p>
+<p>
+    ページの右上隅にある<strong>CA Certificate</strong>をクリックして、独自のBurp CA証明書をダウンロードします。保存する場所をメモしておいてください。
+</p>
+<div class="section-small">
+    <img src="../../images/support/InstallingandConfiguring_InstallingBurpsCACertificate_ChromeLinux_1.jpg" alt="ChromeでCA証明書をダウンロード" class="center-block">
+</div>
+<p>
+    ブラウザの右上隅にあるメニューを開き、<strong>設定</strong>をクリックして、Chromeブラウザの設定を開きます。
+</p>
+<p>
+    Chromeの設定で、<strong>証明書</strong>を検索し、<strong>証明書の管理</strong>オプションを選択します。
+</p>
+<div class="section-small">
+    <img src="../../images/support/InstallingandConfiguring_InstallingBurpsCACertificate_ChromeLinux_2.jpg" alt="Chromeで証明書を管理" class="center-block">
+</div>
+<p>
+    <strong>証明書</strong>ダイアログで、<strong>信頼されたルート証明機関</strong>タブに移動し、<strong>インポート</strong>ボタンをクリックします。
+</p>
+<div class="section-small">
+    <img src="../../images/ca-cert-chrome-import.jpg" alt="Chromeで証明書のインポート" class="center-block">
+</div>
+<p>
+    <strong>参照</strong>をクリックし、先程ダウンロードした<code>cacert.der</code>ファイルを選択します。次に、<strong>次へ</strong>をクリックします。
+</p>
+<div class="section-small">
+    <img src="../../images/ca-cert-chrome-select.jpg" alt="Chromeで証明書を選択" class="center-block">
+</div>
+<p>
+    <strong>すべての証明書を次のストアに配置する &gt; 信頼されたルート証明機関</strong>オプションを選択します。
+</p>
+<p>
+    <strong>次へ</strong>、<strong>完了</strong>の順にクリックします。証明書が正常にインポートされたことを示すメッセージが表示されます。
+</p>
+<p>
+    Chromeを閉じて再起動します。Burpを実行したまま、HTTPSのURLにアクセスしてみてください。すべて正常に動作していれば、セキュリティ警告なしでページを参照できるはずです。
+</p>
+<div class="section-small">
+    <img src="../../images/ca-cert-chrome-store.jpg" alt="Chromeでトラストストアの選択" class="center-block">
+</div>
+</body>
+</html>

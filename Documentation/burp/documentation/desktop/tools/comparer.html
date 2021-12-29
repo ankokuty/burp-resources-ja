@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -27,66 +28,65 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
-    <label class="label-edition is-community">コミュニティ</label>
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>Burp Comparer</h1>
-        <p>
-            Burp Comparerは、2つのデータの比較(視覚的な"diff")を実行するシンプルなツールです。Burp Comparerの一般的な使用方法は次の通りです:
-        </p>
-        <ul>
-            <li>
-                ユーザ名列挙のための挙動を探すとき、有効または無効なユーザ名を使用してログインが失敗したレスポンスを比較して、レスポンスの微妙な違いを探します。
-            </li>
-            <li>
-                ベースのレスポンスと長さが違うとても大きなレスポンスを<a href="intruder/using.html#typical-uses">Intruder攻撃</a>が返したとき、すぐに異なる箇所を比較できます。
-            </li>
-            <li>
-                <a href="target/site-map/comparing.html">サイトマップの比較</a>または<a href="proxy/history.html">Proxy履歴</a>のエントリがユーザのタイプによって違う場合、類似リクエストを比較して、アプリケーションに異なる挙動をさせる違いを見つけられます。
-            </li>
-            <li>
-                真偽条件によるブラインドSQLインジェクションバグや同様のテストするとき、インジェクションした異なる条件によるレスポンスへの影響を見つけるためにレスポンスを比較できます。
-            </li>
-        </ul>
-        <h2 id="loading-data-into-comparer">Comparerへのデータ読み込み</h2>
-        <p>
-            次の方法でComparerにデータを読み込めます:
-        </p>
-        <ul>
-            <li>
-                クリップボードから直接貼り付ける。
-            </li>
-            <li>
-                ファイルから読み込む。
-            </li>
-            <li>
-                Burpの任意の場所でデータを選択し、コンテキストメニューから"Comparerに送信"を選択する。
-            </li>
-        </ul>
-        <h2 id="performing-comparisons">比較の実行</h2>
-        <p>
-            読み込まれたデータの各アイテムは、同一の２つのリストに表示されます。比較を実行するには、それぞれの一覧から別のアイテムを選択し、いずれかの"比較"ボタンをクリックします:
-        </p>
-        <ul>
-            <li>
-                <strong>単語比較</strong> - この比較では、データの各アイテムを空白で区切りトークン化し、最初のアイテムを２番目のアイテムに変換するために必要なトークンレベルの変更点を特定します。単語レベルで存在するアイテムの違い、例えば異なるコンテンツのHTMLを比較する場合に最も便利です。
-            </li>
-            <li>
-                <strong>バイト比較</strong> - この比較では、最初のアイテムを２番目のアイテムに変換するために必要なバイトレベルの変更点を特定します。バイトレベルで存在するアイテムの違い、例えばHTTPリクエスト内のパラメータやcookie値の微妙な違いを比較する場合に最も便利です。
-            </li>
-        </ul>
-        <p>
-            <strong>注:</strong> バイトレベルの比較はかなりの負荷がかかるため、単語レベルの比較で有用な違いを見つけられなかった場合のみ、このオプションの採用を推奨します。
-        </p>
-        <p>
-            比較を開始すると、比較結果が新しいウィンドウに表示されます。ウィンドウのタイトルバーは、２ つのアイテムの違い(すなわち変更点) の総数を示します。２つの主要なパネルには比較したアイテムが、最初のアイテムから２番目のアイテムに変換するために必要な変更・削除・追加がそれぞれ色付けされて表示されます。
-        </p>
-        <p>
-            テキストまたは16進数形式で各アイテムを表示できます。"表示を同期"オプションを選択すると２つのパネルが同時にスクロールするので、多くの状況で気になる変更点を素早く特定できます。
-        </p>
-    </div>
-</section>
+<h1>Burp Comparer</h1>
+<p>
+    Burp Comparerは、2つのデータの比較(視覚的な"diff")を実行するシンプルなツールです。Burp Comparerの一般的な使用方法は次の通りです:
+</p>
+<ul>
+    <li>
+        ユーザ名列挙のための挙動を探すとき、有効または無効なユーザ名を使用してログインが失敗したレスポンスを比較して、レスポンスの微妙な違いを探します。
+    </li>
+    <li>
+        ベースのレスポンスと長さが違うとても大きなレスポンスを<a href="intruder/using.html#typical-uses">Intruder攻撃</a>が返したとき、すぐに異なる箇所を比較できます。
+    </li>
+    <li>
+        <a href="target/site-map/comparing.html">サイトマップの比較</a>または<a href="proxy/history.html">Proxy履歴</a>のエントリがユーザのタイプによって違う場合、類似リクエストを比較して、アプリケーションに異なる挙動をさせる違いを見つけられます。
+    </li>
+    <li>
+        真偽条件によるブラインドSQLインジェクションバグや同様のテストするとき、インジェクションした異なる条件によるレスポンスへの影響を見つけるためにレスポンスを比較できます。
+    </li>
+</ul>
+<h2 id="loading-data-into-comparer">Comparerへのデータ読み込み</h2>
+<p>
+    次の方法でComparerにデータを読み込めます:
+</p>
+<ul>
+    <li>
+        クリップボードから直接貼り付ける。
+    </li>
+    <li>
+        ファイルから読み込む。
+    </li>
+    <li>
+        Burpの任意の場所でデータを選択し、コンテキストメニューから"Comparerに送信"を選択する。
+    </li>
+</ul>
+<h2 id="performing-comparisons">比較の実行</h2>
+<p>
+    読み込まれたデータの各アイテムは、同一の2つのリストに表示されます。比較を実行するには、それぞれの一覧から別のアイテムを選択し、いずれかの"比較"ボタンをクリックします:
+</p>
+<ul>
+    <li>
+        <strong>単語比較</strong> - この比較では、データの各アイテムを空白で区切りトークン化し、最初のアイテムを2番目のアイテムに変換するために必要なトークンレベルの変更点を特定します。単語レベルで存在するアイテムの違い、たとえば異なるコンテンツのHTMLを比較する場合に最も便利です。
+    </li>
+    <li>
+        <strong>バイト比較</strong> - この比較では、最初のアイテムを2番目のアイテムに変換するために必要なバイトレベルの変更点を特定します。バイトレベルで存在するアイテムの違い、たとえばHTTPリクエスト内のパラメータやcookie値の微妙な違いを比較する場合に最も便利です。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        バイトレベルの比較はかなりの負荷がかかるため、単語レベルの比較で有用な違いを見つけられなかった場合のみ、このオプションの採用を推奨します。
+    </p>
+</div>
+<p>
+    比較を開始すると、比較結果が新しいウィンドウに表示されます。ウィンドウのタイトルバーは、2つのアイテムの違い(すなわち変更点)の総数を示します。2つの主要なパネルには比較したアイテムが、最初のアイテムから2番目のアイテムに変換するために必要な変更、削除、追加がそれぞれ色付けされて表示されます。
+</p>
+<p>
+    テキストまたは16進数形式で各アイテムを表示できます。"表示を同期"オプションを選択すると2つのパネルが同時にスクロールするので、多くの状況で気になる変更点を素早く特定できます。
+</p>
 </body>
 </html>

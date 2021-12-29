@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE" ignore-validation="KEYWORD_APPEARANCES_MORE_THAN_DEFINING_PAGE,OTHER_PAGE_KEYWORD_TOO_FREQUENT"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">DOM Invader</a>
+        </li>
+        <li>
+            <a href="dom-view.html">DOMビュー</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>DOMビュー</h1>
+<p>
+    DOM Invaderの<strong>DOM</strong>ビューは、DOM XSSの発見するために必要な、DOMを通過する入力のフローの挿入や追跡プロセスを大幅に簡素化します。これは、"カナリア"文字列の挿入で実現されます。
+</p>
+<div class="highlightedarea">
+    <h4>カナリア</h4>
+    <p>
+        カナリアは、容易に識別できる一意な文字列で、ソースに挿入します。そしてこの文字列がシンクに表示されるかどうかを確認し、入力をコントロールできるかどうかを確認します。
+    </p>
+</div>
+<h2 id="injecting-a-canary">カナリアの挿入</h2>
+<p>
+    DOM Invaderは、ランダムな英数字のカナリアを生成します。対象となるサイトを閲覧する際に、このカナリアが出現していないか、DOMを自動的に監視します。
+</p>
+<p>
+    <strong>DOM</strong>ビューには、カナリア挿入について次のオプションがあります:
+</p>
+<ul>
+    <li>
+        すべてのソースにカナリアを自動的に追加します。この機能は<a href="index.html#dom-invader-settings">DOM Invaderの設定</a>で有効にできます。
+    </li>
+    <li>
+        カナリアをコピーして、対象サイトのWebインタフェースやURLなど個々のソースに手動で挿入します。
+    </li>
+    <li>
+        <strong>Inject canary into URL</strong>をクリックすると、各クエリパラメータにカナリアが自動的に追加されます。何もない場合は代わりに、DOM Invaderは独自のパラメータを追加します。
+    </li>
+    <li>
+        <strong>Inject canary into forms</strong>をクリックすると、ページ上の任意のフォームフィールドにカナリアを自動的に追加できます。この場合、実際にカナリアを挿入するには、フォームを送信する必要があります。
+    </li>
+</ul>
+<p>
+    用意されたいずれかのボタンを使ってカナリアを挿入すると、DOM Invaderは次も追記します:
+</p>
+<ul>
+    <li>
+        ページ上の各パラメータやフォームフィールドに固有の連番を追記します。これは後に、どのシンクがどのソースからアクセスできるかを判断するのに役立ちます。
+    </li>
+    <li>
+        エンコードまたはエスケープされないままシンクに現れた場合に、攻撃に使える可能性がある一連のテスト文字も追記します。これらの文字は次の通りです: <code>&lt;&gt;"':</code>
+    </li>
+</ul>
+<p>
+    たとえば、URLに2つのパラメータが含まれている場合にカナリアを挿入すると、以下のようなクエリ文字列になります。
+</p>
+<p>
+    <code>/?param1=original-valueCANARY1&lt;&gt;'":&amp;param2=original-valueCANARY2&lt;&gt;'":</code>
+</p>
+<h2 id="changing-the-canary">カナリアの変更</h2>
+<p>
+    DOM Invaderが使用するカナリアは、いつでも変更、更新できます。ブラウザの右上にあるBurp Suiteのアイコンをクリックすると<a href="index.html#dom-invader-settings">DOM Invaderの設定</a>が開くので、カナリアを好きなものに変更してください。プロンプトが表示されたら、必ずページをリロードしてください。
+</p>
+<p>
+    必要であれば、カナリアに空文字列も設定できます。これにより、そのページのすべての既知のソースを表示できます。
+</p>
+<h2 id="identifying-controllable-sources-and-sinks">コントロール可能なソースとシンクの特定</h2>
+<p>
+    DOMビューには拡張DOMがあり、反射型XSSを探すのと同じくらい簡単に潜在的なDOM XSSが探せます。カナリアを挿入すると、DOM Invaderは自動的にDOMを分析し、カナリアが出現するすべてのソースとシンクのツリービューを生成します。さらに、シンクのリストを興味深い順に並べ替えて、最も興味深いものを一番上に表示してくれます。
+</p>
+<p>
+    ツリーを展開すると、シンクの値が表示され、カナリの部分が強調されます。
+</p>
+<p>
+    なお、DOMビューに特に興味深いアラートが含まれている場合は、DOMビューのアイコンバッジが赤くなります。
+</p>
+<div class="section-small">
+    <img src="../../images/dom-invader-canary-highlighted.png" alt="拡張DOM内のハイライトされたカナリア" class="center-block">
+</div>
+<p>
+    制御可能なソースを発見したら、それぞれのソースに手動で調査用のペイロードを挿入してみて、それぞれのシンクにたどり付けるかどうかをテストできます。
+</p>
+<h2 id="viewing-all-potential-sinks">潜在的なシンクをすべて表示</h2>
+<p>
+    ページ上で利用可能なすべての潜在的なソースとシンクの概要を把握するには、カナリアを空文字列に変更します。なおシンクが存在しても、悪意のある入力を通過させられない場合があるため、必ずしも脆弱性を示しているわけではありません。
+</p>
+<h2 id="searching-the-augmented-dom">拡張DOMの検索</h2>
+<p>
+    デフォルトで<strong>DOM</strong>ビューには、カナリアを含むすべてのソースとシンクが表示されます。しかし、<strong>検索</strong>機能を使えば、他の文字列に基づいて結果をフィルタリングできます。次のような目的で行うことがあります:
+</p>
+<ul>
+    <li>
+        特定のソースから制御可能なシンクのみを表示したい場合。たとえば、DOM Invaderは挿入するカナリアにソースごとに番号をつけるので、<code>CANARY4</code>と検索してみましょう。
+    </li>
+    <li>
+        悪用される可能性のある文字のエスケープやエンコードがされていないシンクをチェックしたい場合。たとえば、カナリアの後にダブルクオートを挿入して、<code>CANARY"</code>と検索してみましょう。するとダブルクォートが正常にレンダリングされるシンクのみが表示されるようにフィルタリングされ、これが脆弱性を示しているかもしれません。DOM Invaderはカナリアに自動的にテスト文字を追加しますが、個別に挿入した方がより多くのシンクに到達できることがわかるかもしれません。
+    </li>
+</ul>
+<p>
+    検索文字列を入力すると、ベースとなるカナリアと同じように、それぞれのソース/シンク値にその文字列が出現した場所を自動的に強調表示します。
+</p>
+<p>
+    <strong>Search for canary</strong>をクリックすればいつでも、オリジナルのカナリア文字列を含むすべてのソースとシンクを再表示できます。
+</p>
+<h2 id="studying-the-stack-trace">スタックトレースの調査</h2>
+<p>
+    それぞれのソースとシンクに対して、DOM Invaderにはスタックトレースのリンクがあります。このリンクをクリックすると、スタックトレースがコンソールに出力されます。
+</p>
+<div class="section-small">
+    <img src="../../images/dom-invader-stack-trace.png" alt="DOM Invaderによるスタックトレースの表示" class="center-block">
+</div>
+<p>
+    これを使ってクライアント側のコードを調べ、入力した内容がシンクで呼び出される場所を正確に確認できます。
+</p>
+<div class="section-small">
+    <img src="../../images/dom-invader-source-code.png" alt="DOM Invaderによるソースコードの調査" class="center-block">
+</div>
+<div class="highlightedarea">
+    <h4>ヒント</h4>
+    <p>
+        整形表示オプションがある場合は使用してください。
+    </p>
+</div>
+<p>
+    挿入されたペイロードの文脈をこのように調べると、エクスプロイトの構築に役立ちます。たとえば、次について注目するといいでしょう:
+</p>
+<ul>
+    <li>
+        入力した文字やタグがどのように括られるか。
+    </li>
+    <li>
+        入力に対してどのような検証が行われているか。
+    </li>
+    <li>
+        ペイロードを確実にシンクに流すための前提条件があるかどうか。たとえば、特定の条件分岐でしかシンクにたどり付けない場合は、シンクに挿入するペイロードはこれらの条件を満たさなければなりません。
+    </li>
+</ul>
+</body>
+</html>

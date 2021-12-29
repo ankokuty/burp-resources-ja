@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -30,66 +31,61 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
-    <label class="label-edition is-community">コミュニティ</label>
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>Burp Sequencer入門</h1>
-        <p>
-            Burp Sequencerは、アプリケーションのセッショントークンやその他の重要なデータなど、予測困難である必要があるデータの乱数の質を分析するためのツールです。
-        </p>
-        <div class="highlightedarea">
-            <p>
-                <strong>注:</strong> Burp Sequencerを使うと、一部のアプリケーションで予期しない影響が出る可能性があります。機能や設定にしっかり慣れるまで、本番以外のシステムだけで使うべきです。
-            </p>
-        </div>
-        <p>
-            Burp Sequencerを習得するには、次の手順を実行する必要があります:
-        </p>
-        <ol>
-            <li>
-                <a href="../../functions/embedded-browser.html">Burpの内蔵ブラウザ</a>の代わりに外部ブラウザを使用したい場合は、Burpと動作するよう<a href="../../getting-started/launching/projects.html">ブラウザを設定</a>し、対象アプリケーションをブラウズして<a href="../proxy/getting-started.html">Proxy履歴に入力</a>します。
-            </li>
-            <li>
-                Set-Cookieヘッダやフォームフィールドやその他の箇所で、セッショントークンや同等の値が発行されているレスポンスを、Proxy履歴から探します。(履歴でCookie列でソートすると、cookieが発行されている箇所を素早く見つけられます。)コンテキストメニューを使って、そのアイテムをBurp Sequencerに送信します。
-            </li>
-            <li>
-                Sequencerタブに移動し、"イブキャプチャリクエスト選択"セクションで、今送信したアイテムを選択します。
-            </li>
-            <li>
-                "レスポンス中のトークン位置"セクションで、レスポンスにトークンが出現する箇所を選択します。トークンが一般的な箇所(例えば、Set-Cookieヘッダやフォームフィールド)以外に出現する場合、"カスタム位置"オプションを選択し、ダイアログでレスポンス中のトークンを選択し、"OK"をクリックします。
-            </li>
-            <li>
-                "ライブキャプチャリクエスト選択"セクションで、"ライブキャプチャ開始"ボタンをクリックします。するとBurpはオリジナルのリクエストを繰り返し発行し、受信したレスポンスからトークンをすべて抽出します。ライブキャプチャセッションには、キャプチャの進捗と得られたトークン数を示す新しいウィンドウが開きます。数百のトークンを取得したら、ライブキャプチャセッションを停止し、"解析実行"ボタンをクリックします。
-            </li>
-            <li>
-                分析が完了したら、タブにランダム性テストの結果が表示されます。これらは、サンプルから推定したエントロピーの概要と、実施した各テストタイプの結果詳細を表示します。各テスト結果内に簡単なドキュメントがあります。
-            </li>
-            <li>
-                一部の状況で、トークンの適当なサンプルが既に得られている場合があります。Sequencerにこのサンプルを手動で読み込ませ、同じ分析を実行できます。これには、Burp UI でSequencerの手動読み込みタブに移動します。クリップボードから貼り付けるかファイルから読み込み、"解析実行"ボタンを押すと、読み込んだサンプルの解析が始まります。
-            </li>
-        </ol>
-        <div class="highlightedarea">
-            <p>
-                Burp Sequencerを使い始めるには、次のリンクを参照してください:
-            </p>
-            <ul class="link-list">
-                <li>
-                    <a href="index.html">Burp Sequencerヘルプ</a>
-                </li>
-                <li>
-                    <a href="tests.html">乱数テストの方法</a>
-                </li>
-                <li>
-                    <a href="results.html">結果の解釈</a>
-                </li>
-                <li>
-                    <a href="../../penetration-testing/index.html">Burp Suiteの使い方</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</section>
+<h1>Burp Sequencer入門</h1>
+<p>
+    Burp Sequencerは、アプリケーションのセッショントークンやその他の重要なデータなど、予測困難である必要があるデータの乱数の質を分析するためのツールです。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Burp Sequencerを使うと、一部のアプリケーションで予期しない影響が出る可能性があります。機能や設定にしっかり慣れるまで、本番以外のシステムだけで使うべきです。
+    </p>
+</div>
+<p>
+    Burp Sequencerを習得するには、次の手順を実行する必要があります:
+</p>
+<ol>
+    <li>
+        <a href="../../functions/embedded-browser.html">Burpの内蔵ブラウザ</a>の代わりに外部ブラウザを使用したい場合は、Burpと動作するよう<a href="../../external-browser-config/index.html">ブラウザを設定</a>し、対象アプリケーションをブラウズして<a href="../proxy/getting-started.html">Proxy履歴に入力</a>します。
+    </li>
+    <li>
+        Set-Cookieヘッダやフォームフィールドやその他の箇所で、セッショントークンや同等の値が発行されているレスポンスを、Proxy履歴から探します。(履歴でCookie列でソートすると、cookieが発行されている箇所を素早く見つけられます。)コンテキストメニューを使って、そのアイテムをBurp Sequencerに送信します。
+    </li>
+    <li>
+        Sequencerタブに移動し、"ライブキャプチャリクエスト選択"セクションで、今送信したアイテムを選択します。
+    </li>
+    <li>
+        "レスポンス中のトークン位置"セクションで、レスポンスにトークンが出現する箇所を選択します。トークンが一般的な箇所(たとえば、Set-Cookieヘッダやフォームフィールド)以外に出現する場合、"カスタム位置"オプションを選択し、ダイアログでレスポンス中のトークンを選択し、"OK"をクリックします。
+    </li>
+    <li>
+        "ライブキャプチャリクエスト選択"セクションで、"ライブキャプチャ開始"ボタンをクリックします。するとBurpはオリジナルのリクエストを繰り返し発行し、受信したレスポンスからトークンをすべて抽出します。ライブキャプチャセッションには、キャプチャの進捗と得られたトークン数を示す新しいウィンドウが開きます。数百のトークンを取得したら、ライブキャプチャセッションを停止し、"分析実行"ボタンをクリックします。
+    </li>
+    <li>
+        分析が完了したら、タブにランダム性テストの結果が表示されます。これらは、サンプルから推定したエントロピーの概要と、実施した各テストタイプの結果詳細を表示します。各テスト結果内に簡単なドキュメントがあります。
+    </li>
+    <li>
+        一部の状況で、トークンの適当なサンプルが既に得られている場合があります。Sequencerにこのサンプルを手動で読み込ませ、同じ分析を実行できます。これには、Burp UI でSequencerの手動読み込みタブに移動します。クリップボードから貼り付けるかファイルから読み込み、"分析実行"ボタンを押すと、読み込んだサンプルの分析が始まります。
+    </li>
+</ol>
+<div class="highlightedarea">
+    <h4>続きを読む</h4>
+    <ul>
+        <li>
+            <a href="index.html">Burp Sequencerヘルプ</a>
+        </li>
+        <li>
+            <a href="tests.html">乱数テストの方法</a>
+        </li>
+        <li>
+            <a href="results.html">結果の解釈</a>
+        </li>
+        <li>
+            <a href="../../penetration-testing/index.html">Burp Suiteの使い方</a>
+        </li>
+    </ul>
+</div>
 </body>
 </html>

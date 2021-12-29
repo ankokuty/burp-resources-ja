@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">外部ブラウザの設定</a>
+        </li>
+        <li>
+            <a href="check-listener.html">Proxyリスナーがアクティブか確認</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>BurpのProxyリスナーがアクティブか確認</h1>
+<p>
+    BurpのProxyリスナーは、ブラウザからの接続を待ち受けるローカルHTTPプロキシサーバです。これにより、ブラウザが送受信するすべてのHTTPリクエストとレスポンスを表示やインターセプトできます。これは、Burpのユーザ主導のワークフローの中心部分に位置します。
+</p>
+<p>
+    デフォルトで、Burpはループバックインタフェースのポート8080でリスナーを1つだけ作成します。Burpを初めて起動するときは、このリスナーがアクティブで実行されているか確認する必要があります。
+</p>
+<p>
+    Burpで、<strong>Proxy &gt; オプション</strong>タブに移動します。
+</p>
+<p>
+    <strong>Proxyリスナー</strong>パネルで、インタフェースが<code>127.0.0.1:8080</code>になっているエントリがあり、<strong>起動中</strong>チェックボックスがチェックされているか確認してください。アクティブで実行されていればチェックされています。そうなっていればすべてが順調で、次の<a href="index.html">ブラウザの設定</a>に進めます。
+</p>
+<div class="section-small">
+    <img src="../images/check-proxy-listener-running-940.png" alt="Proxyリスナーが実行されているか確認" class="center-block">
+</div>
+<p>
+    そうでない場合は、パネルの左上にある設定アイコンをクリックし、<strong>デフォルトに戻す</strong>を選択します。<strong>起動中</strong>チェックボックスをもう一度見て、Proxyリスナーが実行されているかどうかを確認します。チェックボックスが選択されている場合、リスナーはアクティブです。それ以外の場合は、次の手順に進みます。
+</p>
+<div class="section-small">
+    <img src="../images/ca-check-proxy-restore-defaults-940.png" alt="Proxyリスナーがデフォルトに復元" class="center-block">
+</div>
+<p>
+    それでも実行されていない場合は、たとえば、デフォルトのポート8080が別のアプリケーションによってすでに使用されていて使用できない可能性があります。この場合、別のポートを使用してみる必要があります。<code>127.0.0.1:8080</code>のエントリを選択し、<strong>編集</strong>ボタンをクリックします。<strong>Proxyリスナーを編集</strong>ダイアログが開きます。
+</p>
+<p>
+    <strong>バインドするポート</strong>フィールドで、空いていそうな新たなポート番号を入力し、<strong>OK</strong>をクリックします。
+</p>
+<div class="section-small">
+    <img src="../images/check-proxy-bind-port-940.png" alt="ポートにバインド" class="center-block">
+</div>
+<p>
+    <strong>起動中</strong>チェックボックスを選択して、リスナーをアクティブにしてみてください。それでもアクティブにできない場合は、選択した新しいポートもブロックされている可能性があります。この手順を繰り返して、別のポートを試してください。
+</p>
+<div class="section-small">
+    <img src="../images/check-proxy-port-8081-940.png" alt="新しいポートでリスナーをアクティブ化" class="center-block">
+</div>
+</body>
+</html>

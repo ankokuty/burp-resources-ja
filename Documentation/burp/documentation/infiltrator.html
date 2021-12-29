@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -22,259 +23,254 @@
 </section>
 <section class="container labels-editions-wrapper">
     <label class="label-edition is-enterprise">エンタープライズ</label>
-    <label class="label-edition is-professional">プロフェッショナル</label>
+    <label class="label-edition is-professional">Professional</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>Burp Infiltrator</h1>
-        <p>
-            Burp Infiltratorは、<a href="scanner/index.html">Burp Scanner</a>を使ったテストを推進するために、対象Webアプリケーションを器具化するツールです。Burpの入力が潜在的に危険なAPIまで通過したかをBurpが検出できるように、対象アプリケーションを変更します。
-        </p>
-        <p>
-            Burp Infiltratorは現在、次の言語で書かれたアプリケーションをサポートしています:
-        </p>
-        <ul>
-            <li>
-                Java, Groovy, Scala, またはその他JVM言語 (JRE versions 1.4 - 1.8)
-            </li>
-            <li>
-                C#, VB, またはその他の .NET言語 (.NETバージョン 2.0以降)
-            </li>
-        </ul>
-        <div class="highlightedarea">
+<h1>Burp Infiltrator</h1>
+<p>
+    Burp Infiltratorは、<a href="scanner/index.html">Burp Scanner</a>を使ったテストを推進するために、対象Webアプリケーションを器具化するツールです。潜在的に危険なAPIまでBurpの入力が達したかどうかをBurpが検出できるように、対象アプリケーションを変更します。
+</p>
+<p>
+    Burp Infiltratorは現在、次の言語で書かれたアプリケーションをサポートしています:
+</p>
+<ul>
+    <li>
+        Java, Groovy, Scala, またはその他JVM言語 (JRE versions 1.4 - 1.8)
+    </li>
+    <li>
+        C#, VB, またはその他の.NET言語(.NETバージョン2.0から4.5)
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>重要な注意事項</h4>
+    <ul>
+        <li>
+            Burp Infiltratorは本番システムや、可用性、パフォーマンス、正確な動作が必要なその他のシステムには使うべきではありません。Burp Infiltratorによるアプリケーションの変更によって、サービスの停止、パフォーマンスの低下、アプリケーションエラー、その他の問題を引き起こす可能性があります。
+        </li>
+        <li>
+            Burp Infiltratorはアプリケーションのバイトコードに不可逆な変更を行います。Burp Infiltratorによって行われた変更を戻すには、オリジナルの変更されていないソースコードから再デプロイする必要があります。
+        </li>
+        <li>
+            Burp Infiltratorによってアプリケーションの動作が変更されるため、ネットワーク経由でアプリケーションと通信できる誰かに、機密情報が漏洩する可能性があります。
+        </li>
+        <li>
+            これらの理由から、Burp Infiltratorの使用に適しているのは、(a)テスト目的で設計された、(b)漏洩する可能性のある情報に信頼できない人がアクセスできないシステム、のみです。
+        </li>
+    </ul>
+</div>
+<h2 id="how-burp-infiltrator-works">Burp Infiltratorの仕組み</h2>
+<p>
+    Burp Infiltratorは次のように動作します:
+</p>
+<ol>
+    <li>
+        Burpユーザは、"Burp"メニューを使って、適切なBurp InfiltratorのインストーラをBurp Suite Professionalからエクスポートします。
+    </li>
+    <li>
+        アプリケーション開発者または管理者は、アプリケーションのバイトコードがあるマシンでそれを実行し、Burp Infiltratorツールをインストールします。
+    </li>
+    <li>
+        Burp Infiltratorはアプリケーションのバイトコードにパッチを適用し、潜在的に危険なAPIを呼び出している箇所にインストルメンテーションフックを挿入します。
+    </li>
+    <li>
+        アプリケーションを通常通り起動すると、パッチが適用されたバイトコードが実行されます。
+    </li>
+    <li>
+        Burpユーザは通常の方法でアプリケーションのスキャンを実行します。
+    </li>
+    <li>
+        アプリケーションが潜在的に危険なAPIを呼び出すと、関連するAPIのパラメータをインストルメンテーションフックが検査します。<a href="collaborator/index.html">Burp Collaborator</a>ドメインを含むBurpのペイロードはそれぞれ一意になる構造で、フィンガープリントになっています。
+    </li>
+    <li>
+        インストルメンテーションフックは、検出したBurp Collaboratorドメインを、呼び出されたAPIの識別子を組み込むよう変更します。
+    </li>
+    <li>
+        インストルメンテーションフックは、変更されたBurp CollaboratorドメインのDNS参照を実行します。
+    </li>
+    <li>
+        必要に応じて、<a href="#configuration-options">設定オプション</a>によっては、変更後のBurp CollaboratorドメインにHTTP/Sリクエストを発行します。そこには、関連するすべてのパラメータやアプリケーションのコールスタックが含まれています。
+    </li>
+    <li>
+        スキャンペイロードによって発生したCollaboratorとの通信の詳細を取得するため、Burpは通常通りCollaboratorサーバをポーリングします。Burp Infiltratorが実行した通信の詳細が、Burpに返されます。
+    </li>
+    <li>
+        アプリケーション内で、入力に関連するアイテムが潜在的に危険なAPIまで達したことを、関連する脆弱性タイプの情報レベルの問題としてユーザに報告します。同じ問題の他の証跡(診断中の動作や他のColalborator通信)が見つかった場合、この証跡は1つの問題に集約されます。
+    </li>
+</ol>
+<img src="../documentation/images/infiltrator/infiltrator-1.svg" alt="Burp Infiltrator">
+<p>
+    Burp InfiltratorはBurp Collaboratorドメインを含むBurpペイロードを観察する動作をし、指定されたBurp Collaboratorサーバを経由して通信するので、Burp Infiltratorを使うには次を満たす必要があります:
+</p>
+<ul>
+    <li>
+        スキャンを実行するBurpのインスタンスが、有効に動作しているBurp Collaboratorサーバを使うよう設定されており、対象アプリケーションとBurpがそのサーバと通信ができること。
+    </li>
+    <li>
+        少なくとも、いくつかのCollaboratorベースのペイロードを使うスキャンチェックが有効であること。理想的には、外部サービスと通信している場合は、スキャンチェックに含めておくべきです。Collaboratorベースのスキャンチェックをできるだけ多く行うと効果が最大になります。
+    </li>
+</ul>
+<p>
+    Burp InfiltractorはプライベートなBurp Collaboratorサーバの使用をサポートしています。Burpが送信したペイロードに含まれるCollaboratorサーバの完全なドメイン名から、どのCollaboratorサーバと通信すべきかを認識します。しかし、ドメイン名を使うプライベートCollaboratorサーバだけをサポートし、IPアドレスを使うよう設定されたプライベートCollaboratorサーバはサポートしていません。
+</p>
+<h2 id="installing-burp-infiltrator">Burp Infiltratorのインストール</h2>
+<p>
+    Burp Infiltratorを使用するには、次の手順で対象のアプリケーションにインストールする必要があります:
+</p>
+<div class="container">
+    <div class="container-columns">
+        <div>
             <p>
-                <strong>重要な注意事項</strong>
+                Burp Suite ProfessionalからBurp Infiltratorのインストーラをエクスポートします。Burpメニューから"Burp Infiltrator"を選択し、器具化したいアプリケーションのタイプを選択し、好きな場所にファイルを保存します。
             </p>
-            <ul>
-                <li>
-                    Burp Infiltratorは本番システムや、可用性、パフォーマンス、正確な動作が必要なその他のシステムには使うべきではありません。Burp Infiltratorによるアプリケションの変更によって、サービスの停止、パフォーマンスの低下、アプリケーションエラー、その他の問題を引き起こす可能性があります。
-                </li>
-                <li>
-                    Burp Infiltratorはアプリケーションのバイトコードに不可逆な変更を行います。Burp Infiltratorによって行われた変更を戻すには、オリジナルの変更されていないソースコードから再デプロイする必要があります。
-                </li>
-                <li>
-                    Burp Infiltratorによってアプリケーションが動作を変更されると、アプリケーションとネットワーク経由で通信できる誰かに、機密情報が漏えいする可能性があります。
-                </li>
-                <li>
-                    これらの理由から、Burp Infiltratorの使用に適しているのは、(a)テスト目的で設計された、(b)情報漏洩する可能性のある信頼できない人がアクセスできないシステムのみです。
-                </li>
-            </ul>
-        </div>
-        <h2 id="how-burp-infiltrator-works">Burp Infiltratorの仕組み</h2>
-        <p>
-            Burp Infiltratorは次のように動作します:
-        </p>
-        <ol>
-            <li>
-                Burpユーザは、"Burp"メニューを使って、適切なBurp InfiltratorのインストーラをBurp Suiteプロフェッショナルからエクスポートします。
-            </li>
-            <li>
-                アプリケーション開発者または管理者は、アプリケーションのバイトコードがあるマシンでそれを実行し、Burp Infiltratorツールをインストールします。
-            </li>
-            <li>
-                Burp Infiltratorはアプリケーションのバイトコードにパッチをあて、潜在的に危険なAPIを呼び出している箇所にインストルメンテーションフックを挿入します。
-            </li>
-            <li>
-                アプリケーションを通常通り起動すると、パッチのあたったバイトコードが実行されます。
-            </li>
-            <li>
-                Burpユーザは通常の方法でアプリケーションのスキャンを実行します。
-            </li>
-            <li>
-                アプリケーションが潜在的に危険なAPIを呼び出すと、関連するAPIのパラメータをインストルメンテーションフックが検査します。<a href="collaborator/index.html">Burp Collaborator</a>ドメインを含むBurpのペイロードはそれぞれ一意になる構造で、フィンガープリントになっています。
-            </li>
-            <li>
-                インストルメンテーションフックは、検出したBurp Collaboratorドメインを、呼び出されたAPIの識別子を組み込むよう変更します。
-            </li>
-            <li>
-                インストルメンテーションフックは、変更されたBurp CollaboratorドメインのDNS参照を実行します。
-            </li>
-            <li>
-                必要に応じて、<a href="#configuration-options">設定オプション</a>によっては、変更後のBurp CollaboratorドメインにHTTP/Sリクエストを発行し、それには関連するすべてのパラメータやアプリケーションのコールスタックが含まれています。
-            </li>
-            <li>
-                スキャンペイロードによって発生したCollaboratorとの通信の詳細を取得するため、Burpは通常通りCollaboratorサーバをポーリングします。Burp Infiltratorが実行した通信の詳細が、Burpに返されます。
-            </li>
-            <li>
-                アプリケーション内で、入力に関連するアイテムが潜在的に危険なAPIまで達したことを、関連する脆弱性タイプの情報レベルの問題としてユーザに報告します。同じ問題の他の証拠(診断中の動作や他のColalborator通信)が見つかった場合、この証拠は１つの問題に集約されます。
-            </li>
-        </ol>
-        <img src="../documentation/images/infiltrator/infiltrator-1.svg" alt="Burp Infiltrator">
-        <p>
-            Burp InfiltratorはBurp Collaboratorドメインを含むBurpペイロードを観察する動作をし、指定されたBurp Collaboratorサーバを経由して通信するので、Burp Infiltratorを使うには次を満たす必要があります:
-        </p>
-        <ul>
-            <li>
-                スキャンを実行するBurpのインスタンスが、有効に動作しているBurp Collaboratorサーバを使うよう設定されており、対象アプリケーションとBurpがそのサーバと通信ができること。
-            </li>
-            <li>
-                少なくとも、いくつかのCollaboratorベースのペイロードを使うスキャンチェックが有効であること。理想的には、外部サービスと通信している場合は、スキャンチェックに含めておくべきです。Collaboratorベースのスキャンチェックをできるだけ多く行うと効果が最大になります。
-            </li>
-        </ul>
-        <p>
-            Burp InfiltractorはプライベートなBurp Collaboratorサーバの使用をサポートし、どのCollaboratorサーバと通信すべきかはBurpが送信したペイロードにCollaboratorサーバの完全なドメイン名が含まれているのでわかります。しかし、ドメイン名を使うプライベートCollaboratorサーバだけをサポートし、IPアドレスを使うよう設定されたプライベートCollaboratorサーバはサポートしていません。
-        </p>
-        <h2 id="installing-burp-infiltrator">Burp Infiltratorのインストール</h2>
-        <p>
-            Burp Infiltratorを使用するには、次の手順で対象のアプリケーションにインストールする必要があります:
-        </p>
-        <div class="container">
-            <div class="container-columns">
-                <div>
-                    <p>
-                        Burp SuiteプロフェッショナルからBurp Infiltratorのインストーラをエクスポートします。Burpメニューから"Burp Infiltrator"を選択し、器具化したいアプリケーションのタイプを選択し、お好みの場所にファイルを保存します。
-                    </p>
-                    <p>
-                        <strong>注: </strong> Burp Infiltratorをインストールして実行する前に、アプリケーションが現在実行されていないことを確認してください。ディスク上のバイトコードが変更されなくなる可能性があります。
-                    </p>
-                </div>
-                <div>
-                    <img src="images/infiltrator/Using_Burp_Infiltrator_2.jpg" alt="Burp Infiltratorのインストーラをエクスポート">
-                </div>
+            <div class="highlightedarea">
+                <h4>注</h4>
+                <p>
+                    Burp Infiltratorをインストールして実行する前に、現在アプリケーションが実行されていないことを確認してください。ディスク上のバイトコードが変更されない可能性があります。
+                </p>
             </div>
         </div>
-        <div class="container">
-            <div class="container-columns">
-                <div>
-                    <p>
-                        Burp Infiltratorのインストーラを、アプリケーションをコンパイルしたバイトコードのあるマシンにコピーします。これは対象のアプリケーションサーバ上に既にあるかもしれませんし、別のマシン上でデプロイの準備中かもしれません。
-                    </p>
-                    <p>
-                        パッチをあてる際、Burp Infiltratorはアプリケーションのバイトコードが置かれた場所を知る必要があります。最も簡単に行うには、Infiltratorインストーラをアプリケーションのルートフォルダに置き、そこを作業ディレクトリとして実行してください。または、インストール処理中にアプリケーションのバイトコードへのパスを指定できます。
-                    </p>
-                </div>
-                <div>
-                    <img src="images/infiltrator/Using_Burp_Infiltrator_3.jpg" alt="Burp Infiltratorインストーラを、アプリケーションバイトコードを含むマシンにコピー">
-                </div>
-            </div>
+        <div>
+            <img src="images/infiltrator/Using_Burp_Infiltrator_2.jpg" alt="Burp Infiltratorのインストーラをエクスポート">
         </div>
-        <div class="container">
-            <div class="container-columns">
-                <div>
-                    <p>
-                        Burp Infiltratorのインストールを実行するユーザが、アプリケーションのバイトコードを含むファイルとフォルダへの書き込み権限があるかを確認してください。
-                    </p>
-                    <p>
-                        コマンドラインからBurp Infiltratorを実行します。たとえば、Javaアプリケーションの場合、<code>java -jar burp_infiltrator_java.jar</code> と入力します。
-                    </p>
-                    <p>
-                        デフォルトで、Burp Infiltratorのインストーラは対話形式で実行され、インストール時に一連の質問をしてきます。または、<a href="#non-interactive-installation">非対話形式</a>で実行もできます。
-                    </p>
-                </div>
-                <div>
-                    <img src="images/infiltrator/Using_Burp_Infiltrator_4.jpg" alt="コマンドラインからBurp Infiltratorを実行">
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="container-columns">
-                <div>
-                    <p>
-                        Burp Infiltratorはアプリケーションのバイトコードにパッチをあて、潜在的に危険なAPIを呼び出している箇所にインストルメンテーションフックを挿入します。
-                    </p>
-                    <p>
-                        パッチ適用処理が終了したら、変更されたバイトコードを使ってアプリケーションを通常の方法で起動します。
-                    </p>
-                </div>
-                <div>
-                    <img src="images/infiltrator/Using_Burp_Infiltrator_7.jpg" alt="Burp Infiltratorによるバイトコードへのパッチ適用中">
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="container-columns">
-                <div>
-                    <p>
-                        最後に、アプリケーションの<a href="../vulnerability-scanner/index.html">スキャンを実行</a>します。
-                    </p>
-                    <p>
-                        Burp Infiltratorを使用すると、潜在的に安全でないAPIの呼び出し、関連するパラメータの完全な値、APIが呼び出されたときのアプリケーション呼び出しスタックをBurp Scannerが報告できるようになります。
-                    </p>
-                </div>
-                <div>
-                    <img src="images/infiltrator/Using_Burp_Infiltrator_6.jpg" alt="Burp Infiltratorがアプリケーションをスキャン">
-                </div>
-            </div>
-        </div>
-        <h4>考慮事項</h4>
-        <p>
-            パッチ適用プロセスに関する次の考慮事項に注意してください:
-        </p>
-        <ul>
-            <li>
-                アプリケーションの一部として実行されるコードが複数の場所、または複数のマシン上にある場合、完全に網羅するにはバイトコードがある場所それぞれに対してBurp Infiltratorを実行してください。
-            </li>
-            <li>
-                テスト対象アプリケーションの一部ではないバイトコードのファイルを含む場所で、Burp Infiltratorを実行しないでください。
-            </li>
-            <li>
-                アプリケーションのバイトコードへの変更は、署名されたコードコンポーネントの署名を壊すおそれがあります。署名されたコードコンポーネントでBurp Infiltratorを正常に使用するには、アプリケーションの署名検証を無効にする必要があります。
-            </li>
-            <li>
-                Burp Infiltratorはアプリケーションのバイトコードに不可逆な変更を行います。Burp Infiltratorによって行われた変更を戻すには、オリジナルの変更されていないソースコードから再デプロイする必要があります。
-            </li>
-            <li>
-                対象アプリケーションにBurp Infiltratorのパッチが既に適用されていて、新しいバージョンのBurp Infiltratorが利用可能になった場合、アップデートされたインストーラを通常通り単純に実行して、アプリケーションを再起動してください。
-            </li>
-            <li>
-                .NETアプリケーションにパッチを適用するために、Burp Infiltratorはバイトコードのアセンブラと逆アセンブラツールを使用します。これらは、(a) .NETフレームワークとWindows SDKツールそれぞれで配布されている <code>ilasm</code> と <code>ildasm</code> ツール、または(b)monoで配布されている<code>ilasm</code> と</code>monodis</code>ツール、どちらかです。パッチ適用プロセス中に、アセンブラおよび逆アセンブラツールの場所を指定する必要があります。互換性を確保するため、テスト対象バイトコードの.NET framework のバージョンとアセンブリツールのバージョンを一致させなければならないことに注意してください。
-            </li>
-            <li>
-                Burp Infiltratorによるアセンブリの器具化を妨げるため、.NETコードには<code>SupressIldasmAttribute</code>属性のアノテーションを付与するべきではありません。
-            </li>
-            <li>
-                .NETアプリケーションにパッチを当てた後、Burp Infiltratorのインストーラ実行ファイルはアプリケーションがバイトコードを読み込むフォルダ(通常 "bin")に置いたままにしないでください。この場所にインストーラが残っている場合、デフォルトではアプリケーションの一部として.NETがインストーラを読み込み、警告や致命的なエラーがログに記録されるかもしれません。
-            </li>
-        </ul>
-        <h3 id="non-interactive-installation">非対話形式のインストール</h3>
-        <p>
-            Burp Infiltratorは非対話形式でインストールできます。これはさまざまなユースケースをサポートしています。例えばCIパイプラインで、アプリケーションのビルドをステージングサーバにデプロイし、Burp Infiltratorをインストールし、<a href="scanner/index.html">Burp Scanner</a>を使ってスキャンを実行できます。
-        </p>
-        <p>
-            Burp Infiltratorを非対話形式で実行するには、次の引数をコマンドラインに追加します:
-        </p>
-        <p>
-            <code> --non-interactive </code>
-        </p>
-        <p>
-            非対話モードでは、通常対話モードで要求されるすべての<a href="#configuration-options">設定オプション</a>にデフォルト値を使います。必要な場合は、追加のコマンドライン引数でこれらのデフォルト値を上書きできます。サポートしているすべてのオプションを表示するには、次のコマンドライン引数を使用してください:
-        </p>
-        <p>
-            <code> --help </code>
-        </p>
-        <p>
-            非対話形式でBurp Infiltratorをインストールする前に、上書きされずに使われる<a href="#configuration-options">設定オプション</a>のデフォルト値を、上記のオプションを使って確認し、要件に基づいて適切なオプションが確実に使われるようにすべきです。
-        </p>
-        <div class="highlightedarea">
-            <p>
-                <strong>注: </strong>Burp Infiltratorのインストーラを非対話モードで実行すると、対話モードで表示されるすべての警告と免責事項を読み、同意したと見なされます。
-            </p>
-        </div>
-        <h2 id="configuration-options">設定オプション</h2>
-        <p>
-            Burp Infiltratorの<a href="#installing-burp-infiltrator">インストール</a>中に次の設定オプションが対話形式で、または<a href="#non-interactive-installation">非対話形式</a>インストールではコマンドラインオプションで、指定できます。
-        </p>
-        <ul>
-            <li>
-                潜在的に危険なAPIに達したパラメータに関連するすべての値を報告するかどうか。
-            </li>
-            <li>
-                潜在的に危険なAPIに入力が達したとき、アプリケーションのコールスタックを報告するかどうか。
-            </li>
-            <li>
-                暗号化されていないHTTP経由でCollaboratorサーバとの通信を許可するかどうか。HTTPSを使うと、送信した情報の漏えいリスクを低減します。ただし、 インストルメント化されたアプリケーションと、設定されたCollaboratorサーバで利用可能な技術によっては、暗号化されていない通信が必要になる場合があります。<strong>注:</strong> HTTPSが使われていると、Burp Infiltratorは使用可能な最新のTLS暗号化を使用しようとします。一部の対象システム、特に古い技術が使われているシステムでは、使用可能な最新の暗号でも、適切な場所に位置する敵からの既知の攻撃に脆弱かもしれません。
-            </li>
-            <li>
-                指定したBurp Collaboratorサーバとのみ通信を許可するかどうか。<a href="scanner/index.html">Burp Scanner</a>がスキャンしている間、使用すると設定したBurp Collaboratorサーバのサブドメインがペイロードに含まれます。特定のCollaboratorサーバを使用したスキャン実行が分かっている場合、Burp Infiltratorがそのサーバとだけ通信を許可するよう設定できます。
-            </li>
-            <li>
-                Infiltratorがパッチをあてるファイルのパス。パッチは、常にサブディレクトリを再帰的にたどり適用されます。
-            </li>
-        </ul>
-        <p>
-            <strong>注:</strong> 設定オプションはパッチを適用している処理中に指定され、アプリケーションのバイトコードに行った変更に反映されています。パッチを適用された後にBurp Infiltratorの設定を変更するには、更新したオプションを使用してBurp Infiltratorのインストーラを再度実行し、アプリケーションを再起動する必要があります。
-        </p>
     </div>
-</section>
+</div>
+<div class="container">
+    <div class="container-columns">
+        <div>
+            <p>
+                Burp Infiltratorのインストーラを、アプリケーションをコンパイルしたバイトコードのあるマシンにコピーします。これは対象のアプリケーションサーバ上に既にあるかもしれませんし、別のマシン上でデプロイの準備中かもしれません。
+            </p>
+            <p>
+                パッチをあてる際、Burp Infiltratorはアプリケーションのバイトコードが置かれた場所を知る必要があります。最も簡単な方法は、アプリケーションのルートフォルダにInfiltratorインストーラを置き、そこを作業ディレクトリとして実行してください。または、インストール処理中にアプリケーションのバイトコードへのパスを指定できます。
+            </p>
+        </div>
+        <div>
+            <img src="images/infiltrator/Using_Burp_Infiltrator_3.jpg" alt="Burp Infiltratorインストーラを、アプリケーションバイトコードを含むマシンにコピー">
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="container-columns">
+        <div>
+            <p>
+                Burp Infiltratorのインストールを実行するユーザが、アプリケーションのバイトコードを含むファイルとフォルダへの書き込み権限があるかを確認してください。
+            </p>
+            <p>
+                コマンドラインからBurp Infiltratorを実行します。たとえば、Javaアプリケーションの場合、<code>java -jar burp_infiltrator_java.jar</code> と入力します。
+            </p>
+            <p>
+                デフォルトで、Burp Infiltratorのインストーラは対話形式で実行され、インストール時に一連の質問をしてきます。または、<a href="#non-interactive-installation">非対話形式</a>でも実行できます。
+            </p>
+        </div>
+        <div>
+            <img src="images/infiltrator/Using_Burp_Infiltrator_4.jpg" alt="コマンドラインからBurp Infiltratorを実行">
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="container-columns">
+        <div>
+            <p>
+                Burp Infiltratorはアプリケーションのバイトコードにパッチを適用し、潜在的に危険なAPIを呼び出している箇所にインストルメンテーションフックを挿入します。
+            </p>
+            <p>
+                パッチ適用処理が終了したら、変更されたバイトコードを使ってアプリケーションを通常の方法で起動します。
+            </p>
+        </div>
+        <div>
+            <img src="images/infiltrator/Using_Burp_Infiltrator_7.jpg" alt="Burp Infiltratorによるバイトコードへのパッチ適用中">
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="container-columns">
+        <div>
+            <p>
+                最後に、アプリケーションの<a href="../vulnerability-scanner/index.html">スキャンを実行</a>します。
+            </p>
+            <p>
+                Burp Infiltratorを使用すると、潜在的に安全でないAPIの呼び出し、関連するパラメータの完全な値、APIが呼び出されたときのアプリケーション呼び出しスタックを、Burp Scannerが報告できるようになります。
+            </p>
+        </div>
+        <div>
+            <img src="images/infiltrator/Using_Burp_Infiltrator_6.jpg" alt="Burp Infiltratorがアプリケーションをスキャン">
+        </div>
+    </div>
+</div>
+<h4>考慮事項</h4>
+<p>
+    パッチ適用プロセスに関する次の考慮事項に注意してください:
+</p>
+<ul>
+    <li>
+        アプリケーションの一部として実行されるコードが、複数の場所、または複数のマシン上にある場合に完全に網羅するためには、バイトコードがある場所それぞれに対してBurp Infiltratorを実行してください。
+    </li>
+    <li>
+        テスト対象アプリケーションの一部ではないバイトコードのファイルを含む場所で、Burp Infiltratorを実行しないでください。
+    </li>
+    <li>
+        アプリケーションのバイトコードへの変更は、署名されたコードコンポーネントの署名を壊すおそれがあります。署名されたコードコンポーネントでBurp Infiltratorを正常に使用するには、アプリケーションの署名検証を無効にする必要があります。
+    </li>
+    <li>
+        Burp Infiltratorはアプリケーションのバイトコードに不可逆な変更を行います。Burp Infiltratorによって行われた変更を戻すには、オリジナルの変更されていないソースコードから再デプロイする必要があります。
+    </li>
+    <li>
+        対象アプリケーションにBurp Infiltratorのパッチが既に適用されていて、新しいバージョンのBurp Infiltratorが利用可能になった場合、アップデートされたインストーラを通常通り単純に実行して、アプリケーションを再起動してください。
+    </li>
+    <li>
+        .NETアプリケーションにパッチを適用するために、Burp Infiltratorはバイトコードのアセンブラと逆アセンブラツールを使用します。これらは、(a) .NETフレームワークとWindows SDKツールそれぞれで配布されている<code>ilasm</code>と<code>ildasm</code> ツール、または(b)monoで配布されている<code>ilasm</code>と<code>monodis</code>ツール、どちらかです。パッチ適用プロセス中に、アセンブラや逆アセンブラツールの場所を指定する必要があります。互換性を確保するため、テスト対象バイトコードの.NET framework のバージョンとアセンブリツールのバージョンを一致させなければならないことに注意してください。
+    </li>
+    <li>
+        Burp Infiltratorによるアセンブリの器具化が妨げられるため、.NETコードには<code>SupressIldasmAttribute</code>属性のアノテーションを付与すべきではありません。
+    </li>
+    <li>
+        .NETアプリケーションにパッチを当てた後、Burp Infiltratorのインストーラ実行ファイルはアプリケーションがバイトコードを読み込むフォルダ(通常 "bin")に置いたままにしないでください。この場所にインストーラが残っている場合、デフォルトではアプリケーションの一部として.NETがインストーラを読み込み、警告や致命的なエラーがログに記録されるかもしれません。
+    </li>
+</ul>
+<h3 id="non-interactive-installation">非対話形式のインストール</h3>
+<p>
+    Burp Infiltratorは非対話形式でインストールできます。これはさまざまなユースケースをサポートしています。たとえばCIパイプラインで、アプリケーションのビルドをステージングサーバにデプロイし、Burp Infiltratorをインストールし、<a href="scanner/index.html">Burp Scanner</a>を使ってスキャンを実行できます。
+</p>
+<p>
+    Burp Infiltratorを非対話形式で実行するには、次の引数をコマンドラインに追加します:
+</p>
+<code> --non-interactive </code><p>
+    非対話モードでは、通常対話モードで要求されるすべての<a href="#configuration-options">設定オプション</a>にデフォルト値を使います。必要な場合は、追加のコマンドライン引数でこれらのデフォルト値を上書きできます。サポートしているすべてのオプションを表示するには、次のコマンドライン引数を使用してください:
+</p>
+<code> --help </code><p>
+    非対話形式でBurp Infiltratorをインストールする前に、上書きされずに使われる<a href="#configuration-options">設定オプション</a>のデフォルト値を、上記のオプションを使って確認し、要件に基づいて適切なオプションが確実に使われるようにすべきです。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Burp Infiltratorのインストーラを非対話モードで実行すると、対話モードで表示されるすべての警告と免責事項を読み、同意したと見なされます。
+    </p>
+</div>
+<h2 id="configuration-options">設定オプション</h2>
+<p>
+    Burp Infiltratorの<a href="#installing-burp-infiltrator">インストール</a>中に次の設定オプションが対話形式で、または<a href="#non-interactive-installation">非対話形式</a>インストールではコマンドラインオプションで、指定できます。
+</p>
+<ul>
+    <li>
+        潜在的に危険なAPIに達したパラメータに関連するすべての値を報告するかどうか。
+    </li>
+    <li>
+        潜在的に危険なAPIに入力が達したとき、アプリケーションのコールスタックを報告するかどうか。
+    </li>
+    <li>
+        暗号化されていないHTTP経由でCollaboratorサーバとの通信を許可するかどうか。HTTPSを使うと、送信した情報の漏洩リスクを低減します。ただし、 器具化されたアプリケーションと、設定されたCollaboratorサーバで利用可能な技術によっては、暗号化されていない通信が必要になる場合があります。HTTPSが使われると、Burp Infiltratorは使用可能な最新のTLS暗号化を使用しようとします。一部の対象システム、特に古い技術が使われているシステムでは、使用可能な最新の暗号でも、適切な場所に位置する敵からの既知の攻撃に脆弱かもしれません。
+    </li>
+    <li>
+        指定したBurp Collaboratorサーバとのみ通信を許可するかどうか。<a href="scanner/index.html">Burp Scanner</a>がスキャンしている間ペイロードには、使用すると設定したBurp Collaboratorサーバのサブドメインが含まれます。特定のCollaboratorサーバを使用したスキャン実行が分かっている場合、Burp Infiltratorがそのサーバとだけ通信を許可するよう設定できます。
+    </li>
+    <li>
+        Infiltratorがパッチをあてるファイルのパス。パッチは、常にサブディレクトリを再帰的にたどり適用されます。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        設定オプションはパッチを適用している処理中に指定され、アプリケーションのバイトコードに行った変更に反映されています。パッチを適用された後にBurp Infiltratorの設定を変更するには、更新したオプションを使用してBurp Infiltratorのインストーラを再度実行し、アプリケーションを再起動する必要があります。
+    </p>
+</div>
 </body>
 </html>

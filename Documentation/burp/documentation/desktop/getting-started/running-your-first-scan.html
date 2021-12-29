@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Burp Suite ProfessionalのBurp Scannerを使って、Webの脆弱性スキャンを実行し、レポートを作成する方法を学びます。">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE" ignore-validation="STACKED_HEADINGS,ALLOWED_CHARACTERS"></cms><title>Burp Suite Professionalによる初めてのスキャン実行</title>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">入門</a>
+        </li>
+        <li>
+            <a href="running-your-first-scan.html">初めてのスキャン実行</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1 class="heading-2" cms-ignore-validation="HEADING_CAPITALIZATION" no-keyword-injection>4. 初めてのスキャン実行</h1>
+<div no-keyword-injection>
+    <p>
+        Burp Scannerは、完全に自動化されたスキャナとしてだけでなく、手動テストのワークフローを補助する強力な手段としても使用できます。Burp Scannerが検出できる脆弱性のリストは常に増え続けています。私たちは、世界トップクラスの研究チームと緊密に連携し、既知のバグと新たに発見された脆弱性の両方を発見するための最新技術を常に維持するようにしています。
+    </p>
+    <p>
+        Webサイトのスキャンには2つのフェーズがあります:
+    </p>
+    <ul>
+        <li>
+            <strong>コンテンツや機能を確認するクロール</strong> Burp Scannerはまず、実際のユーザの行動を忠実に再現しながら、対象サイトを巡回します。サイトの構造とコンテンツ、そしてサイト内を移動するためのパスをカタログ化し、包括的なサイトマップを作成します。
+        </li>
+        <li>
+            <strong>脆弱性の診断:</strong> スキャンの診断フェーズでは、Webサイトの動作を分析し、セキュリティ上の脆弱性やその他の問題を発見します。Burp Scannerは、さまざまな技術を駆使して、高い網羅性で対象を正確に診断します。
+        </li>
+    </ul>
+    <div class="highlightedarea">
+        <h4>注</h4>
+        <p>
+            Burp Scannerは、Burp Suite Professionalでのみ利用可能です。Burp Suite Community Editionを使用している場合は、このチュートリアルは進められません。
+        </p>
+    </div>
+    <h2 id="scanning-a-website">Webサイトをスキャン</h2>
+    <p>
+        このセクションでは、自動化された脆弱性スキャンを初めて起動する方法を学びます。
+    </p>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: スキャンランチャーを開く</h3>
+    <p>
+        <strong>ダッシュボード</strong>タブに移動し、<strong>新規スキャン</strong>を選択します。
+    </p>
+    <img src="../images/getting-started/quick-start-scanner-new-scan.png" alt="新規スキャンの開始">
+    <p>
+        <strong>スキャンランチャー</strong>ダイアログが開きます。ここでは、Burp Scannerの動作を制御するためのさまざまな設定が行えます。
+    </p>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: 対象サイトのURLを入力する</h3>
+    <p>
+        <strong>スキャンするURL</strong>フィールドに、<code>portswigger-labs.net</code>と入力します。その他の設定は、とりあえずデフォルトのままにしておきます。
+    </p>
+    <img src="../images/getting-started/quick-start-scanner-launcher.png" alt="スキャンランチャーでのURL設定">
+    <div class="highlightedarea">
+        <h4>注</h4>
+        <p>
+            Burp Scannerを使うと、一部のアプリケーションで予期しない影響が出る可能性があります。機能や設定にしっかり慣れるまで、本番以外のシステムだけで使うべきです。管理者から許可されていない限り、第三者のWebサイトに対してスキャンを実行しないでください。
+        </p>
+    </div>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: スキャンを開始する</h3>
+    <p>
+        <strong>OK</strong>をクリックすると、スキャンが始まります。Burp Scannerは、前のステップで入力したURLからクロールを開始します。
+    </p>
+    <p>
+        <strong>ダッシュボード</strong>に、このスキャンの新しいタスクが追加されていることに注目してください。ここに、現在実行中のスキャンフェーズや、送信されたリクエストの数など、重要な情報が表示されます。
+    </p>
+    <p>
+        スキャンを実行している間に、ステップ4に進みます。
+    </p>
+    <img src="../images/getting-started/quick-start-scanner-task.png" alt="ダッシュボードでのスキャン表示">
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ4: クロールの動きを見る</h3>
+    <p>
+        <strong>Target &gt; サイトマップ</strong>タブに移動し、<code>portswigger-labs.net</code>のエントリが追加されていることを確認します。このノードを展開すると、クローラがこれまでに発見したすべてのコンテンツが表示されます。数秒待つと、リアルタイムでマップが更新されていくのがわかります。
+    </p>
+    <img src="../images/getting-started/quick-start-scanner-site-map.png" alt="クロール中のサイトマップの表示">
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ5: 発見された問題の確認</h3>
+    <p>
+        ダッシュボードでスキャンの状態を監視します。1～2分後にクロールが終了し、Burp Scannerは脆弱性の診断を開始します。問題が見つかると、<strong>ダッシュボード</strong>タブの<strong>問題アクティビティ</strong>パネルに表示されます。
+    </p>
+    <img src="../images/getting-started/quick-start-scanner-issue-advisory.png" alt="問題の詳細表示">
+    <p>
+        問題を選択すると、<strong>アドバイザリ</strong>タブが表示されます。アドバイザタブには、詳細な説明や対策のアドバイスなど、問題の種類に応じた重要な情報があります。その次には、Burp Scannerがこの問題を発見した証拠を表示するタブがいくつかあります。これは通常、<strong>リクエスト</strong>と<strong>レスポンス</strong>ですが、問題の種類によって異なります。
+    </p>
+    <hr>
+    <h2 id="generating-a-report">レポートの生成</h2>
+    <p>
+        このセクションでは、スキャン結果に基づいてレポートを作成する方法を説明します。
+    </p>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: 関連する課題の選択</h3>
+    <p>
+        <strong>Target ＞ サイトマップ</strong>タブを開き、<code>https://portswigger-labs.net</code>のエントリを右クリックして、<strong>問題 &gt; このホストの問題をレポート</strong>を選択します。
+    </p>
+    <img src="../images/getting-started/quick-start-scanner-report-issues.png" alt="選択されたホストの問題を報告">
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: レポートオプションの設定</h3>
+    <p>
+        使用するファイル形式や、どの程度の詳細情報を含めるかなど、さまざまなオプションをウィザードが案内してくれます。ここではデフォルトのまま、レポートのファイル名と保存場所を入力するよう求められるまで、<strong>次へ</strong>をクリックします。
+    </p>
+    <img src="../images/getting-started/quick-start-scanner-reporting-wizard.png" alt="スキャンレポートウィザード">
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: レポートの作成と保存</h3>
+    <p>
+        <strong>ファイル選択</strong>をクリックして、レポートを保存する場所を選びます。ファイルの名前を入力してください。
+    </p>
+    <div class="highlightedarea">
+        <h4>注</h4>
+        <p>
+            適切なファイル拡張子(ここでは<code>.html</code>)を付ける必要があります。
+        </p>
+    </div>
+    <p>
+        <strong>保存</strong>、<strong>次へ</strong>の順にクリックすると、レポートが生成されます。
+    </p>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ4: レポートの閲覧と共有</h3>
+    <p>
+        ブラウザでレポートを開き、内容を確認します。これは、同僚や顧客にスキャンの結果を報告する場合に便利です。
+    </p>
+    <img src="../images/getting-started/quick-start-scanner-report.png" alt="スキャンレポートの表示">
+    <p>
+        Burp Suiteを使って初めてのスキャンを行い、検出した結果のレポートを作成できました。
+    </p>
+    <div class="callout theme-community-6">
+        <div class="container-columns-3 align-vertically-center">
+            <p class="heading-navy-1">
+                <strong>次のステップ -</strong> Burpについて学習する
+            </p>
+            <a href="what-next.html" class="button-orange">次へ</a>
+        </div>
+    </div>
+    <h3>このチュートリアルの内容</h3>
+    <ol>
+        <li>
+            <a href="index.html">初期インストール</a>
+        </li>
+        <li>
+            <a href="intercepting-http-traffic.html">Burp ProxyによるHTTPトラフィックのインターセプト</a>
+        </li>
+        <li>
+            <a href="reissuing-http-requests.html">Burp Repeaterによるリクエストの再発行</a>
+        </li>
+        <li>
+            初めてのスキャン実行
+        </li>
+    </ol>
+</div>
+</body>
+</html>

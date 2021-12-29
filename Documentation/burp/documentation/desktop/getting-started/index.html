@@ -4,11 +4,13 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../assets/ps/styles/pssupportnav.css">
+<meta name="description" content="Burp Suite Professional / Burp Suite Community Editionの使用開始方法。ステップ1 - マシンにソフトウェアをインストール。">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE" ignore-validation="STACKED_HEADINGS,LINK_TO_ALL_CHILD_PAGES"></cms><title>Burp Suite Professional / Community Editionのインストール</title>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -24,57 +26,65 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
-    <label class="label-edition is-community">コミュニティ</label>
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>Burp Suite(プロフェッショナルとコミュニティ版)入門</h1>
-        <p>
-            Burp Suiteを起動して実行するには、次の初期インストールと設定の手順を完了する必要があります。
-        </p>
-        <ul class="link-list">
-            <li>
-                <a href="installing-burp.html">1 - Burp Suiteをダウンロードしてインストールする</a>
-            </li>
-            <li>
-                <a href="launching/index.html">2 - Burp Suiteを起動し、起動オプションを選択する</a>
-            </li>
-            <li>
-                <a href="../penetration-testing/index.html">3 - Burpの事前設定されたブラウザを使用してテストを開始する</a>
-            </li>
-            <li>
-                <a href="proxy-setup/index.html">4 - (オプション) 外部ブラウザで動作するようBurp Proxyを設定する</a>
-            </li>
-        </ul>
-        <p>
-            <strong>注: </strong> Burp Suiteを使うと、一部のアプリケーションで予期しない影響が出る可能性があります。機能や設定にしっかり慣れるまで、本番以外のシステムだけで使用してください。
-        </p>
-        <h2 id="next-steps">次の手順</h2>
-        <p>
-            以上でBurp Suiteの初期設定は完了です。次に何をするかはあなた次第ですが、Burpとその主要なツールに慣れるために、以下のドキュメントの確認をお勧めします。
-        </p>
-        <ul class="link-list">
-            <li>
-                <a href="../scanning/index.html">ウェブサイトをスキャン</a>
-            </li>
-            <li>
-                <a href="../penetration-testing/index.html">ペネトレーションテストにBurp Suiteを使用する</a>
-            </li>
-            <li>
-                <a href="../tools/index.html">Burp Suiteのツールでの作業</a>
-            </li>
-            <li>
-                <a href="launching/configurations.html">Burp Suiteの設定</a>
-            </li>
-            <li>
-                <a href="../troubleshooting.html">一般的な問題のトラブルシューティング</a>
-            </li>
-            <li>
-                <a href="proxy-troubleshooting.html">BurpのCA証明書のダウンロードに問題がありますか?</a>
-            </li>
-        </ul>
+<h1 no-keyword-injection cms-ignore-validation="HEADING_CAPITALIZATION" class="heading-2">1. ダウンロードとインストール</h1>
+<div no-keyword-injection>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: ダウンロード</h3>
+    <p>
+        Burp Suite ProfessionalまたはCommunity Editionのインストーラをダウンロードします。次のリンクは、最新の安定版リリースのダウンロードページを新しいタブで開きます。
+    </p>
+    <div class="callout theme-grey-5">
+        <div class="align-vertically-center container-columns-3">
+            <p class="heading-navy-1">
+                <strong>ソフトウェアを選択してください</strong>
+            </p>
+            <div class="container-columns-3">
+                <a class="button-white" href="https://portswigger.net/burp/releases/professional/latest" target="_blank"><span class="icon-get-app"></span>Professional</a><a class="button-white" href="https://portswigger.net/burp/releases/community/latest" target="_blank"><span class="icon-get-app"></span>Community Edition</a>
+            </div>
+        </div>
     </div>
-</section>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: インストール</h3>
+    <p>
+        インストーラを実行し、Burp Suiteを起動します。
+    </p>
+    <p>
+        プロジェクトファイルと設定を選択するように求められたら、<strong>次へ</strong>と<strong>Burpを開始</strong>をクリックし、ひとまずこれをスキップします。
+    </p>
+    <div class="highlightedarea">
+        <h4>注</h4>
+        <p>
+            Burp Suite Professionalを使用している場合は、プロンプトが表示されたらライセンスキーを入力してください。まだ持っていない場合は、<a href="https://portswigger.net/buy/pro">申し込み</a>または<a href="https://portswigger.net/burp/pro/trial">無料トライアルのリクエスト</a>ができます。
+        </p>
+    </div>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: Burp Suiteの探索を開始する</h3>
+    <p>
+        Burp Suiteをまったく初めて使用する場合は、このチュートリアルの残りの部分に従って、コア機能のインタラクティブなガイド付きツアーを参照してください。
+    </p>
+    <div class="callout theme-community-6">
+        <div class="container-columns-3 align-vertically-center">
+            <p class="heading-navy-1">
+                <strong>次のステップ - </strong>Burp ProxyによるHTTPトラフィックのインターセプト
+            </p>
+            <a href="intercepting-http-traffic.html" class="button-orange">次へ</a>
+        </div>
+    </div>
+    <h3 cms-ignore-validation="DUPLICATE_HEADINGS">このチュートリアルの内容</h3>
+    <ol>
+        <li>
+            初期インストール
+        </li>
+        <li>
+            <a href="intercepting-http-traffic.html">Burp ProxyによるHTTPトラフィックのインターセプト</a>
+        </li>
+        <li>
+            <a href="reissuing-http-requests.html">Burp Repeaterによるリクエストの再発行</a>
+        </li>
+        <li>
+            <a href="running-your-first-scan.html">初めてのスキャン実行</a>
+        </li>
+    </ol>
+</div>
 </body>
 </html>

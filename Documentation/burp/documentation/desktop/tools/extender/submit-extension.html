@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -30,129 +31,125 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
-    <label class="label-edition is-community">コミュニティ</label>
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>BAppストアへの拡張の投稿</h1>
+<h1>BAppストアへの拡張の投稿</h1>
+<p>
+    Burp Suiteの<a href="https://portswigger.net/burp/extender">拡張</a>を書いた場合、<a href="https://portswigger.net/bappstore">BAppストア</a>で利用可能なBAppにするために、ぜひ私たちに投稿してください。投稿プロセスは次の通りです。
+</p>
+<h2 id="before-you-submit">投稿する前に</h2>
+<p>
+    拡張を投稿する前に、拡張が受け入れられる可能性が高いことを確認してください。<a href="https://portswigger.net/blog/your-recipe-for-bapp-store-success">ガイドライン</a>を読み、私たちが考える良い拡張とは何か確認してください。重要ないくつかのポイントは次の通りです:
+</p>
+<ul>
+    <li>
         <p>
-            Burp Suiteの<a href="https://portswigger.net/burp/extender">拡張</a>を書いた場合、<a href="https://portswigger.net/bappstore">BAppストア</a>で利用可能なBAppにするために、ぜひ私たちに投稿してください。投稿プロセスは次のとおりです。
+            拡張は、Burp Suiteや既存のBAppの機能と重複しないでください。
         </p>
-        <h2 id="before-you-submit">投稿する前に</h2>
+    </li>
+    <li>
         <p>
-            拡張を投稿する前に、拡張が受け入れられる可能性が高いことを確認してください。<a href="https://portswigger.net/blog/your-recipe-for-bapp-store-success">ガイドライン</a>を読み、私たちが考える良い拡張とは何か確認してください。重要ないくつかのポイントは次のとおりです:
+            拡張は、Burp Suiteネットワークを使用する必要があります。
         </p>
-        <ul>
-            <li>
-                <p>
-                    拡張は、Burp Suiteや既存のBAppの機能と重複しないでください。
-                </p>
-            </li>
-            <li>
-                <p>
-                    拡張は、Burp Suiteネットワークを使用する必要があります。
-                </p>
-            </li>
-            <li>
-                <p>
-                    拡張は、応答性の維持やクリーンなアンロードなど、コーディングのベストプラクティスに従う必要があります。
-                </p>
-            </li>
-            <li>
-                <p>
-                    拡張は、オフライン作業や大規模プロジェクトなどのBurp Suiteのユースケースでうまく機能する必要があります。
-                </p>
-            </li>
-        </ul>
+    </li>
+    <li>
         <p>
-            BAppは、作成者のソースコードからフォークされます。現在のBAppのソースコードを確認したい場合は、私たちの<a href="https://github.com/PortSwigger">リポジトリ</a>を見てください。
+            拡張は、応答性の維持やクリーンなアンロードなど、コーディングのベストプラクティスに従う必要があります。
         </p>
-        <h2 id="submit-your-extension">拡張の投稿</h2>
+    </li>
+    <li>
         <p>
-            拡張を投稿するには、以下が必要です:
+            拡張は、オフライン作業や大規模プロジェクトなどのBurp Suiteのユースケースでうまく機能する必要があります。
         </p>
-        <ul>
-            <li>
-                <p>
-                    関連するすべてのソースコードが保存されているGitHubリポジトリへのリンク。
-                </p>
-            </li>
-            <li>
-                <p>
-                    名前と、拡張の機能の適切な説明。
-                </p>
-            </li>
-            <li>
-                <p>
-                    拡張の動作の詳細、使用方法、拡張の使用に必要なセットアップ情報。
-                </p>
-            </li>
-        </ul>
+    </li>
+</ul>
+<p>
+    BAppは、作成者のソースコードからフォークされます。現在のBAppのソースコードを確認したい場合は、私たちの<a href="https://github.com/PortSwigger">リポジトリ</a>を見てください。
+</p>
+<h2 id="submit-your-extension">拡張の投稿</h2>
+<p>
+    拡張を投稿するには、以下が必要です:
+</p>
+<ul>
+    <li>
         <p>
-            これらがすべてできたら、<a href="mailto:support@portswigger.net">私たちに連絡</a>してもらえれば、拡張をレビューします。
+            関連するすべてのソースコードが保存されているGitHubリポジトリへのリンク。
         </p>
-        <h2 id="reviewing-the-extension">拡張のレビュー</h2>
+    </li>
+    <li>
         <p>
-            拡張を入手したら、コンパイルして、BAppストアに適していることをレビューします。次のように<a href="https://portswigger.net/blog/your-recipe-for-bapp-store-success">ガイドライン</a>に照らし合わせてレビューします:
+            名前と、拡張の機能の適切な説明。
         </p>
-        <ul>
-            <li>
-                <p>
-                    拡張が、既存の機能や利用可能な拡張機能と重複していないこと。
-                </p>
-            </li>
-            <li>
-                <p>
-                    ガイドラインへの準拠を確認するためのコードレビュー。
-                </p>
-            </li>
-            <li>
-                <p>
-                    重要な機能の使用状況をチェックする自動レビュー。
-                </p>
-            </li>
-            <li>
-                <p>
-                    ウイルス/マルウェアスキャン。
-                </p>
-            </li>
-            <li>
-                <p>
-                    拡張の手動テスト。
-                </p>
-            </li>
-        </ul>
+    </li>
+    <li>
         <p>
-            不明な点や改善の提案がある場合は、折り返し連絡します。拡張が確認できたら、BAppストアで使用するかどうかについて連絡します。
+            拡張の動作の詳細、使用方法、拡張の使用に必要なセットアップ情報。
         </p>
-        <h2 id="updating-your-bapp">BAppの更新</h2>
+    </li>
+</ul>
+<p>
+    これらがすべてできたら、<a href="mailto:support@portswigger.net">私たちに連絡</a>してもらえれば、拡張をレビューします。
+</p>
+<h2 id="reviewing-the-extension">拡張のレビュー</h2>
+<p>
+    拡張を入手したら、コンパイルして、BAppストアに適しているかレビューします。次のように<a href="https://portswigger.net/blog/your-recipe-for-bapp-store-success">ガイドライン</a>に照らし合わせてレビューします:
+</p>
+<ul>
+    <li>
         <p>
-            BAppを更新するプロセスは次のとおりです:
+            拡張が、既存の機能や利用可能な拡張機能と重複していないこと。
         </p>
-        <ol>
-            <li>
-                <p>
-                    あなたのリポジトリのPortSwiggerのフォークに対してプルリクエストを作成してください。フォークされたリポジトリからのプルリクエストのみを受け付けます。
-                </p>
-            </li>
-            <li>
-                <p>
-                    プルリクエストを作成したことを、<a href="mailto:support@portswigger.net">メールで連絡</a>してください。
-                </p>
-            </li>
-            <li>
-                <p>
-                    変更を確認し、PortSwiggerのフォークにマージします。
-                </p>
-            </li>
-            <li>
-                <p>
-                    拡張をテストし、更新されたバージョンをBAppストアに公開します。
-                </p>
-            </li>
-        </ol>
-    </div>
-</section>
+    </li>
+    <li>
+        <p>
+            ガイドラインへの準拠を確認するためのコードレビュー。
+        </p>
+    </li>
+    <li>
+        <p>
+            重要な機能の使用状況をチェックする自動レビュー。
+        </p>
+    </li>
+    <li>
+        <p>
+            ウイルス/マルウェアスキャン。
+        </p>
+    </li>
+    <li>
+        <p>
+            拡張の手動テスト。
+        </p>
+    </li>
+</ul>
+<p>
+    不明な点や改善の提案がある場合は、折り返し連絡します。拡張が確認できたら、BAppストアで使用するかどうかについて連絡します。
+</p>
+<h2 id="updating-your-bapp">BAppの更新</h2>
+<p>
+    BAppを更新するプロセスは次の通りです:
+</p>
+<ol>
+    <li>
+        <p>
+            あなたのリポジトリのPortSwiggerのフォークに対してプルリクエストを作成してください。フォークされたリポジトリからのプルリクエストのみを受け付けます。
+        </p>
+    </li>
+    <li>
+        <p>
+            プルリクエストを作成したことを、<a href="mailto:support@portswigger.net">メールで連絡</a>してください。
+        </p>
+    </li>
+    <li>
+        <p>
+            変更を確認し、PortSwiggerのフォークにマージします。
+        </p>
+    </li>
+    <li>
+        <p>
+            拡張をテストし、更新されたバージョンをBAppストアに公開します。
+        </p>
+    </li>
+</ol>
 </body>
 </html>

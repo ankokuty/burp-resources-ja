@@ -4,11 +4,12 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../assets/ps/styles/pssupportnav.css">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
 </head>
-<body>
+<body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
-    <ol>
+    <ol class="breadcrumb-list">
         <li>
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
@@ -22,51 +23,47 @@
             <a href="index.html">便利な機能</a>
         </li>
         <li>
-            <a href="target-analyzer.html">対象の解析</a>
+            <a href="target-analyzer.html">対象の分析</a>
         </li>
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-professional">プロフェッショナル</label>
+    <label class="label-edition is-professional">Professional</label>
 </section>
-<section class="maincontainer">
-    <div class="container main">
-        <h1>対象の解析</h1>
-        <p>
-            この機能は、対象Webアプリケーションを解析し、静的及び動的なURLがいくつあるか、また各URLにパラメータがいくつあるかを表示します。これは、診断案件の工数見積や、テスト中に注力すべき箇所の判断に役立ちます。
-        </p>
-        <p>
-            この機能にアクセスするには、サイトマップで1つ以上のホストかブランチを選択し、コンテキストメニューの"関連ツール"から"対象の解析"を選択します。
-        </p>
-        <p>
-            対象の解析ダイアログには、次のタブがあります:
-        </p>
-        <ul>
-            <li>
-                <strong>概要</strong> - 動的URL、静的URL、パラメータ、一意のパラメータ名の合計数を表示します。すべての解析結果をHTML形式のレポートに保存もできます。
-            </li>
-            <li>
-                <strong>動的URL</strong> - パラメータが付いていたすべてのURLを一覧表示します。プレビューペインには、選択したアイテムの完全なリクエストとレスポンスと、リクエストパラメータの詳細が表示されます。
-            </li>
-            <li>
-                <strong>静的URL</strong> - パラメータが付いていなかったすべてのURLを一覧表示します。プレビューペインには、選択したアイテムの完全なリクエストとレスポンスが表示されます。
-            </li>
-            <li>
-                <strong>パラメータ</strong> - 一意なパラメータ名と、それが現れるURLの数を一覧表示します。パラメータを選択するとそのURLの一覧が表示され、URLを選択するとそのURLの完全なリクエストとレスポンスが表示されます。
-            </li>
-        </ul>
-        <p>
-            対象の解析について、次の点を知っておくべきです:
-        </p>
-        <ul>
-            <li>
-                この機能は、サイトマップ内に既に読み込まれたコンテンツのみを解析するため、実行する前に、アプリケーションのコンテンツと機能がすべて完全にマッピングされていることを確認してください。
-            </li>
-            <li>
-                URLパラメータやメッセージボディが確認されていないURLは"静的"に分類されます; しかしアプリケーションが動的にレスポンスを生成している可能性もあります。
-            </li>
-        </ul>
-    </div>
-</section>
+<h1>対象の分析</h1>
+<p>
+    この機能は、対象Webアプリケーションを分析し、静的や動的なURLがいくつあるか、また各URLにパラメータがいくつあるかを表示します。これは、診断案件の工数見積や、テスト中に注力すべき箇所の判断に役立ちます。
+</p>
+<p>
+    この機能にアクセスするには、サイトマップで1つ以上のホストかブランチを選択し、コンテキストメニューの<strong>関連ツール</strong>から<strong>対象の分析</strong>を選択します。
+</p>
+<p>
+    対象の分析ダイアログには、次のタブがあります:
+</p>
+<ul>
+    <li>
+        <strong>概要</strong> - 動的URL、静的URL、パラメータ、一意なパラメータ名の合計数を表示します。すべての分析結果をHTML形式のレポートも保存できます。
+    </li>
+    <li>
+        <strong>動的URL</strong> - パラメータが付いていたすべてのURLを一覧表示します。プレビューペインには、選択したアイテムの完全なリクエストとレスポンスと、リクエストパラメータの詳細が表示されます。
+    </li>
+    <li>
+        <strong>静的URL</strong> - パラメータが付いていなかったすべてのURLを一覧表示します。プレビューペインには、選択したアイテムの完全なリクエストとレスポンスが表示されます。
+    </li>
+    <li>
+        <strong>パラメータ</strong> - 一意なパラメータ名と、それが現れるURLの数を一覧表示します。パラメータを選択するとそのURLの一覧が表示され、URLを選択するとそのURLの完全なリクエストとレスポンスが表示されます。
+    </li>
+</ul>
+<p>
+    対象の分析について、次の点を知っておくべきです:
+</p>
+<ul>
+    <li>
+        この機能は、サイトマップ内に既に読み込まれたコンテンツのみを分析するため、実行する前に、アプリケーションのコンテンツと機能がすべて完全にマッピングされていることを確認してください。
+    </li>
+    <li>
+        URLパラメータやメッセージボディが確認されていないURLは"静的"に分類されます; しかしアプリケーションが動的にレスポンスを生成している可能性もあります。
+    </li>
+</ul>
 </body>
 </html>

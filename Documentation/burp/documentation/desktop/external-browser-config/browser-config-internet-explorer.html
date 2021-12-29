@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">外部ブラウザの設定</a>
+        </li>
+        <li>
+            <a href="browser-config-internet-explorer.html">Internet Explorer</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Burpと連携するようInternet Explorerを設定する</h1>
+<p>
+    Burpでのテストに使用できるようにInternet Explorerを設定するには、次の設定手順を実行してください。
+</p>
+<p>
+    Internet Explorerで、<strong>ツール</strong>メニューに移動し、<strong>インターネットオプション</strong>をクリックします。
+</p>
+<div class="section-small">
+    <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_IE_1.jpg" alt="IEインターネットオプション" class="center-block">
+</div>
+<p>
+    <strong>接続</strong>タブに移動し、<strong>LANの設定</strong>ボタンをクリックします。
+</p>
+<p>
+    <strong>設定を自動的に検出する</strong>チェックボックスがオフになっていることを確認します。
+</p>
+<p>
+    <strong>自動構成スクリプトを使用する</strong>のチェックを外します。<strong>LANにプロキシ サーバを使用する</strong>チェックボックスをオンにします。
+</p>
+<div class="section-small">
+    <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_IE_2.jpg" alt="IE LAN設定" class="center-block">
+</div>
+<p>
+    <strong>アドレス</strong>フィールドに、Burp Proxyリスナーのアドレス(デフォルトは127.0.0.1)を入力します。<strong>ポート</strong>フィールドに、Burp Proxyリスナーのポート番号(デフォルトは8080)を入力します。
+</p>
+<p>
+    <strong>ローカルアドレスにはプロキシサーバを使用しない</strong>のチェックを外します。
+</p>
+<p>
+    <strong>詳細設定</strong>ボタンをクリックします。
+</p>
+<div class="section-small">
+    <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_IE_3.jpg" alt="IEプロキシアドレス" class="center-block">
+</div>
+<p>
+    <strong>すべてのプロトコルに同じプロキシサーバを使用する</strong>をチェックします。
+</p>
+<p>
+    <strong>例外</strong>フィールドをすべて削除します。
+</p>
+<p>
+    <strong>OK</strong>をクリックしてすべての設定ダイアログを閉じます。
+</p>
+<div class="section-small">
+    <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_IE_4.jpg" alt="IEプロキシ設定" class="center-block">
+</div>
+</body>
+</html>

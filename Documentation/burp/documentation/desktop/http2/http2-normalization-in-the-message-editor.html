@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">HTTP/2</a>
+        </li>
+        <li>
+            <a href="http2-normalization-in-the-message-editor.html">正規化</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>メッセージエディタでのHTTP/2正規化</h1>
+<p>
+    Burpのメッセージエディタは、HTTP/2のリクエストをHTTP/1形式の文法で表示します。つまり、もしHTTP/1のリクエストだった場合にはどのようなリクエストになるかを表示します。これは、リクエストの各コンポーネントをHTTP/1と同等のものへのマッピングで実現しています。エディタで変更を加えた場合には、この処理を逆に行います。たとえば、リクエスト行を<code>:method</code>と<code>:path</code>疑似ヘッダにマッピングしたり、<code>Host</code>ヘッダから<code>:authority</code>を生成したりします。
+</p>
+<p>
+    Burpは、エディタで行った変更に対して簡単な正規化を行い、拒否される可能性の高いHTTP/2リクエストがうっかり送信されるリスクを軽減します。理論的に無効なリクエストに対してサーバがどのように反応するかを確認したい場合は、<a href="#sending-requests-without-any-normalization">正規化せずにリクエストを送信</a>できます。
+</p>
+<h2 id="what-normalization-is-performed">どのような正規化が行われるのか？</h2>
+<p>
+    メッセージエディタのHTTP/1形式の入力をHTTP/2メッセージに変換する際に、次のような正規化が行われます:
+</p>
+<ul>
+    <li>
+        <p>
+            ヘッダ名に大文字が含まれている場合は、小文字に変換されます。
+        </p>
+    </li>
+    <li>
+        <p>
+            存在する場合、<code>Connection</code>ヘッダは削除されます。
+        </p>
+    </li>
+    <li>
+        <p>
+            <code>Host</code>ヘッダを移動した場合は、元の位置に戻されます。
+        </p>
+    </li>
+</ul>
+<p>
+    これにより、HTTP/1の構文的に有効なリクエストを作成していれば、Burpは仕様に準拠したHTTP/2リクエストを生成します。さもなければ、多くのサーバで拒否されるようなリクエストを誤って作ってしまうことになります。
+</p>
+<p>
+    リクエストを送信すると、実行された正規化を反映してエディタ内の表現が更新されます。この透過性により、リクエストが裏でどうなったかが理解できます。
+</p>
+<h3 id="why-can-t-i-move-the-host-header">なぜHostヘッダを動かせないのか？</h3>
+<p>
+    Burpは、エディタに表示される<code>Host</code>ヘッダを、HTTP/2で相当する<code>:authority</code>疑似ヘッダにマッピングします。HTTP/2では、すべての疑似ヘッダは通常のヘッダの前に送信されることになっています。このため、Inspectorで疑似ヘッダを移動させて上書きしない限り、Burpは疑似ヘッダを固定の順序で送信します。
+</p>
+<h2 id="sending-requests-without-any-normalization">正規化されていないリクエストの送信</h2>
+<p>
+    正規化せずにHTTP/2リクエストを送信するには、メッセージエディタではなく、Inspectorを使って変更を行います。唯一の例外として、<code>Connection</code>ヘッダはデフォルトでは削除されたままですが、<strong>Repeater</strong>メニューで<a href="index.html#repeater-options-for-http-2">この動作をコントロール</a>できます。
+</p>
+<p>
+    これにより、HTTP/2の仕様に準拠していないリクエストを意図的に送信し、サーバの挙動を確認できます。
+</p>
+</body>
+</html>
