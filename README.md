@@ -1,7 +1,7 @@
 Burp Suite日本語ドキュメント
 ====
 
-このドキュメントは、Burp Suite Professional版に付属するドキュメントを、日本語に翻訳したものです。
+[このドキュメント](https://burp-resources-ja.webappsec.jp/)は、Burp Suite Professional版に付属するドキュメントを、日本語に翻訳したものです。
 
 ## 目次
 
@@ -12,7 +12,7 @@ Burp Suite日本語ドキュメント
 
 - Enterprise版は含まれておりません。
 
-- [このドキュメント](https://burp-resources-ja.webappsec.jp/)は、私個人が独自に勝手に翻訳したもので、PortSwigger社は一切関係ありません。日本語訳の間違いはもちろんのこと、本ドキュメントを使用したことによる不具合等についてPortSwiggerに問い合わせないようお願いします。
+- このドキュメントは、私個人が独自に勝手に翻訳したもので、PortSwigger社は一切関係ありません。日本語訳の間違いはもちろんのこと、本ドキュメントを使用したことによる不具合等についてPortSwiggerに問い合わせないようお願いします。
 
 - 翻訳の間違いやよく意味のわからない箇所がある場合は、[GitHubのIssue](https://github.com/ankokuty/burp-resources-ja)、またはその他の方法でご連絡ください。(特にSequencerが怪しいです)
 
