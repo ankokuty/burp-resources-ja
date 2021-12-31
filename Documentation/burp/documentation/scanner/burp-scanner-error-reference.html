@@ -30,36 +30,36 @@
 </section>
 <h1>Burp Scannerエラーリファレンス</h1>
 <p>
-    This is a quick reference guide to troubleshooting the most common Burp Scanner error messages. You can use <code>Ctrl/Cmd + F</code> to search for the error you've encountered to see more detailed information about the potential cause of the problem and some remediation advice. If you cannot find your error message listed, please contact our support team for more assistance.
+    これは、Burp Scannerの最も一般的なエラーメッセージに対する、トラブルシューティングのクイックリファレンスガイドです。<code>Ctrl/Cmd + F</code>を使用して発生したエラーを検索すると、問題の潜在的な原因の詳細や改善策のアドバイスが確認できます。このリストにエラーメッセージが見つからない場合は、サポートチームに連絡してください。
 </p>
 <div class="expandable-container">
     <details><summary class="component-is-expandable">
             <h4><code>Can't find existing log file!</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Our technical support team may have asked you to enable debug logging for a scan in order to help diagnose a problem you reported. This creates a log file called something like <code>crawlDebug-1-1234567890123.log</code> when the scan runs. Burp Suite tried to load a scan at startup, but could not find the associated log file. This could be because it has been moved or deleted.
+            <h5>原因</h5><p>
+                我々のテクニカルサポートチームは、あなたから報告された問題を診断するために、スキャンのデバッグログを有効にするようお願いする場合があります。これによりスキャンが実行されると、<code>crawlDebug-1-1234567890123.log</code>のようなログファイルが作成されます。Burp Suiteは起動時にスキャンを読み込もうとしましたが、関連するログファイルが見つかりませんでした。移動または削除されている可能性があります。
             </p>
-            <h5>Remedy</h5><p>
-                If you moved this file from its original location, put it back and try again. To find the expected location:
+            <h5>解決方法</h5><p>
+                このファイルを元の場所から移動させた場合は、それを戻してから再試行してください。想定されている場所を確認するには:
             </p>
             <ol>
                 <li>
-                    From the Burp's Dashboard tab, click the settings icon for the related scan.
+                    Burpのダッシュボードタブで、関連するスキャンの設定アイコンをクリックします。
                 </li>
                 <li>
-                    Go to the <strong>Scan Configuration</strong> settings, select the relevant crawl configuration, then click <strong>Edit</strong>.
+                    <strong>スキャン設定</strong>に移動し、該当するクロール設定を選択し、<strong>編集</strong>をクリックします。
                 </li>
                 <li>
-                    Under <strong>Crawl Optimization</strong>, click the settings icon next to the Crawl strategy menu.
+                    <strong>クロールの最適化</strong>で、クロール戦略メニューの横にある設定アイコンをクリックします。
                 </li>
                 <li>
-                    Check the Directory field.
+                    ディレクトリ項目を確認してください。
                 </li>
             </ol>
             <div class="highlightedarea">
                 <h5>注</h5><p>
-                    The logging option is not recommended for normal operation. Generally speaking, you should only enable it when asked to do so by our support team.
+                    ロギングオプションは、通常の運用では推奨されません。一般的には、我々のサポートチームから要請があった場合にのみ有効にしてください。
                 </p>
             </div>
         </div>
@@ -67,15 +67,15 @@
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Can't write to log file:</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Our technical support team may have told you to enable debug logging for a scan in order to help diagnose a problem you reported. This creates a log file called something like <code>crawlDebug-1-1234567890123.log</code> when the scan runs. Burp Scanner encountered errors while trying to write to this file. This could be caused by permissions or other file system problems with the location you have selected for the log file.
+            <h5>原因</h5><p>
+                我々のテクニカルサポートチームは、あなたから報告された問題を診断するために、スキャンのデバッグログを有効にするよう指示する場合があります。これによりスキャンが実行されると、<code>crawlDebug-1-1234567890123.log</code>のようなログファイルが作成されます。Burp Scannerによるこのファイルへの書き込み中にエラーが発生しました。ログファイルの保存先として選択した場所の権限やその他ファイルシステムの問題が原因である可能性があります。
             </p>
-            <h5>Remedy</h5><p>
-                Make sure that the burpsuite user has permission to write to the specified directory, or select a different directory to save the log file in.
+            <h5>解決方法</h5><p>
+                指定したディレクトリにBurp Suiteユーザの書き込み権限があるか確認してください。またはログファイルを保存する別のディレクトリを選択してください。
             </p>
             <div class="highlightedarea">
                 <h5>注</h5><p>
-                    The logging option is not recommended for normal operation. Generally speaking, you should only enable it when asked to do so by our support team.
+                    ロギングオプションは、通常の運用では推奨されません。一般的には、我々のサポートチームから要請があった場合にのみ有効にしてください。
                 </p>
             </div>
         </div>
@@ -83,24 +83,24 @@
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Failed to replay sequence</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner was unable to successfully replay one or more steps of a recorded login sequence during the scan.
+            <h5>原因</h5><p>
+                Burp Scannerは、スキャン中に記録されたログインシーケンスを正常に再生できませんでした。
             </p>
-            <h5>Remedy</h5><p>
-                Contact our <a href="https://portswigger.net/support">Support team</a> with the following:
+            <h5>解決方法</h5><p>
+                次の情報を添えて、<a href="https://portswigger.net/support">サポートチーム</a>に連絡してください:
             </p>
             <ol>
                 <li>
-                    An HTML snippet of the login form.
+                    ログインフォームのHTMLスニペット。
                 </li>
                 <li>
-                    The login script (JSON) exactly as it is pasted into Burp.
+                    Burpに貼り付けられた通りのログインスクリプト(JSON)。
                 </li>
                 <li>
-                    A screen recording of the login sequence being performed by Burp Scanner. To do this, under <strong>Application Login</strong>, select your recorded login sequence and click <strong>Replay</strong>.
+                    Burp Scannerによって行われているログインシーケンスの画面録画。これを行うには、<strong>アプリケーションログイン</strong>で、記録されたログインシーケンスを選択し、<strong>再生</strong>をクリックしてください。
                 </li>
                 <li>
-                    A screenshot of the event log (if any errors are visible) and the diagnostics from <strong>Help &gt; Diagnostics</strong>.
+                    イベントログのスクリーンショット(エラーが表示されている場合)と、<strong>ヘルプ &gt; 診断</strong>の診断結果。
                 </li>
             </ol>
         </div>
@@ -108,78 +108,78 @@
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Cannot replay sequence, failed to create a browser</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner was unable to start the embedded browser that it uses to replay recorded login sequences.
+            <h5>原因</h5><p>
+                Burp Scannerは、記録されたログインシーケンスを再生するために使用する内蔵ブラウザを起動できませんでした。
             </p>
-            <h5>Remedy</h5><p>
-                Run the <a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">Embedded browser health check</a> from the <strong>Help</strong> menu in Burp Suite. This will diagnose problems with the embedded browser.
+            <h5>解決方法</h5><p>
+                Burp Suiteの<strong>ヘルプ</strong>メニューから、<a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">内蔵ブラウザのヘルスチェック</a>を実行してください。これにより、内蔵ブラウザの問題が診断されます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping API definition. The data in the definition file is malformed and cannot be read by Burp Scanner</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scannerは、API定義をスキャンするためにそれを分析できる必要があります。Currently, this is only possible for definitions that:
+            <h5>原因</h5><p>
+                Burp Scannerは、スキャンするためにAPI定義を分析できる必要があります。現在、これは次の定義に対してのみ可能です:
             </p>
             <ul>
                 <li>
-                    Meet the OpenAPI version 3.x.x specification.
+                    OpenAPI version 3.x.xの仕様を満たしている。
                 </li>
                 <li>
-                    Do not contain any external references.
+                    外部参照を含んでいない。
                 </li>
             </ul>
             <p>
                 これらの要件を満たさない定義は、スキャン中にスキップされます。
             </p>
-            <h5>Remedy</h5><p>
-                Make sure that the API definition you're trying to scan meets the prerequisites outlined above. For more details, please refer to the <a href="../desktop/scanning/api-scanning.html#prerequisites-for-api-scanning">documentation for API scanning</a>.
+            <h5>解決方法</h5><p>
+                スキャンしようとしているAPI定義が、上記の前提条件を満たしているか確認してください。詳細は、<a href="../desktop/scanning/api-scanning.html#prerequisites-for-api-scanning">APIスキャンのドキュメント</a>を参照してください。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Environment not supported by browser. (Use 'Embedded Browser Health Check' for more details.)</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner could not start the embedded browser as it is not supported by the current operating system environment.
+            <h5>原因</h5><p>
+                現在のOS環境ではサポートされていないため、Burp Scannerが内蔵ブラウザを起動できませんでした。
             </p>
-            <h5>Remedy</h5><p>
-                Run the <a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">Embedded browser health check</a> from the <strong>Help</strong> menu in Burp Suite. This will diagnose problems with the embedded browser.
+            <h5>解決方法</h5><p>
+                Burp Suiteの<strong>ヘルプ</strong>メニューから、<a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">内蔵ブラウザのヘルスチェック</a>を実行してください。これにより、内蔵ブラウザの問題が診断されます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Could not start browser. (Use 'Embedded Browser Health Check' for more details.)</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner could not start the embedded browser due to an unexpected error.
+            <h5>原因</h5><p>
+                Burp Scannerは、予期せぬエラーにより内蔵ブラウザを起動できませんでした。
             </p>
-            <h5>Remedy</h5><p>
-                Run the <a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">Embedded browser health check</a> from the <strong>Help</strong> menu in Burp Suite. This will diagnose problems with the embedded browser.
+            <h5>解決方法</h5><p>
+                Burp Suiteの<strong>ヘルプ</strong>メニューから、<a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">内蔵ブラウザのヘルスチェック</a>を実行してください。これにより、内蔵ブラウザの問題が診断されます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Could not start embedded browser sandbox because you are running as root. Either switch to running as an unprivileged user or allow running without sandbox</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                For security reasons, on Linux, the embedded browser runs in sandbox mode by default. When logged in as root, this may prevent the browser from launching properly.
+            <h5>原因</h5><p>
+                セキュリティの理由で、Linuxで内蔵ブラウザはデフォルトでサンドボックスモードで動作します。rootでログインしている場合、ブラウザが正常に起動しないことがあります。
             </p>
-            <h5>Remedy</h5><p>
-                You have the following options:
+            <h5>解決方法</h5><p>
+                次の選択肢があります:
             </p>
             <ol>
                 <li>
-                    Switch to a different user. We recommend this option wherever possible.
+                    異なるユーザに切り替える。可能な限りこちらを推奨します。
                 </li>
                 <li>
-                    Allow the embedded browser to run without a sandbox under <strong>Project options &gt; Misc &gt; Embedded browser</strong>.
+                    <strong>プロジェクトオプション &gt; その他 &gt; 内蔵ブラウザ</strong>で、内蔵ブラウザをサンドボックスなしで実行する。
                 </li>
             </ol>
             <div class="highlightedarea">
                 <h5>注意</h5><p>
-                    Scanning hostile websites without a sandbox can increase the risk of your local machine being compromised. Before enabling this option, make sure that you understand the security implications.
+                    サンドボックスなしで敵対的なWebサイトをスキャンすると、ローカルマシンが危険にさらされるリスクが高まります。このオプションを有効にする前に、セキュリティへの影響を理解しておく必要があります。
                 </p>
             </div>
         </div>
@@ -187,15 +187,15 @@
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Can not start embedded browser sandbox because your kernel does not support user namespaces. Please either upgrade your kernel or allow running without sandbox</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Running the embedded browser in sandbox mode on Linux requires a Kernel that supports User namespaces.
+            <h5>原因</h5><p>
+                Linuxでサンドボックスモードの内蔵ブラウザを実行するには、ユーザ名前空間をサポートするカーネルが必要です。
             </p>
-            <h5>Remedy</h5><p>
-                You can either upgrade to a Kernel that supports namespaces or allow Burp Scanner's embedded browser to run without the sandbox under <strong>Project options &gt; Misc &gt; Embedded browser</strong>.
+            <h5>解決方法</h5><p>
+                名前空間をサポートするカーネルにアップグレードするか、<strong>プロジェクトオプション &gt; その他 &gt; 内蔵ブラウザ</strong>で内蔵ブラウザをサンドボックスなしで実行するか、どちらかを選択してください。
             </p>
             <div class="highlightedarea">
                 <h5>注意</h5><p>
-                    Scanning hostile websites without a sandbox can increase the risk of your local machine being compromised. Before enabling this option, make sure that you understand the security implications.
+                    サンドボックスなしで敵対的なWebサイトをスキャンすると、ローカルマシンが危険にさらされるリスクが高まります。このオプションを有効にする前に、セキュリティへの影響を理解しておく必要があります。
                 </p>
             </div>
         </div>
@@ -203,274 +203,274 @@
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Can not start embedded browser sandbox because the chrome-sandbox binary is not configured correctly and your kernel has user namespace cloning disabled. To enable, run the following command as root: "echo 1 &gt; /proc/sys/kernel/unprivileged_userns_clone"</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner will by default run the embedded browser in sandbox mode. This requires an operating system environment that supports namespace cloning. Sandbox mode is a security feature of Chromium that makes browsing more secure.
+            <h5>原因</h5><p>
+                Burp Scannerは、デフォルトで内蔵ブラウザをサンドボックスモードで実行します。それには、名前空間のクローンに対応したOS環境が必要です。サンドボックスモードは、ブラウジングをより安全にするChromiumのセキュリティ機能です。
             </p>
-            <h5>Remedy</h5><p>
-                If you enable namespace cloning the embedded browser can run in sandbox mode. Running the command in the error message will enable namespace cloning until you reboot. You can save this setting in your <code>sysctl.conf</code> file to enable this setting permanently. Please refer to the documentation for your operating system for more details.
+            <h5>解決方法</h5><p>
+                名前空間のクローンを有効にすれば、内蔵ブラウザはサンドボックスモードで実行できます。エラーメッセージにあるコマンドを実行すると、再起動するまで名前空間のクローンが有効になります。この設定を<code>sysctl.conf</code>ファイルに保存すれば、恒久的に有効にできます。詳細は、使用しているOSのドキュメントを参照してください。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Can not start embedded browser sandbox because the chrome-sandbox binary is not configured correctly and your kernel has user namespace cloning disabled. To enable, run the following command as root: "echo 0 &gt; /proc/sys/kernel/userns_restrict"</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner will by default run the embedded browser in sandbox mode. This requires an operating system environment that supports namespace cloning. Sandbox mode is a security feature of Chromium that makes browsing more secure.
+            <h5>原因</h5><p>
+                Burp Scannerは、デフォルトで内蔵ブラウザをサンドボックスモードで実行します。それには、名前空間のクローンに対応したOS環境が必要です。サンドボックスモードは、ブラウジングをより安全にするChromiumのセキュリティ機能です。
             </p>
-            <h5>Remedy</h5><p>
-                If you enable namespace cloning the embedded browser can run in sandbox mode. Running the command in the error message will enable namespace cloning until you reboot. You can save this setting in your <code>sysctl.conf</code> file to enable this setting permanently. Please refer to the documentation for your operating system for more details.
+            <h5>解決方法</h5><p>
+                名前空間のクローンを有効にすれば、内蔵ブラウザはサンドボックスモードで実行できます。エラーメッセージにあるコマンドを実行すると、再起動するまで名前空間のクローンが有効になります。この設定を<code>sysctl.conf</code>ファイルに保存すれば、恒久的に有効にできます。詳細は、使用しているOSのドキュメントを参照してください。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Cannot handle streaming response:</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner does not support streaming responses. It will skip pages that provide a streaming response.
+            <h5>原因</h5><p>
+                Burp Scannerはストリーミングレスポンスには対応していません。ストリーミングレスポンスを提供するページはスキップされます。
             </p>
-            <h5>Remedy</h5><p>
-                You can test streaming responses using Burp Suite's manual tool. For more information, please refer to <a href="../desktop/options/http.html#streaming-responses">the documentation on streaming responses</a>.
+            <h5>解決方法</h5><p>
+                ストリーミングレスポンスは、Burp Suiteの手動ツールでテストできます。詳細は、<a href="../desktop/options/http.html#streaming-responses">ストリーミングレスポンスのドキュメント</a>を参照してください。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Error generating report:</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner encountered a file system error when trying to open or write to the scan report file. This can be caused by permissions or other file system errors.
+            <h5>原因</h5><p>
+                Burp Scannerがスキャンレポートファイルを開こうとしたとき、または書き込もうとしたときに、ファイルシステムエラーが発生しました。これは、権限や他のファイルシステムのエラーが原因である可能性があります。
             </p>
-            <h5>Remedy</h5><p>
-                Check that the burpsuite user has permission to write to the folder you are trying to save the report to or try saving the report to a different folder.
+            <h5>解決方法</h5><p>
+                レポートを保存しようとしているフォルダにBurp Suiteユーザの書き込み権限があるか確認してください。または別のフォルダにレポートを保存してください。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>The Burp Collaborator server used by the Burp Collaborator client is not reachable, change the settings to use this feature.</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                The Burp Collaborator client was unable to connect to the Burp Collaborator server that it uses to perform OAST checks. As a result, these checks were skipped for this scan.
+            <h5>原因</h5><p>
+                Burp Collaboratorクライアントが、OASTチェックに使用するBurp Collaboratorサーバに接続できませんでした。その結果、今回のスキャンではこれらのチェックを省略しました。
             </p>
-            <h5>Remedy</h5><p>
-                Run the <a href="../desktop/options/misc-project.html#burp-collaborator-server">Collaborator Server health check</a> and double-check the <a href="../desktop/options/misc-project.html#burp-collaborator-server">Collaborator server settings</a> for the server in the <strong>Project options &gt; Misc</strong> tab.
+            <h5>解決方法</h5><p>
+                <a href="../desktop/options/misc-project.html#burp-collaborator-server">Collaboratorサーバヘルスチェック</a>を実行し、<strong>プロジェクトオプション &gt; その他</strong>タブでサーバの<a href="../desktop/options/misc-project.html#burp-collaborator-server">Collaboratorサーバ設定</a>を再確認してください。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Failed to connect to the configured Collaborator server.</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner was unable to connect to the selected Burp Collaborator server. As a result, OAST checks were skipped for this scan.
+            <h5>原因</h5><p>
+                Burp Scannerは、選択したBurp Collaboratorサーバに接続できませんでした。その結果、今回のスキャンではOASTチェックを省略しました。
             </p>
-            <h5>Remedy</h5><p>
-                Run the <a href="../desktop/options/misc-project.html#burp-collaborator-server">Collaborator Server health check</a> and double-check the <a href="../desktop/options/misc-project.html#burp-collaborator-server">Collaborator server settings</a> for the server in the <strong>Project options &gt; Misc</strong> tab.
+            <h5>解決方法</h5><p>
+                <a href="../desktop/options/misc-project.html#burp-collaborator-server">Collaboratorサーバヘルスチェック</a>を実行し、<strong>プロジェクトオプション &gt; その他</strong>タブでサーバの<a href="../desktop/options/misc-project.html#burp-collaborator-server">Collaboratorサーバ設定</a>を再確認してください。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Skipping current scanner check for too many consecutive unknown host errors have occurred</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner could not resolve a hostname when making a request during the audit phase. This can be caused by a number of issues, including intermittent network problems, server load, or security measures like Web Application Firewalls.
+            <h5>原因</h5><p>
+                Burp Scannerが診断フェーズでリクエストを行うときに、ホスト名を解決できませんでした。これは、断続的なネットワークの問題、サーバの負荷、Webアプリケーションファイアウォールなどのセキュリティ対策などさまざまな原因が考えられます。
             </p>
-            <h5>Remedy</h5><p>
-                Experiencing intermittent problems accessing a site is normal and does not necessarily indicate a problem. Scans may overload servers and the unusual activity may cause Web Application Firewalls to start blocking requests, for example. To help avoid these issues, you can configure <a href="../desktop/dashboard/task-execution-settings.html#resource-pools">resource pools</a> to control the number of requests you're sending and how frequently. By default, Burp Scanner will mark any failed requests for a <a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">follow-up pass</a>, but you can also configure it to make more passes.
+            <h5>解決方法</h5><p>
+                サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Skipping current insertion point for too many consecutive unknown host errors have occurred</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner could not resolve a hostname when making a request during the audit phase. This can be caused by a number of issues, including intermittent network problems, server load, or security measures like Web Application Firewalls.
+            <h5>原因</h5><p>
+                Burp Scannerが診断フェーズでリクエストを行うときに、ホスト名を解決できませんでした。これは、断続的なネットワークの問題、サーバの負荷、Webアプリケーションファイアウォールなどのセキュリティ対策などさまざまな原因が考えられます。
             </p>
-            <h5>Remedy</h5><p>
-                Experiencing intermittent problems accessing a site is normal and does not necessarily indicate a problem. Scans may overload servers and the unusual activity may cause Web Application Firewalls to start blocking requests, for example. To help avoid these issues, you can configure <a href="../desktop/dashboard/task-execution-settings.html#resource-pools">resource pools</a> to control the number of requests you're sending and how frequently. By default, Burp Scanner will mark any failed requests for a <a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">follow-up pass</a>, but you can also configure it to make more passes.
+            <h5>解決方法</h5><p>
+                サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for too many consecutive unknown host errors have occurred</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner could not resolve a hostname when making a request during the audit phase. This can be caused by a number of issues, including intermittent network problems, server load, or security measures like Web Application Firewalls.
+            <h5>原因</h5><p>
+                Burp Scannerが診断フェーズでリクエストを行うときに、ホスト名を解決できませんでした。これは、断続的なネットワークの問題、サーバの負荷、Webアプリケーションファイアウォールなどのセキュリティ対策などさまざまな原因が考えられます。
             </p>
             <div class="highlightedarea">
                 <h5>注</h5><p>
-                    The error message will show an alphanumeric reference like <code>A1</code>.
+                    エラーメッセージには、<code>A1</code>のような英数字の参照先が表示されます。
                 </p>
             </div>
-            <h5>Remedy</h5><p>
-                Experiencing intermittent problems accessing a site is normal and does not necessarily indicate a problem. Scans may overload servers and the unusual activity may cause Web Application Firewalls to start blocking requests, for example. To help avoid these issues, you can configure <a href="../desktop/dashboard/task-execution-settings.html#resource-pools">resource pools</a> to control the number of requests you're sending and how frequently. By default, Burp Scanner will mark any failed requests for a <a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">follow-up pass</a>, but you can also configure it to make more passes.
+            <h5>解決方法</h5><p>
+                サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Skipping current scanner check for too many consecutive request timeout errors have occurred</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner identifies <a href="auditing.html#insertion-points">insertion points</a> where it can try injecting different payloads. Repeated attempts to insert a payload into the current insertion point or the current page have failed.
+            <h5>原因</h5><p>
+                Burp Scannerは、異なるペイロードを挿入できそうな<a href="auditing.html#insertion-points">挿入ポイント</a>を特定します。現在の挿入ポイントや現在のページにペイロードを挿入しようとした結果、何度も失敗しました。
             </p>
-            <h5>Remedy</h5><p>
-                Experiencing intermittent problems accessing a site is normal and does not necessarily indicate a problem. Scans may overload servers and the unusual activity may cause Web Application Firewalls to start blocking requests, for example. To help avoid these issues, you can configure <a href="../desktop/dashboard/task-execution-settings.html#resource-pools">resource pools</a> to control the number of requests you're sending and how frequently. By default, Burp Scanner will mark any failed requests for a <a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">follow-up pass</a>, but you can also configure it to make more passes.
+            <h5>解決方法</h5><p>
+                サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Skipping current insertion point for too many consecutive request timeout errors have occurred</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner identifies <a href="auditing.html#insertion-points">insertion points</a> where it can try injecting different payloads. Repeated attempts to insert a payload into the current insertion point or the current page have failed.
+            <h5>原因</h5><p>
+                Burp Scannerは、異なるペイロードを挿入できそうな<a href="auditing.html#insertion-points">挿入ポイント</a>を特定します。現在の挿入ポイントや現在のページにペイロードを挿入しようとした結果、何度も失敗しました。
             </p>
-            <h5>Remedy</h5><p>
-                Experiencing intermittent problems accessing a site is normal and does not necessarily indicate a problem. Scans may overload servers and the unusual activity may cause Web Application Firewalls to start blocking requests, for example. To help avoid these issues, you can configure <a href="../desktop/dashboard/task-execution-settings.html#resource-pools">resource pools</a> to control the number of requests you're sending and how frequently. By default, Burp Scanner will mark any failed requests for a <a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">follow-up pass</a>, but you can also configure it to make more passes.
+            <h5>解決方法</h5><p>
+                サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for too many consecutive request timeout errors have occurred</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner identifies <a href="auditing.html#insertion-points">insertion points</a> where it can try injecting different payloads. Repeated attempts to insert a payload into the current insertion point or the current page have failed.
+            <h5>原因</h5><p>
+                Burp Scannerは、異なるペイロードを挿入できそうな<a href="auditing.html#insertion-points">挿入ポイント</a>を特定します。現在の挿入ポイントや現在のページにペイロードを挿入しようとした結果、何度も失敗しました。
             </p>
             <div class="highlightedarea">
                 <h5>注</h5><p>
-                    The error message will show an alphanumeric reference like <code>A1</code>.
+                    エラーメッセージには、<code>A1</code>のような英数字の参照先が表示されます。
                 </p>
             </div>
-            <h5>Remedy</h5><p>
-                Experiencing intermittent problems accessing a site is normal and does not necessarily indicate a problem. Scans may overload servers and the unusual activity may cause Web Application Firewalls to start blocking requests, for example. To help avoid these issues, you can configure <a href="../desktop/dashboard/task-execution-settings.html#resource-pools">resource pools</a> to control the number of requests you're sending and how frequently. By default, Burp Scanner will mark any failed requests for a <a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">follow-up pass</a>, but you can also configure it to make more passes.
+            <h5>解決方法</h5><p>
+                サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_TOO_LONG"><code>Skipping current scanner check for too many consecutive crawled location no longer reachable errors have occurred</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner's crawl engine accesses URLs in the same way as a human accessing a website would. It starts at the specified URLs and follows links through a website. A page discovered during the crawl could no longer be found by following links from the specified starting URL, although it might still exist on the site.
+            <h5>原因</h5><p>
+                Burp Scannerのクロールエンジンは、人間がWebサイトにアクセスするのと同じようにURLにアクセスします。指定されたURLからスタートし、Webサイト内のリンクをたどります。クロール中に発見されたページが、指定された開始URLからリンクをたどっても見つからなくなりました。ただしそのページはまだサイト内に存在している可能性があります。
             </p>
-            <h5>Remedy</h5><p>
-                Experiencing intermittent problems accessing a site is normal and does not necessarily indicate a problem. Scans may overload servers and the unusual activity may cause Web Application Firewalls to start blocking requests, for example. To help avoid these issues, you can configure <a href="../desktop/dashboard/task-execution-settings.html#resource-pools">resource pools</a> to control the number of requests you're sending and how frequently. By default, Burp Scanner will mark any failed requests for a <a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">follow-up pass</a>, but you can also configure it to make more passes.
+            <h5>解決方法</h5><p>
+                サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_TOO_LONG"><code>Skipping current insertion point for too many consecutive crawled location no longer reachable errors have occurred</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner's crawl engine accesses URLs in the same way as a human accessing a website would. It starts at the specified URLs and follows links through a website. A page discovered during the crawl could no longer be found by following links from the specified starting URL, although it might still exist on the site.
+            <h5>原因</h5><p>
+                Burp Scannerのクロールエンジンは、人間がWebサイトにアクセスするのと同じようにURLにアクセスします。指定されたURLからスタートし、Webサイト内のリンクをたどります。クロール中に発見されたページが、指定された開始URLからリンクをたどっても見つからなくなりました。ただしそのページはまだサイト内に存在している可能性があります。
             </p>
-            <h5>Remedy</h5><p>
-                Experiencing intermittent problems accessing a site is normal and does not necessarily indicate a problem. Scans may overload servers and the unusual activity may cause Web Application Firewalls to start blocking requests, for example. To help avoid these issues, you can configure <a href="../desktop/dashboard/task-execution-settings.html#resource-pools">resource pools</a> to control the number of requests you're sending and how frequently. By default, Burp Scanner will mark any failed requests for a <a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">follow-up pass</a>, but you can also configure it to make more passes.
+            <h5>解決方法</h5><p>
+                サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for too many consecutive crawled location no longer reachable errors have occurred</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner's crawl engine accesses URLs in the same way as a human accessing a website would. It starts at the specified URLs and follows links through a website. A page discovered during the crawl could no longer be found by following links from the specified starting URL, although it might still exist on the site.
+            <h5>原因</h5><p>
+                Burp Scannerのクロールエンジンは、人間がWebサイトにアクセスするのと同じようにURLにアクセスします。指定されたURLからスタートし、Webサイト内のリンクをたどります。クロール中に発見されたページが、指定された開始URLからリンクをたどっても見つからなくなりました。ただしそのページはまだサイト内に存在している可能性があります。
             </p>
             <div class="highlightedarea">
                 <h5>注</h5><p>
-                    The error message will show an alphanumeric reference like <code>A1</code>.
+                    エラーメッセージには、<code>A1</code>のような英数字の参照先が表示されます。
                 </p>
             </div>
-            <h5>Remedy</h5><p>
-                Experiencing intermittent problems accessing a site is normal and does not necessarily indicate a problem. Scans may overload servers and the unusual activity may cause Web Application Firewalls to start blocking requests, for example. To help avoid these issues, you can configure <a href="../desktop/dashboard/task-execution-settings.html#resource-pools">resource pools</a> to control the number of requests you're sending and how frequently. By default, Burp Scanner will mark any failed requests for a <a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">follow-up pass</a>, but you can also configure it to make more passes.
+            <h5>解決方法</h5><p>
+                サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_TOO_LONG"><code>Skipping current scanner check for too many consecutive insertion point no longer present errors have occurred</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner's audit phase cannot find an insertion point identified during the crawl phase. This can happen for a number of reasons and may not represent a problem. Intermittent connection issues can prevent pages from loading properly. Testing a Web Application can put a server under unusual load, leading to pages not loading properly. A Web Application Firewall can detect unusual activity and start blocking requests.
+            <h5>原因</h5><p>
+                Burp Scannerの診断フェーズで、クロールフェーズで特定した挿入ポイントが見つかりませんでした。これにはさまざまな理由がありますが、問題がない場合もあります。断続的な接続問題により、ページが正しく読み込まれないことがあります。Webアプリケーションのテストでは、サーバに異常な負荷がかかり、ページが正常に読み込まれない場合があります。Webアプリケーションファイアウォールが異常な活動を検知し、リクエストをブロックし始めるかもしれません。
             </p>
-            <h5>Remedy</h5><p>
-                Experiencing intermittent problems accessing a site is normal and does not necessarily indicate a problem. Scans may overload servers and the unusual activity may cause Web Application Firewalls to start blocking requests, for example. To help avoid these issues, you can configure <a href="../desktop/dashboard/task-execution-settings.html#resource-pools">resource pools</a> to control the number of requests you're sending and how frequently. By default, Burp Scanner will mark any failed requests for a <a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">follow-up pass</a>, but you can also configure it to make more passes.
+            <h5>解決方法</h5><p>
+                サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_TOO_LONG"><code>Skipping current insertion point for too many consecutive insertion point no longer present errors have occurred</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner's audit phase cannot find an insertion point identified during the crawl phase. This can happen for a number of reasons and may not represent a problem. Intermittent connection issues can prevent pages from loading properly. Testing a Web Application can put a server under unusual load, leading to pages not loading properly. A Web Application Firewall can detect unusual activity and start blocking requests.
+            <h5>原因</h5><p>
+                Burp Scannerの診断フェーズで、クロールフェーズで特定した挿入ポイントが見つかりませんでした。これにはさまざまな理由がありますが、問題がない場合もあります。断続的な接続問題により、ページが正しく読み込まれないことがあります。Webアプリケーションのテストでは、サーバに異常な負荷がかかり、ページが正常に読み込まれない場合があります。Webアプリケーションファイアウォールが異常な活動を検知し、リクエストをブロックし始めるかもしれません。
             </p>
-            <h5>Remedy</h5><p>
-                Experiencing intermittent problems accessing a site is normal and does not necessarily indicate a problem. Scans may overload servers and the unusual activity may cause Web Application Firewalls to start blocking requests, for example. To help avoid these issues, you can configure <a href="../desktop/dashboard/task-execution-settings.html#resource-pools">resource pools</a> to control the number of requests you're sending and how frequently. By default, Burp Scanner will mark any failed requests for a <a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">follow-up pass</a>, but you can also configure it to make more passes.
+            <h5>解決方法</h5><p>
+                サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for too many consecutive insertion point no longer present errors have occurred</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner's audit phase cannot find an insertion point identified during the crawl phase. This can happen for a number of reasons and may not represent a problem. Intermittent connection issues can prevent pages from loading properly. Testing a Web Application can put a server under unusual load, leading to pages not loading properly. A Web Application Firewall can detect unusual activity and start blocking requests.
+            <h5>原因</h5><p>
+                Burp Scannerの診断フェーズで、クロールフェーズで特定した挿入ポイントが見つかりませんでした。これにはさまざまな理由がありますが、問題がない場合もあります。断続的な接続問題により、ページが正しく読み込まれないことがあります。Webアプリケーションのテストでは、サーバに異常な負荷がかかり、ページが正常に読み込まれない場合があります。Webアプリケーションファイアウォールが異常な活動を検知し、リクエストをブロックし始めるかもしれません。
             </p>
             <div class="highlightedarea">
                 <h5>注</h5><p>
-                    The error message will show an alphanumeric reference like <code>A1</code>.
+                    エラーメッセージには、<code>A1</code>のような英数字の参照先が表示されます。
                 </p>
             </div>
-            <h5>Remedy</h5><p>
-                Experiencing intermittent problems accessing a site is normal and does not necessarily indicate a problem. Scans may overload servers and the unusual activity may cause Web Application Firewalls to start blocking requests, for example. To help avoid these issues, you can configure <a href="../desktop/dashboard/task-execution-settings.html#resource-pools">resource pools</a> to control the number of requests you're sending and how frequently. By default, Burp Scanner will mark any failed requests for a <a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">follow-up pass</a>, but you can also configure it to make more passes.
+            <h5>解決方法</h5><p>
+                サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_TOO_LONG"><code>Skipping current scanner check for too many consecutive streaming response errors have occurred</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner does not support streaming responses. It will skip URLs that provide streaming responses.
+            <h5>原因</h5><p>
+                Burp Scannerはストリーミングレスポンスには対応していません。ストリーミングレスポンスを提供するURLはスキップされます。
             </p>
-            <h5>Remedy</h5><p>
-                You can test streaming responses using Burp Suite's manual tool. For more information, please refer to <a href="../desktop/options/http.html#streaming-responses">the documentation on streaming responses</a>.
+            <h5>解決方法</h5><p>
+                ストリーミングレスポンスは、Burp Suiteの手動ツールでテストできます。詳細は、<a href="../desktop/options/http.html#streaming-responses">ストリーミングレスポンスのドキュメント</a>を参照してください。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_TOO_LONG"><code>Skipping current insertion point for too many consecutive streaming response errors have occurred</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner does not support streaming responses. It will skip URLs that provide streaming responses.
+            <h5>原因</h5><p>
+                Burp Scannerはストリーミングレスポンスには対応していません。ストリーミングレスポンスを提供するURLはスキップされます。
             </p>
-            <h5>Remedy</h5><p>
-                You can test streaming responses using Burp Suite's manual tool. For more information, please refer to <a href="../desktop/options/http.html#streaming-responses">the documentation on streaming responses</a>.
+            <h5>解決方法</h5><p>
+                ストリーミングレスポンスは、Burp Suiteの手動ツールでテストできます。詳細は、<a href="../desktop/options/http.html#streaming-responses">ストリーミングレスポンスのドキュメント</a>を参照してください。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for too many consecutive streaming response errors have occurred</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner does not support streaming responses. It will skip URLs that provide streaming responses.
+            <h5>原因</h5><p>
+                Burp Scannerはストリーミングレスポンスには対応していません。ストリーミングレスポンスを提供するURLはスキップされます。
             </p>
             <div class="highlightedarea">
                 <h5>注</h5><p>
-                    The error message will show an alphanumeric reference like <code>A1</code>.
+                    エラーメッセージには、<code>A1</code>のような英数字の参照先が表示されます。
                 </p>
             </div>
-            <h5>Remedy</h5><p>
-                You can test streaming responses using Burp Suite's manual tool. For more information, please refer to <a href="../desktop/options/http.html#streaming-responses">the documentation on streaming responses</a>.
+            <h5>解決方法</h5><p>
+                ストリーミングレスポンスは、Burp Suiteの手動ツールでテストできます。詳細は、<a href="../desktop/options/http.html#streaming-responses">ストリーミングレスポンスのドキュメント</a>を参照してください。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4><code>Skipping current scanner check for too many consecutive embedded browser crash errors have occurred</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner's embedded browser crashed while requesting a URL.
+            <h5>原因</h5><p>
+                Burp Scannerの内蔵ブラウザがURLのリクエスト中にクラッシュしました。
             </p>
-            <h5>Remedy</h5><ul>
+            <h5>解決方法</h5><ul>
                 <li>
-                    By default, Burp Scanner will mark any failed requests for a <a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">follow-up pass</a>, but you can also configure it to make more passes.
+                    デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
                 </li>
                 <li>
-                    If this occurs repeatedly on a single site, try manually navigating to the page and see if it crashes the browser while browsing manually.
+                    特定のサイトでこの現象が繰り返し発生する場合は、手動でページに移動してみて、手動でブラウズ中にブラウザがクラッシュするかどうか確認してください。
                 </li>
                 <li>
-                    If this occurs on multiple sites, try running the <a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">embedded browser health check</a>.
+                    複数のサイトでこの現象が発生する場合は、<a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">内蔵ブラウザのヘルスチェック</a>を実行してみてください。
                 </li>
             </ul>
         </div>
@@ -478,18 +478,18 @@
             <h4><code>Skipping current insertion point for too many consecutive embedded browser crash errors have occurred</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner's embedded browser crashed while requesting a URL.
+            <h5>原因</h5><p>
+                Burp Scannerの内蔵ブラウザがURLのリクエスト中にクラッシュしました。
             </p>
-            <h5>Remedy</h5><ul>
+            <h5>解決方法</h5><ul>
                 <li>
-                    By default, Burp Scanner will mark any failed requests for a <a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">follow-up pass</a>, but you can also configure it to make more passes.
+                    デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
                 </li>
                 <li>
-                    If this occurs repeatedly on a single site, try manually navigating to the page and see if it crashes the browser while browsing manually.
+                    特定のサイトでこの現象が繰り返し発生する場合は、手動でページに移動してみて、手動でブラウズ中にブラウザがクラッシュするかどうか確認してください。
                 </li>
                 <li>
-                    If this occurs on multiple sites, try running the <a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">embedded browser health check</a>.
+                    複数のサイトでこの現象が発生する場合は、<a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">内蔵ブラウザのヘルスチェック</a>を実行してみてください。
                 </li>
             </ul>
         </div>
@@ -497,23 +497,23 @@
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for too many consecutive embedded browser crash errors have occurred</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner's embedded browser crashed while requesting a URL.
+            <h5>原因</h5><p>
+                Burp Scannerの内蔵ブラウザがURLのリクエスト中にクラッシュしました。
             </p>
             <div class="highlightedarea">
                 <h5>注</h5><p>
-                    The error message will show an alphanumeric reference like <code>A1</code>.
+                    エラーメッセージには、<code>A1</code>のような英数字の参照先が表示されます。
                 </p>
             </div>
-            <h5>Remedy</h5><ul>
+            <h5>解決方法</h5><ul>
                 <li>
-                    By default, Burp Scanner will mark any failed requests for a <a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">follow-up pass</a>, but you can also configure it to make more passes.
+                    デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
                 </li>
                 <li>
-                    If this occurs repeatedly on a single site, try manually navigating to the page and see if it crashes the browser while browsing manually.
+                    特定のサイトでこの現象が繰り返し発生する場合は、手動でページに移動してみて、手動でブラウズ中にブラウザがクラッシュするかどうか確認してください。
                 </li>
                 <li>
-                    If this occurs on multiple sites, try running the <a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">embedded browser health check</a>.
+                    複数のサイトでこの現象が発生する場合は、<a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">内蔵ブラウザのヘルスチェック</a>を実行してみてください。
                 </li>
             </ul>
         </div>
@@ -521,18 +521,18 @@
             <h4><code>Found 0 new locations after logging in</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner keeps track of whether or not the page shown after logging in is different from the page shown before logging in. In this case, after logging in, the pages available were not significantly different. This does not necessarily mean the login failed, but this is one possible cause.
+            <h5>原因</h5><p>
+                Burp Scannerは、ログイン後に表示されるページが、ログイン前に表示されるページと異なるかどうかを記録しています。このケースでは、ログイン後に利用できるページに顕著な違いはありませんでした。必ずしもログインが失敗したことを意味するわけではありませんが、ひとつの原因として考えられます。
             </p>
-            <h5>Remedy</h5><ul>
+            <h5>解決方法</h5><ul>
                 <li>
-                    Double-check your application login settings to make sure the provided credentials are correct.
+                    アプリケーションのログイン設定を再確認し、提供された認証情報が正しいかどうか確認してください。
                 </li>
                 <li>
-                    Run Burp Scanner in <a href="../desktop/scanning/crawl-options.html#embedded-browser-options">headed mode</a> and watch it attempt to log in to see if you can spot any issues.
+                    <a href="../desktop/scanning/crawl-options.html#embedded-browser-options">ブラウザ画面を表示するモード</a>でBurp Scannerを実行し、ログイン試行の様子を見て、問題ないか確認してください。
                 </li>
                 <li>
-                    Try using a <a href="../desktop/scanning/recorded-logins.html">recorded login sequence</a> if you aren't already. This allows Burp Scanner to handle much more complex login forms, like those featuring iFrames and SSO.
+                    まだ使っていない場合は、<a href="../desktop/scanning/recorded-logins.html">記録されたログインシーケンス</a>を使ってみてください。これによりBurp Scannerは、iFrameやSSOを使ったより複雑なログインフォームを扱えるようになります。
                 </li>
             </ul>
         </div>
@@ -540,15 +540,15 @@
             <h4><code>Maximum time exceeded in dynamic code analysis of:</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner will execute and analyze JavaScript as it scans a site. To avoid it becoming bogged down, it can be configured with a time limit for how long it tries to do this for a single request. This error means that a page has exceeded this time limit set in Burp Suite. By default, this is set to 30 seconds, but you can adjust this in the audit options under <strong>JavaScript Analysis</strong>.
+            <h5>原因</h5><p>
+                Burp Scannerはサイトをスキャンする際に、JavaScriptを実行して分析します。この処理が滞らないように、1リクエスト当たりの処理時間を制限するように設定できます。このエラーは、Burp Suiteで設定された時間制限をこのページが超えたことを意味します。デフォルトでは30秒に設定されていますが、<strong>JavaScript分析</strong>の診断オプションで調整できます。
             </p>
-            <h5>Remedy</h5><p>
-                You can change the timeout setting in the settings for the audit under <strong>JavaScript analysis</strong>.
+            <h5>解決方法</h5><p>
+                タイムアウトの設定を、<strong>JavaScript分析</strong>の診断設定で変更できます。
             </p>
             <div class="highlightedarea">
                 <h5>注</h5><p>
-                    The default setting is 30 seconds.
+                    デフォルトでは30秒に設定されています。
                 </p>
             </div>
         </div>
@@ -556,60 +556,60 @@
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Failed to lookup host X while crawling.</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner was unable to crawl a location because it could not resolve the hostname. This can be caused by either an incorrect hostname in the URLs provided.
+            <h5>原因</h5><p>
+                Burp Scannerはホスト名を解決できなかったため、位置をクロールできませんでした。提供されたURLのホスト名が間違っていることが原因です。
             </p>
-            <h5>Remedy</h5><p>
-                Check for typos or other errors in the <strong>URLs to Scan</strong>.
+            <h5>解決方法</h5><p>
+                <strong>スキャンするURL</strong>にタイプミスなどがないか確認してください。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4><code>X consecutive requests have failed.</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                During the crawl phase, the scan will automatically be paused if more than 10 consecutive requests fail. This prevents the scan from needlessly crawling a site that is currently down, for example.
+            <h5>原因</h5><p>
+                クロール段階で、10回以上連続してリクエストが失敗すると、スキャンは自動的に一時停止します。これにより、現在ダウンしているサイトの不必要なクロールなどを防ぎます。
             </p>
-            <h5>Remedy</h5><p>
-                Check that the web application being scanned is still running and accessible.
+            <h5>解決方法</h5><p>
+                スキャン対象のWebアプリケーションが現在実行されており、アクセス可能か確認してください。
             </p>
             <p>
-                You can also adjust the number of consecutive failed requests that cause Burp Scanner to pause the crawl in the crawl options under <strong>Handling Application Errors During Crawl</strong>.
+                また、Burp Scannerのクロールを一時停止させるまでの連続した失敗リクエスト数は、<strong>クロール中のアプリケーションエラーの処理</strong>のクロールオプションで調整できます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>More than X percent of requests have failed.</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                During the crawl phase, the scan can automatically be paused if more than a certain percentage of requests fail. This prevents the scan from needlessly crawling a site that is currently down, for example.
+            <h5>原因</h5><p>
+                クロール段階では、一定の割合以上のリクエストが失敗した場合、スキャンは自動的に一時停止します。これにより、現在ダウンしているサイトの不必要なクロールなどを防ぎます。
             </p>
-            <h5>Remedy</h5><p>
-                Check that the web application being scanned is still running and accessible.
+            <h5>解決方法</h5><p>
+                スキャン対象のWebアプリケーションが現在実行されており、アクセス可能か確認してください。
             </p>
             <p>
-                You can also adjust the number of consecutive failed requests that cause Burp Scanner to pause the crawl in the crawl options under <strong>Handling Application Errors During Crawl</strong>.
+                また、Burp Scannerのクロールを一時停止させるまでの連続した失敗リクエスト数は、<strong>クロール中のアプリケーションエラーの処理</strong>のクロールオプションで調整できます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4><code>Could not connect to any seed URLs.</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner was unable to send requests to any of the specified <strong>URLs to scan</strong>. This error can be caused by anything that prevents Burp Scanner from connecting to the URL. This can include timeouts, connection failed errors, and problems resolving hostnames.
+            <h5>原因</h5><p>
+                Burp Scannerは、指定された<strong>スキャンするURL</strong>のいずれにもリクエストを送信できませんでした。このエラーは、Burp ScannerがURLへ接続するのを妨げる何かが原因となっています。これには、タイムアウト、接続失敗のエラー、ホスト名の解決の問題などがあり得ます。
             </p>
-            <h5>Remedy</h5><ul>
+            <h5>解決方法</h5><ul>
                 <li>
-                    Check for typos and other errors in the <strong>URLs to Scan</strong>.
+                    <strong>スキャンするURL</strong>にタイプミスがないか確認してください。
                 </li>
                 <li>
-                    Check that you are able to connect to the target application from the machine running the scan.
+                    スキャンを実行しているマシンから対象のアプリケーションに接続できるか確認してください。
                 </li>
                 <li>
-                    If you have any trouble doing this, troubleshoot your connection to the hostname that is failing.
+                    それでもうまくいかない場合は、失敗しているホスト名への接続をトラブルシューティングしてください。
                 </li>
                 <li>
-                    Check the firewall, proxy, and DNS server settings for the machine running the scan.
+                    スキャンを実行するマシンのファイアウォール、プロキシ、DNSサーバの設定を確認してください。
                 </li>
             </ul>
         </div>
@@ -617,22 +617,22 @@
             <h4><code>Crawl was configured to use embedded browser, but a browser could not be started</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner was unable to start the embedded browser. This can be caused by various issues with the embedded browser.
+            <h5>原因</h5><p>
+                Burp Scannerは、内蔵ブラウザを起動できませんでした。これは、内蔵ブラウザのさまざまな問題が原因の可能性があります。
             </p>
-            <h5>Remedy</h5><p>
-                Run the <a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">Embedded browser health check</a> from the <strong>Help</strong> menu in Burp Suite. This will diagnose problems with the embedded browser.
+            <h5>解決方法</h5><p>
+                Burp Suiteの<strong>ヘルプ</strong>メニューから、<a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">内蔵ブラウザのヘルスチェック</a>を実行してください。これにより、内蔵ブラウザの問題が診断されます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
             <h4><code>Cannot continue crawl started before version</code></h4>
         </summary>
         <div class="content">
-            <h5>Cause</h5><p>
-                Burp Scanner's crawl engine sometimes gets updated in such a way that it cannot open files created in previous versions. While this happens relatively infrequently, it can happen when adding new features or significantly changing how it operates.
+            <h5>原因</h5><p>
+                Burp Scannerのクロールエンジンが更新されると、以前のバージョンで作成されたファイルを開けなくなることがあります。これは比較的まれですが、新しい機能が追加されたり、操作方法が大幅に変更されると起こる可能性があります。
             </p>
-            <h5>Remedy</h5><p>
-                Recreate your scan in the new version.
+            <h5>解決方法</h5><p>
+                新しいバージョンでスキャンをやり直してください。
             </p>
         </div>
     </details>
