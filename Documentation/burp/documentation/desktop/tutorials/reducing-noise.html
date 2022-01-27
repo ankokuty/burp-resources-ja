@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Burp Suite Professional/Community Editionで手動テストを行う際のノイズを減らす方法を紹介します。">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE" ignore-validation="STACKED_HEADINGS"></cms><title>手動テスト時のノイズ低減</title>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">チュートリアル</a>
+        </li>
+        <li>
+            <a href="reducing-noise.html">ノイズの低減</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1 cms-ignore-validation="DUPLICATE_HEADINGS">手動テスト時のノイズ低減</h1>
+<p>
+    初めてBurpでトラフィックをプロキシすると、ブラウズによるリクエスト数の多さに驚くかもしれません。Burpには、ノイズをできるだけ減らすためのさまざまな機能があります。これにより、重要な部分に時間と労力を集中させ、対象のWebサイトの挙動をより簡単に分析できます。
+</p>
+<p>
+    このチュートリアルでは、次の手法を学びます:
+</p>
+<ul>
+    <li>
+        基本的なターゲットスコープを設定する。
+    </li>
+    <li>
+        スコープ外のトラフィックがBurpのツールに記録されるのを防ぐ。
+    </li>
+    <li>
+        フィルタを適用し、興味のある項目に絞って表示する。
+    </li>
+</ul>
+<h2 id="setting-a-basic-target-scope">基本的なターゲットスコープの設定</h2>
+<p>
+    何をテストする場合でも、ターゲットスコープの設定は最初に行うべきことのひとつです。Burpを最大限に活用するためだけでなく、テストの許可を得ていないホストに不正なリクエストを送信してしまうことも防げます。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1：Burpの内蔵ブラウザを使う</h3>
+<p>
+    ノイズを減らすもっと簡単な方法のひとつは、外部のブラウザではなく、Burpの内蔵ブラウザを使うことです。これは、余計なトラフィックの発生を最小限に抑えるようあらかじめ設定されています。
+</p>
+<p>
+    <strong>Proxy &gt; インターセプト</strong>タブに移動し、内蔵ブラウザを起動します。それで次のラボを開きます:
+</p>
+<p>
+    <code>https://portswigger.net/web-security/os-command-injection/lab-simple</code>
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: サイトマップからターゲットスコープを作成する</h3>
+<p>
+    ラボが読み込まれたら、<strong>Proxy &gt; HTTP履歴</strong>タブに移動します。意図的に脆弱性を作り込んだラボのショッピングサイトへのリクエストに加えて、<code>portswigger.net</code>へのリクエストや、第三者のサービスやブラウザの機能に関連するさまざまなホストへのリクエストが表示されます。
+</p>
+<img src="images/reducing-noise/proxy-history-no-scope.png" alt="スコープが設定されていないプロキシ履歴">
+<p>
+    <strong>Target &gt; サイトマップ</strong>タブに移動すると、プロジェクトのサイトマップにもこれらのホストのエントリがあることに気がつきます。
+</p>
+<p>
+    <code>https://&lt;YOUR-LAB-ID&gt;.web-security-academy.net</code>のエントリを右クリックして、<strong>スコープに追加</strong>を選択します。
+</p>
+<img src="images/reducing-noise/site-map-add-to-scope.png" alt="サイトマップからターゲットスコープにホストを追加">
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: スコープ外のトラフィックのログ出力を無効化</h3>
+<p>
+    ここでBurpは、プロジェクトのスコープを定義したことを認識し、スコープ外アイテムのデータのログ出力を停止するかどうかを尋ねてきます。<strong>はい</strong>をクリックします。
+</p>
+<p>
+    以降のブラウザからの新しいリクエストは、<code>&lt;YOUR-LAB-ID&gt;.web-security-academy.net</code>に送られた場合のみBurpに表示されるようになります
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        スコープ外トラフィックのログ出力は、<strong>Proxy</strong>タブの上部にあるボタンをクリックすると、いつでも再有効化できます。
+    </p>
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ4: スコープの絞り込み</h3>
+<p>
+    <strong>Target &gt; スコープ</strong>タブに移動し、URLのリストにラボのURLが追加されていることを確認します。
+</p>
+<img src="images/reducing-noise/target-scope.png" alt="単一のホストを含むターゲットスコープ">
+<p>
+    デフォルトでは、このホストのすべてのパスまたはエンドポイントがスコープ内とみなされます。特定のパスを除外するには、次の方法で可能です:
+</p>
+<ul>
+    <li>
+        用意されているボタンで、URLをスコープから<strong>除外</strong>するリストに追加します。
+    </li>
+    <li>
+        サイトマップ上の該当ノードを右クリックし、<strong>スコープから削除</strong>を選択します。この操作は、例えばProxy履歴にある個別のリクエストをクリックしても行えます。
+    </li>
+</ul>
+<p>
+    正規表現を使ってスコープを設定するさらに高度なオプションがありますが、これについては別のチュートリアルで説明します。
+</p>
+<h2 id="using-filters">フィルタの使用</h2>
+<p>
+    Burpのツールには、さまざまなフィルタオプションがあり、現在のタスクに関係のないデータを一時的に非表示にできます。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: Proxy履歴の表示</h3>
+<p>
+    <strong>Proxy &gt; HTTP履歴</strong>タブに移動します。Burpはスコープ外のトラフィックはもう記録していませんが、スコープを設定する前にログ出力されたリクエストがまだ履歴に表示されています。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: フィルタ設定を開く</h3>
+<p>
+    リクエストのリストにすぐ上に、<strong>フィルタ</strong>バーがあります。ここには、現在アクティブなフィルタの概要が表示されています。
+</p>
+<img src="images/reducing-noise/filter-bar.png" alt="プロキシ履歴のフィルタバー">
+<p>
+    一部のフィルタはデフォルトで有効になっているため、すでにいくつかのエントリが含まれている場合があります。このバーをクリックすると、フィルタ設定が開きます。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: フィルタを適用してスコープ外のアイテムを非表示にする</h3>
+<p>
+    MIMEタイプ、レスポンスステータスコード、特定の検索語などに基づいてフィルタリングするためのさまざまなオプションがあります。Burpの他のツールにも、オプションが異なる同様のフィルタバーがあります。
+</p>
+<img src="images/reducing-noise/filter-show-only-in-scope.png" alt="Proxy履歴にスコープ内のアイテムのみを表示するオプション">
+<p>
+    <strong>フィルタ設定</strong>ダイアログの左上で、<strong>スコープ内のアイテムのみ表示</strong>オプションを選択し、<strong>適用</strong>をクリックします。
+</p>
+<p>
+    他のホストへのすべてのリクエストがProxy履歴から消え、ラボに関連したリクエストに集中できるようになったことを確認してください。
+</p>
+<p>
+    これで、Burpで基本的なターゲットスコープの設定と、フィルタを適用する方法がわかりました。これらの簡単なスキルは、ライブサイトをテストするために不可欠で、<a href="../../../../web-security/index.html">Web Security Academy</a>のラボを完了するのがより簡単になります。
+</p>
+</body>
+</html>

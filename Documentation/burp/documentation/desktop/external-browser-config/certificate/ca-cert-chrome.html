@@ -69,41 +69,47 @@
 <p>
     ページの右上隅にある<strong>CA Certificate</strong>をクリックして、独自のBurp CA証明書をダウンロードします。保存する場所をメモしておいてください。
 </p>
-<div class="section-small">
-    <img src="../../images/support/InstallingandConfiguring_InstallingBurpsCACertificate_ChromeLinux_1.jpg" alt="ChromeでCA証明書をダウンロード" class="center-block">
+<div class="rounded-dropshadow">
+    <img src="../../images/support/installingandconfiguring-installingburpscacertificate-chromelinux-1.png" alt="ChromeでCA証明書をダウンロード" class="center-block">
 </div>
 <p>
     ブラウザの右上隅にあるメニューを開き、<strong>設定</strong>をクリックして、Chromeブラウザの設定を開きます。
 </p>
 <p>
-    Chromeの設定で、<strong>証明書</strong>を検索し、<strong>証明書の管理</strong>オプションを選択します。
+    Chromeの設定で、<strong>証明書</strong>を検索し、<strong>セキュリティ</strong>をクリックし、<strong>証明書の管理</strong>オプションを選択します。
 </p>
-<div class="section-small">
-    <img src="../../images/support/InstallingandConfiguring_InstallingBurpsCACertificate_ChromeLinux_2.jpg" alt="Chromeで証明書を管理" class="center-block">
+<div class="rounded-dropshadow">
+    <img src="../../images/support/installingandconfiguring-installingburpscacertificate-chromelinux-2.png" alt="Chromeで証明書を管理" class="center-block">
 </div>
 <p>
-    <strong>証明書</strong>ダイアログで、<strong>信頼されたルート証明機関</strong>タブに移動し、<strong>インポート</strong>ボタンをクリックします。
+    <strong>証明書の管理</strong>ダイアログで、<strong>認証局</strong>タブに移動し、<strong>インポート</strong>ボタンをクリックします。
 </p>
-<div class="section-small">
-    <img src="../../images/ca-cert-chrome-import.jpg" alt="Chromeで証明書のインポート" class="center-block">
+<div class="rounded-dropshadow">
+    <img src="../../images/support/installingandconfiguring-installingburpscacertificate-chromelinux-4.png" alt="Chromeで証明書のインポート" class="center-block">
 </div>
 <p>
-    <strong>参照</strong>をクリックし、先程ダウンロードした<code>cacert.der</code>ファイルを選択します。次に、<strong>次へ</strong>をクリックします。
+    <strong>参照</strong>をクリックし、先程ダウンロードした<code>cacert.der</code>ファイルを選択します。<strong>開く</strong>をクリックします。
 </p>
-<div class="section-small">
-    <img src="../../images/ca-cert-chrome-select.jpg" alt="Chromeで証明書を選択" class="center-block">
+<div class="rounded-dropshadow">
+    <img src="../../images/support/installingandconfiguring-installingburpscacertificate-chromelinux-5.png" alt="Chromeで証明書を選択" class="center-block">
 </div>
 <p>
-    <strong>すべての証明書を次のストアに配置する &gt; 信頼されたルート証明機関</strong>オプションを選択します。
+    <strong>ウェブサイトの識別でこの証明書を信頼します</strong>オプションを選択します。
 </p>
 <p>
-    <strong>次へ</strong>、<strong>完了</strong>の順にクリックします。証明書が正常にインポートされたことを示すメッセージが表示されます。
+    <strong>OK</strong>をクリックします。
 </p>
-<p>
-    Chromeを閉じて再起動します。Burpを実行したまま、HTTPSのURLにアクセスしてみてください。すべて正常に動作していれば、セキュリティ警告なしでページを参照できるはずです。
-</p>
-<div class="section-small">
-    <img src="../../images/ca-cert-chrome-store.jpg" alt="Chromeでトラストストアの選択" class="center-block">
+<div class="rounded-dropshadow">
+    <img src="../../images/support/installingandconfiguring-installingburpscacertificate-chromelinux-6.png" alt="Chromeでウェブサイトを識別するためにこの証明書を信頼するを選択" class="center-block">
 </div>
+<p>
+    <code>org-PortSwigger</code>が認証局のリストに表示されるはずです。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/support/installingandconfiguring-installingburpscacertificate-chromelinux-7.png" alt="ChromeのBurpのセキュリティ証明書" class="center-block">
+</div>
+<p>
+    Burpを実行したまま、HTTPSのURLにアクセスしてみてください。すべて正常に動作していれば、セキュリティ警告なしでページを参照できるはずです。
+</p>
 </body>
 </html>

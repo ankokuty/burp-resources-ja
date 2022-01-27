@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">便利な機能</a>
+        </li>
+        <li>
+            <a href="sending-requests-between-tools.html">異なるツール間のリクエスト送信</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>異なるツール間のリクエスト送信</h1>
+<p>
+    異なるツール間でのリクエスト送信は、Burpのテストワークフローの重要な部分です。例えば、Burp Proxyで興味深いリクエストに注目し、それをBurp Intruderに送ってファジングができます。ファジングの結果に基づいて、同じリクエストをBurp Repeaterに送信し、特定の入力に対してより対象を絞った手動テストができます。
+</p>
+<p>
+    他のツールがBurpのどこに表示されていても、そのツールにリクエストを送信できます。これは次を含みます:
+</p>
+<ul>
+    <li>
+        <strong>Proxy &gt; HTTP履歴</strong>や<strong>Logger</strong>タブに表示されるリクエスト。
+    </li>
+    <li>
+        <strong>Proxy &gt; インターセプト</strong>機能でインターセプトしたリクエスト。
+    </li>
+    <li>
+        Burpの任意の場所にあるメッセージエディタに表示されたリクエスト。
+    </li>
+</ul>
+<p>
+    リクエストを他のツールに送るには、右クリックし、該当する<strong>[...]に送信</strong>オプションを選択します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../images/sending-request-between-tools-log-view.png" alt="Burp Suiteのツール間でのリクエスト送信">
+</div>
+<h2 id="sending-requests-to-the-same-tool">同じツールへのリクエスト送信</h2>
+<p>
+    場合によっては、現在表示している同じツールへリクエストを送信できます。例えば、既にBurp Repeaterにあるリクエストで<strong>Repeaterに送信</strong>を選択すると、同じリクエストの別のインスタンスを含んだ新しいRepeaterタブが作成されます。
+</p>
+<p>
+    これはテストの整理に便利です。例えば、興味深い挙動をみつけて調査したいと思ったら、新しいタブを作成し、後で戻ってこられるようにしておきます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../images/sending-request-to-same-tool.png" alt="Burp Suiteの同じツールへの送信">
+</div>
+</body>
+</html>

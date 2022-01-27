@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE" ignore-validation="STACKED_HEADINGS"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">チュートリアル</a>
+        </li>
+        <li>
+            <a href="enumerating-subdomains.html">Burp Intruderによるサブドメインの列挙</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Burp Intruderによるサブドメインの列挙</h1>
+<p>
+    <a href="../../desktop/tools/intruder/index.html">Burp Intruder</a>は、複数の対象ホストに対する攻撃を自動化できます。このチュートリアルでは、指定された対象の有効なサブドメインをこの機能を使って列挙して、追加の攻撃対象を発見する方法を紹介します。
+</p>
+<p>
+    この技術は、さまざまな方法で再利用できます(例えば、複数のサイトに対する同一の攻撃を自動化する場合など)。しかし特に偵察を行う場合に有効です。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        マルチホストIntruder攻撃は、Burp Suite バージョン2021.12で導入されました。これらの機能を利用するためには、<a href="https://portswigger.net/burp/releases">Burp Suiteを最新版にアップデート</a>する必要があるかもしれません。
+    </p>
+</div>
+<p>
+    このチュートリアルでは、次の手法を学びます:
+</p>
+<ul>
+    <li>
+        基本的なスナイパー攻撃を設定する。
+    </li>
+    <li>
+        Burp Intruderを使用して、対象ホストのサブドメインを列挙する。
+    </li>
+    <li>
+        Burp Intruderの攻撃結果の中から、潜在的に興味深いアイテムを見つけ出す。
+    </li>
+</ul>
+<div class="youtube-wrapper">
+    <iframe src="https://www.youtube.com/embed/jBf6i_B7fTw?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
+</div>
+<p>
+    このチュートリアルでは、セキュリティテストを行うためのWebアプリケーションが与えられたと仮定します。このアプリケーション内で発見したコンテンツは、テストの"対象"(つまり有効な対象)とみなされます。そこで、偵察段階の一部として、Burp Intruderを使ってテストを実施するサブドメインを検索します。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Burpのブラウザは、暗号化されたHTTPSプロトコルでもHTTP通信を簡単にプロキシできます。設定は不要で、<strong>Proxy</strong>タブを開き、<strong>ブラウザを開く</strong>をクリックし、<strong>Intercept無効</strong>になっているか確認してください。
+    </p>
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: リクエストのインターセプト</h3>
+<p>
+    Burpのブラウザを開き、次のURLにアクセスします:
+</p>
+<p>
+    <code>http://portswigger-labs.net/</code>
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/enumerating-subdomains/portswigger-labs.png" alt="PortSwigger Labsのホームページ">
+</div>
+<p>
+    Burp Suiteで、<strong>Proxy</strong>タブに移動し、<strong>HTTP履歴</strong>タブをクリックします。ここでは、Burp Suiteを開いた後にBurpのブラウザが生成したHTTPリクエストの一覧が表示されます。
+</p>
+<p>
+    <code>http://portswigger-labs.net/</code>のリクエストを右クリックして、<strong>Intruderに送信</strong>をクリックします。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/enumerating-subdomains/sending-a-request-to-burp-intruder.png" alt="Burp Intruderへリクエスト送信">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: Intruderの挿入ポイントの設定</h3>
+<p>
+    <strong>Intruder</strong>タブを開きます。リクエストがこのタブに表示されているか注意してください。
+</p>
+<p>
+    <strong>Target</strong>フィールドで、<code>http://</code>と<code>portswigger-labs.net</code>の間にカーソルを置きます。ここが、サブドメインがある場合に位置する場所です。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/enumerating-subdomains/altering-target-in-burp-intruder.png" alt="Burp IntruderでのTargetフィールドの変更">
+</div>
+<p>
+    任意の文字を入力してください。どんな文字を選んでも問題ありません - これは挿入ポイントのプレースホルダに過ぎません。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/enumerating-subdomains/intruder-subdomain-extra-char.png" alt="Burp IntruderでTargetフィールドにキャラクターを追加する">
+</div>
+<p>
+    先ほど入力した文字を選択して、<strong>§追加</strong>ボタンをクリックします。選択されたテキストの両側に、"<code>§</code>"マークが追加されます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/enumerating-subdomains/intruder-subdomain-insertion-point.png" alt="Burp IntruderのTargetフィールドに挿入ポイントを設定">
+</div>
+<p>
+    "<code>§</code>"マークの間にあるものは、Burp Intruderがペイロードを追加するための挿入ポイントとして設定されます。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: Intruderの攻撃タイプを選択</h3>
+<p>
+    このチュートリアルでは、単一の挿入ポイントに対して<a href="../tools/intruder/attack-types.html#sniper">スナイパー攻撃タイプ</a>を使用して、Intruderに潜在的なサブドメイン名のリストを循環させています。<strong>攻撃タイプの選択</strong>で、"スナイパー"が選択されていることに注目してください。その他の<a href="../tools/intruder/attack-types.html">Intruder攻撃タイプ</a>は、2つ以上の挿入ポイントが使用できます。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ4: Intruderのペイロードに、潜在的なサブドメインを追加する</h3>
+<p>
+    このチュートリアルでは、Burp Suite Professionalに付属しているペイロードのリストを使用しています。経験豊富なテスターは、こういう状況で利用するための独自のリストを収集していることが多いことを覚えておいてください。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        <strong>リストから追加 ... </strong>は、<a href="../../../pro/index.html">Burp Suite Professional</a>だけの機能です。<a href="../../../communitydownload/index.html">Burp Suite Community Edition</a>でこのチュートリアルを続けたい場合は、<strong>ステップ 6</strong>を読んで興味深いディレクトリ名を見つけ、<strong>ステップ 4</strong>にあるようにペイロードオプションにこれらの名前を追加してください。
+    </p>
+</div>
+<p>
+    <strong>Intruder</strong>タブで、<strong>ペイロード</strong>タブをクリックします。
+</p>
+<p>
+    <strong>ペイロードオプション[単純リスト]</strong>で、<strong>リストから追加 ... </strong>ドロップダウンをクリックします。"ディレクトリ - 短"を選択します。すると、ペイロードオプションフィールドに362個の潜在的なディレクトリ名のリストが入力されます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/enumerating-subdomains/burp-intruder-built-in-lists-burp-suite-professional.png" alt="Burp Suite ProfessionalのIntruder攻撃にディレクトリのリストを追加">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ5: ペイロード処理オプションの設定</h3>
+<p>
+    次に、Intruderが各ペイロードの後に"."文字を追加して、最終的に正しいURL構文にする必要があります。それには、<strong>ペイロード処理</strong>で、<strong>追加</strong>ボタンをクリックします。<strong>ルールタイプの選択</strong>ドロップダウンで、"サフィックスを追加"をクリックし、<strong>サフィックス:</strong>フィールドに"."文字を追加します。<strong>OK</strong>をクリックします。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/enumerating-subdomains/burp-intruder-payload-processing.png" alt="Burp Intruderでペイロード処理の追加">
+</div>
+<p>
+    <strong>攻撃開始</strong>ボタンをクリックします。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ6: 攻撃結果の分析</h3>
+<p>
+    攻撃が終了するのを待ちます - これには時間がかかります。
+</p>
+<p>
+    <strong>Length</strong>列のヘッダをクリックすると、レスポンスを長さでソートできます。ほとんどのリクエストの長さが2937であるのに対し、サブドメイン<code>staff.</code>のリクエストの長さが377であることに注目してください。これは、このリクエストに対するレスポンスが、リストの他のものとは異なるコンテンツを含んでいることを示しています。興味深いリクエストを選択してください。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/enumerating-subdomains/interesting-request-burp-intruder.png" alt="Burp Intruderの攻撃で見つかった興味深いHTTPリクエスト">
+</div>
+<p>
+    <strong>レスポンス</strong>をクリックすると、リクエストに対するレスポンスが表示されます。このURLには、何らかのログインフォームが表示されています。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/enumerating-subdomains/interesting-response-burp-intruder.png" alt="Burp Intruderで表示される興味深いHTTPレスポンス">
+</div>
+<p>
+    Burpのブラウザを開き、発見したURLにアクセスします:
+</p>
+<p>
+    <code>http://staff.portswigger-labs.net/</code>
+</p>
+<p>
+    ログインフォームが表示されていることを確認してください。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/enumerating-subdomains/burp-suite-hidden-login-form.png" alt="Burpのブラウザで表示された隠しログインフォーム">
+</div>
+<p>
+    ログイン機能がある隠れたサブドメインを発見したようです。これは、セキュリティテスターにとってとても興味をそそるでしょう。
+</p>
+<h2 id="summary-and-next-steps">まとめと次のステップ</h2>
+<p>
+    おめでとうございます - Burp Intruderを使って、ホストのサブドメインを列挙する方法がわかりました。この方法でテスト対象となる攻撃対象が増えたことで、テストアプリケーションの問題を見つけられる可能性が上がるかもしれません。
+</p>
+<p>
+    ここで見つけたようなログインフォームをBurp Intruderでブルートフォースする方法は、<a href="https://portswigger.net/web-security">Web Security Academy</a>の<a href="https://portswigger.net/web-security/authentication">認証</a>トピックを参照するか、あるいは<a href="brute-forcing-a-login-using-burp-intruder.html">Burp Intruderを使用したログイン機構へのブルートフォースのチュートリアル</a>を参照してください。
+</p>
+</body>
+</html>

@@ -33,7 +33,7 @@
 </section>
 <h1>その他のユーザオプション</h1>
 <p>
-    このタブには、<a href="#hotkeys">ホットキー</a>、<a href="#automatic-project-backup">プロジェクト自動バックアップ</a>、<a href="#proxy-interception">Proxyインターセプト</a>、<a href="#rest-api-options">REST API</a>、<a href="#proxy-interception">Proxy履歴ログ</a>、<a href="#temporary-files-location">一時ファイル</a>の場所、<a href="#performance-feedback">パフォーマンスフィードバック</a>があります。
+    このタブには、<a href="#hotkeys">ホットキー</a>、<a href="#automatic-project-backup">プロジェクト自動バックアップ</a>、<a href="#proxy-interception">Proxyインターセプト</a>、<a href="#rest-api-options">REST API</a>、<a href="#proxy-interception">Proxy履歴ログ出力</a>、<a href="#temporary-files-location">一時ファイル</a>の場所、<a href="#performance-feedback">パフォーマンスフィードバック</a>があります。
 </p>
 <h2 id="hotkeys">ホットキー</h2>
 <p>
@@ -74,6 +74,19 @@
         Burpの正常終了時にバックアップファイルを削除するかどうか。
     </li>
 </ul>
+<h2 id="temporary-files-location">一時ファイルの場所</h2>
+<p>
+    Burpが一時ファイルを保存する場所を設定します。
+</p>
+<p>
+    Burpはデフォルトで、プラットフォームの提供する一時ファイル場所にディレクトリを作成します。これを別のディレクトリを使用するように変更できます - たとえば、別のボリュームや、全ユーザに読取権限がない場所などです。
+</p>
+<p>
+    Mac OS Xでは、システムを休止状態にするとデフォルトの一時ファイル場所がクリアされることがあり、Burpが一時ファイルを失う原因になります。Burpの一時ファイルを格納するカスタムの場所を設定すると、この問題を解決できます。
+</p>
+<p>
+    この設定の変更は、次回のBurp起動時に有効になります。
+</p>
 <h2 id="rest-api-options">REST APIオプション</h2>
 <p>
     REST APIを使用して、他のツールとBurp Suiteを統合できます。
@@ -102,28 +115,15 @@
     </li>
 </ul>
 <p>
-    設定を行うと、APIドキュメントのブラウズができ、[サービスURL]/[APIキー]でAPIとやりとりできます。
+    設定を行うと、APIドキュメントのブラウズができ、<code>[サービスURL]/[APIキー]</code>でAPIとやりとりできます。
 </p>
 <h2 id="proxy-interception">Proxyインターセプト</h2>
 <p>
     Burp起動時に、Proxyインターセプトを有効にするか設定します。常に有効化、常に無効化、前回終了時の状態を復元、から選択できます。
 </p>
-<h2 id="proxy-history-logging">Proxy履歴ロギング</h2>
+<h2 id="proxy-history-logging">Proxy履歴ログ出力</h2>
 <p>
     ターゲットスコープへアイテムを追加したときに、履歴やライブタスクにスコープ外アイテムを送信しないよう<a href="../tools/proxy/options/index.html#miscellaneous">Proxyオプション</a>を自動的に追加するかどうか設定します。この設定により、プロジェクトデータにスコープ外のアイテムが蓄積されるのを避けられます。
-</p>
-<h2 id="temporary-files-location">一時ファイルの場所</h2>
-<p>
-    Burpが一時ファイルを保存する場所を設定します。
-</p>
-<p>
-    Burpはデフォルトで、プラットフォームの提供する一時ファイル場所にディレクトリを作成します。これを別のディレクトリを使用するように変更できます - たとえば、別のボリュームや、全ユーザに読取権限がない場所などです。
-</p>
-<p>
-    Mac OS Xでは、システムを休止状態にするとデフォルトの一時ファイル場所がクリアされることがあり、Burpが一時ファイルを失う原因になります。Burpの一時ファイルを格納するカスタムの場所を設定すると、この問題を解決できます。
-</p>
-<p>
-    この設定の変更は、次回のBurp起動時に有効になります。
 </p>
 <h2 id="performance-feedback">パフォーマンスフィードバック</h2>
 <p>
@@ -132,7 +132,7 @@
 <p>
     フィードバックにはBurpの内部機能に関する技術情報だけが含まれ、あなたを特定する方法はありません。バグを報告する場合デバッグIDを含めると、あなたのBurpインスタンスで発生した問題の診断の助けになります。
 </p>
-<h3 id="logging-exceptions-to-a-local-directory">例外をローカルディレクトリに記録する</h3>
+<h3 id="logging-exceptions-to-a-local-directory">例外をローカルディレクトリにログ出力する</h3>
 <p>
     一部のケースで、匿名フィードバックを有効にしても、パフォーマンスの問題に関するデータを受け取ることができない場合があります。たとえば、厳格なセキュリティポリシーがある場合、サポートチームへのデータ送信がブロックされる場合があります。この場合、<strong>例外をローカルディレクトリに記録する</strong>オプションを一時的にアクティブにした上で、問題を再現するよう依頼する場合があります。
 </p>
@@ -161,7 +161,7 @@
         当社のWebサイトから任意のバージョンのBurp Suiteを手動でダウンロードできます。Early Adopterチャネルでのみ利用可能なバージョンを手動でダウンロードしてインストールすると、更新チャネルが自動的にEarly Adopterに切り替えられることに注意してください。
     </p>
 </div>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../images/multiple-update-channels-940.png" alt="更新チャネルの選択" class="center-block">
 </div>
 <p>
@@ -201,16 +201,16 @@
 <p>
     このオプションを無効にすると、内蔵ブラウザは常に完全にクリーンな状態で開きます。Chromiumを閉じると、設定に加えた変更はすべて失われ、ブラウザを起動するたびに拡張機能を再インストールする必要があります。
 </p>
-<h2 id="learn-tab">学習タブ</h2>
-<p>
-    <strong>学習</strong>タブをメインバーに表示するかどうか制御します。ここには、便利なチュートリアルへのリンクやその他のリソースへのリンクがあり、Burp Suiteを使用開始し、新機能を発見し、スキルを次のレベルに引き上げるのに役立ちます。
-</p>
 <h2 id="tasks">タスク</h2>
 <p>
     既存のプロジェクトを最初に開いたときのスタートアップウィザードでの、<strong>自動タスクを一時停止する</strong>オプションのデフォルト状態を制御します。
 </p>
 <p>
     このチェックボックスをオンにすると、既存の自動化されたタスクが起動時に一時停止します。チェックボックスをオフにすると、既存のタスクが自動的に再開されます。
+</p>
+<h2 id="learn-tab">学習タブ</h2>
+<p>
+    <strong>学習</strong>タブをメインバーに表示するかどうか制御します。ここには、便利なチュートリアルへのリンクやその他のリソースへのリンクがあり、Burp Suiteを使用開始し、新機能を発見し、スキルを次のレベルに引き上げるのに役立ちます。
 </p>
 </body>
 </html>

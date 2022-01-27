@@ -70,7 +70,7 @@
         <a href="#metrics">メトリクス</a>
     </li>
     <li>
-        <a href="#collaborator-logging">Collaboratorログ</a>
+        <a href="#collaborator-logging">Collaboratorのログ出力</a>
     </li>
     <li>
         <a href="#testing-the-installation">インストールのテスト</a>
@@ -127,7 +127,7 @@
     </li>
     <li>
         <p>
-            <a href="#tls-configuration">TLS</a>、<a href="#interaction-events-and-polling">イベントとポーリングの通信</a>、<a href="#metrics">メトリクス</a>、<a href="#collaborator-logging">Collaboratorログ</a>、<a href="#add-custom-http-content">カスタムHTTPコンテンツ</a>を設定するには、以下のガイダンスを使用してください。
+            <a href="#tls-configuration">TLS</a>、<a href="#interaction-events-and-polling">イベントとポーリングの通信</a>、<a href="#metrics">メトリクス</a>、<a href="#collaborator-logging">Collaboratorのログ出力</a>、<a href="#add-custom-http-content">カスタムHTTPコンテンツ</a>を設定するには、以下のガイダンスを使用してください。
         </p>
     </li>
     <li>
@@ -155,7 +155,7 @@
 <p>
     Burp Collaboratorサーバは、Burp Suite Professional自身と同じ実行ファイルに含まれています。独自のサーバインスタンスを実行するのに、ライセンスキーは必要ありません。サーバはコマンドラインから<code>--collaborator-server</code>引数を使って直接起動できます。例:
 </p>
-<code> sudo java -jar burp.jar --collaborator-server </code><p>
+<code> sudo java -jar /path/to/file.jar --collaborator-server </code><p>
     上記のコマンドは、デフォルトの設定ファイルを使用してCollaboratorサーバを起動します。カスタム設定を追加するには、次の引数を追加します:
 </p>
 <p>
@@ -181,7 +181,7 @@
     </li>
     <li>
         <p>
-            HTTP: TCP ポート443
+            HTTPS: TCP ポート443
         </p>
     </li>
     <li>
@@ -202,6 +202,12 @@
 <p>
     Collaboratorサーバをroot以外のユーザとして実行する場合は、非標準のポート上で実行するように設定する必要があります。使用しているカスタムポートと標準ポートをマッピングするように、オペレーティングシステムを設定する必要もあります。通常、TCPとUDP接続の受信や、UDPレスポンス送信のマッピング設定が必要です。
 </p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Collaboratorサーバを標準ポート以外で使用するよう設定している場合、<strong>プロジェクトオプション &gt; その他</strong>以下の<a href="../desktop/options/misc-project.html#burp-collaborator-server">Burp Collaboratorサーバオプション</a>でそれらを指定する必要があります。
+    </p>
+</div>
 <p>
     Collaboratorサーバが非標準ポートを使用するよう、<a href="#collaborator-configuration-file">設定ファイル</a>で設定できます。例:
 </p>
@@ -216,13 +222,13 @@
 <p>
     Burp Collaboratorサーバの起動時には、想定する使用方法に基づいて、JVMのメモリ処理とガベージコレクションの設定をお勧めします。少人数での利用を想定してデスクトップマシンでCollaboratorサーバを実行する場合、JVMの使用するメモリ量を減らせます。次のコマンドは、ヒープを10から200MBの間で変動させ、JVMの5%の時間をガベレージコレクションに使用する設定で、通常あまりメモリを消費しません:
 </p>
-<code> sudo java -Xms10m -Xmx200m -XX:GCTimeRatio=19 -jar burp.jar --collaborator-server </code><p>
+<code> sudo java -Xms10m -Xmx200m -XX:GCTimeRatio=19 -jar /path/to/file.jar --collaborator-server </code><p>
     大人数で利用ができるよう専用マシン上でCollaboratorサーバを実行する場合、通常はOS、JVM、その他の実行プロセス用に1GBのメモリを残し、使用可能な物理メモリの量にヒープサイズを固定する設定が効率的です。例:
 </p>
-<code> sudo java -Xmx3g -Xms3g -jar burp.jar --collaborator-server </code><p>
+<code> sudo java -Xmx3g -Xms3g -jar /path/to/file.jar --collaborator-server </code><p>
     サーバを頻繁に使用する予定で4GB以上の物理メモリがある場合は、ガベレージコレクション中に起こるJVMの一時停止を大幅に削減する、G1 ガベレージコレクタへの切り替えを推奨します。例:
 </p>
-<code> sudo java -Xmx12g -Xms12g -XX:+UseG1GC -jar burp.jar --collaborator-server </code><p>
+<code> sudo java -Xmx12g -Xms12g -XX:+UseG1GC -jar /path/to/file.jar --collaborator-server </code><p>
     Collaboratorサーバの機能をすべて使うには、通常は適切な<a href="#collaborator-configuration-file">設定ファイル</a>を作る必要があります。
 </p>
 <h2 id="dns-configuration">DNS設定</h2>
@@ -275,134 +281,135 @@
 <p>
     Burp Collaboratorサーバのすべてのオプションは、設定ファイルを使用して制御します。デフォルトで、<code>collaborator.config</code>というファイルをカレントディレクトリ内で探します。<code>--collaborator-config</code>コマンドライン引数でこの場所を上書きできます。例:
 </p>
-<code> sudo java -jar burp.jar --collaborator-server --collaborator-config=myconfig.config </code><p>
+<code> sudo java -jar /path/to/file.jar --collaborator-server --collaborator-config=myconfig.config </code><p>
     設定ファイルはJSONフォーマットを使用し、コメントもサポートします。IPアドレスが必要な場所では、単一のアドレスまたはアドレスのリストを設定できます。たとえば、ネットワークインタフェースのローカルアドレスの設定に次のどちらも使用できます:
 </p>
 <code> "localAddress" : "10.20.0.159" <br>"localAddress" : ["10.20.0.159", "127.0.0.1"] </code><p>
     Collaborator設定ファイルは、次のフィールドを使用します:
 </p>
-<table>
-    <tr>
-        <td>
-            <strong>フィールド</strong>
-        </td>
-        <td>
-            <strong>意味</strong>
-        </td>
-        <td>
-            <strong>例</strong>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code>Your_Collaborator_Domain</code>
-        </td>
-        <td>
-            Collaboratorが権威を持つサーバドメインです。
-        </td>
-        <td>
-            somedomain.net
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code>NS_record_label_1</code>
-        </td>
-        <td>
-            サーバドメインのNSレコード内の最初のエントリのラベルです。
-        </td>
-        <td>
-            ns1 (somedomain.netのNSレコードにはns1.somedomain.netが含まれるでしょう)
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code>NS_record_label_2</code>
-        </td>
-        <td>
-            サーバドメインのNSレコード内の2番目のエントリのラベルです。
-        </td>
-        <td>
-            ns2 (somedomain.netのNSレコードにはns2.somedomain.netが含まれるでしょう)
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code>External_IP_Nameserver_A_Record1</code>
-        </td>
-        <td>
-            Aレコードエントリで指定されているCollaboratorサーバのパブリックIPアドレス。
-        </td>
-        <td>
-            ns1.somedomain.netのA(またはAAAA)レコードでしょう。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code>External_IP_Nameserver_A_Record2</code>
-        </td>
-        <td>
-            Aレコードエントリで指定されているCollaboratorサーバのパブリックIPアドレス。
-        </td>
-        <td>
-            ns2.somedomain.netのA(またはAAAA)レコードでしょう。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code>Local_IP_1</code>
-        </td>
-        <td>
-            コラボレーターサーバの実際のIPアドレス。
-        </td>
-        <td>
-            10.20.0.160
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code>Local_IP_2</code>
-        </td>
-        <td>
-            コラボレーターサーバの実際のIPアドレス。
-        </td>
-        <td>
-            10.20.0.161 (Local_IP_1とは異なるべきです)
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code>Collaborator_External_IP</code>
-        </td>
-        <td>
-            Collaboratorサーバのパブリックアドレスの1つ。
-        </td>
-        <td>
-            10.20.0.162
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code>path_to_key_file</code>
-        </td>
-        <td>
-            Collaboratorの秘密鍵のファイルパス。
-        </td>
-        <td>
-            <code>/opt/collaborator/collaborator.key</code>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code>path_to_certificate_file</code>
-        </td>
-        <td>
-            Collaboratorの証明書のファイルパス。
-        </td>
-        <td>
-            <code>/opt/collaborator/collaborator.crt</code>
-        </td>
-    </tr>
+<table class="grid-table grid-table-size-1-1-1">
+    <tbody><tr>
+            <td>
+                <strong>フィールド</strong>
+            </td>
+            <td>
+                <strong>意味</strong>
+            </td>
+            <td>
+                <strong>例</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>Your_Collaborator_Domain</code>
+            </td>
+            <td>
+                Collaboratorが権威を持つサーバドメインです。
+            </td>
+            <td>
+                somedomain.net
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>NS_record_label_1</code>
+            </td>
+            <td>
+                サーバドメインのNSレコード内の最初のエントリのラベルです。
+            </td>
+            <td>
+                ns1 (somedomain.netのNSレコードにはns1.somedomain.netが含まれるでしょう)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>NS_record_label_2</code>
+            </td>
+            <td>
+                サーバドメインのNSレコード内の2番目のエントリのラベルです。
+            </td>
+            <td>
+                ns2 (somedomain.netのNSレコードにはns2.somedomain.netが含まれるでしょう)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>External_IP_Nameserver_A_Record1</code>
+            </td>
+            <td>
+                Aレコードエントリで指定されているCollaboratorサーバのパブリックIPアドレス。
+            </td>
+            <td>
+                ns1.somedomain.netのA(またはAAAA)レコードでしょう。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>External_IP_Nameserver_A_Record2</code>
+            </td>
+            <td>
+                Aレコードエントリで指定されているCollaboratorサーバのパブリックIPアドレス。
+            </td>
+            <td>
+                ns2.somedomain.netのA(またはAAAA)レコードでしょう。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>Local_IP_1</code>
+            </td>
+            <td>
+                Collaboratorサーバの実際のIPアドレス。
+            </td>
+            <td>
+                10.20.0.160
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>Local_IP_2</code>
+            </td>
+            <td>
+                Collaboratorサーバの実際のIPアドレス。
+            </td>
+            <td>
+                10.20.0.161 (Local_IP_1とは異なるべきです)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>Collaborator_External_IP</code>
+            </td>
+            <td>
+                Collaboratorサーバのパブリックアドレスの1つ。
+            </td>
+            <td>
+                10.20.0.162
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>path_to_key_file</code>
+            </td>
+            <td>
+                Collaboratorの秘密鍵のファイルパス。
+            </td>
+            <td>
+                <code>/opt/collaborator/collaborator.key</code>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>path_to_certificate_file</code>
+            </td>
+            <td>
+                Collaboratorの証明書のファイルパス。
+            </td>
+            <td>
+                <code>/opt/collaborator/collaborator.crt</code>
+            </td>
+        </tr>
+    </tbody>
 </table>
 <p>
     設定ファイルのサンプルと、使用可能な各オプションの説明は次の通りです:
@@ -410,239 +417,240 @@
 <code> { <br>&nbsp;"serverDomain" : "Your_Collaborator_Domain",<br>&nbsp; "workerThreads" : 10,<br>&nbsp;"eventCapture": {<br>&nbsp;&nbsp;"localAddress" : "Local_IP",<br>&nbsp;&nbsp;"publicAddress" : "Collaborator_External_IP",<br>&nbsp;&nbsp;"http": {<br>&nbsp;&nbsp;&nbsp;"ports" : 80<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;"https": {<br>&nbsp;&nbsp;&nbsp;"ports" : 443<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;"smtp": {<br>&nbsp;&nbsp;&nbsp;"ports" : [25, 587]<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;"smtps": {<br>&nbsp;&nbsp;&nbsp;"ports" : 465<br>&nbsp;&nbsp;},<br>&nbsp;&nbsp;"ssl": {<br>&nbsp;&nbsp;&nbsp;"certificateFiles" : [<br>&nbsp;&nbsp;&nbsp;&nbsp;"path_to_key_file",<br>&nbsp;&nbsp;&nbsp;&nbsp;"path_to_certificate_file" ]<br>&nbsp;&nbsp;}<br>&nbsp;},<br>&nbsp;"dns": {<br>&nbsp;&nbsp;"interfaces" : [<br>&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"name": "NS_record_label_1",<br>&nbsp;&nbsp;&nbsp;&nbsp;"localAddress" : "Local_IP_1",<br>&nbsp;&nbsp;&nbsp;&nbsp;"publicAddress" : "External_IP_Nameserver_A_Record1"<br>&nbsp;&nbsp;&nbsp;},<br>&nbsp;&nbsp;&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;"name" : "NS_record_label_2",<br>&nbsp;&nbsp;&nbsp;&nbsp;"localAddress" : "Local_IP_2",<br>&nbsp;&nbsp;&nbsp;&nbsp;"publicAddress" : "External_IP_Nameserver_A_Record2"<br>&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;],<br>&nbsp;&nbsp;"ports" : 53<br>&nbsp;},<br>&nbsp;"logLevel" : "INFO"<br>} </code><p>
     設定ファイルでサポートされている定義は次の通りです:
 </p>
-<table>
-    <tr>
-        <td>
-            <code> serverDomain </code>
-        </td>
-        <td>
-            Collaboratorサーバが制御するドメインまたはサブドメイン。この設定は、DNS機能に必須です。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> workerThreads </code>
-        </td>
-        <td>
-            Collaboratorが受信リクエストの処理に使用するスレッド数。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> eventCapture.localAddress </code>
-        </td>
-        <td>
-            デフォルトで、通信イベントをキャプチャするためにすべてのローカルインタフェースをリッスンします。指定した場合、設定したインタフェースのみリッスンします。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> eventCapture.publicAddress </code>
-        </td>
-        <td>
-            通信イベントのキャプチャに使用するパブリックIPアドレス。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> eventCapture.http.ports </code>
-        </td>
-        <td>
-            HTTP通信イベントをリッスンするポート。ポート80が転送されている場合のみデフォルトから変更する必要があります。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> eventCapture.https.ports </code>
-        </td>
-        <td>
-            HTTPS通信イベントをリッスンするポート。ポート443が転送されている場合のみデフォルトから変更する必要があります。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> eventCapture.smtp.ports </code>
-        </td>
-        <td>
-            SMTP通信イベントをリッスンするポート。ポート25と587が転送されている場合のみデフォルトから変更する必要があります。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> eventCapture.smtps.ports </code>
-        </td>
-        <td>
-            SMTPS通信イベントをリッスンするポート。ポート465が転送されている場合のみデフォルトから変更する必要があります。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> eventCapture.https.hostname </code>
-        </td>
-        <td>
-            自己署名証明書を生成する際に使用されます。詳細は、<a href="#tls-configuration">TLS設定</a>を参照してください。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> polling.localAddress </code>
-        </td>
-        <td>
-            デフォルトで、Collaboratorは通信イベントのキャプチャとポーリングリクエストに、同じネットワークインタフェースを使用します。指定した場合、ポーリングリクエストに別のインタフェースが使用されます。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> polling.publicAddress </code>
-        </td>
-        <td>
-            ポーリングリクエストに使用するパブリックアドレス。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> polling.http.port </code>
-        </td>
-        <td>
-            HTTP経由のポーリングに使用するポート。標準ではないポートに設定できますが、Burp Suiteがそれを使用するように<a href="../desktop/options/misc-project.html#burp-collaborator-server">設定</a>する必要があります。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> polling.https.port </code>
-        </td>
-        <td>
-            HTTPS経由のポーリングに使用するポート。標準ではないポートに設定できますが、Burp Suiteがそれを使用するように<a href="../desktop/options/misc-project.html#burp-collaborator-server">設定</a>する必要があります。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> polling.https.hostname </code>
-        </td>
-        <td>
-            自己署名証明書を生成する際に使用されます。詳細は、<a href="#tls-configuration">TLS設定</a>を参照してください。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> metrics.path </code>
-        </td>
-        <td>
-            メトリクスページにアクセスできるようにするURLパス。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> metrics.whitelist </code>
-        </td>
-        <td>
-            メトリクスページにアクセスを許可するクライアントIPアドレスのホワイトリスト。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> dns.ports </code>
-        </td>
-        <td>
-            DNSクエリのリッスンポート。53 番ポートを転送している場合のみデフォルトから変更する必要があります。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> dns.interfaces </code>
-        </td>
-        <td>
-            DNSクエリをリッスンするローカルインタフェースのリスト。各権威ネームサーバに異なるIPアドレスを設定するようレジストラが要求する場合、複数のネットワークインタフェースを使用し、それらの場所をこのオプションで設定できます。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> dns.interfaces.name </code>
-        </td>
-        <td>
-            このインタフェースで実行するネームサーバのホスト名。各ネームサーバに異なるホスト名を使用してください (たとえば <code>ns1</code>、<code>ns2</code>、など)。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> dns.interfaces.localAddress </code>
-        </td>
-        <td>
-            このネームサーバにバインドするローカルアドレス。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> dns.interfaces.publicAddress </code>
-        </td>
-        <td>
-            設定されたローカルアドレスに対応するパブリックIPアドレス。通常、ドメインのDNSレコードに、設定されたホスト名とパブリックIPアドレスを使用する必要があります。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> logLevel </code>
-        </td>
-        <td>
-            標準出力に表示する<a href="#collaborator-logging">ログ</a>レベル。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> customDnsRecords.label </code>
-        </td>
-        <td>
-            カスタムDNSレコードのDNSラベル(例: _acme-challenge)。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> customDnsRecords.record </code>
-        </td>
-        <td>
-            ラベルに対応するカスタムDNSレコード。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> customDnsRecords.type </code>
-        </td>
-        <td>
-            カスタムDNSレコードのタイプ。現在のところ、TXTまたはCNAMEのいずれか。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> customDnsRecords.ttl </code>
-        </td>
-        <td>
-            レコードの生存時間(秒単位)。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> customHttpContent.path </code>
-        </td>
-        <td>
-            カスタムHTTPコンテンツのパス。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> customHttpContent.contentType </code>
-        </td>
-        <td>
-            カスタムコンテンツのレスポンスヘッダに追加するMIMEタイプ。
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <code> customHttpContent.base64content </code>
-        </td>
-        <td>
-            BASE64でエンコードされたコンテンツ。パスがリクエストされるとデコードして返される。
-        </td>
-    </tr>
+<table class="grid-table grid-table-size-1-2">
+    <tbody><tr>
+            <td>
+                <code> serverDomain </code>
+            </td>
+            <td>
+                Collaboratorサーバが制御するドメインまたはサブドメイン。この設定は、DNS機能に必須です。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> workerThreads </code>
+            </td>
+            <td>
+                Collaboratorが受信リクエストの処理に使用するスレッド数。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> eventCapture.localAddress </code>
+            </td>
+            <td>
+                デフォルトで、通信イベントをキャプチャするためにすべてのローカルインタフェースをリッスンします。指定した場合、設定したインタフェースのみリッスンします。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> eventCapture.publicAddress </code>
+            </td>
+            <td>
+                通信イベントのキャプチャに使用するパブリックIPアドレス。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> eventCapture.http.ports </code>
+            </td>
+            <td>
+                HTTP通信イベントをリッスンするポート。ポート80が転送されている場合のみデフォルトから変更する必要があります。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> eventCapture.https.ports </code>
+            </td>
+            <td>
+                HTTPS通信イベントをリッスンするポート。ポート443が転送されている場合のみデフォルトから変更する必要があります。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> eventCapture.smtp.ports </code>
+            </td>
+            <td>
+                SMTP通信イベントをリッスンするポート。ポート25と587が転送されている場合のみデフォルトから変更する必要があります。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> eventCapture.smtps.ports </code>
+            </td>
+            <td>
+                SMTPS通信イベントをリッスンするポート。ポート465が転送されている場合のみデフォルトから変更する必要があります。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> eventCapture.https.hostname </code>
+            </td>
+            <td>
+                自己署名証明書を生成する際に使用されます。詳細は、<a href="#tls-configuration">TLS設定</a>を参照してください。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> polling.localAddress </code>
+            </td>
+            <td>
+                デフォルトで、Collaboratorは通信イベントのキャプチャとポーリングリクエストに、同じネットワークインタフェースを使用します。指定した場合、ポーリングリクエストに別のインタフェースが使用されます。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> polling.publicAddress </code>
+            </td>
+            <td>
+                ポーリングリクエストに使用するパブリックアドレス。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> polling.http.port </code>
+            </td>
+            <td>
+                HTTP経由のポーリングに使用するポート。標準ではないポートに設定できますが、Burp Suiteがそれを使用するように<a href="../desktop/options/misc-project.html#burp-collaborator-server">設定</a>する必要があります。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> polling.https.port </code>
+            </td>
+            <td>
+                HTTPS経由のポーリングに使用するポート。標準ではないポートに設定できますが、Burp Suiteがそれを使用するように<a href="../desktop/options/misc-project.html#burp-collaborator-server">設定</a>する必要があります。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> polling.https.hostname </code>
+            </td>
+            <td>
+                自己署名証明書を生成する際に使用されます。詳細は、<a href="#tls-configuration">TLS設定</a>を参照してください。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> metrics.path </code>
+            </td>
+            <td>
+                メトリクスページにアクセスできるようにするURLパス。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> metrics.whitelist </code>
+            </td>
+            <td>
+                メトリクスページにアクセスを許可するクライアントIPアドレスのホワイトリスト。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> dns.ports </code>
+            </td>
+            <td>
+                DNSクエリのリッスンポート。53 番ポートを転送している場合のみデフォルトから変更する必要があります。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> dns.interfaces </code>
+            </td>
+            <td>
+                DNSクエリをリッスンするローカルインタフェースのリスト。各権威ネームサーバに異なるIPアドレスを設定するようレジストラが要求する場合、複数のネットワークインタフェースを使用し、それらの場所をこのオプションで設定できます。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> dns.interfaces.name </code>
+            </td>
+            <td>
+                このインタフェースで実行するネームサーバのホスト名。各ネームサーバに異なるホスト名を使用してください (たとえば <code>ns1</code>、<code>ns2</code>、など)。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> dns.interfaces.localAddress </code>
+            </td>
+            <td>
+                このネームサーバにバインドするローカルアドレス。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> dns.interfaces.publicAddress </code>
+            </td>
+            <td>
+                設定されたローカルアドレスに対応するパブリックIPアドレス。通常、ドメインのDNSレコードに、設定されたホスト名とパブリックIPアドレスを使用する必要があります。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> logLevel </code>
+            </td>
+            <td>
+                標準出力に表示する<a href="#collaborator-logging">ログ出力</a>レベル。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> customDnsRecords.label </code>
+            </td>
+            <td>
+                カスタムDNSレコードのDNSラベル(例: _acme-challenge)。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> customDnsRecords.record </code>
+            </td>
+            <td>
+                ラベルに対応するカスタムDNSレコード。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> customDnsRecords.type </code>
+            </td>
+            <td>
+                カスタムDNSレコードのタイプ。現在のところ、TXTまたはCNAMEのいずれか。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> customDnsRecords.ttl </code>
+            </td>
+            <td>
+                レコードの生存時間(秒単位)。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> customHttpContent.path </code>
+            </td>
+            <td>
+                カスタムHTTPコンテンツのパス。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> customHttpContent.contentType </code>
+            </td>
+            <td>
+                カスタムコンテンツのレスポンスヘッダに追加するMIMEタイプ。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> customHttpContent.base64content </code>
+            </td>
+            <td>
+                BASE64でエンコードされたコンテンツ。パスがリクエストされるとデコードして返される。
+            </td>
+        </tr>
+    </tbody>
 </table>
 <h2 id="tls-configuration">TLS設定</h2>
 <p>
@@ -697,7 +705,14 @@
 <code> "polling" : { <br>&nbsp;"publicAddress" : "&lt;External_IP&gt;" <br>}, </code><p>
     次のポーリングインタフェースの例では、カスタムポート、HTTPS、自己署名証明書を使用しています:
 </p>
-<code> "polling" : { <br>&nbsp;"localAddress" : "&lt;Local_IP&gt;", <br>&nbsp;"publicAddress" : "&lt;External_IP&gt;", <br>&nbsp;"http": { <br>&nbsp;&nbsp;"port" : 9090 <br>&nbsp;}, <br>&nbsp;"https": { <br>&nbsp;&nbsp;"port" : 9443 <br>&nbsp;}, <br>&nbsp;"ssl": { <br>&nbsp;&nbsp;"hostname" : "collaboratorpolling.example.com" <br>&nbsp;} <br>}, </code><p>
+<code> "polling" : { <br>&nbsp;"localAddress" : "&lt;Local_IP&gt;", <br>&nbsp;"publicAddress" : "&lt;External_IP&gt;", <br>&nbsp;"http": { <br>&nbsp;&nbsp;"port" : 9090 <br>&nbsp;}, <br>&nbsp;"https": { <br>&nbsp;&nbsp;"port" : 9443 <br>&nbsp;}, <br>&nbsp;"ssl": { <br>&nbsp;&nbsp;"hostname" : "collaboratorpolling.example.com" <br>&nbsp;} <br>}, </code>
+<div class="hightlightedarea">
+    <h4>注</h4>
+    <p>
+        内部CAに署名された証明書を使用している場合は、Javaのトラストストアに正しい証明書があるか確認する必要があります。
+    </p>
+</div>
+<p>
     次のポーリングインタフェースの例では、カスタムポート、HTTPS、CA発行の証明書を使用しています:
 </p>
 <code> "polling" : { <br>&nbsp;"localAddress" : "&lt;Local_IP&gt;", <br>&nbsp; "publicAddress" : "&lt;External_IP&gt;", <br>&nbsp; "http": { <br>&nbsp;&nbsp; "port" : 9090 <br>&nbsp; }, <br>&nbsp;"https": { <br>&nbsp;&nbsp;"port" : 9443 <br>&nbsp;}, <br>&nbsp;"ssl": { <br>&nbsp;&nbsp;"certificateFiles" : [ <br>&nbsp;&nbsp;&nbsp;"path_to_key_file", <br>&nbsp;&nbsp;&nbsp;"Path_to_certificate_file" <br>&nbsp;&nbsp;] <br>&nbsp; } <br>}, </code>
@@ -712,9 +727,9 @@
     この設定では、21.10.23.0/24ネットワーク上のクライアントが次のURLにアクセスすると利用できます:
 </p>
 <code> https://10.20.0.159/jnaicmez8/metrics </code>
-<h2 id="collaborator-logging">Collaboratorログ</h2>
+<h2 id="collaborator-logging">Collaboratorのログ出力</h2>
 <p>
-    <code>設定ファイル</code>で、標準出力への<a href="#collaborator-configuration-file">ログレベル</a>を設定できます。使用可能な値は次の通りです:
+    <code>設定ファイル</code>で、標準出力への<a href="#collaborator-configuration-file">ログ出力レベル</a>を設定できます。使用可能な値は次の通りです:
 </p>
 <ul>
     <li>

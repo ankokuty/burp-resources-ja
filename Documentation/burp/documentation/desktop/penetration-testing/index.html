@@ -72,7 +72,7 @@
 <p>
     インターセプトの必要に応じて<strong>インターセプト有効/無効</strong>ボタンを変更してください。詳細は、<a href="../tools/proxy/getting-started.html">Burp Proxy入門</a>を参照してください。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../images/pentesting-intercept-940.png" alt="ペネトレーションテスト: リクエストの傍受" class="center-block">
 </div>
 <p>
@@ -81,7 +81,7 @@
 <p>
     <a href="../functions/message-editor/index.html">メッセージエディタ</a>パネルでテーブル内のアイテムを選択して、完全なリクエストとレスポンスを表示します。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../images/pentesting-history-940.png" alt="ペネトレーションテスト: Proxy履歴" class="center-block">
 </div>
 <p>
@@ -90,7 +90,7 @@
 <p>
     Burp Repeaterなどの編集可能なメッセージの場合、Inspectorでこのデコードされた値も編集できます。関連するエンコーディングは、入力した値に対して自動的に再適用されます。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../images/pentesting-inspector-940.png" alt="ペネトレーションテスト: Inspector" class="center-block">
 </div>
 <p>
@@ -102,7 +102,7 @@
 <p>
     詳細は、<a href="../tools/target/using.html">Targetツールの使い方</a>を参照してください。<a href="../scanning/live-scans.html">ライブスキャンタスク</a>を適切に設定すると、ブラウズ時にサイトマップに追加するコンテンツを制御できます。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../images/pentesting-sitemap-940.png" alt="ペネトレーションテスト: サイトマップ" class="center-block">
 </div>
 <p>
@@ -111,7 +111,7 @@
 <p>
     <strong>Proxy &gt; インターセプト</strong>タブや<strong>HTTP履歴</strong>、<strong>サイトマップ</strong>タブなど、HTTPメッセージが表示されるどこからでも、メッセージを転送できます。1つまたは複数のメッセージを選択し、コンテキストメニューから他のツールに転送できます。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../images/pentesting-repeater-940.png" alt="ペネトレーションテスト: 手動ツールへのリクエスト送信" class="center-block">
 </div>
 <div class="container">
@@ -160,7 +160,9 @@
 <p>
     次の図は、Burpのペネトレーションテストワークフローの主要部分の概要です。
 </p>
-<img src="../images/burp-workflow.jpg" alt="Burp Suiteのテストワークフロー" class="center-block">
+<div class="rounded-dropshadow">
+    <img src="../images/burp-workflow.jpg" alt="Burp Suiteのテストワークフロー" class="center-block">
+</div>
 <h2 id="recon-and-analysis">情報収集、分析</h2>
 <p>
     <a href="../tools/proxy/using.html">Proxyツール</a>はBurpのワークフローの中心部に位置します。Burpの<a href="../functions/embedded-browser.html">内蔵ブラウザ</a>や自身の外部ブラウザでアプリケーションをブラウズしている間、Burpはすべての関連情報を収集しており、他のアクションを簡単に開始できます。典型的なテストで、情報収集、分析フェーズには次のタスクが行われます。
@@ -270,7 +272,7 @@
         あるユーザがアクセスでき他のユーザができない機能の特定、高権限のユーザだけにアクセスが制限されている機能に低権限のユーザがアクセスできるかのテスト、同じタイプの2人のユーザがアクセスするデータを分離するために使用している識別子の探索など、さまざまなタスクで<a href="../tools/target/site-map/comparing.html">サイトマップ比較</a>機能が使用できます。
     </li>
     <li>
-        各ブラウザごとに(異なるポートを使用する)<a href="../tools/proxy/options/index.html#proxy-listeners">Burp Proxyリスナー</a>を分離すると、異なるブラウザを使用しそれぞれのユーザコンテキストでアプリケーションにアクセスできます。追加の<a href="../tools/proxy/history.html">Proxy履歴</a>ウィンドウを(コンテキストメニューから)開き、各ウィンドウで<a href="../tools/proxy/history.html#proxy-history-display-filter">ディスプレイフィルター</a>を設定すると、特定のProxyリスナーが受信したアイテムのみを表示できます。各ブラウザでアプリケーションを使用すると、各履歴ウィンドウには関連するユーザコンテキストのアイテムだけが表示されます。次に、(コンテキストメニューから)<strong>現在のブラウザセッションでリクエスト</strong>機能を使用すると、ブラウザ間でリクエストを切り替えて、ブラウザのユーザコンテキストでどのように処理されるか判断できます。
+        各ブラウザごとに(異なるポートを使用する)<a href="../tools/proxy/options/index.html#proxy-listeners">Burp Proxyリスナー</a>を分離すると、異なるブラウザを使用しそれぞれのユーザコンテキストでアプリケーションにアクセスできます。追加の<a href="../tools/proxy/history.html">Proxy履歴</a>ウィンドウを(コンテキストメニューから)開き、各ウィンドウで<a href="../tools/proxy/history.html#proxy-history-display-filter">ディスプレイフィルタ</a>を設定すると、特定のProxyリスナーが受信したアイテムのみを表示できます。各ブラウザでアプリケーションを使用すると、各履歴ウィンドウには関連するユーザコンテキストのアイテムだけが表示されます。次に、(コンテキストメニューから)<strong>現在のブラウザセッションでリクエスト</strong>機能を使用すると、ブラウザ間でリクエストを切り替えて、ブラウザのユーザコンテキストでどのように処理されるか判断できます。
     </li>
     <li>
         多くの権限昇格の脆弱性は、アプリケーションがユーザパラメータ内にユーザ識別子を渡し、現在のユーザコンテキストによらずその識別子で権限を特定している場合に発生します。このタイプの脆弱性を攻撃するには、<a href="../tools/intruder/using.html"> Burp Intruder</a>で(たとえば、<a href="../tools/intruder/payloads/types.html#numbers">数値</a>や<a href="../tools/intruder/payloads/types.html#custom-iterator">カスタムイテレーター</a>ペイロードタイプを使用して)適切な形式の識別子を一通り送信し、<a href="../tools/intruder/options.html#grep-extract">抽出grep</a>アイテムを設定し、アプリケーションのレスポンスからユーザ固有の気になるデータを取得します。

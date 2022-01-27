@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">入門</a>
+        </li>
+        <li>
+            <a href="system-requirements.html">システム要件</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Burp Suiteのシステム要件</h1>
+<p>
+    Burp Suiteのシステム要件は、ソフトウェアの使用目的によって大きく異なります。一般的には、比較的低スペックのマシンでもほとんどの作業を行えますが、一部のユースケース(例えば、複数のスキャンを同時に実行する場合など)では、パフォーマンスに目立った影響を与えずに実行するために、かなりのパワーが必要な場合があります。
+</p>
+<h2 id="cpu-cores-memory">CPUコア/メモリ</h2>
+<ul>
+    <li>
+        <strong>最小: 2コア, 4GB RAM</strong> - このスペックは、Webトラフィックのプロキシ処理やIntruderの攻撃など基本的なタスクに適しています。Burp Suiteはこれより低いスペックのマシンでも動作しますが、パフォーマンス上の理由から推奨できません。
+    </li>
+    <li>
+        <strong>推奨: 2コア, 16GB RAM</strong> - これは、一般的な用途に適したスペックです。
+    </li>
+    <li>
+        <strong>高度: 4コア, 32GB RAM</strong> - このスペックは、複雑なIntruder攻撃や大規模な自動スキャンなど、より激しいタスクに適しています。
+    </li>
+</ul>
+<h2 id="free-disk-space">空きディスク容量</h2>
+<ul>
+    <li>
+        基本インストール: <strong>1GB</strong>
+    </li>
+    <li>
+        プロジェクトファイルごと: <strong>2GB</strong>
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>注:</h4>
+    <p>
+        プロジェクト用に2GBの空きディスク容量を推奨していますが、含まれるProxy履歴の量、実行したスキャン数、開いているRepeaterタブの数などの要因によって、これよりも大幅に大きくなる可能性があることに注意してください(数十GBになる可能性もあります)。
+    </p>
+</div>
+<h2 id="operating-system-and-architecture">オペレーティングシステムとアーキテクチャ</h2>
+<p>
+    Burp Suiteは、次のオペレーティングシステムの最新バージョンに対応しています:
+</p>
+<ul>
+    <li>
+        Windows (Intel 64ビット)
+    </li>
+    <li>
+        Linux (Intel 64ビット)
+    </li>
+    <li>
+        OS X (Intel 64ビットおよびApple M1)
+    </li>
+</ul>
+</body>
+</html>

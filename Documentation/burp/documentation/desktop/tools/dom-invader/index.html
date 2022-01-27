@@ -67,7 +67,7 @@
 <p>
     DOM Invaderは、Burpのブラウザにプリインストールされていますが、その機能の一部が他のテストに影響を与える可能性があるため、デフォルトでは無効になっています。有効にするには、Burpのブラウザの右上隅にあるBurp Suiteアイコンをクリック(表示されない場合は、最初にジグソーパズルのアイコンをクリック)し、Burp Suitをクリックし、<strong>DOM Invader</strong>タブに移動し、<strong>DOM Invader is on/off</strong>スイッチを切り替えます。次に変更を有効にするために、<strong>リロード</strong>ボタンをクリックするよう求められます。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../../images/dom-invader-enabling.png" alt="DOM Invaderの有効化" class="center-block">
 </div>
 <p>
@@ -88,7 +88,7 @@
         <strong>Postmessage interception:</strong> 有効にすると、DevToolsパネルの<a href="messages-view.html"><strong>Message</strong></a>ビューで、サイトのWebメッセージング機能のDOM XSSをテストできます。<a href="messages-view.html#postmessage-settings">Postmessage固有の設定</a>がいくつかあり、動作を微調整できます。
     </li>
     <li>
-        <strong>Message filtering by stack trace:</strong> 一部のWebサイトで多数のメッセージをトリガーしますが、ノイズが多くなりテストが困難になる可能性があります。この設定を有効にすると、DOM Invaderは各エントリのスタックトレースを比較し、既存のエントリーと同じコード内の場所を指すエントリを非表示にします。
+        <strong>Message filtering by stack trace:</strong> 一部のWebサイトで多数のメッセージをトリガーしますが、ノイズが多くなりテストが困難になる可能性があります。この設定を有効にすると、DOM Invaderは各エントリのスタックトレースを比較し、既存のエントリと同じコード内の場所を指すエントリを非表示にします。
     </li>
     <li>
         <strong>Auto fire events:</strong> 有効にするとDOM Invaderは、ページが読み込まれるとすぐ自動的に、すべてのエレメントでクリックやマウスオーバーイベントをトリガーします。これにより、挿入されたペイロードがこれらのイベントを必要とする場合に、自動的に実行されます。

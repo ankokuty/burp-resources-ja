@@ -54,7 +54,7 @@
     </li>
 </ul>
 <p>
-    設定を行ったら、ブラウザで任意のURLにアクセスし、Burp Proxyの<strong>Proxy &gt; <a href="../proxy/intercept.html">インターセプト</a></strong>タブに移動します。うまく動作していれば、閲覧と変更のためHTTPリクエストが表示されるのがわかります。ブラウジングを継続するには、表示されたHTTPメッセージを転送する必要があります。すべてのエントリが "<a href="../proxy/history.html">HTTP履歴</a>"タブにも表示されます。
+    設定を行ったら、ブラウザで任意のURLにアクセスし、Burp Proxyの<strong>Proxy &gt; <a href="../proxy/intercept.html">インターセプト</a></strong>タブに移動します。うまく動作していれば、閲覧と変更のためHTTPリクエストが表示されるのがわかります。ブラウジングを継続するには、表示されたHTTPメッセージを転送する必要があります。すべてのエントリが<a href="../proxy/history.html">HTTP履歴</a>タブにも表示されます。
 </p>
 <h2 id="intercepting-requests-and-responses">リクエストとレスポンスのインターセプト</h2>
 <p>
@@ -82,15 +82,18 @@
 <p>
     インターセプトしたリクエストやレスポンスは<a href="../../functions/message-editor/index.html">HTTPメッセージエディタ</a>に表示され、これにはメッセージを素早く分析や操作できるように設計された多くの機能が実装されています。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../../images/proxy-using-intercept-940.png" alt="インターセプトされたリクエスト" class="center-block">
 </div>
 <p>
     デフォルトで、Burp Proxyはリクエストメッセージのみをインターセプトし、かつテストに直接関係なさそうな一般的なファイル拡張子(画像、CSS、JavaScript)のURLはインターセプトしません。<a href="../proxy/options/index.html#intercepting-http-requests-and-responses">インターセプトオプション</a>でこのデフォルトの動作を変更できます。たとえば、パラメータが付いた<a href="../target/scope.html">スコープ内</a>のリクエストのみインターセプトする、またはHTMLを含むすべてのレスポンスをインターセプトする、などBurpを設定できます。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../../images/proxy-intercept-options-940.png" alt="Interceptクライアントリクエストオプション" class="center-block">
 </div>
+<p>
+    Burpのインターセプトを完全にオフにし、すべてのHTTPメッセージをユーザが介入せず自動的に転送させたい場合がよくあります。これは、<a href="../proxy/intercept.html">Interceptタブ</a>のマスターインターセプトトグルでできます。
+</p>
 <h2 id="using-the-proxy-history">Proxy履歴の使い方</h2>
 <p>
     Burpは、Proxyを経由したリクエストとレスポンスの<a href="../proxy/history.html">すべての履歴</a>を管理しています。これにより、ブラウザとサーバ間の通信をレビューでき、アプリケーションの機能を理解でき、重要なテストタスクを実行できます。時々、Proxy履歴のリクエストとレスポンスを注意深くレビューする前に、<a href="../proxy/intercept.html"> Interceptタブ</a>でインターセプトを完全に無効化してアプリケーションの機能の一部を自由に巡回したい場合があります。
@@ -101,56 +104,56 @@
 <p>
     <a href="../proxy/history.html#history-table">履歴一覧</a>は、任意の列ヘッダをクリックすると並び替えられます(ヘッダのクリックで昇順、降順、ソートなしを循環します)。これで似たアイテムをグループ化し異常なアイテムを素早く特定できます。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../../images/proxy-get-started-sort-940.png" alt="Proxy履歴の並べ替え" class="center-block">
 </div>
 <p>
-    <a href="../proxy/history.html#proxy-history-display-filter">ディスプレイフィルター</a>でさまざまな特性のアイテムを非表示にできます。
+    <a href="../proxy/history.html#proxy-history-display-filter">ディスプレイフィルタ</a>でさまざまな特性のアイテムを非表示にできます。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../../images/proxy-history-filter-940.png" alt="Proxy履歴のフィルタ" class="center-block">
 </div>
 <p>
     用途の説明や後で戻ってきたときに気になるアイテムを特定しやすいように、色付けとコメントでアイテムに<a href="../proxy/history.html#proxy-history-annotations">注釈</a>を付けられます。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../../images/proxy-history-annotate-940.png" alt="Proxy履歴の注釈" class="center-block">
 </div>
 <p>
-    <a href="../proxy/history.html#proxy-history-testing-workflow">コンテキストメニュー</a>で追加の履歴ビューを開け、異なるフィルターを適用や、アクセス制御をテストできます。
+    <a href="../proxy/history.html#proxy-history-testing-workflow">コンテキストメニュー</a>で追加の履歴ビューを開け、異なるフィルタを適用や、アクセス制御をテストできます。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../../images/proxy-history-new-window-940.png" alt="新規履歴ウィンドウ" class="center-block">
 </div>
 <h2 id="burp-proxy-testing-workflow">Burp Proxyのテストワークフロー</h2>
 <p>
     Burpの<a href="../../penetration-testing/index.html">ユーザ主導ワークフロー</a>では、気になるアイテムをBurpの他のツールに送り異なるタスクを実行する機能が重要な部分です。これには、Burp全体のさまざまな場所で右クリックしてアクセスできるコンテキストメニューが使用できます。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../../images/proxy-history-context-menu-940.png" alt="Proxy履歴のコンテキストメニュー" class="center-block">
 </div>
 <p>
     たとえば、Proxyで興味深いリクエストを観察した後、Burp Scannerでそのリクエストについてのみ素早く<a href="../../scanning/index.html#launching-scans">脆弱性スキャン</a>を実行したくなるでしょう。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../../images/proxy-history-scan-940.png" alt="Proxy履歴からアイテムをスキャン" class="center-block">
 </div>
 <p>
     <a href="../repeater/using.html">Repeater</a>にリクエストを送り、手動のリクエスト変更と再送を何度も繰り返し行えます。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../../images/proxy-get-started-repeater-940.png" alt="Proxy履歴からRepeaterにアイテムを送信" class="center-block">
 </div>
 <p>
     <a href="../intruder/using.html">Intruder</a>にリクエストを送り、自動カスタマイズされたさまざまなタイプの攻撃を実行できます。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../../images/proxy-history-intruder-940.png" alt="Proxy履歴からIntruderにアイテムを送信" class="center-block">
 </div>
 <p>
     <a href="../sequencer/index.html">Sequencer</a>にリクエストを送り、レスポンスで返されるトークンのランダム性の質を分析できます。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../../images/proxy-history-sequencer-940.png" alt="Proxy履歴からSequencerにアイテムを送信" class="center-block">
 </div>
 <p>
@@ -163,19 +166,19 @@
 <p>
     <a href="../proxy/options/index.html#binding">異なるインタフェース</a>へのバインド、他のホストへの<a href="../proxy/options/index.html#request-handling">リクエストのリダイレクト</a>、異なる<a href="../proxy/options/index.html#certificate">サーバTLS証明書</a>の処理、プロキシをサポートしないクライアント用に<a href="../proxy/options/invisible.html">透過プロキシ</a>のサポートなど、Proxyリスナーの設定が必要かもしません。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../../images/proxy-config-certificate-940.png" alt="Proxyリスナー証明書オプション" class="center-block">
 </div>
 <p>
     さまざまな体系的な方法で自動的に<a href="../proxy/options/index.html#response-modification">HTTPレスポンスを変更</a>するように設定できます; たとえば、hiddenフォームフィールドを表示する、JavaScriptのフォーム入力検証を削除するなどです。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../../images/proxy-config-response-mod-940.png" alt="Proxyレスポンス変更オプション" class="center-block">
 </div>
 <p>
     リクエストとレスポンスのコンテンツを自動的に変更するために<a href="../proxy/options/index.html#match-and-replace">一致/置換</a>ルールが設定できます。
 </p>
-<div class="section-small">
+<div class="rounded-dropshadow">
     <img src="../../images/proxy-config-match-replace-940.png" alt="Proxyの検索と置換オプション" class="center-block">
 </div>
 </body>

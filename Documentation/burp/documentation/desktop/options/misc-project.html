@@ -33,7 +33,7 @@
 </section>
 <h1>その他のプロジェクトオプション</h1>
 <p>
-    このタブには、<a href="#scheduled-tasks">スケジュールタスク</a>、<a href="#burp-collaborator-server"> Burp Collaboratorサーバ</a>、<a href="#logging">ロギング</a>の設定があります。
+    このタブには、<a href="#scheduled-tasks">スケジュールタスク</a>、<a href="#burp-collaborator-server"> Burp Collaboratorサーバ</a>、<a href="#logging">ログ出力</a>の設定があります。
 </p>
 <h2 id="scheduled-tasks">スケジュールタスク</h2>
 <p>
@@ -75,6 +75,12 @@
         <strong>ポーリング場所(オプション)</strong> - このオプションフィールドには、プライベートCollaboratorサーバがポーリングリクエストに応答する場所を指定します。必要であればCollaboratorサーバが、通信の受信とポーリングリクエストの応答を、異なるネットワークインタフェースで行うよう設定できます。ポーリング場所をホスト名かIPアドレスで、オプションでコロンで区切ったポート番号を指定できます。たとえば、10.20.30.40:8008です。
     </li>
 </ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        <a href="../../collaborator/deploying.html#running-on-non-standard-ports">Collaboratorサーバを非標準ポートで使用</a>するよう設定している場合、ここでそのポートを指定する必要があります。
+    </p>
+</div>
 <p>
     さらに次のオプションがあります。
 </p>
@@ -86,9 +92,9 @@
         <strong>ヘルスチェック実行</strong> - このボタンをクリックすると、設定したCollaboratorサーバのヘルスチェックを実行するダイアログが開きます。さまざまなネットワークサービスが通信できるかどうか、通信の詳細をポーリングで取得できるかどうかを確認します。これらのテストから、BurpがCollaboratorの機能をすべてまたは一部利用できるか、またはまったく利用できないか判断できます。
     </li>
 </ul>
-<h2 id="logging">ロギング</h2>
+<h2 id="logging">ログ出力</h2>
 <p>
-    HTTPリクエストとレスポンスのロギングを制御します。ロギングは、ツールごと、または全Burpトラフィックに対して設定できます。
+    HTTPリクエストとレスポンスのログ出力を制御します。ログ出力は、ツールごと、または全Burpトラフィックに対して設定できます。
 </p>
 <h2 id="embedded-browser-project-options">内蔵ブラウザプロジェクトオプション</h2>
 <p>

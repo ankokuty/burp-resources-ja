@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">チュートリアル</a>
+        </li>
+        <li>
+            <a href="brute-forcing-a-login-using-burp-intruder.html">Burp Intruderによるブルートフォースログイン</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1>Burp Intruderを使用したログイン機構へのブルートフォース</h1>
+<p>
+    <a href="../tools/intruder/index.html">Burp Intruder</a>はさまざまな<a href="../tools/intruder/attack-types.html">攻撃タイプ</a>に対応しています。多くの場合、あるタスクは複数タイプの攻撃で達成可能ですが、適切なタイプを選択すれば手動によるセキュリティテストの労力を大幅に削減できます。
+</p>
+<p>
+    このチュートリアルでは、Burp Suiteのクラスター爆弾攻撃を使って、ユーザ名とパスワードのフィールドを同時にブルートフォースする方法を紹介します。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        クラスター爆弾攻撃は、<a href="../../../communitydownload/index.html">Burp Suite Community Edition</a>のユーザには適していないかもしれません - <a href="../../../pro/index.html">Burp Suite Professional</a>に搭載されている<a href="https://portswigger.net/blog/7-burp-suite-professional-exclusive-features-to-help-you-test-smarter#2-full-speed-burp-intruder">フルスピード版のBurp Intruder</a>がありません。
+    </p>
+</div>
+<h2 id="what-is-a-cluster-bomb-attack" cms-ignore-validation="HEADING_CAPITALIZATION">クラスター爆弾とは?</h2>
+<p>
+    <a href="../tools/intruder/attack-types.html#cluster-bomb">クラスター爆弾</a>の攻撃タイプは、複数のペイロードセットを使用し、定義されたポジションごとに別のペイロードセットを割り当てます。これは、複数の異なる入力値を複数の場所に挿入し、可能な限りのあらゆる組み合わせをテストする攻撃に便利です。
+</p>
+<p>
+    クラスター爆弾攻撃を使用する場合、定義されたペイロードの数に応じて生成されるリクエスト数が指数関数的に増加します。つまりこの攻撃タイプは主に、比較的小さいデータセットでの反復処理を想定しています。
+</p>
+<p>
+    このチュートリアル例にある101個のユーザ名と100個のパスワードでは、10100個(101 * 100 = 10,100)の攻撃リクエストが生成されます。
+</p>
+<h2 id="brute-forcing-a-login-using-a-cluster-bomb-attack" cms-ignore-validation="HEADING_CAPITALIZATION">クラスター爆弾攻撃によるログインのブルートフォース</h2>
+<p>
+    下記にあるラボの本来の課題では、解答のために2つの別々の<a href="../tools/intruder/attack-types.html#sniper">スナイパー</a>タイプの攻撃を使用するよう指示していますが、クラスター爆弾攻撃を使用するとより簡単に解答できます。これにより、ユーザ名とパスワードの両方のフィールドを同時にテストできます。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Burpのブラウザは、暗号化されたHTTPSプロトコルでもHTTP通信を簡単にプロキシできます。設定は不要で、<strong>Proxy</strong>タブを開き、<strong>ブラウザを開く</strong>をクリックし、<strong>Intercept無効</strong>になっているか確認してください。
+    </p>
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: ラボを開く</h3>
+<p>
+    Burpのブラウザを開き、次のURLにアクセスします:
+</p>
+<code class="code-scrollable">https://portswigger.net/web-security/authentication/password-based/lab-username-enumeration-via-different-responses</code><p>
+    <strong>Access the lab</strong>をクリックし、プロンプトが表示されたら自分のPortSwiggerアカウントでログインします。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: ログインリクエストをインターセプト</h3>
+<p>
+    ラボで、<strong>My account</strong>リンクをクリックし、ログインページを開きます。
+</p>
+<p>
+    <strong>Username</strong>と<strong>Password</strong>フィールドに、後で確認するためのサンプルデータを入力します。<strong>Log in</strong>ボタンをクリックします。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/cluster-bomb/entering-data-into-login-form.png" alt="Web Security Academyログインフォームへ入力">
+</div>
+<p>
+    Burp Suiteで、<strong>Proxy</strong>タブに移動し、<strong>HTTP履歴</strong>タブをクリックします。すると、Burp Suiteを開いた後にBurpのブラウザが生成したHTTPリクエストの一覧が表示されます。
+</p>
+<p>
+    <strong>Method</strong>が<code>POST</code>で、<strong>URL</strong>が<code>/login</code>のリクエストを探し、それをクリックします。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/cluster-bomb/intercepting-a-login-request-with-burp-suite.png" alt="Burp Suite ProfessionalのHTTP履歴に表示されるログインリクエスト">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: インターセプトされたリクエストをIntruderに送信</h3>
+<div class="rounded-dropshadow">
+    <img src="images/cluster-bomb/sending-an-intercepted-request-to-burp-intruder.png" alt="Intruderへリクエスト送信">
+</div>
+<p>
+    先程選択したリクエストを右クリックして、<strong>Intruderに送信</strong>をクリックします。
+</p>
+<p>
+    <strong>Intruder</strong>タブをクリックします。リクエストがBurp Intruderに送信され、<a href="../tools/intruder/positions.html">ペイロードポジション</a>(<strong>§</strong>マークで区切られている)が3箇所に挿入されていることに注目してください。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ4: ペイロードポジションの設定</h3>
+<div class="rounded-dropshadow">
+    <img src="images/cluster-bomb/configuring-burp-intruder-insertion-points.png" alt="自動設定された挿入ポイントがあるBurp Intruderのリクエスト">
+</div>
+<p>
+    このラボに解答するには、ユーザ名とパスワードのペイロードポジションのみが必要です。<strong>§クリア</strong>をクリックして、すべてのポジションをクリアします。
+</p>
+<p>
+    ユーザ名フィールドで入力したデータを選択し、<strong>§追加</strong>をクリックすると、ペイロードポジションとしてマークされます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/cluster-bomb/selecting-a-payload-position-in-burp-intruder.png" alt="Burp Intruderで選択されたユーザ名フィールド">
+</div>
+<p>
+    同様にパスワードフィールドで入力したデータにも行い、両方のフィールドにマークを付けます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/cluster-bomb/username-and-password-fields-configured-in-burp-intruder.png" alt="Burp Intruderで挿入ポイントとして設定されたユーザ名とパスワードフィールド">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ5: クラスター爆弾攻撃の設定と実行</h3>
+<p>
+    <strong>攻撃タイプ選択</strong>のドロップダウンで、<strong>クラスター爆弾</strong>を選択します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/cluster-bomb/select-burp-intruder-attack-type.png" alt="Burp Intruderでクラスター爆弾攻撃タイプの選択">
+</div>
+<p>
+    <strong>ペイロード</strong>タブをクリックします。<strong>ペイロードセット</strong>が<strong>1</strong>に、<strong>ペイロードタイプ</strong>が<strong>単純リスト</strong>に設定されているか確認してください。
+</p>
+<p>
+    <strong>ペイロードオプション[単純リスト]</strong>で、<a href="https://portswigger.net/web-security/authentication/auth-lab-usernames">ユーザ名の候補</a>のリストをボックスに貼り付けます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/cluster-bomb/configuring-burp-intruder-username-payloads.png" alt="Burp Intruderで設定されたユーザ名のペイロード">
+</div>
+<p>
+    <strong>ペイロードセット</strong>で<strong>2</strong>を選択します。
+</p>
+<p>
+    <strong>ペイロードオプション[単純リスト]</strong>で、パスワードの候補リストをボックスに貼り付けます。<strong>リクエスト数</strong>が10,100に増えていることに注目してください。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/cluster-bomb/configuring-burp-intruder-password-payloads.png" alt="Burp Intruderで設定されたパスワードペイロード">
+</div>
+<p>
+    <strong>攻撃開始</strong>ボタンをクリックします。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        <strong>ペイロードセット</strong>は、ペイロードセットが挿入される位置ごとに定義します。例えば、リクエストテンプレート内に2つのペイロードポジションを定義した場合、ペイロードセット1は1つ目に、ペイロードセット2は2つ目に挿入されます。
+    </p>
+</div>
+<div class="rounded-dropshadow">
+    <img src="images/cluster-bomb/burp-intruder-attack-results-for-lab.png" alt="Burp Intruder攻撃結果">
+</div>
+<p>
+    Intruderが、ペイロードセット1の各項目とペイロードセット2の最初の項目を組み合わせたリクエストを作成した後に、ペイロードセット2の次の項目に移って処理を繰り返していることに注目してください。これは、ペイロードセット2の最後に到達するまで行われます。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ6: 攻撃結果を分析して正しいユーザ名とパスワードを特定する</h3>
+<p>
+    実行が終了するまで攻撃を待ちます - 特に、Burp Suite Community Editionに付属している速度制限されたBurp Intruderを使用している場合は、数分かかることがあります。
+</p>
+<p>
+    <strong>Status</strong>列のヘッダをクリックすると、レスポンスのリストがHTTPステータスコードでソートされます。さらに数回クリックする必要があるかもしれません。
+</p>
+<p>
+    ほとんどのリクエストが<code>200</code> (OK)ステータスコードであるのに対し、1つのリクエストが<code>302</code> (Found)であることに注目してください。このリクエストで使用されたユーザ名とパスワードをメモしてください - これらがラボに解答するための正しいログイン情報です。なお、次のスクリーンショットのような組み合わせになる可能性は低いと思われます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/cluster-bomb/burp-intruder-interesting-payload.png" alt="興味深いリクエストが選択されたBurp Intruder攻撃結果">
+</div>
+<p>
+    <strong>Proxy</strong>タブで、<strong>Intercept無効</strong>になっていることを確認します。
+</p>
+<p>
+    Burpのブラウザで、ラボの<strong>ログイン</strong>ページに戻り、<code>302</code>ステータスコードでメモしたユーザ名とパスワードを入力します。<strong>Log in</strong>をクリックします。これでラボを解答できます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/cluster-bomb/entering-bruteforced-username-and-password.png" alt="正しいユーザー名とパスワードが入力されたWeb Security Academyのログインフォーム">
+</div>
+<h3 id="summary-and-next-steps" cms-ignore-validation="DUPLICATE_HEADINGS">まとめと次のステップ</h3>
+<p>
+    おめでとうございます - Burp Intruderでクラスター爆弾攻撃を設定して、単純なログインフォームをより簡単にブルートフォースする方法がわかりました。
+</p>
+<p>
+    実際のWebアプリケーションには、ブルートフォース攻撃を阻止するための強固な対策がされていることが多いです。これらを回避する方法を知りたい場合は、<a href="https://portswigger.net/web-security">Web Security Academy</a>の<a href="https://portswigger.net/web-security/authentication">認証</a>に関するトピックを参照してください。
+</p>
+</body>
+</html>
