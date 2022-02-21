@@ -22,4 +22,4 @@ Burp Suite日本語ドキュメント
 
 Yutaka Kokubu <[bun@devnull.jp](mailto:bun@devnull.jp)>
 
-[@\_bun\_](https://twitter.com/_bun_)
+[@ankokuty](https://twitter.com/ankokuty)
