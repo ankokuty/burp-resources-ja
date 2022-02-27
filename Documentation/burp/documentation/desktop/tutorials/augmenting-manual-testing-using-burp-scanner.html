@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Burp Suite ProfessionalのBurp Scannerで手動テストを強化する方法を紹介します。">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE" ignore-validation="STACKED_HEADINGS"></cms><title>Burp Scannerによる手動テストの強化</title>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">チュートリアル</a>
+        </li>
+        <li>
+            <a href="augmenting-manual-testing-using-burp-scanner.html">Burp Scannerによる手動テストの強化</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1 cms-ignore-validation="DUPLICATE_HEADINGS">Burp Scannerによる手動テストの強化</h1>
+<p>
+    もし、手動テストのワークフローの一部として日常的にBurp Scannerを使っていないのであれば、想像以上に時間と労力を無駄にしています。よく知られていない一部の機能を利用すれば、自分の専門的な知識や勘を、Burp Scannerの体系的なテストで補完できます。そうすれば、より多くの領域を網羅できるだけでなく、面倒な下準備に時間を費やすことなく重要な部分に時間を使えます。
+</p>
+<h2 id="scanning-specific-requests">特定リクエストのスキャン</h2>
+<p>
+    興味深い機能や挙動を見つけたとき、そのリクエストを本能的にRepeaterやIntruderに送信し、さらに調査をするでしょう。Burp Scannerへのリクエスト送信が有益な場合もあります。他の場所で自分のスキルを活用している間に、テストにおける反復的な作業を実行させておけます。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION, DUPLICATE_HEADINGS">ステップ1: ラボを開く</h3>
+<p>
+    <strong>Proxy &gt; インターセプト</strong>に移動し、Burpのブラウザを起動します。それで次のラボにアクセスします:
+</p>
+<code class="code-scrollable">https://portswigger.net/web-security/sql-injection/blind/lab-conditional-responses</code><p>
+    すると、意図的に脆弱性を作り込んだオンラインストアが開きます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/augmenting-manual-testing/shop-front.jpg" alt="意図的に脆弱性を作り込んだオンラインストア">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: 興味深いリクエストを探す</h3>
+<p>
+    いずれかの製品ページを参照します。
+</p>
+<p>
+    Burpで、<strong>Proxy &gt; HTTP履歴</strong>タブを開きます。<code>GET /product?productId=X</code>リクエストに、クエリーパラメータといくつかのcookieが含まれていて、すべてをユーザが操作できることを確認してください。そのため、入力ベースの脆弱性を探すのに適しています。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: クイックスキャンを起動</h3>
+<p>
+    メッセージエディタパネルまたは通信の一覧から、このリクエストを右クリックし、<strong>アクティブスキャン実行</strong>を選択します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/augmenting-manual-testing/do-active-scan.jpg" alt="アクティブスキャンの実行">
+</div>
+<p>
+    Burp Scannerは、デフォルトの設定を使用してすぐに診断のスキャンを実行し始めます。
+</p>
+<p>
+    または、リクエストのスキャン方法をより細かく制御したい場合は、右クリックして<strong>スキャン</strong>を選択します。すると、スキャンランチャが開き、スキャン開始前に設定を調整できます。
+</p>
+<h2 id="scanning-user-defined-insertion-points">ユーザ定義の挿入ポイントのスキャン</h2>
+<p>
+    指定したリクエストをスキャンする方法は既に学びましたが、興味のある特定の挿入ポイントのみをスキャンすると、さらに最適化ができます。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: Intruderへリクエストを送信</h3>
+<p>
+    前回のチュートリアルで使用したのと同じ<code>GET</code>リクエストをBurp Intruderに送信し、<strong>Intruder</strong>タブに移動します。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: ペイロード挿入ポイントの設定</h3>
+<p>
+    見ての通り、Burp Intruderは既に3つの挿入ポイントの候補を特定しています。Burp Scannerはデフォルトでこれよりもさらに多くのポイントを使用しています。
+</p>
+<p>
+    デフォルトのペイロードポジションをクリアし、<code>productId</code>と<code>TrackingID</code>のみに新たなペイロードポジションを設定します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/augmenting-manual-testing/payload-positions.jpg" alt="ペイロードポジションの設定">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION, DUPLICATE_HEADINGS">ステップ3: スキャンを開始する</h3>
+<p>
+    リクエストを右クリックし、<strong>定義された挿入ポイントをスキャン</strong>を選択します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/augmenting-manual-testing/scan-defined-insertion-points.jpg" alt="定義された挿入ポイントのスキャン">
+</div>
+<p>
+    これで、明示的に定義した2つのポジションにのみペイロードを配置するスキャンを起動できます。これにより、Burp Scannerが行うリクエスト数を大幅に減らせます。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ4: 結果を見る</h3>
+<p>
+    この方法は驚くほど早く結果が出てきて、わずか数秒で何かが得られます。<strong>ダッシュボード</strong>タブで、既にスキャンが終了しSQLインジェクションの脆弱性が発見されていることがわかります。
+</p>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION, DUPLICATE_HEADINGS" id="summary">概要</h2>
+<p>
+    手動テスト時のBurp Scannerの使い方がわかりました。
+</p>
+<p>
+    ここで学んだことに加えて、さらにヒントがあります:
+</p>
+<ul>
+    <li>
+        1つのパラメータだけを使ってスキャンしたい場合がよくあるでしょう。BAppストアで<a href="https://portswigger.net/bappstore/ca7ee4e746b54514a0ca5059329e926f">Scan manual insertion point</a>という拡張をインストールすると、さらに迅速に行えます。
+    </li>
+    <li>
+        挿入ポイントを手動で定義すれば、カスタムヘッダ値など通常は無視される入力に対するスキャンもできます。
+    </li>
+    <li>
+        このテクニックは、Burp Scannerが正しく解析できない非標準のデータ構造をスキャンする際にも使用できます。
+    </li>
+</ul>
+</body>
+</html>

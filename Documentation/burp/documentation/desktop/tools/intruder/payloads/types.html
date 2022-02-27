@@ -155,7 +155,7 @@
 <p>
     置換する文字をUIで設定できます。攻撃を実行すると、設定されたアイテムそれぞれを順序通り処理していきます。各アイテムごとに、定義した文字置換の全組み合わせで置換した、大量のペイロードが生成されます。たとえば、デフォルトの置換ルール(e&gt;3とt&gt;7が入っています)で、"peter"は次のペイロードを生成します:
 </p>
-<code> peter<br>p3ter<br>pe7er<br>p37er<br>pet3r<br>p3t3r<br>pe73r<br>p373r </code><p>
+<code class="code-scrollable">peter p3ter pe7er p37er pet3r p3t3r pe73r p373r</code><p>
     リストアイテムは<a href="#simple-list">シンプルリスト</a>ペイロードタイプと同じ方法で編集できます。
 </p>
 <h2 id="case-modification">大文字小文字変換</h2>
@@ -185,7 +185,7 @@
 <p>
     設定されたアイテムそれぞれを順序通り処理し、各アイテムの大文字小文字を調整します。重複するペイロードは破棄されます。たとえば、すべての変更オプションが選択されている場合、"Peter Wiener"は次のペイロードを生成します:
 </p>
-<code> Peter Wiener<br>peter wiener<br>PETER WIENER<br>Peter wiener </code><p>
+<code class="code-scrollable">Peter Wiener peter wiener PETER WIENER Peter wiener</code><p>
     リストアイテムは<a href="#simple-list">シンプルリスト</a>ペイロードタイプと同じ方法で編集できます。
 </p>
 <h2 id="recursive-grep">再帰検索</h2>
@@ -198,10 +198,10 @@
 <p>
     これは、さまざまなタスクに使用できます。たとえば、フォームのクエリーで再帰的にSQLインジェクションを行い、データベースからの情報抽出が可能になりま
 </p>
-<code> union select name from sysobjects where name &gt; 'a' </code><p>
+<code class="code-scrollable">union select name from sysobjects where name &gt; 'a'</code><p>
     サーバのエラーメッセージから、最初のデータベースオブジェクトの名前が漏洩しています:
 </p>
-<code> Syntax error converting the varchar value 'accounts' to a column of data type int. </code><p>
+<code class="code-scrollable">Syntax error converting the varchar value 'accounts' to a column of data type int.</code><p>
     このクエリーに次は'accounts'を使い、次のオブジェクトを特定します。再帰的にペイロードをgrepしてデータベースの全オブジェクトを一覧化する作業を、簡単に自動化できます。
 </p>
 <p>
@@ -551,7 +551,7 @@
 <p>
     たとえば、"peter weiner"という名前を指定すると、次のような115通り以上の結果になります:
 </p>
-<code> peterweiner<br>peter.weiner<br>weinerpeter<br>weiner.peter<br>peter<br>weiner<br>peterw<br>peter.w<br>wpeter<br>w.peter<br>pweiner<br>p.weiner<br>weinerp<br>weiner.p<br>など... </code><p>
+<code class="code-scrollable">peterweiner peter.weiner weinerpeter weiner.peter peter weiner peterw peter.w wpeter w.peter pweiner p.weiner weinerp weiner.p etc...</code><p>
     特定の個人ユーザを狙っていて、しかしアプリケーション内で使用されているユーザ名やメールアドレスの生成規則がわからない場合には、このペイロードタイプが便利です。
 </p>
 <p>

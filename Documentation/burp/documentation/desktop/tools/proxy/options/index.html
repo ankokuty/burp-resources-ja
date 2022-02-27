@@ -133,10 +133,10 @@
 <p>
     次のOpenSSLコマンドで、CA名など独自の詳細情報を設定したカスタムCA証明書が作成できます:
 </p>
-<code> openssl req -x509 -days 730 -nodes key rsa:2048 -outform der -keyout server.key -out ca.der </code><p>
+<code class="code-scrollable">openssl req -x509 -days 730 -nodes key rsa:2048 -outform der -keyout server.key -out ca.der</code><p>
     [OpenSSL は、証明書のさまざまな詳細情報を入力するように要求します。すべての要求されたアイテムに適切な値を入力してください。]
 </p>
-<code> openssl rsa -in server.key -inform pem -out server.key.der -outform der </code><code> openssl pkcs8 -topk8 -in server.key.der -inform der -out server.key.pkcs8.der -outform der -nocrypt </code><p>
+<code class="code-scrollable">openssl rsa -in server.key -inform pem -out server.key.der -outform der</code><code class="code-scrollable">openssl pkcs8 -topk8 -in server.key.der -inform der -out server.key.pkcs8.der -outform der -nocrypt</code><p>
     Burpで<strong>CA証明書のインポート/エクスポート</strong>ボタンをクリックし、<strong>DER形式の証明書と秘密鍵</strong>を選択してください。<code>ca.der</code>を証明書ファイルとして、<code>server.key.pkcs8.der</code>を鍵ファイルとして選択します。BurpはカスタムCA証明書を読み込み、ホストごとの証明書生成に使用します。
 </p>
 <h3 id="tls-protocols">TLSプロトコル</h3>
@@ -171,7 +171,7 @@
 <p>
     ルールは順番に処理され、ブール型のANDやOR演算子を使用して結合されます。各演算子のスコープは次のように単純な"左から右"ロジックで処理されます:
 </p>
-<code> (以前のルールの累積的な結果) AND/OR (現在のルールの結果) </code><p>
+<code class="code-scrollable">(以前のルールの累積的な結果) AND/OR (現在のルールの結果)</code><p>
     各メッセージですべての有効なルールが処理され、最後の有効なルールが適用された結果で、メッセージをインターセプトするか、またはバックグラウンドに転送されるか決定します。
 </p>
 <p>
@@ -252,19 +252,19 @@
 <p>
     メッセージボディの複数行部分にマッチする標準的な正規表現構文を使用できます。たとえば、レスポンスボディが次のみの場合:
 </p>
-<code> Now is the time for all good men<br>to come to the aid of the party </code><p>
+<code class="code-scrollable">Now is the time for all good men to come to the aid of the party</code><p>
     次の正規表現を使用すると:
 </p>
-<code> Now.*the </code><p>
+<code class="code-scrollable">Now.*the</code><p>
     次にマッチします:
 </p>
-<code> Now is the time for all good men<br>to come to the aid of the </code><p>
+<code class="code-scrollable">Now is the time for all good men to come to the aid of the</code><p>
     もし行内のみにマッチさせたい場合、正規表現を次の通り修正すると:
 </p>
-<code> Now[^\n]*the </code><p>
+<code class="code-scrollable">Now[^\n]*the</code><p>
     次にマッチします:
 </p>
-<code> Now is the </code>
+<code class="code-scrollable">Now is the</code>
 <h4>前方参照と置換文字列で正規表現グループを使用する</h4>
 <p>
     検索文字列の中で括弧を使用してグループを定義ができ、左から右に順番に1 から始まるインデックス番号が割り当てられています(0は一致したグループ全体を表します)。
@@ -272,10 +272,10 @@
 <p>
     グループはバックスラッシュとグループインデックスを使って、同じ一致文字列を前方参照できます。たとえば、間に他のタグを挟まない、開始と終了タグのペアにマッチするには、次の正規表現を使用します:
 </p>
-<code> &lt;([^/]\w*)[^&gt;]*&gt;[^&gt;]*?&lt;/\1[^&gt;]*&gt; </code><p>
+<code class="code-scrollable">&lt;([^/]\w*)[^&gt;]*&gt;[^&gt;]*?&lt;/\1[^&gt;]*&gt;</code><p>
     置換文字列で、$とグループインデックスを使って、グループを参照できます。次の置換文字列には、上記の正規表現に一致したタグの名前が含まれます:
 </p>
-<code> Replaced: $1 </code>
+<code class="code-scrollable">Replaced: $1</code>
 <h2 id="tls-pass-through">TLSパススルー</h2>
 <p>
     TLS接続を直接通過させる宛先のWebサーバを設定できます。これらの接続によるリクエストやレスポンスは、Proxyの<a href="../intercept.html">インターセプトビュー</a>や<a href="../history.html">履歴</a>で詳細が利用できません。

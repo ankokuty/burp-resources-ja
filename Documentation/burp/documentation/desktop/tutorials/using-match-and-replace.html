@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Burp Suite Professional/Community Editionで検索と置換を利用したIPアドレスの偽装方法を紹介します。">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE" ignore-validation="STACKED_HEADINGS"></cms><title>検索と置換を利用したIPアドレスの偽装</title>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">チュートリアル</a>
+        </li>
+        <li>
+            <a href="using-match-and-replace.html">検索と置換ルールの使用</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Burp Proxyの検索と置換を利用したIPアドレスの偽装</h1>
+<p>
+    <a href="../../../index.html">Burp Proxy</a>は<a href="../tools/proxy/options/index.html#match-and-replace">検索と置換ルール</a>の設定により、Burpのブラウザを使って通常通り対象アプリケーションを探索しながら、リクエストとレスポンスを自動的に編集ができます。これにより例えば、リクエストやレスポンスのヘッダの追加、削除、修正ができます。
+</p>
+<p>
+    IPアドレスの偽装に使えるなど、さまざまな使い道があります。場合によっては、あなたがローカルネットワークに接続しているとサーバに信じ込ませ、他の方法ではアクセスできない内部環境と通信できる可能性があります。
+</p>
+<p>
+    このチュートリアルでは、次の手法を学びます:
+</p>
+<ul>
+    <li>
+        Burp Suiteで検索と置換のルールを設定する方法。
+    </li>
+    <li>
+        検索と置換ルールを使って、リクエストにヘッダを追加する方法。
+    </li>
+    <li>
+        IPベースの認証をしている脆弱なサーバを、IPアドレスを偽装して侵害する方法。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Burpのブラウザは、暗号化されたHTTPSプロトコルでもHTTP通信を簡単にプロキシできます。設定は不要で、<strong>Proxy</strong>タブを開き、<strong>ブラウザを開く</strong>をクリックし、<strong>Intercept無効</strong>になっているか確認してください。
+    </p>
+</div>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION" id="step-1-open-the-lab">ステップ1: ラボを開く</h2>
+<p>
+    Burpのブラウザを開き、次のラボにアクセスします:
+</p>
+<code>https://portswigger.net/web-security/information-disclosure/exploiting/lab-infoleak-authentication-bypass</code>
+<h2 id="step-2-attempt-to-access-the-admin-panel" cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: 管理画面へのアクセス試行</h2>
+<p>
+    <code>/admin</code>にある管理画面にアクセスしてみてください。
+</p>
+<p>
+    ただし、ローカルユーザしかアクセスできないため、拒否されます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/using-match-and-replace/unable-to-access-admin-interface.png" alt="アクセスできないWeb Security Adminページ">
+</div>
+<p>
+    簡単のために、サーバは<code>X-Custom-IP-Authorization</code>というカスタムHTTPヘッダを使って、あなたのIPアドレスを識別していることを発見したと仮定します。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        実サイトでこのような制御をする場合は、事実上の標準ヘッダーである<code>X-Forwarded-For</code>がよく使われますが、それ以外のカスタムヘッダを使用しているサイトに遭遇することもあります。これらは通常、ロードバランサやCDNのリバースプロキシなどの中継サーバが、ユーザからのリクエストに付与します。
+    </p>
+</div>
+<h2 id="step-3-add-a-custom-match-and-replace-rule" cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: 検索と置換ルールを追加</h2>
+<p>
+    Burp Suiteで、<strong>Proxy &gt; オプション</strong>タブに移動します。
+</p>
+<p>
+    <strong>検索と置換</strong>で、<strong>追加</strong>をクリックします。
+</p>
+<p>
+    <strong>検索</strong>フィールドは空欄のままにしておきます。こうすると、Burpが既存のヘッダを置き換えるのではなく、リクエストに新しいヘッダを追加します。
+</p>
+<p>
+    <strong>置換</strong>フィールドに、次の様に入力します:
+</p>
+<code>X-Custom-IP-Authorization: 127.0.0.1</code><p>
+    <strong>OK</strong>をクリックします。
+</p>
+<p>
+    Burp Proxyは、Burpのブラウザが行うすべてのリクエストにこのヘッダを追加するようになります。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/using-match-and-replace/adding-a-custom-match-and-replace-rule-in-burp-proxy.png" alt="Burp Proxyに検索と置換ルールを追加してIPアドレスを詐称">
+</div>
+<h2 id="step-4-try-to-access-the-admin-panel-again" cms-ignore-validation="HEADING_CAPITALIZATION">ステップ4: 管理画面に再度アクセス</h2>
+<p>
+    Burpのブラウザで、もう一度<code>/admin</code>にアクセスしてみてください。管理ページにアクセスしCarlosを削除すると、ラボの課題を突破できることを確認してください。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/using-match-and-replace/delete-carlos-to-complete-the-web-security-academy-lab.png" alt="管理画面でCarlosを削除">
+</div>
+<p>
+    Burpの<strong>Logger</strong>タブでリクエストを確認すると、ヘッダが追加されたことを確認できます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/using-match-and-replace/viewing-the-modified-request-in-logger.png" alt="自動的に変更されたリクエストをLoggerタブで表示">
+</div>
+<p>
+    あるいは<strong>Proxy &gt; HTTP履歴</strong>タブで、ブラウザが送信した元のリクエストと、Burp Proxyが変更した後にサーバに転送したリクエストを、ドロップダウンメニューで切り替えられます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/using-match-and-replace/viewing-a-custom-http-header-in-burp-proxy.png" alt="自動的に変更されたリクエストをHTTP履歴タブで表示">
+</div>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        今回はカスタムヘッダを手動で追加しましたが、Burp Suiteには検索と置換ルールが多数内蔵されており、最も一般的なユースケースは対応できます。<strong>Proxy &gt; オプション &gt; 検索と置換</strong>で有効にするだけです。
+    </p>
+</div>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="summary-and-next-steps">まとめと次のステップ</h2>
+<p>
+    おめでとうございます - Burp Proxyの検索と置換ルールの使い方がわかり、IPアドレスの偽装に使用できました。
+</p>
+<p>
+    このラボの突破に使用したカスタムヘッダを発見する方法は、Webセキュリティアカデミーの<a href="https://portswigger.net/web-security/information-disclosure/exploiting.html#information-disclosure-due-to-insecure-configuration">学習教材</a>を参照してください。
+</p>
+<p>
+    認証に関する一般的な情報やBurp Suiteを使用して実行できる他のタイプの攻撃については、Webセキュリティアカデミーの<a href="https://portswigger.net/web-security/authentication/index.html">認証</a>のトピックを参照してください。
+</p>
+</body>
+</html>

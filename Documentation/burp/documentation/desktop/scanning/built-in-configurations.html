@@ -28,6 +28,7 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
+    <label class="label-edition is-enterprise">エンタープライズ</label>
     <label class="label-edition is-professional">Professional</label>
 </section>
 <h1>Burp Scanner組み込み設定</h1>
@@ -128,7 +129,7 @@
         </summary>
         <div class="content">
             <h5>変更される設定</h5><p>
-                <strong>診断の最適化</strong>オプションで、<strong>診断スピード</strong>オプションを<strong>徹底的</strong>に設定します。
+                <strong>診断の最適化</strong>オプションで、<strong>診断スピード</strong>オプションを<strong>Thorough(徹底的)</strong>に設定します。
             </p>
             <h5>使用例</h5><p>
                 この設定では診断フェーズで、デフォルトの<strong>普通</strong>設定よりも多くのペイロードの種類を試せますが、速度が若干犠牲になります。これにより、極端なケースの問題がさらに発見されるかもしれません。
@@ -172,7 +173,7 @@
         </summary>
         <div class="content">
             <h5>変更される設定</h5><p>
-                <strong>クロール最適化</strong>オプションで、<strong>クロール戦略</strong>オプションを<strong>高速</strong>に設定します。
+                <strong>クロール最適化</strong>オプションで、<strong>クロール戦略</strong>オプションを<strong>Faster(高速)</strong>に設定します。
             </p>
             <h5>使用例</h5><p>
                 この設定で、URLの大部分が静的で、ステートフルな機能が限定されているWebアプリケーションに対して、スキャンのクロールフェーズが高速に実行されるように調整できます。
@@ -183,7 +184,7 @@
         </summary>
         <div class="content">
             <h5>変更される設定</h5><p>
-                <strong>クロール最適化</strong>オプションで、<strong>クロール戦略</strong>オプションを<strong>最速</strong>に設定します。
+                <strong>クロール最適化</strong>オプションで、<strong>クロール戦略</strong>オプションを<strong>Fastest(最速)</strong>に設定します。
             </p>
             <h5>使用例</h5><p>
                 この設定で、URLが完全に静的で、ステートフルな機能が存在しないWebアプリケーションに対して、スキャンのクロールフェーズが最速で実行されるように調整できます。
@@ -216,7 +217,7 @@
         </summary>
         <div class="content">
             <h5>変更される設定</h5><p>
-                <strong>診断の最適化</strong>オプションで、<strong>診断精度</strong>オプションを<strong>検知漏れを最小化</strong>に設定します。
+                <strong>診断の最適化</strong>オプションで、<strong>診断精度</strong>オプションを<strong>Minimize false negatives(検知漏れを最小化)</strong>に設定します。
             </p>
             <h5>使用例</h5><p>
                 この設定により、一部の脆弱性タイプに対する検知漏れを最小にしますが、過剰検知が発生する可能性があります。これにより、潜在的な問題を見逃さなくなります。
@@ -227,7 +228,7 @@
         </summary>
         <div class="content">
             <h5>変更される設定</h5><p>
-                <strong>診断の最適化</strong>オプションで、<strong>診断精度</strong>オプションを<strong>過剰検知を最小化</strong>に設定します。
+                <strong>診断の最適化</strong>オプションで、<strong>診断精度</strong>オプションを<strong>Minimize false positives(過剰検知を最小化)</strong>に設定します。
             </p>
             <h5>使用例</h5><p>
                 この設定により、一部の脆弱性タイプに対する過剰検知を最小にしますが、検知漏れが発生する可能性があります。また過剰検知を最小限に抑えるためには、潜在的な脆弱性を再スキャンする必要があるため、スキャン時間が長くなる可能性があります。

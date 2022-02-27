@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Burp Suite Professional/Burp Suite Community Editionで、Burp Extensionsが生成したリクエストを確認する方法を紹介します。">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms><title>Burp拡張から送信されたリクエストのLoggerによる表示</title>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">チュートリアル</a>
+        </li>
+        <li>
+            <a href="viewing-requests-sent-by-burp-extensions.html">Burp拡張から送信されたリクエストのLoggerによる表示</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1 cms-ignore-validation="DUPLICATE_HEADINGS">Burp拡張から送信されたリクエストのLoggerによる表示</h1>
+<p>
+    拡張により、Burp Suiteのツールへの新機能の追加や、既存機能の強化ができます。多くの拡張は、ユーザが送信したリクエストの変更や、独自のリクエストを生成します。拡張がどのように動作するかを理解したい場合や、予期せぬ動作のトラブルシューティングする場合には特に、これらのリクエストの調査が役立つでしょう。
+</p>
+<p>
+    <strong>Proxy &gt; HTTP履歴</strong>タブには、ブラウザから送信されたリクエストのうち、Burp経由でプロキシされたものだけが記録されます。このチュートリアルでは、<a href="https://portswigger.net/burp/documentation/desktop/tools/logger"><strong>Logger</strong></a>タブを使って、Burpのすべてのツールやインストールされている拡張からのリクエストを記録する方法を学びます。
+</p>
+<h2 id="step-1-send-requests-using-an-extension" cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: 拡張でリクエストを送信</h2>
+<p>
+    まず、表示するためのトラフィックを発生させる必要があります。
+</p>
+<p>
+    拡張は、テストの許可を得たWebサイトで使用してください。ここでは、意図的に脆弱性を作り込んだテストドメインである<code>https://portswigger-labs.net/</code>を使用します。
+</p>
+<p>
+    デモのために、<a href="https://portswigger.net/bappstore/3123d5b5f25c4128894d97ea1acc4976">ActiveScan++</a>という拡張を使用してスキャンを実行しましたが、<strong>Logger</strong>タブはBurp Suiteのすべてのツールからのトラフィックを記録しますので、手動ツール用の拡張も使用できます。
+</p>
+<h2 id="step-2-go-to-the-logger-tab" cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: Loggerタブに移動</h2>
+<p>
+    デフォルトでは、Burpのどのツールを使用しても<strong>Proxy &gt; HTTP履歴</strong>タブと同様に、<strong>Logger</strong>タブにはリアルタイムで入力されます。
+</p>
+<div class="rounded-dropshadow">
+    <img alt="リクエストが表示されるLoggerタブ" src="images/viewing-requests/logger-tut-1-window-populating.png">
+</div>
+<p>
+    <strong>列</strong>メニューでは、さまざまな列の表示や非表示を設定でき、その列でリクエストのソートもできます。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        スキャンや<a href="https://portswigger.net/burp/documentation/desktop/tools/intruder/using"><strong>Intruder</strong>攻撃</a>などダッシュボード上のタスクにも、タスクごとの<strong>Logger</strong>タブがあります。ダッシュボードのタスクパネルで<strong>詳細表示</strong>をクリックすると、表示されます。
+    </p>
+</div>
+<div class="rounded-dropshadow">
+    <img src="images/viewing-requests/logger-tut-4-task-specific-logger-tabs.png" alt="タスクごとのLoggerタブ">
+</div>
+<h2 id="step-3-filter-the-logger-tab" cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: Loggerタブのフィルタ</h2>
+<p>
+    <strong>表示フィルタ</strong>バーをクリックすると、リクエストをフィルタリングできます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/viewing-requests/logger-tut-2-filtering-by-tool.png" alt="ツールでLoggerタブをフィルタ">
+</div>
+<p>
+    また<strong>キャプチャ</strong>フィルタを適用すると、そもそもどの種類のリクエストを記録するか制御できます。
+</p>
+<p>
+    どのツールがそれぞれのリクエストを送信したかは、<strong>ツール</strong>列でわかります。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        拡張がゼロからリクエストを生成した場合は、<strong>Extender</strong>としてリストされます。しかし、拡張が変更しただけのリクエストは、リクエストを行った元のツールとしてリストアップされることに注意してください。
+    </p>
+</div>
+<p>
+    この例で拡張は、既存のリクエストの変更と、独自リクエストの生成の、両方を行っています。したがって、拡張によって送信されたすべてのリクエストを表示するには、<strong>Scanner</strong>と<strong>Extender</strong>ツールの両方が表示されている必要があります。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/viewing-requests/logger-tut-5-scanner-and-extender.png" alt="ツール列">
+</div>
+<h2 id="step-4-viewing-individual-requests" cms-ignore-validation="HEADING_CAPITALIZATION">ステップ4: 個々のリクエストの表示</h2>
+<p>
+    <strong>Proxy &gt; HTTP履歴</strong>タブと同様に、特定のリクエストをクリックすると<a href="https://portswigger.net/burp/documentation/desktop/functions/message-editor">メッセージエディタ</a>が開き、リクエストとサーバから送り返されたレスポンスが表示されます。
+</p>
+<p>
+    ウィンドウの右側には、<a href="https://portswigger.net/burp/documentation/desktop/functions/message-editor/inspector"><strong>Inspector</strong>パネル</a>がメッセージの興味深い特徴を強調表示します。
+</p>
+<p>
+    またリクエストを右クリックすると、<a href="../functions/sending-requests-between-tools.html">他のツールへ送信</a>、強調表示、コメントなど、さまざまなアクションを実行できます。
+</p>
+<h2 id="summary" cms-ignore-validation="DUPLICATE_HEADINGS">概要</h2>
+<p>
+    このチュートリアルでは、<strong>Logger</strong>タブを使用してこれらのリクエストを詳細に確認し、拡張の動作をより理解する方法を学びました。
+</p>
+</body>
+</html>

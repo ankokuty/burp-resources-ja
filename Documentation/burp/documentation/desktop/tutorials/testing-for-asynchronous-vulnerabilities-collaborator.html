@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">チュートリアル</a>
+        </li>
+        <li>
+            <a href="testing-for-asynchronous-vulnerabilities-collaborator.html">Burp Collaboratorによる非同期の脆弱性テスト</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1>Burp Collaboratorによる非同期の脆弱性テスト</h1>
+<p>
+    このチュートリアルでは、攻撃者が制御できる任意のサーバに対して対象サイトから非同期の帯域外リクエストが行われるように誘導できるかどうかを、Burp Collaboratorクライアントを使用してテストする方法を学びます。
+</p>
+<p>
+    <a href="../../collaborator/index.html">Burp Collaborator</a>サーバは、さまざまなネットワークサービスのカスタム実装を提供します。Burp Collaboratorクライアントは"Collaboratorペイロード"を提供し、手動テスト時にこれらを活用できるようにします。これらは、Collaboratorサーバの1つ以上のサブドメイン名です。例:
+</p>
+<code class="code-scrollable">204119i326shak9tnk6k36z8jlahj74r.burpcollaborator.net</code><p>
+    これらのサブドメイン名をアプリケーションに挿入し、それらとの通信を試みるためにCollaboratorをポーリングします。
+</p>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-1-access-the-lab">ステップ1: ラボへアクセス</h2>
+<p>
+    Burpのブラウザを開き、次のURLにアクセスします:
+</p>
+<code> https://portswigger.net/web-security/ssrf/blind/lab-out-of-band-detection </code><p>
+    <strong>Access the lab</strong>をクリックしプロンプトが表示されたら、自分のPortSwiggerアカウントでログインします。
+</p>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-2-identify-a-suitable-input-to-test">ステップ2: テストに適した入力の特定</h2>
+<p>
+    まず、アプリケーションへの入力が、二次的な非同期リクエストの生成に使用される箇所を特定する必要があります。このチュートリアルでは、このラボは商品ページを読み込むときに、<code>Referer</code>ヘッダーで指定されたURLを取得することを、既に知っていることにしましょう。
+</p>
+<p>
+    商品ページにアクセスし、<code>/product?productId=X</code>リクエストをした結果を<a href="../functions/sending-requests-between-tools.html">Burp Repeaterに送信</a>します。
+</p>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-3-open-the-burp-collaborator-client">ステップ3: Burp Collaboratorクライアントを開く</h2>
+<p>
+    Burp Collaboratorクライアントの新しいウィンドウを開くには、<strong>Burp</strong>メニューで<strong>Burp Collaboratorクライアント</strong>を選択します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/collaborator/burp-collaborator-tut-1-opening-client.png" alt="BurpメニューからBurp Collaboratorクライアントを開く">
+</div>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-4-getting-a-payload-url">ステップ4: ペイロードURLの取得</h2>
+<p>
+    Collaboratorクライアントウィンドウで、<strong>クリップボードにコピー</strong>をクリックします。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/collaborator/burp-collaborator-tut-2-copy-to-clipboard.png" alt="ペイロードのURLをクリップボードにコピー">
+</div>
+<p>
+    これでCollaboratorのペイロードが作られ、クリップボードにコピーされます。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        生成したペイロードを使用している間は、Burp Collaboratorクライアントのウィンドを開いたままにしておく必要があります。各Collaboratorクライアントウィンドウは、自身が生成したペイロードとの通信しかポーリングできず、ウィンドウを閉じてしまうと再び開く方法はありません。
+    </p>
+</div>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-5-inject-your-collaborator-payload-into-a-request">ステップ5: Collaboratorペイロードをリクエストに挿入</h2>
+<p>
+    <strong>Repeater</strong>で、<code>Referer</code>ヘッダのURLを、Collaboratorペイロードに置き換えてリクエストを送信します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/collaborator/burp-collaborator-tut-3-injecting-the-payload.png" alt="ペイロードの挿入">
+</div>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-6-poll-for-interactions">ステップ6: 通信のポーリング</h2>
+<p>
+    先程開いたBurp Collaboratorクライアントのウィンドウに戻ります。
+</p>
+<p>
+    デフォルトで、Collaboratorクライアントは60秒ごとに通信ををポーリングするため、既にいくつかの通信が表示されているかもしれません。そうでない場合は、<strong>今すぐポーリング</strong>をクリックします。
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/collaborator/burp-collaborator-tut-4-polling-for-interactions.png" alt="Collaboratorクライアントでの通信のポーリング">
+</div>
+<p>
+    このウィンドウには、生成されたされたすべてのCollaboratorペイロードについて、通信しようとした結果が表示されます。ここでは、HTTPとDNSの両方が表示されており、Collaboratorサブドメインへのリクエストをアプリケーションが送信するよう誘導できたことが証明されるはずです。
+</p>
+<p>
+    各通信をクリックすると、その詳細が表示されます。
+</p>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="summary">概要</h2>
+<p>
+    おめでとうございます。あなたは今、次について知っています:
+</p>
+<ul>
+    <li>
+        Burp Collaboratorクライアントへのアクセス方法
+    </li>
+    <li>
+        今回のブラインドSSRFなど、Burp Collaboratorクライアントを非同期の脆弱性の概念実証生成のために使用する方法
+    </li>
+</ul>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="what-next">次は？</h2>
+<p>
+    これはあくまで初期の概念実証です。実サイトでこれらの挙動を悪用する方法については、<a href="https://portswigger.net/web-security/">Webセキュリティアカデミー</a>を、特に下記を参照してください:
+</p>
+<ul>
+    <li>
+        <a href="https://portswigger.net/web-security/ssrf/blind">ブラインドSSRF</a>
+    </li>
+    <li>
+        <a href="https://portswigger.net/web-security/sql-injection/blind">ブラインドSQLインジェクション</a>
+    </li>
+</ul>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="collaborator-everywhere">Collaborator Everywhere</h2>
+<p>
+    このチュートリアルでは、Burp Repeaterで1つの入力を手動でテストしました。実際のテストでは、<a href="https://portswigger.net/bappstore/2495f6fb364d48c3b6c984e226c02968">Collaborator Everywhere拡張</a>を使用すると複数の入力を一度にテストできます。有効にすると、Burp Proxyを通過するリクエストやBurpのツールから送信されるリクエストに、自動的に多くのCollaboratorペイロードが挿入されます。
+</p>
+<p>
+    Collaborator Everywhereは各入力ごとに異なるペイロードを挿入するため、どの入力がCollaboratorサーバーとの通信を引き起こしたかを簡単に特定できます。変更されたリクエストを<strong>Logger</strong>タブで調査すると、この挙動が確認できます:
+</p>
+<div class="rounded-dropshadow">
+    <img src="images/collaborator/burp-collaborator-tut-5-collaborator-everywhere.png" alt="Collaborator Everywhereが複数のヘッダにペイロードを挿入">
+</div>
+<p>
+    脆弱な入力箇所を特定したら、次にRepeaterでより詳細にテストできます。
+</p>
+</body>
+</html>

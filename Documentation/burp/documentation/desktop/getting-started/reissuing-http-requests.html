@@ -32,7 +32,7 @@
     <label class="label-edition is-professional">Professional</label>
     <label class="label-edition is-community">Community</label>
 </section>
-<h1 class="heading-2" cms-ignore-validation="HEADING_CAPITALIZATION" no-keyword-injection>3. Burp Repeaterによるリクエストの再発行</h1>
+<h1 class="heading-2" cms-ignore-validation="HEADING_CAPITALIZATION" no-keyword-injection>Burp Repeaterによるリクエストの再発行</h1>
 <div no-keyword-injection>
     <p>
         このチュートリアルでは、興味深いリクエストをBurp Repeaterを使って何度も繰り返し発行します。すると、リクエストのインターセプトを何度もしなくても、さまざな入力に対する対象のWebサイトの反応を調べられます。これにより、脆弱性の調査や、Burp Scannerが発見した脆弱性の確認などが非常に簡単になります。
@@ -52,13 +52,10 @@
     </p>
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: 内蔵ブラウザを起動する</h3>
     <p>
-        Burpで、<strong>Proxy &gt; インターセプト</strong>タブに移動し、内蔵ブラウザで次のURLにアクセスし、プロンプトが表示されたらログインしてください:
+        Burpのブラウザを起動し、それで次のURLにアクセスします:
     </p>
-    <p>
-        <code>https://portswigger.net/web-security/information-disclosure/exploiting/lab-infoleak-in-error-messages</code>
-    </p>
-    <p>
-        ページが読み込まれたら、<strong>Access the lab</strong>をクリックして、偽のショッピングサイトのインスタンスを起動します。読み込みに数秒かかる場合があります。
+    <code class="code-scrollable">https://portswigger.net/web-security/information-disclosure/exploiting/lab-infoleak-in-error-messages</code><p>
+        ページが読み込まれたら、<strong>Access the lab</strong>をクリックします。プロンプトが表示されたら、自分のportswigger.netのアカウントでログインしてください。数秒後、あなた専用の偽のショッピングサイトが表示されます。
     </p>
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: 対象サイトをブラウズする</h3>
     <p>

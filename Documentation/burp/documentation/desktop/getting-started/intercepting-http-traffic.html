@@ -32,7 +32,7 @@
     <label class="label-edition is-professional">Professional</label>
     <label class="label-edition is-community">Community</label>
 </section>
-<h1 class="heading-2" cms-ignore-validation="HEADING_CAPITALIZATION" no-keyword-injection>2. Burp ProxyによるHTTPトラフィックのインターセプト</h1>
+<h1 class="heading-2" cms-ignore-validation="HEADING_CAPITALIZATION" no-keyword-injection>Burp ProxyによるHTTPトラフィックのインターセプト</h1>
 <div no-keyword-injection>
     <p>
         このチュートリアルでは、意図的に脆弱性を作り込んだライブWebサイトを使用して、Burp ProxyでHTTPリクエストをインターセプトし、変更する方法を学びます。
@@ -90,7 +90,7 @@
     <hr>
     <h2 id="modifying-requests-in-burp-proxy">Burp Proxyによるリクエストの変更</h2>
     <p>
-        このセクションでは、Burp Proxyがインターセプトしたリクエストを変更する方法を説明します。これにより、Webサイトが想定していない方法でリクエストを操作した場合の反応を確認できます。"ラボ"と呼ばれる意図的に脆弱性を作り込んだWebサイトを使用して、実際の脆弱性を発見し、悪用する方法が確認できます。
+        このセクションでは、Burp Proxyがインターセプトしたリクエストを変更する方法を学びます。これにより、Webサイトが想定していない方法でリクエストを操作した場合の反応を確認できます。"ラボ"と呼ばれる意図的に脆弱性を作り込んだWebサイトを使用して、実際の脆弱性を発見し、悪用する方法が確認できます。
     </p>
     <div class="highlightedarea">
         <h4>Webセキュリティアカデミー</h4>
@@ -103,13 +103,10 @@
         Burpで、<strong>Proxy &gt; インターセプト</strong>タブを開き、<a href="../tools/proxy/intercept.html#controls">インターセプトが無効</a>になっていることを確認します。
     </p>
     <p>
-        内蔵ブラウザを起動し、そのブラウザを使って次のURLにアクセスし、プロンプトが表示されたらログインします。
+        Burpのブラウザを起動し、それで次のURLにアクセスします:
     </p>
-    <p>
-        <code>https://portswigger.net/web-security/logic-flaws/examples/lab-logic-flaws-excessive-trust-in-client-side-controls</code>
-    </p>
-    <p>
-        ページが読み込まれたら、<strong>Access the lab</strong>をクリックして、偽のショッピングサイトのインスタンスを起動します。読み込みに数秒かかる場合があります。
+    <code class="code-scrollable">https://portswigger.net/web-security/logic-flaws/examples/lab-logic-flaws-excessive-trust-in-client-side-controls</code><p>
+        ページが読み込まれたら、<strong>Access the lab</strong>をクリックします。プロンプトが表示されたら、自分のportswigger.netのアカウントでログインしてください。数秒後、あなた専用の偽のショッピングサイトが表示されます。
     </p>
     <img src="../images/getting-started/quick-start-pro-logic-lab-home.png" alt="Labのホームページ">
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: ショッピングアカウントにログインする</h3>

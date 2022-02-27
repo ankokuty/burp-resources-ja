@@ -48,7 +48,7 @@
 <p>
     たとえば、アプリケーションが<code>example.org</code>ドメインを使い、HTTPとHTTPSを標準ポートで使っている場合、ローカルマシンにリダイレクトするようhostsファイルにエントリを追加する必要があります:
 </p>
-<code> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 127.0.0.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; example.org&nbsp; </code><p>
+<code class="code-scrollable"> 127.0.0.1 example.org </code><p>
     リダイレクトされたリクエストを受信するには、透過Burp Proxyリスナーを<code>127.0.0.1:80</code>と<code>127.0.0.1:443</code>に作成する必要もあります。プロキシ非対応クライアントは、ドメイン名をローカルIPアドレスに名前解決し、そのインタフェースに直接リクエストを送信します。
 </p>
 <h3>透過プロキシモード</h3>
@@ -58,10 +58,10 @@
 <p>
     普通のHTTPを使っていた場合、プロキシスタイルのリクエストはこのようになります:
 </p>
-<code> GET http://example.org/foo.php HTTP/1.1<br>Host: example.org </code><p>
+<code class="code-scrollable">GET http://example.org/foo.php HTTP/1.1 Host: example.org</code><p>
     一方、非プロキシスタイルのリクエストはこのようになります:
 </p>
-<code> GET /foo.php HTTP/1.1<br>Host: example.org </code><p>
+<code class="code-scrollable">GET /foo.php HTTP/1.1 Host: example.org</code><p>
     通常Webプロキシは、どの宛先ホストへリクエストを転送するか判断するために、リクエストの先頭行で完全なURLを受信する必要があります(Hostヘッダは宛先の決定に使われません)。透過プロキシが有効な場合、Burpは非プロキシスタイルのリクエストを受信すると、Hostヘッダの内容を分析してそのリクエストの送信先として使います。
 </p>
 <p>

@@ -73,7 +73,7 @@
     インターセプトの必要に応じて<strong>インターセプト有効/無効</strong>ボタンを変更してください。詳細は、<a href="../tools/proxy/getting-started.html">Burp Proxy入門</a>を参照してください。
 </p>
 <div class="rounded-dropshadow">
-    <img src="../images/pentesting-intercept-940.png" alt="ペネトレーションテスト: リクエストの傍受" class="center-block">
+    <img src="../images/pentesting-intercept-940.png" alt="ペネトレーションテスト: リクエストのインターセプト" class="center-block">
 </div>
 <p>
     Burpを実行している状態でアプリケーションをブラウズすると、<strong>Proxy &gt; HTTP履歴</strong>タブには、インターセプト機能が無効になっている場合でも、すべてのリクエストとレスポンスが保持されます。このタブから、生成された一連のリクエストを確認できます。
@@ -169,7 +169,7 @@
 </p>
 <h3>アプリケーションの手動マッピング</h3>
 <p>
-    ブラウザがBurp Proxyを経由している間に、リンクを辿る、フォームをサブミットする、複数手順の処理を実行するなどの操作によって、<a href="../tools/target/using.html#manual-application-mapping">アプリケーションを手動でマッピング</a>します。このプロセスで、リクエストしたコンテンツがProxy<a href="../tools/proxy/using.html#using-the-proxy-history">履歴</a>とTarget<a href="../tools/target/site-map/index.html">サイトマップ</a>に取り込まれ、レスポンスから推測できる追加のコンテンツ(リンク、フォームなど)が、(<a href="../scanning/live-scans.html">ライブスキャン</a>によって)サイトマップに追加されます。<a href="../tools/target/using.html#reviewing-unrequested-items">リクエストされていないアイテム</a>(サイトマップでグレーで表示される)を確認し、ブラウザでこれらをリクエストします。
+    ブラウザがBurp Proxyを経由している間に、リンクを辿る、フォームを送信する、複数手順の処理を実行するなどの操作によって、<a href="../tools/target/using.html#manual-application-mapping">アプリケーションを手動でマッピング</a>します。このプロセスで、リクエストしたコンテンツがProxy<a href="../tools/proxy/using.html#using-the-proxy-history">履歴</a>とTarget<a href="../tools/target/site-map/index.html">サイトマップ</a>に取り込まれ、レスポンスから推測できる追加のコンテンツ(リンク、フォームなど)が、(<a href="../scanning/live-scans.html">ライブスキャン</a>によって)サイトマップに追加されます。<a href="../tools/target/using.html#reviewing-unrequested-items">リクエストされていないアイテム</a>(サイトマップでグレーで表示される)を確認し、ブラウザでこれらをリクエストします。
 </p>
 <h3>必要な箇所で自動マッピングを実行</h3>
 <p>

@@ -160,10 +160,10 @@
     <p>
         JythonはJavaクラスを動的に生成するため、異なるPython拡張をいくつもロードしたり、何度もPython拡張のアンロードとロードを行うと、メモリ問題が発生する場合があります。この場合、次のようなエラーが表示されます:
     </p>
-    <code> java.lang.OutOfMemoryError: PermGen space </code><p>
+    <code class="code-scrollable">java.lang.OutOfMemoryError: PermGen space</code><p>
         Burpを起動するときのコマンドラインオプションに<code>-XX:MaxPermSize</code>を追加し、より多くの PermGenストレージが割り当てられるようJavaを設定すると、この問題を回避できるかもしれません。例:
     </p>
-    <code> java -XX:MaxPermSize=1G -jar burp.jar </code>
+    <code class="code-scrollable">java -XX:MaxPermSize=1G -jar burp.jar</code>
 </div>
 <h3 id="ruby-environment">Ruby環境</h3>
 <p>

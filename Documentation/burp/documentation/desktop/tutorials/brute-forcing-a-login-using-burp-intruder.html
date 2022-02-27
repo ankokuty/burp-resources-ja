@@ -30,12 +30,12 @@
 <section class="container labels-editions-wrapper">
     <label class="label-edition is-professional">Professional</label>
 </section>
-<h1>Burp Intruderを使用したログイン機構へのブルートフォース</h1>
+<h1>Burp Intruderによるログイン機構へのブルートフォース</h1>
 <p>
     <a href="../tools/intruder/index.html">Burp Intruder</a>はさまざまな<a href="../tools/intruder/attack-types.html">攻撃タイプ</a>に対応しています。多くの場合、あるタスクは複数タイプの攻撃で達成可能ですが、適切なタイプを選択すれば手動によるセキュリティテストの労力を大幅に削減できます。
 </p>
 <p>
-    このチュートリアルでは、Burp Suiteのクラスター爆弾攻撃を使って、ユーザ名とパスワードのフィールドを同時にブルートフォースする方法を紹介します。
+    このチュートリアルでは、Burp Suiteのクラスター爆弾攻撃を使って、ユーザ名とパスワードのフィールドを同時にブルートフォースする方法を学びます。
 </p>
 <div class="highlightedarea">
     <h4>注</h4>
@@ -68,7 +68,7 @@
     Burpのブラウザを開き、次のURLにアクセスします:
 </p>
 <code class="code-scrollable">https://portswigger.net/web-security/authentication/password-based/lab-username-enumeration-via-different-responses</code><p>
-    <strong>Access the lab</strong>をクリックし、プロンプトが表示されたら自分のPortSwiggerアカウントでログインします。
+    <strong>Access the lab</strong>をクリックしプロンプトが表示されたら、自分のPortSwiggerアカウントでログインします。
 </p>
 <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: ログインリクエストをインターセプト</h3>
 <p>
@@ -78,7 +78,7 @@
     <strong>Username</strong>と<strong>Password</strong>フィールドに、後で確認するためのサンプルデータを入力します。<strong>Log in</strong>ボタンをクリックします。
 </p>
 <div class="rounded-dropshadow">
-    <img src="images/cluster-bomb/entering-data-into-login-form.png" alt="Web Security Academyログインフォームへ入力">
+    <img src="images/cluster-bomb/entering-data-into-login-form.png" alt="Webセキュリティアカデミーのログインフォームへ入力">
 </div>
 <p>
     Burp Suiteで、<strong>Proxy</strong>タブに移動し、<strong>HTTP履歴</strong>タブをクリックします。すると、Burp Suiteを開いた後にBurpのブラウザが生成したHTTPリクエストの一覧が表示されます。
@@ -178,14 +178,14 @@
     Burpのブラウザで、ラボの<strong>ログイン</strong>ページに戻り、<code>302</code>ステータスコードでメモしたユーザ名とパスワードを入力します。<strong>Log in</strong>をクリックします。これでラボを解答できます。
 </p>
 <div class="rounded-dropshadow">
-    <img src="images/cluster-bomb/entering-bruteforced-username-and-password.png" alt="正しいユーザー名とパスワードが入力されたWeb Security Academyのログインフォーム">
+    <img src="images/cluster-bomb/entering-bruteforced-username-and-password.png" alt="正しいユーザー名とパスワードが入力されたWebセキュリティアカデミーのログインフォーム">
 </div>
 <h3 id="summary-and-next-steps" cms-ignore-validation="DUPLICATE_HEADINGS">まとめと次のステップ</h3>
 <p>
     おめでとうございます - Burp Intruderでクラスター爆弾攻撃を設定して、単純なログインフォームをより簡単にブルートフォースする方法がわかりました。
 </p>
 <p>
-    実際のWebアプリケーションには、ブルートフォース攻撃を阻止するための強固な対策がされていることが多いです。これらを回避する方法を知りたい場合は、<a href="https://portswigger.net/web-security">Web Security Academy</a>の<a href="https://portswigger.net/web-security/authentication">認証</a>に関するトピックを参照してください。
+    実際のWebアプリケーションには、ブルートフォース攻撃を阻止するための強固な対策がされていることが多いです。これらを回避する方法を知りたい場合は、<a href="https://portswigger.net/web-security">Webセキュリティアカデミー</a>の<a href="https://portswigger.net/web-security/authentication">認証</a>に関するトピックを参照してください。
 </p>
 </body>
 </html>

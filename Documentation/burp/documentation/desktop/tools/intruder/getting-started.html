@@ -35,81 +35,174 @@
 </section>
 <h1>Burp Intruder入門</h1>
 <p>
-    Burp Intruderは、カスタマイズした自動攻撃をWebアプリケーションに対して行うための強力なツールです。非常に柔軟性があり自由にカスタマイズでき、Webアプリケーションをテストする際のあらゆる種類のタスクを自動化できます。
+    Burp Intruderは、Webサイトに対して高度にカスタマイズされた自動攻撃を行う強力なツールです。同じリクエストを何度も送信し、定義された位置に毎回異なるペイロードを挿入する攻撃を設定できます。特に、次の場合に便利です:
 </p>
-<div class="highlightedarea">
-    <h4>注</h4>
-    <p>
-        Burp Intruderを使うと、一部のアプリケーションで予期しない影響が出る可能性があります。機能や設定にしっかり慣れるまで、本番以外のシステムだけで使うべきです。
-    </p>
+<ul>
+    <li>
+        入力ベースの脆弱性に対するファジング
+    </li>
+    <li>
+        ブルートフォース攻撃の実行
+    </li>
+    <li>
+        有効な識別子やその他の入力の列挙
+    </li>
+    <li>
+        有用なデータの収集
+    </li>
+</ul>
+<p>
+    Burp Intruderの仕組みを理解するには、実際に見てみるのが最善です。次のチュートリアルに沿って、初めてのIntruder攻撃を行ってみてください。
+</p>
+<p>
+    Burp Intruderの機能や攻撃タイプの詳細は、<a href="using.html">完全なドキュメント</a>を参照してください。
+</p>
+<h2 id="tutorial">チュートリアル</h2>
+<p>
+    このチュートリアルでは、Webセキュリティアカデミーにある意図的に脆弱性を作り込んだラボを使用して、Intruder攻撃の基本的な設定を学びます。
+</p>
+<h3 id="step-1-access-the-lab" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">ステップ1: ラボへアクセス</h3>
+<p>
+    Burpのブラウザを開き、次のURLにアクセスします:
+</p>
+<code class="code-scrollable">https://portswigger.net/web-security/authentication/password-based/lab-username-enumeration-via-different-responses</code><p>
+    <strong>Access the lab</strong>をクリックしプロンプトが表示されたら、自分のPortSwiggerアカウントでログインします。すると、意図的に脆弱性を作り込んだあなた専用のブログサイトが開きます。
+</p>
+<h3 id="step-2-try-to-log-in" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">ステップ2: ログインしてみる</h3>
+<p>
+    <strong>My account</strong>をクリックし、無効なユーザ名とパスワードでログインしてみます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/getting-started/getting-started-with-intruder-1-login-as-anything.png" alt="無効なユーザ名とパスワードでログイン">
 </div>
 <p>
-    Burp Intruderを習得するには、次の手順を実行する必要があります:
+    Burp Suiteで、<strong>Proxy &gt; HTTP履歴</strong>タブを開きます。ここには、Burpのブラウザを開いた後の、すべてのリクエストが表示されます。
 </p>
-<ol>
-    <li>
-        <a href="../../functions/embedded-browser.html">Burpのブラウザ</a>の代わりに外部ブラウザを使用している場合、ブラウザと正常に動作するよう<a href="../../external-browser-config/index.html">Burp Proxyの設定</a>がされているか確認してください。
-    </li>
-    <li>
-        まだ何もしていなければ、対象アプリケーションの一部をブラウズし、BurpのTargetサイトマップにアプリケーションのコンテンツや機能の詳細を取り込みます。
-    </li>
-    <li>
-        ProxyのHistoryタブに移動します。対象アプリケーションから、パラメータを多くの含むような気になるリクエストを見つけます。そのうち1つのリクエストを選択し、コンテキストメニューから<strong>Intruderに送信</strong>を選択します。
-    </li>
-    <li>
-        Intruderタブに移動します。Burp Intruderは、同時に複数の攻撃を設定できます。Intruderに送信された各リクエストが個別の攻撃のタブで開き、これらにはデフォルトで連番が付けられます。タブ名をダブルクリックすると名前変更ができ、ドラッグすると並び替えができ、タブを閉じたり新たなタブも開けます。
-    </li>
-    <li>
-        Intruderに送信したリクエストに対して作成された攻撃タブ内で、Targetとポジションタブを見てください。送信したリクエストの詳細が自動的に入力されています。
-    </li>
-    <li>
-        Burp Intruderの動作は、ベースとなるテンプレートリクエスト(あなたが送信したもの)を取得し、ベースリクエスト内の定義済みの場所について、数多くの攻撃ペイロードを一通り配置し、できあがったリクエストそれぞれを発行します。ポジションタブでは、ベースリクエストにペイロードを挿入する位置を設定します。ペイロードを配置するであろう箇所をBurpが自動的に推測した結果が表示されているはずです。デフォルトで、すべてのリクエストパラメータとcookieの値にペイロードが配置されます。自動的に<strong>対象</strong>フィールドには入りません。ペイロードマーカの各ペアは1つのペイロードポジションを定義していて、ベースリクエストのどこかのテキストを囲んでいる場合、ペイロードポジションが使われる際にそこがペイロードのコンテンツに置き換えられます。詳細は、<a href="positions.html#payload-markers">ペイロードマーカ</a>のヘルプを参照してください。
-    </li>
-    <li>
-        リクエストエディタの横にあるボタンでペイロードマーカの追加や削除ができます。リクエスト内の新しい場所にペイロードマーカを追加したり他のマーカを削除して、効果を確認してみてください。ペイロードマーカの動作を理解したら、<strong>自動§</strong>ボタンをクリックしてBurpのデフォルトのペイロードポジションに戻してください。リクエスト自体のテキストを変更した場合は、手順3からやり直すとオリジナルのリクエストが入った新たなIntruder攻撃タブが作成できます。
-    </li>
-    <li>
-        ペイロードタブに移動します。定義されたペイロードポジションに配置されるペイロードを定義します。デフォルト設定(ペイロードに<strong>単純リスト</strong>を使う)のままにし、リストにいくつかテスト文字列を追加します。<strong>新規アイテムを入力</strong>ボックスに独自の文字列を入力し、<strong>追加</strong>ボタンをクリックします。
-    </li>
-    <li>
-        <label class="label-edition is-professional">Professional</label>
-        あるいは、<strong>リストから追加</strong>プルダウンメニューを使い、組み込みペイロード文字列から<strong>ファジング - 簡易</strong>を選択します
-    </li>
-    <li>
-        攻撃を開始する最低限のオプションを設定できました。Intruderメニューに移動し、<strong>攻撃開始</strong>を選択します。
-    </li>
-    <li>
-        攻撃すると、結果タブに一覧がある新しいウィンドウが開きます。結果一覧には生成された各リクエストごとにエントリがあり、使われたペイロードなど各種キーの詳細、HTTPステータスコード、レスポンス長などが表示されます。一覧で任意のアイテムを選択すると、完全なリクエストとレスポンスが表示できます。列見出しをクリックすると一覧を並べ替えられ、フィルタバーを使用して一覧のコンテンツのフィルタもできます。これらの機能は、<a href="../proxy/history.html">Proxy履歴</a>と同じように動作します。
-    </li>
-    <li>
-        攻撃ウィンドウには、この攻撃で使われた設定を表示する別のタブがあります。攻撃が開始された後でも、この設定のほとんどを変更できます。オプションタブで、<strong>Grep - Match</strong>までスクロールし、<strong>これらの文字列にマッチするレスポンスにフラグをセットする</strong>チェックボックスをオンにします。これでリスト内の各文字列に一致するレスポンスを検索し、マッチしたアイテムにフラグが立つようになります。デフォルトで、ファジングに便利ないくつかの一般的なエラー文字列が一覧に表示されますが、希望に応じて独自の文字列を設定できます。結果タブに戻り、リストのアイテムごとに列が追加され、各レスポンスでマッチする文字列が見つかったかどうか示すチェックボックスがあることを確認します。運がよければ、基本的なファジングでも、バグの存在を示すエラーメッセージを含むレスポンスが見つかるかもしれません。
-    </li>
-    <li>
-        それでは、一覧内の任意のアイテムを選択し、そのアイテムのレスポンス見てください。レスポンスから気になる文字列(ページタイトルまたはエラーメッセージなど)を探します。一覧内のアイテムを右クリックし、コンテキストメニューで<strong>レスポンスから抽出grepを定義</strong>を選択します。ダイアログボックスで、レスポンス内の気になる文字列を選択し、<strong>OK</strong>をクリックします。各レスポンスからこの部分のテキストを抽出した新しい列(これは各ケースで異なる場合があります)が結果一覧に出現します。この機能で、何千もの大規模な攻撃のレスポンスの中から、気になるデータを検索できます。攻撃前または攻撃中に、オプションタブで<strong>Grep - Extract</strong>アイテムを設定できることを覚えておいてください。
-    </li>
-    <li>
-        結果一覧で任意のアイテムを選択し、コンテキストメニューを開きます。<strong>Repeaterに送信</strong>を選択し、Repeaterタブに移動してください。選択したリクエストが、次のテストのために<a href="../repeater/using.html">Repeater</a>ツールにコピーされているでしょう。その他、コンテキストメニューには多くの有用なオプションがあります。Burpツール間のアイテム転送に関する詳細やテストワークフローの全体概要は、<a href="../../penetration-testing/index.html">Burp Suiteの使い方</a>を参照してください。
-    </li>
-    <li>
-        結果一覧または攻撃全体を保存するには、結果ウィンドウで<strong>保存</strong>メニューを使います。他のツールまたはスプレッドシートプログラムに、結果一覧を読み込めます。Burp UIメインのIntruderメニューから、保存した攻撃を再読み込みできます。
-    </li>
-    <li>
-        ここまでの手順では、ファジング用の標準的な攻撃文字列とエラーメッセージの検索方法を使った、Burp Intruderの簡単な使用例についてのみ説明しています。Intruderには他にも、多くの攻撃タイプ、多くのペイロード、攻撃オプションがあります。詳細は、<a href="using.html#typical-uses">Burp Intruderの典型的な使用方法</a>を参照してください。
-    </li>
-</ol>
-<div class="highlightedarea">
-    <h4>続きを読む</h4>
-    <ul>
-        <li>
-            <a href="using.html">Burp Intruderの使い方</a>
-        </li>
-        <li>
-            <a href="../../penetration-testing/index.html">Burp Suiteの使い方</a>
-        </li>
-        <li>
-            <a href="../../troubleshooting.html">一般的な問題のトラブルシューティング</a>
-        </li>
-    </ul>
+<p>
+    <code>POST /login</code>リクエストを探し、<a href="../../functions/sending-requests-between-tools.html">Burp Intruderに送信</a>します。
+</p>
+<h3 id="step-3-set-the-payload-positions" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">ステップ3: ペイロードポジションの設定</h3>
+<p>
+    <strong>Intruder</strong>タブに移動します。<code>POST /login</code>リクエストが表示されたタブがあることを確認してください。これを攻撃のベースリクエストとして使用します。
+</p>
+<p>
+    Burp Intruderが、リクエスト全体のさまざまな位置に§文字を自動的に挿入していることに注目してください。これらは、ペイロードポジションの最初と最後を示していて、Burp Intruderは攻撃中にここにペイロードを挿入しようとします。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/getting-started/getting-started-with-intruder-2-unedited-request.png" alt="未編集のリクエスト">
 </div>
+<p>
+    この攻撃では、<code>username</code>パラメータにペイロードポジションが1つだけ必要です。<strong>§クリア</strong>をクリックし、デフォルトのポジションを消します。
+</p>
+<p>
+    <code>username</code>パラメータの値を選択し、<strong>§追加</strong>をクリックします。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/getting-started/getting-started-with-intruder-3-request-with-payloads.png" alt="ペイロードマーカー付きリクエスト">
+</div>
+<h3 id="step-4-select-an-attack-type" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">ステップ4: 攻撃タイプの選択</h3>
+<p>
+    画面上部で、さまざまな攻撃タイプを選択できます。とりあえず、<strong>スナイパー(Sniper)</strong>になっていることを確認してください。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/getting-started/getting-started-with-intruder-4-attack-type.png" alt="スナイパーが選択された攻撃タイプメニュー">
+</div>
+<p>
+    <a href="attack-types.html#sniper">スナイパー</a>攻撃は、1セットのペイロードを1つずつ、リクエスト内の1つのポジションに挿入します。
+</p>
+<h3 id="step-5-add-the-payloads" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">ステップ5: ペイロードの追加</h3>
+<p>
+    あとは、使用するペイロードのリストを設定するだけです。今回のデモでは、さまざまなユーザ名でリクエストを送信し、ログイン機能の動作をテストをしてみます。
+</p>
+<p>
+    次のユーザ名候補のリストをコピーしてください:
+</p>
+<ul>
+    <li>
+        <a href="https://portswigger.net/web-security/authentication/auth-lab-usernames">ユーザ名候補</a>
+    </li>
+</ul>
+<p>
+    <strong>ペイロード</strong>タブに移動します。
+</p>
+<p>
+    <strong>ペイロードタイプ</strong>は、<strong>単純リスト</strong>のままにしておきます。
+</p>
+<p>
+    <strong>ペイロードオプション</strong>セクションで、<strong>貼り付け</strong>をクリックしてコピーしたユーザ名を一覧に追加します。
+</p>
+<p>
+    <strong>ペイロードセット</strong>セクションで、追加したペイロード数と、この攻撃で送信されるリクエスト数を確認できます。今回の攻撃では、次のように表示されます: <code>ペイロード数: 101 / リクエスト数: 101</code>。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/getting-started/getting-started-with-intruder-5-usernames-in-list.png" alt="ユーザ名を読み込んだペイロードセット">
+</div>
+<h3 id="step-6-start-the-attack" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">ステップ6: 攻撃開始</h3>
+<p>
+    右上の<strong>攻撃開始</strong>をクリックします。新しい攻撃ウィンドウが開き、Burp Intruderが生成している各リクエストを確認できます。
+</p>
+<p>
+    テーブル内のエントリを選択すると、リクエストとレスポンスをメッセージエディタで確認できます。各リクエストの<code>username</code>パラメータには、ペイロードリストにあった異なる値が入力されていることに注目してください。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/getting-started/getting-started-with-intruder-6-selected-entry-request.png" alt="リクエストの内容を見る">
+</div>
+<h3 id="step-7-look-for-any-irregular-responses" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">ステップ7: 異常な反応を探す</h3>
+<p>
+    攻撃ウィンドウには、各レスポンスの主要な情報が表示された複数の列があります。
+</p>
+<p>
+    攻撃が終了するのを待ち、<strong>Length</strong>列の見出しをクリックすると、結果がソートされます。見た通り、1つのレスポンスは長さが違います。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/getting-started/getting-started-with-intruder-7-sort-by-length.png" alt="長さでソートした履歴テーブル">
+</div>
+<p>
+    サーバからのこのレスポンスの違いは、さらに調査する価値があります。
+</p>
+<h3 id="step-8-study-the-response" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">ステップ8: レスポンスを調べる</h3>
+<p>
+    リスト内で任意のリクエストを選択すると、メッセージエディタに表示されます。
+</p>
+<p>
+    レスポンスを見てみると、ほとんどのレスポンスには<code>Invalid username</code>というエラーメッセージが含まれていますが、長さが異なっていたレスポンスには<code>Incorrect password</code>というエラーメッセージが含まれています。
+</p>
+<p>
+    この反応の違いは、このユーザ名が有効である可能性を強く示唆しています。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/getting-started/getting-started-with-intruder-8-comparing-responses.png" alt="2種類のエラーメッセージの比較">
+</div>
+<h3 id="what-next" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">次は？</h3>
+<p>
+    正しそうなユーザ名がわかったので、次のステップは当然、パスワードのブルートフォースです。
+</p>
+<p>
+    特定したユーザ名と、この<a href="https://portswigger.net/web-security/authentication/auth-lab-passwords">パスワード候補</a>のリストを使って、この攻撃を繰り返してみてください。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/getting-started/getting-started-with-intruder-9-now-the-password.png" alt="パスワードのブルートフォース">
+</div>
+<p>
+    <a href="https://portswigger.net/web-security/authentication/password-based/lab-username-enumeration-via-different-responses">ラボの完全な突破方法</a>はこちらを参照してください。
+</p>
+<h2 id="learn-more-about-burp-intruder" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">Burp Intruderの詳細</h2>
+<p>
+    単一のパラメータに対するスナイパー攻撃タイプの使用方法がわかりました。
+</p>
+<ul>
+    <li>
+        その他のIntruderの<a href="attack-types.html">攻撃タイプ</a>には、複数パラメータに対するオプションがあります。
+    </li>
+    <li>
+        現実的なターゲットに対して、<a href="https://portswigger.net/web-security/authentication">これらの攻撃を実践する</a>
+    </li>
+    <li>
+        <a href="../index.html">Burp Intruderの完全なドキュメント</a>
+    </li>
+    <li>
+        Burp Suiteの<a href="../../tutorials/index.html">インタラクティブなチュートリアル</a>
+    </li>
+</ul>
 </body>
 </html>

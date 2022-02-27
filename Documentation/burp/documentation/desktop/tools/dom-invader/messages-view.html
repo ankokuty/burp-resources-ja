@@ -154,10 +154,10 @@
 <p>
     DOM Invaderの設定で、<strong>Postmessage origin spoofing</strong>オプションを選択できます。有効にすると、DOM Invaderはインターセプトされたメッセージのオリジンを次の形式の偽のオリジンに自動的に置き換えます:
 </p>
-<code> target-site.com.faketarget-site.com </code><p>
+<code class="code-scrollable">target-site.com.faketarget-site.com</code><p>
     たとえば、<code>portswigger.net</code>でテストを行っていた場合、偽装したオリジンは次のようになります:
 </p>
-<code> https://portswigger.net.fakeportswigger.net </code><p>
+<code class="code-scrollable">https://portswigger.net.fakeportswigger.net</code><p>
     オリジンを偽装するとDOM Invaderは、メッセージのオリジンの検証ロジックや正規表現に欠陥のあるイベントリスナーを発見できます。たとえばこの偽装したオリジンは、信頼できるドメイン名で文字列が開始しているか、または終了しているかをチェックし検証している場合に、簡単にバイパスします。
 </p>
 <p>
@@ -200,7 +200,7 @@
 <p>
     たとえば、URLの受信を期待しているハンドラーについて考えてみると、URLが<code>http:</code>を含んでいるか、<code>https:</code>を含んでいるか、あるいはどちらでもない場合に異なるコードパスをたどるとします。これは次のようになります:
 </p>
-<code> window.addEventListener('message', function(e) {<br>&nbsp;&nbsp;var url = e.data;<br>&nbsp;&nbsp;switch (true){<br>&nbsp;&nbsp;&nbsp;&nbsp;case (url.indexOf("http:") &gt; -1):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Do something<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>&nbsp;&nbsp;&nbsp;&nbsp;case (url.indexOf("https:") &gt; -1):<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Do something else<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>&nbsp;&nbsp;&nbsp;&nbsp;default:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Invalid URL: Must contain string "http:" or "https:"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>&nbsp;&nbsp;}<br>}, false); </code><p>
+<code class="code-scrollable">window.addEventListener('message', function(e) { var url = e.data; switch (true){ case (url.indexOf("http:") &gt; -1): // Do something break; case (url.indexOf("https:") &gt; -1): // Do something else break; default: // Invalid URL: Must contain string "http:" or "https:" break; } }, false);</code><p>
     この場合DOM Invaderは最初に空の文字列を送信しますが、続けて<code>http:</code>を含むものと<code>https:</code>を含むものの2つのメッセージを送信すると、3つすべての状態がテストされ、3つのブランチすべてに入力が流れ込むようにします。これらの追加メッセージには、DOM Invaderが通常のカナリアに挿入する同じテスト文字(<code>&lt;&gt;"':</code>)が含まれ、エスケープやエンコードされているかも確認できます。
 </p>
 <div class="highlightedarea">
