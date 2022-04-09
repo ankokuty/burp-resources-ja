@@ -220,7 +220,7 @@
 </div>
 <h2 id="collaborator-server-resources">Collaboratorサーバのリソース</h2>
 <p>
-    Burp Collaboratorサーバの起動時には、想定する使用方法に基づいて、JVMのメモリ処理とガベージコレクションの設定をお勧めします。少人数での利用を想定してデスクトップマシンでCollaboratorサーバを実行する場合、JVMの使用するメモリ量を減らせます。次のコマンドは、ヒープを10から200MBの間で変動させ、JVMの5%の時間をガベレージコレクションに使用する設定で、通常あまりメモリを消費しません:
+    Burp Collaboratorサーバの起動時には、想定する使用方法に基づいて、JVMのメモリ処理とガベージコレクションの設定を推奨します。少人数での利用を想定してデスクトップマシンでCollaboratorサーバを実行する場合、JVMの使用するメモリ量を減らせます。次のコマンドは、ヒープを10から200MBの間で変動させ、JVMの5%の時間をガベレージコレクションに使用する設定で、通常あまりメモリを消費しません:
 </p>
 <code class="code-scrollable">sudo java -Xms10m -Xmx200m -XX:GCTimeRatio=19 -jar /path/to/file.jar --collaborator-server</code><p>
     大人数で利用ができるよう専用マシン上でCollaboratorサーバを実行する場合、通常はOS、JVM、その他の実行プロセス用に1GBのメモリを残し、使用可能な物理メモリの量にヒープサイズを固定する設定が効率的です。例:

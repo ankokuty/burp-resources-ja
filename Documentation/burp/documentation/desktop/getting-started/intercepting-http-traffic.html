@@ -39,9 +39,9 @@
     </p>
     <h2 id="intercepting-a-request">リクエストのインターセプト</h2>
     <p>
-        Burp Proxyは、ブラウザと対象サーバ間で送信されるHTTPリクエストとレスポンスをインターセプトできます。これにより、さまざまな操作をしたときに、Webサイトがどのように動作するかを調査できます。
+        Burp Proxyは、Burpブラウザと対象サーバ間で送信されるHTTPリクエストとレスポンスをインターセプトできます。これにより、さまざまな操作によるWebサイトの挙動の変化を調査できます。
     </p>
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: Burpの内蔵ブラウザを起動する</h3>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: Burpブラウザを起動する</h3>
     <p>
         <strong>Proxy &gt; インターセプト</strong>タブに移動します。
     </p>
@@ -50,15 +50,15 @@
     </p>
     <img src="../images/getting-started/quick-start-pro-intercept-on.png" alt="インターセプト有効">
     <p>
-        <strong>ブラウザを開く</strong>をクリックします。これにより、Burpに内蔵されたChromiumブラウザが起動します。これはBurpと連動するようにあらかじめ設定されています。
+        <strong>ブラウザを開く</strong>をクリックします。これにより、Burpブラウザが起動します。これはBurpと連動するようにあらかじめ設定されています。
     </p>
     <p>
-        Burpとブラウザの両方が見えるように、ウィンドウの位置を調整します。
+        BurpとBurpブラウザの両方が見えるように、ウィンドウの位置を調整します。
     </p>
-    <img src="../images/getting-started/quick-start-pro-browser.png" alt="Burp Suiteの組み込みブラウザを開く">
+    <img src="../images/getting-started/quick-start-pro-browser.png" alt="Burpブラウザを開く">
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: リクエストをインターセプトする</h3>
     <p>
-        内蔵ブラウザを使って<code>https://portswigger.net</code>にアクセスしてみて、サイトが読み込まれないことを確認してください。Burp Proxyは、ブラウザが発行したHTTPリクエストを、サーバに到達する前にインターセプトしています。このインターセプトされたリクエストは、<strong>Proxy &gt; インターセプト</strong>タブで確認できます。
+        Burpブラウザを使って<code>https://portswigger.net</code>にアクセスしてみて、サイトが読み込まれないことを確認してください。Burp Proxyは、ブラウザが発行したHTTPリクエストを、サーバに到達する前にインターセプトしています。このインターセプトされたリクエストは、<strong>Proxy &gt; インターセプト</strong>タブで確認できます。
     </p>
     <img src="../images/getting-started/quick-start-pro-intercepted-request.png" alt="Burp Proxyでインターセプトされたリクエストの表示">
     <p>
@@ -66,7 +66,7 @@
     </p>
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: リクエストを転送する</h3>
     <p>
-        ブラウザにページが表示されるまで、<strong>転送</strong>ボタンを何度かクリックします。インターセプトされたリクエストとその後に発生したリクエストが送信されます。
+        Burpブラウザにページが表示されるまで、<strong>転送</strong>ボタンを何度かクリックします。インターセプトされたリクエストとその後に発生したリクエストが送信されます。
     </p>
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ4: インターセプトを無効にする</h3>
     <p>
@@ -74,7 +74,7 @@
     </p>
     <img src="../images/getting-started/quick-start-pro-intercept-off.png" alt="Proxyインターセプト無効">
     <p>
-        内蔵ブラウザに戻り、通常通りにサイトを操作できることを確認します。
+        Burpブラウザに戻り、通常通りにサイトを操作できることを確認します。
     </p>
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ5: HTTP履歴を表示する</h3>
     <p>
@@ -98,12 +98,12 @@
             この先に進むには<code>portswigger.net</code>のアカウントが必要です。まだ持っていない場合は、<a href="https://portswigger.net/users/register">登録は無料</a>で、Webセキュリティアカデミーへのフルアクセスが可能となります。
         </p>
     </div>
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: 内蔵ブラウザで脆弱性のあるWebサイトにアクセスする</h3>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: Burpブラウザで脆弱性のあるWebサイトにアクセスする</h3>
     <p>
         Burpで、<strong>Proxy &gt; インターセプト</strong>タブを開き、<a href="../tools/proxy/intercept.html#controls">インターセプトが無効</a>になっていることを確認します。
     </p>
     <p>
-        Burpのブラウザを起動し、それで次のURLにアクセスします:
+        Burpブラウザを起動し、次のURLにアクセスします:
     </p>
     <code class="code-scrollable">https://portswigger.net/web-security/logic-flaws/examples/lab-logic-flaws-excessive-trust-in-client-side-controls</code><p>
         ページが読み込まれたら、<strong>Access the lab</strong>をクリックします。プロンプトが表示されたら、自分のportswigger.netのアカウントでログインしてください。数秒後、あなた専用の偽のショッピングサイトが表示されます。
@@ -124,7 +124,7 @@
     </p>
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: 買いたいものを探す</h3>
     <p>
-        <strong>ホーム</strong>をクリックすると、トップページに戻ります。オプションを選択すると、<strong>Lightweight "l33t" leather jacket</strong>の商品詳細が表示されます。
+        <strong>Home</strong>をクリックすると、トップページに戻ります。オプションを選択すると、<strong>Lightweight "l33t" leather jacket</strong>の商品詳細が表示されます。
     </p>
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ4: カートに入れる機能を調査する</h3>
     <p>
@@ -150,12 +150,12 @@
     </p>
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ6: 脆弱性を悪用する</h3>
     <p>
-        内蔵ブラウザで、右上のバスケットアイコンをクリックすると、カートが表示されます。ジャケットが1セントで追加されていることに注目してください。
+        ブラウザで、右上のバスケットアイコンをクリックすると、カートが表示されます。ジャケットが1セントで追加されていることに注目してください。
     </p>
     <div class="highlightedarea">
         <h4>注</h4>
         <p>
-            Webインターフェースで価格を変更する方法はありません。この変更ができたのは、Burp Proxyのおかげです。
+            Webインターフェースだけでは価格は変更できません。この変更ができたのは、Burp Proxyのおかげです。
         </p>
     </div>
     <p>

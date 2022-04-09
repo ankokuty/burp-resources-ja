@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">便利な機能</a>
+        </li>
+        <li>
+            <a href="index.html">メッセージエディタ</a>
+        </li>
+        <li>
+            <a href="getting-started-inspector.html">Inspector入門</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Inspector入門</h1>
+<p>
+    インスペクタを使用すると、HTTPメッセージ内にある興味深いアイテムの編集や表示が簡単にできます。選択したリクエストとレスポンスから、HTTPヘッダ、cookie、パラメータなどカテゴリごとに自動的にグループ化されます。
+</p>
+<p>
+    Inspectorには、次のような便利な機能があります:
+</p>
+<ul>
+    <li>
+        <p>
+            値を自動的にデコードするので、より読みやすくなります。
+        </p>
+    </li>
+    <li>
+        <p>
+            エンコードされた値をプレーンテキスト形式で編集でき、必要な一連のエンコードがリクエストに自動的に再適用されます。
+        </p>
+    </li>
+    <li>
+        <p>
+            アイテムの追加、削除、並び替えが簡単に行え、リクエスト末尾の無駄な部分を手動で除去する必要はありません。
+        </p>
+    </li>
+</ul>
+<p>
+    Burp Suiteの多くのタブで、メッセージエディタの隣に<strong>Inspector</strong>パネルがあります。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/inspector.png" alt="メッセージエディターとInspector">
+</div>
+<p>
+    Inspector使い方は、下記のチュートリアルを推奨します。
+</p>
+<p>
+    詳細は、<a href="inspector.html">完全なドキュメント</a>を参照してください。
+</p>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="tutorial">チュートリアル</h2>
+<p>
+    このチュートリアルでは、エンコードされた値をInspector使って簡単に操作する方法を説明します。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-1-access-the-lab">ステップ1: ラボへアクセスする</h3>
+<p>
+    Burpブラウザを起動して、次のURLにアクセスします:
+</p>
+<code class="code-scrollable">https://portswigger.net/web-security/deserialization/exploiting/lab-deserialization-modifying-serialized-objects</code><p>
+    <strong>Access the lab</strong>をクリックしプロンプトが表示されたら、自分のPortSwiggerアカウントでログインします。すると、意図的に脆弱性を作り込んだあなた専用のブログサイトが開きます。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-2-log-in-to-a-user-account">ステップ2: ユーザアカウントでログインする</h3>
+<p>
+    <strong>My account</strong>をクリックし、次の認証情報を使用してログインします: <code>wiener:peter</code>
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-3-use-the-inspector-to-examine-the-request">ステップ3: Inspectorでリクエストを調べる</h3>
+<p>
+    <strong>Proxy &gt; HTTP履歴</strong>タブに移動し、<code>GET /my-account</code>リクエストを選択します。
+</p>
+<p>
+    <strong>Inspector</strong>パネルで、<strong>リクエストcookies</strong>セクションを展開します。
+</p>
+<p>
+    <strong>&gt;</strong>をクリックして、<code>session</code> cookieを展開します。Inspectorは自動的に、正しい手順でcookieの値をデコードしていることに注目してください。今回は、URLデコードした後、Base64デコードした結果が表示されています。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/inspector-cookie-decoding.png" alt="cookieのデコード">
+</div>
+<p>
+    <code>GET /my-account</code>リクエストを右クリックし、<strong>Repeaterへ送信</strong>を選択します。
+</p>
+<p>
+    <strong>Repeater</strong>タブに移動し、<code>session</code> cookieを再度展開します。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-4-use-the-inspector-to-edit-the-cookie">ステップ4: Inspectorでcookieを編集する</h3>
+<p>
+    Repeaterで、デコードされた値を編集できます。たとえば<strong>Base64デコード</strong>されたフィールドで、<code>wiener</code>を<code>administrator</code>に変更し、<strong>変更を適用</strong>をクリックします。
+</p>
+<p>
+    変更された値をリクエストに挿入する際に、インスペクターが自動的に正しい順序でエンコードを再適用していることに注目してください。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/inspector-edit-cookie.png" alt="Inspectorでcookieを編集">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-5-using-the-selection-widget">ステップ5: 選択ウィジェットを使う</h3>
+<p>
+    メッセージエディタで任意の文字列を選択し、Inspectorで調べることも可能です。
+</p>
+<p>
+    Inspectorビューに戻り、<code>session</code> cookieを手動で選択します。先程と同じように、Inspectorが選択部分を自動的にデコードすることに注目してください。
+</p>
+<p>
+    これは、Inspectorが自動的に解析できない部分文字列や、非標準的なデータ構造を扱う場合に特に便利です。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/inspector-selector-widget.png" alt="Inspector選択ウィジェット">
+</div>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="learn-more-about-the-inspector">Inspectorの詳細</h2>
+<p>
+    これで、エンコードされた値をInspectorを使って簡単に操作する方法を学びました。次のリンクも参照してください:
+</p>
+<ul>
+    <li>
+        <p>
+            <a href="inspector.html#configuring-inspector-display-settings">Inspectorのカスタマイズ</a>。
+        </p>
+    </li>
+    <li>
+        <p>
+            <a href="inspector.html">Inspectorの完全なドキュメント</a>。
+        </p>
+    </li>
+</ul>
+<p>
+    さらに上級者向けに、Inspectorには<a href="../../http2/index.html">HTTP/2リクエストを扱う</a>ための独自の機能があり、さまざまな方法でHTTP/2特有のリクエストスマグリング脆弱性を悪用できます。<a href="https://portswigger.net/web-security/request-smuggling/advanced">Webセキュリティアカデミー</a>で、これらについて幅広く取り上げています。
+</p>
+</body>
+</html>

@@ -45,32 +45,24 @@
     </p>
 </div>
 <p>
-    Burp Proxyは、対象アプリケーションにアクセスするために使用しているブラウザと連動して動作します。次のどちらでも可能です:
+    Burp Proxyは、対象アプリケーションへのアクセスに使用する<strong><a href="../../functions/burps-browser.html">Burpブラウザ</a></strong>と連動して動作します。Burpブラウザを起動するには、<strong>Proxy &gt; インターセプト</strong>タブに移動し、<strong>ブラウザを開く</strong>をクリックします。新しいブラウザセッションが開き、すべてのトラフィックが自動的にBurpを経由するようプロキシされます。これでHTTPSもテストできます。
 </p>
-<ul>
-    <li>
-        追加の設定が不要な、<strong>Burpの<a href="../../functions/embedded-browser.html">内蔵ブラウザ</a>を使用</strong>する。<strong>Proxy &gt; インターセプト</strong>タブに移動し、<strong>ブラウザを開く</strong>をクリックします。新しいブラウザセッションが開き、すべてのトラフィックが自動的にBurpを経由するようプロキシされます。BurpのCA証明書をインストールしなくても、これでHTTPSもテストできます。
-    </li>
-    <li>
-        お好みの<strong>外部のブラウザを使用する</strong>。さまざまな理由でBurpの内蔵ブラウザを使用したくない場合があります。この場合追加の手順が必要で、Burpと共に動作するよう<a href="../../external-browser-config/index.html">ブラウザを設定</a>し、使用するブラウザに<a href="../../external-browser-config/certificate/index.html">BurpのCA証明書をインストール</a>する必要があります。
-    </li>
-</ul>
 <div class="container">
     <div class="youtube-wrapper">
         <iframe src="https://www.youtube.com/embed/ouDe5sJ_uC8?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
     </div>
 </div>
 <p>
-    ブラウザのトラフィックをBurpが正常にプロキシしていることを確認したら、次の手順でBurp Proxyの使用方法を修得できます:
+    次の手順でBurp Proxyの使用方法を修得できます:
 </p>
 <p>
     Burpで、<strong>Proxy &gt; インターセプト</strong>タブに移動し、ボタンが<strong>インターセプト有効</strong>か確認します。(ボタンが<strong>インターセプト無効</strong>となっていたら、クリックしてインターセプト状態を反転させます)
 </p>
 <div class="rounded-dropshadow">
-    <img src="../../images/proxy-get-started-intercept-off-940.png" alt="インターセプト無効" class="center-block">
+    <img src="../../images/proxy-get-started-intercept-off.png" alt="インターセプト無効" class="center-block">
 </div>
 <p>
-    ブラウザでどこかのURLにアクセスします。ブラウザはリクエストを送信しますが、レスポンスを待って停止します。
+    BurpブラウザでどこかのURLにアクセスします。ブラウザはリクエストを送信しますが、レスポンスを待って停止します。
 </p>
 <div class="rounded-dropshadow">
     <img src="../../images/proxy-get-started-intercepted-940.png" alt="Proxyにインターセプトされたリクエスト" class="center-block">

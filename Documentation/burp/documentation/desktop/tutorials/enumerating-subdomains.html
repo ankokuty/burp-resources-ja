@@ -67,19 +67,19 @@
 <div class="highlightedarea">
     <h4>注</h4>
     <p>
-        Burpのブラウザは、暗号化されたHTTPSプロトコルでもHTTP通信を簡単にプロキシできます。設定は不要で、<strong>Proxy</strong>タブを開き、<strong>ブラウザを開く</strong>をクリックし、<strong>Intercept無効</strong>になっているか確認してください。
+        Burpブラウザは、暗号化されたHTTPSプロトコルでもHTTP通信を簡単にプロキシできます。設定は不要で、<strong>Proxy</strong>タブを開き、<strong>ブラウザを開く</strong>をクリックし、<strong>Intercept無効</strong>になっているか確認してください。
     </p>
 </div>
 <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: リクエストのインターセプト</h3>
 <p>
-    Burpのブラウザを開き、次のURLにアクセスします:
+    Burpブラウザを開き、次のURLにアクセスします:
 </p>
 <code class="code-scrollable">http://portswigger-labs.net/</code>
 <div class="rounded-dropshadow">
     <img src="images/enumerating-subdomains/portswigger-labs.png" alt="PortSwigger Labsのホームページ">
 </div>
 <p>
-    Burp Suiteで、<strong>Proxy</strong>タブに移動し、<strong>HTTP履歴</strong>タブをクリックします。ここでは、Burp Suiteを開いた後にBurpのブラウザが生成したHTTPリクエストの一覧が表示されます。
+    Burp Suiteで、<strong>Proxy</strong>タブに移動し、<strong>HTTP履歴</strong>タブをクリックします。ここでは、Burp Suiteを開いた後にBurpブラウザが生成したHTTPリクエストの一覧が表示されます。
 </p>
 <p>
     <code>http://portswigger-labs.net/</code>のリクエストを右クリックして、<strong>Intruderに送信</strong>をクリックします。
@@ -162,20 +162,20 @@
     <img src="images/enumerating-subdomains/interesting-response-burp-intruder.png" alt="Burp Intruderで表示される興味深いHTTPレスポンス">
 </div>
 <p>
-    Burpのブラウザを開き、発見したURLにアクセスします:
+    Burpブラウザを開き、発見したURLにアクセスします:
 </p>
 <code class="code-scrollable">http://staff.portswigger-labs.net/</code><p>
     ログインフォームが表示されていることを確認してください。
 </p>
 <div class="rounded-dropshadow">
-    <img src="images/enumerating-subdomains/burp-suite-hidden-login-form.png" alt="Burpのブラウザで表示された隠しログインフォーム">
+    <img src="images/enumerating-subdomains/burp-suite-hidden-login-form.png" alt="Burpブラウザで表示された隠しログインフォーム">
 </div>
 <p>
     ログイン機能がある隠れたサブドメインを発見したようです。これは、セキュリティテスターにとってとても興味をそそるでしょう。
 </p>
 <h2 id="summary-and-next-steps">まとめと次のステップ</h2>
 <p>
-    おめでとうございます - Burp Intruderを使って、ホストのサブドメインを列挙する方法がわかりました。この方法でテスト対象となる攻撃対象が増えたことで、テストアプリケーションの問題を見つけられる可能性が上がるかもしれません。
+    おめでとうございます - Burp Intruderを使って、ホストのサブドメインを列挙する方法を学びました。この方法でテスト対象となる攻撃対象が増えたことで、テストアプリケーションの問題を見つけられる可能性が上がるかもしれません。
 </p>
 <p>
     ここで見つけたようなログインフォームをBurp Intruderでブルートフォースする方法は、<a href="https://portswigger.net/web-security">Webセキュリティアカデミー</a>の<a href="https://portswigger.net/web-security/authentication">認証</a>トピックを参照するか、あるいは<a href="brute-forcing-a-login-using-burp-intruder.html">Burp Intruderを使用したログイン機構へのブルートフォースのチュートリアル</a>を参照してください。

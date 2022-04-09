@@ -33,13 +33,13 @@
 </section>
 <h1>DOM Invader</h1>
 <p>
-    DOM Invaderは、DOMベースのクロスサイトスクリプティング(DOM XSS)の脆弱性を、より迅速かつ簡単にテストできるようにするツールです。Burpのブラウザに、拡張機能としてプリインストールされています。
+    DOM Invaderは、DOMベースのクロスサイトスクリプティング(DOM XSS)の脆弱性を、より迅速かつ簡単にテストできるようにするツールです。Burpブラウザに、拡張機能としてプリインストールされています。
 </p>
 <p>
     通常、DOM XSSを発見し悪用するには、圧縮された複雑なJavaScriptの検索など、手動で面倒な手順が必要です。DOM Invaderはこの大変な作業の多くを実行します。つまり興味深い挙動を数時間ではなく数秒で発見できます。
 </p>
 <p>
-    ブラウザのDevToolsパネルのDOM Invaderビューから、DOM Invaderのすべての機能にアクセスできます。
+    BurpブラウザのDevToolsパネルのDOM Invaderビューから、DOM Invaderのすべての機能にアクセスできます。
 </p>
 <ul>
     <li>
@@ -65,18 +65,18 @@
 </div>
 <h2 id="enabling-dom-invader">DOM Invaderの有効化</h2>
 <p>
-    DOM Invaderは、Burpのブラウザにプリインストールされていますが、その機能の一部が他のテストに影響を与える可能性があるため、デフォルトでは無効になっています。有効にするには、Burpのブラウザの右上隅にあるBurp Suiteアイコンをクリック(表示されない場合は、最初にジグソーパズルのアイコンをクリック)し、Burp Suitをクリックし、<strong>DOM Invader</strong>タブに移動し、<strong>DOM Invader is on/off</strong>スイッチを切り替えます。次に変更を有効にするために、<strong>リロード</strong>ボタンをクリックするよう求められます。
+    DOM Invaderは、Burpブラウザにプリインストールされていますが、その機能の一部が他のテストに影響を与える可能性があるため、デフォルトでは無効になっています。有効にするには、Burpブラウザの右上隅にあるBurp Suiteアイコンをクリック(表示されない場合は、最初にジグソーパズルのアイコンをクリック)し、Burp Suitをクリックし、<strong>DOM Invader</strong>タブに移動し、<strong>DOM Invader is on/off</strong>スイッチを切り替えます。次に変更を有効にするために、<strong>リロード</strong>ボタンをクリックするよう求められます。
 </p>
 <div class="rounded-dropshadow">
     <img src="../../images/dom-invader-enabling.png" alt="DOM Invaderの有効化" class="center-block">
 </div>
 <p>
-    DOM Invaderを有効にした後、ブラウザのDevToolsパネルを開きます。これでDOM Invaderタブが表示されるでしょう。最高のエクスペリエンスを得るには、DevToolsパネルをブラウザウィンドウの下部への配置をお勧めします。
+    DOM Invaderを有効にした後、ブラウザのDevToolsパネルを開きます。これでDOM Invaderタブが表示されるでしょう。最高のエクスペリエンスを得るには、DevToolsパネルをブラウザウィンドウの下部への配置を推奨します。
 </p>
 <div class="highlightedarea">
     <h4>注</h4>
     <p>
-        Burpで、<strong>ユーザオプション</strong> &gt; <strong>内蔵ブラウザ</strong> &gt; <strong>内蔵ブラウザに設定と履歴の保存を許可する</strong>オプションが有効な場合、DOM Invaderはオンかオフかも含め以前の設定を記憶します。DOM Invaderが有効な状態でBurpのブラウザを閉じた場合は、この点に注意してください。
+        Burpで、<strong>ユーザオプション</strong> &gt; <strong>Burpブラウザ</strong> &gt; <strong>Burpブラウザに設定と履歴の保存を許可する</strong>オプションが有効な場合、DOM Invaderはオンかオフかも含め以前の設定を記憶します。DOM Invaderが有効な状態でBurpブラウザを閉じた場合は、この点に注意してください。
     </p>
 </div>
 <h2 id="dom-invader-settings">DOM Invader設定</h2>

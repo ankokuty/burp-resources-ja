@@ -35,7 +35,7 @@
 <h1 class="heading-2" cms-ignore-validation="HEADING_CAPITALIZATION" no-keyword-injection>Burp Repeaterによるリクエストの再発行</h1>
 <div no-keyword-injection>
     <p>
-        このチュートリアルでは、興味深いリクエストをBurp Repeaterを使って何度も繰り返し発行します。すると、リクエストのインターセプトを何度もしなくても、さまざな入力に対する対象のWebサイトの反応を調べられます。これにより、脆弱性の調査や、Burp Scannerが発見した脆弱性の確認などが非常に簡単になります。
+        このチュートリアルでは、興味深いリクエストをBurp Repeaterを使って何度も繰り返し発行します。すると、リクエストのインターセプトを何度もしなくても、さまざな入力に対する対象Webサイトの反応を調べられます。これにより、脆弱性の調査や、Burp Scannerが発見した脆弱性の確認などが非常に簡単になります。
     </p>
     <div class="highlightedarea">
         <h4>Webセキュリティアカデミー</h4>
@@ -44,15 +44,15 @@
         </p>
     </div>
     <p>
-        Burp Proxyの使い方についての<a href="intercepting-http-traffic.html">前回のチュートリアル</a>を終えていない場合は、先に進む前に済ませておくことをお勧めします。
+        Burp Proxyの使い方についての<a href="intercepting-http-traffic.html">前回のチュートリアル</a>を終えていない場合は、先に進む前に済ませておくことを推奨します。
     </p>
     <h2 id="sending-a-request-to-burp-repeater">Burp Repeaterへリクエストを送信</h2>
     <p>
         Burp Repeaterの最も一般的な使用方法は、Burpの他のツールからリクエストを送ることです。この例では、Burp ProxyのHTTP履歴からリクエストを送信してみます。
     </p>
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: 内蔵ブラウザを起動する</h3>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION, DUPLICATE_HEADINGS">ステップ1: Burpブラウザを起動する</h3>
     <p>
-        Burpのブラウザを起動し、それで次のURLにアクセスします:
+        Burpブラウザを起動し、次のURLにアクセスします:
     </p>
     <code class="code-scrollable">https://portswigger.net/web-security/information-disclosure/exploiting/lab-infoleak-in-error-messages</code><p>
         ページが読み込まれたら、<strong>Access the lab</strong>をクリックします。プロンプトが表示されたら、自分のportswigger.netのアカウントでログインしてください。数秒後、あなた専用の偽のショッピングサイトが表示されます。
@@ -76,13 +76,13 @@
     </p>
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ4: Burp Repeaterへリクエストを送信する</h3>
     <p>
-        <code>GET /product?productId=[...]</code>リクエストのどこかを右クリックし、<strong>Repeaterに送信</strong>を選択します。
+        <code>GET /product?productId=[...]</code>リクエストのどれかを右クリックし、<strong>Repeaterに送信</strong>を選択します。
     </p>
     <img src="../images/getting-started/quick-start-pro-send-to-repeater.png" alt="Burp Repeaterへリクエストを送信">
     <p>
         <strong>Repeater</strong>タブに移動すると、独自の番号のついたタブでリクエストが待機しています。
     </p>
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">Step 5: リクエストを発行しレスポンスを確認する</h3>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ5: リクエストを発行しレスポンスを確認する</h3>
     <p>
         <strong>送信</strong>をクリックすると、リクエストが発行され、サーバからのレスポンスが表示されます。このリクエストは何度でも再送でき、その都度レスポンスが更新されます。
     </p>
@@ -94,7 +94,7 @@
     </p>
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: 異なる入力でリクエストを再発行する</h3>
     <p>
-        <code>productId</code>パラメータの数字を変更し、リクエストを再送します。任意の大きめの数字を指定してみてください。
+        <code>productId</code>パラメータの数字を変更し、リクエストを再送します。大きめの数字など任意の数字を指定してみてください。
     </p>
     <img src="../images/getting-started/quick-start-pro-repeater-invalid-productid.png" alt="さまざまな入力を試す">
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: リクエスト履歴を見る</h3>
@@ -129,7 +129,7 @@
         実際のシナリオでは、このような情報が攻撃者にとって有用である場合があります。特に、そのバージョンに脆弱性があることが知られている場合はなおさらです。
     </p>
     <p>
-        ブラウザでラボに戻り、<strong>Submit solution</strong>ボタンをクリックします。レスポンスで判明したApache Strutsのバージョン番号を入力してください(2 2.3.31)。
+        Burpブラウザでラボに戻り、<strong>Submit solution</strong>ボタンをクリックします。レスポンスで判明したApache Strutsのバージョン番号を入力してください(2 2.3.31)。
     </p>
     <img src="../images/getting-started/quick-start-pro-solution.png" alt="解答の提出">
     <p>

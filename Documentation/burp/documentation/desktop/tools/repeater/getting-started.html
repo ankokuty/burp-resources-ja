@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Repeater</a>
+        </li>
+        <li>
+            <a href="getting-started.html">Burp Repeater入門</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Burp Repeater入門</h1>
+<p>
+    Burp Repeaterは、興味深いリクエストを何度でも再発行できます。すると、リクエストのインターセプトを何度もしなくても、さまざな入力に対する対象Webサイトの反応を調べられます。
+</p>
+<p>
+    Burp Repeaterを使用するには、Burpの他のツールのいずれかからリクエストを送信してください。Burp Repeaterにより、例えば脆弱性の調査や、Burp Scannerが発見した脆弱性の確認などが非常に簡単になります。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/repeater.png" alt="Burp Repeater">
+</div>
+<p>
+    Burp Repeater使い方は、下記のチュートリアルを推奨します。
+</p>
+<p>
+    詳細は、<a href="index.html">完全なドキュメント</a>を参照してください。
+</p>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="tutorial">チュートリアル</h2>
+<p>
+    この例では、Burp ProxyのHTTP履歴からBurp Repeaterにリクエストを送信してみます。次に、Burp Repeaterを使って、さまざまな入力値のリクエストを再発行し、それがレスポンスにどのような影響を与えるか見てみましょう。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-1-access-the-lab">ステップ1: ラボへアクセスする</h3>
+<p>
+    Burpブラウザを開き、次のURLにアクセスします:
+</p>
+<code class="code-scrollable">https://portswigger.net/web-security/information-disclosure/exploiting/lab-infoleak-in-error-messages</code><p>
+    <strong>Access the lab</strong>をクリックしプロンプトが表示されたら、自分のPortSwiggerアカウントでログインします。すると、意図的に脆弱性を作り込んだあなた専用のショッピングサイトが開きます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/repeater-lab.png" alt="意図的に脆弱性を作り込んだショッピングサイト">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-2-browse-the-target-site">ステップ2: 対象サイトをブラウズする</h3>
+<p>
+    ブラウザで、いくつかの製品ページをクリックしてサイトを探索します。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-3-identify-an-interesting-request">ステップ3: 興味深いリクエストを見つける</h3>
+<p>
+    Burpで、<strong>Proxy &gt; HTTP履歴</strong>タブを開きます。
+</p>
+<p>
+    商品ページにアクセスするたびに、ブラウザは<code>productId</code>クエリパラメータを付けて、<code>GET /product</code>リクエストを送信していることに注目してください。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/repeater-choose-request.png" alt="興味深いリクエストを特定">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-4-send-a-request-to-burp-repeater">ステップ4: リクエストをBurp Repeaterに送信する</h3>
+<p>
+    <code>GET /product?productId=[...]</code>リクエストのどれかを右クリックし、<strong>Repeaterに送信</strong>を選択します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/repeater-send-to-repeater.png" alt="Repeaterへリクエストを送信">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-5-issue-the-request-and-view-the-response">ステップ5: リクエストを発行しレスポンスを確認する</h3>
+<p>
+    <strong>Repeater</strong>タブに移動します。<strong>送信</strong>をクリックすると、リクエストが発行され、サーバからのレスポンスが表示されます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/repeater-request.png" alt="Burp Repeaterでレスポンスを表示">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-6-reissue-the-request-with-different-input">ステップ6: さまざまな入力でリクエストを再発行する</h3>
+<p>
+    <code>productId</code>パラメータの数字を変更し、リクエストを再送します。大きめの数字など任意の数字を指定してみて、レスポンスに影響があるかを確認します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/repeater-changed-id.png" alt="Burp Repeaterでリクエストを編集">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-7-try-sending-unexpected-input">ステップ7: 想定外の入力を送ってみる</h3>
+<p>
+    サーバは、この<code>productId</code>パラメータで整数値を受け取ることを期待しているようです。別のデータ形式をBurp Repeaterで送信し、何が起こるかを見てください。
+</p>
+<p>
+    <code>productId</code>を数字以外の文字列にした別のリクエストを送信します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/repeater-exception.png" alt="想定外の入力を送信">
+</div>
+<p>
+    整数ではない<code>productId</code>を送信すると、例外が発生するか確認してください。サーバから、スタックトレースを含む冗長なエラーレスポンスが送信され、ここに有用な情報が漏洩している可能性があります。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-8-view-the-request-history">ステップ8: リクエスト履歴を見る</h3>
+<p>
+    矢印を使うと、自分が送ったリクエストとそれに対応するレスポンスの履歴をさかのぼって確認できます。また、各矢印の横にあるドロップダウンメニューから、履歴内の特定リクエストにジャンプできます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/repeater-request-history.png" alt="Burp Repeaterのリクエスト履歴を表示">
+</div>
+<p>
+    これは、以前に送信したリクエストに戻って、特定の入力をさらに調査する場合に便利です。
+</p>
+<p>
+    このようにさまざまな入力をテストする操作は、Burp Suiteを使って手動テスト行う、最も一般的な作業の1つです。
+</p>
+<h2 id="learn-more-about-burp-repeater">Burp Repeaterの詳細</h2>
+<p>
+    これで、Burp Repeaterによるリクエストの編集や再発行、レスポンスの確認方法を学びました。次のリンクも参照してください:
+</p>
+<ul>
+    <li>
+        <a href="options.html">Burp Repeaterの設定オプション</a>
+    </li>
+    <li>
+        <a href="using.html">Burp Repeaterの完全なドキュメント</a>
+    </li>
+</ul>
+<p>
+    また、<a href="https://portswigger.net/web-security">Webセキュリティアカデミー</a>にある意図的に脆弱性を作り込んだ"ラボ"サイトを使って、Burp Repeaterやその他のBurp Suite機能の使い方を練習できます。
+</p>
+</body>
+</html>

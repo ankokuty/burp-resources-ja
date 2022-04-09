@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
 <cms page-layout="FREESTYLE"></cms>
 </head>
 <body class="section theme-white wrapper-themed">
@@ -14,19 +14,19 @@
             <a href="https://portswigger.net/support">サポートセンタ</a>
         </li>
         <li>
-            <a href="../../../index.html">ドキュメント</a>
+            <a href="../../../../index.html">ドキュメント</a>
         </li>
         <li>
-            <a href="../../index.html">デスクトップ版</a>
+            <a href="../../../index.html">デスクトップ版</a>
         </li>
         <li>
-            <a href="../index.html">ツール</a>
+            <a href="../../index.html">ツール</a>
         </li>
         <li>
-            <a href="index.html">Proxy</a>
+            <a href="../index.html">Proxy</a>
         </li>
         <li>
-            <a href="history.html">履歴</a>
+            <a href="index.html">履歴</a>
         </li>
     </ol>
 </section>
@@ -39,14 +39,25 @@
     Proxy履歴は、Proxyを通過したすべてのメッセージの<a href="#history-table">完全な記録</a>を保持します。この情報の整理をするために、<a href="#proxy-history-display-filter">フィルタ</a>や<a href="#proxy-history-annotations">注釈付け</a>ができ、Proxy履歴で<a href="#proxy-history-testing-workflow">テストワークフロー</a>を推進できます。
 </p>
 <p>
-    Proxy履歴は、<a href="intercept.html#controls">インターセプトがオフ</a>になっていても常に更新され、インターセプトせずにアプリケーション通信の監視しながら、詳細を参照できます。
+    Proxy履歴は、<a href="../intercept.html#controls">インターセプトがオフ</a>になっていても常に更新され、インターセプトせずにアプリケーション通信を監視しながら、詳細を参照できます。
 </p>
+<div class="highlightedarea">
+    <h4>クイックスタートガイド</h4>
+    <ul>
+        <li>
+            <a href="getting-started-http-history.html">Burp ProxyのHTTP履歴入門</a>
+        </li>
+        <li>
+            <a href="getting-started-websockets-history.html">Burp ProxyのWebSocket入門</a>
+        </li>
+    </ul>
+</div>
 <h2 id="history-table">履歴一覧</h2>
 <p>
-    HTTPとWebSocketメッセージが、個別の履歴一覧で表示されます。各一覧は、Proxyを通過したメッセージの完全な詳細と、<a href="intercept.html">インターセプト</a>したメッセージに対して行った変更を表示します。
+    HTTPとWebSocketメッセージは、個別の履歴一覧で表示されます。各一覧は、Proxyを通過したメッセージの完全な詳細と、<a href="../intercept.html">インターセプト</a>したメッセージに対して行った変更を表示します。
 </p>
 <p>
-    HTTPの履歴一覧には、次の列があります:
+    HTTP履歴一覧には、次の列があります:
 </p>
 <ul>
     <li>
@@ -98,11 +109,11 @@
         リクエストが行われた時刻
     </li>
     <li>
-        リクエストを受信した<a href="options/index.html#binding">リスナーポート</a>
+        リクエストを受信した<a href="../options/index.html#binding">リスナーポート</a>
     </li>
 </ul>
 <p>
-    WebSocketの履歴一覧には、次の列があります:
+    WebSocket履歴一覧には、次の列があります:
 </p>
 <ul>
     <li>
@@ -130,7 +141,7 @@
         メッセージを受信した時刻
     </li>
     <li>
-        メッセージを受信した<a href="options/index.html#binding">リスナーポート</a>
+        メッセージを受信した<a href="../options/index.html#binding">リスナーポート</a>
     </li>
 </ul>
 <p>
@@ -140,7 +151,7 @@
     一覧の列をドラッグすると、列の順序を変更できます。これは特定の列が常に表示されるようにしたい場合に便利です。
 </p>
 <p>
-    一覧から1つのアイテムを選択すると、その(HTTPまたはWebSocketメッセージ)アイテムに関連するメッセージが下部ペインに表示されます。<a href="intercept.html">ユーザのインターセプト</a>や<a href="options/index.html#response-modification">レスポンスの自動変更</a>や<a href="options/index.html#match-and-replace">検索と置換</a>によってメッセージが変更されている場合、変更された各メッセージが個別に表示されます。下部ペインには、各メッセージごとの<a href="../../functions/message-editor/index.html">メッセージエディタ</a>があり、詳細に分析できます。
+    一覧から1つのアイテムを選択すると、その(HTTPまたはWebSocketメッセージ)アイテムに関連するメッセージが下部ペインに表示されます。<a href="../intercept.html">ユーザのインターセプト</a>や<a href="../options/index.html#response-modification">レスポンスの自動変更</a>や<a href="../options/index.html#match-and-replace">検索と置換</a>によってメッセージが変更されている場合、変更された各メッセージが個別に表示されます。下部ペインには、各メッセージごとの<a href="../../../functions/message-editor/index.html">メッセージエディタ</a>があり、詳細に分析できます。
 </p>
 <p>
     さらにメインの履歴ビューでは、以下も可能です:
@@ -165,7 +176,7 @@
 </p>
 <ul>
     <li>
-        <strong>リクエストタイプ</strong> - <a href="../target/scope.html">スコープ内</a>のアイテムのみ、レスポンスがあったアイテムのみ、パラメータ付きのリクエストのみを表示できます。
+        <strong>リクエストタイプ</strong> - <a href="../../target/scope.html">スコープ内</a>のアイテムのみ、レスポンスがあったアイテムのみ、パラメータ付きのリクエストのみを表示できます。
     </li>
     <li>
         <strong>MIMEタイプ</strong> - HTML、CSS、画像など、さまざまなMIMEタイプのレスポンスを、表示または非表示にするかどうか設定できます。
@@ -184,7 +195,7 @@
         <strong>注釈</strong> - ユーザが指定した<a href="#proxy-history-annotations">コメントや色付け</a>があるアイテムだけを表示するよう設定できます。
     </li>
     <li>
-        <strong>リスナー</strong> - 指定した <a href="options/index.html#binding">リッスンポート</a>で受け取ったアイテムのみ表示します。これは<a href="#proxy-history-testing-workflow">アクセス制御のテスト</a>に便利です。
+        <strong>リスナー</strong> - 指定した <a href="../options/index.html#binding">リッスンポート</a>で受け取ったアイテムのみ表示します。これは<a href="#proxy-history-testing-workflow">アクセス制御のテスト</a>に便利です。
     </li>
 </ul>
 <p>
@@ -192,7 +203,7 @@
 </p>
 <ul>
     <li>
-        <strong>リクエストタイプ</strong> - <a href="../target/scope.html">スコープ内</a>のアイテム(WebSocket接続のURLに基づく)のみ受信する、あるいは受信または送信メッセージのみを表示できます。
+        <strong>リクエストタイプ</strong> - <a href="../../target/scope.html">スコープ内</a>のアイテム(WebSocket接続のURLに基づく)のみ受信する、あるいは受信または送信メッセージのみを表示できます。
     </li>
     <li>
         <label class="label-edition is-professional">Professional</label>
@@ -202,7 +213,7 @@
         <strong>注釈</strong> - ユーザが指定した<a href="#proxy-history-annotations">コメントや色付け</a>があるアイテムだけを表示するよう設定できます。
     </li>
     <li>
-        <strong>リスナー</strong> - 指定した <a href="options/index.html#binding">リッスンポート</a>で受け取ったアイテムのみ表示します。これは<a href="#proxy-history-testing-workflow">アクセス制御のテスト</a>に便利です。
+        <strong>リスナー</strong> - 指定した <a href="../options/index.html#binding">リッスンポート</a>で受け取ったアイテムのみ表示します。これは<a href="#proxy-history-testing-workflow">アクセス制御のテスト</a>に便利です。
     </li>
 </ul>
 <p>
@@ -235,7 +246,7 @@
     </li>
 </ul>
 <p>
-    <a href="intercept.html">インターセプトタブ</a>に表示されているアイテムにも注釈を付けられ、これらは自動的に履歴一覧にも表示されます。
+    <a href="../intercept.html">インターセプトタブ</a>に表示されているアイテムにも注釈を付けられ、これらは自動的に履歴一覧にも表示されます。
 </p>
 <p>
     気になるアイテムに注釈を付けている場合、列のソートと<a href="#proxy-history-display-filter">ディスプレイフィルタ</a>を使ってこれらのアイテムを後で素早く検索できます。
@@ -246,26 +257,26 @@
 </p>
 <h4>スコープに追加/削除</h4>
 <p>
-    選択したアイテムをスコープに追加または削除する<a href="../target/scope.html">ターゲットスコープ</a>ルールを作成します。
+    選択したアイテムをスコープに追加または削除する<a href="../../target/scope.html">ターゲットスコープ</a>ルールを作成します。
 </p>
 <h4>スキャン / ...に送信</h4>
 <p>
-    任意のアイテムを他のBurpツールに送信し、さらなる攻撃や分析が実行できます。ツール間のリクエストの送信機能は、Burpの<a href="../../penetration-testing/index.html">ユーザ主導ワークフロー</a>の中核をなします。
+    任意のアイテムを他のBurpツールに送信し、さらなる攻撃や分析が実行できます。ツール間でリクエストを送信する機能は、Burpの<a href="../../../penetration-testing/index.html">ユーザ主導ワークフロー</a>の中核をなします。
 </p>
 <h4>レスポンスをブラウザで表示</h4>
 <p>
-    選択したレスポンスをブラウザ内でレンダリングさせ、Burpの内蔵<a href="../../functions/message-editor/index.html#render-view">HTMLレンダラ</a>の制限を回避します。(Burpのインスタンスをプロキシに設定した)ブラウザにペーストできる一意なURLが生成され、レスポンスがレンダリングされます。その結果、ブラウザのリクエストがBurpによって処理され(リクエストは元のWebサーバには送信されません)、選択したレスポンスを正確に返し、最初にリクエストされたURLのコンテキストでブラウザがレスポンスを処理します。したがって、レスポンス内の相対リンクは、ブラウザによって正しく処理されます。その結果、ブラウザはレスポンスのレンダリングの課程で追加のリクエスト(画像やCSSなど)を生成する場合があり、これらはBurpの通常の方法で処理されます。
+    選択したレスポンスをBurpブラウザ内でレンダリングさせることで、Burpの内蔵<a href="../../../functions/message-editor/index.html#render-tab">HTMLレンダラ</a>の制限を回避します。このオプションを選択すると、Burpブラウザにペーストできる一意なURLが生成され、レスポンスがレンダリングされます。その結果、ブラウザのリクエストがBurpによって処理され(リクエストは元のWebサーバには送信されません)、選択したレスポンスを正確に返し、最初にリクエストされたURLのコンテキストでブラウザがレスポンスを処理します。したがって、レスポンス内の相対リンクは、Burpブラウザによって正しく処理されます。その結果、ブラウザはレスポンスのレンダリングの課程で追加のリクエスト(画像やCSSなど)を行う場合があり、これらはBurpの通常の方法で処理されます。
 </p>
 <h4>ブラウザでリクエスト</h4>
 <p>
-    選択したリクエストを(Burpのインスタンスをプロキシに設定した)ブラウザで再送信できます。次のサブオプションがあります:
+    選択したリクエストをBurpブラウザで再送信できます。次のサブオプションがあります:
 </p>
 <ul>
     <li>
         <strong>元のセッションを使う</strong> - 元のリクエストにあるCookieヘッダを正確に使ったリクエストを発行します。
     </li>
     <li>
-        <strong>現在のブラウザのセッションを使う</strong> -&nbsp;ブラウザによって提供されたcookieを使ったリクエストをBurpが発行します。あるユーザコンテキスト(管理者など)で生成されたリクエストを選択し、現在ログインしている別のユーザコンテキスト(一般ユーザなど)でリクエストを再送するなど、アクセス制御のテストを容易にするためにこの機能が使えます。複雑な多段階プロセスを扱っているとき、多段階のプロセスでcookieを何度も繰り返しProxyで修正するより、手動で一連のURLをBurpからブラウザに貼り付ける方が簡単です。
+        <strong>現在のブラウザのセッションを使う</strong> -&nbsp;ブラウザによって提供されたcookieを使ったリクエストをBurpが発行します。あるユーザコンテキスト(管理者など)で生成されたリクエストを選択し、現在ログインしている別のユーザコンテキスト(一般ユーザなど)でリクエストを再送するなど、容易にアクセス制御のテストをしたい場合にこの機能が便利です。複雑な多段階プロセスを扱っているとき、多段階のプロセスでcookieを何度も繰り返しProxyで修正するより、手動で一連のURLをBurpからブラウザに貼り付ける方が簡単です。
     </li>
 </ul>
 <h4>関連ツール</h4>
@@ -275,21 +286,21 @@
 </p>
 <ul>
     <li>
-        <strong><a href="../../functions/search.html#find-references">リファレンス検索</a></strong> - 選択したアイテムにリンクしているHTTPレスポンスを、すべてのBurpツールから探し出せます。
+        <strong><a href="../../../functions/search.html#find-references">リファレンス検索</a></strong> - 選択したアイテムにリンクしているHTTPレスポンスを、すべてのBurpツールから探し出せます。
     </li>
     <li>
-        <strong><a href="../../functions/content-discovery.html">コンテンツ探索</a></strong> - 巡回もしくはSpiderで表示されているコンテンツからはリンクされていない、コンテンツや機能を探索できます。
+        <strong><a href="../../../functions/content-discovery.html">コンテンツ探索</a></strong> - 巡回もしくはSpiderで表示されているコンテンツからはリンクされていない、コンテンツや機能を探索できます。
     </li>
     <li>
-        <strong><a href="../../functions/task-scheduler.html">スケジュールタスク</a></strong> - 指定した時間や間隔で自動的に実行するタスクを作成できます。
+        <strong><a href="../../../functions/task-scheduler.html">スケジュールタスク</a></strong> - 指定した時間や間隔で自動的に実行するタスクを作成できます。
     </li>
     <li>
-        <strong><a href="../../functions/generate-csrf-poc.html">CSRF PoCジェネレータ</a></strong> - ブラウザで表示したとき、選択したリクエストが発行されるHTMLを作成できます。
+        <strong><a href="../../../functions/generate-csrf-poc.html">CSRF PoCジェネレータ</a></strong> - ブラウザで表示したとき、選択したリクエストが発行されるHTMLを作成できます。
     </li>
 </ul>
 <h4>新規履歴ウィンドウを表示</h4>
 <p>
-    新たなウィンドウで、Proxy履歴の新たなビューを開きます。状況によっては、基になる履歴データに対して複数のビューを表示して、それぞれで異なるフィルタを適用すると便利です。たとえば、アクセス制御のテストをする際、異なるユーザコンテキストでアプリケーションにログインし、各ユーザコンテキストで発生したリクエストの異なるシーケンスを個別に確認したいことがあります。各ユーザコンテキストで異なるブラウザを使い、各ブラウザ用に異なる<a href="options/index.html#proxy-listeners">Proxyリスナー</a>を作ると実現できます。(対応するリスナーを使うよう各ブラウザの<a href="../../external-browser-config/index.html">プロキシ設定</a>を更新する必要があります。)各ブラウザ用に、別々のProxy履歴ウィンドウを開き、関連するProxyリスナーポートからのリクエストだけを表示するように<a href="#proxy-history-display-filter">ディスプレイフィルタ</a>を設定します。各ブラウザでアプリケーションを使用すると、各履歴ウィンドウには関連するユーザコンテキストのアイテムだけが表示されます。次に、(コンテキストメニューから)<strong>現在のブラウザセッションでリクエスト</strong>機能を使用すると、ブラウザ間でリクエストを切り替え、ブラウザのユーザコンテキストでどのように処理されるか判断できます。
+    新たなウィンドウで、Proxy履歴の新たなビューを開きます。状況によっては、基になる履歴データに対して複数のビューを表示して、それぞれで異なるフィルタを適用すると便利です。たとえば、アクセス制御のテストをする際、異なるユーザコンテキストでアプリケーションにログインし、各ユーザコンテキストで発生したリクエストの異なるシーケンスを個別に確認したいことがあります。各ユーザコンテキストで異なるブラウザを使い、各ブラウザ用に異なる<a href="../options/index.html#proxy-listeners">Proxyリスナー</a>を作ると実現できます。(対応するリスナーを使うよう各ブラウザの<a href="../../../external-browser-config/index.html">プロキシ設定</a>を更新する必要があります。)各ブラウザ用に、別々のProxy履歴ウィンドウを開き、関連するProxyリスナーポートからのリクエストだけを表示するように<a href="#proxy-history-display-filter">ディスプレイフィルタ</a>を設定します。各ブラウザでアプリケーションを使用すると、各履歴ウィンドウには関連するユーザコンテキストのアイテムだけが表示されます。次に、(コンテキストメニューから)<strong>現在のブラウザセッションでリクエスト</strong>機能を使用すると、ブラウザ間でリクエストを切り替え、ブラウザのユーザコンテキストでどのように処理されるか判断できます。
 </p>
 <h4>コメントを追加</h4>
 <p>

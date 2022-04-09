@@ -36,25 +36,17 @@
 </section>
 <h1>Burp Proxyの使い方</h1>
 <p>
-    Proxyツールは、Burpの<a href="../../penetration-testing/index.html">ユーザ主導ワークフロー</a>の中心部分に位置し、対象アプリケーションの詳細な動作を直接表示します。Webプロキシサーバとして動作し、中間者攻撃のようにブラウザと宛先のWebアプリケーションの間に配置します。これにより、通過する双方向の生トラフィックをインターセプト、監視、変更できます。
+    Proxyツールは、Burpの<a href="../../penetration-testing/index.html">ユーザ主導ワークフロー</a>の中心部分に位置し、対象アプリケーションの詳細な動作を直接表示します。Webプロキシサーバとして動作し、中間者攻撃のようにBurpブラウザと宛先のWebアプリケーションの間に配置します。これにより、通過する双方向の生トラフィックをインターセプト、監視、変更できます。
 </p>
 <p>
     アプリケーションがHTTPSを使っている場合、Burpはブラウザとサーバの間でTLS接続を解読し、暗号化されたデータの閲覧や変更をBurpのツールができるようにします。
 </p>
 <h2 id="getting-set-up">設定方法</h2>
 <p>
-    Burp Proxyは、対象アプリケーションにアクセスするために使用しているブラウザと連動して動作します。次のどちらでも可能です:
+    Burp Proxyは、対象アプリケーションへのアクセスに使用する<strong><a href="../../functions/burps-browser.html">Burpブラウザ</a></strong>と連動して動作します。Burpブラウザを起動するには、<strong>Proxy &gt; インターセプト</strong>タブに移動し、<strong>ブラウザを開く</strong>をクリックします。新しいブラウザセッションが開き、すべてのトラフィックが自動的にBurpを経由するようプロキシされます。これでHTTPSもテストできます。
 </p>
-<ul>
-    <li>
-        追加の設定が不要な、<strong>Burpの<a href="../../functions/embedded-browser.html">内蔵ブラウザ</a>を使用</strong>する。<strong>Proxy &gt; インターセプト</strong>タブに移動し、<strong>ブラウザを開く</strong>をクリックします。新しいブラウザセッションが開き、すべてのトラフィックが自動的にBurpを経由するようプロキシされます。BurpのCA証明書をインストールしなくても、これでHTTPSもテストできます。
-    </li>
-    <li>
-        お好みの<strong>外部のブラウザを使用する</strong>。さまざまな理由でBurpの内蔵ブラウザを使用したくない場合があります。この場合追加の手順が必要で、Burpと共に動作するよう<a href="../../external-browser-config/index.html">ブラウザを設定</a>し、使用するブラウザに<a href="../../external-browser-config/certificate/index.html">BurpのCA証明書をインストール</a>する必要があります。
-    </li>
-</ul>
 <p>
-    設定を行ったら、ブラウザで任意のURLにアクセスし、Burp Proxyの<strong>Proxy &gt; <a href="../proxy/intercept.html">インターセプト</a></strong>タブに移動します。うまく動作していれば、閲覧と変更のためHTTPリクエストが表示されるのがわかります。ブラウジングを継続するには、表示されたHTTPメッセージを転送する必要があります。すべてのエントリが<a href="../proxy/history.html">HTTP履歴</a>タブにも表示されます。
+    設定を行ったら、Burpブラウザで任意のURLにアクセスし、Burp Proxyの<strong>Proxy &gt; <a href="../proxy/intercept.html">インターセプト</a></strong>タブに移動します。うまく動作していれば、閲覧と変更のためHTTPリクエストが表示されるのがわかります。ブラウジングを継続するには、表示されたHTTPメッセージを転送する必要があります。すべてのエントリが<a href="history/index.html">HTTP履歴</a>タブにも表示されます。
 </p>
 <h2 id="intercepting-requests-and-responses">リクエストとレスポンスのインターセプト</h2>
 <p>
@@ -76,8 +68,8 @@
 <p>
     デフォルトでは、Burpのインターセプト機能は無効になっており、すべてのHTTPメッセージはユーザを介さず自動的に転送されます。有効にするには、<a href="../proxy/intercept.html">インターセプトタブ</a>でマスターインターセプトトグルを使用する必要があります。
 </p>
-<div class="section-small">
-    <img src="../../images/proxy-get-started-intercept-off-940.png" alt="インターセプトをオフ" class="center-block">
+<div class="rounded-dropshadow">
+    <img src="../../images/proxy-get-started-intercept-off.png" alt="インターセプトをオフ" class="center-block">
 </div>
 <p>
     インターセプトしたリクエストやレスポンスは<a href="../../functions/message-editor/index.html">HTTPメッセージエディタ</a>に表示され、これにはメッセージを素早く分析や操作できるように設計された多くの機能が実装されています。
@@ -96,31 +88,31 @@
 </p>
 <h2 id="using-the-proxy-history">Proxy履歴の使い方</h2>
 <p>
-    Burpは、Proxyを経由したリクエストとレスポンスの<a href="../proxy/history.html">すべての履歴</a>を管理しています。これにより、ブラウザとサーバ間の通信をレビューでき、アプリケーションの機能を理解でき、重要なテストタスクを実行できます。時々、Proxy履歴のリクエストとレスポンスを注意深くレビューする前に、<a href="../proxy/intercept.html"> Interceptタブ</a>でインターセプトを完全に無効化してアプリケーションの機能の一部を自由に巡回したい場合があります。
+    Burpは、Proxyを経由したリクエストとレスポンスの<a href="../proxy/history/index.html">すべての履歴</a>を管理しています。これにより、ブラウザとサーバ間の通信をレビューでき、アプリケーションの機能を理解でき、重要なテストタスクを実行できます。時々、Proxy履歴のリクエストとレスポンスを注意深くレビューする前に、<a href="../proxy/intercept.html"> Interceptタブ</a>でインターセプトを完全に無効化してアプリケーションの機能の一部を自由に巡回したい場合があります。
 </p>
 <p>
     Burpには、Proxy履歴の分析を補助する次の機能があります:
 </p>
 <p>
-    <a href="../proxy/history.html#history-table">履歴一覧</a>は、任意の列ヘッダをクリックすると並び替えられます(ヘッダのクリックで昇順、降順、ソートなしを循環します)。これで似たアイテムをグループ化し異常なアイテムを素早く特定できます。
+    <a href="../proxy/history/index.html#history-table">履歴一覧</a>は、任意の列ヘッダをクリックすると並び替えられます(ヘッダのクリックで昇順、降順、ソートなしを循環します)。これで似たアイテムをグループ化し異常なアイテムを素早く特定できます。
 </p>
 <div class="rounded-dropshadow">
     <img src="../../images/proxy-get-started-sort-940.png" alt="Proxy履歴の並べ替え" class="center-block">
 </div>
 <p>
-    <a href="../proxy/history.html#proxy-history-display-filter">ディスプレイフィルタ</a>でさまざまな特性のアイテムを非表示にできます。
+    <a href="../proxy/history/index.html#proxy-history-display-filter">ディスプレイフィルタ</a>でさまざまな特性のアイテムを非表示にできます。
 </p>
 <div class="rounded-dropshadow">
     <img src="../../images/proxy-history-filter-940.png" alt="Proxy履歴のフィルタ" class="center-block">
 </div>
 <p>
-    用途の説明や後で戻ってきたときに気になるアイテムを特定しやすいように、色付けとコメントでアイテムに<a href="../proxy/history.html#proxy-history-annotations">注釈</a>を付けられます。
+    用途の説明や後で戻ってきたときに気になるアイテムを特定しやすいように、色付けとコメントでアイテムに<a href="../proxy/history/index.html#proxy-history-annotations">注釈</a>を付けられます。
 </p>
 <div class="rounded-dropshadow">
     <img src="../../images/proxy-history-annotate-940.png" alt="Proxy履歴の注釈" class="center-block">
 </div>
 <p>
-    <a href="../proxy/history.html#proxy-history-testing-workflow">コンテキストメニュー</a>で追加の履歴ビューを開け、異なるフィルタを適用や、アクセス制御をテストできます。
+    <a href="../proxy/history/index.html#proxy-history-testing-workflow">コンテキストメニュー</a>で追加の履歴ビューを開け、異なるフィルタを適用や、アクセス制御をテストできます。
 </p>
 <div class="rounded-dropshadow">
     <img src="../../images/proxy-history-new-window-940.png" alt="新規履歴ウィンドウ" class="center-block">
@@ -157,7 +149,7 @@
     <img src="../../images/proxy-history-sequencer-940.png" alt="Proxy履歴からSequencerにアイテムを送信" class="center-block">
 </div>
 <p>
-    これらやその他さまざまなアクションは、<a href="../proxy/intercept.html">Interceptタブ</a>と<a href="../proxy/history.html">Proxy履歴</a>どちらのコンテキストメニューからでも実行できます
+    これらやその他さまざまなアクションは、<a href="../proxy/intercept.html">Interceptタブ</a>と<a href="../proxy/history/index.html">Proxy履歴</a>どちらのコンテキストメニューからでも実行できます
 </p>
 <h2 id="key-configuration-options-for-burp-proxy">Burp Proxyの主要な設定オプション</h2>
 <p>

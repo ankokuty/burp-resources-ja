@@ -60,12 +60,12 @@
 <div class="highlightedarea">
     <h4>注</h4>
     <p>
-        Burpのブラウザは、暗号化されたHTTPSプロトコルでもHTTP通信を簡単にプロキシできます。設定は不要で、<strong>Proxy</strong>タブを開き、<strong>ブラウザを開く</strong>をクリックし、<strong>Intercept無効</strong>になっているか確認してください。
+        Burpブラウザは、暗号化されたHTTPSプロトコルでもHTTP通信を簡単にプロキシできます。設定は不要で、<strong>Proxy</strong>タブを開き、<strong>ブラウザを開く</strong>をクリックし、<strong>Intercept無効</strong>になっているか確認してください。
     </p>
 </div>
 <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: ラボを開く</h3>
 <p>
-    Burpのブラウザを開き、次のURLにアクセスします:
+    Burpブラウザを開き、次のURLにアクセスします:
 </p>
 <code class="code-scrollable">https://portswigger.net/web-security/authentication/password-based/lab-username-enumeration-via-different-responses</code><p>
     <strong>Access the lab</strong>をクリックしプロンプトが表示されたら、自分のPortSwiggerアカウントでログインします。
@@ -81,7 +81,7 @@
     <img src="images/cluster-bomb/entering-data-into-login-form.png" alt="Webセキュリティアカデミーのログインフォームへ入力">
 </div>
 <p>
-    Burp Suiteで、<strong>Proxy</strong>タブに移動し、<strong>HTTP履歴</strong>タブをクリックします。すると、Burp Suiteを開いた後にBurpのブラウザが生成したHTTPリクエストの一覧が表示されます。
+    Burp Suiteで、<strong>Proxy</strong>タブに移動し、<strong>HTTP履歴</strong>タブをクリックします。すると、Burp Suiteを開いた後にBurpブラウザが生成したHTTPリクエストの一覧が表示されます。
 </p>
 <p>
     <strong>Method</strong>が<code>POST</code>で、<strong>URL</strong>が<code>/login</code>のリクエストを探し、それをクリックします。
@@ -175,14 +175,14 @@
     <strong>Proxy</strong>タブで、<strong>Intercept無効</strong>になっていることを確認します。
 </p>
 <p>
-    Burpのブラウザで、ラボの<strong>ログイン</strong>ページに戻り、<code>302</code>ステータスコードでメモしたユーザ名とパスワードを入力します。<strong>Log in</strong>をクリックします。これでラボを解答できます。
+    Burpブラウザで、ラボの<strong>ログイン</strong>ページに戻り、<code>302</code>ステータスコードでメモしたユーザ名とパスワードを入力します。<strong>Log in</strong>をクリックします。これでラボを解答できます。
 </p>
 <div class="rounded-dropshadow">
     <img src="images/cluster-bomb/entering-bruteforced-username-and-password.png" alt="正しいユーザー名とパスワードが入力されたWebセキュリティアカデミーのログインフォーム">
 </div>
 <h3 id="summary-and-next-steps" cms-ignore-validation="DUPLICATE_HEADINGS">まとめと次のステップ</h3>
 <p>
-    おめでとうございます - Burp Intruderでクラスター爆弾攻撃を設定して、単純なログインフォームをより簡単にブルートフォースする方法がわかりました。
+    おめでとうございます - Burp Intruderでクラスター爆弾攻撃を設定して、単純なログインフォームをより簡単にブルートフォースする方法を学びました。
 </p>
 <p>
     実際のWebアプリケーションには、ブルートフォース攻撃を阻止するための強固な対策がされていることが多いです。これらを回避する方法を知りたい場合は、<a href="https://portswigger.net/web-security">Webセキュリティアカデミー</a>の<a href="https://portswigger.net/web-security/authentication">認証</a>に関するトピックを参照してください。

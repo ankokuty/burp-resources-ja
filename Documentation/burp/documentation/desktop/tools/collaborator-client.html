@@ -32,7 +32,7 @@
 </section>
 <h1>Burp Collaboratorクライアント</h1>
 <p>
-    Burp Collaboratorクライアントは、手動テスト中に<a href="../../collaborator/index.html">Burp Collaborator</a>を使用するためのツールです。手動テストで使用するペイロードを生成し、Collaboratorサーバをポーリングしそのペイロードによるあらゆるネットワーク通信を取得します。
+    Burp Collaboratorクライアントは、手動テスト中に<a href="../../collaborator/index.html">Burp Collaborator</a>を使用するツールです。手動テストで使用するペイロードを生成し、Collaboratorサーバをポーリングしそのペイロードによるあらゆるネットワーク通信を取得します。
 </p>
 <p>
     Burp Collaboratorクライアントを実行するには、Burpメニューから<strong>Burp Collaboratorクライアント</strong>を選択してください。
@@ -61,7 +61,19 @@
     <li>
         各Collaboratorクライアントウィンドウは、ウィンドウを開いた時点の<a href="../options/misc-project.html#burp-collaborator-server">Collaboratorサーバ設定</a>に関連づけられています。Collaboratorサーバ設定を変更した場合(たとえば、他のプライベートCollaboratorサーバを使用するなど)、その設定を使用するには新たなクライアントウィンドウを開く必要があります。
     </li>
+    <li>
+        ペイロードに関連する通信内容をポーリングするために、ペイロードで使用されているドメインに自分のマシンから接続できるか確認する必要があります。
+    </li>
 </ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        WAFのブラックリストによる誤検出を減らすため、公開されているCollaboratorサーバーに定期的に新しいドメイン名を追加しています。デフォルトでBurp Collaboratorクライアントは常に、現在のバージョンのBurp Suite Professionalがリリースされた時点で利用可能な最新の公開Collaboratorドメインを使用します。現時点では、<code>burpcollaborator.net</code>か<code>oastify.com</code>のどちらかになる予定です。
+    </p>
+    <p>
+        Burp Collaboratorが最大限の効果を発揮できるよう、Burp Collaboratorクライアントを実行しているマシンが、これらの両方のドメインにポート80と443でアクセスできるようにしてください。
+    </p>
+</div>
 <h2 id="using-burp-collaborator-client">Burp Collaboratorクライアントの使用</h2>
 <p>
     状況によって、レスポンスの内容や応答時間などいずれにも、アプリケーションの応答に顕著な影響が現れない場合があります。このような状況でも、データベースからテスターのサーバへの帯域外ネットワーク接続をさせることで、脆弱性を検出できる場合があります。Burp Scannerは、Burp Collaborator機能を使ってこの手法を行います。

@@ -108,10 +108,10 @@
         </summary>
         <div class="content">
             <h5>原因</h5><p>
-                Burp Scannerは、記録されたログインシーケンスを再生するために使用する内蔵ブラウザを起動できませんでした。
+                Burp Scannerは、記録されたログインシーケンスを再生するために使用するBurpブラウザを起動できませんでした。
             </p>
             <h5>解決方法</h5><p>
-                Burp Suiteの<strong>ヘルプ</strong>メニューから、<a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">内蔵ブラウザのヘルスチェック</a>を実行してください。これにより、内蔵ブラウザの問題が診断されます。
+                Burp Suiteの<strong>ヘルプ</strong>メニューから、<a href="../desktop/functions/burps-browser.html#health-check-for-burp-s-browser">Burpブラウザのヘルスチェック</a>を実行してください。これにより、ブラウザの問題が診断されます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
@@ -137,33 +137,33 @@
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
-            <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Environment not supported by browser. (Use 'Embedded Browser Health Check' for more details.)</code></h4>
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Environment not supported by browser. (Use 'Health check for Burp's browser' for more details.)</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
-                現在のOS環境ではサポートされていないため、Burp Scannerが内蔵ブラウザを起動できませんでした。
+                現在のOS環境ではサポートされていないため、Burp ScannerがBurpブラウザを起動できませんでした。
             </p>
             <h5>解決方法</h5><p>
-                Burp Suiteの<strong>ヘルプ</strong>メニューから、<a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">内蔵ブラウザのヘルスチェック</a>を実行してください。これにより、内蔵ブラウザの問題が診断されます。
+                Burp Suiteの<strong>ヘルプ</strong>メニューから、<a href="../desktop/functions/burps-browser.html#health-check-for-burp-s-browser">Burpブラウザのヘルスチェック</a>を実行してください。これにより、ブラウザの問題が診断されます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
-            <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Could not start browser. (Use 'Embedded Browser Health Check' for more details.)</code></h4>
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Could not start browser. (Use 'Health check for Burp's browser' for more details.)</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
-                Burp Scannerは、予期せぬエラーにより内蔵ブラウザを起動できませんでした。
+                Burp Scannerは、予期せぬエラーによりBurpブラウザを起動できませんでした。
             </p>
             <h5>解決方法</h5><p>
-                Burp Suiteの<strong>ヘルプ</strong>メニューから、<a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">内蔵ブラウザのヘルスチェック</a>を実行してください。これにより、内蔵ブラウザの問題が診断されます。
+                Burp Suiteの<strong>ヘルプ</strong>メニューから、<a href="../desktop/functions/burps-browser.html#health-check-for-burp-s-browser">Burpブラウザのヘルスチェック</a>を実行してください。これにより、ブラウザの問題が診断されます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
-            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Could not start embedded browser sandbox because you are running as root. Either switch to running as an unprivileged user or allow running without sandbox</code></h4>
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Could not start Burp's browser sandbox because you are running as root. Either switch to running as an unprivileged user or allow running without sandbox</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
-                セキュリティの理由で、Linuxで内蔵ブラウザはデフォルトでサンドボックスモードで動作します。rootでログインしている場合、ブラウザが正常に起動しないことがあります。
+                セキュリティの理由で、LinuxでのBurpブラウザはデフォルトでサンドボックスモードで動作します。rootでログインしている場合、ブラウザが正常に起動しないことがあります。
             </p>
             <h5>解決方法</h5><p>
                 次の選択肢があります:
@@ -173,7 +173,7 @@
                     異なるユーザに切り替える。可能な限りこちらを推奨します。
                 </li>
                 <li>
-                    <strong>プロジェクトオプション &gt; その他 &gt; 内蔵ブラウザ</strong>で、内蔵ブラウザをサンドボックスなしで実行する。
+                    <strong>プロジェクトオプション &gt; その他 &gt; Burpブラウザ</strong>で、ブラウザをサンドボックスなしで実行する。
                 </li>
             </ol>
             <div class="highlightedarea">
@@ -183,14 +183,14 @@
             </div>
         </div>
     </details><details><summary class="component-is-expandable">
-            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Can not start embedded browser sandbox because your kernel does not support user namespaces. Please either upgrade your kernel or allow running without sandbox</code></h4>
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Can not start Burp's browser sandbox because your kernel does not support user namespaces. Please either upgrade your kernel or allow running without sandbox</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
-                Linuxでサンドボックスモードの内蔵ブラウザを実行するには、ユーザ名前空間をサポートするカーネルが必要です。
+                LinuxでBurpブラウザをサンドボックスモードで実行するには、ユーザ名前空間をサポートするカーネルが必要です。
             </p>
             <h5>解決方法</h5><p>
-                名前空間をサポートするカーネルにアップグレードするか、<strong>プロジェクトオプション &gt; その他 &gt; 内蔵ブラウザ</strong>で内蔵ブラウザをサンドボックスなしで実行するか、どちらかを選択してください。
+                名前空間をサポートするカーネルにアップグレードするか、<strong>プロジェクトオプション &gt; その他 &gt; Burpブラウザ</strong>でブラウザをサンドボックスなしで実行するか、どちらかを選択してください。
             </p>
             <div class="highlightedarea">
                 <h5>注意</h5><p>
@@ -199,25 +199,25 @@
             </div>
         </div>
     </details><details><summary class="component-is-expandable">
-            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Can not start embedded browser sandbox because the chrome-sandbox binary is not configured correctly and your kernel has user namespace cloning disabled. To enable, run the following command as root: "echo 1 &gt; /proc/sys/kernel/unprivileged_userns_clone"</code></h4>
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Can not start Burp's browser sandbox because the chrome-sandbox binary is not configured correctly and your kernel has user namespace cloning disabled. To enable, run the following command as root: "echo 1 &gt; /proc/sys/kernel/unprivileged_userns_clone"</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
-                Burp Scannerは、デフォルトで内蔵ブラウザをサンドボックスモードで実行します。それには、名前空間のクローンに対応したOS環境が必要です。サンドボックスモードは、ブラウジングをより安全にするChromiumのセキュリティ機能です。
+                Burp Scannerは、デフォルトでBurpブラウザをサンドボックスモードで実行します。それには、名前空間のクローンに対応したOS環境が必要です。サンドボックスモードは、ブラウジングをより安全にするChromiumのセキュリティ機能です。
             </p>
             <h5>解決方法</h5><p>
-                名前空間のクローンを有効にすれば、内蔵ブラウザはサンドボックスモードで実行できます。エラーメッセージにあるコマンドを実行すると、再起動するまで名前空間のクローンが有効になります。この設定を<code>sysctl.conf</code>ファイルに保存すれば、恒久的に有効にできます。詳細は、使用しているOSのドキュメントを参照してください。
+                名前空間のクローンを有効にすれば、Burpブラウザはサンドボックスモードで実行できます。エラーメッセージにあるコマンドを実行すると、再起動するまで名前空間のクローンが有効になります。この設定を<code>sysctl.conf</code>ファイルに保存すれば、恒久的に有効にできます。詳細は、使用しているOSのドキュメントを参照してください。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
-            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Can not start embedded browser sandbox because the chrome-sandbox binary is not configured correctly and your kernel has user namespace cloning disabled. To enable, run the following command as root: "echo 0 &gt; /proc/sys/kernel/userns_restrict"</code></h4>
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Can not start Burp's browser sandbox because the chrome-sandbox binary is not configured correctly and your kernel has user namespace cloning disabled. To enable, run the following command as root: "echo 0 &gt; /proc/sys/kernel/userns_restrict"</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
-                Burp Scannerは、デフォルトで内蔵ブラウザをサンドボックスモードで実行します。それには、名前空間のクローンに対応したOS環境が必要です。サンドボックスモードは、ブラウジングをより安全にするChromiumのセキュリティ機能です。
+                Burp Scannerは、デフォルトでBurpブラウザをサンドボックスモードで実行します。それには、名前空間のクローンに対応したOS環境が必要です。サンドボックスモードは、ブラウジングをより安全にするChromiumのセキュリティ機能です。
             </p>
             <h5>解決方法</h5><p>
-                名前空間のクローンを有効にすれば、内蔵ブラウザはサンドボックスモードで実行できます。エラーメッセージにあるコマンドを実行すると、再起動するまで名前空間のクローンが有効になります。この設定を<code>sysctl.conf</code>ファイルに保存すれば、恒久的に有効にできます。詳細は、使用しているOSのドキュメントを参照してください。
+                名前空間のクローンを有効にすれば、Burpブラウザはサンドボックスモードで実行できます。エラーメッセージにあるコマンドを実行すると、再起動するまで名前空間のクローンが有効になります。この設定を<code>sysctl.conf</code>ファイルに保存すれば、恒久的に有効にできます。詳細は、使用しているOSのドキュメントを参照してください。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
@@ -455,11 +455,11 @@
             </p>
         </div>
     </details><details><summary class="component-is-expandable">
-            <h4><code>Skipping current scanner check for too many consecutive embedded browser crash errors have occurred</code></h4>
+            <h4><code>Skipping current scanner check for too many consecutive Burp's browser crash errors have occurred</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
-                Burp Scannerの内蔵ブラウザがURLのリクエスト中にクラッシュしました。
+                BurpブラウザがURLのリクエスト中にクラッシュしました。
             </p>
             <h5>解決方法</h5><ul>
                 <li>
@@ -469,16 +469,16 @@
                     特定のサイトでこの現象が繰り返し発生する場合は、手動でページに移動してみて、手動でブラウズ中にブラウザがクラッシュするかどうか確認してください。
                 </li>
                 <li>
-                    複数のサイトでこの現象が発生する場合は、<a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">内蔵ブラウザのヘルスチェック</a>を実行してみてください。
+                    複数のサイトでこの現象が発生する場合は、<a href="../desktop/functions/burps-browser.html#health-check-for-burp-s-browser">Burpブラウザのヘルスチェック</a>を実行してみてください。
                 </li>
             </ul>
         </div>
     </details><details><summary class="component-is-expandable">
-            <h4><code>Skipping current insertion point for too many consecutive embedded browser crash errors have occurred</code></h4>
+            <h4><code>Skipping current insertion point for too many consecutive Burp's browser crash errors have occurred</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
-                Burp Scannerの内蔵ブラウザがURLのリクエスト中にクラッシュしました。
+                BurpブラウザがURLのリクエスト中にクラッシュしました。
             </p>
             <h5>解決方法</h5><ul>
                 <li>
@@ -488,16 +488,16 @@
                     特定のサイトでこの現象が繰り返し発生する場合は、手動でページに移動してみて、手動でブラウズ中にブラウザがクラッシュするかどうか確認してください。
                 </li>
                 <li>
-                    複数のサイトでこの現象が発生する場合は、<a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">内蔵ブラウザのヘルスチェック</a>を実行してみてください。
+                    複数のサイトでこの現象が発生する場合は、<a href="../desktop/functions/burps-browser.html#health-check-for-burp-s-browser">Burpブラウザのヘルスチェック</a>を実行してみてください。
                 </li>
             </ul>
         </div>
     </details><details><summary class="component-is-expandable">
-            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for too many consecutive embedded browser crash errors have occurred</code></h4>
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for too many consecutive Burp's browser crash errors have occurred</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
-                Burp Scannerの内蔵ブラウザがURLのリクエスト中にクラッシュしました。
+                BurpブラウザがURLのリクエスト中にクラッシュしました。
             </p>
             <div class="highlightedarea">
                 <h5>注</h5><p>
@@ -512,7 +512,7 @@
                     特定のサイトでこの現象が繰り返し発生する場合は、手動でページに移動してみて、手動でブラウズ中にブラウザがクラッシュするかどうか確認してください。
                 </li>
                 <li>
-                    複数のサイトでこの現象が発生する場合は、<a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">内蔵ブラウザのヘルスチェック</a>を実行してみてください。
+                    複数のサイトでこの現象が発生する場合は、<a href="../desktop/functions/burps-browser.html#health-check-for-burp-s-browser">Burpブラウザのヘルスチェック</a>を実行してみてください。
                 </li>
             </ul>
         </div>
@@ -528,7 +528,7 @@
                     アプリケーションのログイン設定を再確認し、提供された認証情報が正しいかどうか確認してください。
                 </li>
                 <li>
-                    <a href="../desktop/scanning/crawl-options.html#embedded-browser-options">ブラウザ画面を表示するモード</a>でBurp Scannerを実行し、ログイン試行の様子を見て、問題ないか確認してください。
+                    <a href="../desktop/scanning/crawl-options.html#burp-s-browser-options">ブラウザ画面を表示するモード</a>でBurp Scannerを実行し、ログイン試行の様子を見て、問題ないか確認してください。
                 </li>
                 <li>
                     まだ使っていない場合は、<a href="../desktop/scanning/recorded-logins.html">記録されたログインシーケンス</a>を使ってみてください。これによりBurp Scannerは、iFrameやSSOを使ったより複雑なログインフォームを扱えるようになります。
@@ -613,14 +613,14 @@
             </ul>
         </div>
     </details><details><summary class="component-is-expandable">
-            <h4><code>Crawl was configured to use embedded browser, but a browser could not be started</code></h4>
+            <h4><code>Crawl was configured to use Burp's browser, but a browser could not be started</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
-                Burp Scannerは、内蔵ブラウザを起動できませんでした。これは、内蔵ブラウザのさまざまな問題が原因の可能性があります。
+                Burp Scannerは、Burpブラウザを起動できませんでした。これは、ブラウザのさまざまな問題が原因の可能性があります。
             </p>
             <h5>解決方法</h5><p>
-                Burp Suiteの<strong>ヘルプ</strong>メニューから、<a href="../desktop/functions/embedded-browser.html#embedded-browser-health-check">内蔵ブラウザのヘルスチェック</a>を実行してください。これにより、内蔵ブラウザの問題が診断されます。
+                Burp Suiteの<strong>ヘルプ</strong>メニューから、<a href="../desktop/functions/burps-browser.html#health-check-for-burp-s-browser">Burpブラウザのヘルスチェック</a>を実行してください。これにより、ブラウザの問題が診断されます。
             </p>
         </div>
     </details><details><summary class="component-is-expandable">

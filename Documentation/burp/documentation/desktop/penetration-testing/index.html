@@ -48,18 +48,10 @@
     <a href="https://www.youtube.com/playlist?list=PLoX0sUafNGbH9bmbIANk3D50FNUmuJIF3">Burp Suite Essentialsプレイリスト</a>
 </div>
 <p>
-    ペネトレーションテストにBurpを使用するには、次のいずれかを実行します:
+    ペネトレーションテストにBurpを使用するには、追加設定が不要な<strong><a href="../functions/burps-browser.html">Burpブラウザ</a></strong>を使用してください。Burpブラウザを起動するには、<strong>Proxy &gt; インターセプト</strong>タブに移動し、<strong>ブラウザを開く</strong>をクリックします。新しいブラウザセッションが開き、すべてのトラフィックが自動的にBurpを経由するようプロキシされます。これでHTTPSもテストできます。
 </p>
-<ul>
-    <li>
-        追加の設定が不要な、<strong>Burpの<a href="../functions/embedded-browser.html">内蔵ブラウザ</a>を使用</strong>する。<strong>Proxy &gt; インターセプト</strong>タブに移動し、<strong>ブラウザを開く</strong>をクリックします。新しいブラウザセッションが開き、すべてのトラフィックが自動的にBurpを経由するようプロキシされます。BurpのCA証明書をインストールしなくても、これでHTTPSもテストできます。
-    </li>
-    <li>
-        お好みの<strong>外部のブラウザを使用する</strong>。さまざまな理由でBurpの内蔵ブラウザを使用したくない場合があります。この場合追加の手順が必要で、Burpと共に動作するよう<a href="../external-browser-config/index.html">ブラウザを設定</a>し、使用するブラウザに<a href="../external-browser-config/certificate/index.html">BurpのCA証明書をインストール</a>する必要があります。
-    </li>
-</ul>
 <p>
-    Burpを実行し、<a href="../functions/embedded-browser.html">内蔵ブラウザか</a>設定した独自の外部ブラウザを開いたら、<strong>Proxy &gt; インターセプト</strong>タブに移動し、インターセプトが有効になっているか確認します (ボタンに<strong>Intercept無効</strong>と表示されている場合は、クリックしてステータスを切り替えます)。次に、ブラウザに移動して、任意のURLにアクセスします。
+    Burpが動作し、<a href="../functions/burps-browser.html">Burpブラウザ</a>を開いたら、Proxyインターセプトタブを開き、インターセプトが有効になっていることを確認してください(もし<strong>インターセプト無効</strong>になっていたら、クリックしてインターセプト状態を反転します)。次に、ブラウザで任意のURLにアクセスします。
 </p>
 <div class="container">
     <div class="youtube-wrapper">
@@ -150,6 +142,12 @@
 <p>
     とても簡単なものから高度で専門的なものまで、さまざまなテストタスクを実行する際に、Burpのツールを組み合わせて使用できます。
 </p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        一部のテストでは、Burpブラウザを使用できない場合があります。その場合は追加の手順が必要で、Burpと共に動作するよう<a href="../external-browser-config/index.html">ブラウザを設定</a>し、ブラウザに<a href="../external-browser-config/certificate/index.html">BurpのCA証明書をインストール</a>する必要があります。
+    </p>
+</div>
 <h2 id="testing-workflow">テストワークフロー</h2>
 <p>
     手動や自動の技術を効果的に組み合わせられ、Burpの動作を完全に制御でき、テストするすべてのアプリケーションについて詳細な情報と分析を提供します。
@@ -165,15 +163,15 @@
 </div>
 <h2 id="recon-and-analysis">情報収集、分析</h2>
 <p>
-    <a href="../tools/proxy/using.html">Proxyツール</a>はBurpのワークフローの中心部に位置します。Burpの<a href="../functions/embedded-browser.html">内蔵ブラウザ</a>や自身の外部ブラウザでアプリケーションをブラウズしている間、Burpはすべての関連情報を収集しており、他のアクションを簡単に開始できます。典型的なテストで、情報収集、分析フェーズには次のタスクが行われます。
+    <a href="../tools/proxy/using.html">Proxyツール</a>はBurpのワークフローの中心部に位置します。<a href="../functions/burps-browser.html">Burpブラウザ</a>でアプリケーションを巡回している間、Burpはすべての関連情報を収集しており、他のアクションを簡単に開始できます。典型的なテストで、情報収集、分析フェーズには次のタスクが行われます。
 </p>
 <h3>アプリケーションの手動マッピング</h3>
 <p>
-    ブラウザがBurp Proxyを経由している間に、リンクを辿る、フォームを送信する、複数手順の処理を実行するなどの操作によって、<a href="../tools/target/using.html#manual-application-mapping">アプリケーションを手動でマッピング</a>します。このプロセスで、リクエストしたコンテンツがProxy<a href="../tools/proxy/using.html#using-the-proxy-history">履歴</a>とTarget<a href="../tools/target/site-map/index.html">サイトマップ</a>に取り込まれ、レスポンスから推測できる追加のコンテンツ(リンク、フォームなど)が、(<a href="../scanning/live-scans.html">ライブスキャン</a>によって)サイトマップに追加されます。<a href="../tools/target/using.html#reviewing-unrequested-items">リクエストされていないアイテム</a>(サイトマップでグレーで表示される)を確認し、ブラウザでこれらをリクエストします。
+    BurpブラウザがBurp Proxyを経由している間に、リンクを辿る、フォームを送信する、複数手順の処理を実行するなどの操作を行い、<a href="../tools/target/using.html#manual-application-mapping">アプリケーションを手動でマッピング</a>していきます。このプロセスで、リクエストしたコンテンツがProxy<a href="../tools/proxy/using.html#using-the-proxy-history">履歴</a>とTarget<a href="../tools/target/site-map/index.html">サイトマップ</a>に取り込まれ、レスポンスから推測できる追加のコンテンツ(リンク、フォームなど)が、(<a href="../scanning/live-scans.html">ライブスキャン</a>によって)サイトマップに追加されます。<a href="../tools/target/using.html#reviewing-unrequested-items">リクエストされていないアイテム</a>(サイトマップでグレーで表示される)を確認し、ブラウザでこれらをリクエストします。
 </p>
 <h3>必要な箇所で自動マッピングを実行</h3>
 <p>
-    必要に応じて、さまざまな方法でマッピングプロセスを自動化できます。以下が可能です:
+    必要に応じて、さまざまな方法でマッピングプロセスを自動化できます。次のことが可能です:
 </p>
 <ul>
     <li>
@@ -205,7 +203,7 @@
         <strong>表示</strong> - HTTPメッセージを表示する<a href="../options/display.html#http-message-display">フォント</a>と<a href="../options/display.html#character-sets">文字コード</a>や、Burp自身のUI<a href="../options/display.html#user-interface">フォント</a>が設定できます。
     </li>
     <li>
-        <strong>ターゲットスコープ</strong> - 今注目し攻撃をしようとしているアイテムを<a href="../tools/target/scope.html">ターゲットスコープ</a>に設定します。テストの初期段階で設定すべきで、Proxy<a href="../tools/proxy/history.html#proxy-history-display-filter">履歴</a>やTarget <a href="../tools/target/site-map/index.html#site-map-display-filter">サイトマップ</a>に表示されるアイテム、Proxyが<a href="../tools/proxy/options/index.html#intercepting-http-requests-and-responses">インターセプト</a>するメッセージ、<a href="../scanning/index.html">スキャン</a>されるメッセージを制御できます。
+        <strong>ターゲットスコープ</strong> - 今注目し攻撃をしようとしているアイテムを<a href="../tools/target/scope.html">ターゲットスコープ</a>に設定します。テストの初期段階で設定すべきで、Proxy<a href="../tools/proxy/history/index.html#proxy-history-display-filter">履歴</a>やTarget <a href="../tools/target/site-map/index.html#site-map-display-filter">サイトマップ</a>に表示するアイテム、Proxyが<a href="../tools/proxy/options/index.html#intercepting-http-requests-and-responses">インターセプト</a>するメッセージ、<a href="../scanning/index.html">スキャン</a>するメッセージを制御できます。
     </li>
     <li>
         <strong>プラットフォーム認証</strong> - アプリケーションサーバがプラットフォームレベル(HTTP)認証を使用している場合、Burpが自動的に<a href="../options/connections.html#platform-authentication">認証</a>するよう設定します。
@@ -219,7 +217,7 @@
 </ul>
 <h2 id="vulnerability-detection-and-exploitation">脆弱性の検出とエクスプロイト</h2>
 <p>
-    対象アプリケーションの<a href="#recon-and-analysis">情報収集と分析</a>、必要なBurpの<a href="#tool-configuration">設定</a>が終わったら、アプリケーションの脆弱性調査を開始できます。この段階では多くの場合、一度に複数のBurpツールを使用し、ツール間で個々のリクエストを受け渡してさまざまなタスクを実行し、ブラウザに戻って追加のテストを実行するのが最も効果的です。Burp全体で<a href="../functions/message-editor/index.html#context-specific-actions">コンテキストメニュー</a>を使用すると、ツール間のアイテムの受け渡しや他のアクションが実行できます。
+    対象アプリケーションの<a href="#recon-and-analysis">情報収集と分析</a>、必要なBurpの<a href="#tool-configuration">設定</a>が終わったら、アプリケーションの脆弱性調査を開始できます。この段階では多くの場合、一度に複数のBurpツールを使用し、ツール間で個々のリクエストを受け渡してさまざまなタスクを実行し、Burpブラウザに戻って追加のテストを実行するのが最も効果的です。Burp全体で<a href="../functions/message-editor/index.html#context-specific-actions">コンテキストメニュー</a>を使用すると、ツール間のアイテムの受け渡しや他のアクションが実行できます。
 </p>
 <p>
     Burpのデフォルト設定で、Proxyを通過したすべてのリクエストとレスポンスに<a href="../scanning/live-scans.html">ライブパッシブスキャン</a>が自動的に実行されます。アプリケーションを積極的に調査する前から既に、詳細な調査に裏付けられた<a href="../tools/target/site-map/index.html#issues-view">問題点</a>が登録される場合があります。
@@ -272,7 +270,7 @@
         あるユーザがアクセスでき他のユーザができない機能の特定、高権限のユーザだけにアクセスが制限されている機能に低権限のユーザがアクセスできるかのテスト、同じタイプの2人のユーザがアクセスするデータを分離するために使用している識別子の探索など、さまざまなタスクで<a href="../tools/target/site-map/comparing.html">サイトマップ比較</a>機能が使用できます。
     </li>
     <li>
-        各ブラウザごとに(異なるポートを使用する)<a href="../tools/proxy/options/index.html#proxy-listeners">Burp Proxyリスナー</a>を分離すると、異なるブラウザを使用しそれぞれのユーザコンテキストでアプリケーションにアクセスできます。追加の<a href="../tools/proxy/history.html">Proxy履歴</a>ウィンドウを(コンテキストメニューから)開き、各ウィンドウで<a href="../tools/proxy/history.html#proxy-history-display-filter">ディスプレイフィルタ</a>を設定すると、特定のProxyリスナーが受信したアイテムのみを表示できます。各ブラウザでアプリケーションを使用すると、各履歴ウィンドウには関連するユーザコンテキストのアイテムだけが表示されます。次に、(コンテキストメニューから)<strong>現在のブラウザセッションでリクエスト</strong>機能を使用すると、ブラウザ間でリクエストを切り替えて、ブラウザのユーザコンテキストでどのように処理されるか判断できます。
+        各ブラウザごとに(異なるポートを使用する)<a href="../tools/proxy/options/index.html#proxy-listeners">Burp Proxyリスナー</a>を分離すると、異なるブラウザを使用しそれぞれのユーザコンテキストでアプリケーションにアクセスできます。追加の<a href="../tools/proxy/history/index.html">Proxy履歴</a>ウィンドウを(コンテキストメニューから)開き、各ウィンドウで<a href="../tools/proxy/history/index.html#proxy-history-display-filter">ディスプレイフィルタ</a>を設定すると、特定のProxyリスナーが受信したアイテムのみを表示できます。各ブラウザでアプリケーションを使用すると、各履歴ウィンドウには関連するユーザコンテキストのアイテムだけが表示されます。次に、(コンテキストメニューから)<strong>現在のブラウザセッションでリクエスト</strong>機能を使用すると、ブラウザ間でリクエストを切り替えて、ブラウザのユーザコンテキストでどのように処理されるか判断できます。
     </li>
     <li>
         多くの権限昇格の脆弱性は、アプリケーションがユーザパラメータ内にユーザ識別子を渡し、現在のユーザコンテキストによらずその識別子で権限を特定している場合に発生します。このタイプの脆弱性を攻撃するには、<a href="../tools/intruder/using.html"> Burp Intruder</a>で(たとえば、<a href="../tools/intruder/payloads/types.html#numbers">数値</a>や<a href="../tools/intruder/payloads/types.html#custom-iterator">カスタムイテレーター</a>ペイロードタイプを使用して)適切な形式の識別子を一通り送信し、<a href="../tools/intruder/options.html#grep-extract">抽出grep</a>アイテムを設定し、アプリケーションのレスポンスからユーザ固有の気になるデータを取得します。

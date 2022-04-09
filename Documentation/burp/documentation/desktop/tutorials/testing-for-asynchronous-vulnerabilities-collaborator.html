@@ -37,17 +37,27 @@
 <p>
     <a href="../../collaborator/index.html">Burp Collaborator</a>サーバは、さまざまなネットワークサービスのカスタム実装を提供します。Burp Collaboratorクライアントは"Collaboratorペイロード"を提供し、手動テスト時にこれらを活用できるようにします。これらは、Collaboratorサーバの1つ以上のサブドメイン名です。例:
 </p>
-<code class="code-scrollable">204119i326shak9tnk6k36z8jlahj74r.burpcollaborator.net</code><p>
+<code class="code-scrollable">204119i326shak9tnk6k36z8jlahj74r.oastify.com</code>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        WAFのブラックリストによる誤検出を減らすため、公開されているCollaboratorサーバーに定期的に新しいドメイン名を追加しています。デフォルトでBurp Collaboratorクライアントは常に、現在のバージョンのBurp Suite Professionalがリリースされた時点で利用可能な最新の公開Collaboratorドメインを使用します。現時点では、<code>burpcollaborator.net</code>か<code>oastify.com</code>のどちらかになる予定です。
+    </p>
+    <p>
+        Burp Collaboratorが最大限の効果を発揮できるよう、Burp Collaboratorクライアントを実行しているマシンが、これらの両方のドメインにポート80と443でアクセスできるようにしてください。
+    </p>
+</div>
+<p>
     これらのサブドメイン名をアプリケーションに挿入し、それらとの通信を試みるためにCollaboratorをポーリングします。
 </p>
-<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-1-access-the-lab">ステップ1: ラボへアクセス</h2>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-1-access-the-lab">ステップ1: ラボへアクセスする</h2>
 <p>
-    Burpのブラウザを開き、次のURLにアクセスします:
+    Burpブラウザを開き、次のURLにアクセスします:
 </p>
 <code> https://portswigger.net/web-security/ssrf/blind/lab-out-of-band-detection </code><p>
     <strong>Access the lab</strong>をクリックしプロンプトが表示されたら、自分のPortSwiggerアカウントでログインします。
 </p>
-<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-2-identify-a-suitable-input-to-test">ステップ2: テストに適した入力の特定</h2>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-2-identify-a-suitable-input-to-test">ステップ2: テストに適した入力を特定する</h2>
 <p>
     まず、アプリケーションへの入力が、二次的な非同期リクエストの生成に使用される箇所を特定する必要があります。このチュートリアルでは、このラボは商品ページを読み込むときに、<code>Referer</code>ヘッダーで指定されたURLを取得することを、既に知っていることにしましょう。
 </p>
@@ -61,7 +71,7 @@
 <div class="rounded-dropshadow">
     <img src="images/collaborator/burp-collaborator-tut-1-opening-client.png" alt="BurpメニューからBurp Collaboratorクライアントを開く">
 </div>
-<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-4-getting-a-payload-url">ステップ4: ペイロードURLの取得</h2>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-4-getting-a-payload-url">ステップ4: ペイロードURLを取得する</h2>
 <p>
     Collaboratorクライアントウィンドウで、<strong>クリップボードにコピー</strong>をクリックします。
 </p>
@@ -77,14 +87,14 @@
         生成したペイロードを使用している間は、Burp Collaboratorクライアントのウィンドを開いたままにしておく必要があります。各Collaboratorクライアントウィンドウは、自身が生成したペイロードとの通信しかポーリングできず、ウィンドウを閉じてしまうと再び開く方法はありません。
     </p>
 </div>
-<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-5-inject-your-collaborator-payload-into-a-request">ステップ5: Collaboratorペイロードをリクエストに挿入</h2>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-5-inject-your-collaborator-payload-into-a-request">ステップ5: リクエストにCollaboratorペイロードを挿入する</h2>
 <p>
     <strong>Repeater</strong>で、<code>Referer</code>ヘッダのURLを、Collaboratorペイロードに置き換えてリクエストを送信します。
 </p>
 <div class="rounded-dropshadow">
     <img src="images/collaborator/burp-collaborator-tut-3-injecting-the-payload.png" alt="ペイロードの挿入">
 </div>
-<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-6-poll-for-interactions">ステップ6: 通信のポーリング</h2>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-6-poll-for-interactions">ステップ6: 通信をポーリングする</h2>
 <p>
     先程開いたBurp Collaboratorクライアントのウィンドウに戻ります。
 </p>

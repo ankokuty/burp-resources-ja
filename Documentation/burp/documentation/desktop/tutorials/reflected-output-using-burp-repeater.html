@@ -51,7 +51,7 @@
 </ul>
 <h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-1-find-an-interesting-request">ステップ1: 興味深いリクエストを探す</h2>
 <p>
-    Burpのブラウザを使って、次のラボにアクセスします:
+    Burpブラウザを使って、次のラボにアクセスします:
 </p>
 <code class="code-scrollable">https://portswigger.net/web-security/cross-site-scripting/reflected/lab-html-context-nothing-encoded</code><p>
     意図的に脆弱性を作り込んだブログサイトで、識別しやすい任意の文字列を検索バーを使って検索します。これは一般に"カナリア"と呼ばれています。
@@ -62,14 +62,14 @@
 <p>
     見た通り、結果ページには入力した検索語が表示されています。Burp Repeaterを使い、この反射された入力がサーバで適切にサニタイズされているかどうかをテストしてみましょう。
 </p>
-<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-2-send-the-request-to-burp-repeater">ステップ2: Burp Repeaterにリクエストを送信</h2>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-2-send-the-request-to-burp-repeater">ステップ2: Burp Repeaterにリクエストを送信する</h2>
 <p>
-    Burpのブラウザを使用しているため、対象サイトとのHTTP通信の履歴を<strong>Proxy &gt; HTTP履歴</strong>タブで確認できます。
+    Burpブラウザを使用しているため、対象サイトとのHTTP通信の履歴を<strong>Proxy &gt; HTTP履歴</strong>タブで確認できます。
 </p>
 <p>
     検索クエリを送信した、<code>GET /?search=CANARY</code>リクエストを探します。<a href="../functions/sending-requests-between-tools.html">これをBurp Repeaterに送信</a>します。
 </p>
-<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-3-search-the-response-for-your-reflected-input">ステップ3: 入力が反射されたレスポンスを検索</h2>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-3-search-the-response-for-your-reflected-input">ステップ3: 入力が反射されたレスポンスを検索する</h2>
 <p>
     <strong>Repeater</strong>タブに移動すると、番号のついたタブでリクエストを確認できます。
 </p>
@@ -85,11 +85,11 @@
 <div class="rounded-dropshadow">
     <img src="images/reflected-xss-repeater/reflected-xss-tut-3-searching-for-string.png" alt="Burp Repeaterで検索機能を使用">
 </div>
-<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-4-identify-the-injection-context">ステップ4: 挿入された文脈の特定</h2>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-4-identify-the-injection-context">ステップ4: 挿入された文脈を特定する</h2>
 <p>
     レスポンスで、自分の入力が反射された周囲の文脈を調査します。これは、攻撃を成立させるために使用できる潜在的なXSS手法に影響します。今回は、入力した内容がHTML<code>&lt;h1&gt;</code>要素に反射していることがわかります。
 </p>
-<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-5-test-for-flawed-input-sanitization">ステップ5: 入力のサニタイズ不備のテスト</h2>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-5-test-for-flawed-input-sanitization">ステップ5: 入力のサニタイズ不備をテストする</h2>
 <p>
     このリクエスト内で、<code>search</code>パラメータ値の先頭に、<code>&lt;script&gt;</code>タグを追加します。これで、<code>&lt;</code>と<code>&gt;</code>の文字、あるいはタグ全体がサーバによって適切にフィルタリングやサニタイズされるかどうかをテストします。
 </p>
@@ -108,7 +108,7 @@
         <img src="images/reflected-xss-repeater/reflected-xss-tut-4-back-and-forward-arrows.png" alt="Burp Repeaterタブの戻ると進むボタン">
     </div>
 </div>
-<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-6-send-an-xss-proof-of-concept">ステップ6: XSSの概念実証を送信</h2>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-6-send-an-xss-proof-of-concept">ステップ6: XSSの概念実証を送信する</h2>
 <p>
     リクエスト内で、searchパラメータの値を<code>&lt;script&gt;alert(1)&lt;/script&gt;CANARY</code>のような完全なXSS概念実証攻撃に変更し、リクエストを送信します。
 </p>

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Proxy</a>
+        </li>
+        <li>
+            <a href="getting-started-intercept.html">Burp Proxyのインターセプト機能入門</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Burp Proxyのインターセプト機能入門</h1>
+<p>
+    Burp Proxyのインターセプト機能は、ブラウザと対象サーバ間で送受信されるHTTPリクエストとレスポンスをインターセプトします。これにより、さまざまな操作によるWebサイトの挙動の変化を調査できます。
+</p>
+<p>
+    インターセプト機能を使うと、次のような便利なアクションが行えます:
+</p>
+<ul>
+    <li>
+        リクエストをインターセプトし、サーバに転送する前に変更する。
+    </li>
+    <li>
+        興味深いリクエストを、RepeaterやIntruderなどBurpの他のツールに送信し、さらにテストする。
+    </li>
+    <li>
+        リクエストがサーバに送信されないよう破棄する。
+    </li>
+</ul>
+<p>
+    インターセプト機能は、<strong>Proxy &gt; インターセプト</strong>タブにあります。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/intercept.png" alt="Proxy &gt; インターセプトタブ" class="center-block">
+</div>
+<p>
+    Burp Proxyのインターセプト機能の使い方は、次のチュートーリアルを推奨します。
+</p>
+<p>
+    詳細は、<a href="intercept.html">完全なドキュメント</a>を参照してください。
+</p>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="tutorial">チュートリアル</h2>
+<p>
+    このチュートリアルでは、Burp Proxyを使ってリクエストのインターセプトと変更を行い、サーバの反応を確認します。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-1-access-the-lab">ステップ1: ラボへアクセスする</h3>
+<p>
+    Burpブラウザを開き、次のURLにアクセスします:
+</p>
+<code class="code-scrollable">https://portswigger.net/web-security/logic-flaws/examples/lab-logic-flaws-excessive-trust-in-client-side-controls</code><p>
+    <strong>Access the lab</strong>をクリックしプロンプトが表示されたら、自分のPortSwiggerアカウントでログインします。すると、意図的に脆弱性を作り込んだあなた専用のショッピングサイトが開きます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/intercept-lab.png" alt="脆弱なショッピングサイト" class="center-block">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-2-log-in-to-a-user-account">ステップ2: ユーザアカウントでログインする</h3>
+<p>
+    <strong>My account</strong>をクリックし、次の認証情報でログインします: <code>wiener:peter</code>。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-3-find-something-to-buy">ステップ3: 買いたいものを探す</h3>
+<p>
+    <strong>Home</strong>をクリックし、<strong>Lightweight "l33t" leather jacket</strong>の詳細を確認します。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-4-intercept-the-add-to-cart-request">ステップ4: カートへ追加するリクエストをインターセプトする</h3>
+<p>
+    Burpで、<strong>Proxy &gt; インターセプト</strong>タブに移動します。
+</p>
+<p>
+    <strong>インターセプト有効</strong>になっていることを確認します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/intercept-is-on.png" alt="インターセプトボタン" class="center-block">
+</div>
+<p>
+    ブラウザで、レザージャケットをカートに追加します。
+</p>
+<p>
+    Burpで、<code>POST /cart</code>リクエストがインターセプトされていることに注目してください。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/intercept-lab-2.png" alt="リクエストのインターセプト" class="center-block">
+</div>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        ブラウザがバックグラウンドで何か他のことをしていると、最初に<strong>Proxy &gt; インターセプト</strong>タブに別のリクエストが表示されることがあります。この場合は、上のスクリーンショットにあるように<code>POST /cart</code>リクエストが表示されるまで<strong>転送</strong>をクリックします。
+    </p>
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-5-modify-the-request">ステップ5: リクエストを変更する</h3>
+<p>
+    リクエストボディで、<code>price</code>パラメータの値を<code>1</code>に変更します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/intercept-edit-price.png" alt="リクエストの変更" class="center-block">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-6-send-the-modified-request-to-the-server">ステップ6: 変更したリクエストをサーバに送信する</h3>
+<p>
+    <strong>転送</strong>をクリックし、変更したリクエストをサーバに送信します。
+</p>
+<p>
+    インターセプトを再び無効に切り替えます。その後のリクエストはBurp Proxyを素通りするため、通常通りサイトのブラウズができます。ブラウザが発行したリクエストは引き続き、<strong>Proxy &gt; HTTP履歴</strong>タブに記録されます。
+</p>
+<p>
+    Burpブラウザで、右上のバスケットアイコンをクリックすると、カートが表示されます。ジャケットが追加されていますが、価格はわずか1セントに変更されており、購入の完了までできることに注目してください。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Webインターフェースだけでは価格は変更できません。この変更ができたのは、Burp Proxyのおかげです。
+    </p>
+</div>
+<h2 id="learn-more-about-burp-proxy-s-intercept-feature">Burp Proxyのインターセプト機能の詳細</h2>
+<p>
+    これでBurp Proxyのインターセプト機能を使用して、HTTPトラフィックをインターセプトし、レビューし、操作する方法を学びました。次のリンクも参照してください:
+</p>
+<ul>
+    <li>
+        <a href="options/index.html">インターセプト機能の設定オプション</a>。
+    </li>
+    <li>
+        <a href="intercept.html">インターセプト機能の完全なドキュメント</a>。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        同じリクエストで異なる入力をテストしたい場合は、Burp Repeaterにリクエストを送信できます。これは、同じリクエストを何度でも編集して再送信できるので、その都度インターセプトする必要がありません。詳細は、<a href="../repeater/getting-started.html">Burp Repeater入門</a>を参照してください。
+    </p>
+</div>
+<p>
+    また、<a href="https://portswigger.net/web-security">Webセキュリティアカデミー</a>にある意図的に脆弱性を作り込んだ"ラボ"サイトを使って、Proxyインターセプトやその他のBurp Suite機能の使い方を練習できます。
+</p>
+</body>
+</html>

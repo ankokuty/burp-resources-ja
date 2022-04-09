@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Logger</a>
+        </li>
+        <li>
+            <a href="getting-started.html">Logger入門</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Logger入門</h1>
+<p>
+    <strong>Logger</strong>タブには、Burpの全ツールと対象Webサイトの間で送受信されたすべてのHTTPトラフィックのログが表示されます。これには、Burp Scannerのような自動的にリクエストを送信するツールや拡張も含まれます。
+</p>
+<p>
+    ここから、次のことが可能です:
+</p>
+<ul>
+    <li>
+        Burpのツールや拡張から送信されたリクエストの調査。
+    </li>
+    <li>
+        Burp Scannerが送信したリクエストをリアルタイムで見る。
+    </li>
+    <li>
+        拡張の動作を検証する。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>LoggerとProxy HTTP履歴の違いは？</h4>
+    <p>
+        <strong>Proxy &gt; HTTP履歴</strong>タブには、Burpブラウザからのトラフィックのみが表示されます。デフォルトで、<strong>Logger</strong>はBurp Suiteのすべてのツールからのトラフィックを表示します。
+    </p>
+</div>
+<p>
+    <strong>Logger</strong>タブを使い始めるには、下記のチュートリアルを推奨します。
+</p>
+<p>
+    詳細は、<a href="index.html">完全なドキュメント</a>を参照してください。
+</p>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="tutorial">チュートリアル</h2>
+<p>
+    このチュートリアルでは、<strong>Logger</strong>タブを使用して、Burp Scannerが送信したリクエストと対象Webサイトからのレスポンス結果を表示する方法を説明します。
+</p>
+<h3 cms-ignore-validation="DUPLICATE_HEADINGS" id="step-1-access-the-lab">ステップ1: ラボへアクセスする</h3>
+<p>
+    Burpブラウザと<strong>Logger</strong>タブを並べて開きます。
+</p>
+<p>
+    Burpブラウザで次のURLにアクセスします:
+</p>
+<code class="code-scrollable">https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data</code><p>
+    <strong>Access the lab</strong>をクリックしプロンプトが表示されたら、自分のPortSwiggerアカウントでログインします。すると、意図的に脆弱性を作り込んだあなた専用のショッピングサイトが開きます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/getting-started/getting-started-logger-tab-1a-side-by-side.png" alt="LoggerタブとBurpブラウザを並べて開く">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-2-view-requests-on-the-logger-tab">ステップ2: Loggerタブでリクエストを表示する</h3>
+<p>
+    <strong>Logger</strong>タブには、<strong>Proxy &gt; HTTP履歴</strong>タブと同様に、ブラウザが行った各リクエストの詳細がリアルタイムで表示されます。
+</p>
+<p>
+    ショッピングサイトで、カテゴリーフィルタをどれか適用します。するとクエリパラメータ付きのリクエストが送信されることに注目してください。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/getting-started/getting-started-logger-tab-2-query-parameter.png" alt="ショッピングサイトでカテゴリを選択した結果クエリパラメータ付きのリクエストが発生">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-3-audit-a-specific-request-with-burp-scanner">ステップ3: Burp Scannerで特定のリクエストを診断する</h3>
+<p>
+    <strong>Logger</strong>タブからそれぞれのリクエストを選択して、Burp Scannerで診断ができます。
+</p>
+<p>
+    <code>category</code>クエリパラメータが付いたリクエストを右クリックし、<strong>アクティブスキャン実行</strong>を選択します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/getting-started/getting-started-logger-tab-3-context-menu.png" alt="コンテキストメニューからアクティブスキャン実行を選択">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-4-examine-the-requests-made-by-burp-scanner">ステップ4: Burp Scannerが作成したリクエストを検証する</h3>
+<p>
+    Burp Scannerは、このリクエストのみを使用して診断を実行します。
+</p>
+<p>
+    Proxy履歴とは異なり<strong>Logger</strong>タブには、Burp Scannerが診断する際に生成したリクエストも表示されていることに注目してください。
+</p>
+<p>
+    これは<strong>Tool</strong>列で確認できます。
+</p>
+<p>
+    任意のリクエストを選択すると、メッセージエディタに表示されます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/getting-started/getting-started-logger-tab-4-message-editor.png" alt="ツール列とメッセージエディタ">
+</div>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        ダッシュボードのタスクにも、そのタスク専用の<strong>Logger</strong>タブがあります。<strong>詳細表示</strong>をクリックすると表示されます。
+    </p>
+</div>
+<div class="rounded-dropshadow">
+    <img src="../../images/getting-started/getting-started-logger-tab-5-dashboard-logger.png" alt="ダッシュボードのタスクのLoggerウィンドウ">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-5-sort-and-filter-the-logger-tab">ステップ5: Loggerタブをソートとフィルタリングする</h3>
+<p>
+    ログはソートやフィルタリングもできます。
+</p>
+<p>
+    ログをソートするには、列ヘッダをクリックします。ログをソートして、最新のリクエストが上に来るようにすると便利です。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/getting-started/getting-started-logger-tab-6-window-sorted.png" alt="ソートされたLoggerウィンドウ">
+</div>
+<p>
+    <strong>表示フィルタ</strong>バーをクリックすると、表示するリクエストをフィルタリングできます。
+</p>
+<p>
+    ログのフィルタリングだけではなく、<strong>キャプチャフィルタ</strong>バーをクリックすると、そもそもどのリクエストをログに記録するかを制御できます。これらの設定では、ログが使用できるメモリ量や、リクエストとレスポンスが保存される最大サイズも制御します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/getting-started/getting-started-logger-tab-7-filter-settings.png" alt="フィルタ設定画面とボタン">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-6-disable-and-clear-the-logger-history">ステップ6: Logger履歴を無効にして消去する</h3>
+<p>
+    すべてのアイテムのログを無効にするには、<strong>ログ: オン/オフ</strong>ボタンをクリックします。
+</p>
+<p>
+    画面右上の<strong>ログ: オン/オフ</strong>ボタンの下にあるゴミ箱のアイコンをクリックすると、ログを完全に消去できます。クリアしてしまうと、ログは復旧できません。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/getting-started/getting-started-logger-tab-8-logging-on-and-bin.png" alt="ログ:オン/オフボタンとゴミ箱アイコン">
+</div>
+<h2 id="learn-more-about-logger">Loggerの詳細</h2>
+<p>
+    これで、Burp Suiteから送信されたリクエストを<strong>Logger</strong>タブを使用して調査する概要を学びました。
+</p>
+<p>
+    詳細は、<a href="index.html"><strong>Logger</strong>タブの完全なドキュメント</a>を参照してください。
+</p>
+</body>
+</html>

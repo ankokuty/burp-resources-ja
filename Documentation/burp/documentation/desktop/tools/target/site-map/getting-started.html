@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">Target</a>
+        </li>
+        <li>
+            <a href="index.html">対象サイトマップ</a>
+        </li>
+        <li>
+            <a href="getting-started.html">入門</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>サイトマップ入門</h1>
+<p>
+    <strong>Target &gt; サイトマップ</strong>タブは、BurpブラウザでアクセスしてBurpが収集した、Webサイトに関するすべての情報を表示します。サイトマップ自体は、サイトのコンテンツを階層的なツリーで表示します。次のように整理されています:
+</p>
+<ul>
+    <li>
+        ドメイン
+    </li>
+    <li>
+        ディレクトリ
+    </li>
+    <li>
+        ファイル
+    </li>
+    <li>
+        パラメータ化されたリクエスト
+    </li>
+</ul>
+<div class="rounded-dropshadow">
+    <img src="../../../images/getting-started/site-map-populated.png" alt="ブラウザの入力によるサイトマップ" class="center-block">
+</div>
+<p>
+    デフォルトで、Burpブラウザを使用してアクセスしたサイトの情報がサイトマップに自動的に入力されていきます。テストワークフローの一部としてサイトマップを使う方法は、下記のチュートリアルを推奨します。
+</p>
+<p>
+    サイトマップ機能の詳細は、<a href="index.html">完全なドキュメント</a>を参照してください。
+</p>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="tutorial">チュートリアル</h2>
+<p>
+    このチュートリアルでは、サイトマップの主な機能と、他のツールとの連携について学びます。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-1-access-the-lab">ステップ1: ラボへアクセスする</h3>
+<p>
+    Burpブラウザを開き、次のURLにアクセスします:
+</p>
+<code class="code-scrollable">https://portswigger.net/web-security/logic-flaws/examples/lab-logic-flaws-excessive-trust-in-client-side-controls</code><p>
+    <strong>Access the lab</strong>をクリックしプロンプトが表示されたら、自分のPortSwiggerアカウントでログインします。すると、意図的に脆弱性を作り込んだあなた専用のサイトが開きます。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-2-go-to-the-site-map">ステップ2: サイトマップに移動する</h3>
+<p>
+    Burpで、<strong>Target &gt; サイトマップ</strong>タブに移動します。脆弱なラボのサイトのノードを展開します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/getting-started/site-map-lab-node.png" alt="ラボノードのツリー" class="center-block">
+</div>
+<p>
+    見ての通り、Burpは既にサイトマップへの入力を開始しています。
+</p>
+<p>
+    一部のアイテムがグレーアウトしていることに注目してください。Burpはこれらのアイテムが存在すると予測していますが、ブラウザはまだそれらに対するリクエストとレスポンスを行っていません。これはおそらく、すでに受け取った別のレスポンスにそのURLが表示されているためです。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-3-update-the-site-map">ステップ3: サイトマップを更新する</h3>
+<p>
+    サイトマップはブラウズ中に自動的に更新されます。グレーで表示されているアイテムで気になるものがあれば、サイトマップからURLをコピーして、Burpブラウザにペーストしてください。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/getting-started/site-map-copy-url.png" alt="URLをコピーしてBurpブラウザにペースト" class="center-block">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-4-filter-the-displayed-information">ステップ4: 表示する情報をフィルタリングする</h3>
+<p>
+    <strong>サイトマップ</strong>タブには、各アイテムの最初のリクエストとレスポンスなど、さまざまな情報を表示するパネルがあります。Burp Suite Professionalを使用している場合、Burp Scannerが発見したセキュリティの問題一覧も表示されます。
+</p>
+<p>
+    サイトマップのノードを選択します。パネル内の情報は、選択されたノードに応じてフィルタリングされていることに注目してください。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/getting-started/site-map-filters.png" alt="表示情報のフィルタリング" class="center-block">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-5-set-the-target-scope-using-the-site-map">ステップ5: サイトマップでターゲットスコープを設定する</h3>
+<p>
+    またサイトマップでは、Burpのターゲットスコープを簡単に設定できます。ラボのトップレベルのノードを右クリックし、<strong>スコープに追加</strong>を選択します。スコープ外のトラフィックをプロキシしないようプロンプトが表示されたら、<strong>はい</strong>をクリックします。
+</p>
+<p>
+    興味のない特定のパスやサブディレクトリをスコープから除外したい場合があります。<strong>resources &gt; images</strong>ノードを右クリックし、<strong>スコープから除外</strong>を選択します。
+</p>
+<p>
+    次に、<strong>Target &gt; スコープ</strong>タブに移動します。ラボのドメイン全体がスコープ内ですが、<strong>/resources/images</strong>ディレクトリは除外されていることがわかります。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/getting-started/site-map-target-scope.png" alt="サイトマップを使ったターゲットスコープの設定" class="center-block">
+</div>
+<p>
+    興味のないアイテムは、サイトマップから削除もできます。これらは、スコープを設定する前に追加されたドメインである可能性があります。アイテムを選択して右クリックし、<strong>選択したアイテムを削除</strong>を選択します。
+</p>
+</body>
+</html>

@@ -61,9 +61,9 @@
 <p>
     このチュートリアルでは、Webセキュリティアカデミーにある意図的に脆弱性を作り込んだラボを使用して、Intruder攻撃の基本的な設定を学びます。
 </p>
-<h3 id="step-1-access-the-lab" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">ステップ1: ラボへアクセス</h3>
+<h3 id="step-1-access-the-lab" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">ステップ1: ラボへアクセスする</h3>
 <p>
-    Burpのブラウザを開き、次のURLにアクセスします:
+    Burpブラウザを開き、次のURLにアクセスします:
 </p>
 <code class="code-scrollable">https://portswigger.net/web-security/authentication/password-based/lab-username-enumeration-via-different-responses</code><p>
     <strong>Access the lab</strong>をクリックしプロンプトが表示されたら、自分のPortSwiggerアカウントでログインします。すると、意図的に脆弱性を作り込んだあなた専用のブログサイトが開きます。
@@ -76,12 +76,12 @@
     <img src="../../images/getting-started/getting-started-with-intruder-1-login-as-anything.png" alt="無効なユーザ名とパスワードでログイン">
 </div>
 <p>
-    Burp Suiteで、<strong>Proxy &gt; HTTP履歴</strong>タブを開きます。ここには、Burpのブラウザを開いた後の、すべてのリクエストが表示されます。
+    Burp Suiteで、<strong>Proxy &gt; HTTP履歴</strong>タブを開きます。ここには、Burpブラウザを開いた後の、すべてのリクエストが表示されます。
 </p>
 <p>
     <code>POST /login</code>リクエストを探し、<a href="../../functions/sending-requests-between-tools.html">Burp Intruderに送信</a>します。
 </p>
-<h3 id="step-3-set-the-payload-positions" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">ステップ3: ペイロードポジションの設定</h3>
+<h3 id="step-3-set-the-payload-positions" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">ステップ3: ペイロードポジションを設定する</h3>
 <p>
     <strong>Intruder</strong>タブに移動します。<code>POST /login</code>リクエストが表示されたタブがあることを確認してください。これを攻撃のベースリクエストとして使用します。
 </p>
@@ -100,7 +100,7 @@
 <div class="rounded-dropshadow">
     <img src="../../images/getting-started/getting-started-with-intruder-3-request-with-payloads.png" alt="ペイロードマーカー付きリクエスト">
 </div>
-<h3 id="step-4-select-an-attack-type" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">ステップ4: 攻撃タイプの選択</h3>
+<h3 id="step-4-select-an-attack-type" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">ステップ4: 攻撃タイプを選択する</h3>
 <p>
     画面上部で、さまざまな攻撃タイプを選択できます。とりあえず、<strong>スナイパー(Sniper)</strong>になっていることを確認してください。
 </p>
@@ -108,9 +108,9 @@
     <img src="../../images/getting-started/getting-started-with-intruder-4-attack-type.png" alt="スナイパーが選択された攻撃タイプメニュー">
 </div>
 <p>
-    <a href="attack-types.html#sniper">スナイパー</a>攻撃は、1セットのペイロードを1つずつ、リクエスト内の1つのポジションに挿入します。
+    <a href="attack-types.html#sniper">スナイパー</a>攻撃は、1セットのペイロードを1つずつ、リクエスト内の1つ以上のポジションに挿入します。
 </p>
-<h3 id="step-5-add-the-payloads" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">ステップ5: ペイロードの追加</h3>
+<h3 id="step-5-add-the-payloads" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">ステップ5: ペイロードを追加する</h3>
 <p>
     あとは、使用するペイロードのリストを設定するだけです。今回のデモでは、さまざまなユーザ名でリクエストを送信し、ログイン機能の動作をテストをしてみます。
 </p>
@@ -137,7 +137,7 @@
 <div class="rounded-dropshadow">
     <img src="../../images/getting-started/getting-started-with-intruder-5-usernames-in-list.png" alt="ユーザ名を読み込んだペイロードセット">
 </div>
-<h3 id="step-6-start-the-attack" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">ステップ6: 攻撃開始</h3>
+<h3 id="step-6-start-the-attack" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">ステップ6: 攻撃を開始する</h3>
 <p>
     右上の<strong>攻撃開始</strong>をクリックします。新しい攻撃ウィンドウが開き、Burp Intruderが生成している各リクエストを確認できます。
 </p>
@@ -155,7 +155,7 @@
     攻撃が終了するのを待ち、<strong>Length</strong>列の見出しをクリックすると、結果がソートされます。見た通り、1つのレスポンスは長さが違います。
 </p>
 <div class="rounded-dropshadow">
-    <img src="../../images/getting-started/getting-started-with-intruder-7-sort-by-length.png" alt="長さでソートした履歴テーブル">
+    <img src="../../images/getting-started/getting-started-with-intruder-7-sort-by-length.png" alt="長さでソートした履歴一覧">
 </div>
 <p>
     サーバからのこのレスポンスの違いは、さらに調査する価値があります。
@@ -188,7 +188,7 @@
 </p>
 <h2 id="learn-more-about-burp-intruder" cms-ignore-validation="DUPLICATE_HEADINGS,HEADING_CAPITALIZATION">Burp Intruderの詳細</h2>
 <p>
-    単一のパラメータに対するスナイパー攻撃タイプの使用方法がわかりました。
+    これで、単一のパラメータに対するスナイパー攻撃タイプの使用方法を学びました。
 </p>
 <ul>
     <li>
