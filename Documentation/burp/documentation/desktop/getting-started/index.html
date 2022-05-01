@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Burp Suite Professional / Burp Suite Community Editionの使用開始方法。ステップ1 - マシンにソフトウェアをインストール。">
 <link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
-<cms page-layout="FREESTYLE" ignore-validation="STACKED_HEADINGS,LINK_TO_ALL_CHILD_PAGES"></cms><title>Burp Suite Professional / Community Editionのインストール</title>
+<cms page-layout="FREESTYLE" ignore-validation="STACKED_HEADINGS,LINK_TO_ALL_CHILD_PAGES"></cms><title>Burp Suite Professional / Community Edition入門</title>
 </head>
 <body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
@@ -29,62 +29,45 @@
     <label class="label-edition is-professional">Professional</label>
     <label class="label-edition is-community">Community</label>
 </section>
-<h1 no-keyword-injection cms-ignore-validation="HEADING_CAPITALIZATION" class="heading-2">ダウンロードとインストール</h1>
+<h1 no-keyword-injection cms-ignore-validation="HEADING_CAPITALIZATION">Burp Suite入門</h1>
 <div no-keyword-injection>
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: ダウンロード</h3>
     <p>
-        Burp Suite ProfessionalまたはCommunity Editionのインストーラをダウンロードします。次のリンクは、最新の安定版リリースのダウンロードページを新しいタブで開きます。
-    </p>
-    <div class="callout theme-grey-5">
-        <div class="align-vertically-center container-columns-3">
-            <p class="heading-navy-1">
-                <strong>ソフトウェアを選択してください</strong>
-            </p>
-            <div class="container-columns-3">
-                <a class="button-white" href="https://portswigger.net/burp/releases/professional/latest" target="_blank"><span class="icon-get-app"></span>Professional</a><a class="button-white" href="https://portswigger.net/burp/releases/community/latest" target="_blank"><span class="icon-get-app"></span>Community Edition</a>
-            </div>
-        </div>
-    </div>
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: インストール</h3>
-    <p>
-        インストーラを実行し、Burp Suiteを起動します。
+        Burp Suiteは、Webアプリケーションのセキュリティテストを行うための総合的なツール群です。
     </p>
     <p>
-        プロジェクトファイルと設定を選択するように求められたら、<strong>次へ</strong>と<strong>Burpを開始</strong>をクリックし、ひとまずこれをスキップします。
-    </p>
-    <div class="highlightedarea">
-        <h4>注</h4>
-        <p>
-            Burp Suite Professionalを使用している場合は、プロンプトが表示されたらライセンスキーを入力してください。まだ持っていない場合は、<a href="https://portswigger.net/buy/pro">申し込み</a>または<a href="https://portswigger.net/burp/pro/trial">無料トライアルのリクエスト</a>ができます。
-        </p>
-    </div>
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: Burp Suiteの探索を開始する</h3>
-    <p>
-        Burp Suiteをまったく初めて使用する場合は、このチュートリアルの残りの部分に従って、コア機能のインタラクティブなガイド付きツアーを参照してください。
+        このインタラクティブなチュートリアルは、Burp Suiteの主な機能をできるだけ早く使い始められるように設計されています。意図的に脆弱性を作り込んだWeb Securityアカデミーのラボを使用し、Burp Suiteの動作を実践的に体験できます。
     </p>
     <div class="callout theme-community-6">
         <div class="container-columns-3 align-vertically-center">
             <p class="heading-navy-1">
-                <strong>次のステップ - </strong>Burp ProxyによるHTTPトラフィックのインターセプト
+                <strong>最初のステップ - </strong>Burp Suiteのダウンロードとインストール
             </p>
-            <a href="intercepting-http-traffic.html" class="button-orange">次へ</a>
+            <a href="download-and-install.html" class="button-orange">次へ</a>
         </div>
     </div>
-    <h3 cms-ignore-validation="DUPLICATE_HEADINGS">このチュートリアルの内容</h3>
-    <ol>
-        <li>
-            初期インストール
-        </li>
-        <li>
-            <a href="intercepting-http-traffic.html">Burp ProxyによるHTTPトラフィックのインターセプト</a>
-        </li>
-        <li>
-            <a href="reissuing-http-requests.html">Burp Repeaterによるリクエストの再発行</a>
-        </li>
-        <li>
-            <a href="running-your-first-scan.html">初めてのスキャン実行</a>
-        </li>
-    </ol>
+    <div class="highlightedarea">
+        <h4 cms-ignore-validation="DUPLICATE_HEADINGS">このチュートリアルの内容</h4>
+        <ol>
+            <li>
+                <a href="download-and-install.html">Burp Suiteのダウンロードとインストール。</a>
+            </li>
+            <li>
+                <a href="intercepting-http-traffic.html">Burp ProxyによるHTTPトラフィックのインターセプト。</a>
+            </li>
+            <li>
+                <a href="modifying-http-requests.html">Burp Proxyによるリクエストの変更。</a>
+            </li>
+            <li>
+                <a href="reissuing-http-requests.html">Burp Repeaterによるリクエストの再発行。</a>
+            </li>
+            <li>
+                <a href="running-your-first-scan.html">初めてのスキャン実行。</a>
+            </li>
+            <li>
+                <a href="what-next.html">次は？</a>
+            </li>
+        </ol>
+    </div>
 </div>
 </body>
 </html>

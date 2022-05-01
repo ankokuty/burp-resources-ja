@@ -45,7 +45,7 @@
 </div>
 <h2 id="what-is-a-cluster-bomb-attack" cms-ignore-validation="HEADING_CAPITALIZATION">クラスター爆弾とは?</h2>
 <p>
-    <a href="../tools/intruder/attack-types.html#cluster-bomb">クラスター爆弾</a>の攻撃タイプは、複数のペイロードセットを使用し、定義されたポジションごとに別のペイロードセットを割り当てます。これは、複数の異なる入力値を複数の場所に挿入し、可能な限りのあらゆる組み合わせをテストする攻撃に便利です。
+    <a href="../tools/intruder/attack-types.html#cluster-bomb">クラスター爆弾(Cluster bomb)</a>攻撃タイプは、複数のペイロードセットを使用し、定義されたポジションごとに別のペイロードセットを割り当てます。これは、複数の異なる入力値を複数の場所に挿入し、可能な限りのあらゆる組み合わせをテストする攻撃に便利です。
 </p>
 <p>
     クラスター爆弾攻撃を使用する場合、定義されたペイロードの数に応じて生成されるリクエスト数が指数関数的に増加します。つまりこの攻撃タイプは主に、比較的小さいデータセットでの反復処理を想定しています。
@@ -55,7 +55,10 @@
 </p>
 <h2 id="brute-forcing-a-login-using-a-cluster-bomb-attack" cms-ignore-validation="HEADING_CAPITALIZATION">クラスター爆弾攻撃によるログインのブルートフォース</h2>
 <p>
-    下記にあるラボの本来の課題では、解答のために2つの別々の<a href="../tools/intruder/attack-types.html#sniper">スナイパー</a>タイプの攻撃を使用するよう指示していますが、クラスター爆弾攻撃を使用するとより簡単に解答できます。これにより、ユーザ名とパスワードの両方のフィールドを同時にテストできます。
+    下記にあるラボの課題では、2つの別々の<a href="../tools/intruder/attack-types.html#sniper">スナイパー(Sniper)</a>攻撃を使って解くよう提案していますが、この例ではクラスター爆弾攻撃で解いてみます。クラスター爆弾攻撃で複数のペイロードセットを使用して、ユーザ名とパスワードフィールドを同時にテストできます。
+</p>
+<p>
+    このラボを解くのにクラスター爆弾攻撃を使用するとより多くのリクエストが送信されることになるため、スナイパー攻撃を2回行うよりも効率が悪いです。しかしスナイパー方式とは異なり、有効なユーザ名を列挙できるかどうかに依存しません。
 </p>
 <div class="highlightedarea">
     <h4>注</h4>
@@ -129,7 +132,7 @@
     <strong>ペイロード</strong>タブをクリックします。<strong>ペイロードセット</strong>が<strong>1</strong>に、<strong>ペイロードタイプ</strong>が<strong>単純リスト</strong>に設定されているか確認してください。
 </p>
 <p>
-    <strong>ペイロードオプション[単純リスト]</strong>で、<a href="https://portswigger.net/web-security/authentication/auth-lab-usernames">ユーザ名の候補</a>のリストをボックスに貼り付けます。
+    <strong>ペイロードオプション[単純リスト]</strong>で、<a href="https://portswigger.net/web-security/authentication/auth-lab-usernames">ユーザ名候補</a>のリストをボックスに貼り付けます。
 </p>
 <div class="rounded-dropshadow">
     <img src="images/cluster-bomb/configuring-burp-intruder-username-payloads.png" alt="Burp Intruderで設定されたユーザ名のペイロード">
@@ -138,7 +141,7 @@
     <strong>ペイロードセット</strong>で<strong>2</strong>を選択します。
 </p>
 <p>
-    <strong>ペイロードオプション[単純リスト]</strong>で、パスワードの候補リストをボックスに貼り付けます。<strong>リクエスト数</strong>が10,100に増えていることに注目してください。
+    <strong>ペイロードオプション[単純リスト]</strong>で、<a href="https://portswigger.net/web-security/authentication/auth-lab-passwords">パスワード候補</a>のリストをボックスに貼り付けます。<strong>リクエスト数</strong>が10,100に増えていることに注目してください。
 </p>
 <div class="rounded-dropshadow">
     <img src="images/cluster-bomb/configuring-burp-intruder-password-payloads.png" alt="Burp Intruderで設定されたパスワードペイロード">

@@ -89,29 +89,20 @@
 </div>
 <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: Intruderの挿入ポイントの設定</h3>
 <p>
-    <strong>Intruder</strong>タブを開きます。リクエストがこのタブに表示されているか注意してください。
+    <strong>Intruder</strong>タブを開くと、リクエストが表示されています。
 </p>
 <p>
-    <strong>Target</strong>フィールドで、<code>http://</code>と<code>portswigger-labs.net</code>の間にカーソルを置きます。ここが、サブドメインがある場合に位置する場所です。
-</p>
-<div class="rounded-dropshadow">
-    <img src="images/enumerating-subdomains/altering-target-in-burp-intruder.png" alt="Burp IntruderでのTargetフィールドの変更">
-</div>
-<p>
-    任意の文字を入力してください。どんな文字を選んでも問題ありません - これは挿入ポイントのプレースホルダに過ぎません。
+    <strong>Target</strong>フィールドで、サブドメインのプレースホルダーを追加します。
 </p>
 <div class="rounded-dropshadow">
     <img src="images/enumerating-subdomains/intruder-subdomain-extra-char.png" alt="Burp IntruderでTargetフィールドにキャラクターを追加する">
 </div>
 <p>
-    先ほど入力した文字を選択して、<strong>§追加</strong>ボタンをクリックします。選択されたテキストの両側に、"<code>§</code>"マークが追加されます。
+    サブドメインのプレースホルダーを選択し、<strong>§追加</strong>ボタンをクリックしてペイロードポジションとしてマークします。
 </p>
 <div class="rounded-dropshadow">
     <img src="images/enumerating-subdomains/intruder-subdomain-insertion-point.png" alt="Burp IntruderのTargetフィールドに挿入ポイントを設定">
 </div>
-<p>
-    "<code>§</code>"マークの間にあるものは、Burp Intruderがペイロードを追加するための挿入ポイントとして設定されます。
-</p>
 <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: Intruderの攻撃タイプを選択</h3>
 <p>
     このチュートリアルでは、単一の挿入ポイントに対して<a href="../tools/intruder/attack-types.html#sniper">スナイパー攻撃タイプ</a>を使用して、Intruderに潜在的なサブドメイン名のリストを循環させています。<strong>攻撃タイプの選択</strong>で、"スナイパー"が選択されていることに注目してください。その他の<a href="../tools/intruder/attack-types.html">Intruder攻撃タイプ</a>は、2つ以上の挿入ポイントが使用できます。
@@ -123,7 +114,7 @@
 <div class="highlightedarea">
     <h4>注</h4>
     <p>
-        <strong>リストから追加 ... </strong>は、<a href="../../../pro/index.html">Burp Suite Professional</a>だけの機能です。<a href="../../../communitydownload/index.html">Burp Suite Community Edition</a>でこのチュートリアルを続けたい場合は、<strong>ステップ 6</strong>を読んで興味深いディレクトリ名を見つけ、<strong>ステップ 4</strong>にあるようにペイロードオプションにこれらの名前を追加してください。
+        <strong>リストから追加 ... </strong>は、<a href="../../../pro/index.html">Burp Suite Professional</a>だけの機能です。<a href="../../../communitydownload/index.html">Burp Suite Community Edition</a>でこのチュートリアルを続けたい場合は、<strong>ステップ 5</strong>を読んで興味深いディレクトリ名を見つけ、<strong>ステップ 4</strong>にあるようにペイロードオプションにこれらの名前を追加してください。
     </p>
 </div>
 <p>
@@ -135,22 +126,12 @@
 <div class="rounded-dropshadow">
     <img src="images/enumerating-subdomains/burp-intruder-built-in-lists-burp-suite-professional.png" alt="Burp Suite ProfessionalのIntruder攻撃にディレクトリのリストを追加">
 </div>
-<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ5: ペイロード処理オプションの設定</h3>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ5: 攻撃結果の分析</h3>
 <p>
-    次に、Intruderが各ペイロードの後に"."文字を追加して、最終的に正しいURL構文にする必要があります。それには、<strong>ペイロード処理</strong>で、<strong>追加</strong>ボタンをクリックします。<strong>ルールタイプの選択</strong>ドロップダウンで、"サフィックスを追加"をクリックし、<strong>サフィックス:</strong>フィールドに"."文字を追加します。<strong>OK</strong>をクリックします。
-</p>
-<div class="rounded-dropshadow">
-    <img src="images/enumerating-subdomains/burp-intruder-payload-processing.png" alt="Burp Intruderでペイロード処理の追加">
-</div>
-<p>
-    <strong>攻撃開始</strong>ボタンをクリックします。
-</p>
-<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ6: 攻撃結果の分析</h3>
-<p>
-    攻撃が終了するのを待ちます - これには時間がかかります。
+    <strong>攻撃開始</strong>ボタンをクリックし、攻撃が終了するのを待ちます - これには時間がかかります。
 </p>
 <p>
-    <strong>Length</strong>列のヘッダをクリックすると、レスポンスを長さでソートできます。ほとんどのリクエストの長さが2937であるのに対し、サブドメイン<code>staff.</code>のリクエストの長さが377であることに注目してください。これは、このリクエストに対するレスポンスが、リストの他のものとは異なるコンテンツを含んでいることを示しています。興味深いリクエストを選択してください。
+    <strong>Length</strong>列のヘッダをクリックすると、レスポンスを長さでソートできます。ほとんどのリクエストの長さが2937であるのに対し、サブドメイン<code>staff.</code>のリクエストの長さが353であることに注目してください。これは、このリクエストに対するレスポンスが、リストの他のものとは異なるコンテンツを含んでいることを示しています。興味深いリクエストを選択してください。
 </p>
 <div class="rounded-dropshadow">
     <img src="images/enumerating-subdomains/interesting-request-burp-intruder.png" alt="Burp Intruderの攻撃で見つかった興味深いHTTPリクエスト">

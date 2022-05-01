@@ -32,10 +32,10 @@
     <label class="label-edition is-professional">Professional</label>
     <label class="label-edition is-community">Community</label>
 </section>
-<h1 class="heading-2" cms-ignore-validation="HEADING_CAPITALIZATION" no-keyword-injection>Burp ProxyによるHTTPトラフィックのインターセプト</h1>
+<h1 cms-ignore-validation="HEADING_CAPITALIZATION" no-keyword-injection>Burp ProxyによるHTTPトラフィックのインターセプト</h1>
 <div no-keyword-injection>
     <p>
-        このチュートリアルでは、意図的に脆弱性を作り込んだライブWebサイトを使用して、Burp ProxyでHTTPリクエストをインターセプトし、変更する方法を学びます。
+        このチュートリアルでは、意図的に脆弱性を作り込んだライブWebサイトを使用して、Burp ProxyでHTTPリクエストをインターセプトする方法を学びます。
     </p>
     <h2 id="intercepting-a-request">リクエストのインターセプト</h2>
     <p>
@@ -85,108 +85,39 @@
     </p>
     <img src="../images/getting-started/quick-start-pro-proxy-history.png" alt="Burp ProxyでのHTTP履歴の表示">
     <p>
-        これにより、通常通りにWebサイトを探索し、ブラウザとサーバの間のやり取りを後から調査できます。多くの場合その方が便利です。
-    </p>
-    <hr>
-    <h2 id="modifying-requests-in-burp-proxy">Burp Proxyによるリクエストの変更</h2>
-    <p>
-        このセクションでは、Burp Proxyがインターセプトしたリクエストを変更する方法を学びます。これにより、Webサイトが想定していない方法でリクエストを操作した場合の反応を確認できます。"ラボ"と呼ばれる意図的に脆弱性を作り込んだWebサイトを使用して、実際の脆弱性を発見し、悪用する方法が確認できます。
-    </p>
-    <div class="highlightedarea">
-        <h4>Webセキュリティアカデミー</h4>
-        <p>
-            この先に進むには<code>portswigger.net</code>のアカウントが必要です。まだ持っていない場合は、<a href="https://portswigger.net/users/register">登録は無料</a>で、Webセキュリティアカデミーへのフルアクセスが可能となります。
-        </p>
-    </div>
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: Burpブラウザで脆弱性のあるWebサイトにアクセスする</h3>
-    <p>
-        Burpで、<strong>Proxy &gt; インターセプト</strong>タブを開き、<a href="../tools/proxy/intercept.html#controls">インターセプトが無効</a>になっていることを確認します。
-    </p>
-    <p>
-        Burpブラウザを起動し、次のURLにアクセスします:
-    </p>
-    <code class="code-scrollable">https://portswigger.net/web-security/logic-flaws/examples/lab-logic-flaws-excessive-trust-in-client-side-controls</code><p>
-        ページが読み込まれたら、<strong>Access the lab</strong>をクリックします。プロンプトが表示されたら、自分のportswigger.netのアカウントでログインしてください。数秒後、あなた専用の偽のショッピングサイトが表示されます。
-    </p>
-    <img src="../images/getting-started/quick-start-pro-logic-lab-home.png" alt="Labのホームページ">
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: ショッピングアカウントにログインする</h3>
-    <p>
-        ショッピングサイトで、<strong>My account</strong>をクリックし、次の認証情報を使ってログインします。
-    </p>
-    <p>
-        <strong>ユーザ名: </strong><code>wiener</code>
-    </p>
-    <p>
-        <strong>パスワード: </strong><code>peter</code>
-    </p>
-    <p>
-        ちょうど100ドルのストアクレジットを持っていることに注目してください。
-    </p>
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: 買いたいものを探す</h3>
-    <p>
-        <strong>Home</strong>をクリックすると、トップページに戻ります。オプションを選択すると、<strong>Lightweight "l33t" leather jacket</strong>の商品詳細が表示されます。
-    </p>
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ4: カートに入れる機能を調査する</h3>
-    <p>
-        Burpで、<strong>Proxy &gt; Intercept</strong>タブを開き、インターセプトを有効にします。ブラウザで、レザージャケットをカートに入れて、<code>POST /cart</code>リクエストをインターセプトします。
-    </p>
-    <img src="../images/getting-started/quick-start-pro-add-to-cart.png" alt="カートに入れる機能の調査">
-    <div class="highlightedarea">
-        <h4>注</h4>
-        <p>
-            ブラウザがバックグラウンドで何か他のことをしていると、最初に<strong>Proxy &gt; インターセプト</strong>タブに別のリクエストが表示されることがあります。この場合は、上のスクリーンショットにあるように<code>POST /cart</code>リクエストが表示されるまで<strong>転送</strong>をクリックします。
-        </p>
-    </div>
-    <p>
-        インターセプトされたリクエストを調べると、ボディに<code>price</code>というパラメータがあり、これが商品の価格(セント)と一致していることに気づきます。
-    </p>
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ5: リクエストを変更する</h3>
-    <p>
-        <code>price</code>パラメータの値を1に変更し、<strong>転送</strong>をクリックすると、変更したリクエストがサーバに送信されます。
-    </p>
-    <img src="../images/getting-started/quick-start-pro-change-price.png" alt="価格パラメータの変更">
-    <p>
-        再度インターセプトを無効にして、以降のリクエストが中断せずBurp Proxyを通過できるようにします。
-    </p>
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ6: 脆弱性を悪用する</h3>
-    <p>
-        ブラウザで、右上のバスケットアイコンをクリックすると、カートが表示されます。ジャケットが1セントで追加されていることに注目してください。
-    </p>
-    <div class="highlightedarea">
-        <h4>注</h4>
-        <p>
-            Webインターフェースだけでは価格は変更できません。この変更ができたのは、Burp Proxyのおかげです。
-        </p>
-    </div>
-    <p>
-        <strong>注文する</strong>ボタンをクリックすると、非常にリーズナブルな価格でジャケットを購入できます。
-    </p>
-    <p>
-        おめでとうございます。Webセキュリティアカデミーの最初のラボを突破しました。また、Burp Proxyを使ってHTTPトラフィックをインターセプト、レビュー、変更する方法も学びました。
+        これにより、通常通りにWebサイトを探索し、Burpブラウザとサーバ間のやり取りを後から調査できます。多くの場合その方が便利です。
     </p>
     <div class="callout theme-community-6">
         <div class="container-columns-3 align-vertically-center">
             <p class="heading-navy-1">
-                <strong>次のステップ - </strong>Burp Repeaterでリクエストを再発行する
+                <strong>次のステップ - </strong>Burp ProxyによるHTTPリクエストの変更
             </p>
-            <a href="reissuing-http-requests.html" class="button-orange">次へ</a>
+            <a href="modifying-http-requests.html" class="button-orange">次へ</a>
         </div>
     </div>
-    <h3 cms-ignore-validation="DUPLICATE_HEADINGS">このチュートリアルの内容</h3>
-    <ol>
-        <li>
-            <a href="index.html">初期インストール</a>
-        </li>
-        <li>
-            Burp ProxyによるHTTPトラフィックのインターセプト
-        </li>
-        <li>
-            <a href="reissuing-http-requests.html">Burp Repeaterによるリクエストの再発行</a>
-        </li>
-        <li>
-            <a href="running-your-first-scan.html">初めてのスキャン実行</a>
-        </li>
-    </ol>
+    <div class="highlightedarea">
+        <h4 cms-ignore-validation="DUPLICATE_HEADINGS">このチュートリアルの内容</h4>
+        <ol>
+            <li>
+                <a href="download-and-install.html">Burp Suiteのダウンロードとインストール。</a>
+            </li>
+            <li>
+                Burp ProxyによるHTTPトラフィックのインターセプト。
+            </li>
+            <li>
+                <a href="modifying-http-requests.html">Burp Proxyによるリクエストの変更。</a>
+            </li>
+            <li>
+                <a href="reissuing-http-requests.html">Burp Repeaterによるリクエストの再発行。</a>
+            </li>
+            <li>
+                <a href="running-your-first-scan.html">初めてのスキャン実行。</a>
+            </li>
+            <li>
+                <a href="what-next.html">次は？</a>
+            </li>
+        </ol>
+    </div>
 </div>
 </body>
 </html>

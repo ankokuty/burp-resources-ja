@@ -25,7 +25,7 @@
     </ol>
 </section>
 <section class="container labels-editions-wrapper">
-    <label class="label-edition is-enterprise">エンタープライズ</label>
+    <label class="label-edition is-enterprise">Enterprise</label>
     <label class="label-edition is-professional">Professional</label>
 </section>
 <h1>プライベートBurp Collaboratorサーバの配備</h1>
@@ -87,7 +87,7 @@
 </ul>
 <h2 id="basic-set-up-on-a-closed-network">閉じたネットワーク上での基本的なセットアップ</h2>
 <p>
-    閉じたプライベートなネットワークでひとり(または少人数のチーム)で利用する方法が、プライベートCollaboratorサーバの一般的な利用方法です。インターネットアクセスがない閉じたネットワーク上のアプリケーションをテストする場合、もちろんデフォルトのCollaboratorサーバは使用できません。
+    閉じたプライベートなネットワークでひとり(または少人数のチーム)で利用する方法が、プライベートCollaboratorサーバの一般的な利用方法です。インターネットアクセスがない閉じたネットワーク上のアプリケーションをテストする場合、デフォルトのCollaboratorサーバは使用できません。
 </p>
 <p>
     このような状況では、<a href="#collaborator-configuration-file">設定ファイル</a>は必要なく、<a href="#installation-and-execution">インストールと実行</a>にあるいずれかコマンドで、最小限のCollaboratorサーバのインスタンスを実行できます。<a href="../desktop/options/misc-project.html#burp-collaborator-server">Burpの設定</a>で、Collaboratorサーバのアドレスに自分のマシンのIPアドレスを設定する必要があります。
@@ -117,7 +117,7 @@
     </li>
     <li>
         <p>
-            ドメインのDNSレコードを設定します。ドメインプロバイダで、NSレコードとそれに対応するAまたはAAAAレコードを設定する必要があります。<a href="#dns-configuration">DNS設定</a>以降を参照してください。
+            ドメインプロバイダで、NSレコードとそれに対応するAまたはAAAAレコードを設定します。<a href="#dns-configuration">DNS設定</a>以降を参照してください。
         </p>
     </li>
     <li>
@@ -159,7 +159,7 @@
     上記のコマンドは、デフォルトの設定ファイルを使用してCollaboratorサーバを起動します。カスタム設定を追加するには、次の引数を追加します:
 </p>
 <p>
-    <code>--collaborator-config</code>
+    <code>--collaborator-config=myconfig.config</code>
 </p>
 <p>
     ただし、プライベートCollaboratorの使用状況によっては、さらに設定が必要になる場合があります。サーバのセットアップに必要な設定は前のセクションを、独自の設定ファイルを作成する方法の詳細はCollaborator設定ファイルのセクションを参照してください。
@@ -200,7 +200,7 @@
 </p>
 <h2 id="running-on-non-standard-ports">非標準ポートでの実行</h2>
 <p>
-    Collaboratorサーバをroot以外のユーザとして実行する場合は、非標準のポート上で実行するように設定する必要があります。使用しているカスタムポートと標準ポートをマッピングするように、オペレーティングシステムを設定する必要もあります。通常、TCPとUDP接続の受信や、UDPレスポンス送信のマッピング設定が必要です。
+    Collaboratorサーバをroot以外のユーザとして実行する場合は、非標準のポート上で実行するように設定する必要があります。使用しているカスタムポートと標準ポートをマッピングするように、オペレーティングシステムを設定する必要もあります。通常、TCPとUDP接続の受信のためのマッピング設定が必要です。
 </p>
 <div class="highlightedarea">
     <h4>注</h4>
@@ -211,7 +211,7 @@
 <p>
     Collaboratorサーバが非標準ポートを使用するよう、<a href="#collaborator-configuration-file">設定ファイル</a>で設定できます。例:
 </p>
-<code class="code-scrollable">{ "serverDomain" : "burpcollaborator.example.com", "eventCapture": { "http": { "ports" : 8080 }, "https": { "ports" : 8443 }, "smtp": { "ports" : [8025, 8587] }, "smtps": { "ports" : 8465 } }, "dns": { "ports" : 8053 } }</code>
+<code class="code-scrollable">{ "serverDomain": "burpcollaborator.example.com", "eventCapture": { "http": { "ports": 8080 }, "https": { "ports": 8443 }, "smtp": { "ports": [ 8025, 8587 ] }, "smtps": { "ports": 8465 } }, "dns": { "ports": 8053 } }</code>
 <div class="highlightedarea">
     <h4>注</h4>
     <p>
@@ -247,28 +247,24 @@
 <ul>
     <li>
         <p>
-            Collaboratorサブドメイン(例: <code>burpcollaborator.net</code>)の、Collaboratorネームサーバ(例: <code>ns1.burpcollaborator.net</code>)を指すNSレコード。
+            通信用インタフェースの外部IPに割り当てる、Collaboratorサブドメイン(例: <code>burpcollaborator.example.com</code>)のAレコードまたはAAAAレコード。
         </p>
     </li>
     <li>
         <p>
-            Colaboratorネームサーバ(例: <code>ns1.burpcollaborator.net</code>)のAまたはAAAAレコード。
+            Collaboratorのネームサーバに割り当てる、Collaboratorサブドメイン(例: <code>burpcollaborator.example.com</code>)のNSレコード(例: <code>ns1.burpcollaborator.example.com</code>)。
+        </p>
+    </li>
+    <li>
+        <p>
+            Colaboratorネームサーバ(例: <code>ns1.burpcollaborator.example.com</code>)のAまたはAAAAレコード。
         </p>
     </li>
 </ul>
 <p>
-    たとえば、パブリックCollaboratorサーバのドメインは、<code>burpcollaborator.net</code>です:
-</p>
-<code class="code-scrollable">dig burpcollaborator.net NS +noall +answer +short burpcollaborator2.portswigger.net burpcollaborator1.portswigger.net</code><p>
-    これらのレコードは両方とも、CollaboratorのパブリックIPアドレスに名前解決されます:
-</p>
-<code class="code-scrollable">dig burpcollaborator1.portswigger.net A +noall +answer +short 52.16.21.24 dig burpcollaborator2.portswigger.net A +noall +answer +short 52.16.107.92</code><p>
     設定ファイル内で指定されたドメインについて、そのドメインに対するすべてのクエリをCollaboratorサーバが名前解決するように権限を与えることが不可欠です。詳細な設定方法は、環境によって異なります。ほとんどのドメインレジストラは、ドメインの権威DNSサーバを設定するWebインタフェースを提供しています。
 </p>
 <p>
-    Collaboratorサーバ用のドメインとしてexample.comを使用している場合、次のネームサーバを使用するよう設定が必要です:
-</p>
-<code class="code-scrollable">ns1.example.com ns2.example.com</code><p>
     また、それぞれをCollaboratorサーバのIPアドレスに関連づけるグルーレコードを設定する必要があります。設定したDNSサーバそれぞれに異なるIPアドレスを指定するようドメインレジストラが要求する場合、Collaboratorサーバに2つのパブリックIPアドレスを設定する必要があるかもしれません。
 </p>
 <div class="highlightedarea">
@@ -284,7 +280,7 @@
 <code class="code-scrollable">sudo java -jar /path/to/file.jar --collaborator-server --collaborator-config=myconfig.config</code><p>
     設定ファイルはJSONフォーマットを使用し、コメントもサポートします。IPアドレスが必要な場所では、単一のアドレスまたはアドレスのリストを設定できます。たとえば、ネットワークインタフェースのローカルアドレスの設定に次のどちらも使用できます:
 </p>
-<code class="code-scrollable">"localAddress" : "10.20.0.159" "localAddress" : ["10.20.0.159", "127.0.0.1"]</code><p>
+<code class="code-scrollable">"localAddress": "10.20.0.159" "localAddress": [ "10.20.0.159", "127.0.0.1" ]</code><p>
     Collaborator設定ファイルは、次のフィールドを使用します:
 </p>
 <table class="grid-table grid-table-size-1-1-1">
@@ -414,7 +410,7 @@
 <p>
     設定ファイルのサンプルと、使用可能な各オプションの説明は次の通りです:
 </p>
-<code class="code-scrollable">{ "serverDomain" : "Your_Collaborator_Domain", "workerThreads" : 10, "eventCapture": { "localAddress" : "Local_IP", "publicAddress" : "Collaborator_External_IP", "http": { "ports" : 80 }, "https": { "ports" : 443 }, "smtp": { "ports" : [25, 587] }, "smtps": { "ports" : 465 }, "ssl": { "certificateFiles" : [ "path_to_key_file", "path_to_certificate_file" ] } }, "dns": { "interfaces" : [ { "name": "NS_record_label_1", "localAddress" : "Local_IP_1", "publicAddress" : "External_IP_Nameserver_A_Record1" }, { "name" : "NS_record_label_2", "localAddress" : "Local_IP_2", "publicAddress" : "External_IP_Nameserver_A_Record2" } ], "ports" : 53 }, "logLevel" : "INFO" }</code><p>
+<code class="code-scrollable">{ "serverDomain": "Your_Collaborator_Domain", "workerThreads": 10, "eventCapture": { "localAddress": "Local_IP", "publicAddress": "Collaborator_External_IP", "http": { "ports": 80 }, "https": { "ports": 443 }, "smtp": { "ports": [ 25, 587 ] }, "smtps": { "ports": 465 }, "ssl": { "certificateFiles": [ "path_to_key_file", "path_to_certificate_file" ] } }, "polling": { "localAddress": "Local_IP", "publicAddress": "Collaborator_External_IP", "http": { "port": 9090 }, "https": { "port": 9443 }, "ssl": { "certificateFiles": [ "path_to_key_file", "path_to_certificate_file" ] } }, "metrics": { "path": "url_to_metrics", "addressWhitelist": [ "21.10.23.0/24" ] }, "dns": { "interfaces": [ { "name": "NS_record_label_1", "localAddress": "Local_IP_1", "publicAddress": "External_IP_Nameserver_A_Record1" }, { "name": "NS_record_label_2", "localAddress": "Local_IP_2", "publicAddress": "External_IP_Nameserver_A_Record2" } ], "ports": 53 }, "logLevel": "INFO" }</code><p>
     設定ファイルでサポートされている定義は次の通りです:
 </p>
 <table class="grid-table grid-table-size-1-2">
@@ -535,7 +531,7 @@
                 <code> metrics.path </code>
             </td>
             <td>
-                メトリクスページにアクセスできるようにするURLパス。
+                メトリクスページにアクセスするためのURLパス。
             </td>
         </tr>
         <tr>
@@ -567,7 +563,7 @@
                 <code> dns.interfaces.name </code>
             </td>
             <td>
-                このインタフェースで実行するネームサーバのホスト名。各ネームサーバに異なるホスト名を使用してください (たとえば <code>ns1</code>、<code>ns2</code>、など)。
+                このインタフェースで実行するネームサーバのホスト名(FQDNではありません)。FQDNは、この値に<code>serverDomain</code>に付けて生成されます。たとえば、<code>ns1</code>の場合、<code>ns1.burpcollaborator.example.com</code>になります。各ネームサーバに異なるホスト名を使用してください。
             </td>
         </tr>
         <tr>
@@ -659,7 +655,7 @@
 <p>
     ドメインに対する有効なワイルドカードTLS証明書を持っていない場合、Burp Collaboratorは自己署名の証明書を生成できます。たとえば、次の設定で <code>*.burpcollaborator.example.com</code> の自己署名ワイルドカード証明書が作成されます:
 </p>
-<code class="code-scrollable">"ssl": { "hostname" : "burpcollaborator.example.com" }</code><p>
+<code class="code-scrollable">"ssl": { "hostname": "burpcollaborator.example.com" }</code><p>
     テスト対象のサーバで信頼する証明書にインストールできるか、対象アプリケーションがTLS証明書の検証を行わない場合は、自己署名証明書で十分でしょう。
 </p>
 <p>
@@ -671,7 +667,7 @@
 <code class="code-scrollable">openssl pkcs8 -topk8 -inform PEM -in keys/burpcollaborator.example.com.key -outform PEM -out keys/burpcollaborator.example.com.key.pkcs8 -nocrypt</code><p>
     Collaboratorの<a href="#collaborator-configuration-file">設定ファイル</a>でTLS証明書を設定できます。次の設定ファイルの例では、秘密鍵、証明書、中間証明書を読み込む方法を示しています。
 </p>
-<code class="code-scrollable">"ssl": { "certificateFiles" : [ "keys/burpcollaborator.example.com.key.pkcs8", "keys/burpcollaborator.example.com.crt", "keys/intermediate.crt"] }</code>
+<code class="code-scrollable">"ssl": { "certificateFiles": [ "keys/burpcollaborator.example.com.key.pkcs8", "keys/burpcollaborator.example.com.crt", "keys/intermediate.crt" ] }</code>
 <div class="highlightedarea">
     <h4>注</h4>
     <p>
@@ -681,7 +677,7 @@
 <p>
     また、Java keytoolを使用してCSRを生成し、結果として得られる証明書をサーバのJavaキーストアにインポートできます。この場合、次の設定で証明書をCollaboratorサーバに読み込みます:
 </p>
-<code class="code-scrollable">"ssl": { "keystore": { "path" : "myKeystore.jks", "password" : "myPassword" }</code><p>
+<code class="code-scrollable">"ssl": { "keystore": { "path": "myKeystore.jks", "password": "myPassword" }</code><p>
     <a href="#interaction-events-and-polling">通信イベントとポーリング</a>を個別のネットワークインタフェースに設定した場合、インタフェースごとに個別のTLS設定が必要です。
 </p>
 <h2 id="interaction-events-and-polling">通信イベントとポーリング</h2>
@@ -700,22 +696,30 @@
     デフォルトで、Collaboratorサーバは通信イベントとポーリングリクエストの両方の通信を、同じネットワークインタフェースで処理します。必要に応じて、ポーリングリクエストに異なるインタフェース(またはポート)を使用するように設定できます。この機能は、ファイアウォール制限の回避や、ポーリング機能をネットワーク層でアクセス制御する場合に使用できます。
 </p>
 <p>
-    Collaboratorの<a href="#collaborator-configuration-file">設定ファイル</a>の"polling"オプションセクションで、個別のポーリングインタフェースを設定できます。これを行う場合、両方のインタフェースに同じワイルドカードTLS証明書が使用できます。CollaboratorサーバのDNSサービスでポーリングリクエストが正しいインタフェースに向くよう設定してください。このセットアップでは、<a href="../desktop/options/misc-project.html#burp-collaborator-server">Burp Collaborator Server</a>オプションのサーバの位置のみ設定する必要があり、Burpがポーリングをする際にサーバドメインの先頭に"polling."を自動的に追加します。CollaboratorのDNSサービスはポーリングサブドメインを、分離したポーリングインタフェースのパブリックIPアドレスに名前解決します。これにより、Burpクライアントの設定をシンプルにしながら、通信とポーリングのインタフェースを分離できる利点があります。これは次のようにします:
+    Collaboratorの<a href="#collaborator-configuration-file">設定ファイル</a>の"polling"オプションセクションで、個別のポーリングインタフェースを設定できます。
 </p>
-<code class="code-scrollable">"polling" : { ;"publicAddress" : "&lt;External_IP&gt;" },</code><p>
-    次のポーリングインタフェースの例では、カスタムポート、HTTPS、自己署名証明書を使用しています:
+<code class="code-scrollable">"polling": { "publicAddress": "&lt;外部IP&gt;" },</code><p>
+    このポーリングインタフェースの例では、カスタムポート、HTTPS、自己署名証明書を使用しています:
 </p>
-<code class="code-scrollable">"polling" : { "localAddress" : "&lt;Local_IP&gt;", "publicAddress" : "&lt;External_IP&gt;", "http": { "port" : 9090 }, "https": { "port" : 9443 }, "ssl": { "hostname" : "collaboratorpolling.example.com" } },</code>
-<div class="hightlightedarea">
+<code class="code-scrollable">"polling": { "localAddress": "&lt;ローカルIP&gt;", "publicAddress": "&lt;外部IP&gt;", "http": { "port": 9090 }, "https": { "port": 9443 }, "ssl": { "hostname": "collaboratorpolling.example.com" } },</code><p>
+    通信用とポーリング用インタフェースに、同じワイルドカードTLS証明書も使用できます。その場合、CollaboratorサーバのDNSサービスでポーリングリクエストが正しいインタフェースに向くよう設定してください。
+</p>
+<p>
+    CollaboratorサーバのDNSサービスにリクエストを誘導するには、<strong>プロジェクトオプション &gt; その他</strong>以下のBurp Collaboratorサーバオプションでサーバの場所を設定する必要があります。Burp Suiteはポーリングリクエストを行うときに自動的に、サーバドメインの前に<code>polling.</code>を追加します。
+</p>
+<p>
+    CollaboratorのDNSサービスはポーリングサブドメインを、分離したポーリングインタフェースのパブリックIPアドレスに名前解決します。これにより、Burpクライアントで複雑な設定を行わなくても、通信用とポーリング用に別々のインタフェースを使用できます。
+</p>
+<p>
+    次のポーリングインタフェースの例では、カスタムポート、HTTPS、CA発行の証明書を使用しています:
+</p>
+<code class="code-scrollable">"polling": { "localAddress": "&lt;Local_IP&gt;", "publicAddress": "&lt;External_IP&gt;", "http": { "port": 9090 }, "https": { "port": 9443 }, "ssl": { "certificateFiles": [ "path_to_key_file", "path_to_certificate_file" ] } },</code>
+<div class="highlightedarea">
     <h4>注</h4>
     <p>
         内部CAに署名された証明書を使用している場合は、Javaのトラストストアに正しい証明書があるか確認する必要があります。
     </p>
 </div>
-<p>
-    次のポーリングインタフェースの例では、カスタムポート、HTTPS、CA発行の証明書を使用しています:
-</p>
-<code class="code-scrollable">"polling" : { "localAddress" : "&lt;Local_IP&gt;", "publicAddress" : "&lt;External_IP&gt;", "http": { "port" : 9090 }, "https": { "port" : 9443 }, "ssl": { "certificateFiles" : [ "path_to_key_file", "Path_to_certificate_file" ] } },</code>
 <h2 id="metrics">メトリクス</h2>
 <p>
     Collaboratorサーバは、管理者がサーバのパフォーマンスや負荷を監視するためのさまざまな使用率のメトリクスを収集します。Collaboratorのマシンがその使用レベルに十分耐えうるかを確認するためにこれらのメトリクスが有用です。<a href="#interaction-events-and-polling">通信イベントやポーリングリクエスト</a>から抽出されたデータは、このメトリクスにはまったく含まれていない点に留意してください。
@@ -723,7 +727,7 @@
 <p>
     Collaboratorサーバのポーリングインタフェース経由でメトリクスデータにアクセスでき、共有秘密URLとクライアントIPアドレスのホワイトリストでアクセスを制御できます。デフォルトでメトリクスは無効で、Collaborator<a href="#collaborator-configuration-file">設定ファイル</a>の"metrics"オプションセクションを使用すると有効になります。例:
 </p>
-<code class="code-scrollable">"metrics": { "path" : "jnaicmez8", "addressWhitelist" : ["21.10.23.0/24"] },</code><p>
+<code class="code-scrollable">"metrics": { "path": "jnaicmez8", "addressWhitelist": [ "21.10.23.0/24" ] },</code><p>
     この設定では、21.10.23.0/24ネットワーク上のクライアントが次のURLにアクセスすると利用できます:
 </p>
 <code class="code-scrollable">https://10.20.0.159/jnaicmez8/metrics</code>
@@ -747,7 +751,7 @@
 </ul>
 <h2 id="testing-the-installation">インストールのテスト</h2>
 <p>
-    サーバを配備したとき、正しく動作しているかの確認にBurp Suiteが使用できます。Burp Suite Professionalでは、<a href="../desktop/options/misc-project.html#burp-collaborator-server">Burp Collaborator Server</a>オプションの詳細を設定し、ヘルスチェック機能を実行してください。Burpは期待するCollaboratorの各機能を動作させようとし、各機能の成功または失敗をフィードバックします。
+    サーバを配備したとき、Burp Suite Professionalを使用して、正しく動作しているか確認できます。Burp Suiteで、<a href="../desktop/options/misc-project.html#burp-collaborator-server">Burp Collaborator Server</a>オプションの詳細を設定し、ヘルスチェックを実行してください。するとBurpはCollaboratorの各機能を順番にテストしていきます。
 </p>
 <h2 id="add-custom-http-content">カスタムHTTPコンテンツの追加</h2>
 <p>
@@ -773,14 +777,54 @@
 <p>
     たとえば、次の設定を追加すると、カスタムインデックスページがルートパスに設定され、<code>/info/readme.txt</code>に<code>readme</code>ファイルが追加されます:
 </p>
-<code class="code-scrollable">"customHttpContent":[ { "path":"/", "contentType":"text/html", "base64Content":"PCFkb2N0eXBlIGh0bWw+Cgo8aHRtbCBsYW5nPSJlbiI+CjxoZWFkPgogIDxtZXRhIGNoYXJzZXQ9InV0Zi04Ij4KICA8dGl0bGU+RXhhbXBsZSBQYWdlPC90aXRsZT4KCiAgPGxpbmsgcmVsPSJzdHlsZXNoZWV0IiBocmVmPSJjc3MvbXlzdHlsZXNoZWV0LmNzcyI+CjwvaGVhZD4KPGJvZHk+CjxoMT5XZWxjb21lIHRvIG15IGV4YW1wbGUgcGFnZTwvaDE+CjxwPlRoYW5rcyBmb3IgdmlzaXRpbmcgbXkgZXhhbXBsZSBwYWdlLjwvcD4KPC9ib2R5Pgo8L2h0bWw+" }, { "path":"/info/readme.txt", "contentType":"text/plain", "base64Content":"VGhpcyBpcyB0aGUgcmVhZG1lIGZpbGUgZm9yIG15IGNvbGxhYm9yYXRvciBzZXJ2ZXIu" } ]</code>
+<code class="code-scrollable">"customHttpContent": [ { "path": "/", "contentType": "text/html", "base64Content": "PCFkb2N0eXBlIGh0bWw+Cgo8aHRtbCBsYW5nPSJlbiI+CjxoZWFkPgogIDxtZXRhIGNoYXJzZXQ9InV0Zi04Ij4KICA8dGl0bGU+RXhhbXBsZSBQYWdlPC90aXRsZT4KCiAgPGxpbmsgcmVsPSJzdHlsZXNoZWV0IiBocmVmPSJjc3MvbXlzdHlsZXNoZWV0LmNzcyI+CjwvaGVhZD4KPGJvZHk+CjxoMT5XZWxjb21lIHRvIG15IGV4YW1wbGUgcGFnZTwvaDE+CjxwPlRoYW5rcyBmb3IgdmlzaXRpbmcgbXkgZXhhbXBsZSBwYWdlLjwvcD4KPC9ib2R5Pgo8L2h0bWw+" }, { "path": "/info/readme.txt", "contentType": "text/plain", "base64Content": "VGhpcyBpcyB0aGUgcmVhZG1lIGZpbGUgZm9yIG15IGNvbGxhYm9yYXRvciBzZXJ2ZXIu" } ]</code>
 <h2 id="add-custom-dns-records">カスタムDNSレコードの追加</h2>
 <p>
-    TXTとCNAMEのカスタムDNSレコードを追加できます。これはドメイン検証の際にDNSチャレンジが行われる場合にCollaboratorが対応できることを目的としています。1つのラベルに複数のTXTレコードを指定できますが、CNAMEレコードは1つだけです。設定例は次の通りです:
+    TXTとCNAMEのカスタムDNSレコードを追加できます。これはドメイン検証の際にDNSチャレンジが行われる場合にCollaboratorサーバが対応できることを目的としています。1つのラベルに複数のTXTレコードを指定できますが、CNAMEレコードは1つだけです。設定例は次の通りです:
 </p>
-<code class="code-scrollable">"customDnsRecords": [ { "label": "_acme-challenge", "record": "275fe5b909adb10e41c78066e9485f7d", "type": "TXT", "ttl": 60 }, { "label": "patrick", "record": "dolphin", "type": "TXT" }, { "label": "test", "record": "hackxor.net", "type": "CNAME" } ]</code><p>
+<p>
+    <code>label</code>の値は、問合せの対象になるサブドメインです。<code>record</code>の値は、サーバが応答する値です。
+</p>
+<code class="code-scrollable">"customDnsRecords": [ { "label": "_acme-challenge", "record": "275fe5b909adb10e41c78066e9485f7d", "type": "TXT", "ttl": 60 }, { "label": "queried_subdomain", "record": "reponse", "type": "TXT" }, { "label": "queried_subdomain", "record": "response", "type": "CNAME" } ]</code><p>
     <code>ttl</code>の値はオプションで、秒単位です。
 </p>
+<p>
+    たとえばこのエントリーを<code>burpcollaborator.example.com</code>の設定ファイルに追加し、ネームサーバへ<code>_acme-challenge.burpcollaborator.example.com</code>のTXTタイプを問い合わせると、<code>275fe5b909adb10e41c78066e9485f7d</code>が返ってきます。
+</p>
+<table class="grid-table grid-table-size-1-2">
+    <tr>
+        <td>
+            <code> customDnsRecords.label </code>
+        </td>
+        <td>
+            カスタムDNSレコードのDNSラベル(例: _acme-challenge)。
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code> customDnsRecords.record </code>
+        </td>
+        <td>
+            ラベルに対応するカスタムDNSレコード。
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code> customDnsRecords.type </code>
+        </td>
+        <td>
+            カスタムDNSレコードのタイプ。現在のところ、TXTまたはCNAMEのいずれか。
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <code> customDnsRecords.ttl </code>
+        </td>
+        <td>
+            レコードの生存時間(秒単位)。
+        </td>
+    </tr>
+</table>
 <h2 id="troubleshooting-your-server">サーバのトラブルシューティング</h2>
 <p>
     Collaboratorサーバに問題がある場合は、次を試してください:
@@ -788,21 +832,29 @@
 <ul>
     <li>
         <p>
-            サーバドメインがCollaboratorのIPアドレスに解決されるか確認してください。
+            サーバドメインがCollaboratorサーバのIPアドレスに解決されるか確認してください。
         </p>
-        <p>
-            されない場合は、ドメインのレコードが正しくない可能性があるため、ドメインのNSレコードが期待されるネームサーバに解決されるか確認してください。例: 
-        </p>
-        <code class="code-scrollable">dig burpcollaborator.net NS +noall +answer +short burpcollaborator2.portswigger.net burpcollaborator1.portswigger.net</code><p>
-            これらが正しい場合は、これらのエントリに対応するCollaboratorのIPアドレスに解決されるように、A/AAAAレコードがあるか確認してください。例:
-        </p>
-        <code class="code-scrollable">dig burpcollaborator1.portswigger.net A +noall +answer +short 52.16.21.24 dig burpcollaborator2.portswigger.net A +noall +answer +short 52.16.107.92</code>
     </li>
     <li>
         <p>
-            ランダムなサブドメインを名前解決した場合、CollaboratorのパブリックIPアドレスが返されるか確認してください。例:
+            されない場合は、ドメインのレコードが正しくない可能性があるため、ドメインのNSレコードが期待されるネームサーバに解決されるか確認してください。例: 
         </p>
-        <code class="code-scrollable">dig dolphin.burpcollaborator.net A +noall +answer +short 52.16.21.24</code><p>
+        <code class="code-scrollable">dig burpcollaborator.example.com NS +noall +answer +short ns1.burpcollaborator.example.com</code>
+    </li>
+    <li>
+        <p>
+            これが正しい場合は、このエントリに対応するCollaboratorのIPアドレスに解決されるように、A/AAAAレコードがあるか確認してください。例:
+        </p>
+        <code class="code-scrollable">dig ns1.burpcollaborator.example.com A +noall +answer +short 192.168.0.1</code>
+    </li>
+    <li>
+        <p>
+            Collaboratorサーバのランダムなサブドメインを名前解決した場合、そのパブリックIPアドレスが返されるか確認してください。例:
+        </p>
+        <code class="code-scrollable">dig randomsubdomain.burpcollaborator.example.com A +noall +answer +short ns1.burpcollaborator.example.com 192.168.0.1</code>
+    </li>
+    <li>
+        <p>
             失敗する場合は、Collaboratorのログと設定を確認してください。また、UDPのポート53のトラフィックが開いているか確認してください。
         </p>
     </li>

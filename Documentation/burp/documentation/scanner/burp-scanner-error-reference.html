@@ -32,7 +32,7 @@
     これは、Burp Scannerの最も一般的なエラーメッセージに対する、トラブルシューティングのクイックリファレンスガイドです。<code>Ctrl/Cmd + F</code>を使用して発生したエラーを検索すると、問題の潜在的な原因の詳細や改善策のアドバイスが確認できます。このリストにエラーメッセージが見つからない場合は、サポートチームに連絡してください。
 </p>
 <div class="expandable-container">
-    <details><summary class="component-is-expandable">
+    <details id="60222"><summary class="component-is-expandable">
             <h4><code>Can't find existing log file!</code></h4>
         </summary>
         <div class="content">
@@ -62,8 +62,8 @@
                 </p>
             </div>
         </div>
-    </details><details><summary class="component-is-expandable">
-            <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Can't write to log file:</code></h4>
+    </details><details id="76390"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Can't write to log file: X</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
@@ -78,8 +78,8 @@
                 </p>
             </div>
         </div>
-    </details><details><summary class="component-is-expandable">
-            <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Failed to replay sequence</code></h4>
+    </details><details id="26267"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Failed to replay sequence X - X</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
@@ -103,7 +103,7 @@
                 </li>
             </ol>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="25948"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Cannot replay sequence, failed to create a browser</code></h4>
         </summary>
         <div class="content">
@@ -114,7 +114,7 @@
                 Burp Suiteの<strong>ヘルプ</strong>メニューから、<a href="../desktop/functions/burps-browser.html#health-check-for-burp-s-browser">Burpブラウザのヘルスチェック</a>を実行してください。これにより、ブラウザの問題が診断されます。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="35500"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping API definition. The data in the definition file is malformed and cannot be read by Burp Scanner</code></h4>
         </summary>
         <div class="content">
@@ -136,7 +136,7 @@
                 スキャンしようとしているAPI定義が、上記の前提条件を満たしているか確認してください。詳細は、<a href="../desktop/scanning/api-scanning.html#prerequisites-for-api-scanning">APIスキャンのドキュメント</a>を参照してください。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="13433"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Environment not supported by browser. (Use 'Health check for Burp's browser' for more details.)</code></h4>
         </summary>
         <div class="content">
@@ -147,7 +147,7 @@
                 Burp Suiteの<strong>ヘルプ</strong>メニューから、<a href="../desktop/functions/burps-browser.html#health-check-for-burp-s-browser">Burpブラウザのヘルスチェック</a>を実行してください。これにより、ブラウザの問題が診断されます。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="71874"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Could not start browser. (Use 'Health check for Burp's browser' for more details.)</code></h4>
         </summary>
         <div class="content">
@@ -158,7 +158,7 @@
                 Burp Suiteの<strong>ヘルプ</strong>メニューから、<a href="../desktop/functions/burps-browser.html#health-check-for-burp-s-browser">Burpブラウザのヘルスチェック</a>を実行してください。これにより、ブラウザの問題が診断されます。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="40195"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Could not start Burp's browser sandbox because you are running as root. Either switch to running as an unprivileged user or allow running without sandbox</code></h4>
         </summary>
         <div class="content">
@@ -182,7 +182,7 @@
                 </p>
             </div>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="39680"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Can not start Burp's browser sandbox because your kernel does not support user namespaces. Please either upgrade your kernel or allow running without sandbox</code></h4>
         </summary>
         <div class="content">
@@ -198,7 +198,7 @@
                 </p>
             </div>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="69466"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Can not start Burp's browser sandbox because the chrome-sandbox binary is not configured correctly and your kernel has user namespace cloning disabled. To enable, run the following command as root: "echo 1 &gt; /proc/sys/kernel/unprivileged_userns_clone"</code></h4>
         </summary>
         <div class="content">
@@ -209,7 +209,7 @@
                 名前空間のクローンを有効にすれば、Burpブラウザはサンドボックスモードで実行できます。エラーメッセージにあるコマンドを実行すると、再起動するまで名前空間のクローンが有効になります。この設定を<code>sysctl.conf</code>ファイルに保存すれば、恒久的に有効にできます。詳細は、使用しているOSのドキュメントを参照してください。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="45226"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Can not start Burp's browser sandbox because the chrome-sandbox binary is not configured correctly and your kernel has user namespace cloning disabled. To enable, run the following command as root: "echo 0 &gt; /proc/sys/kernel/userns_restrict"</code></h4>
         </summary>
         <div class="content">
@@ -220,8 +220,8 @@
                 名前空間のクローンを有効にすれば、Burpブラウザはサンドボックスモードで実行できます。エラーメッセージにあるコマンドを実行すると、再起動するまで名前空間のクローンが有効になります。この設定を<code>sysctl.conf</code>ファイルに保存すれば、恒久的に有効にできます。詳細は、使用しているOSのドキュメントを参照してください。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
-            <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Cannot handle streaming response:</code></h4>
+    </details><details id="63714"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Cannot handle streaming response: X</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
@@ -231,8 +231,8 @@
                 ストリーミングレスポンスは、Burp Suiteの手動ツールでテストできます。詳細は、<a href="../desktop/options/http.html#streaming-responses">ストリーミングレスポンスのドキュメント</a>を参照してください。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
-            <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Error generating report:</code></h4>
+    </details><details id="33900"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Error generating report: X</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
@@ -242,7 +242,7 @@
                 レポートを保存しようとしているフォルダにBurp Suiteユーザの書き込み権限があるか確認してください。または別のフォルダにレポートを保存してください。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="77586"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>The Burp Collaborator server used by the Burp Collaborator client is not reachable, change the settings to use this feature.</code></h4>
         </summary>
         <div class="content">
@@ -253,7 +253,7 @@
                 <a href="../desktop/options/misc-project.html#burp-collaborator-server">Collaboratorサーバヘルスチェック</a>を実行し、<strong>プロジェクトオプション &gt; その他</strong>タブでサーバの<a href="../desktop/options/misc-project.html#burp-collaborator-server">Collaboratorサーバ設定</a>を再確認してください。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="37488"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Failed to connect to the configured Collaborator server.</code></h4>
         </summary>
         <div class="content">
@@ -264,7 +264,7 @@
                 <a href="../desktop/options/misc-project.html#burp-collaborator-server">Collaboratorサーバヘルスチェック</a>を実行し、<strong>プロジェクトオプション &gt; その他</strong>タブでサーバの<a href="../desktop/options/misc-project.html#burp-collaborator-server">Collaboratorサーバ設定</a>を再確認してください。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="28111"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Skipping current scanner check for too many consecutive unknown host errors have occurred</code></h4>
         </summary>
         <div class="content">
@@ -275,7 +275,7 @@
                 サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="74880"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Skipping current insertion point for too many consecutive unknown host errors have occurred</code></h4>
         </summary>
         <div class="content">
@@ -286,8 +286,8 @@
                 サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
-            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for too many consecutive unknown host errors have occurred</code></h4>
+    </details><details id="90959"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for "X": too many consecutive unknown host errors have occurred</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
@@ -302,7 +302,7 @@
                 サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="33996"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Skipping current scanner check for too many consecutive request timeout errors have occurred</code></h4>
         </summary>
         <div class="content">
@@ -313,7 +313,7 @@
                 サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="44814"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Skipping current insertion point for too many consecutive request timeout errors have occurred</code></h4>
         </summary>
         <div class="content">
@@ -324,8 +324,8 @@
                 サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
-            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for too many consecutive request timeout errors have occurred</code></h4>
+    </details><details id="24375"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for "X": too many consecutive request timeout errors have occurred</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
@@ -340,7 +340,7 @@
                 サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="62166"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_TOO_LONG"><code>Skipping current scanner check for too many consecutive crawled location no longer reachable errors have occurred</code></h4>
         </summary>
         <div class="content">
@@ -351,7 +351,7 @@
                 サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="36532"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_TOO_LONG"><code>Skipping current insertion point for too many consecutive crawled location no longer reachable errors have occurred</code></h4>
         </summary>
         <div class="content">
@@ -362,8 +362,8 @@
                 サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
-            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for too many consecutive crawled location no longer reachable errors have occurred</code></h4>
+    </details><details id="61404"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for "X": too many consecutive crawled location no longer reachable errors have occurred</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
@@ -378,7 +378,7 @@
                 サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="90656"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_TOO_LONG"><code>Skipping current scanner check for too many consecutive insertion point no longer present errors have occurred</code></h4>
         </summary>
         <div class="content">
@@ -389,7 +389,7 @@
                 サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="58941"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_TOO_LONG"><code>Skipping current insertion point for too many consecutive insertion point no longer present errors have occurred</code></h4>
         </summary>
         <div class="content">
@@ -400,8 +400,8 @@
                 サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
-            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for too many consecutive insertion point no longer present errors have occurred</code></h4>
+    </details><details id="10333"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for "X": too many consecutive insertion point no longer present errors have occurred</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
@@ -416,7 +416,7 @@
                 サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。デフォルトでBurp Scannerは、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="50924"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_TOO_LONG"><code>Skipping current scanner check for too many consecutive streaming response errors have occurred</code></h4>
         </summary>
         <div class="content">
@@ -427,7 +427,7 @@
                 ストリーミングレスポンスは、Burp Suiteの手動ツールでテストできます。詳細は、<a href="../desktop/options/http.html#streaming-responses">ストリーミングレスポンスのドキュメント</a>を参照してください。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="59322"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_TOO_LONG"><code>Skipping current insertion point for too many consecutive streaming response errors have occurred</code></h4>
         </summary>
         <div class="content">
@@ -438,8 +438,8 @@
                 ストリーミングレスポンスは、Burp Suiteの手動ツールでテストできます。詳細は、<a href="../desktop/options/http.html#streaming-responses">ストリーミングレスポンスのドキュメント</a>を参照してください。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
-            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for too many consecutive streaming response errors have occurred</code></h4>
+    </details><details id="60233"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for "X": too many consecutive streaming response errors have occurred</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
@@ -454,7 +454,7 @@
                 ストリーミングレスポンスは、Burp Suiteの手動ツールでテストできます。詳細は、<a href="../desktop/options/http.html#streaming-responses">ストリーミングレスポンスのドキュメント</a>を参照してください。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="87790"><summary class="component-is-expandable">
             <h4><code>Skipping current scanner check for too many consecutive Burp's browser crash errors have occurred</code></h4>
         </summary>
         <div class="content">
@@ -473,7 +473,7 @@
                 </li>
             </ul>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="58168"><summary class="component-is-expandable">
             <h4><code>Skipping current insertion point for too many consecutive Burp's browser crash errors have occurred</code></h4>
         </summary>
         <div class="content">
@@ -492,8 +492,8 @@
                 </li>
             </ul>
         </div>
-    </details><details><summary class="component-is-expandable">
-            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for too many consecutive Burp's browser crash errors have occurred</code></h4>
+    </details><details id="56679"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Skipping phase X for "X": too many consecutive embedded browser crash errors have occurred</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
@@ -516,7 +516,7 @@
                 </li>
             </ul>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="86011"><summary class="component-is-expandable">
             <h4><code>Found 0 new locations after logging in</code></h4>
         </summary>
         <div class="content">
@@ -535,8 +535,8 @@
                 </li>
             </ul>
         </div>
-    </details><details><summary class="component-is-expandable">
-            <h4><code>Maximum time exceeded in dynamic code analysis of:</code></h4>
+    </details><details id="87251"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION"><code>Maximum time exceeded in dynamic code analysis of: X</code></h4>
         </summary>
         <div class="content">
             <h5>原因</h5><p>
@@ -551,7 +551,7 @@
                 </p>
             </div>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="79893"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>Failed to lookup host X while crawling.</code></h4>
         </summary>
         <div class="content">
@@ -562,7 +562,7 @@
                 <strong>スキャンするURL</strong>にタイプミスなどがないか確認してください。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="67051"><summary class="component-is-expandable">
             <h4><code>X consecutive requests have failed.</code></h4>
         </summary>
         <div class="content">
@@ -576,7 +576,7 @@
                 また、Burp Scannerのクロールを一時停止させるまでの連続した失敗リクエスト数は、<strong>クロール中のアプリケーションエラーの処理</strong>のクロールオプションで調整できます。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="11100"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,HEADING_TOO_LONG"><code>More than X percent of requests have failed.</code></h4>
         </summary>
         <div class="content">
@@ -590,7 +590,7 @@
                 また、Burp Scannerのクロールを一時停止させるまでの連続した失敗リクエスト数は、<strong>クロール中のアプリケーションエラーの処理</strong>のクロールオプションで調整できます。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="33666"><summary class="component-is-expandable">
             <h4><code>Could not connect to any seed URLs.</code></h4>
         </summary>
         <div class="content">
@@ -612,7 +612,7 @@
                 </li>
             </ul>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="15726"><summary class="component-is-expandable">
             <h4><code>Crawl was configured to use Burp's browser, but a browser could not be started</code></h4>
         </summary>
         <div class="content">
@@ -623,7 +623,7 @@
                 Burp Suiteの<strong>ヘルプ</strong>メニューから、<a href="../desktop/functions/burps-browser.html#health-check-for-burp-s-browser">Burpブラウザのヘルスチェック</a>を実行してください。これにより、ブラウザの問題が診断されます。
             </p>
         </div>
-    </details><details><summary class="component-is-expandable">
+    </details><details id="92199"><summary class="component-is-expandable">
             <h4><code>Cannot continue crawl started before version</code></h4>
         </summary>
         <div class="content">
