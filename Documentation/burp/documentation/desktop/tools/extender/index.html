@@ -33,32 +33,138 @@
 </section>
 <h1>Burp Extender</h1>
 <p>
-    Burp Extenderにより、Burp拡張を使い、あなた自身またはサードパーティのコードによってBurpの機能を拡張できます。<a href="#loading-and-managing-extensions">拡張の読込と管理</a>、インストールした拡張の<a href="#extension-details">詳細表示</a>、<a href="#bapp-store">BApp Store</a>から拡張のインストール、<a href="#burp-extender-api">Burp Extender API</a>の閲覧、拡張の処理方法に関する<a href="#extender-options">オプション</a>設定ができます。
+    Burp Extenderでは、コミュニティが作成した拡張をインストールしたり、あなた自身が拡張を作成することで、Burpの機能を拡張できます。
 </p>
 <p>
-    Burp拡張は、<a href="../proxy/history/index.html">Proxy履歴</a>、<a href="../target/site-map/index.html">Targetサイトマップ</a>、<a href="../target/site-map/index.html#issues-view">Scanner項目</a>のほか、HTTPリクエストとレスポンスの修正、UIのカスタマイズ、スキャナでのチェック項目の追加、実行時キー情報へのアクセスなど、さまざまな方法でBurpの動作をカスタマイズできます。
-</p>
-<p>
-    独自のBurp拡張を作成するためのヘルプは、<a href="https://portswigger.net/burp/extender">拡張に関するドキュメント</a>を参照してください。
-</p>
-<p>
-    独自の拡張をBAppストアに投稿するには、<a href="submit-extension.html">投稿ガイド</a>を参照してください。
-</p>
-<h2 id="loading-and-managing-extensions">拡張の読込と管理</h2>
-<p>
-    インストール済みの拡張が表に一覧表示されます。一覧の横にあるボタンで、拡張の追加、削除、並び替えができます。次の点に注意してください:
+    Burp拡張は、さまざまな方法でBurp Suiteの挙動をカスタマイズし、拡張できます。次が可能です:
 </p>
 <ul>
     <li>
-        拡張が表示される順番は、登録されたリスナーとその他の拡張リソースが呼び出される順番です。
+        <p>
+            HTTPリクエストとレスポンスの変更。
+        </p>
     </li>
     <li>
-        後で簡単に再読込できるよう一覧に残したまま、拡張を無効にできます。リストから削除せず拡張の状態を変更するには、<strong>読み込み済み</strong>列か<a href="#extension-details">Extensionの詳細</a>パネルで、チェックボックスをクリックしてください。Ctrlキーを押しながら<strong>読み込み済み</strong>チェックボックスをクリックすると、拡張を高速リロードできます。これで、確認ダイアログを表示せず拡張をアンロードし、リロードします。
+        <p>
+            HTTPリクエストの追加送信。
+        </p>
     </li>
     <li>
-        Pythonで書かれた拡張を実行するには、まず<a href="#python-environment">Python環境オプション</a>でJythonスタンドアロンJARファイルの場所を設定する必要があります。
+        <p>
+            Burp Suiteのインタフェースをカスタマイズ
+        </p>
+    </li>
+    <li>
+        <p>
+            Burp Scannerのチェック項目を追加。
+        </p>
+    </li>
+    <li>
+        <p>
+            Burp Suiteからの情報にアクセス。
+        </p>
     </li>
 </ul>
+<div class="highlightedarea">
+    <h4>このページでは次の内容を紹介します:</h4>
+    <ul>
+        <li>
+            <p>
+                <a href="#installing-extensions-from-the-bapp-store">BAppストアから拡張をインストール</a>。
+            </p>
+        </li>
+        <li>
+            <p>
+                <a href="#managing-extensions">拡張の管理</a>。
+            </p>
+        </li>
+        <li>
+            <p>
+                <a href="#installing-an-extension-from-a-file">ファイルから拡張をインストール</a>。
+            </p>
+        </li>
+        <li>
+            <p>
+                <a href="#extension-details">拡張の詳細を表示</a>。
+            </p>
+        </li>
+        <li>
+            <p>
+                <a href="#how-extensions-impact-system-performance">拡張によるパフォーマンスの影響</a>。
+            </p>
+        </li>
+        <li>
+            <p>
+                <a href="#extender-options">拡張のオプションを設定</a>。
+            </p>
+        </li>
+        <li>
+            <p>
+                <a href="#creating-your-own-extensions">独自の拡張を作成</a>。
+            </p>
+        </li>
+        <li>
+            <p>
+                <a href="#burp-extender-api">APIを表示</a>。
+            </p>
+        </li>
+    </ul>
+</div>
+<h2 id="about-the-bapp-store" cms-ignore-validation="HEADING_CAPITALIZATION">BAppストアについて</h2>
+<p>
+    BAppストアには、コミュニティが作成した拡張やBAppがあり、セキュリティや品質について<a href="submit-extension.html#reviewing-the-extension">レビュー</a>が行われています。
+</p>
+<p>
+    <strong>Extender &gt; BAppストア</strong>タブから、BAppストアにアクセスできます。ここで、利用可能なBAppを表示しインストールできます。すでにインストールされているBAppの評価も可能です。
+</p>
+<h2 id="installing-extensions-from-the-bapp-store" cms-ignore-validation="HEADING_CAPITALIZATION">BAppストアから拡張をインストール</h2>
+<p>
+    <strong>Extender &gt; BAppストア</strong>タブから拡張をインストールするには、一覧から拡張を選択し、詳細パネルにある<strong>インストール</strong>ボタンをクリックします。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/burp-extender-installing-a-bapp.png" alt="BAppストアからBAppをインストール">
+</div>
+<p>
+    一部のBAppは、PythonやRubyで書かれています。これらを利用するには、JythonやJRubyをダウンロードし、<strong>Extender &gt; オプション</strong>タブで<a href="#python-environment">Python環境</a>や<a href="#ruby-environment">Ruby環境</a>の設定を行う必要があります。
+</p>
+<p>
+    一部のBAppをインストールするためには、Burp SuiteのアップデートやBurp Suite Professionalへのアップグレードが必要な場合があります。
+</p>
+<p>
+    BAppストアから拡張をインストールした場合、Burp Suiteは自動的に拡張を最新の状態に保ちます。
+</p>
+<h2 id="managing-extensions" cms-ignore-validation="DUPLICATE_HEADINGS">拡張の管理</h2>
+<p>
+    <strong>Extender &gt; 拡張</strong>タブで、インストールされている拡張の一覧が確認できます。
+</p>
+<p>
+    リクエストとレスポンスは、一覧の上に表示されている拡張から順番に処理されていきます。つまり、読み込まれた複数の拡張でリクエストを変更したい場合は、変更したい順番にすることが重要です。<strong>上へ</strong>と<strong>下へ</strong>ボタンで順番を変更できます。
+</p>
+<p>
+    拡張を一覧から削除せずに無効にするには、<strong>Loaded</strong>列のチェックボックスをオフにしてください。
+</p>
+<p>
+    拡張をアンインストールして一覧から削除するには、<strong>削除</strong>ボタンをクリックしてください。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        使用する拡張の種類や数によって、システムのパフォーマンスに影響が出る場合があります。<strong>System impact</strong>列には、各BAppによるシステム影響の概算が示されます。<strong>システム影響の概算</strong>バーには、読み込まれた拡張の組み合わせがパフォーマンスに与える影響度が表示されます。
+    </p>
+</div>
+<h2 id="installing-an-extension-from-a-file">ファイルから拡張機能をインストール</h2>
+<p>
+    BAppストア以外から拡張をインストールするには、<strong>Burp拡張</strong>一覧の横にある<strong>追加</strong>ボタンを使用します。
+</p>
+<p>
+    <a href="https://portswigger.net/bappstore">BAppストア</a>のサイトからファイルとしてダウンロードしたBAppも、同じ手順でインストールできます。これは、インターネットに接続されていないマシンでBurp Suiteを実行している場合に便利です。
+</p>
+<p>
+    PythonやRubyで書かれた拡張をインストールするには、JythonやJRubyをダウンロードし、<strong>Extender &gt; オプション</strong>タブで<a href="#python-environment">Python環境</a>や<a href="#ruby-environment">Ruby環境</a>の設定を行う必要があります。
+</p>
+<p>
+    このようにインストールした拡張のファイルを更新した場合は、更新後にBurp Suiteの<strong>Loaded</strong>チェックボックスで再読み込みする必要があります。Ctrl/⌘キーを押しながら<strong>Loaded</strong>チェックボックスをクリックすると、確認ダイアログを表示せずに拡張を高速リロードできます。
+</p>
 <h2 id="extension-details">拡張詳細</h2>
 <p>
     拡張の一覧でアイテムを選択すると、下部のパネルにその拡張に関する情報が表示されます。
@@ -71,20 +177,20 @@
         拡張が現在読み込まれているかどうか。チェックボックスをクリックして、選択した拡張をロードまたはアンロードできます。
     </li>
     <li>
-        拡張の名前。拡張は、UIで優先的に表示される名前をプログラムで設定できます。必要であれば、手動でこの名前を編集できます。
+        拡張の名前。必要であれば、手動でこの名前を編集できます。
     </li>
     <li>
-        拡張の種類(JavaやPython)。
+        拡張の種類(Java、Python、Ruby)。
     </li>
     <li>
-        拡張が読み込まれたファイル。
+        拡張のファイル名。
     </li>
     <li>
-        メソッド、リスナー、拡張で使われるその他のリソースの詳細。
+        拡張が使用するメソッド、リスナー、その他のリソースの詳細。
     </li>
 </ul>
 <p>
-    <strong>出力</strong>タブには拡張の標準出力の詳細が、<strong>エラー</strong>タブには標準エラー出力と同じ情報が表示されます。ストリームごとに、アプリケーションの出力をシステムコンソールに出力するか、ファイルに保存するか、UIで表示するかを設定できます。次の点に注意してください:
+    <strong>出力</strong>タブには、拡張の標準出力ストリームの詳細が表示されます。<strong>エラー</strong>タブには、標準エラーストリームについて同じ情報が表示されます。各ストリームについて、アプリケーションの出力をシステムコンソールに出力するか、ファイルに保存するか、UIに表示するかを設定できます。次の点に注意してください:
 </p>
 <ul>
     <li>
@@ -94,38 +200,62 @@
         拡張は、Burpが割り当てた正しいストリームに、プログラムで利用可能できる拡張APIを介して、出力とエラーメッセージを出す必要があります。これを尊重しない拡張は、ここで指定した設定に関係なく、システムコンソールに直接出力を送信する可能性があります。
     </li>
 </ul>
-<h2 id="bapp-store">BApp store</h2>
+<h2 id="how-extensions-impact-system-performance">拡張がシステム性能に与える影響</h2>
 <p>
-    BAppストアには、Burp Suiteのユーザによって書かれた、Burpの能力を拡張する拡張があります。
+    拡張により、Burp Suiteはさまざまな追加タスクを実行できます。それらのタスクが大量のリソースを使用する場合や時間がかかる場合に、Burp Suiteのパフォーマンスに影響を与える可能性があります。
 </p>
 <p>
-    利用可能なBApp一覧の表示、特定のBAppのインストール、インストールしたBAppのユーザ評価が送信できます。BAppストアに、<a href="submit-extension.html">独自の拡張を投稿</a>できます。
+    複数の拡張を同時に使用すると、性能への影響が累積していきます。Burp Suiteの動作が遅い場合は、いくつかの拡張をアンロードしてみてください。
+</p>
+<h2 id="estimated-system-impact">システム影響の概算</h2>
+<p>
+    BAppストアでは、<strong>システム影響の概算</strong>セクションに、BAppがシステムパフォーマンスに与える可能性のある影響が表示されます。
 </p>
 <p>
-    Burpを実行しているコンピュータからインターネットにアクセスできない場合は、<a href="https://portswigger.net/bappstore">BAppストアのWebサイト</a>からBAppファイルをダウンロードし、Burpにそれらを手動でインストールできます。
+    システムへの影響を、低、中、高の3段階で表しています。
 </p>
 <p>
-    一部の BAppは、PythonやRubyで書かれていて、JythonまたはJRubyをダウンロードし、関連する言語インタープリターの場所を<a href="#extender-options">Burpの設定</a>で指定する必要があります。一部のBAppは、Burpの最新のバージョン、または別のエディションのBurpが必要になります。
+    <strong>システム影響の概算</strong>は、次のカテゴリに分かれます。
 </p>
-<h2 id="burp-extender-api">Burp Extender API</h2>
+<ul>
+    <li>
+        <p>
+            <strong>時間</strong>は、Burp Suiteの速度に与える全体的な影響を示しています。ここには、インターフェースの応答性や、ツールが作業を完了するまでにかかる時間などが含まれます。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>CPU</strong>は、BAppがCPUにどれだけ追加で負荷をかけるかを示しています。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>メモリ</strong>は、BAppがBurp Suiteのメモリ使用量に与える影響を示しています。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Scanner</strong>は、スキャンが完了するまでの時間に影響を与える可能性を示しています。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>総合</strong>は、これらすべてのカテゴリーで最も高い影響度を示しています。
+        </p>
+    </li>
+</ul>
 <p>
-    Burpの拡張の作成に使用できるAPIの詳細があります。リストには、実行しているBurpのバージョンで利用可能なAPIが表示されています。リストから表示したいインタフェースの名前を選択すると、インタフェースのコードがすべて表示されます。
-</p>
-<p>
-    <strong>インタフェースファイルを保存</strong>と<strong>Javadocファイルを保存</strong>ボタンでこれらのファイルをローカルにコピーし、拡張の開発時に利用できます。
+    Burp Suiteの普通の使い方を再現するように設計されたさまざまなテストで、自動的にベンチマークを生成しています。
 </p>
 <div class="highlightedarea">
-    <h4>拡張開発者向けの注意</h4>
+    <h4>注</h4>
     <p>
-        <code>IBurpExtenderCallbacks.makeHttpRequest()</code>を呼び出して拡張から新しいリクエストを発行する場合、HTTP/2フォーマットを使った<a href="../../http2/index.html#kettled-requests">ケトルなリクエスト</a>を自由に送信できます。これにより、HTTP/2専用の脆弱性をテストするための拡張を開発できます。
-    </p>
-    <p>
-        ただし現在のところ、Burpによって発行されたケトルなリクエストを、拡張からは変更できません。これは、APIを介した場合、正規化されたHTTP/1スタイルの表現にのみアクセスできるためです。
+        これらの評価はあくまで目安で、BAppによるパフォーマンスへの影響を完全に反映していない可能性があります。カスタムタブやコンテキストメニューオプションを追加するBAppは、十分なテストができません。
     </p>
 </div>
 <h2 id="extender-options">Extenderオプション</h2>
 <p>
-    このタブには、<a href="#settings">拡張の設定</a>、<a href="#java-environment">Java環境</a>、<a href="#python-environment">Python環境</a>、<a href="#ruby-environment">Ruby環境</a>があります。
+    <strong>オプション</strong>タブには、<a href="#settings">拡張の設定</a>、<a href="#java-environment">Java環境</a>、<a href="#python-environment">Python環境</a>、<a href="#ruby-environment">Ruby環境</a>があります。
 </p>
 <h3 id="settings">設定</h3>
 <p>
@@ -133,7 +263,7 @@
 </p>
 <ul>
     <li>
-        起動時に拡張を自動的に再読み込みするかどうか。この設定をしたままBurpをシャットダウンし、拡張を自動的にリロードせずにBurpを再起動したい場合は、コマンドラインフラグ<code>--disable-extensions</code>を付けてBurpを起動してください。Burpはすべての拡張を自動的にリロードしなくなります。
+        起動時に拡張を自動的に再読み込みするかどうか。この設定を有効にしたままBurpをシャットダウンし、自動的に拡張をリロードせずにBurpを再起動したい場合は、コマンドラインフラグ<code>--disable-extensions</code>を付けてBurpを起動してください。Burpはすべての拡張を自動的にリロードしなくなります。
     </li>
     <li>
         インストールされたBAppを起動時に自動アップデートするかどうか。
@@ -141,18 +271,18 @@
 </ul>
 <h3 id="java-environment">Java環境</h3>
 <p>
-    Javaで記述された拡張を実行する環境が設定できます。拡張が任意のライブラリを使用している場合、ライブラリが読み込まれるフォルダを指定できます。BurpはこのフォルダとサブフォルダからJARファイルを検索し、Java拡張のロードに使用するクラスローダのクラスパスに含めます。
+    Javaで記述された拡張を実行する環境が設定できます。拡張が任意のライブラリを使用している場合、ライブラリが読み込まれるフォルダを指定できます。BurpはこのフォルダとサブフォルダからJARファイルを検索し、Java拡張の読込に使用するクラスローダのクラスパスに含めます。
 </p>
 <h3 id="python-environment">Python環境</h3>
 <p>
-    Pythonで書かれた拡張を実行する環境が設定できます。Pythonの拡張を使用するには、Javaで実装されたPythonインタープリターである、Jythonをダウンロードする必要があります。次のオプションがあります:
+    Pythonで書かれた拡張を実行する環境が設定できます。Pythonの拡張を使用するには、Javaで実装されたPythonインタープリタである、Jythonをダウンロードする必要があります。次のオプションがあります:
 </p>
 <ul>
     <li>
         <strong>JythonのスタンドアロンJARファイルの場所</strong> - Jythonをダウンロードした場所。Jythonのスタンドアロンバージョンをダウンロードする必要があります。
     </li>
     <li>
-        <strong>モジュールを読み込むフォルダ</strong> - この設定はオプションで、拡張が必要とするモジュールをPythonインタープリターが探してロードするフォルダを指定します。設定された場合、Pythonの<code>sys.path</code>変数を、指定した場所に更新します。このオプションは、独自のPythonライブラリを作り、複数の拡張から利用する場合に便利です。
+        <strong>モジュールを読み込むフォルダ</strong> - この設定はオプションで、拡張が必要とするモジュールをPythonインタープリタが探して読み込むフォルダを指定します。設定された場合、Pythonの<code>sys.path</code>変数を、指定した場所に更新します。このオプションは、独自のPythonライブラリを作り、複数の拡張から利用する場合に便利です。
     </li>
 </ul>
 <div class="highlightedarea">
@@ -167,12 +297,32 @@
 </div>
 <h3 id="ruby-environment">Ruby環境</h3>
 <p>
-    Rubyで書かれた拡張を実行する環境が設定できます。Rubyの拡張を使用するには、Javaで実装されたRubyインタープリターである、JRubyをダウンロードする必要があります。ここでJRubyのJARファイルの場所を設定するか、起動時にJavaクラスパスからJAR ファイルを読み込めます。
+    Rubyで書かれた拡張を実行する環境が設定できます。Rubyの拡張を使用するには、Javaで実装されたRubyインタープリタである、JRubyをダウンロードする必要があります。ここでJRubyのJARファイルの場所を設定するか、起動時にJavaクラスパスからJAR ファイルを読み込めます。
 </p>
 <div class="highlightedarea">
     <h4>注</h4>
     <p>
         一部のRuby拡張をロードする場合、<a href="#python-environment">Python環境</a>で説明したPermGenストレージの問題が同様に生じることがあり、同じ方法で解決できます。
+    </p>
+</div>
+<h2 id="creating-your-own-extensions">独自の拡張を作成</h2>
+<p>
+    独自のBurpの拡張を作成するためのヘルプは、メインの<a href="https://portswigger.net/burp/extender">拡張に関するドキュメント</a>と、BAppストアに<a href="submit-extension.html">拡張を投稿</a>するためのガイドを参照してください。
+</p>
+<h2 id="burp-extender-api">Burp Extender API</h2>
+<p>
+    <strong>API</strong>タブには、Burp拡張の作成に使用できるAPIの詳細があります。リストには、実行しているBurpのバージョンで利用可能なAPIが表示されています。表示したいインタフェースの名前をリストから選択すると、インタフェースのコードがすべて表示されます。
+</p>
+<p>
+    <strong>インタフェースファイルを保存</strong>と<strong>Javadocファイルを保存</strong>ボタンでこれらのファイルをローカルにコピーし、拡張の開発時に利用できます。
+</p>
+<div class="highlightedarea">
+    <h4>拡張開発者向けの注意</h4>
+    <p>
+        拡張から新しいリクエストを発行する場合、HTTP/2フォーマットを使った<a href="../../http2/index.html#kettled-requests">ケトルなリクエスト</a>を自由に送信できます。これにより、HTTP/2専用の脆弱性をテストするための拡張を開発できます。
+    </p>
+    <p>
+        ただし現在のところ、Burpによって発行されたケトルなリクエストを、拡張からは変更できません。これは、APIを介した場合には正規化されたHTTP/1スタイルの表現にしかアクセスできないためです。
     </p>
 </div>
 </body>
