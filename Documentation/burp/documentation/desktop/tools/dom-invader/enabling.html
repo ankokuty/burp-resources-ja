@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">DOM Invader</a>
+        </li>
+        <li>
+            <a href="enabling.html">DOM Invaderの有効化</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>DOM Invaderの有効化</h1>
+<p>
+    DOM Invaderは、Burpブラウザにプリインストールされていますが、その機能の一部が他のテストに影響を与える可能性があるため、デフォルトでは無効になっています。
+</p>
+<p>
+    DOM Invaderを有効にするには:
+</p>
+<ol>
+    <li>
+        <p>
+            <strong>Proxy &gt; インターセプト</strong>タブに移動し、Burpブラウザを開きます。
+        </p>
+    </li>
+    <li>
+        <p>
+            ブラウザウィンドウの右上にある、Burp Suiteのロゴをクリックします。このロゴがない場合は、まずジグソーパズルのアイコンをクリックしてください。Burp Suite Navigation RecorderとDOM Invaderの設定メニューのタブがあるパネルが開きます。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="../../images/dom-invader-settings-main.png" alt="DOMインベーダーの有効化">
+        </div>
+    </li>
+    <li>
+        <p>
+            DOM Invaderの設定から、<strong>DOM Invader is on</strong>なるようにスイッチを切り替えます。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Reload</strong>をクリックすると、ブラウザが更新されます。これは、変更を有効にするために必要です。
+        </p>
+    </li>
+    <li>
+        <p>
+            ブラウザのメインウィンドウの任意の場所で右クリックし、<strong>インスペクト</strong>を選択すると、ブラウザーのデベロッパーツールパネルが開きます。<strong>DOM Invader</strong>タブがあることに注目してください。より快適に利用するために、パネルはブラウザウィンドウの下部への配置を推奨します。
+        </p>
+    </li>
+</ol>
+<div class="rounded-dropshadow">
+    <img src="../../images/dom-invader-innerHTML-sink.png" alt="デベロッパーツールパネルをブラウザウィンドウの下部に配置">
+</div>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        DOM Invaderはデフォルトで、オンかオフかも含め、以前の設定を記憶しています。DOM Invaderが有効な状態でBurpブラウザを閉じた場合は、この点に注意してください。この動作を無効にするには、<strong>ユーザーオプション &gt; Burpブラウザ</strong>で、<strong>Burpブラウザに設定と履歴の保存を許可する</strong>の選択を解除してください。
+    </p>
+</div>
+</body>
+</html>

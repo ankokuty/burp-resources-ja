@@ -50,26 +50,29 @@
     <div class="highlightedarea">
         <h4>注</h4>
         <p>
-            Burp Scannerは、Burp Suite Professionalでのみ利用可能です。Burp Suite Community Editionを使用している場合は、このチュートリアルは進められません。
+            Burp Scannerは、Burp Suite ProfessionalとBurp Suite Enterprise Editionでのみ利用可能です。Burp Suite Community Editionを使用している場合は、このチュートリアルは進められません。
+        </p>
+        <p>
+            Burp Suite Enterprise Editionのユーザーは、<a href="https://portswigger.net/burp/documentation/enterprise/getting-started/quick-start-guide/run-your-first-scan.html">Burp Suite Enterprise Editionによる初めてのスキャン実行</a>のチュートリアルを参照してください。
         </p>
     </div>
     <h2 id="scanning-a-website">Webサイトをスキャン</h2>
     <p>
         このセクションでは、自動化された脆弱性スキャンを初めて起動する方法を学びます。
     </p>
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: スキャンランチャーを開く</h3>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: スキャンランチャを開く</h3>
     <p>
         <strong>ダッシュボード</strong>タブに移動し、<strong>新規スキャン</strong>を選択します。
     </p>
     <img src="../images/getting-started/quick-start-scanner-new-scan.png" alt="新規スキャンの開始">
     <p>
-        <strong>スキャンランチャー</strong>ダイアログが開きます。ここでは、Burp Scannerの動作を制御するためのさまざまな設定が行えます。
+        <strong>スキャンランチャ</strong>ダイアログが開きます。ここでは、Burp Scannerの動作を制御するためのさまざまな設定が行えます。
     </p>
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: 対象サイトのURLを入力する</h3>
     <p>
         <strong>スキャンするURL</strong>フィールドに、<code>portswigger-labs.net</code>と入力します。その他の設定は、とりあえずデフォルトのままにしておきます。
     </p>
-    <img src="../images/getting-started/quick-start-scanner-launcher.png" alt="スキャンランチャーでのURL設定">
+    <img src="../images/getting-started/quick-start-scanner-launcher.png" alt="スキャンランチャでのURL設定">
     <div class="highlightedarea">
         <h4>注</h4>
         <p>
@@ -107,7 +110,7 @@
     </p>
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: 関連する課題の選択</h3>
     <p>
-        <strong>Target ＞ サイトマップ</strong>タブを開き、<code>https://portswigger-labs.net</code>のエントリを右クリックして、<strong>問題 &gt; このホストの問題をレポート</strong>を選択します。
+        <strong>Target &gt; サイトマップ</strong>タブを開き、<code>https://portswigger-labs.net</code>のエントリを右クリックして、<strong>問題 &gt; このホストの問題をレポート</strong>を選択します。
     </p>
     <img src="../images/getting-started/quick-start-scanner-report-issues.png" alt="選択されたホストの問題を報告">
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: レポートオプションの設定</h3>

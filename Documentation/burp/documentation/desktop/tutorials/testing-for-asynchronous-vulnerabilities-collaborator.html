@@ -37,11 +37,11 @@
 <p>
     <a href="../../collaborator/index.html">Burp Collaborator</a>サーバは、さまざまなネットワークサービスのカスタム実装を提供します。Burp Collaboratorクライアントは"Collaboratorペイロード"を提供し、手動テスト時にこれらを活用できるようにします。これらは、Collaboratorサーバの1つ以上のサブドメイン名です。例:
 </p>
-<code class="code-scrollable">204119i326shak9tnk6k36z8jlahj74r.oastify.net</code>
+<code class="code-scrollable">204119i326shak9tnk6k36z8jlahj74r.oastify.com</code>
 <div class="highlightedarea">
     <h4>注</h4>
     <p>
-        WAFのブラックリストによる誤検出を減らすため、公開されているCollaboratorサーバーに定期的に新しいドメイン名を追加しています。デフォルトでBurp Collaboratorクライアントは常に、現在のバージョンのBurp Suite Professionalがリリースされた時点で利用可能な最新の公開Collaboratorドメインを使用します。現時点では、<code>burpcollaborator.net</code>か<code>oastify.net</code>のどちらかになる予定です。
+        WAFのブラックリストによる誤検出を減らすため、公開されているCollaboratorサーバに定期的に新しいドメイン名を追加しています。Burp Collaboratorクライアントはデフォルトで、現在のバージョンのBurp Suite Professionalがリリースされた時点で利用可能な最新の公開Collaboratorドメインを常に使用します。現時点では、<code>burpcollaborator.net</code>か<code>oastify.com</code>のどちらかになる予定です。
     </p>
     <p>
         Burp Collaboratorが最大限の効果を発揮できるよう、Burp Collaboratorクライアントを実行しているマシンが、これらの両方のドメインにポート80と443でアクセスできるようにしてください。
@@ -99,7 +99,7 @@
     先程開いたBurp Collaboratorクライアントのウィンドウに戻ります。
 </p>
 <p>
-    デフォルトで、Collaboratorクライアントは60秒ごとに通信ををポーリングするため、既にいくつかの通信が表示されているかもしれません。そうでない場合は、<strong>今すぐポーリング</strong>をクリックします。
+    Collaboratorクライアントはデフォルトで、60秒ごとに通信をポーリングするため、既にいくつかの通信が表示されているかもしれません。そうでない場合は、<strong>今すぐポーリング</strong>をクリックします。
 </p>
 <div class="rounded-dropshadow">
     <img src="images/collaborator/burp-collaborator-tut-4-polling-for-interactions.png" alt="Collaboratorクライアントでの通信のポーリング">
@@ -139,7 +139,7 @@
     このチュートリアルでは、Burp Repeaterで1つの入力を手動でテストしました。実際のテストでは、<a href="https://portswigger.net/bappstore/2495f6fb364d48c3b6c984e226c02968">Collaborator Everywhere拡張</a>を使用すると複数の入力を一度にテストできます。有効にすると、Burp Proxyを通過するリクエストやBurpのツールから送信されるリクエストに、自動的に多くのCollaboratorペイロードが挿入されます。
 </p>
 <p>
-    Collaborator Everywhereは各入力ごとに異なるペイロードを挿入するため、どの入力がCollaboratorサーバーとの通信を引き起こしたかを簡単に特定できます。変更されたリクエストを<strong>Logger</strong>タブで調査すると、この挙動が確認できます:
+    Collaborator Everywhereは各入力ごとに異なるペイロードを挿入するため、どの入力がCollaboratorサーバとの通信を引き起こしたかを簡単に特定できます。変更されたリクエストを<strong>Logger</strong>タブで調査すると、この挙動が確認できます:
 </p>
 <div class="rounded-dropshadow">
     <img src="images/collaborator/burp-collaborator-tut-5-collaborator-everywhere.png" alt="Collaborator Everywhereが複数のヘッダにペイロードを挿入">

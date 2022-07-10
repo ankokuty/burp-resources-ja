@@ -5,7 +5,7 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
-<cms page-layout="FREESTYLE" ignore-validation="KEYWORD_APPEARANCES_MORE_THAN_DEFINING_PAGE,OTHER_PAGE_KEYWORD_TOO_FREQUENT"></cms>
+<cms page-layout="FREESTYLE"></cms>
 </head>
 <body class="section theme-white wrapper-themed">
 <section class="container ps-breadcrumbs">
@@ -33,75 +33,37 @@
 </section>
 <h1>DOM Invader</h1>
 <p>
-    DOM Invaderは、DOMベースのクロスサイトスクリプティング(DOM XSS)の脆弱性を、より迅速かつ簡単にテストできるようにするツールです。Burpブラウザに、拡張機能としてプリインストールされています。
-</p>
-<p>
-    通常、DOM XSSを発見し悪用するには、圧縮された複雑なJavaScriptの検索など、手動で面倒な手順が必要です。DOM Invaderはこの大変な作業の多くを実行します。つまり興味深い挙動を数時間ではなく数秒で発見できます。
-</p>
-<p>
-    BurpブラウザのDevToolsパネルのDOM Invaderビューから、DOM Invaderのすべての機能にアクセスできます。
-</p>
-<ul>
-    <li>
-        <a href="dom-view.html"><strong>DOMビュー</strong></a>タブには、ページ上にある制御可能なすべてのソースとシンクをほぼ瞬時に発見でき、クライアント側のコードを詳細に調査し、挿入したペイロードが実行される箇所を正確に把握するために役立つ機能があります。
-    </li>
-    <li>
-        <a href="messages-view.html"><strong>Messageビュー</strong></a>タブでは、ページ上で送信されたWebメッセージのキャプチャ、編集、再送信ができます。これはWebメッセージ用の、Burp ProxyとRepeaterに相当するようなツールです。独自に細工したメッセージを送信して、DOM Invaderに脆弱性を調査させることも可能です。
-    </li>
-</ul>
-<p>
-    DOM Invaderの使用方法の概要は、PortSwiggerの研究者でDOM Invaderの作成者である<a href="https://portswigger.net/research/gareth-heyes">Gareth Heyes</a>によるビデオデモを参照してください。
-</p>
-<div class="container">
-    <div class="youtube-wrapper">
-        <iframe src="https://www.youtube.com/embed/Wd2R47czzO0?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
-    </div>
-</div>
-<div class="highlightedarea">
-    <h4>PortSwigger Research</h4>
-    <p>
-        <a href="https://portswigger.net/research/finding-dom-polyglot-xss-in-paypal-the-easy-way">Finding DOM Polyglot XSS in PayPal the Easy Way</a>
-    </p>
-</div>
-<h2 id="enabling-dom-invader">DOM Invaderの有効化</h2>
-<p>
-    DOM Invaderは、Burpブラウザにプリインストールされていますが、その機能の一部が他のテストに影響を与える可能性があるため、デフォルトでは無効になっています。有効にするには、Burpブラウザの右上隅にあるBurp Suiteアイコンをクリック(表示されない場合は、最初にジグソーパズルのアイコンをクリック)し、Burp Suitをクリックし、<strong>DOM Invader</strong>タブに移動し、<strong>DOM Invader is on/off</strong>スイッチを切り替えます。次に変更を有効にするために、<strong>リロード</strong>ボタンをクリックするよう求められます。
+    DOM Invaderはブラウザベースのツールで、さまざまなソースとシンクを使用してDOM XSS脆弱性をテストするのに役立ち、Webメッセージやプロトタイプ汚染もテストできます。Burpブラウザからのみ利用可能で、拡張機能としてプリインストールされています。
 </p>
 <div class="rounded-dropshadow">
-    <img src="../../images/dom-invader-enabling.png" alt="DOM Invaderの有効化" class="center-block">
+    <img src="../../images/dom-invader-innerHTML-sink.png" alt="ブラウザのデベロッパーツールのDOM Invaderタブ">
 </div>
+<h2 id="key-features">主な機能</h2>
 <p>
-    DOM Invaderを有効にした後、ブラウザのDevToolsパネルを開きます。これでDOM Invaderタブが表示されるでしょう。最高のエクスペリエンスを得るには、DevToolsパネルをブラウザウィンドウの下部への配置を推奨します。
-</p>
-<div class="highlightedarea">
-    <h4>注</h4>
-    <p>
-        Burpで、<strong>ユーザオプション</strong> &gt; <strong>Burpブラウザ</strong> &gt; <strong>Burpブラウザに設定と履歴の保存を許可する</strong>オプションが有効な場合、DOM Invaderはオンかオフかも含め以前の設定を記憶します。DOM Invaderが有効な状態でBurpブラウザを閉じた場合は、この点に注意してください。
-    </p>
-</div>
-<h2 id="dom-invader-settings">DOM Invader設定</h2>
-<p>
-    ブラウザの右上隅にあるBurp Suiteアイコンをクリックすると、DOM Invaderタブにいくつもの設定があり、さまざまなテストシナリオに合わせて動作を変更できます。
+    DOM Invaderを有効にすると、ブラウザのデベロッパーツールパネルに新しいタブが追加されます。これにより、主に次の作業が可能です:
 </p>
 <ul>
     <li>
-        <strong>Postmessage interception:</strong> 有効にすると、DevToolsパネルの<a href="messages-view.html"><strong>Message</strong></a>ビューで、サイトのWebメッセージング機能のDOM XSSをテストできます。<a href="messages-view.html#postmessage-settings">Postmessage固有の設定</a>がいくつかあり、動作を微調整できます。
+        <p>
+            反射型XSSのようにDOM XSSをテストできます。Argumented DOMビューでは、ページ上にある制御可能なシンクを瞬時に発見でき、XSSコンテキストと入力のサニタイズ状況が表示されます。詳細は、<a href="dom-xss.html">DOM XSSのテスト</a>を参照してください。
+        </p>
     </li>
     <li>
-        <strong>Message filtering by stack trace:</strong> 一部のWebサイトで多数のメッセージをトリガーしますが、ノイズが多くなりテストが困難になる可能性があります。この設定を有効にすると、DOM Invaderは各エントリのスタックトレースを比較し、既存のエントリと同じコード内の場所を指すエントリを非表示にします。
+        <p>
+            ページ上の<code>postMessage()</code>メソッドで送信されたWebメッセージを、記録、変更、再送できます。これにより、WebメッセージによるDOM XSSのテストが可能になります。また、特別に細工したWebメッセージをDOM Invaderに送信させ、あなたの代わりに脆弱性を調査させられます。詳細は、<a href="web-messages.html">Webメッセージを使用したDOM XSSのテスト</a>を参照してください。
+        </p>
     </li>
     <li>
-        <strong>Auto fire events:</strong> 有効にするとDOM Invaderは、ページが読み込まれるとすぐ自動的に、すべてのエレメントでクリックやマウスオーバーイベントをトリガーします。これにより、挿入されたペイロードがこれらのイベントを必要とする場合に、自動的に実行されます。
-    </li>
-    <li>
-        <strong>Redirection prevention:</strong> 一部のアクションでは、操作によってDOMベースで他のページへのリダイレクトが発生する場合があります。するとDOM Invaderのビューがクリアされ、代わりに新しいページのソースとシンクで更新されるため、テストに支障をきたす可能性があります。この設定を有効にすると、DOM InvaderはDOMベースベースのリダイレクトをブロックし、同じページにとどまるようになります。ただし、<code>javascript:</code> URLへのリダイレクト、または<strong>Inject canary into URL</strong>ボタンによるリダイレクトは、引き続き通常通り動作します。
-    </li>
-    <li>
-        <strong>Inject canary into all sources:</strong> 有効にすると、ページ上で発見されたソースに対してDOM Invaderはカナリアを自動的に挿入します。各シンクにたどり着くソースを簡単に識別できるように、各ソースのカナリアに一意な文字列を追加します。これにより、サイトを閲覧するだけで脆弱性を発見できるため、時間を節約できます。一部のソースは、挿入するとサイトを適切に閲覧できなくなる可能性があるため、このオプションはデフォルトで無効になっています。この問題を避けるため、この設定のスイッチの横にある歯車のアイコンをクリックして、問題のあるソースの除外もできます。
-    </li>
-    <li>
-        <strong>Update canary:</strong> デフォルトで、DOM Invaderはランダムな英数字の文字列をカナリアに使用しますが、これを<a href="dom-view.html#changing-the-canary">好きなカナリアに上書き</a>もできます。これを有効にするには、カナリアを変更した後に、<strong>リロード</strong>ボタンをクリックする必要があることに注意してください。
+        <p>
+            クライアント側プロトタイプ汚染のソースを自動的に特定し、危険なシンクに渡される制御可能なガジェットをスキャンします。詳細は、<a href="prototype-pollution.html">クライアント側プロトタイプ汚染のテスト</a>を参照してください。
+        </p>
     </li>
 </ul>
+<p>
+    DOM Invaderを有効にする方法は、<a href="enabling.html">DOM Invaderの有効化</a>を参照してください。
+</p>
+<p>
+    DOM Invaderは高度な設定が可能で、さまざまなWebサイトやユースケースに合わせて動作を微調整できます。詳細は、<a href="configuration/index.html">DOM Invaderの設定</a>を参照してください。
+</p>
 </body>
 </html>

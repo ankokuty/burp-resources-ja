@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">DOM Invader</a>
+        </li>
+        <li>
+            <a href="web-messages.html">Webメッセージを使用したDOM XSSのテスト</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Webメッセージを使用したDOM XSSのテスト</h1>
+<p>
+    DOM Invaderには、Webメッセージ使用したDOM XSSをテストするための機能が数多くあります。これは、次の通りです:
+</p>
+<ul>
+    <li>
+        <p>
+            ページ上の<code>postMessage()</code>メソッドで送信されたすべてのWebメッセージを、それに関する有用な情報とともにログに記録します。これは、HTTPリクエストとレスポンスの履歴をBurp Proxyが表示するのと似ています。
+        </p>
+    </li>
+    <li>
+        <p>
+            手動でDOM XSS脆弱性を調査するために、Webメッセージの変更と再送信が行えます。これは、修正されたHTTPリクエストをBurp Repeaterが再送信するのと似ています。
+        </p>
+    </li>
+    <li>
+        <p>
+            DOM XSSを調査するために、Webメッセージの変更と送信をあなたの代わりに自動で行います。
+        </p>
+    </li>
+</ul>
+<p>
+    DOM Invaderの<strong>Messages</strong>ビューから、これらのすべての機能にアクセスできます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/dom-invader-messages-overview.png" alt="DOM Invaderを使ったWebメッセージのテスト">
+</div>
+<p>
+    これらの機能を利用するには、まずDOM Invaderの設定メニューで<strong>Postmessageのインターセプト</strong>を有効にする必要があります。詳細は、<a href="configuration/general.html">一般設定</a>を参照してください。
+</p>
+<div class="highlightedarea">
+    <h4>Webセキュリティアカデミー</h4>
+    <p>
+        WebメッセージベースのDOM XSSについてブラッシュアップしたい場合は、Webセキュリティアカデミーをチェックしてください。ここには意図的に脆弱性を組み込んだラボがあるので練習もできます。
+    </p>
+    <p>
+        <a href="../../../../../web-security/dom-based/controlling-the-web-message-source/index.html">Webメッセージソースの制御</a>
+    </p>
+</div>
+<h2 id="enabling-web-message-interception">Webメッセージのインターセプトを有効化</h2>
+<p>
+    対象サイトの機能に影響を与えないよう、DOM InvaderのWebメッセージ機能はデフォルトで無効になっています。
+</p>
+<p>
+    これらの機能を有効にするには:
+</p>
+<ol>
+    <li>
+        <p>
+            DOM Invaderの設定メニューに移動します。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Postmessage interception</strong>スイッチを選択します。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Reload</strong>をクリックし、ブラウザをリロードします。これは、変更を有効にするために必要です。
+        </p>
+    </li>
+</ol>
+<div class="rounded-dropshadow">
+    <img src="../../images/dom-invader-settings-messages.png" alt="Webメッセージのインターセプトを有効化">
+</div>
+<h2 id="identifying-interesting-web-messages">興味深いウェブメッセージを探索</h2>
+<p>
+    Webメッセージのインターセプトを有効にすると、ページ上の<code>postMessage()</code>メソッドで送信されたすべてのWebメッセージが自動的に記録されます。デフォルトで、検出したメッセージイベントハンドラに対して、独自のメッセージの生成と送信も行います。
+</p>
+<p>
+    これらは<strong>Message</strong>ビューで確認できます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/dom-invader-messages-view.png" alt="DOMインベーダーのMessageビュー">
+</div>
+<h2 id="automated-web-message-analysis">Webメッセージの自動分析</h2>
+<p>
+    DOM Invaderはデフォルトで、あなたの代わりに興味深いメッセージを識別しフラグを立てようとします。これは、次のようにメッセージを変更して実現します:
+</p>
+<ul>
+    <li>
+        <p>
+            メッセージの<code>data</code>プロパティにカナリアを挿入します。DOM Invaderはこれを利用して、このデータがたどり着くシンクを特定できます。<strong>DOM</strong>ビュー内の他のソースと同様です。
+        </p>
+    </li>
+    <li>
+        <p>
+            メッセージのオリジンを、期待されるドメイン名で始まり、期待されるドメイン名で終わる偽のオリジンに置き換えます。これによりDOM Invaderは、メッセージのオリジンの検証ロジックや正規表現に欠陥のあるイベントハンドラを発見できます。
+        </p>
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        この2つの機能は、DOM Invaderの設定メニューで無効にできます。詳細は、<a href="configuration/web-messages.html">Webメッセージの設定</a>を参照してください。
+    </p>
+</div>
+<p>
+    DOM Invaderは、観察された動作に基づいて、悪用可能と思われるメッセージに自動的にフラグを立て、問題の深刻度と信頼度の推定値を表示します。DOM Invaderが自動検出できない脆弱性が含まれている可能性があるため、ページ上で送信されたすべてのメッセージは、少なくとも<strong>情報</strong>の重要度で表示されます。
+</p>
+<h2 id="message-details">メッセージの詳細</h2>
+<p>
+    各メッセージをクリックすると、そのメッセージの詳細な情報を表示できます。たとえば、<code>origin</code>、<code>data</code>、<code>source</code>プロパティが、クライアント側JavaScriptによってアクセスされているかどうかなどです。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/dom-invader-messages-details.png" alt="メッセージ詳細の表示">
+</div>
+<p>
+    この情報は、メッセージが有用かどうかを判断する手がかりとなり、適切なエクスプロイトを作成する方法がわかります。
+</p>
+<h3 id="origin-accessed">オリジンへのアクセス</h3>
+<p>
+    クライアント側のコードがメッセージの<code>origin</code>プロパティにアクセスしていない場合は、オリジンが検証されていない可能性があります。その結果、任意の外部ドメインからイベントハンドラに対してクロスオリジンメッセージを送信できるかもしれません。
+</p>
+<p>
+    クライアント側のコードがメッセージの<code>origin</code>プロパティにアクセスしていても、安全ではない場合があります。バリデーションを回避できるかもしれません。その方法を見つけるために、DOM Invaderはスタックトレースで、コード内の関連する行へのリンクを表示します。詳細は、<a href="dom-xss.html#studying-the-client-side-code">クライアント側コードの検討</a>を参照してください。
+</p>
+<div class="highlightedarea">
+    <h4>Webセキュリティアカデミー</h4>
+    <p>
+        <a href="../../../../../web-security/cors/index.html#errors-parsing-origin-headers">欠陥のあるオリジン検証の回避</a>
+    </p>
+</div>
+<h3 id="data-accessed">データへのアクセス</h3>
+<p>
+    メッセージの<code>data</code>プロパティは、ペイロードを挿入する潜在的な場所です。JavaScriptがこのプロパティにアクセスしていない場合、シンクには渡せません。この場合、このメッセージは重要ではありません。
+</p>
+<h3 id="source-accessed">ソースへのアクセス</h3>
+<p>
+    メッセージの<code>source</code>プロパティは、メッセージ送信元の<code>window</code>オブジェクトへの参照です。実際には、通常はiframeへの参照です。特定の信頼されたiframeからメッセージが送信されていることを確実に確認するために、Webサイトは多くの場合<code>source</code>プロパティを検証します。
+</p>
+<p>
+    オリジンと同様に、クライアント側のコードがこのプロパティにアクセスしていても、必ずしもソースが検証されていること、およびこの検証が回避できないことが保証されているわけではない点に注意してください。
+</p>
+<h2 id="replaying-web-messages">Webメッセージの再送</h2>
+<p>
+    DOM Invaderは、Burp RepeaterのHTTPリクエストと同じように、Webメッセージの変更や再送ができます。これにより、WebメッセージをソースとしたDOM XSSの調査がより容易になります。
+</p>
+<p>
+    変更したWebメッセージを送信するには:
+</p>
+<ol>
+    <li>
+        <p>
+            <strong>Messages</strong>ビューで任意のメッセージをクリックすると、メッセージの詳細ダイアログが開きます。
+        </p>
+    </li>
+    <li>
+        <p>
+            必要に応じて、<strong>Data</strong>フィールドを編集します。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Send</strong>をクリックします。
+        </p>
+    </li>
+</ol>
+<p>
+    例えば、イベントハンドラがオリジンの検証を行わず、データを<code>element.innerHTML</code>のシンクに渡しているメッセージを発見できます。この場合、<code>&lt;</code>、<code>&gt;</code>、<code>"</code>などの文字がエスケープされているかどうかをテストするメッセージを送信し、その後これらの文字をペイロードに使用した概念実証を作成して送信できます。
+</p>
+<h2 id="generating-a-proof-of-concept">概念実証の生成</h2>
+<p>
+    Webメッセージを使用した悪用可能な脆弱性をDOM Invaderが発見すると、概念実証のHTMLを生成しレポートに含められます。
+</p>
+<p>
+    概念実証を生成するには:
+</p>
+<ol>
+    <li>
+        <p>
+            脆弱なメッセージを選択すると、メッセージの詳細ダイアログが開きます。
+        </p>
+    </li>
+    <li>
+        <p>
+            エクスプロイトに必要な値を変更します。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Build PoC</strong>をクリックします。クリップボードにHTMLが保存されます。
+        </p>
+    </li>
+</ol>
+<div class="highlightedarea">
+    <h4>続きを読む</h4>
+    <p>
+        DOM Invaderは高度な設定が可能です。DOM Invaderの高度な機能と、特定サイト向けに動作を微調整する方法は、<a href="configuration/web-messages.html">Webメッセージの設定</a>を参照してください。
+    </p>
+</div>
+</body>
+</html>

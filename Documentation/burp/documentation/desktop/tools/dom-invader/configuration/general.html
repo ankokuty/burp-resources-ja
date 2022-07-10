@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">DOM Invader</a>
+        </li>
+        <li>
+            <a href="index.html">設定</a>
+        </li>
+        <li>
+            <a href="general.html">一般的な設定</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>一般的な設定</h1>
+<p>
+    DOMベースの脆弱性をテストすると、テスト対象のWebサイトが正しく動作しなくなる副作用が発生することがよくあります。DOM Invaderは高度な設定が可能で、最良の結果を得るために動作を微調整できます。
+</p>
+<p>
+    DOM Invaderの設定メニューにアクセスするには、ブラウザの右上にあるBurp Suiteのロゴをクリックし、<strong>DOM Invader</strong>タブに切り替えます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/dom-invader-settings-main.png" alt="DOM Invaderの一般的な設定">
+</div>
+<p>
+    DOM Invaderのメイン設定メニューから、次の一般的な設定が可能です。
+</p>
+<h2 id="postmessage-interception">Postmessageインターセプト</h2>
+<p>
+    この設定を有効にすると、デベロッパーツールパネルの<strong>Messages</strong>ビューで、サイトのWebメッセージのDOM XSSをテストできます。DOM InvaderのWebメッセージ機能の詳細は、<a href="../web-messages.html">Webメッセージを使用したDOM XSSのテスト</a>を参照してください。
+</p>
+<p>
+    また、この動作を微調整するための追加設定もいくつかあります。詳細は、<a href="web-messages.html">Webメッセージの設定</a>を参照してください。
+</p>
+<h2 id="message-filtering-by-stack-trace">スタックトレースのメッセージフィルタリング</h2>
+<p>
+    Webサイトによっては大量のメッセージが発生するため、ノイズが多くなりテストが困難になることがあります。この設定を有効にするとDOM Invaderは、各エントリーのスタックトレースを比較し、コード内で既存のエントリーと同じ場所を指しているものを非表示にします。
+</p>
+<h2 id="auto-fire-events">イベントの自動発火</h2>
+<p>
+    この設定を有効にするとDOM Invaderは、ページが読み込まれると同時に、クリックイベントとマウスオーバーイベントをすべての要素で自動的に発生させます。これらのイベントのいずれかが発生したときにのみ、挿入されたペイロードがシンクにたどり着くような場合に便利です。
+</p>
+<h2 id="redirection-prevention">リダイレクト防止</h2>
+<p>
+    一部の操作により、クライアント側で別のページにリダイレクトされることがあります。リダイレクトされると、DOM Invaderが見つけたソースとシンクがクリアされ、新しいページで見つかったソースとシンクに更新されてしまうため、テストに支障をきたす可能性があります。
+</p>
+<p>
+    この設定を有効にすると、DOM Invaderはクライアント側のリダイレクトをブロックして、同じページにとどまります。ただし、<code>javascript:</code> URLへのリダイレクト、<strong>Inject URL</strong>ボタンによるリダイレクトは、引き続き通常通り動作します。
+</p>
+<h2 id="add-breakpoint-before-redirect">リダイレクト前にブレークポイントを追加</h2>
+<p>
+    <strong>リダイレクト防止</strong>設定でクライアント側のリダイレクトを完全にブロックする代わりにこの機能を有効にすると、リダイレクトが行われるコードの直前にブレークポイントを設定できます。現在のところ、Chrome標準のデベロッパーツールではでは不可能です。
+</p>
+<p>
+    ブレークポイントを追加すると、ブラウザのデベロッパーツールでコールスタックを見ながら、どこでリダイレクトが発生しているかを確認でき、デバッグに役立ちます。
+</p>
+<h2 id="prototype-pollution">プロトタイプ汚染</h2>
+<p>
+    この設定を有効にするとDOM Invaderは自動的に、通常のDOM XSSのソースとシンクに加えて、クライアント側のプロトタイプ汚染のソースを特定しようとします。
+</p>
+<p>
+    DOM Invaderのプロトタイプ汚染機能の詳細は、<a href="../prototype-pollution.html">クライアント側プロトタイプ汚染のテスト</a>を参照してください。
+</p>
+<p>
+    この設定の隣にある歯車のアイコンをクリックすると、この動作を微調整するための追加設定にアクセスできます。プロトタイプ汚染に特有の設定オプションの詳細は、<a href="prototype-pollution.html">プロトタイプ汚染の設定</a>を参照してください。
+</p>
+<h2 id="inject-canary-into-all-sources">すべてのソースにカナリアを挿入</h2>
+<p>
+    この設定を有効にするとDOM Invaderは、ページ上で特定されたソースに自動的にカナリアを挿入します。各シンクにたどり着くソースを簡単に識別できるように、各ソースのカナリアに一意な文字列を追加します。
+</p>
+<p>
+    実際には、すべてのソースにカナリアを挿入すると、多くの場合サイトが正常に動作しなくなります。この設定の隣にある歯車のアイコンをクリックすると、DOM Invaderが特定のソースを無効にしてスキップするよう設定できます。問題のあるソースを徐々に排除し、この機能をより効果的に使うとよいでしょう。
+</p>
+<p>
+    また、特定のソースに集中するために、ソースを無効にもできます。これにより、新しいページを読み込むたびに手動でカナリアをソースにペーストする手間を省けます。
+</p>
+<h2 id="changing-the-canary">カナリアの変更</h2>
+<p>
+    設定メニューの下部には、現在DOM Invaderがトラッキングしているカナリア文字列が表示されます。ランダムに生成されたデフォルトのカナリアは、いつでも変更できます。
+</p>
+<p>
+    カナリアを変更するには:
+</p>
+<ol>
+    <li>
+        <p>
+            デフォルトのカナリアの代わりに使用する文字列を入力します。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Update canary</strong>をクリックします。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Reload</strong>をクリックすると、ブラウザが更新されます。これは、変更を有効にするために必要です。これでDOM Invaderは、代わりに新しいカナリア文字列を追跡するようになります。
+        </p>
+    </li>
+</ol>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        誤検出を避けるためには、ページ上で自然に発生する文字列を使用しないでください。
+    </p>
+</div>
+<h2 id="customizing-sources-and-sinks">ソースとシンクのカスタマイズ</h2>
+<p>
+    ソースとシンクの設定を開くには、メインのDOM Invaderスイッチの横にある歯車のアイコンをクリックします。ここから、DOM Invaderがどのソースとシンクを調査するかを制御できます。すべてのソースはデフォルトで非表示で、最も興味深いシンクのみが対象になっています。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/dom-invader-customize-sources-and-sinks.png" alt="ソースとシンクのカスタマイズ">
+</div>
+<p>
+    特定のシンクを対象にするとサイトの正常な動作を妨げる場合、それを無効にしたいことがあります。たとえば、<code>eval()</code>を対象にすると、その挙動が変化し関連する機能が破壊される可能性があります。
+</p>
+<h2 id="configuring-callbacks">コールバックの設定</h2>
+<p>
+    DOM Invaderがソース、シンク、Webメッセージを発見するたびに、カスタムコールバック関数を実行するように設定できます。独自のカスタムコールバックも作成できますし、デフォルトも使用できます。デフォルトのコールバックは、コンソールにログを記録するだけで、結果のエクスポートに使えます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/dom-invader-callback-configuration.png" alt="コールバックの設定">
+</div>
+<p>
+    あるいは、DOM Invaderが制御可能なシンクを発見したときに、スクリプトの実行を一時停止するデバッガステートメントをコールバックに含めると便利です。これにより、コールスタックの調査が可能です。
+</p>
+<p>
+    デフォルトのコールバック関数はすぐに使えるようになっていますが、次のように有効化する必要があります:
+</p>
+<ol>
+    <li>
+        <p>
+            DOM Invaderの設定メニューから、メインのDOM Invaderスイッチの横にある歯車のアイコンをクリックすると、ソースとシンクの設定が表示されます。
+        </p>
+    </li>
+    <li>
+        <p>
+            コールバックを設定したい結果の種類に応じて、<strong>Sources</strong>、<strong>Sinks</strong>、<strong>Message</strong>のいずれかのタブを選択します。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>コールバック設定</strong>ボタンをクリックすると、DOM Invaderのデフォルトのコールバック関数が表示されます。初期状態では無効化されています。
+        </p>
+    </li>
+    <li>
+        <p>
+            スクリプトのあるテキストフィールドをクリックして、スクリプトを有効にします。
+        </p>
+    </li>
+    <li>
+        <p>
+            スクリプトはそのままか、必要なら変更を加えてから、<strong>Save</strong>をクリックします。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Reload</strong>をクリックすると、ブラウザが更新されます。これは、変更を有効にするために必要です。
+        </p>
+    </li>
+    <li>
+        <p>
+            DOM Invaderを通常通り使用し、コールバックが期待通りに動作することを確認します。
+        </p>
+    </li>
+</ol>
+</body>
+</html>

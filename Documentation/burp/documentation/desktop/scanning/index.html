@@ -29,7 +29,7 @@
 </section>
 <h1>Webサイトのスキャン</h1>
 <p>
-    Burp Scannerは、Webサイトのコンテンツと脆弱性をスキャンする作業を自動化します。設定に応じてScannerは、<a href="../../scanner/crawling.html">アプリケーションをクロール</a>してコンテンツと機能を探索し、<a href="../../scanner/auditing.html">アプリケーションを診断</a>して脆弱性を発見します。デフォルトでBurpの<a href="../functions/burps-browser.html">Burpブラウザ</a>を使用して、<a href="browser-powered.html">ブラウザを利用したスキャン</a>による最大限の網羅性を確保します。<a href="scan-launcher.html#application-login-options">ユーザの認証情報</a>セットを提供すると、認証されたユーザのみがアクセスできるコンテンツを検出して診断ができるようになります。<a href="recorded-logins.html">完全なログインシーケンス</a>をインポートすると、Burp Scannerはシングルサインオンを含むより複雑なログインメカニズムも処理できます。
+    Burp Scannerは、Webサイトのコンテンツと脆弱性をスキャンする作業を自動化します。設定に応じてScannerは、<a href="../../scanner/crawling.html">アプリケーションをクロール</a>してコンテンツと機能を探索し、<a href="../../scanner/auditing.html">アプリケーションを診断</a>して脆弱性を発見します。デフォルトで<a href="../functions/burps-browser.html">Burpブラウザ</a>を使用して、<a href="browser-powered.html">ブラウザを利用したスキャン</a>による最大限の網羅性を確保します。<a href="scan-launcher.html#application-login-options">ユーザの認証情報</a>セットを指定すると、認証されたユーザのみがアクセスできるコンテンツを検出して診断ができるようになります。<a href="recorded-logins.html">完全なログインシーケンス</a>をインポートすると、Burp Scannerはシングルサインオンなど、より複雑なログインメカニズムも処理できます。
 </p>
 <div class="container">
     <div class="youtube-wrapper">
@@ -53,34 +53,206 @@
         <strong>選択したアイテムをスキャン</strong>。特定のHTTPリクエストに、診断のみ(クロールなし)を実行できます。これを行うには、Burp内の任意の場所で1つ以上のリクエストを選択し、コンテキストメニューから、<strong>スキャン</strong>メニューを選択してください。<a href="scan-launcher.html">スキャンランチャ</a>が開き、スキャンの詳細を設定できます。
     </li>
     <li>
-        <strong>ライブスキャン</strong>。<a href="live-scans.html">ライブスキャン</a>を使用すると、<a href="../tools/proxy/index.html">Proxy</a>や<a href="../tools/repeater/index.html">Repeater</a>ツールなど、他のBurpツールが処理したリクエストに自動的にスキャンできます。どのリクエストを処理するか、コンテンツの探索か脆弱性の診断をするかどうかを正確に設定できます。これを行うには、<a href="../dashboard/index.html">Burpダッシュボードで</a>、<strong>新規ライブタスク</strong>ボタンをクリックしてください。<a href="live-scans.html">ライブスキャン</a>ランチャが開き、タスクの詳細が設定できます。
+        <strong>ライブスキャン</strong>。<a href="live-scans.html">ライブスキャン</a>を使用すると、<a href="../tools/proxy/index.html">Proxy</a>や<a href="../tools/repeater/index.html">Repeater</a>ツールなど、他のBurpツールが処理したリクエストに自動的にスキャンできます。どのリクエストを処理するか、コンテンツの探索か脆弱性の診断をするかどうかを正確に設定できます。これを行うには、<a href="../dashboard/index.html">Burpダッシュボード</a>で<strong>新規ライブタスク</strong>ボタンをクリックしてください。<a href="live-scans.html">ライブスキャン</a>ランチャが開き、タスクの詳細が設定できます。
     </li>
     <li>
-        <strong>インスタントスキャン</strong>。コンテキストメニューから瞬時にアクティブまたはパッシブスキャンを起動もできます。つまり、スキャンランチャを開かなくても、脆弱性をすばやく確認できます。リクエストを右クリックすると、これらのオプションにアクセスできます。または、インスタントスキャンを起動するホットキーも設定できます。
+        <strong>インスタントスキャン</strong>。コンテキストメニューから、アクティブやパッシブスキャンを瞬時に起動もできます。つまり、スキャンランチャを開かなくても、脆弱性をすばやく確認できます。リクエストを右クリックすると、これらのオプションにアクセスできます。または、インスタントスキャンを起動するホットキーも設定できます。
     </li>
 </ul>
-<h3 id="configuring-scans">スキャンの設定</h3>
+<h2 id="configuring-scans">スキャンの設定</h2>
 <p>
-    複数のスキャンを並行して起動でき、各スキャンには、スキャンの実行方法を正確に決定する個別の設定オプションがあります。設定には2つの重要なエリアがあります:
+    Burp Suiteでスキャンを設定する場合、プリセットスキャンモードを選択するか、カスタム設定の定義ができます。スキャン設定を管理するには、<strong>スキャン設定</strong>タブを選択します。
+</p>
+<h3>プリセットスキャンモードを使用</h3>
+<p>
+    Burp Scannerのプリセットスキャンモードは、あらかじめ定義されたスキャン設定を集めています。スキャン速度と網羅性のバランスを素早く調整できます。プリセットスキャンモードを選択するには、<strong>プリセットスキャンモードを使用</strong>ラジオボタンを選択し、利用可能ないずれかのオプションをクリックします。
+</p>
+<p>
+    Burp Scannerには、最速から最大の網羅性まで、4つのスキャンモードがあります:
 </p>
 <ul>
     <li>
-        <a href="crawl-options.html"><strong>クロールオプション</strong></a>。これらのオプションは、最大リンク深度、スピードと網羅性によるクローラの最適化方法、クロール範囲の制限などの動作を制御します。また、<a href="browser-powered.html">ブラウザによるスキャン</a>や<a href="api-scanning.html">APIスキャン</a>など、Burp Scannerのさまざまな機能の一部を有効または無効化もできます。
+        軽量
     </li>
     <li>
-        <a href="audit-options.html"><strong>診断オプション</strong></a>。これらのオプションは、挿入ポイントの処理や、使用する検出手法などの動作を制御します。これらのオプションは、軽量の完全に受動的なパッシブ分析から重量級の侵入的スキャンまで、実行される診断アクティビティのタイプを制御する上で非常に重要です。
+        高速
+    </li>
+    <li>
+        バランス
+    </li>
+    <li>
+        深掘り
     </li>
 </ul>
 <p>
-    独自のカスタム設定の作成も、スキャンランチャーの<strong>スキャン設定</strong>セクションにある<strong>ライブラリから選択</strong>ボタンを使って<a href="../configurations.html#configuration-library">設定ライブラリ</a>から組み込み設定の読み込みもできます。
+    <strong>今後のスキャンで同じ選択をする</strong>チェックボックスを選択すると、Burp Suiteはスキャンモードを記憶し、次にスキャンランチャを開いたときに選択します。
+</p>
+<h3>カスタム設定を使用</h3>
+<p>
+    カスタムスキャン設定を使用すると、ニーズに合わせてBurp Scannerの動作を微調整できます。
 </p>
 <p>
-    設定が作成されていない、または読み込まれていない場合は、Burp Scannerのデフォルト設定が使用されます。Burp Scannerのデフォルト設定は、パフォーマンスと網羅性のバランスが取れており、ほとんどのWebアプリケーションに適しています。
+    Burp Suiteには2種類のカスタム設定があります:
+</p>
+<ul>
+    <li>
+        <a href="crawl-options.html"><strong>クロール</strong></a>。これらのオプションは、最大リンク深度、スピードと網羅性によるクローラの最適化方法、クロール範囲の制限などの動作を制御します。また、<a href="browser-powered.html">ブラウザによるスキャン</a>や<a href="api-scanning.html">APIスキャン</a>など、Burp Scannerのさまざまな機能の一部を有効または無効化もできます。
+    </li>
+    <li>
+        <a href="audit-options.html"><strong>診断</strong></a>。これらのオプションは、挿入ポイントの処理や、使用する検出手法などの動作を制御します。これらのオプションは、軽量の完全に受動的なパッシブ分析から重量級の侵入的スキャンまで、実行される診断アクティビティのタイプを制御する上で非常に重要です。
+    </li>
+</ul>
+<p>
+    <strong>カスタム設定を使用する</strong>をクリックすると、既存の設定リストが表示されます。ここから、リストへの追加、リストの並べ替え、設定の完全な削除などが可能です。
+</p>
+<p>
+    次の方法でスキャンに設定を適用できます:
+</p>
+<ul>
+    <li>
+        全く新しい設定を作成する。
+    </li>
+    <li>
+        設定ライブラリから既存の設定を選択する。
+    </li>
+    <li>
+        他のBurp Suiteインストールから設定をインポートする。
+    </li>
+</ul>
+<h3>新規設定を作成</h3>
+<p>
+    新規設定を作成する方法は次の通りです:
+</p>
+<ol>
+    <li>
+        <strong>新規</strong>をクリックし、コンテキストメニューから<strong>クロール</strong>か<strong>診断</strong>のいずれかを選択すると設定オプションのリストが表示されます。
+    </li>
+    <li>
+        <strong>設定名</strong>を入力します。
+    </li>
+    <li>
+        ページ上のセクションを展開し、必要な設定オプションを選択します。
+    </li>
+    <li>
+        <strong>ライブラリに保存</strong>チェックボックスを選択すると、新しい設定を保存したときにライブラリに追加されます。
+    </li>
+    <li>
+        <strong>保存</strong>をクリックします。
+    </li>
+</ol>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        カスタムスキャン設定を作成する際に利用可能なオプションの詳細な説明は、<a href="crawl-options.html">クロールオプション</a>と<a href="audit-options.html">診断オプション</a>ページを参照してください。
+    </p>
+</div>
+<h3>ライブラリから設定を読み込み</h3>
+<p>
+    設定ライブラリから設定を読み込むには、<strong>ライブラリから選択</strong>をクリックし、モーダルボックスから設定を選択します。設定ライブラリには、保存したカスタム設定と、いくつかの組み込み設定があります。
 </p>
 <div class="highlightedarea">
     <h4>注</h4>
     <p>
-        Burp Suiteの設定ライブラリには<a href="built-in-configurations.html">組み込み設定</a>が用意されているので、これらのオプションを素早く設定できます。
+        Burp Suiteで利用できる組み込み設定の詳細は、<a href="built-in-configurations.html">Burp Scanner組み込み設定</a>ページを参照してください。
+    </p>
+</div>
+<h3>設定のインポート</h3>
+<p>
+    設定をインポートするには、<strong>インポート</strong>をクリックし、インポートするJSON設定ファイルをダイアログボックスで選択します。
+</p>
+<p>
+    設定ファイルをインポートすると、現在のBurp Suiteのインストールで、外部設定(他のBurp SuiteやBurp Suite Enterprise Editionのインストールからエクスポートしたスキャン設定)を使用できます。
+</p>
+<div class="highlightedarea">
+    <h4>詳細</h4>
+    <p>
+        Burpのデスクトップ版から設定ファイルをエクスポートする方法は、<a href="../configurations.html">デスクトップ - 設定</a>ページを参照してください。
+    </p>
+</div>
+<h3 cms-ignore-validation="DUPLICATE_HEADINGS">複数設定の積み上げ</h3>
+<p>
+    カスタム設定を定義する場合、1つのサイトに対して複数の設定を指定できます。Burp Scannerは選択された設定を順番に適用するので、スキャン動作をさらに微調整できます。つまりこれは、ある設定に対して指定されるオプションは、リストの上にある設定よりも下にある設定の方が優先されるということです。
+</p>
+<table class="grid-table grid-table-size-2-1-1-1">
+    <tbody><tr>
+            <td>
+                <strong>設定名</strong>
+            </td>
+            <td>
+                <strong>最大クロール時間</strong>
+            </td>
+            <td>
+                <strong>最大対象数</strong>
+            </td>
+            <td>
+                <strong>最大リクエスト数</strong>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                デフォルト
+            </td>
+            <td>
+                150
+            </td>
+            <td>
+                1500
+            </td>
+            <td>
+                0
+            </td>
+        </tr>
+        <tr>
+            <td>
+                設定1
+            </td>
+            <td>
+                100
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                50
+            </td>
+        </tr>
+        <tr>
+            <td>
+                設定2
+            </td>
+            <td>
+                200
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                -
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>使用される設定</strong>
+            </td>
+            <td>
+                <strong>200</strong>
+            </td>
+            <td>
+                <strong>1500</strong>
+            </td>
+            <td>
+                <strong>50</strong>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p>
+    この例の通り、選択された2つの設定がデフォルト設定と組み合わさって、サイトをスキャンする際に使用されることを示しています。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        上記の例では簡単にするために、スキャン設定のうち<strong>クロール &gt; クロール制限</strong>セクションの設定を取り上げています。しかし、上記の原則はすべての設定に適用されます。
     </p>
 </div>
 <h2 id="monitoring-scan-activity">スキャンアクティビティの監視</h2>
@@ -100,18 +272,18 @@
 </ul>
 <h2 id="reporting">レポート</h2>
 <p>
-    Burp Scannerが発見した問題のHTML形式の<a href="reporting-results.html">レポート生成</a>ができます。他のツールへのインポートに適したXML形式でも、問題をエクスポートできます。
+    Burp Scannerが発見した問題は、HTML形式で<a href="reporting-results.html">レポート生成</a>できます。他のツールへのインポートに適したXML形式でも、問題をエクスポートできます。
 </p>
 <h4>追加情報</h4>
 <p>
-    特定のトピックに関する追加情報は、以下のサポートページにあります:
+    特定のトピックに関する追加情報は、次のサポートページにあります:
 </p>
 <ul>
     <li>
         <a href="../performance.html">パフォーマンス問題のトラブルシューティング</a>
     </li>
     <li>
-        <a href="https://portswigger.net/support/using-burp-to-manually-verify-scanner-issues">Burpを使用してスキャナの問題を手動で確認する</a>
+        <a href="https://portswigger.net/support/using-burp-to-manually-verify-scanner-issues">Scannerが発見した問題をBurpで手動で確認</a>
     </li>
     <li>
         <a href="https://portswigger.net/support/integrating-burp-suite-with-acunetix-vulnerability-scanner">Burp SuiteとAcunetix脆弱性スキャナーの統合</a>

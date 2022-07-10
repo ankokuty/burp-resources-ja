@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">DOM Invader</a>
+        </li>
+        <li>
+            <a href="prototype-pollution.html">クライアント側プロトタイプ汚染のテスト</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>クライアント側プロトタイプ汚染のテスト</h1>
+<p>
+    DOM Invaderには、クライアント側プロトタイプ汚染の脆弱性テストを補助する機能が数多くあります。これにより、主に次の作業が可能です:
+</p>
+<ul>
+    <li>
+        <p>
+            URLやWebメッセージで送信されるJSONオブジェクトによるプロトタイプ汚染のソースを自動的に検出します。同じソースを使用した他の手法によるものも検出します。
+        </p>
+    </li>
+    <li>
+        <p>
+            発見されたソースを使用して<code>Object.prototype</code>を汚染する概念実証を生成します。その後、ブラウザのコンソールから脆弱性を手動で確認できます。
+        </p>
+    </li>
+    <li>
+        <p>
+            悪用される可能性のあるガジェットをスキャンします。
+        </p>
+    </li>
+</ul>
+<h2 id="enabling-prototype-pollution">プロトタイプ汚染の有効化</h2>
+<p>
+    対象サイトの機能に影響を与えないよう、DOM Invaderのプロトタイプ汚染機能はデフォルトで無効になっています。これらの機能を有効にするには:
+</p>
+<ol>
+    <li>
+        <p>
+            DOM Invaderの設定メニューに移動します。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Prototype pollution is on</strong>になるようスイッチを切り替えます。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Reload</strong>をクリックすると、ブラウザが更新されます。これは、変更を有効にするために必要です。
+        </p>
+    </li>
+</ol>
+<div class="rounded-dropshadow">
+    <img src="../../images/dom-invader-prototype-pollution-enabling.png" alt="DOM Invaderのプロトタイプ汚染を有効化">
+</div>
+<p>
+    これで、ブラウズ中にDOM Invaderがプロトタイプ汚染のソースをスキャンするようになります。
+</p>
+<h2 id="detecting-sources-for-prototype-pollution">プロトタイプ汚染のソースの検出</h2>
+<p>
+    プロトタイプ汚染を有効にすると、<code>Object.prototype</code>に任意のプロパティを追加できるソースがないか、DOM Invaderが自動的にページをチェックします。発見されたソースは<strong>DOM</strong>ビューに表示され、さらにテストするための有用な情報や機能も表示されます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/dom-invader-prototype-pollution-sources.png" alt="プロトタイプ汚染のソースの検出">
+</div>
+<p>
+    この例でDOM Invaderは、<code>location.hash</code>をソースとして<code>Object.prototype</code>を汚染する2つの潜在的なテクニックを特定しています。
+</p>
+<h2 id="manually-confirming-sources-for-prototype-pollution">プロトタイプ汚染のソースの手動確認</h2>
+<p>
+    DOM Invaderがプロトタイプ汚染の潜在的なソースを発見すると、それを手動でも確認できます。
+</p>
+<p>
+    このソースによるプロトタイプ汚染が可能かどうか手動でテストするには:
+</p>
+<ol>
+    <li>
+        <p>
+            <strong>DOM</strong>ビューで、該当するソースの横にある<strong>Test</strong>ボタンをクリックします。DOM Invaderは、選択されたソースを使用して、<code>Object.prototype</code>に任意のプロパティを追加する新しいタブを開きます。
+        </p>
+    </li>
+    <li>
+        <p>
+            新しいタブで、ブラウザのコンソールに移動します。DOM Invaderが<code>Object.prototype</code>を自動的に出力していることに注目してください。
+        </p>
+    </li>
+    <li>
+        <p>
+            ノードを展開し、概念実証の<code>testproperty</code>がこのオブジェクトに含まれていることを確認します。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="../../images/dom-invader-prototype-pollution-poc.png" alt="PoCプロパティによるObject.prototype汚染">
+        </div>
+    </li>
+    <li>
+        <p>
+            コンソールで、新しいオブジェクトを作成します:
+        </p>
+        <code class="code-scrollable">let myObject = {};</code>
+    </li>
+    <li>
+        <p>
+            新しいオブジェクトがプロトタイプチェーンを通じて<code>testproperty</code>を継承していることを確認します:
+        </p>
+        <code class="code-scrollable">console.log(myObject.testproperty); // Output: 'DOM_INVADER_PP_POC'</code>
+    </li>
+</ol>
+<h2 id="scanning-for-prototype-pollution-gadgets">プロトタイプ汚染ガジェットのスキャン</h2>
+<p>
+    "gadget"プロパティにもアクセスできなければ、プロトタイプ汚染のソースは役に立ちません。これは、適切にサニタイズされずにシンクに渡される、ユーザーが制御可能な任意のプロパティです。このようなガジェットを手動で探すのは非常に面倒ですが、DOM Invaderはこのプロセスを自動化できます。
+</p>
+<p>
+    特定のソースを使用しているガジェットをスキャンには:
+</p>
+<ol>
+    <li>
+        <p>
+            <strong>DOM</strong>ビューで、DOM Invaderが検出したプロトタイプ汚染ソースの横にある<strong>Scan for gadgets</strong>ボタンをクリックします。DOM Invaderは新しいタブを開き、適切なガジェットのスキャンを開始します。
+        </p>
+    </li>
+    <li>
+        <p>
+            同じタブで、デベロッパーツールパネル内の<strong>DOM Invader</strong>タブを開きます。スキャンが終了すると<strong>DOM</strong>ビューに、DOM Invaderが発見したガジェットからアクセスできたシンクが表示されます。この例では、<code>html</code>というガジェットのプロパティが<code>innerHTML</code>シンクに渡されています。
+        </p>
+    </li>
+</ol>
+<div class="rounded-dropshadow">
+    <img src="../../images/dom-invader-prototype-pollution-gadget.png" alt="プロトタイプ汚染ガジェットのスキャン">
+</div>
+<h2 id="generating-a-proof-of-concept-exploit">概念実証のエクスプロイトを生成</h2>
+<p>
+    DOM Invaderがプロトタイプ汚染用のガジェットを見つけると、ソース、ガジェット、シンクを組み合わせてXSSを確認するための概念実証を自動生成します。
+</p>
+<p>
+    発見されたシンクの横にあるExploitボタンをクリックするだけです。DOM Invaderは新しいウィンドウを開き、そこで<code>alert()</code>を正常に呼び出します。
+</p>
+<div class="highlightedarea">
+    <h4>続きを読む</h4>
+    <p>
+        DOM Invaderは高度な設定が可能です。DOM Invaderのプロトタイプ汚染機能と、特定サイト向けに動作を微調整する方法は、<a href="configuration/prototype-pollution.html">プロトタイプ汚染の設定</a>を参照してください。
+    </p>
+</div>
+</body>
+</html>

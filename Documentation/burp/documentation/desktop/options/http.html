@@ -118,9 +118,22 @@
         <strong>100 Continueヘッダを削除する</strong> - このオプションが選択されると、個々のツールに渡される前に、サーバのレスポンスから暫定ヘッダを削除します。
     </li>
 </ul>
+<h2 id="http-1">HTTP/1</h2>
+<p>
+    Burp Suiteはデフォルトで、1対のHTTP/1.1リクエスト/レスポンスごとに新しいTCP接続を開きます。<strong>サーバがサポートしている場合、HTTP/1でキープアライブを使用する</strong>チェックボックスを選択すると、システムは同じTCP接続を開いたままにして、複数のリクエスト/レスポンスで使用できるようにします。これにより、スピードとリクエストのタイミングに大きなメリットが生まれます。
+</p>
+<p>
+    Burp Suiteは、開いているTCP接続が5秒間非アクティブの場合、接続を閉じます。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        この設定は、HTTPリクエストを送信するすべてのBurp Suiteツールに影響します。しかしRepeaterでは、メニューの<strong>HTTP/1接続を再利用する</strong>によって上書きできます。詳細は、<a href="https://portswigger.net/burp/documentation/desktop/tools/repeater/options">Burp Repeaterオプション</a>ページを参照してください。
+    </p>
+</div>
 <h2 id="http-2">HTTP/2</h2>
 <p>
-    デフォルトでBurpは、TLSハンドシェイク時にHTTP/2のサポートを表明するサーバとの通信に、HTTP/2を使用します。このオプションの選択を解除すると、サーバがHTTP/2をサポートしていてもHTTP/1を使用します。
+    Burpはデフォルトで、TLSハンドシェイク時にHTTP/2のサポートを表明するサーバとの通信に、HTTP/2を使用します。このオプションの選択を解除すると、サーバがHTTP/2をサポートしていてもHTTP/1を使用します。
 </p>
 <p>
     この設定に関係なく、Inspectorの<strong>プロトコル</strong>トグルを使用して、<a href="../http2/index.html#changing-the-protocol-for-a-request">個々のリクエストに対して上書き</a>できます。これは、Burp RepeaterやBurp Proxyでインターセプトされたリクエストなど、編集可能なコンテキストにのみ適用されることに注意してください。

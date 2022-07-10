@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">DOM Invader</a>
+        </li>
+        <li>
+            <a href="dom-xss.html">DOM XSSのテスト</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>DOM XSSのテスト</h1>
+<p>
+    DOM XSSのテストで入力の流れを追跡する際、多くの場合JavaScriptが複雑でときには数千行に及ぶこともあるため、面倒な作業になることがあります。DOM Invaderはこのプロセスを大幅に簡素化し、入力がたどり着くシンクを関連するコンテキストとともに即座に表示します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/dom-invader-innerHTML-sink.png" alt="DOM InvaderによるDOM XSSのテスト">
+</div>
+<p>
+    拡張機能の<strong>DOM</strong>ビューから、ほとんどの機能にアクセスできます。
+</p>
+<h2 id="injecting-a-canary">カナリアの挿入</h2>
+<p>
+    DOM InvaderはDOMを自動的に解析し、あらかじめ定義した"カナリア"文字列が出現する箇所を探す動作をします。これは適当かつ独自の文字列で、それぞれを異なるソースに挿入するとどのシンクにたどり着くかを確認できます。
+</p>
+<p>
+    DOM Invaderが追跡している現在のカナリアは、<strong>DOM</strong>ビューの左上隅に表示されています。なお任意のカスタム文字列に<a href="configuration/general.html#changing-the-canary">カナリアを変更</a>できます。
+</p>
+<p>
+    カナリアを手動でソースに挿入するには:
+</p>
+<ol>
+    <li>
+        <p>
+            ブラウザのデベロッパーツールにある、<strong>DOM Invader</strong>タブを表示します。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>DOM</strong>になっていることを確認してください。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Copy canary</strong>をクリックします。DOM Invaderが追跡しているカナリアがクリップボードにコピーされます。
+        </p>
+    </li>
+    <li>
+        <p>
+            テストしたい入力にカナリアをペーストします。URLのクエリパラメータやフォームのフィールドなどでしょう。
+        </p>
+    </li>
+</ol>
+<p>
+    潜在的なソースの詳細は、WebセキュリティアカデミーでDOMベースの脆弱性についてのトピックを参照してください。
+</p>
+<div class="highlightedarea">
+    <h4>Webセキュリティアカデミー</h4>
+    <p>
+        <a href="../../../../../web-security/dom-based/index.html">DOMベースの脆弱性</a>
+    </p>
+</div>
+<h3 id="injecting-a-canary-into-multiple-sources">カナリアを複数のソースに挿入</h3>
+<p>
+    手動でカナリアを複数のソースに一斉にペーストもできますが、これを自動的に行うには次の方法もあります:
+</p>
+<ul>
+    <li>
+        <strong>Inject URL</strong> - URLの各クエリパラメータにカナリアを自動的に挿入します。存在しない場合は、DOM Invaderが独自のパラメータを追加します。この場合、DOM Invaderはカナリアに連番を付け足し、どのパラメータの値がどのシンクにたどり着くかを識別しやすくします。
+    </li>
+    <li>
+        <strong>Inject forms</strong> - ページ上で検出されたあらゆるHTMLフォームフィールドにカナリアを自動的に挿入します。挿入の影響を確認するために、手動でフォームを送信する必要があることに注意してください。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        すべてのURLパラメータやフォームフィールドに一斉にカナリアを挿入すると、サイトが正常に動作しなくなる可能性があります。最善の結果を得るためには、1回あたり1つのソースのテストをお勧めします。
+    </p>
+</div>
+<h2 id="identifying-controllable-sinks">制御可能なシンクの特定</h2>
+<p>
+    カナリアを挿入すると、DOM Invaderは自動的にDOMを解析し、カナリアが出現するシンクを特定します。そして、これらのシンクを<strong>DOM</strong>ビューに、興味深い順に並べ替えて表示します。
+</p>
+<h2 id="determining-the-xss-context">XSSコンテキストの判定</h2>
+<p>
+    制御可能なシンクを特定したら、次のステップは挿入したペイロードが出現するコンテキストの調査です。これには、以下の情報の判断を行います:
+</p>
+<ul>
+    <li>
+        <p>
+            HTMLやJavaScriptが実行されるシンクかどうか。
+        </p>
+    </li>
+    <li>
+        <p>
+            入力した文字が特殊文字で囲まれていて、そこから抜け出す必要があるかどうか。これは引用符、タグ、属性などです。
+        </p>
+    </li>
+    <li>
+        <p>
+            入力がシンクに到達する前に、入力に対して検証、サニタイズ、その他の処理がWebサイトで行われているかどうか。
+        </p>
+    </li>
+</ul>
+<p>
+    DOM Invaderはそのために、挿入したカナリアがDOMでどのように表示されるか、カナリアとその周囲の文字を含むシンクの内容を表示します。次の例では、有用なさまざまな文字をうまく挿入できていることがわかります。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/dom-invader-unescaped-chars.png" alt="反射型XSSのようにDOM XSSをテスト">
+</div>
+<p>
+    また、DOM Invaderが識別したシンクの種類によって、次のような詳細が表示されます:
+</p>
+<ul>
+    <li>
+        <p>
+            <strong>Outer HTML</strong> - カナリアを囲むHTML要素。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Frame path</strong> - カナリアがシンクにたどり着くフレーム。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Event</strong> - カナリアがシンクにたどり着いたときに発生するJavaScriptイベント。
+        </p>
+    </li>
+</ul>
+<p>
+    この情報により、XSSのコンテキストを簡単に確認し、悪用するにはどの文字やイベントが必要かをテストできます。次の例では、ダブルクオートで囲まれた文字列と<code>&lt;span&gt;</code>タグを抜け出し、XSSの概念実証に成功しています。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/dom-invader-payload.png" alt="エクスプロイトの作成">
+</div>
+<h2 id="studying-the-client-side-code">クライアント側のコードの検討</h2>
+<p>
+    さまざまな挿入を行っていると、突然シンクに入力が流れなくなることがあります。これは、特定の条件分岐をした場合など、特定のコードパスを通る場合しかシンクにたどり付けないのかもしれません。
+</p>
+<p>
+    DOM Invaderは、クライアント側のコードで入力がシンクに渡されるポイントに直接ジャンプできます。そして、入力がシンクにたどり着くためにどのような条件を満たす必要があるのか、直前のコードを確認できます。
+</p>
+<p>
+    コード内の該当行を表示するには:
+</p>
+<ol>
+    <li>
+        シンクにたどり着くことが分かっているペイロードを挿入します。
+    </li>
+    <li>
+        DOM Invaderの<strong>DOM</strong>ビューで、<strong>Stack Trace</strong>列をクリックします。すると、ブラウザのコンソールにスタックトレースが出力されます。
+    </li>
+    <li>
+        デベロッパーツールパネルで、<strong>コンソール</strong>タブに切り替えます。
+    </li>
+    <li>
+        スタックトレースで、一番上のリンクをクリックします(1つしかない場合もあります)。すると<strong>ソース</strong>タブでクライアント側のJavaScriptが開かれ、入力がシンクに渡される行にフォーカスが移動します。
+    </li>
+</ol>
+<div class="highlightedarea">
+    <h4>続きを読む</h4>
+    <p>
+        DOM Invaderは高度な設定が可能です。DOM Invaderの高度な機能と、特定サイト向けに動作を微調整する方法は、<a href="configuration/index.html">DOM Invaderの設定</a>を参照してください。
+    </p>
+</div>
+</body>
+</html>
