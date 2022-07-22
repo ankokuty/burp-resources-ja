@@ -101,7 +101,7 @@
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    次の情報を添えて、<a href="https://portswigger.net/support">サポートチーム</a>に連絡してください:
+                    次の情報を添えて<a href="https://portswigger.net/support">サポートチーム</a>に連絡してください:
                 </p>
                 <ol>
                     <li>
@@ -413,27 +413,23 @@
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
             <article class="scanner-error-cause"><p>
-                    BurpブラウザがURLのリクエスト中にクラッシュしました。
+                    BurpブラウザがURLのリクエスト中にクラッシュしました。Burp Scannerはデフォルトで、URLを何度かリクエストしようとします。このフォローアップ中に、Burpブラウザが再びクラッシュしました。
                 </p>
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    <ul>
-                        <li>
-                            Burp Scannerはデフォルトで、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
-                        </li>
-                        <li>
-                            特定のサイトでこの現象が繰り返し発生する場合は、手動でページに移動してみて、手動でブラウズ中にブラウザがクラッシュするかどうか確認してください。
-                        </li>
-                        <li>
-                            複数のサイトでこの現象が発生する場合は、<a href="../desktop/functions/burps-browser.html#health-check-for-burp-s-browser">Burpブラウザのヘルスチェック</a>を実行してみてください。
-                        </li>
-                    </ul>
+                    Burp Scannerを、<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">より多くのパスを行う</a>よう設定してください。
+                </p>
+                <p>
+                    特定のサイトでこの現象が繰り返し発生する場合は、手動でページに移動してみて、手動でブラウズ中にブラウザがクラッシュするかどうか確認してください。
+                </p>
+                <p>
+                    複数のサイトでこの現象が発生する場合は、<a href="../desktop/functions/burps-browser.html#health-check-for-burp-s-browser">Burpブラウザのヘルスチェック</a>を実行してみてください。
                 </p>
             </article>
         </div>
     </details><details data-id="86011"><summary class="component-is-expandable">
-            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS,HEADING_TOO_LONG"><code class="scanner-error-message">Found 0 new locations after logging i.</code></h4>
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS,HEADING_TOO_LONG"><code class="scanner-error-message">Found 0 new locations after logging in.</code></h4>
         </summary>
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
@@ -443,6 +439,9 @@
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
+                    次の操作を試してください:
+                </p>
+                <p>
                     <ul>
                         <li>
                             アプリケーションのログイン設定を再確認し、指定した認証情報が正しいかどうか確認してください。
@@ -519,6 +518,9 @@
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
+                    次の操作を試してください:
+                </p>
+                <p>
                     <ul>
                         <li>
                             <strong>スキャンするURL</strong>にタイプミスがないか確認してください。
@@ -807,7 +809,7 @@
                     Burp Scannerが静的JavaScript分析に割り当てる時間を増やすには、<a href="../desktop/scanning/audit-options.html">診断オプション</a>の<a href="../desktop/scanning/audit-options.html#javascript-analysis-options">JavaScript分析</a>オプションを変更し、<strong>アイテムあたりの最大静的分析時間</strong>を増やします。
                 </p>
                 <p>
-                    Burp Scannerで静的分析を行わない場合は、<a href="../desktop/scanning/audit-options.html">診断オプション</a>の<a href="../desktop/scanning/audit-options.html#javascript-analysis-options">JavaScript分析</a>で、<strong>静的分析手法を使用する</strong>のチェックを外します。
+                    Burp Scannerで静的JavaScript分析を行わない場合は、<a href="../desktop/scanning/audit-options.html">診断オプション</a>の<a href="../desktop/scanning/audit-options.html#javascript-analysis-options">JavaScript分析</a>で、<strong>静的分析手法を使用する</strong>のチェックを外します。
                 </p>
             </article>
         </div>
@@ -873,7 +875,7 @@
                     Burp Scannerが動的JavaScript分析に割り当てる時間を増やすには、<a href="../desktop/scanning/audit-options.html">診断オプション</a>の<a href="../desktop/scanning/audit-options.html#javascript-analysis-options">JavaScript分析</a>オプションを変更し、<strong>アイテムあたりの最大動的分析時間</strong>を増やします。
                 </p>
                 <p>
-                    Burp Scannerで動的分析を行わない場合は、診断オプションのJavaScript分析で、<strong>動的分析手法を使用する</strong>のチェックを外します。
+                    Burp Scannerで動的JavaScript分析を行わない場合は、診断オプションのJavaScript分析で、<strong>動的分析手法を使用する</strong>のチェックを外します。
                 </p>
             </article>
         </div>
@@ -1120,7 +1122,26 @@
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    <a href="https://portswigger.net/support">サポートチーム</a>に問い合わせてください。担当者がサポートします。
+                    まず、<a href="https://portswigger.net/burp/documentation/enterprise/getting-started/system-requirements.html">Burp Suite Enterprise Editionのシステム要件</a>のドキュメントを参照し、システムスペックが十分かどうかを確認してください。また、<a href="https://portswigger.net/burp/documentation/enterprise/reference/browser-powered.html">ブラウザを利用したスキャン</a>のリファレンスページも参照してください。
+                </p>
+                <p>
+                    問題が解決しない場合は、次の情報を添えて<a href="https://portswigger.net/support">サポートチーム</a>に問い合わせてください:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンデバッグログ</a>
+                        </li>
+                        <li>
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンイベントログ</a>
+                        </li>
+                        <li>
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#support-pack">サポートパック</a>
+                        </li>
+                        <li>
+                            CPUコア、RAM、オペレーティングシステム(OS)の種類とバージョンなど、スキャンしているマシンのハードウェア仕様
+                        </li>
+                    </ul>
                 </p>
             </article>
         </div>
@@ -1145,12 +1166,12 @@
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
             <article class="scanner-error-cause"><p>
-                    クロールと診断の指定された総最大時間内にスキャンを完了できませんでした。Burp Scannerはスキャンの実行を一時停止しました。
+                    クロールと診断の指定された総最大時間内にスキャンを完了できませんでした。
                 </p>
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    クロールを完了させたい場合はまず、<a href="https://portswigger.net/burp/documentation/enterprise/working-with-scans/scan-configurations.html#creating-custom-scan-configurations-in-burp-suite-enterprise-edition">カスタムスキャン設定を作成</a>するか、既存のカスタムスキャン設定を編集してください。<strong>診断 &gt; 診断の最適化</strong>で、<strong>クロールと診断の合計時間の最大</strong>をより大きな値に設定します。制限をかけない場合は、この欄を空白のままにしてください。
+                    より網羅的にクロールしたい場合はまず、<a href="https://portswigger.net/burp/documentation/enterprise/working-with-scans/scan-configurations.html#creating-custom-scan-configurations-in-burp-suite-enterprise-edition">カスタムスキャン設定を作成</a>するか、既存のカスタムスキャン設定を編集してください。<strong>診断 &gt; 診断の最適化</strong>で、<strong>クロールと診断の合計時間の最大</strong>をより大きな値に設定します。制限をかけない場合は、この欄を空白のままにしてください。
                 </p>
             </article>
         </div>
@@ -1168,7 +1189,7 @@
                     まず、<a href="https://portswigger.net/burp/documentation/enterprise/getting-started/system-requirements.html">Burp Suite Enterprise Editionのシステム要件</a>のドキュメントを参照し、システムスペックが十分かどうかを確認してください。また、<a href="https://portswigger.net/burp/documentation/enterprise/reference/browser-powered.html">ブラウザを利用したスキャン</a>のリファレンスページも参照してください。
                 </p>
                 <p>
-                    問題が解決しない場合は、次の情報を含めて<a href="https://portswigger.net/support">サポートチーム</a>に問い合わせてください:
+                    問題が解決しない場合は、次の情報を添えて<a href="https://portswigger.net/support">サポートチーム</a>に問い合わせてください:
                 </p>
                 <p>
                     <ul>
@@ -1179,10 +1200,13 @@
                             <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンイベントログ</a>
                         </li>
                         <li>
-                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#support-pack">サポートパック</a>.
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンマシンログ</a>
                         </li>
                         <li>
-                            オペレーティングシステム(OS)の種類とバージョン番号
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#support-pack">サポートパック</a>
+                        </li>
+                        <li>
+                            CPUコア、RAM、オペレーティングシステム(OS)の種類とバージョンなど、スキャンしているマシンのハードウェア仕様
                         </li>
                     </ul>
                 </p>
@@ -1204,10 +1228,13 @@
                 <p>
                     <ul>
                         <li>
-                            そのサイトをスキャンするために多くの<a href="https://portswigger.net/burp/documentation/enterprise/bapps-and-custom-extensions/extensions.html">拡張</a>を使用している場合は、そのうちいくつかを削除してみてください。なお、<a href="https://portswigger.net/bappstore">BApp Store</a>からダウンロードした拡張を使用している場合は、BApp Storeで<strong>システム影響の概算</strong>評価がわかります。
+                            スキャンマシンで同時に実行されるスキャン数を減らすには、<a href="https://portswigger.net/burp/documentation/enterprise/configuring-infrastructure/managing-scanning-machines/assigning-scan-limits.html">スキャン制限の割り当て</a>ページを参照してください。
                         </li>
                         <li>
                             スキャンをするマシンで、利用可能なメモリ(RAM)を増やしてください。詳細は、<a href="https://portswigger.net/burp/documentation/enterprise/getting-started/system-requirements.html">Burp Suite Enterprise Editionのシステム要件</a>ページを参照してください。
+                        </li>
+                        <li>
+                            そのサイトをスキャンするために多くの<a href="https://portswigger.net/burp/documentation/enterprise/bapps-and-custom-extensions/extensions.html">拡張</a>を使用している場合は、そのうちいくつかを削除してみてください。なお、<a href="https://portswigger.net/bappstore">BApp Store</a>からダウンロードした拡張を使用している場合は、BApp Storeで<strong>システム影響の概算</strong>評価がわかります。
                         </li>
                     </ul>
                 </p>
@@ -1224,7 +1251,7 @@
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    このスキャンでHTTP/2を有効にするには、<a href="https://portswigger.net/burp/documentation/desktop/options/http.html#http-2">HTTP/2</a>を有効にした新しいカスタム<a href="https://portswigger.net/burp/documentation/enterprise/working-with-scans/scan-configurations.html">スキャン設定を</a>作成します。
+                    このスキャンでHTTP/2を有効にするには、<a href="https://portswigger.net/burp/documentation/desktop/options/http.html#http-2">HTTP/2</a>を有効にした新しいカスタム<a href="https://portswigger.net/burp/documentation/enterprise/working-with-scans/scan-configurations.html">スキャン設定</a>を作成し、アップロードします。
                 </p>
             </article>
         </div>
@@ -1254,7 +1281,7 @@
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    Burp ScannerがJWTトークン署名をブルートフォースする時間を増やすには、<strong>スキャン設定 &gt; 診断</strong>の<strong>診断スピード</strong>を<strong>Thorough</strong>に設定します。
+                    Burp ScannerがJWTトークン署名をブルートフォースする時間を増やすには、設定メニュー<span class="icon-settings"></span>で<strong>スキャン設定</strong>を選択し、スキャンを選択します。<strong>診断 &gt; 診断の最適化</strong>で、<strong>診断スピード</strong>を<strong>Thorough</strong>に設定します。
                 </p>
             </article>
         </div>
@@ -1288,7 +1315,7 @@
                     記録されたログインが失敗したと思われる場合は、<a href="https://portswigger.net/burp/documentation/enterprise/working-with-sites/configure-login-details.html#troubleshooting-recorded-login-sequences-for-burp-suite-enterprise-edition">Burp Suite Enterprise Editionの記録されたログインシーケンスのトラブルシューティング</a>ドキュメントを参照してください。
                 </p>
                 <p>
-                    記録されたログインがスキャンのスコープ外のページで終了していて、そのページがスコープに含まれるよう調整したい場合は、スキャンしているサイトの<a href="https://portswigger.net/burp/documentation/enterprise/reference/site-level-view.html#advanced-settings">含めるURL</a>のリストにページを追加できます。
+                    記録されたログインがスキャンのスコープ外のページで終了していて、そのページがスコープに含まれるよう調整したい場合は、スキャンしているサイトの<a href="https://portswigger.net/burp/documentation/enterprise/working-with-sites/edit-existing-sites.html">含めるURL</a>のリストにページを追加できます。
                 </p>
                 <p>
                     より網羅的なクロール戦略を試したい場合は、新規<a href="https://portswigger.net/burp/documentation/enterprise/working-with-scans/scan-configurations.html">スキャン設定</a>を作成します。<a href="https://portswigger.net/burp/documentation/enterprise/working-with-scans/scan-configurations.html#crawling">クロールオプション</a>の<strong>クロール戦略</strong>で、選択ができます。
@@ -1301,7 +1328,7 @@
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
             <article class="scanner-error-cause"><p>
-                    このサイトの<a href="https://portswigger.net/burp/documentation/enterprise/reference/site-level-view.html#advanced-settings">含めるURL</a>リストに対象URLが含まれていないため、Burp Scannerがリクエストを実行しようとしましたがブロックされました。
+                    このサイトの<a href="https://portswigger.net/burp/documentation/enterprise/working-with-sites/edit-existing-sites.html">含めるURL</a>リストに対象URLが含まれていないため、Burp Scannerがリクエストを実行しようとしましたがブロックされました。
                 </p>
                 <p>
                     Burp Scannerがこのリクエストを実行しようとした理由はいくつかあります - たとえば、リンクのリダイレクトです。
@@ -1309,10 +1336,10 @@
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    Burp Suite Enterprise EditionにこのURLへのリクエストを実行させたい場合は、スキャンするサイトの<a href="https://portswigger.net/burp/documentation/enterprise/reference/site-level-view.html#advanced-settings">含めるURL</a>リストに追加してください。
+                    Burp Suite Enterprise EditionにこのURLへのリクエストを実行させたい場合は、スキャンするサイトの<a href="https://portswigger.net/burp/documentation/enterprise/working-with-sites/edit-existing-sites.html">含めるURL</a>リストに追加してください。
                 </p>
                 <p>
-                    <a href="https://portswigger.net/burp/documentation/enterprise/reference/site-level-view.html#advanced-settings">除外するURL</a>リストに追加しない限り、このURLプレフィックスで始まるURLもスキャンされることに注意してください。
+                    <a href="https://portswigger.net/burp/documentation/enterprise/working-with-sites/edit-existing-sites.html">除外するURL</a>リストに追加しない限り、このURLプレフィックスで始まるURLもスキャンされることに注意してください。
                 </p>
             </article>
         </div>
@@ -1327,7 +1354,7 @@
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    <a href="https://portswigger.net/burp/documentation/enterprise/working-with-scans/scan-configurations.html">スキャン設定</a>の<a href="https://portswigger.net/burp/documentation/enterprise/working-with-scans/scan-configurations.html#crawling">クロール設定</a>を変更し、最大リクエスト数を増やします。
+                    カスタム<a href="https://portswigger.net/burp/documentation/enterprise/working-with-scans/scan-configurations.html">スキャン設定</a>を使用し、最大リクエスト数を増やすよう<a href="https://portswigger.net/burp/documentation/enterprise/working-with-scans/scan-configurations.html#crawling">クロール設定</a>を変更します。
                 </p>
             </article>
         </div>
@@ -1337,7 +1364,7 @@
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
             <article class="scanner-error-cause"><p>
-                    Burp Scannerの静的JavaScript分析機能が、アイテムあたりの最大分析時間に達しました。
+                    Burp Scannerの<a href="https://portswigger.net/burp/documentation/scanner/auditing.html#javascript-analysis">静的JavaScript分析</a>機能が、アイテムあたりの最大分析時間に達しました。
                 </p>
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
@@ -1345,10 +1372,10 @@
                     このエラーを改善する方法はいくつかあります:
                 </p>
                 <p>
-                    Burp Scannerが静的JavaScript分析に割り当てる時間を増やすには、<strong>スキャン設定 &gt; 診断 &gt; JavaScript分析設定</strong>で、<strong>アイテムあたりの最大静的分析時間</strong>を増やします。
+                    Burp Scannerが静的JavaScript分析に割り当てる時間を増やすには、設定メニュー<span class="icon-settings"></span>で<strong>スキャン設定</strong>を選択し、スキャンを選択します。<strong>JavaScript分析</strong>で、<strong>アイテムあたりの最大静的分析時間</strong>を増やします。
                 </p>
                 <p>
-                    Burp Scannerで静的分析を行わない場合は、<strong>スキャン設定 &gt; 診断 &gt; JavaScript分析設定</strong>で、<strong>静的分析手法を使用する</strong>をオフにします。
+                    Burp Scannerで静的JavaScript分析を行わない場合は、 <strong>静的分析手法を使用する</strong>をオフにします。
                 </p>
             </article>
         </div>
@@ -1366,10 +1393,17 @@
                     このエラーを改善する方法は複数あります:
                 </p>
                 <p>
-                    使っていないBurp拡張がインストールされている場合は、いくつかを削除してみてください。
-                </p>
-                <p>
-                    スキャンをするマシンで、利用可能なメモリ(RAM)を増やしてください。詳細は、<a href="https://portswigger.net/burp/documentation/enterprise/getting-started/system-requirements.html">Burp Suite Enterprise Editionのシステム要件</a>ページを参照してください。
+                    <ul>
+                        <li>
+                            使っていないBurp拡張がインストールされている場合は、いくつかを削除してみてください。
+                        </li>
+                        <li>
+                            スキャンをするマシンで、利用可能なメモリ(RAM)を増やしてください。詳細は、<a href="https://portswigger.net/burp/documentation/enterprise/getting-started/system-requirements.html">Burp Suite Enterprise Editionのシステム要件</a>ページを参照してください。
+                        </li>
+                        <li>
+                            スキャンマシンで同時に実行されるスキャン数を減らしてください。<a href="https://portswigger.net/burp/documentation/enterprise/configuring-infrastructure/managing-scanning-machines/assigning-scan-limits.html">スキャン制限の割り当て</a>を参照してください。
+                        </li>
+                    </ul>
                 </p>
             </article>
         </div>
@@ -1384,7 +1418,7 @@
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    Burp ScannerにAPI定義を分析させたくない場合は、この機能をオフにします。<strong>スキャン設定 &gt; クロール &gt; その他</strong>で、<strong>API定義を分析する</strong>をオフにします。
+                    Burp ScannerにAPI定義を分析させたくない場合は、この機能をオフにします。設定メニュー<span class="icon-settings"></span>で<strong>スキャン設定</strong>を選択し、スキャンを選択します。<strong>クロール &gt; その他</strong>で、<strong>API定義を分析する</strong>をオフにします。
                 </p>
             </article>
         </div>
@@ -1412,7 +1446,7 @@
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
             <article class="scanner-error-cause"><p>
-                    Burp Scannerの動的JavaScript分析機能が、アイテムあたりの最大分析時間に達しました。
+                    Burp Scannerの<a href="https://portswigger.net/burp/documentation/scanner/auditing.html#javascript-analysis">動的JavaScript分析</a>機能が、アイテムあたりの最大分析時間に達しました。
                 </p>
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
@@ -1420,10 +1454,10 @@
                     このエラーを改善する方法はいくつかあります:
                 </p>
                 <p>
-                    Burp Scannerが動的JavaScript分析に割り当てる時間を増やすには、<strong>スキャン設定 &gt; 診断 &gt; JavaScript分析設定</strong>で、<strong>アイテムあたりの最大動的分析時間</strong>を増やします。
+                    Burp Scannerが動的JavaScript分析に割り当てる時間を増やすには、設定メニュー<span class="icon-settings"></span>で<strong>スキャン設定</strong>を選択し、スキャンを選択します。<strong>診断 &gt; JavaScript分析</strong>で、<strong>アイテムあたりの最大動的分析時間</strong>を増やします。
                 </p>
                 <p>
-                    Burp Scannerで動的分析を行わない場合は、<strong>スキャン設定 &gt; 診断 &gt; JavaScript分析設定</strong>で、<strong>動的分析手法を使用する</strong>をオフにします。
+                    Burp Scannerで動的JavaScript分析を行わない場合は、 <strong>動的分析手法を使用する</strong>をオフにします。
                 </p>
             </article>
         </div>
@@ -1439,6 +1473,9 @@
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
                     <a href="https://portswigger.net/burp/documentation/enterprise/getting-started/system-requirements.html">Burp Suite Enterprise Editionのシステム要件</a>を確認してください。
+                </p>
+                <p>
+                    <a href="https://portswigger.net/burp/documentation/enterprise/reference/browser-powered">ブラウザを利用したスキャン</a>を見直してください。
                 </p>
             </article>
         </div>
@@ -1504,10 +1541,17 @@
                     このエラーを改善する方法は複数あります:
                 </p>
                 <p>
-                    使用していないBurp拡張を削除してください。
-                </p>
-                <p>
-                    スキャンマシンで利用可能なメモリ(RAM)を増やしてください。詳細は、<a href="https://portswigger.net/burp/documentation/enterprise/getting-started/system-requirements.html">Burp Suite Enterprise Editionのシステム要件</a>ページを参照してください。
+                    <ul>
+                        <li>
+                            スキャンマシンで利用可能なメモリ(RAM)を増やしてください。詳細は、<a href="https://portswigger.net/burp/documentation/enterprise/getting-started/system-requirements.html">Burp Suite Enterprise Editionのシステム要件</a>ページを参照してください。
+                        </li>
+                        <li>
+                            スキャンマシンで同時に実行されるスキャン数を減らすには、<a href="https://portswigger.net/burp/documentation/enterprise/configuring-infrastructure/managing-scanning-machines/assigning-scan-limits.html">スキャン制限の割り当て</a>ページを参照してください。
+                        </li>
+                        <li>
+                            使用していないBurp拡張を削除してください。
+                        </li>
+                    </ul>
                 </p>
             </article>
         </div>
@@ -1547,7 +1591,7 @@
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
             <article class="scanner-error-cause"><p>
-                    Burp Scannerは、指定した<a href="../desktop/scanning/scan-launcher.html#use-login-credentials">ログイン認証情報</a>や<a href="../desktop/scanning/scan-launcher.html#use-recorded-login-sequences">記録されたログインシーケンス</a>を使用して、多くの新しいスキャン対象を見つけました。
+                    Burp Scannerは、指定した<a href="https://portswigger.net/burp/documentation/enterprise/working-with-sites/configure-login-details.html">ログイン認証情報や記録されたログインシーケンス</a>を使用して、多くの新しいスキャン対象を見つけました。
                 </p>
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
@@ -1562,12 +1606,18 @@
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
             <article class="scanner-error-cause"><p>
-                    Burp Scannerは、指定した<a href="../desktop/scanning/scan-launcher.html#use-login-credentials">ログイン認証情報</a>や<a href="../desktop/scanning/scan-launcher.html#use-recorded-login-sequences">記録されたログインシーケンス</a>を使用しましたが、スキャン対象を見つけられませんでした。
+                    Burp Scannerは、指定した<a href="https://portswigger.net/burp/documentation/enterprise/working-with-sites/configure-login-details.html">ログイン認証情報や記録されたログインシーケンス</a>を使用しましたが、スキャン対象を見つけられませんでした。
                 </p>
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    なし (情報のみ)
+                    記録されたログインが失敗したと思われる場合は、<a href="https://portswigger.net/burp/documentation/enterprise/working-with-sites/configure-login-details.html#troubleshooting-recorded-login-sequences-for-burp-suite-enterprise-edition">Burp Suite Enterprise Editionの記録されたログインシーケンスのトラブルシューティング</a>ドキュメントを参照してください。
+                </p>
+                <p>
+                    記録されたログインがスキャンのスコープ外のページで終了していて、そのページがスコープに含まれるよう調整したい場合は、スキャンしているサイトの<a href="https://portswigger.net/burp/documentation/enterprise/working-with-sites/edit-existing-sites.html">含めるURL</a>のリストにページを追加できます。
+                </p>
+                <p>
+                    より網羅的なクロール戦略を試したい場合は、新規<a href="https://portswigger.net/burp/documentation/enterprise/working-with-scans/scan-configurations.html">スキャン設定</a>を作成します。<a href="https://portswigger.net/burp/documentation/enterprise/working-with-scans/scan-configurations.html#crawling">クロールオプション</a>の<strong>クロール戦略</strong>で、選択ができます。
                 </p>
             </article>
         </div>
@@ -1597,7 +1647,26 @@
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    <a href="https://portswigger.net/support">サポートチーム</a>に問い合わせてください。担当者がサポートします。
+                    次の情報を添えて<a href="https://portswigger.net/support">サポートチーム</a>に連絡してください:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンデバッグログ</a>
+                        </li>
+                        <li>
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンイベントログ</a>
+                        </li>
+                        <li>
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンマシンログ</a>
+                        </li>
+                        <li>
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#support-pack">サポートパック</a>
+                        </li>
+                        <li>
+                            CPUコア、RAM、オペレーティングシステム(OS)の種類とバージョンなど、スキャンしているマシンのハードウェア仕様
+                        </li>
+                    </ul>
                 </p>
             </article>
         </div>
@@ -1627,7 +1696,10 @@
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    <strong>スキャンするURL</strong>にタイプミスなどがないか確認してください。ブラウザからホストにアクセスできるか確認してください。
+                    <strong>スキャンするURL</strong>にタイプミスなどがないか、<a href="https://portswigger.net/burp/documentation/enterprise/reference/site-level-view.html#details">サイトレベルビュー</a>を確認してください。
+                </p>
+                <p>
+                    スキャンマシンからホスト名が解決できるか確認してください。
                 </p>
             </article>
         </div>
@@ -2001,19 +2073,15 @@
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
             <article class="scanner-error-cause"><p>
-                    BurpブラウザがURLのリクエスト中にクラッシュしました。
+                    BurpブラウザがURLのリクエスト中にクラッシュしました。Burp Scannerはデフォルトで、URLを何度かリクエストしようとします。このフォローアップ中に、Burpブラウザが再びクラッシュしました。
                 </p>
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    <ul>
-                        <li>
-                            Burp Scannerはデフォルトで、失敗したリクエストを<a href="https://portswigger.net/burp/documentation/desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
-                        </li>
-                        <li>
-                            特定のサイトでこの現象が繰り返し発生する場合は、Burp Suite ProfessionalやCommunity Editionで手動でページに移動してみて、ブラウザがクラッシュするかどうか確認してください。
-                        </li>
-                    </ul>
+                    Burp Scannerを、<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">より多くのパスを行う</a>よう設定してください。
+                </p>
+                <p>
+                    特定のサイトでこの現象が繰り返し発生する場合は、Burp Suite ProfessionalやCommunity Editionで手動でページに移動してみて、ブラウザがクラッシュするかどうか確認してください。
                 </p>
             </article>
         </div>
@@ -2028,14 +2096,10 @@
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    <ul>
-                        <li>
-                            アプリケーションのログイン設定を再確認し、指定した認証情報が正しいかどうか確認してください。
-                        </li>
-                        <li>
-                            まだ使っていない場合は、<a href="../desktop/scanning/recorded-logins.html">記録されたログインシーケンス</a>を使ってみてください。これによりBurp Scannerは、iFrameやSSOを使ったより複雑なログインフォームを扱えるようになります。
-                        </li>
-                    </ul>
+                    アプリケーションのログイン設定を再確認し、指定した認証情報が正しいかどうか確認してください。
+                </p>
+                <p>
+                    まだ使っていない場合は、<a href="../desktop/scanning/recorded-logins.html">記録されたログインシーケンス</a>を使ってみてください。これによりBurp Scannerは、iFrameやSSOを使ったより複雑なログインフォームを扱えるようになります。
                 </p>
             </article>
         </div>
