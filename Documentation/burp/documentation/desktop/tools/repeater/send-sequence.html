@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Repeater</a>
+        </li>
+        <li>
+            <a href="send-sequence.html">リクエストを順番に送信</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>リクエストを順番に送信</h1>
+<p>
+    Repeaterの<strong>リクエストを順番に送信</strong>機能を使えば、グループ内のすべてのリクエストを1回で送信できます。グループ内のそれぞれのリクエストを同じ接続で送信することも、個別の接続を使用することもできます。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Repeaterでタブグループを作成する方法は、<a href="groups.html">タブグループの管理</a>を参照してください。
+    </p>
+</div>
+<p>
+    グループ内のリクエストを送信するには:
+</p>
+<ol>
+    <li>
+        グループを作成し、関連するタブを追加します。
+    </li>
+    <li>
+        <strong>送信</strong>ボタンの横にあるドロップダウンの矢印をクリックし、必要に応じて<strong>グループを順番に送信(単一接続)</strong>または<strong>グループを順番に送信(個別接続)</strong>を選択します。
+    </li>
+    <li>
+        <strong>グループ送信</strong>をクリックします。
+    </li>
+</ol>
+<p>
+    Repeaterは、グループ内に配置された順番で、すべてのタブからのリクエストを送信しようとします。
+</p>
+<p>
+    一連のリクエストをキャンセルするには、リクエストの送信中にグループのタブのいずれかで<strong>キャンセル</strong>をクリックします。
+</p>
+<h2 id="send-sequence-prerequisites">一連のリクエスト送信の前提条件</h2>
+<p>
+    グループ内のタブを単一接続で送信するには、グループが次の条件を満たしている必要があります。
+</p>
+<ul>
+    <li>
+        グループ内のタブはすべて同じターゲットであること。
+    </li>
+    <li>
+        グループ内のタブはすべて同じリクエストプロトコルを使用すること(つまり、すべてHTTP/1を使用するか、すべてHTTP/2を使用するかのどちらかであること)。
+    </li>
+    <li>
+        グループ内にWebSocketメッセージのタブがないこと。
+    </li>
+    <li>
+        グループ内に空のタブがないこと。
+    </li>
+</ul>
+<p>
+    一連のリクエストを個別の接続で送信する場合は、異なるターゲットやプロトコルが使用できます。ただし、WebSocketタブや空のタブを含むグループの場合は、個別の接続でも送信できません。
+</p>
+</body>
+</html>

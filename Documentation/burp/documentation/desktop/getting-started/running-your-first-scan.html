@@ -64,42 +64,62 @@
     <p>
         <strong>ダッシュボード</strong>タブに移動し、<strong>新規スキャン</strong>を選択します。
     </p>
-    <img src="../images/getting-started/quick-start-scanner-new-scan.png" alt="新規スキャンの開始">
+    <div class="rounded-dropshadow">
+        <img src="../images/getting-started/Pro-QSG-1-open-scan-launcher.png" alt="新規スキャンの開始">
+    </div>
     <p>
         <strong>スキャンランチャ</strong>ダイアログが開きます。ここでは、Burp Scannerの動作を制御するためのさまざまな設定が行えます。
     </p>
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: 対象サイトのURLを入力する</h3>
     <p>
-        <strong>スキャンするURL</strong>フィールドに、<code>portswigger-labs.net</code>と入力します。その他の設定は、とりあえずデフォルトのままにしておきます。
+        <strong>スキャンするURL</strong>フィールドに、<code>ginandjuice.shop</code>と入力します。その他の設定は、とりあえずデフォルトのままにしておきます。
     </p>
-    <img src="../images/getting-started/quick-start-scanner-launcher.png" alt="スキャンランチャでのURL設定">
+    <div class="rounded-dropshadow">
+        <img src="../images/getting-started/Pro-QSG-2-scan-details.png" alt="サイトのURLを入力">
+    </div>
     <div class="highlightedarea">
         <h4>注</h4>
         <p>
             Burp Scannerを使うと、一部のアプリケーションで予期しない影響が出る可能性があります。機能や設定にしっかり慣れるまで、本番以外のシステムだけで使うべきです。管理者から許可されていない限り、第三者のWebサイトに対してスキャンを実行しないでください。
         </p>
     </div>
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: スキャンを開始する</h3>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: スキャンを設定する</h3>
+    <p>
+        <strong>スキャン設定</strong>を選択します。ここから、さまざまなユースケースや対象サイトに合わせて、Burp Scannerのさまざまな動作を微調整できます。
+    </p>
+    <p>
+        <strong>プリセットスキャンモードを使用</strong>が選択されていることを確認し、<strong>軽量</strong>をクリックします。<strong>軽量</strong>スキャンモードは、対象についての非常に高レベルの概要をできるだけ素早く把握することを目的としています。このモードでのスキャンは最大15分です。
+    </p>
+    <div class="rounded-dropshadow">
+        <img src="../images/getting-started/Pro-QSG-3-scan-configuration.png" alt="スキャンの設定">
+    </div>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ4: スキャンを開始する</h3>
     <p>
         <strong>OK</strong>をクリックすると、スキャンが始まります。Burp Scannerは、前のステップで入力したURLからクロールを開始します。
     </p>
     <p>
         <strong>ダッシュボード</strong>に、このスキャンの新しいタスクが追加されていることに注目してください。ここに、現在実行中のスキャンフェーズや、送信されたリクエストの数など、重要な情報が表示されます。
     </p>
+    <div class="rounded-dropshadow">
+        <img src="../images/getting-started/Pro-QSG-4-crawl-and-audit.png" alt="スキャンの開始">
+    </div>
     <p>
-        スキャンを実行している間に、ステップ4に進みます。
+        スキャンを実行している間に、ステップ5に進みます。
     </p>
-    <img src="../images/getting-started/quick-start-scanner-task.png" alt="ダッシュボードでのスキャン表示">
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ4: クロールの動きを見る</h3>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ5: クロールの動きを見る</h3>
     <p>
-        <strong>Target &gt; サイトマップ</strong>タブに移動し、<code>portswigger-labs.net</code>のエントリが追加されていることを確認します。このノードを展開すると、クローラがこれまでに発見したすべてのコンテンツが表示されます。数秒待つと、リアルタイムでマップが更新されていくのがわかります。
+        <strong>Target &gt; サイトマップ</strong>タブに移動し、<code>ginandjuice.shop</code>のエントリが追加されていることを確認します。このノードを展開すると、クローラがこれまでに発見したすべてのコンテンツが表示されます。数秒待つと、リアルタイムでマップが更新されていくのがわかります。
     </p>
-    <img src="../images/getting-started/quick-start-scanner-site-map.png" alt="クロール中のサイトマップの表示">
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ5: 発見された問題の確認</h3>
+    <div class="rounded-dropshadow">
+        <img src="../images/getting-started/Pro-QSG-5-site-map.png" alt="クロールの動きを見る">
+    </div>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ6: 発見された問題の確認</h3>
     <p>
         ダッシュボードでスキャンの状態を監視します。1～2分後にクロールが終了し、Burp Scannerは脆弱性の診断を開始します。問題が見つかると、<strong>ダッシュボード</strong>タブの<strong>問題アクティビティ</strong>パネルに表示されます。
     </p>
-    <img src="../images/getting-started/quick-start-scanner-issue-advisory.png" alt="問題の詳細表示">
+    <div class="rounded-dropshadow">
+        <img src="../images/getting-started/Pro-QSG-6-view-issues.png" alt="発見された問題を表示">
+    </div>
     <p>
         問題を選択すると、<strong>アドバイザリ</strong>タブが表示されます。アドバイザタブには、詳細な説明や対策のアドバイスなど、問題の種類に応じた重要な情報があります。その次には、Burp Scannerがこの問題を発見した証拠を表示するタブがいくつかあります。これは通常、<strong>リクエスト</strong>と<strong>レスポンス</strong>ですが、問題の種類によって異なります。
     </p>
@@ -110,14 +130,18 @@
     </p>
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: 関連する課題の選択</h3>
     <p>
-        <strong>Target &gt; サイトマップ</strong>タブを開き、<code>https://portswigger-labs.net</code>のエントリを右クリックして、<strong>問題 &gt; このホストの問題をレポート</strong>を選択します。
+        <strong>Target &gt; サイトマップ</strong>タブを開き、<code>https://ginandjuice.shop</code>のエントリを右クリックして、<strong>問題 &gt; このホストの問題をレポート</strong>を選択します。
     </p>
-    <img src="../images/getting-started/quick-start-scanner-report-issues.png" alt="選択されたホストの問題を報告">
+    <div class="rounded-dropshadow">
+        <img src="../images/getting-started/Pro-QSG-7-Report-for-host.png" alt="関連する問題を選択">
+    </div>
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: レポートオプションの設定</h3>
     <p>
         使用するファイル形式や、どの程度の詳細情報を含めるかなど、さまざまなオプションをウィザードが案内してくれます。ここではデフォルトのまま、レポートのファイル名と保存場所を入力するよう求められるまで、<strong>次へ</strong>をクリックします。
     </p>
-    <img src="../images/getting-started/quick-start-scanner-reporting-wizard.png" alt="スキャンレポートウィザード">
+    <div class="rounded-dropshadow">
+        <img src="../images/getting-started/Pro-QSG-8-configure-report.png" alt="レポートオプションの設定">
+    </div>
     <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: レポートの作成と保存</h3>
     <p>
         <strong>ファイル選択</strong>をクリックして、レポートを保存する場所を選びます。ファイルの名前を入力してください。

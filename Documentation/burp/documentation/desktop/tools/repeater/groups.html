@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Repeater</a>
+        </li>
+        <li>
+            <a href="groups.html">タブグループの管理</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>タブグループの管理</h1>
+<p>
+    タブをグループ分けすると、大量に開いたタブを管理しやすくなり、複数のタブから順番にリクエストも送信できます。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        グループ化されたリクエストを順番に送信する方法は、<a href="send-sequence.html">リクエストを順番に送信</a>を参照してください。
+    </p>
+</div>
+<h2 id="creating-a-new-tab-group">新しいタブグループの作成</h2>
+<p>
+    タブグループを作成するには:
+</p>
+<ol>
+    <li>
+        <p>
+            <strong>新規グループ作成</strong>をクリックすると、グループ作成のコンテキストメニューが表示されます。<strong>新規グループ作成</strong>オプションには、複数の場所からアクセスできます:
+        </p>
+        <ul>
+            <li>
+                タブ追加(<strong>+</strong>)メニュー
+            </li>
+            <li>
+                タブバーのオプションメニュー
+            </li>
+            <li>
+                タブを右クリックしたときに表示される、<strong>グループにタブを追加</strong>コンテキストメニューオプション
+            </li>
+        </ul>
+    </li>
+    <li>
+        <strong>グループ名</strong>を入力します。
+    </li>
+    <li>
+        チェックボックスを使って、グループに追加するタブを選択します。必要に応じて、Shiftキーを押しながらクリックすると、複数のタブを選択できます。
+    </li>
+    <li>
+        グループカラーを選択します。グループのタブは、タブバー上でこの色で強調表示されます。
+    </li>
+    <li>
+        <strong>作成</strong>をクリックするとコンテキストメニューが閉じ、グループが作成されます。
+    </li>
+</ol>
+<p>
+    タブバーにグループのアイコンが追加されます。アイコンをクリックすると、グループ内の個々のタブが表示されます。
+</p>
+<p>
+    作成したタブグループは、Burp Suiteを再起動しても開いたままです。
+</p>
+<h2 id="editing-existing-groups">既存のグループを編集する</h2>
+<p>
+    既存のグループは、次の方法で編集できます:
+</p>
+<ul>
+    <li>
+        既存のグループの詳細を編集するには、そのアイコンを右クリックし、<strong>グループの編集</strong>を選択し、グループの編集コンテキストメニューを表示します。このメニューの入力欄は、グループ作成時に使用したものと同じです。
+    </li>
+    <li>
+        グループにタブを追加するには、タブを右クリックし、<strong>グループにタブを追加</strong>メニューからグループを選択します。
+    </li>
+    <li>
+        グループからタブを削除するには、タブを右クリックし、コンテキストメニューから<strong>グループからタブを削除</strong>を選択します。グループから最後のタブを削除すると、そのグループは自動的に閉じられます。
+    </li>
+    <li>
+        タブを開いたままグループを閉じるには、グループのアイコンを右クリックし、<strong>タブのグループ解除</strong>を選択します。
+    </li>
+</ul>
+<h2 id="closing-tab-groups">タブグループを閉じる</h2>
+<p>
+    グループとそのすべてのタブを閉じるには、グループのアイコンを右クリックし、コンテキストメニューから<strong>グループ全体の削除</strong>を選択します。
+</p>
+</body>
+</html>
