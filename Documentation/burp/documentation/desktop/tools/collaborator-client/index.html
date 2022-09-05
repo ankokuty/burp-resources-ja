@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Collaboratorクライアント</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1>Burp Collaboratorクライアント</h1>
+<p>
+    Burp Collaboratorクライアントを使用すると、手動テスト時にBurp Collaboratorを利用できます。
+</p>
+<p>
+    クライアントは、CollaboratorサーバのドメインのサブドメインであるCollaboratorペイロードを生成します。そしてこのペイロードを含んだリクエストをアプリケーションに送信すると、アプリケーションがCollaboratorと通信しようとするかどうかを確認できます。
+</p>
+<p>
+    クライアントは、関連する通信結果を一覧に表示します。これらの結果は、クライアントを閉じて再度開いた場合でも保持され、プロジェクトファイルの一部として保存できます。また、クライアントを閉じている間に受信した通信も表示されます。
+</p>
+<p>
+    クライアントは結果をBurp Collaboratorに60秒ごとにポーリングします。あるいは<strong>今すぐポーリング</strong>ボタンをクリックすると、手動でポーリングもできます。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        WAFのブラックリストによる誤検出を減らすため、公開されているCollaboratorサーバに定期的に新しいドメイン名を追加しています。Burp Collaboratorクライアントはデフォルトで、現在のバージョンのBurp Suite Professionalがリリースされた時点で利用可能な最新の公開Collaboratorドメインを常に使用します。現時点では、<code>*.burpcollaborator.net</code>か<code>*.oastify.com</code>のどちらかになる予定です。
+    </p>
+    <p>
+        Burp Collaboratorが最大限の効果を発揮できるよう、Burp Collaboratorクライアントを実行しているマシンが、これらの両方のドメインにポート80と443でアクセスできるようにしてください。
+    </p>
+</div>
+<p>
+    必要に応じて複数のクライアントタブを開き、複数のペイロードからの通信を別々の一覧で追跡できます。なお、開いているタブはすべて同じポーリングスケジュールを共有しているため、タブの数が増えてもCollaboratorサーバの負荷が増えることはありません。
+</p>
+<p>
+    Collaboratorクライアントの各インスタンスは、ウィンドウが開かれた時点のCollaboratorサーバ設定を使用します。Collaboratorサーバの設定を変更した場合(たとえば、他のプライベートCollaboratorサーバを使用するなど)、その設定を使用するためには新たなクライアントウィンドウを開く必要があります。
+</p>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <ul>
+        <li>
+            <a href="using-collaborator-client.html">Burp Collaboratorクライアントの使用</a>。
+        </li>
+        <li>
+            <a href="../../tutorials/testing-for-asynchronous-vulnerabilities-collaborator.html">Burp Collaboratorクライアントを使用した非同期な脆弱性のテスト</a> - 対象サイトが任意のサーバに対して非同期の帯域外リクエストを行うよう誘導する方法を説明したチュートリアルです。
+        </li>
+    </ul>
+</div>
+</body>
+</html>

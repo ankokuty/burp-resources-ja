@@ -10,7 +10,9 @@ Burp Suite日本語ドキュメント
 
 ## 注意事項
 
-- Enterprise版は含まれておりません。
+- Enterprise版のドキュメントは含まれておりません。
+
+- APIは、2022.9で追加された [MontoyaバージョンのAPI](https://github.com/PortSwigger/burp-extender-montoya-api) *ではなく*、それ以前のAPIドキュメントです。
 
 - このドキュメントは、私個人が独自に勝手に翻訳したもので、PortSwigger社は一切関係ありません。日本語訳の間違いはもちろんのこと、本ドキュメントを使用したことによる不具合等についてPortSwiggerに問い合わせないようお願いします。
 

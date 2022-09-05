@@ -1107,6 +1107,36 @@
                 </p>
             </article>
         </div>
+    </details><details data-id="49375"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS,HEADING_TOO_LONG"><code class="scanner-error-message">Burp Scanner received a warning from the server due to sending too many requests in quick succession. Automatically added a X ms delay between requests.</code></h4>
+        </summary>
+        <div class="content">
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
+            <article class="scanner-error-cause"><p>
+                    Burp Scannerが大量のリクエストを連続して送信したため、サーバが<code>429 Too Many Requests</code>レスポンスを発行しました。そのためスキャンが正しく実行されず、網羅性に影響を与える可能性があります。
+                </p>
+                <p>
+                    Burp Scannerはデフォルトで、サーバのレート制限に適応するまで、短い遅延をリクエスト間に段階的に追加していきます。これによって通常通りスキャンを行えますが、全体の所要時間が長くなります。必要に応じて、リソースプールの設定で<strong>リクエスト速度の調整</strong>の選択を解除して、この動作を無効にできます。
+                </p>
+            </article>
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
+            <article class="scanner-error-remedy"><p>
+                    Burp Scannerはデフォルトでこの問題を自動的に解決しようとするので、何もする必要はありません。
+                </p>
+                <p>
+                    この現象が再び起こらないようにするには、リソースプールの設定を調整して、リクエスト間の適切な遅延を手動で設定できます。
+                </p>
+                <p>
+                    テスト環境で自分のサイトをスキャンする場合で、Webサイトのパフォーマンスについて他のユーザに影響を与える心配がないのであれば、サーバのレート制限を無効にすると、フルスピードでスキャンを実行できるようになるかもしれません。
+                </p>
+                <div class="highlightedarea">
+                    <h4>注</h4>
+                    <p>
+                        Burp Scannerは送信するリクエストのレートを下げようとします。ただしサーバがIPベースのレート制限を使用している場合、同じアドレスからサーバにリクエストを送信している他の自動化ツールも速度制限をする必要がある場合があります。
+                    </p>
+                </div>
+            </article>
+        </div>
     </details>
 </div>
 <h2 id="burp-scanner-errors-in-burp-suite-enterprise-edition">Burp Suite Enterprise EditionのBurp Scannerエラー</h2>
@@ -1984,7 +2014,7 @@
                             <strong>クロール中のアプリケーションエラーの処理</strong>で、<strong>連続したリクエストのタイムアウト</strong>や<strong>リクエストがタイムアウトした場合</strong>を増やします。
                         </li>
                         <li>
-                            <strong>リクエスト速度</strong>で、<strong>同時最大リクエスト数</strong>を減らすか、<strong>リクエスト間のウェイト</strong>を有効にします。 
+                            <strong>リクエスト速度</strong>で、<strong>最大同時リクエスト数</strong>を減らし、<strong>リクエスト間のウェイト</strong>をリトライを増やして有効にし、同時リクエスト数を減らし、速度制限を有効にします。
                         </li>
                     </ul>
                 </p>
@@ -2015,7 +2045,7 @@
                             <strong>クロール中のアプリケーションエラーの処理</strong>で、<strong>連続したリクエストのタイムアウト</strong>や<strong>リクエストがタイムアウトした場合</strong>を増やします。
                         </li>
                         <li>
-                            <strong>リクエスト速度</strong>で、<strong>同時最大リクエスト数</strong>を減らすか、<strong>リクエスト間のウェイト</strong>を有効にします。 
+                            <strong>リクエスト速度</strong>で、<strong>最大同時リクエスト数</strong>を減らし、<strong>リクエスト間のウェイト</strong>をリトライを増やして有効にし、同時リクエスト数を減らし、速度制限を有効にします。
                         </li>
                     </ul>
                 </p>
@@ -2046,7 +2076,7 @@
                             <strong>クロール中のアプリケーションエラーの処理</strong>で、<strong>連続したリクエストのタイムアウト</strong>や<strong>リクエストがタイムアウトした場合</strong>を増やします。
                         </li>
                         <li>
-                            <strong>リクエスト速度</strong>で、<strong>同時最大リクエスト数</strong>を減らすか、<strong>リクエスト間のウェイト</strong>を有効にします。 
+                            <strong>リクエスト速度</strong>で、<strong>最大同時リクエスト数</strong>を減らすか、<strong>リクエスト間のウェイト</strong>をリクエスト回数を増やして有効にするか、同時リクエスト数を減らすか、リクエスト制限を有効にします。
                         </li>
                     </ul>
                 </p>
@@ -2195,6 +2225,36 @@
             <article class="scanner-error-remedy"><p>
                     <a href="https://portswigger.net/burp/documentation/enterprise/getting-started/system-requirements">システム要件</a>を確認してください。
                 </p>
+            </article>
+        </div>
+    </details><details data-id="49375"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS,HEADING_TOO_LONG"><code class="scanner-error-message">Burp Scanner received a warning from the server due to sending too many requests in quick succession. Automatically added a X ms delay between requests.</code></h4>
+        </summary>
+        <div class="content">
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
+            <article class="scanner-error-cause"><p>
+                    Burp Scannerが大量のリクエストを連続して送信したため、サーバが<code>429 Too Many Requests</code>レスポンスを発行しました。そのためスキャンが正しく実行されず、網羅性に影響を与える可能性があります。
+                </p>
+                <p>
+                    Burp Scannerはデフォルトで、サーバのレート制限に適応するまで、短い遅延をリクエスト間に段階的に追加していきます。これによって通常通りスキャンを行えますが、全体の所要時間が長くなります。必要に応じて、カスタムスキャン設定を使用して、この動作を無効にできます - <strong>リクエスト速度設定</strong>に移動し、<strong>リクエスト速度を調整</strong>の選択を解除してください。
+                </p>
+            </article>
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
+            <article class="scanner-error-remedy"><p>
+                    Burp Scannerはデフォルトでこの問題を自動的に解決しようとするので、何もする必要はありません。
+                </p>
+                <p>
+                    この現象が再び起こらないようにするには、カスタムスキャン設定を使用して、リクエスト間の適切な遅延を手動で設定できます。これを行うには、<strong>リクエスト速度設定 &gt; リクエスト間のウェイト</strong>に移動します。
+                </p>
+                <p>
+                    テスト環境で自分のサイトをスキャンする場合で、Webサイトのパフォーマンスについて他のユーザに影響を与える心配がないのであれば、サーバのレート制限を無効にすると、フルスピードでスキャンを実行できるようになるかもしれません。
+                </p>
+                <div class="highlightedarea">
+                    <h4>注</h4>
+                    <p>
+                        Burp Scannerは送信するリクエストのレートを下げようとします。ただしサーバがIPベースのレート制限を使用している場合、同じアドレスからサーバにリクエストを送信している他の自動化ツールも速度制限をする必要がある場合があります。
+                    </p>
+                </div>
             </article>
         </div>
     </details>
