@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">設定</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1 cms-ignore-validation="DUPLICATE_HEADINGS">設定</h1>
+<p>
+    Burp Suiteのほとんどの設定は、<strong>設定</strong>ダイアログからアクセスできます。このダイアログにアクセスするには、上部メニューの<strong>設定</strong>をクリックします。
+</p>
+<h2 id="user-and-project-settings">ユーザ設定とプロジェクト設定</h2>
+<p>
+    Burpには、2種類の設定があります:
+</p>
+<ul>
+    <li>
+        <strong>プロジェクト設定</strong>は、現在のプロジェクトにのみ適用されます。設定はプロジェクトファイル自身に格納されます。
+    </li>
+    <li>
+        <strong>ユーザ設定</strong>は、あなたのマシンにインストールされたすべてのBurpに適用されます。これらは、すべてのディスクベースのプロジェクトと、一時プロジェクトに影響します。
+    </li>
+</ul>
+<p>
+    一部の設定は、プロジェクト設定とユーザ設定の両方で定義できます。これらの設定には、<strong>このプロジェクトにのみ適用</strong>というトグルがあります。このトグルを選択すると、Burpは指定された設定をプロジェクトレベルで適用します。それ以外の場合、指定した設定はユーザ設定として扱われ、グローバルに適用されます。
+</p>
+<p>
+    このトグルにより、ユーザレベルでデフォルト値を設定し、プロジェクト単位でこれらの設定を上書きできます。
+</p>
+<p>
+    例えば、インターネットに接続するために企業内LANのプロキシをユーザ設定に設定することがあります。ただし、プロジェクトによっては、別の上位プロキシを使用する必要がある場合があります。その別の設定の詳細を、プロジェクト設定で設定できます。
+</p>
+<h2 id="finding-settings">設定の検索</h2>
+<p>
+    <strong>ダイアログ</strong>の横にあるナビゲーションツリーで、探している設定を見つけられます。
+</p>
+<p>
+    コンテンツをフィルタするには:
+</p>
+<ul>
+    <li>
+        パネル上部の<strong>検索</strong>バーを使用します。
+    </li>
+    <li>
+        あるいは、<strong>すべて</strong>、<strong>ユーザ</strong>、<strong>プロジェクト</strong>フィルタボタンを使用します
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Burpの最も重要な設定については、<a href="key-options.html">主要な設定</a>を参照してください。
+    </p>
+</div>
+<h2 id="settings-pages">設定ページ</h2>
+<p>
+    <strong>設定</strong>ダイアログには、次のページがあります:
+</p>
+<ul>
+    <li>
+        <a href="tools/index.html">ツール</a>。
+    </li>
+    <li>
+        <a href="project/index.html">プロジェクト</a>。
+    </li>
+    <li>
+        <a href="sessions/index.html">セッション</a>。
+    </li>
+    <li>
+        <a href="network/index.html">ネットワーク</a>。
+    </li>
+    <li>
+        <a href="ui/index.html">ユーザインタフェース</a>。
+    </li>
+    <li>
+        <a href="suite/index.html">全体</a>。
+    </li>
+</ul>
+</body>
+</html>

@@ -49,7 +49,7 @@
 </p>
 <img src="../images/collaborator/collaborator-1.svg" alt="Burp Collaborator">
 <p>
-    Burp Collaboratorは、<a href="../scanner/index.html">Burp Scanner</a>や<a href="../desktop/tools/collaborator-client/index.html">手動のBurp Collaboratorクライアント</a>で使用され、<a href="../desktop/tools/extender/index.html#burp-extender-api">Burp拡張API</a>からも使用できます。
+    Burp Collaboratorは、<a href="../scanner/index.html">Burp Scanner</a>や<a href="../desktop/tools/collaborator-client/index.html">手動のBurp Collaboratorクライアント</a>で使用され、<a href="../desktop/tools/extensions/index.html">Burp拡張</a>からも使用できます。
 </p>
 <h2 id="how-burp-collaborator-works">Burp Collaboratorのしくみ</h2>
 <p>
@@ -158,12 +158,6 @@
 </p>
 <ul>
     <li>
-        通信の詳細は、一時的なプロセスメモリのみに格納されます。
-    </li>
-    <li>
-        あらゆる種類の永続的な記録領域にデータはありません: たとえば、データベースやログファイルなど
-    </li>
-    <li>
         通常、通信が発生した直後にBurpによって通信の詳細が取得され、その後サーバで破棄されます。
     </li>
     <li>
@@ -174,6 +168,9 @@
     </li>
     <li>
         Collaboratorサーバは、Burpユーザを特定するあらゆるデータ(アカウント名やライセンスキーなど)を受け取らないよう設計されています。
+    </li>
+    <li>
+        プライベートCollaboratorサーバを使用している場合、通信の詳細は一時的なプロセスメモリに保存されます。公開Collaboratorサーバを使用している場合、通信の詳細は暗号化され、Redisデータベースに保存されます。Collaboratorのポーリングサービスがこのデータを復号するには、ユーザシークレットとマスターシークレットの両方が必要です。
     </li>
 </ul>
 <h4>Collaboratorベースの電子メールアドレス</h4>
@@ -208,7 +205,7 @@
     </p>
 </div>
 <p>
-    Burp Suite Professionalでは、<a href="../desktop/options/misc-project.html#burp-collaborator-server"> Burp Collaboratorサーバオプション</a>でこれらを設定できます。
+    Burp Suite Professionalでは、<a href="../desktop/settings/tools/collaborator.html"> Burp Collaboratorサーバオプション</a>でこれらを設定できます。
 </p>
 </body>
 </html>

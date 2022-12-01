@@ -31,39 +31,57 @@
     <label class="label-edition is-professional">Professional</label>
     <label class="label-edition is-community">Community</label>
 </section>
-<h1>Burpと連携するようSafariを設定する</h1>
+<h1>Burp Suiteと連携するようSafariを設定する</h1>
 <p>
-    Burpでのテストに使用できるようにSafariを設定するには、次の設定手順を実行してください。
+    Burpでのテストに使用できるようにSafariを設定するには:
 </p>
-<p>
-    Safariで、<strong>Safari</strong>メニューに移動し、<strong>設定</strong>をクリックします。
-</p>
-<div class="section-small">
-    <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_Safari_1.jpg" alt="Safariの設定" class="center-block">
-</div>
-<p>
-    <strong>詳細設定</strong>タブをクリックし、<strong>プロキシ</strong>の下の<strong>設定の変更</strong>ボタンをクリックします。これにより、現在のネットワークアダプタのネットワーク構成設定が開きます。
-</p>
-<div class="section-small">
-    <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_Safari_1.5.jpg" alt="Safariの詳細設定" class="center-block">
-</div>
-<p>
-    <strong>Proxy</strong>タブで、<strong>Web Proxy (HTTP)</strong>ボックスをチェックし、<strong>Web Proxy Server</strong>にBurp Proxyリスナーのアドレス(デフォルトは127.0.0.1)と、(ラベルのない)ポートフィールドにBurp Proxyリスナーのポート番号(デフォルトは8080)を入力します。
-</p>
-<p>
-    <strong>セキュリティで保護された Web プロキシ (HTTPS)</strong>チェックボックスでもこの手順を行います。
-</p>
-<div class="section-small">
-    <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_Safari_2.jpg" alt="Safariプロキシ設定" class="center-block">
-</div>
-<p>
-    <strong>これらのホスト・ドメインのプロキシ設定をバイパス</strong>ボックスが空になっているか確認します。
-</p>
-<p>
-    <strong>OK</strong>と</strong>適用</strong>をクリックし、開いているダイアログボックスを閉じます。
-</p>
-<div class="section-small">
-    <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_Safari_3.jpg" alt="Safari バイパス設定のクリア" class="center-block">
+<ol>
+    <li>
+        <p>
+            Safariで、<strong>Safari</strong>メニューに移動し、<strong>設定</strong>をクリックします。
+        </p>
+        <div class="section-small">
+            <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_Safari_1.jpg" alt="Safariの設定" class="center-block">
+        </div>
+    </li>
+    <li>
+        <p>
+            <strong>詳細設定</strong>タブをクリックし、<strong>プロキシ</strong>の下の<strong>設定の変更</strong>ボタンをクリックします。これにより、現在のネットワークアダプタのネットワーク構成設定が開きます。
+        </p>
+        <div class="section-small">
+            <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_Safari_1.5.jpg" alt="Safariの詳細設定" class="center-block">
+        </div>
+    </li>
+    <li>
+        <strong>Proxy</strong>タブで、<strong>Web Proxy (HTTP)</strong>ボックスをチェックし、<strong>Web Proxy Server</strong>にBurp Proxyリスナーのアドレス(デフォルトは<code>127.0.0.1</code>)と、(ラベルのない)ポートフィールドにBurp Proxyリスナーのポート番号(デフォルトは<code>8080</code>)を入力します。
+    </li>
+    <li>
+        <p>
+            <strong>セキュリティで保護された Web プロキシ (HTTPS)</strong>チェックボックスでもこの手順を行います。
+        </p>
+        <div class="section-small">
+            <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_Safari_2.jpg" alt="Safariプロキシ設定" class="center-block">
+        </div>
+    </li>
+    <li>
+        <strong>これらのホスト・ドメインのプロキシ設定をバイパス</strong>ボックスが空になっているか確認します。
+    </li>
+    <li>
+        <p>
+            <strong>OK</strong>と<strong>適用</strong>をクリックし、開いているダイアログボックスを閉じます。
+        </p>
+        <div class="section-small">
+            <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_Safari_3.jpg" alt="Safari バイパス設定のクリア" class="center-block">
+        </div>
+    </li>
+</ol>
+<div class="highlightedarea">
+    <h4>次のステップ</h4>
+    <ul>
+        <li>
+            <a href="check-browser-configuration.html">ブラウザのプロキシ設定の確認</a>
+        </li>
+    </ul>
 </div>
 </body>
 </html>

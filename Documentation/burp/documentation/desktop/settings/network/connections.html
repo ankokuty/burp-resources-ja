@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms ignore-validation="OTHER_PAGE_KEYWORD_TOO_FREQUENT" page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">設定</a>
+        </li>
+        <li>
+            <a href="index.html">ネットワーク</a>
+        </li>
+        <li>
+            <a href="connections.html">接続</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>接続設定</h1>
+<p>
+    <strong>接続</strong>設定では、Burpがネットワークトラフィックをどのように処理するか定義できます。次の設定ができます:
+</p>
+<ul>
+    <li>
+        <a href="#platform-authentication">プラットフォーム認証</a>。
+    </li>
+    <li>
+        <a href="#timeouts">タイムアウト</a>。
+    </li>
+    <li>
+        <a href="#upstream-proxy-servers">上位プロキシサーバ</a>。
+    </li>
+    <li>
+        <a href="#hostname-resolution-overrides">ホスト名解決の上書き</a>。
+    </li>
+    <li>
+        <a href="#socks-proxy">SOCKSプロキシ</a>。
+    </li>
+</ul>
+<h2 id="platform-authentication">プラットフォーム認証</h2>
+<p>
+    宛先Webサーバに対して自動的にプラットフォーム認証をする設定です。個々のホストに対して認証タイプや認証情報を設定でき、ホスト単位でプラットフォーム認証を無効にできます。
+</p>
+<p>
+    プラットフォーム認証の認証情報を追加するには、<strong>プラットフォーム認証を行う</strong>を選択し、<strong>追加</strong>を選択すると<strong>プラットフォーム認証の認証情報を追加</strong>ダイアログが開きます。ここから、次の情報を追加できます:
+</p>
+<ul>
+    <li>
+        宛先ホスト。
+    </li>
+    <li>
+        認証タイプ - Basic、NTLMv1、NTLMv2のいずれかを選択できます。
+    </li>
+    <li>
+        ユーザ名。
+    </li>
+    <li>
+        パスワード。
+    </li>
+    <li>
+        ドメイン。
+    </li>
+    <li>
+        ドメインホスト名。
+    </li>
+</ul>
+<p>
+    必要に応じて、認証情報の<strong>編集</strong>や、リストから<strong>削除</strong>もできます。
+</p>
+<p>
+    <strong>プラットフォーム認証失敗時に認証情報のプロンプトを表示する</strong>を選択すると、認証が失敗した場合に対話型のポップアップを表示します。
+</p>
+<p>
+    <strong>プラットフォーム認証</strong>設定は、ユーザレベルとプロジェクトレベルの両方で適用できます。<strong>このプロジェクトにのみ適用</strong>を選択すると、選択した設定は現在のプロジェクトにのみ適用されます。
+</p>
+<h2 id="timeouts">タイムアウト</h2>
+<p>
+    さまざまなネットワークタスクを実行する際にBurpが使用するタイムアウトの閾値を指定できます。
+</p>
+<ul>
+    <li>
+        <strong>接続</strong> - サーバに接続するときに使用します。Burpがソケットを開いた後、サーバに到達不能と判断するまでレスポンスを待つ時間を決定します。
+    </li>
+    <li>
+        <strong>標準</strong> - ほとんどのネットワーク通信に使用します。Burpがリクエストを破棄し、タイムアウトが発生したと記録するまでの待ち時間を決定します。
+    </li>
+    <li>
+        <strong>開始からレスポンスが終了するまで</strong> - Content-LengthやTransfer-Encoding HTTPヘッダを含まないレスポンスを処理する場合に使用します。Burpは、指定された時間待機した後、転送完了と判断します。
+    </li>
+    <li>
+        <strong>ドメイン名解決</strong> - 正常に完了したドメイン名検索を、再度実行する頻度を決定します。対象ホストのアドレスが頻繁に変化する場合、小さい値に設定する必要があります。
+    </li>
+    <li>
+        <strong>名前解決失敗時の再試行</strong> - 失敗したドメイン名解決を再試行する頻度を決定します。
+    </li>
+</ul>
+<p>
+    値は、秒単位です。これらの設定が0に設定されているか空白のままの場合、その機能を実行するときにBurpはタイムアウトしません。
+</p>
+<p>
+    <strong>タイムアウト</strong>設定は、プロジェクト設定です。現在のプロジェクトにのみ適用されます。
+</p>
+<h2 id="upstream-proxy-servers">上位プロキシサーバ</h2>
+<p>
+    上位のプロキシサーバにリクエストを送信するか、宛先Webサーバに直接送信するか設定します。
+</p>
+<p>
+    宛先ホストごとにそれぞれのプロキシ設定を指定するルールを定義できます。Burpは、一覧の中で宛先のWebサーバに最初に一致するルールを使用します。適用可能な上位プロキシのルールが見つからない場合、Burpはプロキシを経由せず直接接続します。
+</p>
+<p>
+    新規にルールを追加するには、<strong>追加</strong>をクリックし<strong>上位プロキシのルールを追加</strong>ダイアログを表示します。次の情報を指定できます:
+</p>
+<ul>
+    <li>
+        <strong>宛先ホスト</strong> - 宛先ホストのアドレスです。ワイルドカードが使用できます(<code>*</code>は0個以上の文字にマッチ、<code>?</code>はドット以外の任意の文字にマッチ)。
+    </li>
+    <li>
+        <strong>プロキシホスト</strong> - プロキシホストのアドレスです。空白のままにすると、Burpは直接接続します。
+    </li>
+    <li>
+        <strong>プロキシポート</strong>。
+    </li>
+    <li>
+        <strong>認証タイプ</strong> - Basic、NTLMv1、NTLMv2のいずれかを選択できます。
+    </li>
+    <li>
+        <strong>ユーザ名</strong>。
+    </li>
+    <li>
+        <strong>パスワード</strong>。
+    </li>
+    <li>
+        <strong>ドメイン</strong> - NTLM認証にのみ使用されます。
+    </li>
+    <li>
+        <strong>ドメインホスト名</strong> - NTLM認証にのみ使用されます。
+    </li>
+</ul>
+<p>
+    すべてのトラフィックを単一のプロキシサーバに送信するには、宛先ホストを<code>*</code>にし、プロキシホストにプロキシホストのアドレスを指定したルールを作成してください(訳注:原文ではプロキシホストを空白にするよう書かれていたがおそらく誤り)。
+</p>
+<p>
+    また、リストの横にあるボタンを使って、個々のルールの<strong>編集</strong>、リストの<strong>上</strong><strong>下</strong>への移動、完全に<strong>削除</strong>ができます。
+</p>
+<p>
+    <strong>上位プロキシサーバ</strong>設定は、ユーザレベルとプロジェクトレベルの両方で適用できます。<strong>このプロジェクトにのみ適用</strong>を選択すると、選択した設定は現在のプロジェクトにのみ適用されます。
+</p>
+<h2 id="hostname-resolution-overrides">ホスト名解決の上書き</h2>
+<p>
+    これらの設定で、ホスト名とIPアドレスをマッピングし、コンピュータのDNS名前解決を上書きできます。プロキシ非対応のシッククライアントコンポーネントからのトラフィックを透過プロキシするためにhostsファイルを変更している場合に、リクエストを正しく転送できるようにします。
+</p>
+<p>
+    各マッピングは次で構成します:
+</p>
+<ul>
+    <li>
+        ホスト名。
+    </li>
+    <li>
+        そのホスト名と関連付けるIPアドレス。
+    </li>
+</ul>
+<p>
+    リストのチェックボタンで個々のルールを有効化、無効化ができ、横のボタンでルールの<strong>編集</strong>や<strong>削除</strong>ができます。
+</p>
+<p>
+    <strong>ホスト名解決の上書き</strong>設定は、プロジェクト設定です。現在のプロジェクトにのみ適用されます。
+</p>
+<h2 id="socks-proxy">SOCKSプロキシ</h2>
+<p>
+    すべての外向き通信にSOCKSプロキシを使用するよう設定できます。この設定はTCPレベルで適用され、全送信リクエストがこのプロキシ経由で送信されます。
+</p>
+<p>
+    SOCKSプロキシを設定するには、<strong>SOCKSプロキシを使用する</strong>を選択し、次のフィールドに情報を入力します:
+</p>
+<ul>
+    <li>
+        SOCKSプロキシホスト。
+    </li>
+    <li>
+        SOCKSプロキシポート。
+    </li>
+    <li>
+        ユーザ名。
+    </li>
+    <li>
+        パスワード。
+    </li>
+</ul>
+<p>
+    上位HTTPプロキシサーバを設定していた場合、上位プロキシへのリクエストはここで設定したSOCKSプロキシ経由で送信されます。
+</p>
+<p>
+    <strong>SOCKSプロキシ上でDNS検索をする</strong>を選択すると、全ドメイン名はプロキシで名前解決されます。この設定にした場合、Burpはローカルの検索を行いません。
+</p>
+<p>
+    <strong>SOCKSプロキシ</strong>設定は、ユーザレベルとプロジェクトレベルの両方で適用できます。<strong>このプロジェクトにのみ適用</strong>を選択すると、設定は現在のプロジェクトにのみ適用されます。
+</p>
+</body>
+</html>

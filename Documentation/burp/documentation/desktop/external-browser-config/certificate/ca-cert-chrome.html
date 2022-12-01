@@ -36,80 +36,38 @@
 </section>
 <h1>ChromeへBurpのCA証明書をインストール</h1>
 <p>
-    BurpのCA証明書をインストールする前に、<a href="../check-listener.html">Proxyリスナーが動作</a>しており、<a href="../index.html">Burpが使われるようブラウザの設定</a>ができているか確認します。
+    自身のブラウザでHTTPSアプリケーションをテストするには、Burp SuiteのCA証明書をインストールする必要があります。
 </p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        大半のユーザーは、この作業は必要ありません。代わりに、すでに設定されているBurpブラウザを使用してください。
+    </p>
+</div>
 <p>
-    残念ながら、ChromeにBurpのCA証明書をインストールする手順は、オペレーティングシステムごとに若干異なります。
-</p>
-<h2 id="installing-burp-s-ca-certificate-in-chrome-windows-and-macos">ChromeへBurpのCA証明書をインストール - WindowsとMacOS</h2>
-<p>
-    他のブラウザとは異なり、Chromeには独自のトラストストアがありません。これは、BurpのCA証明書を直接Chromeにインストールしないということです。代わりに、コンピューターの内蔵ブラウザ(Windowsの場合はInternet Explorer、MacOSの場合はSafari)にBurpのCA証明書をインストールすると、Chromeも自動的に証明書を使用します。
-</p>
-<p>
-    ChromeでBurpを使用する場合は、オペレーティングシステムの該当するブラウザにCA証明書をインストールする手順に従ってください:
+    BurpのCA証明書をインストールする前に:
 </p>
 <ul>
     <li>
-        <a href="ca-cert-safari.html">MacOS (Safari)</a>
+        <a href="../check-listener.html">Proxyリスナー</a>がアクティブか確認します。
     </li>
     <li>
-        <a href="ca-cert-internet-explorer.html">Windows (Internet Explorer)</a>
+        <a href="../index.html">Burpと連携するようブラウザを設定</a>します。
     </li>
 </ul>
 <p>
-    BurpのCA証明書をコンピュータの内蔵ブラウザに正常にインストールしたら、Chromeを再起動します。Burpを実行したまま、HTTPSのURLにアクセスしてみてください。すべて正常に動作していれば、セキュリティ警告なしでページを参照できるはずです。
+    Chromeで使用するBurpのCA証明書をインストールする手順は、各OSで異なります。該当する、CA証明書のインストール手順を参照してください:
 </p>
-<h2 id="installing-burp-s-ca-certificate-in-chrome-linux">ChromeへBurpのCA証明書をインストール - Linux</h2>
-<p>
-    WindowsとMacOSでは、Chromeブラウザはホストコンピュータから証明書トラストストアを取得します。ただしLinuxでは、ブラウザの設定で証明書をインストールする必要があります。
-</p>
-<p>
-    Burpを実行している状態で、Chromeで<code>http://burpsuite</code>にアクセスします。"Welcome to Burp Suite Professional"という比較的わかりやすいWebページが表示されるはずです。表示されない場合は、<a href="proxy-troubleshooting.html">プロキシのトラブルシューティング</a>ページを参照してください。何が悪かったかによっては、自動的にそこに遷移するかもしれません。
-</p>
-<p>
-    ページの右上隅にある<strong>CA Certificate</strong>をクリックして、独自のBurp CA証明書をダウンロードします。保存する場所をメモしておいてください。
-</p>
-<div class="rounded-dropshadow">
-    <img src="../../images/support/installingandconfiguring-installingburpscacertificate-chromelinux-1.png" alt="ChromeでCA証明書をダウンロード" class="center-block">
-</div>
-<p>
-    ブラウザの右上隅にあるメニューを開き、<strong>設定</strong>をクリックして、Chromeブラウザの設定を開きます。
-</p>
-<p>
-    Chromeの設定で、<strong>証明書</strong>を検索し、<strong>セキュリティ</strong>をクリックし、<strong>証明書の管理</strong>オプションを選択します。
-</p>
-<div class="rounded-dropshadow">
-    <img src="../../images/support/installingandconfiguring-installingburpscacertificate-chromelinux-2.png" alt="Chromeで証明書を管理" class="center-block">
-</div>
-<p>
-    <strong>証明書の管理</strong>ダイアログで、<strong>認証局</strong>タブに移動し、<strong>インポート</strong>ボタンをクリックします。
-</p>
-<div class="rounded-dropshadow">
-    <img src="../../images/support/installingandconfiguring-installingburpscacertificate-chromelinux-4.png" alt="Chromeで証明書のインポート" class="center-block">
-</div>
-<p>
-    <strong>参照</strong>をクリックし、先程ダウンロードした<code>cacert.der</code>ファイルを選択します。<strong>開く</strong>をクリックします。
-</p>
-<div class="rounded-dropshadow">
-    <img src="../../images/support/installingandconfiguring-installingburpscacertificate-chromelinux-5.png" alt="Chromeで証明書を選択" class="center-block">
-</div>
-<p>
-    <strong>ウェブサイトの識別でこの証明書を信頼します</strong>オプションを選択します。
-</p>
-<p>
-    <strong>OK</strong>をクリックします。
-</p>
-<div class="rounded-dropshadow">
-    <img src="../../images/support/installingandconfiguring-installingburpscacertificate-chromelinux-6.png" alt="Chromeでウェブサイトを識別するためにこの証明書を信頼するを選択" class="center-block">
-</div>
-<p>
-    <code>org-PortSwigger</code>が認証局のリストに表示されるはずです。
-</p>
-<div class="rounded-dropshadow">
-    <img src="../../images/support/installingandconfiguring-installingburpscacertificate-chromelinux-7.png" alt="ChromeのBurpのセキュリティ証明書" class="center-block">
-</div>
-<p>
-    Burpを実行したまま、HTTPSのURLにアクセスしてみてください。すべて正常に動作していれば、セキュリティ警告なしでページを参照できるはずです。
-</p>
+<ul>
+    <li>
+        <a href="ca-cert-chrome-macos.html">MacOS</a>
+    </li>
+    <li>
+        <a href="ca-cert-chrome-windows.html">Windows</a>
+    </li>
+    <li>
+        <a href="ca-cert-chrome-linux.html">Linux</a>
+    </li>
+</ul>
 </body>
 </html>

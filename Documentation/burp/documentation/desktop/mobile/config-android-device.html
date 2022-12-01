@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">モバイルテスト</a>
+        </li>
+        <li>
+            <a href="config-android-device.html">Burp Suite Professionalと連携するようAndroid端末を設定する</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Burp Suite Professionalと連携するようAndroid端末を設定する</h1>
+<p>
+    root化したAndroid端末を使用して、Webアプリケーションやモバイルアプリのテストができます。そのためには、次のことを行う必要があります:
+</p>
+<ul>
+    <li>
+        Burp Proxyリスナーが、すべてのネットワークインタフェースで接続を受け入れるように設定します。
+    </li>
+    <li>
+        端末とコンピューターの両方を同じワイヤレスネットワークに接続します。
+    </li>
+    <li>
+        HTTPSで通信するには、Android端末にシステムレベルでCA証明書をインストールする必要があります。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Android 7(Nougat)以降、システムレベルでCA証明書をインストールするには、root化した端末を使用する必要があります。Android端末をroot化すると、通常は保証が効かなくなり、文鎮化する恐れもあります。そのリスクを理解した上で、進めてください。
+    </p>
+    <p>
+        Android端末やAndroidエミュレータにはさまざまな種類があるため、このプロセスのすべてのステップについて具体的な手順は示せません。しかし、いくつかの外部サイトへのリンクを載せておきますので、設定を完了させる助けになるかもしれません。
+    </p>
+</div>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-1-configure-the-burp-proxy-listener">ステップ1: Burp Proxyリスナーを設定する</h2>
+<p>
+    Burp Suite ProfessionalのProxy設定を行うには:
+</p>
+<ol>
+    <li>
+        Burp Suite Professionalを開き、<strong>Proxy &gt; オプション</strong>に移動します。
+    </li>
+    <li>
+        <strong>Proxyリスナー</strong>で、<strong>追加</strong>をクリックします。
+    </li>
+    <li>
+        <strong>バインド</strong>タブで、<strong>バインドするポート</strong>に<code>8082</code> (あるいは使用していない他のポート)を設定します。
+    </li>
+    <li>
+        <p>
+            <strong>すべてのインタフェース</strong>を選択し、<strong>OK</strong>をクリックします。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="../images/add-proxy-listener.png" alt="Proxyリスナーの追加 - Android" class="center-block">
+        </div>
+    </li>
+    <li>
+        プロンプトが表示されたら、<strong>はい</strong>をクリックします。
+    </li>
+</ol>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-2-configure-your-device-to-use-the-proxy">ステップ2: プロキシを使用するよう端末を設定する</h2>
+<p>
+    プロキシ設定を行う前に、Android端末がWi-Fiネットワークから切断されていることを確認してください:
+</p>
+<ol>
+    <li>
+        Android端末の<strong>設定 &gt; ネットワークとインターネット</strong>に移動します。
+    </li>
+    <li>
+        <strong>インターネット</strong>を選択し、Wi-Fiネットワーク名を長押しします。
+    </li>
+    <li>
+        <strong>変更</strong>を選択します。
+    </li>
+    <li>
+        <strong>詳細オプション</strong>メニューで、<strong>プロキシ &gt; 手動</strong>を選択します。
+    </li>
+    <li>
+        <strong>プロキシのホスト名</strong>に、Burp Suite Professionalが動作しているコンピュータのIPを設定します。
+    </li>
+    <li>
+        <strong>プロキシポート</strong>に、Burp Proxyリスナーに設定したポート番号(この例では<code>8082</code>)を設定します。
+    </li>
+    <li>
+        <strong>保存</strong>をタッチします。
+    </li>
+</ol>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-3-install-a-ca-certificate-on-your-android-device">ステップ3: Android端末にCA証明書をインストールする</h2>
+<p>
+    HTTPSで通信するには、Android端末にBurp Suite ProfessionalのCA証明書をインストールする必要があります。このステップは複雑で、端末やAndroidのバージョンによって異なります。
+</p>
+<p>
+    また、バージョン99以上のChromeブラウザからHTTPSトラフィックをプロキシするためには、さらに設定を変更する必要があります。
+</p>
+<p>
+    これらの手順の詳細は、次の外部リンクを参照してください。これらのページの内容について、私たちは責任を負いかねますのでご了承ください。
+</p>
+<ul>
+    <li>
+        <a href="https://blog.ropnop.com/configuring-burp-suite-with-android-nougat">外部リンク: Android端末にCA証明書をインストールする</a>
+    </li>
+    <li>
+        <a href="https://httptoolkit.tech/blog/chrome-android-certificate-transparency">外部リンク: バージョン99以降のChromeブラウザの設定</a>
+    </li>
+</ul>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION, DUPLICATE_HEADINGS" id="step-4-test-the-configuration">ステップ4: 設定をテストする</h2>
+<p>
+    設定をテストするには:
+</p>
+<ol>
+    <li>
+        Burp Suite Professionalを開きます。
+    </li>
+    <li>
+        <strong>Proxy &gt; インターセプト</strong>に移動し、<strong>インターセプト無効</strong>をクリックしてインターセプトを有効にします。
+    </li>
+    <li>
+        Android端末のブラウザを開き、HTTPSのウェブページにアクセスします。
+    </li>
+</ol>
+<p>
+    セキュリティ警告が表示されずにページが読み込まれるはずです。Burp Suite Professional内に、対応するリクエストが表示されるはずです。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        一部のAndroidエミュレータでは、エミュレートされた端末のネイティブなネットワーク/Wi-Fi設定ではなく、エミュレータの設定メニューからプロキシ情報を追加する必要があります。
+    </p>
+</div>
+</body>
+</html>

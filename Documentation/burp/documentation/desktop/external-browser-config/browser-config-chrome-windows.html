@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">外部ブラウザの設定</a>
+        </li>
+        <li>
+            <a href="browser-config-chrome-windows.html">Burpと連携するようChromeを設定する - Windows</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Burpと連携するようChromeを設定する - Windows</h1>
+<p>
+    ChromeでBurpを使用する場合は、プロキシ設定を行う必要があります:
+</p>
+<ol>
+    <li>
+        Chromeを開き、<strong>カスタマイズ</strong> (ハンバーガー) メニューに移動します。
+    </li>
+    <li>
+        <strong>設定</strong>を選択し、<strong>システム</strong>メニューを開きます。
+    </li>
+    <li>
+        <p>
+            <strong>パソコンのプロキシ設定を開く</strong>をクリックします。<strong>プロキシ設定</strong>ウィンドウで、プロキシサーバの設定を行えます。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="../images/chrome-proxy-settings.png" alt="Chromeのプロキシ設定" class="center-block">
+        </div>
+    </li>
+    <li>
+        <strong>設定を自動的に検出する</strong>や<strong>セットアップスクリプトを使う</strong>が<strong>オフ</strong>になっていることを確認します。
+    </li>
+    <li>
+        <strong>プロキシサーバーを使う</strong>を<strong>オン</strong>に設定します。
+    </li>
+    <li>
+        <strong>アドレス</strong>欄に、Burp Proxyのリスナーアドレス(デフォルトは<code>127.0.0.1</code>)を入力します。
+    </li>
+    <li>
+        <strong>ポート</strong>欄に、Burp Proxyリスナーのポート番号(デフォルトは<code>8080</code>)を入力します。
+    </li>
+    <li>
+        <strong>ローカル(イントラネット)のアドレスにはプロキシサーバーを使わない</strong>のチェックが外れていることを確認します。
+    </li>
+    <li>
+        <p>
+            <strong>保存</strong>をクリックします。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="../images/config-chrome-ms.png" alt="Chromeのプロキシ設定 - Windows" class="center-block">
+        </div>
+    </li>
+</ol>
+<div class="highlightedarea">
+    <h4>次のステップ</h4>
+    <ul>
+        <li>
+            <a href="check-browser-configuration.html">ブラウザのプロキシ設定の確認</a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

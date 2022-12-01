@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Burp Suite Professional / Burp Suite Community Editionのターゲットスコープの設定方法について説明します。">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE" ignore-validation="STACKED_HEADINGS,ALLOWED_CHARACTERS"></cms><title>ターゲットスコープの設定</title>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">入門</a>
+        </li>
+        <li>
+            <a href="setting-target-scope.html">ターゲットスコープの設定</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1 cms-ignore-validation="HEADING_CAPITALIZATION" no-keyword-injection>ターゲットスコープの設定</h1>
+<p>
+    このチュートリアルでは、Burp Suiteでの作業範囲を設定する方法について説明します。ターゲットスコープでは、テストしたいURLとホストを正確にBurpに伝えます。これにより、ブラウザや他のサイトから発生するノイズをフィルタリングし、関心のあるトラフィックに集中できるようになります。
+</p>
+<div class="highlightedarea">
+    <h4>Webセキュリティアカデミー</h4>
+    <p>
+        この先に進むには<code>portswigger.net</code>のアカウントが必要です。まだ持っていない場合、<a href="https://portswigger.net/users/register">登録は無料</a>で、Webセキュリティアカデミーへのフルアクセスが可能となります。
+    </p>
+</div>
+<p>
+    前回のチュートリアルを完了していない場合は、先に実施しておくことを推奨します。<a href="modifying-http-requests.html">Burp Proxyによるリクエストの変更</a>を参照してください。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION, DUPLICATE_HEADINGS">ステップ1: Burpブラウザを起動する</h3>
+<p>
+    Burpブラウザを起動し、次のURLにアクセスします:
+</p>
+<code class="code-scrollable">https://portswigger.net/web-security/information-disclosure/exploiting/lab-infoleak-in-error-messages</code><p>
+    ページが読み込まれたら、<strong>Access the lab</strong>をクリックします。プロンプトが表示されたら、<code>portswigger.net</code>のアカウントでログインしてください。数秒後、あなた専用の偽のショッピングサイトが表示されます。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: 対象サイトをブラウズする</h3>
+<p>
+    ブラウザで、いくつかの製品ページをクリックしてサイトを探索します。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: HTTP履歴を調べる</h3>
+<p>
+    Burpで、<strong>Proxy &gt; HTTP履歴</strong>タブを開きます。読みやすくするには、リクエストが降順でソートされるまで、左端の列ヘッダ(<strong>#</strong>)をクリックし続けます。すると、最新のリクエストが上に表示されます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../images/getting-started/setting-target-scope-1-http-history.png" alt="HTTP履歴のソート">
+</div>
+<p>
+    HTTP履歴には、ブラウザが行った各リクエストの詳細が表示されており、YouTubeやGoogle Analyticsなど関係のない第三者のWebサイトへのリクエストも含まれていることに注目してください。
+</p>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ4: ターゲットスコープを設定する</h3>
+<p>
+    <strong>Target &gt; サイトマップ</strong>に移動します。左側のパネルには、ブラウザが通信したホストのリストが表示されます。対象サイトのノードを右クリックし、<strong>スコープに追加</strong>をクリックします。ポップアップウィンドウでプロンプトが表示されたら、<strong>はい</strong>をクリックしスコープ外のトラフィックを除外します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../images/getting-started/setting-target-scope-2-add-to-scope.png" alt="対象サイトをスコープへ追加">
+</div>
+<h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ5: HTTP履歴のフィルタリング</h3>
+<p>
+    HTTP履歴の上にある表示フィルタをクリックし、<strong>スコープ内のアイテムのみ表示</strong>を選択します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../images/getting-started/setting-target-scope-3-filter-http-menu.png" alt="HTTPメニューのフィルタリング">
+</div>
+<p>
+    HTTP履歴をスクロールして戻してみます。対象のWebサイトのエントリのみが表示されるようになったことに注目してください。その他のアイテムはすべて非表示になっています。これにより履歴は大幅に簡素化され、興味のあるアイテムのみが表示されます。
+</p>
+<p>
+    対象サイトのブラウズを続けても、スコープ外のトラフィックがサイトマップやProxy履歴に記録されないことがわかるでしょう。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../images/getting-started/setting-target-scope-4-filtered-history.png" alt="フィルタリングされたHTTP履歴">
+</div>
+<p>
+    おめでとうございます。ターゲットスコープを設定し、HTTP履歴の簡素化に成功しました。次のセクションでは今回の作業を基に、ラボを完了させます。
+</p>
+<div class="callout theme-community-6">
+    <div class="container-columns-3 align-vertically-center">
+        <p class="heading-navy-1">
+            <strong>次のステップ -</strong> Burp Repeaterによるリクエストの再発行
+        </p>
+        <a href="reissuing-http-requests.html" class="button-orange">次へ</a>
+    </div>
+</div>
+<div class="highlightedarea">
+    <h4 cms-ignore-validation="DUPLICATE_HEADINGS">このチュートリアルの内容</h4>
+    <ol>
+        <li>
+            <a href="download-and-install.html">Burp Suiteのダウンロードとインストール。</a>
+        </li>
+        <li>
+            <a href="intercepting-http-traffic.html">Burp ProxyによるHTTPトラフィックのインターセプト。</a>
+        </li>
+        <li>
+            <a href="modifying-http-requests.html">Burp Proxyによるリクエストの変更。</a>
+        </li>
+        <li>
+            ターゲットスコープの設定。
+        </li>
+        <li>
+            <a href="reissuing-http-requests.html">Burp Repeaterによるリクエストの再発行。</a>
+        </li>
+        <li>
+            <a href="running-your-first-scan.html">初めてのスキャン実行。</a>
+        </li>
+        <li>
+            <a href="what-next.html">次は？</a>
+        </li>
+    </ol>
+</div>
+</body>
+</html>

@@ -43,6 +43,11 @@
             この先に進むには<code>portswigger.net</code>のアカウントが必要です。まだ持っていない場合、<a href="https://portswigger.net/users/register">登録は無料</a>で、Webセキュリティアカデミーへのフルアクセスが可能となります。
         </p>
     </div>
+    <div class="container">
+        <div class="youtube-wrapper">
+            <iframe src="https://www.youtube.com/embed/TNcUrFyZrKs?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
+        </div>
+    </div>
     <h2 id="step-1-access-the-vulnerable-website-in-burp-s-browser" cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: Burpブラウザで脆弱性のあるWebサイトにアクセスする</h2>
     <p>
         Burpで、<strong>Proxy &gt; インターセプト</strong>タブを開き、<a href="../tools/proxy/intercept.html#controls">インターセプトが無効</a>になっていることを確認します。
@@ -112,9 +117,9 @@
     <div class="callout theme-community-6">
         <div class="container-columns-3 align-vertically-center">
             <p class="heading-navy-1">
-                <strong>次のステップ - </strong>Burp Repeaterによるリクエストの再発行
+                <strong>次のステップ - </strong>ターゲットスコープの設定
             </p>
-            <a href="reissuing-http-requests.html" class="button-orange">次へ</a>
+            <a href="setting-target-scope.html" class="button-orange">次へ</a>
         </div>
     </div>
     <div class="highlightedarea">
@@ -128,6 +133,9 @@
             </li>
             <li>
                 Burp Proxyによるリクエストの変更。
+            </li>
+            <li>
+                <a href="setting-target-scope.html">ターゲットスコープの設定。</a>
             </li>
             <li>
                 <a href="reissuing-http-requests.html">Burp Repeaterによるリクエストの再発行。</a>

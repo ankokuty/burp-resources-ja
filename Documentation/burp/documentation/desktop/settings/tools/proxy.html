@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">設定</a>
+        </li>
+        <li>
+            <a href="index.html">ツール</a>
+        </li>
+        <li>
+            <a href="proxy.html">Proxy</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Proxy設定</h1>
+<p>
+    <strong>Proxy</strong>ページには、次の設定があります:
+</p>
+<ul>
+    <li>
+        Proxy履歴ログ出力。
+    </li>
+    <li>
+        Proxyインターセプトのデフォルト。
+    </li>
+</ul>
+<h2 id="proxy-history-logging">Proxy履歴ログ出力</h2>
+<p>
+    Burp Proxyは、ターゲットスコープに新しいアイテムが追加されたときに、スコープ外アイテムを履歴やライブタスクへ送信しないよう設定できます。これは、スコープ外アイテムをプロジェクトデータに蓄積させないために便利です。
+</p>
+<p>
+    <strong>Proxy履歴ログ出力</strong>設定で、この処理を管理できます。3つの選択肢があります:
+</p>
+<ul>
+    <li>
+        ターゲットスコープにアイテムが追加されたとき、<strong>Proxy履歴や他のBurpツールへスコープ外アイテムの送信を停止する</strong>。
+    </li>
+    <li>
+        ターゲットスコープにアイテムが追加されたとき、<strong>操作ごとに選択する</strong>。
+    </li>
+    <li>
+        ターゲットスコープにアイテムが追加されても、<strong>なにもしない</strong>。
+    </li>
+</ul>
+<p>
+    <strong>Proxy履歴ログ出力</strong>設定は、ユーザ設定です。あなたのマシンにインストールされたすべてのBurpに適用されます。
+</p>
+<h2 id="default-proxy-interception-state">Proxyインターセプトのデフォルト</h2>
+<p>
+    この設定は、Burp起動時にProxyインターセプトをデフォルトで有効にするかどうかを制御します。
+</p>
+<p>
+    3つの選択肢があります:
+</p>
+<ul>
+    <li>
+        インターセプトを<strong>常に有効化</strong>。
+    </li>
+    <li>
+        インターセプトを<strong>常に無効化</strong>。
+    </li>
+    <li>
+        <strong>前回終了時の状態を復元</strong>。
+    </li>
+</ul>
+<p>
+    <strong>Proxyインターセプトのデフォルト</strong>設定は、ユーザ設定です。あなたのマシンにインストールされたすべてのBurpに適用されます。
+</p>
+</body>
+</html>

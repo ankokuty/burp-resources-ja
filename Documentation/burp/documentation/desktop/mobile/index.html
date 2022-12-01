@@ -30,10 +30,19 @@
 </section>
 <h1>モバイルテスト</h1>
 <p>
-    Burp Suiteを使用して、モバイルアプリケーションのセキュリティテストが実行できます。これを行うには、モバイルデバイスのトラフィックをBurp Proxyを経由するように設定するだけです。すると、モバイルアプリで処理されるHTTP/Sのリクエストやレスポンスをインターセプト、表示、変更でき、通常の方法で<a href="../penetration-testing/index.html">Burpを使用したペネトレーションテスト</a>が実行できます。
+    Burp Suiteを使用して、モバイルアプリケーションのセキュリティテストが実行できます。これを行うには、モバイル端末のトラフィックをBurp Proxyを経由するように設定する必要があります。これにより、モバイルアプリで処理されるHTTP/Sのリクエストやレスポンスをインターセプト、表示、変更でき、通常の方法で<a href="../penetration-testing/index.html">Burpを使用したペネトレーションテスト</a>が実行できます。
 </p>
 <p>
-    プロキシ設定に問題がある場合やTLS証明書のピニングがされている場合、モバイルアプリケーションからのHTTPSトラフィックのインターセプトは容易ではないかもしれません。詳細は、<a href="troubleshooting.html">トラブルシューティング</a>を参照してください。
+    モバイルアプリケーションからのHTTPSトラフィックをインターセプトするのは、複雑な場合があります。プロキシの設定や、TLS証明書のピニングなどで問題が発生する場合があります。詳細は、<a href="troubleshooting.html">トラブルシューティング</a>を参照してください。
 </p>
+<h2 id="configuring-a-mobile-device">モバイル端末の設定</h2>
+<ul>
+    <li>
+        <a href="config-ios-device.html">Burp Suite Professionalと連携するようiOS端末を設定する</a>。
+    </li>
+    <li>
+        <a href="config-android-device.html">Burp Suite Professionalと連携するようAndroid端末を設定する</a>。
+    </li>
+</ul>
 </body>
 </html>

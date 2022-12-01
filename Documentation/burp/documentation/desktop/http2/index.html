@@ -70,7 +70,7 @@
 </p>
 <h2 id="default-protocol">デフォルトプロトコル</h2>
 <p>
-    Burpはデフォルトで、TLSハンドシェイク時にALPNでHTTP/2のサポートを表明するサーバとの通信に、HTTP/2を使用します。これにより、プロトコルに特化したテストを行っていない場合でも、HTTP/2のおかげでパフォーマンスが向上します。
+    Burpはデフォルトで、TLSハンドシェイク時にALPNでHTTP/2のサポートを表明するサーバとの通信に、HTTP/2を使用します。これにより、プロトコルに特化したテストを行う場合ではなくても、HTTP/2のおかげでパフォーマンスが向上します。
 </p>
 <p>
     プロジェクトの<a href="#changing-the-default-protocol">デフォルトのプロトコルを変更</a>すれば、現在のニーズに合わせてこの動作を調整できます。これは、常にHTTP/1を使用する必要があるテストを行っている場合に便利です。必要に応じて個別にHTTP/2リクエストを送信する場合は、<a href="#changing-the-protocol-for-a-request">Inspectorでプロトコルの切り替え</a>ができます。
@@ -195,7 +195,7 @@
 </p>
 <h3 id="changing-the-default-protocol">デフォルトプロトコルの変更</h3>
 <p>
-    Burpはデフォルトで、TLSハンドシェイク時にALPNでHTTP/2のサポートを表明するサーバとの通信に、HTTP/2を使用します。しかしデフォルトのプロトコルを変更すれば、HTTP/2リクエストを送信するよう明示的に指示しない限り、HTTP/1を使用するようにできます。これを行うには、<strong>Projectオプション &gt; HTTP &gt; HTTP/2</strong>を開き、<strong>サーバがサポートしている場合、デフォルトでHTTP/2にする</strong>オプションの選択を解除します。
+    Burpはデフォルトで、TLSハンドシェイク時にALPNでHTTP/2のサポートを表明するサーバとの通信に、HTTP/2を使用します。しかしデフォルトのプロトコルを変更すれば、HTTP/2リクエストを送信するよう明示的に指示しない限り、HTTP/1を使用するようにできます。そのためには、<strong>設定 &gt; ネットワーク &gt; HTTP</strong>で、<strong>サーバがサポートしている場合、デフォルトでHTTP/2にする</strong>オプションのチェックを外します。
 </p>
 <p>
     古典的な<a href="https://portswigger.net/web-security/request-smuggling">CL.TEやTE.CLのリクエストスマグリング</a>のような、特にHTTP/1を必要とする脆弱性に焦点を当てている場合は、これが必要でしょう。

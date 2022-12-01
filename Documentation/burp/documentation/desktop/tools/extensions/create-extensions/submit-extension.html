@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">拡張</a>
+        </li>
+        <li>
+            <a href="index.html">拡張の開発</a>
+        </li>
+        <li>
+            <a href="submit-extension.html">拡張の投稿</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>BAppストアへの拡張の投稿</h1>
+<p>
+    Burp Suite用の拡張を開発した場合、BAppとして投稿できます。拡張が受入基準を満たしていれば、<a href="https://portswigger.net/bappstore">BAppストア</a>から利用できるようにします。
+</p>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-1-check-the-acceptance-criteria">ステップ1 - 受入基準を確認する</h2>
+<p>
+    拡張が<a href="submission-criteria.html">受入基準</a>を満たしていて、受け入れられる可能性が高いかどうかを確認してください。
+</p>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-2-submit-your-extension">ステップ2 - 拡張を投稿する</h2>
+<p>
+    拡張を投稿するには、次が必要です:
+</p>
+<ul>
+    <li>
+        関連するすべてのソースコードが保存されているGitHubリポジトリへのリンク。
+    </li>
+    <li>
+        名前と、拡張の機能の適切な説明。
+    </li>
+    <li>
+        拡張の動作の詳細、使用方法、拡張の使用に必要なセットアップ情報。
+    </li>
+</ul>
+<p>
+    これらがすべて揃ったら、レビューを依頼するために<a href="mailto:support@portswigger.net">私たちに連絡</a>してください。
+</p>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-3-we-review-your-extension">ステップ3 - 拡張のレビューを受ける</h2>
+<p>
+    私たちは、拡張をコンパイルし、BAppストアに適しているかどうかを確認します:
+</p>
+<ul>
+    <li>
+        拡張が、既存の機能や利用可能な拡張と重複していないか確認します。
+    </li>
+    <li>
+        ガイドラインへの準拠を確認するためにコードをレビューします。
+    </li>
+    <li>
+        重要な機能の使用状況を確認するために自動レビューをします。
+    </li>
+    <li>
+        拡張が、ウイルス対策ソフトやマルウェアを起動させるかどうか、スキャンを実行します。たとえば、暗号化されていないペイロードが誤検出されることがあります。
+    </li>
+    <li>
+        拡張を手動でテストします。
+    </li>
+</ul>
+<p>
+    これらのプロセスを通じて、質問や改善提案など連絡を取り合うことを心がけています。
+</p>
+<p>
+    レビュー終了後、拡張をBAppストアに掲載するかどうかをお知らせします。
+</p>
+<h2 id="updating-your-bapp">BAppの更新</h2>
+<p>
+    BAppを更新するには:
+</p>
+<ol>
+    <li>
+        あなたのリポジトリをフォークしたPortSwiggerのリポジトリに対してプルリクエストを作成してください。プルリクエストはフォークしたリポジトリからのみ受け付けています。
+    </li>
+    <li>
+        プルリクエストのリンクをメールで送信してください。
+    </li>
+    <li>
+        私たちはその変更点をレビューし、PortSwiggerのフォークにマージします。
+    </li>
+    <li>
+        拡張をテストした後、BApp Storeで更新したバージョンを公開し、公開したらお知らせします。
+    </li>
+</ol>
+</body>
+</html>

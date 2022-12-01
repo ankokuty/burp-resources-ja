@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">設定</a>
+        </li>
+        <li>
+            <a href="key-options.html">主要な設定</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>主要な設定</h1>
+<p>
+    Burp Suiteにはさまざまな設定があり、ほとんどのワークフローや対象アプリケーションに対応するよう設定できます。
+</p>
+<p>
+    このページでは、ほとんどのプロジェクトで役に立つ主要な設定について簡単に説明します。
+</p>
+<h2 id="target-scope" cms-ignore-validation="DUPLICATE_HEADINGS">ターゲットスコープ</h2>
+<p>
+    ターゲットスコープ設定は、現在注目し、攻撃しようとしているホストやURLをBurpに伝えます。不適切なアイテムをBurpが対象としないように、テストの初期段階で全体のターゲットスコープの設定を推奨します。
+</p>
+<p>
+    スコープを選択すると、Burpの多くのツールの動作を細かく調整できます。例:
+</p>
+<ul>
+    <li>
+        対象のサイトマップとProxy履歴をフィルタリングして、スコープ内のアイテムのみを表示できます。
+    </li>
+    <li>
+        Proxyが、スコープ内のリクエストとレスポンスのみをインターセプトするよう設定できます。
+    </li>
+    <li>
+        <label class="label-edition is-professional">Professional</label>
+        Burp Scannerが、スコープ内のアイテムを自動的にスキャンするよう設定できます。
+    </li>
+    <li>
+        IntruderとRepeaterが、スコープ内の任意のURLへのリダイレクトをたどるよう設定できます。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <ul>
+        <li>
+            <a href="../tools/target/scope.html">ターゲットスコープ</a>。
+        </li>
+        <li>
+            <a href="../tools/proxy/history/index.html">Proxy履歴</a>。
+        </li>
+        <li>
+            <a href="../tools/target/site-map/index.html">サイトマップ</a>。
+        </li>
+    </ul>
+</div>
+<h2 id="platform-level-authentication">プラットフォームレベルの認証</h2>
+<p>
+    Burpは、プラットフォームレベルの認証を必要とするアプリケーションサーバに対して、認証を実行できます。必要に応じて、個々のホストに対して異なる認証タイプや認証情報を設定できます。
+</p>
+<p>
+    Burpは次の認証タイプに対応しています:
+</p>
+<ul>
+    <li>
+        Basic
+    </li>
+    <li>
+        NTLMv1
+    </li>
+    <li>
+        NTLMv2
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <p>
+        <a href="../settings/network/connections.html#platform-authentication">プラットフォーム認証</a>。
+    </p>
+</div>
+<h2 id="session-handling-rules-and-macros">セッションハンドリングルールとマクロ</h2>
+<p>
+    一部のアプリケーションには、過敏なセッション遮断、リクエストトークン、状態が維持された多段階処理のような、自動または手動テストを実行しづらくする機能があります。
+</p>
+<p>
+    セッションハンドリングルールとマクロを設定すると、バックグラウンドでセッション関連の問題に対処でき、テストを中断せずに継続できます。
+</p>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <p>
+        <a href="../settings/sessions/index.html">セッション設定</a>。
+    </p>
+</div>
+<h2 id="schedule-tasks">スケジュールタスク</h2>
+<p>
+    タスクスケジューラを使用すると、定義された時間に特定のタスクを自動的に実行するように設定できます。タスクスケジューラを使用すると、あなたが作業していない間に特定タスクを自動で開始や停止したり、定期的または指定した時間に作業を保存できます。
+</p>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <p>
+        <a href="../functions/task-scheduler.html">タスクスケジューラ</a>。
+    </p>
+</div>
+<h2 id="http-message-appearance">HTTPメッセージ表示</h2>
+<p>
+    BurpがHTTPメッセージの表示に使用するフォントや文字セット、Burp自身のUIで使用するフォントを設定できます。
+</p>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <ul>
+        <li>
+            <a href="../settings/ui/message-editor.html">メッセージエディタ設定</a>。
+        </li>
+        <li>
+            <a href="../settings/ui/display.html">表示設定</a>。
+        </li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">設定</a>
+        </li>
+        <li>
+            <a href="index.html">ネットワーク</a>
+        </li>
+        <li>
+            <a href="http.html">HTTP</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>HTTP設定</h1>
+<p>
+    HTTP設定では次の設定ができます:
+</p>
+<ul>
+    <li>
+        <a href="#allowed-redirect-types">リダイレクトさせるタイプ</a>。
+    </li>
+    <li>
+        <a href="#streaming-responses">ストリーミングレスポンス</a>。
+    </li>
+    <li>
+        <a href="#status-100-response-handling">ステータス100レスポンスの処理</a>。
+    </li>
+    <li>
+        <a href="#http-1">HTTP/1設定</a>。
+    </li>
+    <li>
+        <a href="#http-2">HTTP/2設定</a>。
+    </li>
+</ul>
+<h2 id="allowed-redirect-types">リダイレクトさせるタイプ</h2>
+<p>
+    Burpが使用できるリダイレクトタイプを制御します。次のリダイレクトタイプから選択します:
+</p>
+<ul>
+    <li>
+        Locationヘッダ付きの3xxステータスコード。
+    </li>
+    <li>
+        Refreshヘッダ。
+    </li>
+    <li>
+        Meta refreshタグ。
+    </li>
+    <li>
+        JavaScript駆動。
+    </li>
+    <li>
+        Locationヘッダ付きの任意のステータスコード。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Burpがリダイレクトをたどる動作は、個々のBurpツールの設定(たとえば<a href="../../tools/target/scope.html">ターゲットスコープ</a>に基づくなど)によって決まります。
+    </p>
+</div>
+<p>
+    <strong>リダイレクトさせるタイプ</strong>設定は、プロジェクト設定です。現在のプロジェクトにのみ適用されます。
+</p>
+<h2 id="streaming-responses">ストリーミングレスポンス</h2>
+<p>
+    レスポンスが終了しない"ストリーミング"レスポンスを返すURLを指定できます。Burpはこれらのレスポンスを、通常のレスポンスとは異なる方法で処理します。
+</p>
+<p>
+    ストリーミングレスポンスは、トレーディングアプリケーションで価格データを継続的に更新するような機能でよく使われます。通常、クライアント側のスクリプトコードがリクエストを生成し、サーバはレスポンスストリームを開いたままにし、利用可能になった継続データをリアルタイムにプッシュします。
+</p>
+<p>
+    インターセプトプロキシはストアアンドフォワードモデルを使用しているため、これらのアプリケーションを壊す可能性があります。このケースでは、Proxyはストリーミングレスポンスが終了するのを無限に待機し、クライアントには何も転送されないでしょう。
+</p>
+<p>
+    Burpのツールは、次の方法でストリーミングレスポンスを処理します:
+</p>
+<ul>
+    <li>
+        Proxyは、これらのレスポンスをクライアントに直接通過させます。
+    </li>
+    <li>
+        Repeaterは、データを受信するとリアルタイムでレスポンスパネルを更新します。
+    </li>
+    <li>
+        その他のツールは、ストリーミングレスポンスを無視し、接続を閉じます。
+    </li>
+</ul>
+<p>
+    ストリーミングレスポンスのリストにURLを追加するには、<strong>追加</strong>をクリックし、必要な情報を入力します。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        ストリーミングレスポンスのURLは、Burpの標準的なURLマッチングルールを使用します。詳細は、<a href="../../functions/url-matching.html">URLマッチングルール</a>を参照してください。
+    </p>
+</div>
+<p>
+    また必要に応じて、リスト内のルールの編集や並べ替えもできます。
+</p>
+<p>
+    その他に2つのオプションがあります:
+</p>
+<ul>
+    <li>
+        <strong>ストリーミングレスポンスを保存</strong> - ストリーミングレスポンスを完全に保存します。<a href="../../tools/proxy/history/index.html">Proxy履歴</a>や<a href="../../tools/repeater/using.html#using-burp-repeater-with-http-messages">Repeaterレスポンスパネル</a>でストリーミングレスポンスのコンテンツを表示したい場合は、このオプションが必要です。ストリーミングレスポンスを保存すると、巨大な一時ファイルができる可能性があることに注意してください。
+    </li>
+    <li>
+        <strong>ストリーミングレスポンスからチャンクエンコーディングメタデータを除去する</strong> - ストリーミングレスポンスは一般的にHTTP上でチャンクエンコードされます。このオプションを選択すると、Burpはチャンクエンコードのメタデータを削除し、Burp内でレスポンスを読みやすいようにします。このメタデータを削除すると、クライアント側のアプリケーションを壊す可能性があることに注意してください。
+    </li>
+</ul>
+<p>
+    ストリーミングレスポンスは多くの場合GZIPエンコーディングを使用して圧縮されています。ProxyとRepeaterの設定で、BurpがGZIPコンテンツを展開するよう設定できます。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        (バイナリファイルのダウンロードのような)とても大きなレスポンスを処理する際にストリーミングレスポンスを使用すると、ストアアンドフォワードプロキシモデルをバイパスし、Burpのパフォーマンスを向上させられます。
+    </p>
+</div>
+<p>
+    <strong>ストリーミングレスポンス</strong>設定は、プロジェクト設定です。現在のプロジェクトにのみ適用されます。
+</p>
+<h2 id="status-100-response-handling">ステータス100レスポンスの処理</h2>
+<p>
+    ステータス100のHTTPレスポンスの処理方法を制御します。これらのレスポンスは、サーバにPOSTリクエストが送信された後、リクエストボディが転送される前に暫定的なレスポンスを返す場合によく発生します。
+</p>
+<p>
+    次の設定があります:
+</p>
+<ul>
+    <li>
+        <strong>100 Continueレスポンスを認識する</strong> - 暫定レスポンスをスキップし、ステータスコードやコンテントタイプなどのレスポンス情報は"本当の"レスポンスヘッダから分析します。
+    </li>
+    <li>
+        <strong>100 Continueヘッダを削除する</strong> - 個々のツールに渡される前に、サーバのレスポンスから暫定ヘッダを削除します。
+    </li>
+</ul>
+<p>
+    <strong>ステータス100レスポンスの処理</strong>設定は、プロジェクト設定です。現在のプロジェクトにのみ適用されます。
+</p>
+<h2 id="http-1">HTTP/1</h2>
+<p>
+    Burp Suiteはデフォルトで、1対のHTTP/1.1リクエスト/レスポンスごとに新しいTCP接続を開きます。<strong>サーバがサポートしている場合、HTTP/1でキープアライブを使用する</strong>を選択すると、システムは同じTCP接続を開いたままにして、複数のリクエスト/レスポンスで使用できるようにします。これにより、スピードとリクエストのタイミングに大きなメリットが生まれます。
+</p>
+<p>
+    Burp Suiteは、開いているTCP接続が5秒間非アクティブの場合、接続を閉じます。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        この設定は、HTTPリクエストを送信するすべてのBurp Suiteツールに影響します。ただしRepeaterでは、メニューにある<strong>HTTP/1接続を再利用する</strong>で上書きできます。詳細は、<a href="../../tools/repeater/options.html">Burp Repeaterオプション</a>ページを参照してください。
+    </p>
+</div>
+<p>
+    <strong>HTTP/1</strong>設定は、プロジェクト設定です。現在のプロジェクトにのみ適用されます。
+</p>
+<h2 id="http-2">HTTP/2</h2>
+<p>
+    Burpはデフォルトで、TLSハンドシェイク時にHTTP/2のサポートを表明するサーバとの通信に、HTTP/2を使用します。<strong>サーバがサポートしている場合、デフォルトでHTTP/2にする</strong>の選択を解除すると、サーバがHTTP/2をサポートしていてもHTTP/1を使用します。
+</p>
+<p>
+    個々のリクエストに対して、Inspectorの<strong>プロトコル</strong>トグルでこの設定を上書きできます。Burp RepeaterのリクエストやBurp Proxyでインターセプトされたリクエストなど、編集可能なコンテキストでのみ上書きできます。
+</p>
+<p>
+    人間が読める形式でHTTP/2メッセージを操作するには、Burpには2つ方法があります。詳細は、<a href="../../http2/index.html">HTTP/2</a>ドキュメントを参照してください。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        私たちはHTTP/2の機能のうち、Burp Suiteでの使用に関連する機能のみを実装しています。サーバプッシュなどの追加機能はサポートしていません。
+    </p>
+</div>
+<p>
+    <strong>HTTP/2</strong>設定は、プロジェクト設定です。現在のプロジェクトにのみ適用されます。
+</p>
+</body>
+</html>

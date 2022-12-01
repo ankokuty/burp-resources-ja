@@ -61,17 +61,17 @@
 </p>
 <h2 id="user-and-project-configuration-files">ユーザとプロジェクトの設定ファイル</h2>
 <p>
-    <a href="options/index.html">ユーザレベルとプロジェクトレベルのオプション</a>管理に、個別の設定ファイルが使用されます。
+    <a href="settings/index.html">ユーザレベルとプロジェクトレベルの設定</a>管理に、個別の設定ファイルが使用されます。
 </p>
 <p>
     ユーザ設定ファイルには、個々のユーザ環境とUIに関する設定が書かれており、内容は次の通りです:
 </p>
 <ul>
     <li>
-        <a href="options/index.html">ユーザオプション</a>タブのすべて
+        すべてのユーザ設定は、<strong>設定</strong>ダイアログにあります。
     </li>
     <li>
-        設定された拡張を含む、<a href="tools/extender/index.html">Extender</a>ツール
+        設定された拡張を含む、<a href="tools/extensions/index.html">Extender</a>ツール
     </li>
     <li>
         <a href="tools/target/site-map/index.html#site-map-views">ターゲットサイトマップ</a>で選択したビューなど、他ツールのUI関連の設定
@@ -82,12 +82,18 @@
 </p>
 <ul>
     <li>
-        <a href="options/index.html">プロジェクトオプション</a>タブのすべて
+        すべてのプロジェクト設定は、<strong>設定</strong>ダイアログにあります。
     </li>
     <li>
         <a href="tools/proxy/index.html">Proxy</a>や<a href="../scanner/index.html">Scanner</a>など、個々のBurpツールの非UI関連の設定
     </li>
 </ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Burpの<strong>設定</strong>ダイアログでのユーザ設定とプロジェクト設定の詳細は、<a href="settings/index.html#user-and-project-settings">ユーザ設定とプロジェクト設定</a>を参照してください。
+    </p>
+</div>
 <h2 id="loading-and-saving-configuration-files">設定ファイルの読み込みと保存</h2>
 <p>
     さまざまな方法で設定ファイルの読み込みや保存ができます:
@@ -109,7 +115,7 @@
         コマンドラインからのBurp実行時に、<a href="getting-started/launch-from-command-line.html#command-line-arguments">コマンドライン引数</a>を使用して1つまたは複数の設定ファイルを指定すると、ユーザレベルやプロジェクトレベルのオプション読み込めます。
     </li>
     <li>
-        <a href="tools/extender/index.html">Burp拡張</a>からはAPI経由で設定ファイルの読み込みと保存ができます。
+        <a href="tools/extensions/index.html">Burp拡張</a>からはAPI経由で設定ファイルの読み込みと保存ができます。
     </li>
 </ul>
 <h2 id="configuration-file-format">設定ファイルの形式</h2>

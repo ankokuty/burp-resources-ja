@@ -283,7 +283,7 @@
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    ストリーミングレスポンスは、Burp Suiteの手動ツールでテストできます。詳細は、<a href="../desktop/options/http.html#streaming-responses">ストリーミングレスポンスのドキュメント</a>を参照してください。
+                    ストリーミングレスポンスは、Burp Suiteの手動ツールでテストできます。詳細は、<a href="../desktop/settings/network/http.html#streaming-responses">ストリーミングレスポンスのドキュメント</a>を参照してください。
                 </p>
             </article>
         </div>
@@ -313,7 +313,7 @@
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    <a href="../desktop/options/misc-project.html#burp-collaborator-server">Collaboratorサーバヘルスチェック</a>を実行し、<strong>プロジェクトオプション &gt; その他</strong>タブの<a href="../desktop/options/misc-project.html#burp-collaborator-server">Collaboratorサーバ設定</a>を再確認してください。
+                    <a href="../desktop/settings/tools/collaborator.html">Collaboratorサーバヘルスチェック</a>を実行し、<strong>プロジェクトオプション &gt; その他</strong>タブの<a href="../desktop/settings/tools/collaborator.html">Collaboratorサーバ設定</a>を再確認してください。
                 </p>
             </article>
         </div>
@@ -328,7 +328,7 @@
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    <a href="../desktop/options/misc-project.html#burp-collaborator-server">Collaboratorサーバヘルスチェック</a>を実行し、<strong>プロジェクトオプション &gt; その他</strong>タブの<a href="../desktop/options/misc-project.html#burp-collaborator-server">Collaboratorサーバ設定</a>を再確認してください。
+                    <a href="../desktop/settings/tools/collaborator.html">Collaboratorサーバヘルスチェック</a>を実行し、<strong>プロジェクトオプション &gt; その他</strong>タブの<a href="../desktop/settings/tools/collaborator.html">Collaboratorサーバ設定</a>を再確認してください。
                 </p>
             </article>
         </div>
@@ -349,6 +349,51 @@
         </div>
     </details><details data-id="33996"><summary class="component-is-expandable">
             <h4 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS,HEADING_TOO_LONG"><code class="scanner-error-message">Skipping X. Too many consecutive "request timeout" errors have occurred.</code></h4>
+        </summary>
+        <div class="content">
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
+            <article class="scanner-error-cause"><p>
+                    Burp Scannerは、さまざまなペイロードを挿入できそうな<a href="auditing.html#insertion-points">挿入ポイント</a>を特定します。現在の挿入ポイントや現在のページにペイロードを挿入しようとした結果、何度も失敗しました。
+                </p>
+            </article>
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
+            <article class="scanner-error-remedy"><p>
+                    サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。Burp Scannerはデフォルトで、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
+                </p>
+            </article>
+        </div>
+    </details><details data-id="33997"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS,HEADING_TOO_LONG"><code class="scanner-error-message">Skipping X. Too many consecutive "request aborted" errors have occurred.</code></h4>
+        </summary>
+        <div class="content">
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
+            <article class="scanner-error-cause"><p>
+                    Burp Scannerは、さまざまなペイロードを挿入できそうな<a href="auditing.html#insertion-points">挿入ポイント</a>を特定します。現在の挿入ポイントや現在のページにペイロードを挿入しようとした結果、何度も失敗しました。
+                </p>
+            </article>
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
+            <article class="scanner-error-remedy"><p>
+                    サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。Burp Scannerはデフォルトで、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
+                </p>
+            </article>
+        </div>
+    </details><details data-id="33998"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS,HEADING_TOO_LONG"><code class="scanner-error-message">Skipping X. Too many consecutive "connection failed" errors have occurred.</code></h4>
+        </summary>
+        <div class="content">
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
+            <article class="scanner-error-cause"><p>
+                    Burp Scannerは、さまざまなペイロードを挿入できそうな<a href="auditing.html#insertion-points">挿入ポイント</a>を特定します。現在の挿入ポイントや現在のページにペイロードを挿入しようとした結果、何度も失敗しました。
+                </p>
+            </article>
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
+            <article class="scanner-error-remedy"><p>
+                    サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。これらの問題を回避するために、<a href="../desktop/dashboard/task-execution-settings.html#resource-pools">リソースプール</a>を設定して、送信するリクエスト数や頻度をコントロールできます。Burp Scannerはデフォルトで、失敗したリクエストを<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">再試行</a>のためにマークしますが、より多く実行するように設定もできます。
+                </p>
+            </article>
+        </div>
+    </details><details data-id="33999"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS,HEADING_TOO_LONG"><code class="scanner-error-message">Skipping X. Too many consecutive "empty response" errors have occurred.</code></h4>
         </summary>
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
@@ -403,7 +448,7 @@
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    ストリーミングレスポンスは、Burp Suiteの手動ツールでテストできます。詳細は、<a href="../desktop/options/http.html#streaming-responses">ストリーミングレスポンスのドキュメント</a>を参照してください。
+                    ストリーミングレスポンスは、Burp Suiteの手動ツールでテストできます。詳細は、<a href="../desktop/settings/network/http.html#streaming-responses">ストリーミングレスポンスのドキュメント</a>を参照してください。
                 </p>
             </article>
         </div>
@@ -418,7 +463,49 @@
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    Burp Scannerを、<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">より多くのパスを行う</a>よう設定してください。
+                    Burp Scannerが<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">アクセスする回数を増やす</a>よう設定してください。
+                </p>
+                <p>
+                    特定のサイトでこの現象が繰り返し発生する場合は、手動でページに移動してみて、手動でブラウズ中にブラウザがクラッシュするかどうか確認してください。
+                </p>
+                <p>
+                    複数のサイトでこの現象が発生する場合は、<a href="../desktop/functions/burps-browser.html#health-check-for-burp-s-browser">Burpブラウザのヘルスチェック</a>を実行してみてください。
+                </p>
+            </article>
+        </div>
+    </details><details data-id="87791"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS,HEADING_TOO_LONG"><code class="scanner-error-message">Skipping X. Too many consecutive "browser action failed" errors have occurred.</code></h4>
+        </summary>
+        <div class="content">
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
+            <article class="scanner-error-cause"><p>
+                    BurpブラウザがURLのリクエスト中にクラッシュしました。Burp Scannerはデフォルトで、URLを何度かリクエストしようとします。このフォローアップ中に、Burpブラウザが再びクラッシュしました。
+                </p>
+            </article>
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
+            <article class="scanner-error-remedy"><p>
+                    Burp Scannerが<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">アクセスする回数を増やす</a>よう設定してください。
+                </p>
+                <p>
+                    特定のサイトでこの現象が繰り返し発生する場合は、手動でページに移動してみて、手動でブラウズ中にブラウザがクラッシュするかどうか確認してください。
+                </p>
+                <p>
+                    複数のサイトでこの現象が発生する場合は、<a href="../desktop/functions/burps-browser.html#health-check-for-burp-s-browser">Burpブラウザのヘルスチェック</a>を実行してみてください。
+                </p>
+            </article>
+        </div>
+    </details><details data-id="87792"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS,HEADING_TOO_LONG"><code class="scanner-error-message">Skipping X. Too many consecutive "replayer error" errors have occurred.</code></h4>
+        </summary>
+        <div class="content">
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
+            <article class="scanner-error-cause"><p>
+                    BurpブラウザがURLのリクエスト中にクラッシュしました。Burp Scannerはデフォルトで、URLを何度かリクエストしようとします。このフォローアップ中に、Burpブラウザが再びクラッシュしました。
+                </p>
+            </article>
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
+            <article class="scanner-error-remedy"><p>
+                    Burp Scannerが<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">アクセスする回数を増やす</a>よう設定してください。
                 </p>
                 <p>
                     特定のサイトでこの現象が繰り返し発生する場合は、手動でページに移動してみて、手動でブラウズ中にブラウザがクラッシュするかどうか確認してください。
@@ -638,7 +725,7 @@
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
             <article class="scanner-error-cause"><p>
-                    何らかの原因でBurpのブラウザが起動しませんでした。このようなことが起こる理由は複数あります。
+                    何らかの原因でBurpブラウザが起動しませんでした。このようなことが起こる理由は複数あります。
                 </p>
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
@@ -668,12 +755,12 @@
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
             <article class="scanner-error-cause"><p>
-                    <a href="../desktop/options/index.html#project-options">プロジェクトオプション</a>で、HTTP/2が無効になっています。つまり、Burp Scannerは<a href="https://portswigger.net/kb/issues/01000500_hidden-http-2">隠れたHTTP/2の脆弱正</a>をチェックできません。
+                    <a href="../desktop/settings/network/http.html#http-2">プロジェクトオプション</a>で、HTTP/2が無効になっています。つまり、Burp Scannerは<a href="https://portswigger.net/kb/issues/01000500_hidden-http-2">隠れたHTTP/2の脆弱正</a>をチェックできません。
                 </p>
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    HTTP/2を有効にするのは、<a href="../desktop/options/index.html#project-options">プロジェクトオプション</a>で<strong>HTTP</strong>タブをクリックし、<strong>HTTP/2</strong>までスクロールし、<strong>サーバがサポートしている場合、デフォルトでHTTP/2にする</strong>を選択してください。
+                    HTTP/2を有効にするのは、<a href="../desktop/settings/network/http.html#http-2">プロジェクトオプション</a>で<strong>HTTP</strong>タブをクリックし、<strong>HTTP/2</strong>までスクロールし、<strong>サーバがサポートしている場合、デフォルトでHTTP/2にする</strong>を選択してください。
                 </p>
             </article>
         </div>
@@ -698,12 +785,12 @@
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
             <article class="scanner-error-cause"><p>
-                    BAppは、アップデートを受け取るために<a href="../desktop/tools/extender/index.html#about-the-bapp-store">BApp Store</a>への接続が必要です。このエラーの原因はおそらく、BApp Storeとの接続に失敗しています。
+                    BAppは、アップデートを受け取るために<a href="../desktop/tools/extensions/add-extension.html#installing-extensions-from-the-bapp-store">BAppストア</a>への接続が必要です。このエラーの原因はおそらく、BAppストアとの接続に失敗しています。
                 </p>
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    BApp Storeへの接続をテストするには、<strong>Extender &gt;BApp Store&gt; リスト再読込</strong>をクリックします。接続に失敗した場合は、画面右下にエラーが表示されます。
+                    BAppストアへの接続をテストするには、<strong>Extender &gt;BAppストア &gt; リスト再読込</strong>をクリックします。接続に失敗した場合は、画面右下にエラーが表示されます。
                 </p>
             </article>
         </div>
@@ -1160,16 +1247,16 @@
                 <p>
                     <ul>
                         <li>
-                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンデバッグログ</a>
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンデバッグログ</a>。
                         </li>
                         <li>
-                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンイベントログ</a>
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンイベントログ</a>。
                         </li>
                         <li>
-                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#support-pack">サポートパック</a>
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#support-pack">サポートパック</a>。
                         </li>
                         <li>
-                            CPUコア、RAM、オペレーティングシステム(OS)の種類とバージョンなど、スキャンしているマシンのハードウェア仕様
+                            CPUコア、RAM、オペレーティングシステム(OS)の種類とバージョンなど、スキャンしているマシンのハードウェア仕様。
                         </li>
                     </ul>
                 </p>
@@ -1211,7 +1298,7 @@
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
             <article class="scanner-error-cause"><p>
-                    Burp Scannerは、Burpブラウザを使用して、<a href="https://portswigger.net/burp/documentation/enterprise/reference/browser-powered.html">ブラウザを利用したスキャン</a>を実行します。このエラーは、何らかの原因でBurpブラウザが起動しませんでした。このようなことが起こる理由は複数あります。
+                    Burp Scannerは、<a href="https://portswigger.net/burp/documentation/enterprise/reference/browser-powered.html">ブラウザを利用したスキャン</a>の実行にBurpブラウザを使用します。このエラーは、何らかの原因でBurpブラウザが起動しなかったことを示しています。このようなことが起こる理由は複数あります。
                 </p>
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
@@ -1224,19 +1311,19 @@
                 <p>
                     <ul>
                         <li>
-                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンデバッグログ</a>
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンデバッグログ</a>。
                         </li>
                         <li>
-                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンイベントログ</a>
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンイベントログ</a>。
                         </li>
                         <li>
-                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンマシンログ</a>
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンマシンログ</a>。
                         </li>
                         <li>
-                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#support-pack">サポートパック</a>
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#support-pack">サポートパック</a>。
                         </li>
                         <li>
-                            CPUコア、RAM、オペレーティングシステム(OS)の種類とバージョンなど、スキャンしているマシンのハードウェア仕様
+                            CPUコア、RAM、オペレーティングシステム(OS)の種類とバージョンなど、スキャンしているマシンのハードウェア仕様。
                         </li>
                     </ul>
                 </p>
@@ -1248,7 +1335,7 @@
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
             <article class="scanner-error-cause"><p>
-                    Burp Suite Enterprise Editionが正しく動作するためのメモリ(RAM)が不足しています。そのため、たとえば<a href="https://portswigger.net/burp/documentation/enterprise/reference/browser-powered.html">ブラウザを利用したスキャン</a>が動作しないなど、問題が発生することがあります。
+                    Burp Suite Enterprise Editionの<a href="https://portswigger.net/burp/documentation/enterprise/configuring-infrastructure/managing-scanning-resources/standard/index.html">スキャンマシン</a>が正しく動作するためのメモリ(RAM)が不足しています。そのため、たとえば<a href="https://portswigger.net/burp/documentation/enterprise/reference/browser-powered.html">ブラウザを利用したスキャン</a>が動作しないなど、問題が発生することがあります。
                 </p>
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
@@ -1258,13 +1345,13 @@
                 <p>
                     <ul>
                         <li>
-                            スキャンマシンで同時に実行されるスキャン数を減らすには、<a href="https://portswigger.net/burp/documentation/enterprise/configuring-infrastructure/managing-scanning-machines/assigning-scan-limits.html">スキャン制限の割り当て</a>ページを参照してください。
+                            スキャンマシンで同時に実行されるスキャン数を減らすには、<a href="https://portswigger.net/burp/documentation/enterprise/configuring-infrastructure/managing-scanning-resources/standard/assigning-scan-limits.html">スキャン制限の割り当て</a>ページを参照してください。
                         </li>
                         <li>
                             スキャンをするマシンで、利用可能なメモリ(RAM)を増やしてください。詳細は、<a href="https://portswigger.net/burp/documentation/enterprise/getting-started/system-requirements.html">Burp Suite Enterprise Editionのシステム要件</a>ページを参照してください。
                         </li>
                         <li>
-                            そのサイトをスキャンするために多くの<a href="https://portswigger.net/burp/documentation/enterprise/bapps-and-custom-extensions/extensions.html">拡張</a>を使用している場合は、そのうちいくつかを削除してみてください。なお、<a href="https://portswigger.net/bappstore">BApp Store</a>からダウンロードした拡張を使用している場合は、BApp Storeで<strong>システム影響の概算</strong>評価がわかります。
+                            そのサイトをスキャンするために多くの<a href="https://portswigger.net/burp/documentation/enterprise/bapps-and-custom-extensions/extensions.html">拡張</a>を使用している場合は、そのうちいくつかを削除してみてください。なお、<a href="https://portswigger.net/bappstore">BAppストア</a>からダウンロードした拡張を使用している場合は、BAppストア<strong>システム影響の概算</strong>評価がわかります。
                         </li>
                     </ul>
                 </p>
@@ -1276,12 +1363,12 @@
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
             <article class="scanner-error-cause"><p>
-                    <a href="https://portswigger.net/burp/documentation/desktop/options/http.html#http-2">HTTP/2</a>無効にしたカスタムスキャン設定をインポートしました。つまり、Burp Scannerは<a href="https://portswigger.net/kb/issues/01000500_hidden-http-2">隠れたHTTP/2の脆弱正</a>をチェックしません。
+                    <a href="https://portswigger.net/burp/documentation/desktop/settings/network/http.html#http-2">HTTP/2</a>無効にしたカスタムスキャン設定をインポートしました。つまり、Burp Scannerは<a href="https://portswigger.net/kb/issues/01000500_hidden-http-2">隠れたHTTP/2の脆弱正</a>をチェックしません。
                 </p>
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    このスキャンでHTTP/2を有効にするには、<a href="https://portswigger.net/burp/documentation/desktop/options/http.html#http-2">HTTP/2</a>を有効にした新しいカスタム<a href="https://portswigger.net/burp/documentation/enterprise/working-with-scans/scan-configurations.html">スキャン設定</a>を作成し、アップロードします。
+                    このスキャンでHTTP/2を有効にするには、<a href="https://portswigger.net/burp/documentation/desktop/settings/network/http.html#http-2">HTTP/2</a>を有効にした新しいカスタム<a href="https://portswigger.net/burp/documentation/enterprise/working-with-scans/scan-configurations.html">スキャン設定</a>を作成し、アップロードします。
                 </p>
             </article>
         </div>
@@ -1415,7 +1502,7 @@
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
             <article class="scanner-error-cause"><p>
-                    Burp Suite Enterprise Editionが正しく動作するためのメモリ(RAM)が不足しています。そのため、たとえば<a href="https://portswigger.net/burp/documentation/enterprise/reference/browser-powered.html">ブラウザを利用したスキャン</a>が動作しないなど、問題が発生することがあります。
+                    Burp Suite Enterprise Editionの<a href="https://portswigger.net/burp/documentation/enterprise/configuring-infrastructure/managing-scanning-resources/standard/index.html">スキャンマシン</a>が正しく動作するためのメモリ(RAM)が不足しています。そのため、たとえば<a href="https://portswigger.net/burp/documentation/enterprise/reference/browser-powered.html">ブラウザを利用したスキャン</a>が動作しないなど、問題が発生することがあります。
                 </p>
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
@@ -1431,7 +1518,7 @@
                             スキャンをするマシンで、利用可能なメモリ(RAM)を増やしてください。詳細は、<a href="https://portswigger.net/burp/documentation/enterprise/getting-started/system-requirements.html">Burp Suite Enterprise Editionのシステム要件</a>ページを参照してください。
                         </li>
                         <li>
-                            スキャンマシンで同時に実行されるスキャン数を減らしてください。<a href="https://portswigger.net/burp/documentation/enterprise/configuring-infrastructure/managing-scanning-machines/assigning-scan-limits.html">スキャン制限の割り当て</a>を参照してください。
+                            スキャンマシンで同時に実行されるスキャン数を減らしてください。<a href="https://portswigger.net/burp/documentation/enterprise/configuring-infrastructure/managing-scanning-resources/standard/assigning-scan-limits.html">スキャン制限の割り当て</a>を参照してください。
                         </li>
                     </ul>
                 </p>
@@ -1497,7 +1584,7 @@
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
             <article class="scanner-error-cause"><p>
-                    Burp Suite Enterprise Editionの<a href="https://portswigger.net/burp/documentation/enterprise/configuring-infrastructure/managing-scanning-machines/scanning-machines.html">スキャンマシン</a>には、<a href="https://portswigger.net/burp/documentation/enterprise/configuring-infrastructure/managing-scanning-machines/scanning-machines.html">Burpブラウザを</a>正しく動作させるための十分なリソースがありません。そのため、問題が発生することがあります。たとえば、<a href="https://portswigger.net/burp/documentation/enterprise/reference/browser-powered.html">ブラウザを利用したスキャン</a>が動作しないことがあります。
+                    Burp Suite Enterprise Editionの<a href="https://portswigger.net/burp/documentation/enterprise/configuring-infrastructure/managing-scanning-resources/standard/index.html">スキャンマシン</a>には、Burpブラウザを正しく動作させるための十分なリソースがありません。そのため、問題が発生することがあります。たとえば、<a href="https://portswigger.net/burp/documentation/enterprise/reference/browser-powered.html">ブラウザを利用したスキャン</a>が動作しないことがあります。
                 </p>
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
@@ -1563,7 +1650,7 @@
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
             <article class="scanner-error-cause"><p>
-                    Burp Suite Enterprise Editionの<a href="https://portswigger.net/burp/documentation/enterprise/configuring-infrastructure/managing-scanning-machines/scanning-machines.html">スキャンマシンが</a>正しく動作するためのRAMが不足しています。そのため、問題が発生することがあります。たとえば、<a href="https://portswigger.net/burp/documentation/enterprise/reference/browser-powered.html">ブラウザを利用したスキャン</a>が動作しないことがあります。
+                    Burp Suite Enterprise Editionの<a href="https://portswigger.net/burp/documentation/enterprise/configuring-infrastructure/managing-scanning-resources/standard/index.html">スキャンマシンが</a>正しく動作するためのRAMが不足しています。そのため、問題が発生することがあります。たとえば、<a href="https://portswigger.net/burp/documentation/enterprise/reference/browser-powered.html">ブラウザを利用したスキャン</a>が動作しないことがあります。
                 </p>
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
@@ -1576,7 +1663,7 @@
                             スキャンマシンで利用可能なメモリ(RAM)を増やしてください。詳細は、<a href="https://portswigger.net/burp/documentation/enterprise/getting-started/system-requirements.html">Burp Suite Enterprise Editionのシステム要件</a>ページを参照してください。
                         </li>
                         <li>
-                            スキャンマシンで同時に実行されるスキャン数を減らすには、<a href="https://portswigger.net/burp/documentation/enterprise/configuring-infrastructure/managing-scanning-machines/assigning-scan-limits.html">スキャン制限の割り当て</a>ページを参照してください。
+                            スキャンマシンで同時に実行されるスキャン数を減らすには、<a href="https://portswigger.net/burp/documentation/enterprise/configuring-infrastructure/managing-scanning-resources/standard/assigning-scan-limits.html">スキャン制限の割り当て</a>ページを参照してください。
                         </li>
                         <li>
                             使用していないBurp拡張を削除してください。
@@ -1682,19 +1769,19 @@
                 <p>
                     <ul>
                         <li>
-                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンデバッグログ</a>
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンデバッグログ</a>。
                         </li>
                         <li>
-                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンイベントログ</a>
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンイベントログ</a>。
                         </li>
                         <li>
-                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンマシンログ</a>
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#downloading-logs">スキャンマシンログ</a>。
                         </li>
                         <li>
-                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#support-pack">サポートパック</a>
+                            <a href="https://portswigger.net/burp/documentation/enterprise/troubleshooting.html#support-pack">サポートパック</a>。
                         </li>
                         <li>
-                            CPUコア、RAM、オペレーティングシステム(OS)の種類とバージョンなど、スキャンしているマシンのハードウェア仕様
+                            CPUコア、RAM、オペレーティングシステム(OS)の種類とバージョンなど、スキャンしているマシンのハードウェア仕様。
                         </li>
                     </ul>
                 </p>
@@ -2014,7 +2101,100 @@
                             <strong>クロール中のアプリケーションエラーの処理</strong>で、<strong>連続したリクエストのタイムアウト</strong>や<strong>リクエストがタイムアウトした場合</strong>を増やします。
                         </li>
                         <li>
-                            <strong>リクエスト速度</strong>で、<strong>最大同時リクエスト数</strong>を減らし、<strong>リクエスト間のウェイト</strong>をリトライを増やして有効にし、同時リクエスト数を減らし、速度制限を有効にします。
+                            <strong>リクエスト速度</strong>で<strong>最大同時リクエスト数</strong>を減らし、<strong>リクエスト間のウェイト</strong>でリトライを増やして有効にし、同時リクエスト数を減らし、速度制限を有効にします。
+                        </li>
+                    </ul>
+                </p>
+            </article>
+        </div>
+    </details><details data-id="33997"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS,HEADING_TOO_LONG"><code class="scanner-error-message">Skipping X. Too many consecutive "request aborted" errors have occurred.</code></h4>
+        </summary>
+        <div class="content">
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
+            <article class="scanner-error-cause"><p>
+                    Burp Scannerは、さまざまなペイロードを挿入できそうな<a href="auditing.html#insertion-points">挿入ポイント</a>を特定します。現在の挿入ポイントや現在のページにペイロードを挿入しようとした結果、何度も失敗しました。
+                </p>
+            </article>
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
+            <article class="scanner-error-remedy"><p>
+                    サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。
+                </p>
+                <p>
+                    サイトが変更された可能性があります。スキャンを再実行してみてください。
+                </p>
+                <p>
+                    スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。この場合、<strong>新規スキャン設定</strong>で次の設定を変更し、スキャンを再実行してください:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            <strong>クロール中のアプリケーションエラーの処理</strong>で、<strong>連続したリクエストのタイムアウト</strong>や<strong>リクエストがタイムアウトした場合</strong>を増やします。
+                        </li>
+                        <li>
+                            <strong>リクエスト速度</strong>で<strong>最大同時リクエスト数</strong>を減らし、<strong>リクエスト間のウェイト</strong>でリトライを増やして有効にし、同時リクエスト数を減らし、速度制限を有効にします。
+                        </li>
+                    </ul>
+                </p>
+            </article>
+        </div>
+    </details><details data-id="33998"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS,HEADING_TOO_LONG"><code class="scanner-error-message">Skipping X. Too many consecutive "connection failed" errors have occurred.</code></h4>
+        </summary>
+        <div class="content">
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
+            <article class="scanner-error-cause"><p>
+                    Burp Scannerは、さまざまなペイロードを挿入できそうな<a href="auditing.html#insertion-points">挿入ポイント</a>を特定します。現在の挿入ポイントや現在のページにペイロードを挿入しようとした結果、何度も失敗しました。
+                </p>
+            </article>
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
+            <article class="scanner-error-remedy"><p>
+                    サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。
+                </p>
+                <p>
+                    サイトが変更された可能性があります。スキャンを再実行してみてください。
+                </p>
+                <p>
+                    スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。この場合、<strong>新規スキャン設定</strong>で次の設定を変更し、スキャンを再実行してください:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            <strong>クロール中のアプリケーションエラーの処理</strong>で、<strong>連続したリクエストのタイムアウト</strong>や<strong>リクエストがタイムアウトした場合</strong>を増やします。
+                        </li>
+                        <li>
+                            <strong>リクエスト速度</strong>で<strong>最大同時リクエスト数</strong>を減らし、<strong>リクエスト間のウェイト</strong>でリトライを増やして有効にし、同時リクエスト数を減らし、速度制限を有効にします。
+                        </li>
+                    </ul>
+                </p>
+            </article>
+        </div>
+    </details><details data-id="33999"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS,HEADING_TOO_LONG"><code class="scanner-error-message">Skipping X. Too many consecutive "empty response" errors have occurred.</code></h4>
+        </summary>
+        <div class="content">
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
+            <article class="scanner-error-cause"><p>
+                    Burp Scannerは、さまざまなペイロードを挿入できそうな<a href="auditing.html#insertion-points">挿入ポイント</a>を特定します。現在の挿入ポイントや現在のページにペイロードを挿入しようとした結果、何度も失敗しました。
+                </p>
+            </article>
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
+            <article class="scanner-error-remedy"><p>
+                    サイトへのアクセスで断続的に問題が発生するのは正常で、必ずしも問題があるとは限りません。
+                </p>
+                <p>
+                    サイトが変更された可能性があります。スキャンを再実行してみてください。
+                </p>
+                <p>
+                    スキャンによってサーバに負荷がかかったり、異常な活動によってWebアプリケーションファイアウォールがリクエストをブロックし始めるなどの可能性があります。この場合、<strong>新規スキャン設定</strong>で次の設定を変更し、スキャンを再実行してください:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            <strong>クロール中のアプリケーションエラーの処理</strong>で、<strong>連続したリクエストのタイムアウト</strong>や<strong>リクエストがタイムアウトした場合</strong>を増やします。
+                        </li>
+                        <li>
+                            <strong>リクエスト速度</strong>で<strong>最大同時リクエスト数</strong>を減らし、<strong>リクエスト間のウェイト</strong>でリトライを増やして有効にし、同時リクエスト数を減らし、速度制限を有効にします。
                         </li>
                     </ul>
                 </p>
@@ -2045,7 +2225,7 @@
                             <strong>クロール中のアプリケーションエラーの処理</strong>で、<strong>連続したリクエストのタイムアウト</strong>や<strong>リクエストがタイムアウトした場合</strong>を増やします。
                         </li>
                         <li>
-                            <strong>リクエスト速度</strong>で、<strong>最大同時リクエスト数</strong>を減らし、<strong>リクエスト間のウェイト</strong>をリトライを増やして有効にし、同時リクエスト数を減らし、速度制限を有効にします。
+                            <strong>リクエスト速度</strong>で<strong>最大同時リクエスト数</strong>を減らし、<strong>リクエスト間のウェイト</strong>でリトライを増やして有効にし、同時リクエスト数を減らし、速度制限を有効にします。
                         </li>
                     </ul>
                 </p>
@@ -2108,7 +2288,43 @@
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    Burp Scannerを、<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">より多くのパスを行う</a>よう設定してください。
+                    Burp Scannerが<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">アクセスする回数を増やす</a>よう設定してください。
+                </p>
+                <p>
+                    特定のサイトでこの現象が繰り返し発生する場合は、Burp Suite ProfessionalやCommunity Editionで手動でページに移動してみて、ブラウザがクラッシュするかどうか確認してください。
+                </p>
+            </article>
+        </div>
+    </details><details data-id="87791"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS,HEADING_TOO_LONG"><code class="scanner-error-message">Skipping X. Too many consecutive "browser action failed" errors have occurred.</code></h4>
+        </summary>
+        <div class="content">
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
+            <article class="scanner-error-cause"><p>
+                    BurpブラウザがURLのリクエスト中にクラッシュしました。Burp Scannerはデフォルトで、URLを何度かリクエストしようとします。このフォローアップ中に、Burpブラウザが再びクラッシュしました。
+                </p>
+            </article>
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
+            <article class="scanner-error-remedy"><p>
+                    Burp Scannerが<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">アクセスする回数を増やす</a>よう設定してください。
+                </p>
+                <p>
+                    特定のサイトでこの現象が繰り返し発生する場合は、Burp Suite ProfessionalやCommunity Editionで手動でページに移動してみて、ブラウザがクラッシュするかどうか確認してください。
+                </p>
+            </article>
+        </div>
+    </details><details data-id="87792"><summary class="component-is-expandable">
+            <h4 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS,HEADING_TOO_LONG"><code class="scanner-error-message">Skipping X. Too many consecutive "replayer error" errors have occurred.</code></h4>
+        </summary>
+        <div class="content">
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
+            <article class="scanner-error-cause"><p>
+                    BurpブラウザがURLのリクエスト中にクラッシュしました。Burp Scannerはデフォルトで、URLを何度かリクエストしようとします。このフォローアップ中に、Burpブラウザが再びクラッシュしました。
+                </p>
+            </article>
+            <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
+            <article class="scanner-error-remedy"><p>
+                    Burp Scannerが<a href="../desktop/scanning/crawl-options.html#handling-application-errors-during-crawl">アクセスする回数を増やす</a>よう設定してください。
                 </p>
                 <p>
                     特定のサイトでこの現象が繰り返し発生する場合は、Burp Suite ProfessionalやCommunity Editionで手動でページに移動してみて、ブラウザがクラッシュするかどうか確認してください。
@@ -2218,12 +2434,25 @@
         <div class="content">
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">原因</h3>
             <article class="scanner-error-cause"><p>
-                    Burp Scannerは、Burpブラウザを起動できませんでした。これは、ブラウザのさまざまな問題が原因の可能性があります。
+                    Burp Scannerは、<a href="https://portswigger.net/burp/documentation/enterprise/reference/browser-powered">ブラウザを利用したスキャン</a>の実行にBurpブラウザを使用します。このエラーは、何らかの原因でBurpブラウザが起動しなかったことを示しています。この問題が起こる原因はいくつかあります。
                 </p>
             </article>
             <h3 cms-ignore-validation="DUPLICATE_HEADINGS">解決方法</h3>
             <article class="scanner-error-remedy"><p>
-                    <a href="https://portswigger.net/burp/documentation/enterprise/getting-started/system-requirements">システム要件</a>を確認してください。
+                    使用しているシステムが、Burp Suite Enterprise Editionの<a href="https://portswigger.net/burp/documentation/enterprise/getting-started/system-requirements">システム要件</a>を満たしているか確認してください。また、<a href="https://portswigger.net/burp/documentation/enterprise/reference/browser-powered">ブラウザを利用したスキャン</a>のリファレンスページも参照してください。問題が解決しない場合は、次の情報を含めて<a href="https://portswigger.net/support#useful-resources">PortSwiggerテクニカルサポート</a>に問い合わせてください:
+                </p>
+                <p>
+                    <ul>
+                        <li>
+                            <a href="https://portswigger.net/support#useful-resources">サポートパック</a>。
+                        </li>
+                        <li>
+                            <a href="https://portswigger.net/support#useful-resources">スキャンマシンログ</a>。
+                        </li>
+                        <li>
+                            CPUコア、RAM、オペレーティングシステム(OS)の種類とバージョンなど、スキャンしているマシンのハードウェア仕様。
+                        </li>
+                    </ul>
                 </p>
             </article>
         </div>

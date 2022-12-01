@@ -205,7 +205,7 @@
 </p>
 <ul>
     <li>
-        <strong>スキャン/Spider/送信する ...</strong> - 任意のアイテムを他のBurpツールに送信し、さらなる攻撃や分析が実行できます。ツール間のリクエストの送信機能は、Burpの<a href="../../penetration-testing/index.html">ユーザ主導ワークフロー</a>の中核をなします。
+        <strong>スキャン/送信する ...</strong> - 任意のアイテムを他のBurpツールに送信し、さらなる攻撃や分析が実行できます。ツール間のリクエストの送信機能は、Burpの<a href="../../penetration-testing/index.html">ユーザ主導ワークフロー</a>の中核をなします。
     </li>
     <li>
         <strong>レスポンスをブラウザで表示</strong> - 選択したレスポンスをBurpブラウザ内でレンダリングさせ、Burpの内蔵<a href="../../functions/message-editor/index.html#render-tab">HTMLレンダラ</a>の制限を回避します。このオプションを選択すると、Burpブラウザにペーストできる一意なURLが生成され、レスポンスがレンダリングされます。その結果、ブラウザのリクエストがBurpによって処理され(リクエストは元のWebサーバには送信されません)、選択したレスポンスを正確に返し、最初にリクエストされたURLのコンテキストでブラウザがレスポンスを処理します。したがって、レスポンス内の相対リンクは、Burpブラウザによって正しく処理されます。その結果、ブラウザはレスポンスのレンダリングの課程で追加のリクエスト(画像やCSSなど)を行う場合があり、これらはBurpの通常の方法で処理されます。
@@ -224,16 +224,13 @@
         <strong>アイテムを再リクエスト</strong> - 選択したアイテムが攻撃エンジンによって再リクエストされるようキューに入れます。アイテムが再リクエストされると、アイテムのエントリや関連するHTTPメッセージが、新たなリクエストを元に更新されます。このオプションは、一部の攻撃リクエストがネットワークエラーで失敗した場合や、断続的な問題により異常なレスポンスを受信していた場合に便利です。ベースリクエストやその他の関連する設定を<a href="#attack-configuration-tabs">変更した</a>場合に、元の設定で再リクエストしたい場合にも使用できます。
     </li>
     <li>
-        <strong>レスポンスから抽出grepを定義</strong> - <a href="../../functions/response-extraction.html">レスポンス抽出ルールダイアログ</a>が開き、選択されたレスポンスのアイテムが表示され、そのレスポンスを元に新たな<a href="../intruder/options.html#grep-extract">extract grep</a>アイテムを作成できます。一部の攻撃リクエストが、元のリクエストと異なるタイプのレスポンスを生成する場合(たとえば、<a href="using.html#fuzzing-for-vulnerabilities">ファジング</a>の際の特定フォーマットのエラーメッセージや、<a href="using.html#enumerating-identifiers">クレデンシャルの推測</a>の際の異なるログインメッセージなど)に便利です。このような異なるレスポンスが発生した場合、レスポンスの気になる部分を抽出する新たなextract grepアイテムを作成するのに便利で、他の同様のレスポンスのコンテンツを素早くレビューできます。
+        <strong>レスポンスから抽出grepを定義</strong> - <a href="../../functions/response-extraction.html">レスポンス抽出ルールダイアログ</a>が開き、選択されたレスポンスのアイテムが表示され、そのレスポンスを元に新たな<a href="../intruder/options.html#grep-extract">extract grep</a>アイテムを作成できます。一部の攻撃リクエストが、元のリクエストと異なるタイプのレスポンスを生成する場合(たとえば、<a href="using.html#fuzzing-for-vulnerabilities">ファジング</a>の際の特定フォーマットのエラーメッセージや、<a href="using.html#enumerating-identifiers">認証情報を推測する</a>際の異なるログインメッセージなど)に便利です。このような異なるレスポンスが発生した場合、レスポンスの気になる部分を抽出する新たなextract grepアイテムを作成するのに便利で、他の同様のレスポンスのコンテンツを素早くレビューできます。
     </li>
     <li>
         <strong>コメントを追加</strong> - 選択したアイテムにコメントを追加できます。詳細は、<a href="#annotations">注釈</a>を参照してください。
     </li>
     <li>
         <strong>色付け</strong> - 選択したアイテムを色付けします。詳細は、<a href="#annotations">注釈</a>を参照してください。
-    </li>
-    <li>
-        <strong>アイテムを削除</strong> - 選択したアイテムを完全に削除します。
     </li>
     <li>
         <strong>リンクをコピー</strong> - 選択したアイテムのリンクを分析し、クリップボードにコピーします。

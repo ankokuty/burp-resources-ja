@@ -44,31 +44,15 @@
         </p>
     </div>
     <p>
-        Burp Proxyの使い方についての<a href="intercepting-http-traffic.html">前回のチュートリアル</a>を終えていない場合は、先に進む前に済ませておくことを推奨します。
+        ターゲットスコープについての前回のチュートリアルを終えていない場合は、先に進む前に済ませておく必要があります。<a href="setting-target-scope.html">ターゲットスコープの設定</a>を参照してください。
     </p>
     <h2 id="sending-a-request-to-burp-repeater">Burp Repeaterへリクエストを送信</h2>
     <p>
         Burp Repeaterの最も一般的な使用方法は、Burpの他のツールからリクエストを送ることです。この例では、Burp ProxyのHTTP履歴からリクエストを送信してみます。
     </p>
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION, DUPLICATE_HEADINGS">ステップ1: Burpブラウザを起動する</h3>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: 興味深いリクエストを見つける</h3>
     <p>
-        Burpブラウザを起動し、次のURLにアクセスします:
-    </p>
-    <code class="code-scrollable">https://portswigger.net/web-security/information-disclosure/exploiting/lab-infoleak-in-error-messages</code><p>
-        ページが読み込まれたら、<strong>Access the lab</strong>をクリックします。プロンプトが表示されたら、自分のportswigger.netのアカウントでログインしてください。数秒後、あなた専用の偽のショッピングサイトが表示されます。
-    </p>
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: 対象サイトをブラウズする</h3>
-    <p>
-        ブラウザで、いくつかの製品ページをクリックしてサイトを探索します。
-    </p>
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ2: HTTP履歴を調べる</h3>
-    <p>
-        Burpで、<strong>Proxy &gt; HTTP履歴</strong>タブを開きます。読みやすくするには、リクエストが降順でソートされるまで、左端の列ヘッダ(<strong>#</strong>)をクリックし続けます。すると、最新のリクエストが上に表示されます。
-    </p>
-    <img src="../images/getting-started/quick-start-pro-sort-history.png" alt="HTTP履歴のソート">
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: 興味深いリクエストを見つける</h3>
-    <p>
-        商品ページにアクセスするたびに、ブラウザは<code>productId</code>クエリパラメータを付けて、<code>GET /product</code>リクエストを送信していることに注目してください。
+        前回のチュートリアルでは、偽のショッピングサイトを閲覧しました。商品ページにアクセスするたびに、ブラウザは<code>productId</code>クエリパラメータを付けて、<code>GET /product</code>リクエストを送信していたことに注目してください。
     </p>
     <img src="../images/getting-started/quick-start-pro-product-page-request.png" alt="興味深いリクエストを見つける">
     <p>
@@ -154,6 +138,9 @@
             </li>
             <li>
                 <a href="modifying-http-requests.html">Burp Proxyによるリクエストの変更。</a>
+            </li>
+            <li>
+                <a href="setting-target-scope.html">ターゲットスコープの設定。</a>
             </li>
             <li>
                 Burp Repeaterによるリクエストの再発行。

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">設定</a>
+        </li>
+        <li>
+            <a href="index.html">ネットワーク</a>
+        </li>
+        <li>
+            <a href="tls.html">TLS</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>TLS設定</h1>
+<p>
+    <strong>TLS</strong>設定では、次の設定ができます:
+</p>
+<ul>
+    <li>
+        <a href="#tls-negotiation">TLSネゴシエーション</a>。
+    </li>
+    <li>
+        <a href="#client-tls-certificates">クライアントTLS証明書</a>。
+    </li>
+    <li>
+        <a href="#server-tls-certificates">サーバTLS証明書</a>。
+    </li>
+    <li>
+        <a href="#java-tls-options">Java TLS設定</a>。
+    </li>
+</ul>
+<h2 id="tls-negotiation">TLSネゴシエーション</h2>
+<p>
+    Burpが上位のサーバとTLSネゴシエーションを実行するときに使う、TLSプロトコルと暗号を制御します。
+</p>
+<p>
+    アップストリームTLSの検証を有効にするには、<strong>アップストリームTLSの検証</strong>をクリックし、Burpに使用させたいプロトコルと暗号を選択します。次のことが可能です:
+</p>
+<ul>
+    <li>
+        Javaインストールがサポートするすべてのプロトコルと暗号を使用する。
+    </li>
+    <li>
+        Javaインストールのデフォルトプロトコルと暗号を使用する。
+    </li>
+    <li>
+        カスタムプロトコルと暗号を使用する。このオプションを選択し、必要なプロトコルと暗号を選択します。
+    </li>
+</ul>
+<p>
+    さらに次のオプションがあります:
+</p>
+<ul>
+    <li>
+        <strong>安全ではないTLSリネゴシエーションを許可する</strong> - このオプションは、クライアントTLS証明書を使うときや、他のTLSの問題を回避するのに必要な場合があります。
+    </li>
+    <li>
+        <strong>TLSセッションの再開を無効にする</strong> - このオプションは、TLS接続をキャッシュし、リクエスト間で再利用するかどうかを制御します。セッション再開を使用すると作業効率が上がりますが、状況によっては問題が発生する可能性があります。
+    </li>
+</ul>
+<p>
+    <strong>TLSネゴシエーション</strong>設定は、プロジェクト設定です。現在のプロジェクトにのみ適用されます。
+</p>
+<h2 id="client-tls-certificates">クライアントTLS証明書</h2>
+<p>
+    宛先ホストがクライアントTLS証明書を要求してきたときに使う証明書を設定できます。複数の証明書を設定でき、それぞれの証明書を使用するホストを指定できます。
+</p>
+<p>
+    ホストがクライアントTLS証明書を要求してきたとき、ホスト設定リストで最初に一致する証明書を使用します。
+</p>
+<p>
+    クライアントTLS証明書を追加するには、<strong>追加</strong>をクリックして<strong>クライアントTLS証明書</strong>ダイアログを表示し、宛先ホストと証明書タイプを入力します。
+</p>
+<h3>宛先ホスト</h3>
+<p>
+    関連付けるホストの名前です。ワイルドカードを使用できます:
+</p>
+<ul>
+    <li>
+        <code>*</code>は、0文字以上にマッチします。
+    </li>
+    <li>
+        <code>?</code>は、ドット以外のすべての文字にマッチします。
+    </li>
+</ul>
+<p>
+    すべてのホストで同じ証明書を使うには、宛先ホストを<code>*</code>にします。
+</p>
+<h3>証明書タイプ</h3>
+<p>
+    Burpは次の証明書タイプに対応しています:
+</p>
+<ul>
+    <li>
+        <strong>ファイル(PKCS#12)</strong> - このフォーマットの証明書は、拡張子が.p12である必要があります。証明書ファイルの場所と証明書のパスワードを選択します。
+    </li>
+    <li>
+        <strong>ハードウェアトークンやスマートカード(PKCS#11)</strong> - メニューから、デバイスのPKCS#11ライブラリファイルの場所を選択します。Windowsでは、インストールされているライブラリファイルを一般的な場所から自動的に探せます。PINコードも入力し、利用可能な証明書を選択する必要があります。
+    </li>
+</ul>
+<p>
+    また必要に応じて、ルールリストの編集や並べ替えもできます。
+</p>
+<p>
+    <strong>クライアントTLS証明書</strong>設定は、ユーザレベルとプロジェクトレベルの両方で適用できます。<strong>このプロジェクトにのみ適用</strong>を選択すると、選択した設定は現在のプロジェクトにのみ適用されます。
+</p>
+<h2 id="server-tls-certificates">サーバTLS証明書</h2>
+<p>
+    この情報パネルには、Webサーバから受信したすべてのX509証明書の詳細があります。リスト内のアイテムをダブルクリックすると、証明書の詳細が表示されます。
+</p>
+<p>
+    <strong>サーバTLS証明書</strong>設定は、プロジェクト設定です。現在のプロジェクトにのみ適用されます。
+</p>
+<h2 id="java-tls-options">Java TLSオプション</h2>
+<p>
+    一部のサーバへ正常に接続するために必要となるTLS機能を有効にします。次のオプションがあります:
+</p>
+<ul>
+    <li>
+        <strong>Javaセキュリティポリシーでブロックされたアルゴリズムを有効にする</strong> - Java 7でJavaのセキュリティポリシーを使用すると、TLSネゴシエーションで古いアルゴリズムが使われないようブロックできます。これらのアルゴリズムの一部(例えばMD2)は、デフォルトでブロックされています。しかし稼働している多くのWebサーバは、これらの古いアルゴリズムのTLS証明書を使っています。デフォルトのJavaのセキュリティポリシーではこれらのサーバに接続できません。この設定を有効にすると、Burpがこれらのサーバに接続するときに、廃止されたアルゴリズムを使用できます。この設定の変更を有効にするには、Burpを再起動してください。
+    </li>
+    <li>
+        <strong>Java SNI拡張を無効にする</strong> - Java 7で、TLS Server Name Indication(サーバ名表示、SNI)拡張が実装され、デフォルトで有効になっています。設定が正しくないままSNIの有効にしているWebサーバが、TLSハンドシェイクで"Unrecognized name(認識できない名前)"という警告を送信することがあります。ブラウザはこの警告を無視しますがJava実装は無視しないので、接続に失敗します。JavaのSNI拡張を無効にしてサーバに接続する場合は、この設定を使用します。この設定の変更を有効にするには、Burpを再起動してください。
+    </li>
+</ul>
+<p>
+    <strong>JAVA TLS</strong>設定は、プロジェクト設定です。現在のプロジェクトにのみ適用されます。
+</p>
+</body>
+</html>

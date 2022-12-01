@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">外部ブラウザの設定</a>
+        </li>
+        <li>
+            <a href="index.html">BurpのCA証明書をインストール</a>
+        </li>
+        <li>
+            <a href="ca-cert-chrome-windows.html">ChromeへBurpのCA証明書をインストール - Windows</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>ChromeへBurpのCA証明書をインストール - Windows</h1>
+<p>
+    自身のブラウザでHTTPSアプリケーションをテストするには、Burp SuiteのCA証明書をインストールする必要があります。
+</p>
+<p>
+    BurpのCA証明書をインストールする前に、<a href="../check-listener.html">Proxyリスナーが動作</a>しており、<a href="../index.html">Burpと連携するようブラウザを設定</a>できているか確認します。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        以前、Burpが生成した別のCA証明書をインストールしている場合は、新しいものをインストールする前に<a href="#removing-the-ca-certificate-from-windows">それを削除する</a>必要があります。
+    </p>
+</div>
+<p>
+    Burp SuiteからCA証明書をエクスポートするには:
+</p>
+<ol>
+    <li>
+        Burp Suiteが起動しているか確認します。
+    </li>
+    <li>
+        Chromeで<code>http://burpsuite</code>にアクセスします。
+    </li>
+    <li>
+        "Welcome to Burp Suite Professional"ページで、<strong>CA Certificate</strong>をクリックして、独自のBurp CA証明書をダウンロードします。
+    </li>
+    <li>
+        CA証明書を保存した場所をメモしておいてください。
+    </li>
+</ol>
+<div class="rounded-dropshadow">
+    <img src="../../images/ca-cert-burpsuite-page-generic-940.png" alt="CA証明書のダウンロード" class="center-block">
+</div>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        "Welcome to Burp Suite Professional"ページが表示されない場合は、<a href="proxy-troubleshooting.html">Proxyのトラブルシューティングページ</a>を参照してください。問題の原因によっては、自動的にそこに遷移するかもしれません。
+    </p>
+</div>
+<p>
+    ChromeにCA証明書をインストールするには:
+</p>
+<ol>
+    <li>
+        Chromeを開き、<strong>カスタマイズ</strong> (ハンバーガー) メニューに移動します。
+    </li>
+    <li>
+        <strong>設定</strong>を選択し、<strong>プライバシーとセキュリティ</strong>メニューを開きます。
+    </li>
+    <li>
+        <strong>セキュリティ</strong>メニューから、<strong>証明書の管理</strong>を選択します。
+    </li>
+    <li>
+        <strong>信頼されたルート証明機関</strong>タブを選択し、<strong>インポート</strong>をクリックします。
+    </li>
+    <li>
+        <p>
+            <strong>次へ</strong>をクリックし、Burp SuiteからエクスポートしたCA証明書を参照します。
+        </p>
+        <div class="highlightedarea">
+            <h4>注</h4>
+            <p>
+                Burp SuiteのCA証明書は、<code>.der</code>形式です。ファイルフィルターの形式を<strong>すべてのファイル</strong>に設定する必要があります。
+            </p>
+        </div>
+    </li>
+    <li>
+        <strong>開く</strong>をクリックします。
+    </li>
+    <li>
+        <p>
+            証明書ストアに<strong>信頼されたルート証明機関</strong>が選択されていることを確認し、<strong>次へ</strong>をクリックします。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="../../images/chrome-ms-ca-cert.png" alt="IEでCA証明書をダウンロード" class="center-block">
+        </div>
+    </li>
+    <li>
+        <strong>完了</strong>をクリックし、<strong>OK</strong>をクリックします。
+    </li>
+    <li>
+        Chromeを再起動します。
+    </li>
+</ol>
+<h2 id="removing-the-ca-certificate-from-windows">WindowsからCA証明書を削除</h2>
+<p>
+    WindowsからBurp SuiteのCA証明書を削除するには:
+</p>
+<ol>
+    <li>
+        Chromeを開き、<strong>カスタマイズ</strong> (ハンバーガー) メニューに移動します。
+    </li>
+    <li>
+        <strong>設定</strong>を選択し、<strong>プライバシーとセキュリティ</strong>メニューを開きます。
+    </li>
+    <li>
+        <strong>セキュリティ</strong>メニューから、<strong>証明書の管理</strong>を選択します。
+    </li>
+    <li>
+        証明書を選択し、<strong>削除</strong>をクリックします。
+    </li>
+    <li>
+        <strong>はい &gt; はい</strong>をクリックして確定し、<strong>閉じる</strong>をクリックします。
+    </li>
+</ol>
+</body>
+</html>

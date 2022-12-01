@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">モバイルテスト</a>
+        </li>
+        <li>
+            <a href="config-ios-device.html">Burp Suite Professionalと連携するようiOS端末を設定する</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Burp Suite Professionalと連携するようiOS端末を設定する</h1>
+<p>
+    iOS端末を使用して、Webアプリケーションやモバイルアプリのテストができます。そのためには、次のことを行う必要があります:
+</p>
+<ul>
+    <li>
+        Burp Proxyリスナーが、すべてのネットワークインタフェースで接続を受け入れるように設定します。
+    </li>
+    <li>
+        端末とコンピューターの両方を同じワイヤレスネットワークに接続します。
+    </li>
+    <li>
+        HTTPSで通信するには、iOS端末にCA証明書をインストールする必要があります。
+    </li>
+</ul>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-1-configure-the-burp-proxy-listener">ステップ1: Burp Proxyリスナーを設定する</h2>
+<p>
+    Burp Suite ProfessionalのProxy設定を行うには:
+</p>
+<ol>
+    <li>
+        Burp Suite Professionalを開き、<strong>Proxy &gt; オプション</strong>に移動します。
+    </li>
+    <li>
+        <strong>Proxyリスナー</strong>で、<strong>追加</strong>をクリックします。
+    </li>
+    <li>
+        <strong>バインド</strong>タブで、<strong>バインドするポート</strong>に<code>8082</code> (あるいは使用していない他のポート)を設定します。
+    </li>
+    <li>
+        <p>
+            <strong>すべてのインタフェース</strong>を選択し、<strong>OK</strong>をクリックします。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="../images/add-proxy-listener.png" alt="Proxyリスナーの追加" class="center-block">
+        </div>
+    </li>
+    <li>
+        プロンプトが表示されたら、<strong>はい</strong>をクリックします。
+    </li>
+</ol>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-2-configure-your-device-to-use-the-proxy">ステップ2: プロキシを使用するよう端末を設定する</h2>
+<p>
+    iOS端末のプロキシ設定を行うには:
+</p>
+<ol>
+    <li>
+        iOS端末で、<strong>設定 &gt; Wi-Fi</strong>に移動します。
+    </li>
+    <li>
+        Wi-Fiボタンがオンになっていることを確認し、Wi-Fiネットワークに接続します。
+    </li>
+    <li>
+        <p>
+            Wi-Fiネットワークの横にある情報アイコン(<strong>i</strong>)を選択します。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="../images/ios-wifi.png" alt="iOSのWi-Fi設定" class="center-block">
+        </div>
+    </li>
+    <li>
+        <strong>プロキシを構成</strong>を<strong>手動</strong>に設定します。
+    </li>
+    <li>
+        <strong>サーバ</strong>に、Burp Suite Professionalが動作しているコンピュータのIPアドレスを設定します。
+    </li>
+    <li>
+        <strong>ポート</strong>に、Burp Proxyリスナーに設定したポート番号(この例では<code>8082</code>)を設定します。
+    </li>
+    <li>
+        <p>
+            <strong>保存</strong>をタッチします。
+        </p>
+        . 
+        <div class="rounded-dropshadow">
+            <img src="../images/ios-proxy-configuration.png" alt="iOSのプロキシ設定" class="center-block">
+        </div>
+    </li>
+</ol>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-3-install-a-ca-certificate-on-your-ios-device">ステップ3: iOS端末にCA証明書をインストールする</h2>
+<p>
+    HTTPSで通信するには、iOS端末にBurp Suite ProfessionalのCA証明書をインストールする必要があります。
+</p>
+<p>
+    iOS端末にCA証明書をインストールするには:
+</p>
+<ol>
+    <li>
+        Burp Suite Professionalがコンピュータ上で起動しているか確認します。
+    </li>
+    <li>
+        iOSデバイスのブラウザで<code>http://burpsuite</code>にアクセスし、<strong>CA Certificate</strong>を選択します。
+    </li>
+    <li>
+        CA証明書がダウンロードされたら、<strong>設定</strong>メニューで<strong>ダウンロード済みのプロファイル</strong>を選択します。
+    </li>
+    <li>
+        <p>
+            <strong>プロファイルのインストール</strong>画面で、<strong>インストール</strong>を選択します。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="../images/ios-install-profile.png" alt="iOSのプロファイルのインストール画面" class="center-block">
+        </div>
+    </li>
+    <li>
+        <strong>プロファイルのインストール</strong>画面で、<strong>インストール</strong>を選択します。
+    </li>
+    <li>
+        プロファイルがインストールされたら、<strong>完了</strong>を選択します。
+    </li>
+    <li>
+        <strong>設定 &gt; 一般 &gt; 情報 &gt; 証明書信頼設定</strong>に移動します。
+    </li>
+    <li>
+        <p>
+            <code>Portswigger CA</code>のトグルボタンを有効にします。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="../images/ios-cert-trust.png" alt="iOSの証明書信頼設定" class="center-block">
+        </div>
+    </li>
+</ol>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-4-test-the-configuration">ステップ4: 設定をテストする</h2>
+<p>
+    設定をテストするには:
+</p>
+<ol>
+    <li>
+        Burp Suite Professionalを開きます。
+    </li>
+    <li>
+        <strong>Proxy &gt; インターセプト</strong>に移動し、<strong>インターセプト無効</strong>をクリックしてインターセプトを有効にします。
+    </li>
+    <li>
+        iOS端末のブラウザを開き、HTTPSのウェブページにアクセスします。
+    </li>
+</ol>
+<p>
+    セキュリティ警告が表示されずにページが読み込まれるはずです。Burp Suite Professional内に、対応するリクエストが表示されるはずです。
+</p>
+</body>
+</html>

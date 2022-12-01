@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">設定</a>
+        </li>
+        <li>
+            <a href="index.html">全体</a>
+        </li>
+        <li>
+            <a href="performance-feedback.html">パフォーマンスフィードバック</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>パフォーマンスフィードバック設定</h1>
+<p>
+    Burpのパフォーマンスに関する匿名のフィードバックを送信すると、Burpの向上に貢献できます。
+</p>
+<p>
+    送信されるフィードバックにはBurpの内部機能に関する技術情報だけが含まれ、あなたを特定するものではありません。
+</p>
+<p>
+    バグを報告する場合デバッグIDを含めると、あなたのBurpインスタンスで発生した問題を診断する助けになります。<strong>コピー</strong>をクリックすると、デバッグIDがクリップボードにコピーされます。
+</p>
+<h2 id="logging-exceptions-to-a-local-directory">例外をローカルディレクトリにログ出力</h2>
+<p>
+    一部のケースで、匿名フィードバックを有効にしてもパフォーマンスの問題に関するデータを受け取れない場合があります。たとえば、あなたのセキュリティポリシーによって、サポートチームへのデータ送信がブロックされる場合があります。この場合、<strong>例外をローカルディレクトリに記録する</strong>設定を一時的に選択した上で問題を再現させるよう、サポートチームから依頼するかもしれません。
+</p>
+<p>
+    このオプションがアクティブな間は、Burpは指定されたディレクトリのローカルファイルに例外を記録します。問題が再現できれば、ローカルのログファイルのコピーをサポートチームに送信できます。ファイル名は、現在の日付とデバッグIDを組み合わせたもので、例外が発生したセッションを識別します。Burpの各インスタンスは、個別のログを生成します。
+</p>
+<p>
+    ログエントリには、例外の時刻、簡単な説明、スタックトレースのみが含まれます。スタックトレースは完全に難読化されているため、ファイルから個人データは読み取れません。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        ログを保存するディレクトリを変更する場合は、問題を再現しようとしているユーザが、指定されたディレクトリへの書き込みアクセス権を持っていることを確認してください。持っていない場合、Burpはファイルを生成できません。
+    </p>
+</div>
+<p>
+    <strong>パフォーマンスフィードバック</strong>設定は、ユーザ設定です。あなたのマシンにインストールされたすべてのBurpに適用されます。
+</p>
+</body>
+</html>

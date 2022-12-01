@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">外部ブラウザの設定</a>
+        </li>
+        <li>
+            <a href="index.html">BurpのCA証明書をインストール</a>
+        </li>
+        <li>
+            <a href="ca-cert-chrome-linux.html">ChromeへBurpのCA証明書をインストール - Linux</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>ChromeへBurpのCA証明書をインストール - Linux</h1>
+<p>
+    自身のブラウザでHTTPSアプリケーションをテストするには、Burp SuiteのCA証明書をインストールする必要があります。
+</p>
+<p>
+    BurpのCA証明書をインストールする前に、<a href="../check-listener.html">Proxyリスナーが動作</a>しており、<a href="../index.html">Burpと連携するようブラウザを設定</a>できているか確認します。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        以前、Burpが生成した別のCA証明書をインストールしている場合は、新しいものをインストールする前に<a href="#removing-the-burp-suite-ca-certificate">それを削除する</a>必要があります。
+    </p>
+</div>
+<p>
+    Burp SuiteからCA証明書をエクスポートするには:
+</p>
+<ol>
+    <li>
+        Burp Suiteが起動しているか確認します。
+    </li>
+    <li>
+        Chromeで<code>http://burpsuite</code>にアクセスします。
+    </li>
+    <li>
+        "Welcome to Burp Suite Professional"ページで、<strong>CA Certificate</strong>をクリックして、独自のBurp CA証明書をダウンロードします。
+    </li>
+    <li>
+        CA証明書を保存した場所をメモしておいてください。
+    </li>
+</ol>
+<div class="rounded-dropshadow">
+    <img src="../../images/ca-cert-burpsuite-page-generic-940.png" alt="CA証明書のダウンロード - Linux" class="center-block">
+</div>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        "Welcome to Burp Suite Professional"ページが表示されない場合は、<a href="proxy-troubleshooting.html">Proxyのトラブルシューティングページ</a>を参照してください。問題の原因によっては、自動的にそこに遷移するかもしれません。
+    </p>
+</div>
+<p>
+    ChromeにCA証明書をインストールするには:
+</p>
+<ol>
+    <li>
+        Chromeで右上のメニューを開き、<strong>設定</strong>をクリックします。
+    </li>
+    <li>
+        Chromeの設定で、<strong>プライバシーとセキュリティ &gt; 証明書の管理</strong>を選択します。
+    </li>
+    <li>
+        <p>
+            <strong>証明書の管理</strong>ダイアログで、<strong>認証局</strong>タブに移動し、<strong>インポート</strong>ボタンをクリックします。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="../../images/linux-chrome-ca-import.png" alt="CA証明書のインポート - Linux" class="center-block">
+        </div>
+    </li>
+    <li>
+        <p>
+            <strong>参照</strong>をクリックし、先程ダウンロードした<code>cacert.der</code>ファイルを選択します。次に、<strong>選択</strong>をクリックします。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="../../images/linux-cert.png" alt="Linux CA証明書" class="center-block">
+        </div>
+    </li>
+    <li>
+        <p>
+            <strong>ウェブサイトの識別でこの証明書を信頼します</strong>オプションを選択します。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="../../images/linux-trust-cert.png" alt="Linux 信頼するCA証明書" class="center-block">
+        </div>
+    </li>
+    <li>
+        <p>
+            <strong>OK</strong>をクリックします。<code>org-PortSwigger</code>が認証局のリストに表示されるはずです。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="../../images/linux-ca-cert-listed.png" alt="Linux CA 証明書成功" class="center-block">
+        </div>
+    </li>
+    <li>
+        Chromeを再起動します。
+    </li>
+    <li>
+        Burpを実行したまま、HTTPSのURLにアクセスしてみてください。すべて正常に動作していれば、セキュリティ警告なしでページを参照できるはずです。
+    </li>
+</ol>
+<h2 id="removing-the-burp-suite-ca-certificate">Burp SuiteのCA証明書を削除</h2>
+<p>
+    LinuxからBurp SuiteのCA証明書を削除するには:
+</p>
+<ol>
+    <li>
+        Chromeを開き、<strong>証明書の管理</strong>メニューに移動します。
+    </li>
+    <li>
+        <strong>認証局</strong>タブに移動し、<code>org-PortSwigger</code>のエントリーを見つけます。
+    </li>
+    <li>
+        エントリーを展開し、<code>PortSwigger CA</code>のハンバーガーメニューをクリックします。
+    </li>
+    <li>
+        <strong>削除</strong>をクリックし、プロンプトで<strong>OK</strong>をクリックします。
+    </li>
+</ol>
+</body>
+</html>

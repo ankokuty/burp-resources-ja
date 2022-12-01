@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">設定</a>
+        </li>
+        <li>
+            <a href="index.html">UI</a>
+        </li>
+        <li>
+            <a href="message-editor.html">メッセージエディタ</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Inspectorとメッセージエディタ設定</h1>
+<p>
+    <strong>Inspectorとメッセージエディタ</strong>設定では、<strong>Inspector</strong>パネルの表示位置の調整や、表示する情報の制御ができます。<strong>Inspector設定を開く</strong>をクリックすると、<strong>Inspector設定</strong>ダイアログが表示されます。
+</p>
+<p>
+    ダイアログには2つのタブがあります:
+</p>
+<ul>
+    <li>
+        <strong>Inspector</strong> - Inspectorパネルに表示するウィジェットと、画面のどこにパネルを表示するかを定義する設定です。
+    </li>
+    <li>
+        <strong>メッセージエディタ</strong> - メッセージエディタのリクエストとレスポンスに、どのタブを表示するかを定義する設定です。
+    </li>
+</ul>
+<h2 id="widgets">ウィジェット</h2>
+<p>
+    <strong>ウィジェット</strong>設定では、Inspector内に表示されるウィジェットの表示方法を調整できます。次のことが可能です:
+</p>
+<ul>
+    <li>
+        Inspectorパネルにどのウィジェットを表示するか選択できます。
+    </li>
+    <li>
+        各ウィジェットをデフォルトで展開するかどうか選択できます。
+    </li>
+    <li>
+        ウィジェットのセル内でテキストを折り返すかどうか選択できます。
+    </li>
+    <li>
+        <strong>上へ</strong>と<strong>下へ</strong>ボタンを使って、ウィジェットのリストを並び替えられます。
+    </li>
+</ul>
+<h2 id="position-and-display-options">位置と表示オプション</h2>
+<p>
+    <strong>デフォルトのポジションと表示オプション</strong>設定では、<strong>Inspector</strong>パネルのデフォルトレイアウトを設定できます。次のことが可能です:
+</p>
+<ul>
+    <li>
+        パネルのデフォルトポジション(左または右)を設定できます。
+    </li>
+    <li>
+        パネルの表示モードを設定できます。Inspectorはデフォルトで<strong>自動展開</strong>に設定されており、利用可能な画面スペースに応じてパネルの展開/折りたたみをします。Inspectorを折りたたんだままにするには、<strong>常に折りたたみ</strong>ラジオボタンを選択します。
+    </li>
+</ul>
+<p>
+    <strong>Inspector設定</strong>ダイアログは全体で共通で、Burp SuiteのすべてのツールでInspectorを使用する際に適用されます。
+</p>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <p>
+        詳細は、<a href="../../functions/message-editor/inspector.html">Inspectorドキュメント</a>を参照してください。
+    </p>
+</div>
+<h2 id="message-editor-settings">メッセージエディタ設定</h2>
+<p>
+    <strong>メッセージ</strong>エディタタブでは、次が可能です:
+</p>
+<ul>
+    <li>
+        リクエストのメッセージエディタでツールバーに表示されるビューを編集できます。
+    </li>
+    <li>
+        レスポンスのメッセージエディタでツールバーに表示されるビューを編集できます。
+    </li>
+    <li>
+        各ビューのテキストを折り返すかどうかを制御できます。
+    </li>
+    <li>
+        ビューのリストを並べ替えられます。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Proxy履歴のような読み取り専用のコンテキストでは、対応するコンテンツがメッセージに含まれている場合にのみ、選択したビューを表示します。例えば、リクエストにcookieが1つ以上含まれていない限り、<strong>Cookie</strong>タブは表示されません。
+    </p>
+    <p>
+        Burp Repeaterのような編集可能なコンテキストでは、すべてのビューを表示します。これにより、元のリクエストに存在しなかったアイテムでも追加できます。
+    </p>
+</div>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <p>
+        詳細は、<a href="../../functions/message-editor/index.html">メッセージエディタドキュメント</a>を参照してください。
+    </p>
+</div>
+<p>
+    <strong>Inspectorとメッセージエディタ</strong>設定は、ユーザ設定です。あなたのマシンにインストールされたすべてのBurpに適用されます。
+</p>
+<h2 id="http-message-display">HTTPメッセージ表示</h2>
+<p>
+    HTTPメッセージエディタ内での、HTTPメッセージの表示方法を制御します。次の設定ができます:
+</p>
+<ul>
+    <li>
+        <strong>フォント</strong> - 使用するフォントのスタイルとサイズです。Burpがフォントスムージングを使用するかどうかも指定できます。
+    </li>
+    <li>
+        <strong>リクエストの構文を色付けする</strong> - リクエストの構文が色付けされます。これには、JavaScript、JSON、CSSコンテンツが含まれます。
+    </li>
+    <li>
+        <strong>レスポンスの構文を色付けする</strong> - レスポンスの構文が色付けされます。これには、JavaScript、JSON、CSSコンテンツが含まれます。
+    </li>
+    <li>
+        <strong>デフォルトで整形表示</strong> - Burpが自動的に、整形されていないデータ、マークアップ、コードに対して、正規化された改行やインデントを追加して整形して表示するかどうかを制御します。JSON、XML、HTML、CSS、JavaScriptの整形表示をサポートしています。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <ul>
+        <li>
+            整形表示の詳細は、<a href="../../functions/message-editor/text-editor.html#pretty-printing">テキストエディタ</a>を参照してください。
+        </li>
+        <li>
+            メッセージエディタの詳細は、<a href="../../functions/message-editor/index.html">Burp Suiteメッセージエディタ</a>を参照してください。
+        </li>
+    </ul>
+</div>
+<p>
+    <strong>HTTPメッセージ表示</strong>設定は、ユーザ設定です。あなたのマシンにインストールされたすべてのBurpに適用されます。
+</p>
+<h2 id="character-sets">文字セット</h2>
+<p>
+    HTTPメッセージを生で表示する際に、さまざまな文字セットを処理する方法を制御します。使用可能な設定は次の通りです:
+</p>
+<ul>
+    <li>
+        メッセージヘッダに基づいて各メッセージの文字セットを自動的に認識する。これがデフォルト設定で、さまざまな文字セットを使用するメッセージを同時に作業できます。
+    </li>
+    <li>
+        すべてのメッセージでシステムのデフォルト文字セットを使用する。
+    </li>
+    <li>
+        メッセージを(ASCIIエンコードを使用して)生バイト列で表示し、拡張文字セットの処理を行わない。
+    </li>
+    <li>
+        すべてのメッセージに指定した文字セットを使用する。リストから必要な文字セットを選択します。
+    </li>
+</ul>
+<p>
+    HTTPヘッダは常に生形式で表示されます。文字セットエンコーディングの設定はメッセージボディにのみ適用されます。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        一部の文字セットで必要な字形の中には、すべてのフォントでサポートされていないものがあります。拡張または特殊な文字セットを使用する場合は、まずCourier NewやDialogなどのシステムフォントを試してみてください。
+    </p>
+</div>
+<p>
+    <strong>文字セット</strong>設定は、ユーザ設定です。あなたのマシンにインストールされたすべてのBurpに適用されます。
+</p>
+<h2 id="html-rendering">HTMLレンダリング</h2>
+<p>
+    HTTPメッセージエディタ内の<strong>Render</strong>ビューは、ブラウザに表示されるのとほぼ同じようにHTMLコンテンツを表示します。<strong>ページのレンダリングに必要な場合、追加のHTTPリクエストを送信する</strong>設定では、HTMLコンテンツを完全にレンダリングするために必要な追加のHTTPリクエスト(たとえば、埋め込み画像など)を送信するか制御します。
+</p>
+<p>
+    この設定を選択すると、BurpのHTMLレンダリングの品質が向上しますが、速度が若干犠牲になります。また、Burpが対象アプリケーションに行う全体的なリクエスト数も増加します。
+</p>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <p>
+        詳細は、<a href="../../functions/message-editor/index.html">メッセージエディタドキュメント</a>を参照してください。
+    </p>
+</div>
+<p>
+    <strong>HTMLレンダリング</strong>設定は、ユーザ設定です。あなたのマシンにインストールされたすべてのBurpに適用されます。
+</p>
+<h2 id="http-message-search">HTTPメッセージ検索</h2>
+<p>
+    <strong>HTTPメッセージ検索</strong>設定は、メッセージエディタウィンドウの下部にある検索バーのデフォルトを制御します。使用可能な設定は次の通りです:
+</p>
+<ul>
+    <li>
+        <strong>大文字小文字を区別</strong> - デフォルトで大文字小文字を区別して検索を行うかどうかを定義します。
+    </li>
+    <li>
+        <strong>正規表現</strong> - 検索語をデフォルトで正規表現として扱うか、リテラル文字列として扱うかを定義します。
+    </li>
+    <li>
+        <strong>テキスト変更時にマッチした箇所に自動スクロール</strong> - 新しいテキストが表示されたときに、最初に一致して強調表示されている箇所まで自動でスクロールするかどうかを指定します。これは、Proxy履歴のレスポンスから特定の表現を探す場合などに便利です。このオプションを選択して新しいアイテムを選択すると、最初の検索一致箇所に表示が自動でスクロールします。
+    </li>
+</ul>
+<p>
+    <strong>HTTPメッセージ検索</strong>設定は、ユーザ設定です。あなたのマシンにインストールされたすべてのBurpに適用されます。
+</p>
+</body>
+</html>

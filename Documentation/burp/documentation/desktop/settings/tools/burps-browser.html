@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">設定</a>
+        </li>
+        <li>
+            <a href="index.html">ツール</a>
+        </li>
+        <li>
+            <a href="burps-browser.html">Burpブラウザ</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Burpブラウザ設定</h1>
+<p>
+    <strong>Burpブラウザ</strong>セクションには、次の設定があります:
+</p>
+<ul>
+    <li>
+        設定と履歴。
+    </li>
+    <li>
+        ブラウザの起動。
+    </li>
+</ul>
+<h2 id="settings-and-history">設定と履歴</h2>
+<p>
+    <strong>終了時に設定や履歴を保存する</strong>チェックボックスは、Burpブラウザが設定やブラウジング中のセッション履歴を保存するかどうかを決定します。このチェックボックスをオフにすると、ブラウザを閉じたときにすべての設定と履歴が削除されます。
+</p>
+<p>
+    <strong>設定と履歴</strong>設定は、ユーザ設定です。あなたのマシンにインストールされたすべてのBurpに適用されます。
+</p>
+<h2 id="browser-running">ブラウザの起動</h2>
+<p>
+    Burpブラウザは、デフォルトでサンドボックス化されています。Linuxでrootとして実行している場合など一部の非常に特殊な状況では、サンドボックス化したブラウザを利用したスキャンが起動できない場合があります。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        サンドボックス化したブラウザを利用したスキャンを起動できるか確認するには、ブラウザの<strong>ヘルプ</strong>メニューにある<strong>Burpブラウザのヘルスチェック</strong>ツールを使用します。
+    </p>
+</div>
+<p>
+    <strong>Burpブラウザをサンドボックスなしで実行する</strong>設定によって、サンドボックスなしでBurpブラウザを実行できます。この設定を選択する前に、関連するセキュリティの影響を確認してください。サンドボックスなしで敵対的なWebサイトをスキャンすると、ローカルシステムが危険にさらされるリスクが高まります。
+</p>
+<p>
+    <strong>GPUを利用する</strong>オプションは、BurpブラウザによるGPUへのアクセスを有効にします。存在しないGPUをBurpブラウザが使用しようとするとクラッシュすることがあるので注意してください。
+</p>
+<p>
+    <strong>ブラウザの起動</strong>設定は、プロジェクト設定です。現在のプロジェクトにのみ適用されます。
+</p>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">設定</a>
+        </li>
+        <li>
+            <a href="index.html">セッション</a>
+        </li>
+        <li>
+            <a href="macros.html">マクロ</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>マクロエディタ</h1>
+<p>
+    マクロエディタで、マクロの追加や編集ができます。マクロエディタは、<strong>設定 &gt; セッション &gt; マクロ</strong>で開けます。<strong>追加</strong>を選択して新しいマクロを追加するか、<strong>編集</strong>で既存のマクロを編集します。
+</p>
+<h2 id="record-macro">マクロを記録</h2>
+<p>
+    マクロは、Proxy履歴で取得したリクエストから生成されます。マクロを追加するには、まずこれらのリクエストを選択します。これを行うには:
+</p>
+<ul>
+    <li>
+        <strong>追加</strong>をクリックし<strong>マクロレコーダ</strong>ダイアログを開きます。
+    </li>
+    <li>
+        Proxy履歴から必要なアイテムを選択します。必要であれば、Burpブラウザで新しいリクエストを追加できます。
+    </li>
+    <li>
+        <strong>OK</strong>をクリックすると、<strong>マクロエディタ</strong>にアイテムが追加されます。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Proxyインターセプトが有効になっていると、ブラウザを使ったマクロの新規記録はできません。マクロレコーダの隅にある<strong>インターセプト有効</strong>をクリックしてインターセプトを無効にできます。
+    </p>
+</div>
+<h2 id="configure-item">アイテム設定</h2>
+<p>
+    マクロエディタは、マクロ内のアイテムの編集可能なリストを表示します。マクロアイテムをリストで選択し、リクエストビューアで直接編集できます。
+</p>
+<p>
+    各マクロでは一連のリクエスト内のアイテムの処理方法と、アイテム間の依存関係を指定します。この設定を編集するには、リストで該当するアイテムを選択し、<strong>アイテム設定</strong>をクリックし、<strong>マクロアイテム設定</strong>ダイアログを表示します。
+</p>
+<h3>cookie処理</h3>
+<p>
+    次の設定ができます:
+</p>
+<ul>
+    <li>
+        レスポンスで受け取ったcookieを、セッションハンドリングcookie jarに追加するかどうか
+    </li>
+    <li>
+        セッションハンドリングcookie jarのcookieをリクエストに追加するかどうか
+    </li>
+</ul>
+<h3 id="parameter-handling">パラメータ処理</h3>
+<p>
+    リクエストパラメーターの値を、マクロで設定できます。使用可能なオプションは次の通りです:
+</p>
+<ul>
+    <li>
+        <strong>指定した値を使用</strong> - パラメータは常に指定された値になります。
+    </li>
+    <li>
+        <strong>先行するレスポンスから抽出</strong> - 先行するレスポンスから同等のパラメータを取得します。
+    </li>
+</ul>
+<p>
+    先行するレスポンスからリクエストのパラメータ値を抽出する機能は、多段階処理や、アプリケーションがCSRFトークンを積極的に使用している状況で特に有用です。
+</p>
+<p>
+    パラメータの抽出は、パラメータ名とリクエストされるURLに基づいて行われます。先行するレスポンスからパラメータ値を抽出するように指定した場合、関連するURLに送信された名前付きパラメータの元となったレスポンスを調べます。たとえば、指定されたURLが送信先になっていて、指定された名前のフィールドを含むフォームなどです。Burpが適切な出どころを見つけた場合、そのレスポンスからパラメータ値を抽出し、リクエスト内で更新します。
+</p>
+<p>
+    新しいマクロを定義すると、Burpは先行するレスポンスから値を決定できるパラメータを特定し、このような関連性を自動的に見つけようとします。たとえば、フォームフィールドの値、リダイレクト先、リンクのクエリ文字列などです。必要であれば、自動分析を無効にできます。
+</p>
+<h3 id="custom-parameter-locations-in-response">レスポンス内のカスタムパラメータ位置</h3>
+<p>
+    自動パラメータマッチングは、フォームフィールドの値やリンクのクエリーストリングなど、レスポンス内の標準的なパラメータに対して動作します。場合によっては、レスポンス内の任意の場所をパラメータとして指定する必要があります。たとえば、アプリケーションがCSRFトークンをJavaScript文字列として定義し、スクリプトがこのトークンを追加して動的にリクエストを生成する場合です。このパラメータを抽出するマクロを作成するには、カスタムパラメータの位置を追加する必要があります。カスタムパラメータの位置には、レスポンスのスクリプト内にあるパラメータの場所と、後続のリクエストのパラメータ名をBurpに設定します。
+</p>
+<p>
+    カスタムパラメータを追加するには、<strong>レスポンス内のカスタムパラメータ位置</strong>セクションで<strong>追加</strong>をクリックし、<strong>カスタムパラメータ定義</strong>ダイアログを表示します。
+</p>
+<p>
+    ここから、次の指定ができます:
+</p>
+<ul>
+    <li>
+        <strong>パラメータ名</strong>。
+    </li>
+    <li>
+        レスポンスから抽出した値がURLエンコードされているかどうか。この設定により、後続のリクエストで値が使用されるときにBurpが正しくエンコードできるようになります。
+    </li>
+    <li>
+        設定されるレスポンス内のパラメータの位置。この位置は、Burpの標準的なレスポンス抽出ルールを使って指定できます。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>詳細</h4>
+    <p>
+        Burpのレスポンス抽出ルールの使い方は、<a href="../../functions/response-extraction.html">レスポンス抽出ルール</a>ページを参照してください。
+    </p>
+</div>
+<p>
+    Burpは設定されたパラメータを、以降のマクロリクエストや、<a href="#parameter-handling">パラメータハンドリングセクションで</a>説明したセッションハンドリングルールで処理されるリクエストで使用できるようにします。
+</p>
+<h2 id="re-analyze-macro">マクロを再分析</h2>
+<p>
+    新しいマクロを追加すると、Burpは先行するレスポンスから値を決定できるパラメータを特定し、マクロ間の関連性を自動的に見つけようとします。この自動解析は、<strong>マクロを再分析</strong>ボタンで繰り返し実行できます。マクロのアイテムを手動で修正した場合に便利です。
+</p>
+<h2 id="test-macro">マクロをテスト</h2>
+<p>
+    <strong>マクロをテスト</strong>機能により、マクロ設定が意図した通りに動作するか確認できます。Burpはマクロリクエストを順番に発行し、すべてのパラメータ値を抽出しようとします。
+</p>
+<p>
+    マクロが実行されると、Burpは次を表示します:
+</p>
+<ul>
+    <li>
+        すべてのリクエストとレスポンス。
+    </li>
+    <li>
+        受信したcookieの値。
+    </li>
+    <li>
+        Burpが値を抽出しようとしたパラメータの詳細。
+    </li>
+</ul>
+</body>
+</html>

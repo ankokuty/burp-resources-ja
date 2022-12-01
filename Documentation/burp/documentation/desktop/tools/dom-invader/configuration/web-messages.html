@@ -84,5 +84,9 @@
         DOM Invaderが生成したメッセージは、<strong>Messages</strong>ビューに数値IDが表示されないため、どのメッセージか判別できます。
     </p>
 </div>
+<h2 id="detect-cross-domain-leaks">クロスドメインリークの検出</h2>
+<p>
+    この設定を有効にすると、データを含むWebメッセージを、現在のページのURLとは異なるオリジン宛てに送信したときに、DOM Invaderがレポートします。この場合、データを抽出するイベントリスナーを含んだページが<code>iframe</code>に埋め込まれると、攻撃者がOAuthトークンなどの機密データを窃取できる可能性があります。
+</p>
 </body>
 </html>

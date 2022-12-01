@@ -34,26 +34,37 @@
 <h1>ブラウザのプロキシ設定の確認</h1>
 <ol>
     <li>
-        Burpで、<strong>Proxy &gt; インターセプト</strong>タブに移動します。<strong>インターセプト無効</strong>ボタンをクリックすると、<strong>インターセプト有効</strong>に変わります。
-    </li>
-    <li>
         <a href="check-listener.html">Proxyリスナーがアクティブか確認</a>し、選択したブラウザが設定済みか確認します。
     </li>
     <li>
-        Burpを実行している状態で、設定したブラウザを開き、ブラウザでどこかHTTPのURL(まだHTTPSは使わないでください)にアクセスします。ブラウザがリクエストの完了を待っている状態、つまりページを読み込もうとしてスタックしているように見えるはずです。これは、ブラウザが送信しようとしているHTTPリクエストをBurpがインターセプトしたためです。
+        Burp Suiteで、<strong>Proxy &gt; インターセプト</strong>タブに移動します。HTTPインターセプトを有効にするには、<strong>インターセプト無効</strong>をクリックします。
     </li>
     <li>
-        Burpで、<strong>Proxy &gt; インターセプト</strong>タブに移動します。<strong>インターセプト</strong>タブでは、インターセプトされたHTTPリクエストがメインパネルに表示されます。
+        Burp Suiteを実行している状態で、設定したブラウザを開き、ブラウザでどこかHTTP URLにアクセスします。ブラウザはリクエストが完了するのをじっと待っているはずです。これは、ブラウザが送信しようとしているHTTPリクエストをBurpがインターセプトしたためです。
     </li>
     <li>
-        Proxy &gt; インターセプトタブで、ボタンが<strong>インターセプト有効</strong>になっているでしょう。クリックすると<strong>インターセプト無効</strong>に変わり、Burpからリクエストが放出されます。
+        Burp Suiteで、<strong>Proxy &gt; インターセプト</strong>タブに移動します。<strong>インターセプト</strong>タブには、インターセプトされたHTTPリクエストがメインパネルに表示されます。
     </li>
     <li>
-        ブラウザに戻ります。これで、通常のブラウジング時と同じように、要求されたページが読み込まれ表示されます。
+        <strong>転送</strong>をクリックして、Burp Suiteからリクエストを送信します。
+    </li>
+    <li>
+        ブラウザに戻ります。これで、通常のアクセスと同じように、要求したページが読み込まれ表示されます。
+    </li>
+    <li>
+        HTTPインターセプトを無効にするには、<strong>インターセプト有効</strong>をクリックします。
     </li>
 </ol>
 <p>
-    上記のすべてができた場合、Burp Suiteで外部ブラウザを使用するための必須設定が完了しています。ただし現時点では、HTTPだけを使用するWebアプリケーションのみをテストできます。外部ブラウザを使用してHTTPS URLにアクセスしようとすると、接続がブロックされるでしょう。したがって、HTTPSを使用するアプリケーションをテストできるように、<a href="certificate/index.html">BurpのCA証明書をインストールする</a>最後の追加手順を強く推奨します。
+    これらの手順で、HTTPを使用するWebアプリケーションのテストが可能になります。HTTPS URLをテストするには、<a href="certificate/index.html">BurpのCA証明書をインストール</a>する必要があります。
 </p>
+<div class="highlightedarea">
+    <h4>次のステップ</h4>
+    <ul>
+        <li>
+            <a href="certificate/index.html">BurpのCA証明書をインストール</a>
+        </li>
+    </ul>
+</div>
 </body>
 </html>

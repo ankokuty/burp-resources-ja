@@ -90,7 +90,7 @@
     閉じたプライベートなネットワークでひとり(または少人数のチーム)で利用する方法が、プライベートCollaboratorサーバの一般的な利用方法です。インターネットアクセスがない閉じたネットワーク上のアプリケーションをテストする場合、デフォルトのCollaboratorサーバは使用できません。
 </p>
 <p>
-    このような状況では、<a href="#collaborator-configuration-file">設定ファイル</a>は必要なく、<a href="#installation-and-execution">インストールと実行</a>にあるいずれかコマンドで、最小限のCollaboratorサーバのインスタンスを実行できます。<a href="../desktop/options/misc-project.html#burp-collaborator-server">Burpの設定</a>で、Collaboratorサーバのアドレスに自分のマシンのIPアドレスを設定する必要があります。
+    このような状況では、<a href="#collaborator-configuration-file">設定ファイル</a>は必要なく、<a href="#installation-and-execution">インストールと実行</a>にあるいずれかコマンドで、最小限のCollaboratorサーバのインスタンスを実行できます。<a href="../desktop/settings/tools/collaborator.html">Burpの設定</a>で、Collaboratorサーバのアドレスに自分のマシンのIPアドレスを設定する必要があります。
 </p>
 <p>
     このセットアップ方法では、DNS名前解決のカスタマイズや、信頼された有効なHTTPS接続はサポートしません。しかし、Collaboratorの最低限の機能を使用でき、外部にHTTP通信するような問題は検出できます。
@@ -142,12 +142,12 @@
     </li>
     <li>
         <p>
-            このサーバを使用するようにBurpを設定します: Burp Suiteの<a href="../desktop/options/misc-project.html#burp-collaborator-server">プロジェクトオプション &gt; その他</a>で、自身のCollaboratorサーバの場所を設定します。
+            このサーバを使用するようにBurpを設定します: Burp Suiteの<a href="../desktop/settings/tools/collaborator.html">プロジェクトオプション &gt; その他</a>で、自身のCollaboratorサーバの場所を設定します。
         </p>
     </li>
     <li>
         <p>
-            Collaboratorヘルスチェックを実行します。これは、<a href="../desktop/options/misc-project.html#burp-collaborator-server">プロジェクトオプション &gt; その他</a>にあります。
+            Collaboratorヘルスチェックを実行します。これは、<a href="../desktop/settings/tools/collaborator.html">プロジェクトオプション &gt; その他</a>にあります。
         </p>
     </li>
 </ul>
@@ -205,7 +205,7 @@
 <div class="highlightedarea">
     <h4>注</h4>
     <p>
-        Collaboratorサーバを標準ポート以外で使用するよう設定している場合、<strong>プロジェクトオプション &gt; その他</strong>以下の<a href="../desktop/options/misc-project.html#burp-collaborator-server">Burp Collaboratorサーバオプション</a>でそれらを指定する必要があります。
+        Collaboratorサーバを標準ポート以外で使用するよう設定している場合、<strong>プロジェクトオプション &gt; その他</strong>以下の<a href="../desktop/settings/tools/collaborator.html">Burp Collaboratorサーバオプション</a>でそれらを指定する必要があります。
     </p>
 </div>
 <p>
@@ -507,7 +507,7 @@
                 <code> polling.http.port </code>
             </td>
             <td>
-                HTTP経由のポーリングに使用するポート。標準ではないポートに設定できますが、Burp Suiteがそれを使用するように<a href="../desktop/options/misc-project.html#burp-collaborator-server">設定</a>する必要があります。
+                HTTP経由のポーリングに使用するポート。標準ではないポートに設定できますが、Burp Suiteがそれを使用するように<a href="../desktop/settings/tools/collaborator.html">設定</a>する必要があります。
             </td>
         </tr>
         <tr>
@@ -515,7 +515,7 @@
                 <code> polling.https.port </code>
             </td>
             <td>
-                HTTPS経由のポーリングに使用するポート。標準ではないポートに設定できますが、Burp Suiteがそれを使用するように<a href="../desktop/options/misc-project.html#burp-collaborator-server">設定</a>する必要があります。
+                HTTPS経由のポーリングに使用するポート。標準ではないポートに設定できますが、Burp Suiteがそれを使用するように<a href="../desktop/settings/tools/collaborator.html">設定</a>する必要があります。
             </td>
         </tr>
         <tr>
@@ -751,7 +751,7 @@
 </ul>
 <h2 id="testing-the-installation">インストールのテスト</h2>
 <p>
-    サーバを配備したとき、Burp Suite Professionalを使用して、正しく動作しているか確認できます。Burp Suiteで、<a href="../desktop/options/misc-project.html#burp-collaborator-server">Burp Collaborator Server</a>オプションの詳細を設定し、ヘルスチェックを実行してください。するとBurpはCollaboratorの各機能を順番にテストしていきます。
+    サーバを配備したとき、Burp Suite Professionalを使用して、正しく動作しているか確認できます。Burp Suiteで、<a href="../desktop/settings/tools/collaborator.html">Burp Collaborator Server</a>オプションの詳細を設定し、<strong>ヘルスチェックを実行</strong>してください。するとBurpはCollaboratorの各機能を順番にテストしていきます。
 </p>
 <h2 id="add-custom-http-content">カスタムHTTPコンテンツの追加</h2>
 <p>

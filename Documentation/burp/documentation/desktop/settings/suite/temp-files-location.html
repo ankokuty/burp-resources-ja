@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">設定</a>
+        </li>
+        <li>
+            <a href="index.html">全体</a>
+        </li>
+        <li>
+            <a href="temp-files-location.html">一時ファイルの場所</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>一時ファイルの場所の設定</h1>
+<p>
+    Burpが一時ファイルを保存する場所を設定します。
+</p>
+<p>
+    Burpはデフォルトで、プラットフォームの提供する一時ファイル場所にディレクトリを作成します。必要であれば、代わりにカスタムディレクトリを指定できます。たとえば、別のボリュームを使いたい、外部から読み取れない場所を使いたい、などが可能です。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        MacOSでは、システムを休止状態にすると、オペレーティングシステムがデフォルトの一時ファイルの場所をクリアすることがあり、Burpが一時ファイルを失う原因になります。この問題を解決するには、Burpが一時ファイルを保存する場所をカスタムで設定します。
+    </p>
+</div>
+<p>
+    この設定の変更は、次回のBurp起動時に有効になります。
+</p>
+<p>
+    <strong>一時ファイルの場所</strong>設定は、ユーザ設定です。あなたのマシンにインストールされたすべてのBurpに適用されます。
+</p>
+</body>
+</html>

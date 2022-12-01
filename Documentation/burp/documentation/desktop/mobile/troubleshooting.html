@@ -23,7 +23,7 @@
             <a href="index.html">モバイルテスト</a>
         </li>
         <li>
-            <a href="troubleshooting.html">モバイルデバイスのトラブルシューティング</a>
+            <a href="troubleshooting.html">モバイル端末のトラブルシューティング</a>
         </li>
     </ol>
 </section>
@@ -31,7 +31,7 @@
     <label class="label-edition is-professional">Professional</label>
     <label class="label-edition is-community">Community</label>
 </section>
-<h1>モバイルデバイスのトラブルシューティング</h1>
+<h1>モバイル端末のトラブルシューティング</h1>
 <p>
     このセクションでは、Burp Suiteを使用してモバイルアプリをテストしようとする際の、一般的な問題を解決する簡単な手順をいくつか紹介します。
 </p>
@@ -40,7 +40,7 @@
     Burpで、<strong>ダッシュボード</strong>タブに移動し、イベントログを見てください。<code>接続リセット</code>や<code>リモートホストがハンドシェイクを終了しました</code>などのエラーが大量に見つかる場合は、TLS 1.3との互換性が原因である可能性があります。
 </p>
 <p>
-    Proxyリスナー設定で、ProxyがTLS1.3を使用しないよう無効に設定できます。
+    Proxyリスナー設定で、ProxyがTLS1.3を使用しないよう設定を無効にできます。
 </p>
 <ol>
     <li>
@@ -50,7 +50,7 @@
     </li>
     <li>
         <p>
-            モバイルデバイスに使用するProxyリスナーを選択し、<strong>編集</strong>をクリックします。
+            モバイル端末に使用するProxyリスナーを選択し、<strong>編集</strong>をクリックします。
         </p>
     </li>
     <li>
@@ -65,7 +65,7 @@
     </li>
 </ol>
 <p>
-    これが問題だった場合は、通常どおりHTTPS URLにアクセスできるようになり、イベントログに表示されるエラーが少なくなります。それでも問題が解決しない場合は、<a href="https://portswigger.net/support">サポートチーム</a>にお問い合わせください。
+    これが問題だった場合は、通常どおりHTTPS URLにアクセスできるようになり、イベントログに表示されるエラーが少なくなります。それでも問題が解決しない場合は、<a href="https://portswigger.net/support">サポートチーム</a>に問い合わせてください。
 </p>
 </body>
 </html>

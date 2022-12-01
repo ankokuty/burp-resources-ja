@@ -189,5 +189,12 @@
         </p>
     </li>
 </ol>
+<h2 id="remove-permissions-policy-header">Permissions-Policyヘッダの削除</h2>
+<p>
+    この設定を有効にするとDOM Invaderは、レスポンスに<code>Permissions-Policy</code>ヘッダが存在する場合、自動的に除去します。
+</p>
+<p>
+    一部のWebサイトでは、DOM Invaderにとって不可欠な同期XHRなどの機能をブロックするディレクティブを、<code>Permissions-Policy</code>ヘッダに設定しています。その場合、DOM Invaderはコンソールで通知し、このオプションを有効にするよう促します。
+</p>
 </body>
 </html>

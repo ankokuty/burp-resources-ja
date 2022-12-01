@@ -31,39 +31,57 @@
     <label class="label-edition is-professional">Professional</label>
     <label class="label-edition is-community">Community</label>
 </section>
-<h1>Burpと連携するようFirefoxを設定する</h1>
+<h1>Burp Suiteと連携するようFirefoxを設定する</h1>
 <p>
-    Burpでのテストに使用できるようにFirefoxを設定するには、次の設定手順を実行してください。
+    Burpでのテストに使用できるようにFirefoxを設定するには:
 </p>
-<p>
-    Firefoxで、Firefoxメニューに移動し、<strong>設定 &gt; オプション</strong>を選択します。
-</p>
-<div class="rounded-dropshadow">
-    <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_FF_1.jpg" alt="Firefoxブラウザの設定" class="center-block">
-</div>
-<p>
-    <strong>一般</strong>タブを選択し、<strong>ネットワーク設定</strong>までスクロールします。<strong>接続設定</strong>ボタンをクリックします。
-</p>
-<div class="rounded-dropshadow">
-    <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_FF_2.jpg" alt="Firefoxのネットワーク設定" class="center-block">
-</div>
-<p>
-    <strong>手動でプロキシーを設定する</strong>オプションを選択します。
-</p>
-<p>
-    <strong>HTTPプロキシー</strong>フィールドに、BurpのProxyリスナーのアドレス(デフォルトは127.0.0.1)を入力します。
-</p>
-<p>
-    次に<strong>ポート</strong>フィールドに、BurpのProxyリスナーのポート番号(デフォルトは8080)を入力します。<strong>すべてのプロトコルでこのプロキシを使用する</strong>をチェックします。
-</p>
-<div class="rounded-dropshadow">
-    <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_FF_3.jpg" alt="Firefoxプロキシ設定" class="center-block">
-</div>
-<p>
-    <strong>プロキシなしで接続</strong>フィールドをすべて削除します。<strong>OK</strong>をクリックしてすべての設定ダイアログを閉じます。
-</p>
-<div class="rounded-dropshadow">
-    <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_FF_4.jpg" alt='Firefix "プロキシーなしで接続"フィールドのクリア' class="center-block">
+<ol>
+    <li>
+        <p>
+            Firefoxで、Firefoxメニューに移動し、<strong>設定 &gt; オプション</strong>を選択します。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_FF_1.jpg" alt="Firefoxブラウザの設定" class="center-block">
+        </div>
+    </li>
+    <li>
+        <p>
+            <strong>一般</strong>タブを選択し、<strong>ネットワーク設定</strong>までスクロールします。<strong>接続設定</strong>ボタンをクリックします。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_FF_2.jpg" alt="Firefoxのネットワーク設定" class="center-block">
+        </div>
+    </li>
+    <li>
+        <strong>手動でプロキシーを設定する</strong>オプションを選択します。
+    </li>
+    <li>
+        <strong>HTTPプロキシー</strong>フィールドに、BurpのProxyリスナーのアドレス(デフォルトは<code>127.0.0.1</code>)を入力します。
+    </li>
+    <li>
+        <p>
+            <strong>ポート</strong>欄に、Burp Proxyリスナーのポート番号(デフォルトは<code>8080</code>)を入力します。<strong>すべてのプロトコルでこのプロキシを使用する</strong>をチェックします。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_FF_3.jpg" alt="Firefoxプロキシ設定" class="center-block">
+        </div>
+    </li>
+    <li>
+        <p>
+            <strong>プロキシなしで接続</strong>フィールドをすべて削除します。<strong>OK</strong>をクリックしてすべての設定ダイアログを閉じます。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="../images/support/InstallingandConfiguring_ConfiguringyourBrowser_FF_4.jpg" alt='Firefix "プロキシーなしで接続"フィールドのクリア' class="center-block">
+        </div>
+    </li>
+</ol>
+<div class="highlightedarea">
+    <h4>次のステップ</h4>
+    <ul>
+        <li>
+            <a href="check-browser-configuration.html">ブラウザのプロキシ設定の確認</a>
+        </li>
+    </ul>
 </div>
 </body>
 </html>

@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">設定</a>
+        </li>
+        <li>
+            <a href="index.html">セッション</a>
+        </li>
+        <li>
+            <a href="session-handling-rules.html">セッションハンドリングルールエディタ</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>セッションハンドリングルールエディタ</h1>
+<p>
+    セッションハンドリングルールエディタでは、Burpが使用するセッションハンドリングルールを設定できます。ルールエディタを開くには、<strong>設定 &gt; セッション &gt; セッションハンドリングルール</strong>を選択し、ルールを追加するには<strong>追加</strong>を、既存のルールを編集するには<strong>編集</strong>を選択します。
+</p>
+<p>
+    セッションハンドリングルールエディタには、2つのタブがあります:
+</p>
+<ul>
+    <li>
+        <strong>詳細</strong>では、ルールがリクエストに適用されたときに実行するアクションを指定できます。
+    </li>
+    <li>
+        <strong>スコープ</strong>では、ルールが適用されるツール、URL、パラメータを指定できます。
+    </li>
+</ul>
+<h2 id="rule-description">ルール詳細</h2>
+<p>
+    <strong>詳細</strong>タブの<strong>ルール詳細</strong>設定にアクセスします。ここには、ルールが何を行うか説明を記述できます。入力された説明は、ルールエディタのアクティブなルールのリストに表示されます。
+</p>
+<h2 id="rule-actions">ルールアクション</h2>
+<p>
+    <strong>詳細</strong>タブの<strong>ルールアクション</strong>設定にアクセスします。ここでは、ルールが実行するアクションを設定できます。
+</p>
+<p>
+    各ルールには、ルールが適用されたときに実行される1つまたは複数のアクションが含まれています。Burpは、以降のアクションをリクエストに適用しないよう設定されたアクションがない限り、これらのアクションを順番に実行します。
+</p>
+<p>
+    <strong>追加</strong>をクリックすると、次のアクションがルールに追加されます:
+</p>
+<ul>
+    <li>
+        <a href="#use-cookies-from-the-session-handling-cookie-jar">セッションハンドリングcookie jarのcookieを使用する</a>。
+    </li>
+    <li>
+        <a href="#set-a-specific-cookie-or-parameter-value">指定したcookieやパラメータ値をセットする</a>。
+    </li>
+    <li>
+        <a href="#check-session-is-valid">セッションの有効性をチェックし、結果によってサブアクションを実行する</a>。
+    </li>
+    <li>
+        <a href="#prompt-for-in-browser-session-recovery">ブラウザ内セッション復元のプロンプトを出す</a>。
+    </li>
+    <li>
+        <a href="#run-a-macro-to-obtain-a-new-valid-session">マクロを実行する</a>。
+    </li>
+    <li>
+        <a href="#run-a-post-request-macro">リクエスト後マクロを実行する(現在のリクエストが発行され、さらにマクロを実行する)</a>。
+    </li>
+    <li>
+        <a href="#invoke-a-burp-extension">Burp拡張を呼び出す</a>。
+    </li>
+    <li>
+        <a href="#set-a-specific-header-value">指定したヘッダ値をセットする</a>。
+    </li>
+</ul>
+<p>
+    これらのアクションを組み合わせれば、事実上あらゆるセッションハンドリング機構を処理できます。たとえば、マクロを実行した結果に基づいて、指定したcookieとパラメータ値を更新するルールを設定できます。これを利用すると、自動スキャンやIntruder攻撃の途中で、アプリケーションへの再ログインが自動的にできます。
+</p>
+<h3 id="use-cookies-from-the-session-handling-cookie-jar">セッションハンドリングcookie jarのcookieを使用する</h3>
+<p>
+    このアクションは、Burpのcookie jarのcookieで、リクエストを更新します。すべてのcookie(一部除外も可)、または特定のcookieだけを更新するようアクションを設定できます。
+</p>
+<div class="highlightedarea">
+    <h4>詳細</h4>
+    <p>
+        Burpのcookie jarの動作については、<a href="index.html">セッション</a>を参照してください。
+    </p>
+</div>
+<h3 id="set-a-specific-cookie-or-parameter-value">指定したcookieやパラメータ値をセットする</h3>
+<p>
+    このアクションは、指定した名前のリクエストパラメータやcookieに、指定した値をセットします。指定した名前のパラメータやcookieがリクエストに存在しない場合、どこに追加するかを指定できます:
+</p>
+<ul>
+    <li>
+        URLパラメータ。
+    </li>
+    <li>
+        ボディパラメータ。
+    </li>
+    <li>
+        cookie。
+    </li>
+</ul>
+<h3 id="check-session-is-valid">セッションの有効性をチェックする</h3>
+<p>
+    このアクションは、現在のセッションが有効かどうかチェックします。無効な場合、新しい有効なセッションを取得するための追加のアクションを選択できます。
+</p>
+<h3 id="make-requests-to-validate-session">セッションを検証するリクエスト発行する</h3>
+<p>
+    Burpは現在のセッションの有効性を判断するために、1つ以上のリクエストを発行します。このアクションを実行する場合、Burpは次のことが可能です:
+</p>
+<ul>
+    <li>
+        ルールに処理される現在のリクエストを発行する。
+    </li>
+    <li>
+        マクロを実行する。
+    </li>
+</ul>
+<p>
+    Burpが現在のリクエストを発行し、セッションが有効だとルールが判断した場合、システムは現在のリクエストに対してさらにアクションは実行しません。
+</p>
+<p>
+    指定した回数のリクエスト後にBurpがセッションを検証するように設定もできます。これにより、アプリケーションがセッションをほとんど無効にしない場合、余計なリクエストを発生させなくて済みます。
+</p>
+<h3 id="inspect-responses-to-determine-session-validity">セッションの有効性判断にレスポンスを検証する</h3>
+<p>
+    設定されたリクエストを作成後、Burpはレスポンスを調べてセッションが有効か判断します。Burpがマクロを実行した場合、Burpはマクロ内最後のリクエストのレスポンスを調べます。
+</p>
+<p>
+    セッションが有効か判断するために、指定した文字列がレスポンスに含まれているかどうかをチェックします。次を検索するように設定できます:
+</p>
+<ul>
+    <li>
+        HTTPレスポンスヘッダ。
+    </li>
+    <li>
+        レスポンスボディ。
+    </li>
+    <li>
+        リダイレクト対象のURL。
+    </li>
+</ul>
+<p>
+    リテラル文字列または正規表現で検索できます。大文字と小文字を区別して検索もできます。
+</p>
+<h3 id="define-behavior-dependent-on-session-validity">セッション有効性に応じた動作の定義</h3>
+<p>
+    セッションの有効性チェックが完了した後のBurpの動作を設定できます。
+</p>
+<p>
+    セッションが有効な場合、Burpが現在のリクエストにさらにルールやアクションを処理するかどうか選択できます。
+</p>
+<p>
+    セッションが無効な場合、新しい有効なセッションを取得するために、Burpが次のいずれかのアクションを実行するように設定できます:
+</p>
+<ul>
+    <li>
+        マクロを実行する。
+    </li>
+    <li>
+        ブラウザ内セッション復元のプロンプトを出す。
+    </li>
+</ul>
+<h4 id="run-a-macro-to-obtain-a-new-valid-session">新しい有効なセッションを取得するためのマクロを実行する</h4>
+<p>
+    <strong>マクロを実行する</strong>を選択すると、Burpは1つ以上のマクロを実行し、新しい有効なセッションを取得しようとします。<strong>マクロを選択</strong>メニューから、実行するマクロを指定できます。
+</p>
+<div class="highlightedarea">
+    <h4>詳細</h4>
+    <p>
+        マクロの記録と編集は、<a href="macros.html">マクロエディタ</a>を参照してください。
+    </p>
+</div>
+<p>
+    マクロが実行されたあと、マクロの最後のレスポンスのマッチしたパラメータでリクエストを更新するかどうかを選択できます。また、セッションハンドリングcookie jarのcookieでリクエストを更新するかどうかも選択できます。指定したパラメータやcookieを使用してリクエストを更新するか、指定したパラメータやcookie以外のすべてのパラメータやcookieを使用して更新するか、選択できます。
+</p>
+<h4>パラメータマッチ時にURLの不一致を許容する</h4>
+<p>
+    <strong>パラメータマッチ時にURLの不一致を許容する</strong>を選択すると、BurpはURLの不一致を許容します。
+</p>
+<p>
+    通常、過去のレスポンスからパラメータを変更させる場合、レスポンスから推測されるパラメータ名とURLの両方を、後続のリクエストのパラメータ名とURLにマッチさせます。このオプションは、URLに依存しないCSRFトークン、つまりアプリケーションのある場所で取得して別の場所で再利用できるトークンをアプリケーションが使用している場合に便利です。
+</p>
+<p>
+    <strong>パラメータマッチ時にURLの不一致を許容する</strong>オプションは、これらのルールを簡素化します。固定の場所から新しいトークンを取得するマクロを1つ作っておき、CSRFトークンパラメータを含むあらゆるリクエストでそのマクロを実行できます。
+</p>
+<h3 id="prompt-for-in-browser-session-recovery">ブラウザ内セッション復元のプロンプトを出す</h3>
+<p>
+    Burpブラウザを使用して有効なセッションを復元するようBurpにプロンプトを出させます。アプリケーションによってセットされたcookieはBurpのセッションハンドリングcookie jarに追加され、設定により現在のリクエストを更新できます。
+</p>
+<p>
+    すべてのcookie(必要に応じて一部除外)を更新するか、特定のcookieだけを更新するか、選択できます。
+</p>
+<h3 id="run-a-post-request-macro">リクエスト後マクロを実行する</h3>
+<p>
+    このアクションは、現在処理中のリクエストを発行した後、さらにマクロを実行します。このリクエスト後に、さらにルールやアクションは実行されません。
+</p>
+<p>
+    テストするリクエストが多段階処理の途中に存在し、残りの手順を実行してアプリケーションの状態を更新し対象リクエストの影響を判断する必要がある場合に、リクエスト後マクロが便利です。
+</p>
+<p>
+    現在のリクエストに対するレスポンスを使用して、最初のマクロリクエストをBurpが更新するよう設定できます。このオプションを選択すると、最初のマクロリクエストのすべてのパラメータ(必要に応じて一部除外)を更新する、または特定のパラメータのみ更新できます。
+</p>
+<p>
+    起動しているツールに次のどちらを渡すか、アクションを設定できます:
+</p>
+<ul>
+    <li>
+        マクロの前に発行された、現在のリクエストのレスポンス。
+    </li>
+    <li>
+        マクロの最後のレスポンス。
+    </li>
+</ul>
+<p>
+    後者は、多段階処理の途中をスキャンやファジングした結果、その処理のエラーメッセージが後の手順で表示される場合に便利です。
+</p>
+<h3 id="invoke-a-burp-extension">Burp拡張を呼び出す</h3>
+<p>
+    このアクションは、Burp拡張を起動して現在のリクエストを処理します。リストから必要な拡張を選択できます。ただし、セッションハンドリングアクションハンドラーを登録している拡張のみ選択できます。
+</p>
+<h3 id="set-a-specific-header-value">指定したヘッダ値をセットする</h3>
+<p>
+    このアクションは、指定されたヘッダの値を置き換えます。<strong>存在しない場合は追加</strong>チェックボックスを選択すると、ヘッダが存在しないリクエストにヘッダを追加できます。
+</p>
+<h2 id="tools-scope">ツールスコープ</h2>
+<p>
+    <strong>ツールスコープ</strong>設定は、セッションハンドリングルールエディタの<strong>スコープ</strong>タブにあります。ここで、各ルールをどのBurpツールに適用するかを指定できます。Burpは、スコープ内のツールからのリクエストに対してのみルールを適用します。
+</p>
+<h2 id="url-scope">URLスコープ</h2>
+<p>
+    <strong>URLスコープ</strong>設定は、セッションハンドリングルールエディタの<strong>スコープ</strong>タブにあります。それぞれのルールが適用されるURLを指定できます。次のオプションから選択できます:
+</p>
+<ul>
+    <li>
+        <strong>すべてのURL</strong>。この設定は、Burpのcookie jarのcookieを使用する汎用的なルールを作成する場合に便利です。
+    </li>
+    <li>
+        <strong>全体スコープ</strong>。この設定は、現在のセッションを検証するルールなど、アプリケーション全体のルールを作成する場合に便利です。
+    </li>
+    <li>
+        特定の<strong>カスタムスコープ</strong>。この設定は、単一のリクエストに影響するルールを作成する場合に便利です。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>詳細</h4>
+    <p>
+        URLスコープの設定の詳細は、<a href="../../functions/url-matching.html">URLマッチルール</a>を参照してください。
+    </p>
+</div>
+<h2 id="parameter-scope">パラメータスコープ</h2>
+<p>
+    特定の名前のパラメータを含むリクエストだけにルールを適用するよう指定できます。これにより、すべてのリクエストでCSRFトークンなど特定のパラメータを更新するルールを作成できます。
+</p>
+</body>
+</html>
