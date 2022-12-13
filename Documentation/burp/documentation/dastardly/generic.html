@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE" ignore-validation="STACKED_HEADINGS,OFFSITE_LINKS,OTHER_PAGE_KEYWORD_TOO_FREQUENT"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="index.html">Dastardly</a>
+        </li>
+        <li>
+            <a href="generic.html">プラットフォーム非依存</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-dastardly">Dastardly</label>
+</section>
+<h1 cms-ignore-validation="HEADING_CAPITALIZATION">DastardlyとCI/CDプラットフォームを連携する(一般的な手順)</h1>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        次のCI/CDプラットフォームは、Dastardlyと連携させるための具体的な手順があります:
+    </p>
+    <ul>
+        <li>
+            <a href="jenkins.html">Jenkins</a>。
+        </li>
+        <li>
+            <a href="teamcity.html">TeamCity</a>。
+        </li>
+        <li>
+            <a href="https://github.com/PortSwigger/dastardly-github-action">GitHubアクション</a>。
+        </li>
+    </ul>
+</div>
+<p>
+    Dastardlyは、あらゆるCI/CDプラットフォームと連携できます。連携により、既存のCI/CDパイプラインのステージとして、DastardlyのWeb脆弱性スキャンを実行できます。
+</p>
+<p>
+    Dastardlyスキャンを実行するために必要なマシンスペックは、<a href="index.html#dastardly-system-requirements">Dastardlyのシステム要件</a>を参照してください。
+</p>
+<p>
+    DastardlyとCI/CDパイプラインを連携させるには、パイプラインスクリプトに次の<code>docker run</code>コマンドを記述します:
+</p>
+<code class="code-scrollable">docker run --user $(id -u) --rm -v $(pwd):/dastardly -e \ DASTARDLY_TARGET_URL=https://ginandjuice.shop -e \ DASTARDLY_OUTPUT_FILE=/dastardly/dastardly-report.xml \ public.ecr.aws/portswigger/dastardly:latest</code>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        <code>DASTARDLY_TARGET_URL</code>には、スキャンするアプリケーションの<a href="index.html#configuration">開始URL</a>を指定します。
+    </p>
+    <p>
+        この例では、<code>DASTARDLY_TARGET_URL</code>に<code>https://ginandjuice.shop/</code>が設定されています - これはWeb脆弱性スキャナをテストするために設計された、意図的に脆弱性を作り込んだWebアプリケーションです。
+    </p>
+    <p>
+        次にパイプラインが実行されるとき、Dastardlyは<code>DASTARDLY_TARGET_URLで</code>設定したアプリケーションをスキャンします。
+    </p>
+</div>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        上の例のように、マシン上のディレクトリにマップされた場所に<code>DASTARDLY_OUTPUT_FILE</code>を設定する必要があります。
+    </p>
+    <p>
+        上記の例では、<code>/dastardly</code>ボリュームに現在の作業ディレクトリをマッピングするよう、<code>$(pwd)</code>を使用しています。
+    </p>
+    <p>
+        Dastardlyの出力ファイルは、任意のJUnit XMLパーサでパース可能なJUnit XMLレポートです。
+    </p>
+    <p>
+        上記のコマンドを複数回実行すると、Dastardlyの出力したJUnitレポートが上書きされます。
+    </p>
+</div>
+<h2 id="dastardly-scan-results">Dastardlyのスキャン結果</h2>
+<p>
+    Dastardlyのスキャン結果は、スキャン完了時にJUnit XMLファイルとして得られます。スキャンは最大で10分間実行されます。
+</p>
+<h3 cms-ignore-validation="DUPLICATE_HEADINGS">改善アドバイス</h3>
+<p>
+    Dastardlyのスキャン結果には、発見されたセキュリティ問題に対する改善アドバイスが含まれています。このアドバイスには、無償のWebセキュリティアカデミーリソースの、関連セクションへのリンクもあります。こちらでWebセキュリティの脆弱性についてさらに詳しく説明しています。
+</p>
+<h3 cms-ignore-validation="DUPLICATE_HEADINGS">証拠</h3>
+<p>
+    Dastardlyのスキャン結果には、発見されたセキュリティ問題の証拠が含まれています。この証拠には、問題を見つけるためにDastardlyが送信したリクエストと、アプリケーションから送信されたレスポンスが含まれます。
+</p>
+</body>
+</html>

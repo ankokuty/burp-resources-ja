@@ -1,0 +1,97 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">拡張</a>
+        </li>
+        <li>
+            <a href="monitoring-system-impact.html">システム影響の監視</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>拡張によるシステム影響の監視</h1>
+<p>
+    拡張を利用すると、Burp Suiteでさまざまなタスクを実行できます。それらのタスクが大量のリソースを使用する場合や時間がかかる場合に、Burp Suiteのパフォーマンスに影響を与える可能性があります。
+</p>
+<p>
+    特定の拡張がシステムパフォーマンスに与える影響を見積もるには:
+</p>
+<ol>
+    <li>
+        <strong>拡張 &gt; BAppストア</strong>に移動し、BAppストアを表示します。
+    </li>
+    <li>
+        拡張を選択し右側のパネルをスクロールして、<strong>システム影響の概算</strong>を表示します。
+    </li>
+    <li>
+        <p>
+            各カテゴリの影響を確認します:
+        </p>
+        <ul>
+            <li>
+                <strong>メモリ</strong> - BAppがBurp Suiteのメモリ使用量に与える影響。
+            </li>
+            <li>
+                <strong>CPU</strong> - BAppがCPUにかける負荷。
+            </li>
+            <li>
+                <strong>時間</strong> - Burp Suiteの速度に与える全体的な影響。ここには、インターフェースの応答性や、ツールが作業を完了するまでにかかる時間などが含まれます。
+            </li>
+            <li>
+                <strong>Scanner</strong> - スキャンが完了するまでの時間に影響を与える可能性。
+            </li>
+            <li>
+                <strong>総合</strong> - これらすべてのカテゴリーで最も高い影響。
+            </li>
+        </ul>
+    </li>
+</ol>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        システム影響の評価は目安で、BAppによるパフォーマンスへの影響を完全に反映していない可能性があります。カスタムタブやコンテキストメニューオプションを追加するBAppは、十分なテストができません。
+    </p>
+</div>
+<h2 id="cumulative-impact-of-extensions">拡張による全体的な影響</h2>
+<p>
+    複数の拡張を同時に使用すると、性能への影響が累積します。この概算は、<strong>全体的なシステム影響</strong>を参照してください。BAppストアの上のパネルにあります。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        さまざまなPython拡張やRuby拡張を読み込んだり、拡張のロードとアンロードを繰り返すと、メモリ問題が発生する場合があります。次のようなエラーが表示される場合があります:
+    </p>
+    <p>
+        <code>java.lang.OutOfMemoryError: PermGen space</code>
+    </p>
+    <p>
+        この問題を回避するには、Burpを起動するときの<a href="../../desktop/getting-started/launch-from-command-line.html">コマンドライン</a>オプションに<code>-XX:MaxPermSize</code>を追加し、より多くの PermGenストレージが割り当てられるようJavaを設定します。例:
+    </p>
+    <p>
+        <code>java -XX:MaxPermSize=1G -jar burp.jar</code>
+    </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Repeater</a>
+        </li>
+        <li>
+            <a href="tab-options.html">タブ固有のオプション設定</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>タブ固有のオプション設定</h1>
+<p>
+    <strong>Repeater</strong>メニューで選択したオプションを、個々のタブで上書きできます。
+</p>
+<p>
+    タブ固有のオプションを設定するには:
+</p>
+<ol>
+    <li>
+        設定したいタブを選択します。
+    </li>
+    <li>
+        <strong>送信</strong>ボタンの横にある設定アイコン<span class="icon-settings"></span>をクリックすると、<strong>Repeater</strong>オプションのコンテキストメニューが表示されます。これらのオプションは、グローバルの<strong>Repeater</strong>メニューと同じです。
+    </li>
+    <li>
+        メニューから必要なオプションを選択します。
+    </li>
+</ol>
+<p>
+    タブ固有のメニューでオプションを選択した場合、Repeaterはそのタブですべてのグローバルオプションを無視します。タブからリクエストを送信する前に、タブ固有のメニューですべてのオプションが正しく設定されているかを確認する必要があります。たとえば、グローバルRepeaterメニューで<strong>リダイレクト中にcookieを処理する</strong>を選択し、タブ固有のメニューで<strong>HTTP/1接続を再利用する</strong>を選択すると、グローバルメニューの<strong>リダイレクト中にcookieを処理する</strong>は無視されます。
+</p>
+<p>
+    タブのオプションを変更すると、そのタブの設定アイコンが青くなります。タブをグローバルRepeater設定に戻すには、タブの設定アイコン<span class="icon-settings"></span>をクリックし、コンテキストメニューから<strong>グローバルデフォルトを復元</strong>を選択します。
+</p>
+<p>
+    プロジェクトファイルを使用している場合、開いているタブに設定したタブ固有のオプションは、Burp Suiteを再度開いたときにも保持されます。
+</p>
+</body>
+</html>

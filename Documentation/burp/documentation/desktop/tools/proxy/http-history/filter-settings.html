@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">Proxy</a>
+        </li>
+        <li>
+            <a href="index.html">HTTP履歴</a>
+        </li>
+        <li>
+            <a href="filter-settings.html">フィルタ設定</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>HTTP履歴のフィルタリング</h1>
+<p>
+    HTTP履歴をフィルタリングして、解析しやすくできます。これにより、巨大なProxy履歴を体系的に調査し、さまざまな種類の興味深いリクエストがどこに出現するか理解できます。
+</p>
+<p>
+    通信リストの上にあるフィルタバーに、現在のディスプレイフィルタが表示されます。設定するには、このバーをクリックし、<strong>フィルタ設定</strong>ウィンドウを開きます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/filter-settings-http.png" alt="HTTP履歴フィルタ" class="center-block">
+</div>
+<p>
+    <strong>フィルタ設定</strong>ウィンドウでは、次が可能です:
+</p>
+<ul>
+    <li>
+        <p>
+            <strong>リクエストタイプでフィルタ</strong> - 次を表示できます:
+        </p>
+        <ul>
+            <li>
+                <a href="../../target/scope.html">スコープ内</a>のアイテムのみ。
+            </li>
+            <li>
+                レスポンスのあるアイテムのみ。
+            </li>
+            <li>
+                パラメータ付きのリクエストのみ。
+            </li>
+        </ul>
+    </li>
+    <li>
+        <strong>MIMEタイプでフィルタ</strong> - HTML、CSS、画像など、さまざまなMIMEタイプのレスポンスを、表示または非表示にできます。
+    </li>
+    <li>
+        <strong>ステータスコードでフィルタ</strong> - さまざまなHTTPステータスコードで表示または非表示にできます。
+    </li>
+    <li>
+        <p>
+            <strong>検索語でフィルタ</strong> - 次が可能です:
+        </p>
+        <ul>
+            <li>
+                指定された検索語が含まれるレスポンスをフィルタする。
+            </li>
+            <li>
+                リテラル文字列または正規表現を使用する。
+            </li>
+            <li>
+                大文字小文字を区別して検索する。
+            </li>
+            <li>
+                <strong>一致しないものを検索</strong>を選択すると、検索語に一致しないアイテムのみが表示されます。
+            </li>
+        </ul>
+    </li>
+    <li>
+        <strong>ファイルの拡張子でフィルタ</strong> - ファイルの拡張子でアイテムを表示または非表示にできます。
+    </li>
+    <li>
+        <strong>注釈でフィルタ</strong> - コメントや色付けがあるアイテムだけを表示できます。
+    </li>
+    <li>
+        <strong>リスナーでフィルタ</strong> - 特定のリスナーポートで受信したアイテムを表示できます。これは、アクセス制御のテストに便利です。
+    </li>
+</ul>
+<p>
+    フィルタは、表示するものをコントロールするだけです。非表示にしたアイテムは削除されず、フィルタをリセットすると再び表示されます。
+</p>
+<h2 id="adding-annotations">注釈の追加</h2>
+<p>
+    履歴のアイテムに、コメントやハイライトを追加できます。いろいろなアイテムの用途を書いておき、後で深掘りするアイテムにフラグを立てておけます。
+</p>
+<p>
+    HTTP履歴のアイテムに色付けするには:
+</p>
+<ol>
+    <li>
+        <strong>HTTP履歴</strong>タブで、リストから履歴のアイテムを選択します。
+    </li>
+    <li>
+        アイテムを右クリックし、<strong>色付け</strong>を選択します。
+    </li>
+    <li>
+        一覧から色を選択します。
+    </li>
+</ol>
+<p>
+    コメントを追加するには:
+</p>
+<ol>
+    <li>
+        <strong>HTTP履歴</strong>タブで、リストから履歴のアイテムを選択します。
+    </li>
+    <li>
+        <strong>コメント</strong>列をダブルクリックします。
+    </li>
+    <li>
+        セルにコメントを入力します。
+    </li>
+</ol>
+<p>
+    <a href="../intercept-messages.html">インターセプトタブ</a>に表示されているアイテムにも注釈を付けられます。これらは自動的にHTTP履歴に表示されます。
+</p>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE" ignore-validation="OTHER_PAGE_KEYWORD_TOO_FREQUENT,OFFSITE_LINKS"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="index.html">Dastardly</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-dastardly">Dastardly</label>
+</section>
+<h1>Dastardly、Burp Suiteより</h1>
+<p>
+    Dastardlyは、CI/CDパイプラインのための、無償で軽量なWebアプリケーションセキュリティスキャナです。Web開発者向けに特化して設計されており、ソフトウェア開発時に関心を持たれやすい7つのセキュリティ問題について、アプリケーションをチェックできます。Dastardlyは、Burp Suite(Burp Scanner)と同じスキャナをベースにしています。
+</p>
+<div class="highlightedarea">
+    <h4>続きを読む</h4>
+    <ul>
+        <li>
+            <a href="../../dastardly/index.html">Dastardlyの概要</a>。
+        </li>
+        <li>
+            <a href="../../index.html">Burp Suiteの製品群</a>。
+        </li>
+        <li>
+            <a href="../../vulnerability-scanner/index.html">Burp Scanner</a>。
+        </li>
+    </ul>
+</div>
+<h2 id="how-to-run-dastardly">Dastardlyの実行方法</h2>
+<p>
+    DastardlyはDockerを使用して、CI/CDパイプラインで実行されます。
+</p>
+<p>
+    Dastardlyを多くのCI/CDプラットフォームと統合するための具体的な手順と、DastardlyをあらゆるCI/CDプラットフォームと統合するための汎用<code>docker run</code>コマンドを用意しています。詳細は、"<a href="#integrating-dastardly-with-your-existing-ci-cd-platform">Dastardlyと既存のCI/CDプラットフォームの連携</a>"を参照してください。
+</p>
+<h2 id="configuration">設定</h2>
+<p>
+    Dastardlyは最小限の設定しか必要ありません。Dastardlyのスキャンを実行する際にすべきことは、スキャンしたい開始URLの指定だけです。開始URLは、Dastardlyが対象Webアプリケーションをスキャンし始める位置です。Dastardlyはここから、開始URLより下の階層にあるすべてのURLをスキャンします。
+</p>
+<h2 id="scanning">スキャン</h2>
+<p>
+    Dastardlyは、動的な(DAST)手法で対象Webアプリケーションをスキャンします。デプロイされた状態の対象アプリケーションをスキャンします。これは、デプロイされる前にアプリケーションコードを調べる静的な(SAST)スキャンとは異なります。
+</p>
+<p>
+    Dastardlyのスキャンは10分以内に制限されています。大規模なWebアプリケーションや複雑なWebアプリケーションを完全に網羅するには、この時間では不十分かもしれない点に注意してください。Burp Suite Enterprise EditionやBurp Suite Professionalは、この制限を受けずにスキャンできます。
+</p>
+<div class="highlightedarea">
+    <h4>続きを読む</h4>
+    <ul>
+        <li>
+            <a href="../../../burp/application-security-testing/dast/index.html">動的アプリケーションセキュリティテスト(DAST)</a>。
+        </li>
+        <li>
+            <a href="../../../burp/dastardly/scan-checks/index.html">Dastardlyが行うスキャンチェック</a>。
+        </li>
+        <li>
+            <a href="../../../burp/index.html">Burp Suiteの製品群</a>。
+        </li>
+    </ul>
+</div>
+<h2 id="results">結果</h2>
+<p>
+    Dastardlyは、スキャンレポートをJUnit XML形式で出力します。Dastardlyが発見した問題には、詳細な改善アドバイスと、問題を見つけるためにDastardlyが送信したリクエストとアプリケーションから送信されたレスポンスが証拠として添付されています。
+</p>
+<h2 id="integrating-dastardly-with-your-existing-ci-cd-platform">Dastardlyと既存のCI/CDプラットフォームの連携</h2>
+<ul>
+    <li>
+        <a href="jenkins.html">Jenkinsとの連携</a>。
+    </li>
+    <li>
+        <a href="https://github.com/PortSwigger/dastardly-github-action">GitHub Actionsとの連携</a>。
+    </li>
+    <li>
+        <a href="teamcity.html">TeamCity</a>との連携。
+    </li>
+    <li>
+        <a href="generic.html">その他のCI/CDプラットフォームとの連携</a>。
+    </li>
+</ul>
+<h2 id="dastardly-system-requirements">Dastardlyのシステム要件</h2>
+<ul>
+    <li>
+        <p>
+            Dastardlyは、最低4つのCPUコアと4GBのRAMを搭載したマシンでの実行を推奨します。これはほとんどのユースケースに適しているはずですが、より大規模または複雑な対象アプリケーションでは、さらに多くのリソースが必要かもしれません。
+        </p>
+    </li>
+    <li>
+        <p>
+            	CI/CDビルドエージェントやノードは、Dockerコンテナを実行するように設定されている必要があります。
+        </p>
+    </li>
+    <li>
+        <p>
+            Dockerが実行されているCI/CDビルドエージェントやノードから、PortSwiggerの公開イメージリポジトリ(<code>public.ecr.aws/portswigger/</code>)と、スキャンしたい対象アプリケーションにアクセスできる必要があります。
+        </p>
+    </li>
+</ul>
+<h2 id="troubleshooting-dastardly">Dastardlyのトラブルシューティング</h2>
+<p>
+    PortSwiggerは、Dastardlyを使用してアプリケーションをスキャンする際に遭遇する可能性のあるあらゆる問題に対するサポートを提供します。CI/CDプラットフォームに関する問題や、Dastardlyとそのプラットフォームとの連携に関するサポートは行っていません。
+</p>
+<p>
+    Dastardlyのスキャンに問題がある場合は、<a href="https://forum.portswigger.net/">ユーザフォーラム</a>や<a href="faqs.html">DastardlyのFAQ</a>を確認してください。
+</p>
+</body>
+</html>

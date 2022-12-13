@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">拡張</a>
+        </li>
+        <li>
+            <a href="index.html">開発</a>
+        </li>
+        <li>
+            <a href="bapp-store-acceptance-criteria.html">BAppストアの受入基準</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>BAppストアの受入基準</h1>
+<p>
+    BApp Storeに拡張を投稿すると、コミュニティと共有できます。投稿されたBAppについて私たちは、セキュリティや品質などをレビューし、BApp Storeに掲載するかどうか決定します。
+</p>
+<p>
+    拡張を投稿する前に、次の受入基準を満たしているか確認してください。
+</p>
+<ol>
+    <li>
+        <h4>独自の機能を持っていること。</h4>
+        <p>
+            BApp Storeにある既存の拡張と機能が重複していないか確認してください。
+        </p>
+        <p>
+            まったく新しいアイデアの拡張でなければ、あなたの目的に合うように既存のBAppをカスタマイズした方がよいかもしれません。BAppストアにあるすべての拡張のソースコードは、<a href="https://github.com/PortSwigger">GitHubリポジトリ</a>にあります。
+        </p>
+    </li>
+    <li>
+        <h4>明確でわかりやすい名前が付いていること。</h4>
+        <p>
+            拡張が何をするものかを明確に説明されている名前であるか確認してください。
+        </p>
+        <p>
+            また、リストに表示される1行の要約(Webのみ)や、より詳細な説明文も記載できます。
+        </p>
+    </li>
+    <li>
+        <h4>セキュアに動作すること。</h4>
+        <p>
+            信頼できないサイトをユーザーがテストする可能性があり、拡張のせいでユーザが攻撃にさらされることがないようにしなければなりません。HTTPメッセージの内容は、信頼できないものとして扱ってください。想定される使用方法で、拡張が安全に動作する必要があります。ユーザがGUIに入力したデータは一般的に信頼できます。しかし信頼できないソースからオートフィルで入力されることもあるため、ユーザが内容をチェックしていることを期待してはいけません。
+        </p>
+    </li>
+    <li>
+        <h4>すべての依存関係を含んでいること。</h4>
+        <p>
+            BAppストアの大きなメリットは、ワンクリックでインストールできることです。拡張がすべての依存関係を含んでいれば、ユーザはより簡単に使い始められます。また、ベースとなるツールが更新されたにも拘らずBAppが更新されないというバージョンの不一致を避けられます。
+        </p>
+    </li>
+    <li>
+        <h4>応答性を保つためスレッドを使用していること。</h4>
+        <p>
+            応答性を保つために、遅い処理はバックグラウンドスレッドで実行してください:
+        </p>
+        <ul>
+            <li>
+                HTTPリクエストなどの遅い処理を、Swingイベントディスパッチスレッドで行わないでください。これをしてしまうと、遅い処理が完了するまでGUI全体が待機しなければならず、Burpが無応答になったように見えることがあります。
+            </li>
+            <li>
+                <code>ProxyHttpRequestHandler</code>、<code>ProxyHttpResponseHandler</code>、<code>HttpHandler</code>を使用するとき、遅い処理を避けてください。
+            </li>
+            <li>
+                並行処理の問題を避けるため、共有データ構造をロックで保護し、デッドロックも起こらないよう注意してください。
+            </li>
+        </ul>
+        <div class="highlightedarea">
+            <h4>注</h4>
+            <p>
+                バックグラウンドスレッドの例外をBurpがキャッチして報告することはありません。バックグラウンドの例外を報告するには、スレッド処理全体をtry/catchブロックで囲み、拡張のエラーストリームにスタックトレースを書き込んでください。
+            </p>
+        </div>
+    </li>
+    <li>
+        <h4>綺麗にアンロードすること。</h4>
+        <p>
+            拡張がアンロードされるとき、すべてのリソースを確実に解放してください。拡張は、<code>Extension.registerUnloadingHandler()</code>でアンロードハンドラを登録する必要があります。アンロードされるリソースの最も一般的な例は、バックグラウンドスレッドです; バックグラウンドスレッドは、<code>ExtensionUnloadingHandler.extensionUnloaded()</code>で終了させることが重要です。
+        </p>
+    </li>
+    <li>
+        <h4>Burpのネットワークを使用していること。</h4>
+        <p>
+            HTTPリクエストを行う場合、対象宛てでもそれ以外宛てでも、<code>java.net.URL</code>のようなライブラリではなく、Burpの<code>Http.issueHttpRequest()</code>を使う方が望ましいです。これを使えばBurpのコアを通してリクエストを送信するので、上位プロキシの設定やセッションハンドリングのルールなどが適用されます。多くのユーザは、プロキシ経由でしかインターネットにアクセスできない企業ネットワークにいます。加えて、<code>ScanCheck.passiveAudit()</code>では対象宛てに対して一切の通信を行わないでください。
+        </p>
+    </li>
+    <li>
+        <h4>オフライン作業に対応していること。</h4>
+        <p>
+            Burpのユーザの中には、インターネットに接続できない高セキュリティのネットワークで作業する必要がある人がいます。これらのユーザをサポートするために、脆弱性の定義やその他のデータを受け取るためにオンラインサービスと通信する拡張は、最新定義のコピーを含んでいる必要があります。
+        </p>
+    </li>
+    <li>
+        <h4>大規模なプロジェクトに対応できること。</h4>
+        <p>
+            ユーザの中には、巨大なプロジェクトを扱う人がいます。これらのユーザをサポートするために、<code>HttpHandler.handleHttpRequest()</code>や<code>ScanCheck.activeAudit()</code>などの関数に渡されたオブジェクトを長期間参照し続けないようにしてください。HTTPメッセージへの参照を長期間保持する必要がある場合は、<code>Persistence.temporaryFileContext()</code>を使用してください。また、<code>SiteMap.requestResponses()</code>や<code>Proxy.history()</code>は、巨大な結果を返すことがあるので注意が必要です。
+        </p>
+    </li>
+    <li>
+        <h4>GUI要素に親要素を使用すること。</h4>
+        <p>
+            拡張機能が作成するポップアップウィンドウやメッセージなどのGUI要素は、メインのBurp Frameの子要素にしてください。これは、ユーザが複数のモニタを持っている場合に特に重要で、ポップアップを正しいモニタに表示できます。
+        </p>
+        <p>
+            Burp Frameを取得するには、<code>SwingUtils.suiteFrame()</code>を使用します。
+        </p>
+    </li>
+    <li>
+        <h4>Montoya APIのアーティファクトを使用すること。</h4>
+        <p>
+            GradleやMavenなどのビルドツールを使って、<code>montoya-api</code>アーティファクトを参照する必要があります。新しくプロジェクトを始める場合は、Gradleの使用を推奨します。詳細は、<a href="index.html">Burp拡張の開発</a>を参照してください。
+        </p>
+    </li>
+</ol>
+</body>
+</html>

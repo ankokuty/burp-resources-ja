@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE" ignore-validation="STACKED_HEADINGS"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="index.html">Dastardly</a>
+        </li>
+        <li>
+            <a href="faqs.html">FAQ</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-dastardly">Dastardly</label>
+</section>
+<h1 cms-ignore-validation="HEADING_CAPITALIZATION">DastardlyのFAQ</h1>
+<h2 id="authentication">認証</h2>
+<p>
+    Dastardlyはログイン機構を操作できません。アプリケーションが認証を使用している場合、Dastardlyでスキャンする際にはこの機能を無効にする検討が必要です。認証機能が有効な状態でアプリケーションの認証済み領域をスキャンしたい場合は、Burp Suite Enterprise EditionまたはBurp Suite Professionalを使用してください。
+</p>
+<div class="highlightedarea">
+    <h4>続きを読む</h4>
+    <ul>
+        <li>
+            <a href="../../../burp/vulnerability-scanner/authenticated-scanning/index.html">Burp Suiteによる認証スキャン</a>。
+        </li>
+    </ul>
+</div>
+<h2 id="browser-sandbox">ブラウザのサンドボックス</h2>
+<p>
+    DastardlyはDockerコンテナ内にデプロイされ、Chromiumベースのブラウザを使用して対象アプリケーションをスキャンします。これを可能にするため、Dastardlyのブラウザのサンドボックスは無効になっています。
+</p>
+<p>
+    Dastardlyは信頼できる内部アプリケーションのみをスキャンするように設計されているため、ブラウザのサンドボックスは必要ないはずです。
+</p>
+<h2 id="scanning-apis">スキャンAPI</h2>
+<p>
+    Dastardlyは、OpenAPI v3.x.x仕様のJSONベースのAPI定義に遭遇すると、その定義を解析し脆弱性をスキャンしようとします。対象アプリケーションが、シードURLと同じドメイン上のエンドポイントに対してAPIコールを行う場合、このAPIコールはDastardlyによってスキャンされます。対象アプリケーションが、シードURLと異なるドメイン上のエンドポイントに対してAPIコールを行う場合、このAPIコールはスコープ外とみなされ、スキャンされません。
+</p>
+<div class="highlightedarea">
+    <h4>続きを読む</h4>
+    <ul>
+        <li>
+            <a href="../../../burp/vulnerability-scanner/api-security-testing/index.html">Burp SuiteのよるAPIのスキャン</a>。
+        </li>
+    </ul>
+</div>
+</body>
+</html>

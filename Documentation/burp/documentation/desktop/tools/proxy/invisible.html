@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Proxy</a>
+        </li>
+        <li>
+            <a href="invisible.html">透過プロキシ</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>透過プロキシ</h1>
+<p>
+    Burpの透過プロキシサポートにより、プロキシ非対応クライアントが直接<a href="proxy-options.html#proxy-listeners">Proxyリスナー</a>に接続できるようになります。対象アプリケーションが、ブラウザ外で動作するシッククライアントコンポーネントを採用している場合や、ブラウザのフレームワーク外で独自のHTTPリクエストを行うブラウザプラグインの場合に便利です。多くの場合これらのクライアントは、HTTPプロキシをサポートしていない、または使用するための簡単な設定方法を提供していません。
+</p>
+<h3>受信リクエストのリダイレクト</h3>
+<p>
+    プロキシ非対応のクライアントを強制的にBurpに接続させられます。関連するホスト名のDNS名前解決を変更し、アプリケーションが使用するポートで透過プロキシを設定しておきます。
+</p>
+<p>
+    たとえば、アプリケーションが<code>example.org</code>ドメインを使い、HTTPとHTTPSを標準ポートで使っている場合、ローカルマシン宛てにリダイレクトするようhostsファイルにエントリを追加します:
+</p>
+<code class="code-scrollable"> 127.0.0.1 example.org </code><p>
+    リダイレクトされたリクエストを受信するには、透過Burp Proxyリスナーを<code>127.0.0.1:80</code>と<code>127.0.0.1:443</code>に作成します。プロキシ非対応クライアントは、ドメイン名をローカルIPアドレスに名前解決し、そのインタフェースに直接リクエストを送信します。
+</p>
+<h3>透過プロキシモード</h3>
+<p>
+    DNSを使ってクライアントリクエストをローカルリスナーにリダイレクトするのは簡単ですが、そのリクエストはHTTPプロキシが期待する形式のリクエストではないため、特別な透過プロキシモードが必要になります。
+</p>
+<p>
+    普通のHTTPを使う場合、プロキシスタイルのリクエストは次のようになります:
+</p>
+<code class="code-scrollable">GET http://example.org/foo.php HTTP/1.1 Host: example.org</code><p>
+    非プロキシスタイルのリクエストは次のようになります:
+</p>
+<code class="code-scrollable">GET /foo.php HTTP/1.1 Host: example.org</code><p>
+    Webプロキシは通常、リクエストの最初の行にある完全なURLを使用して、宛先ホストを決定します。宛先の決定にHostヘッダは使いません。透過プロキシを有効にすると、Burpは非プロキシスタイルのリクエストを受信した場合に、Hostヘッダの内容を解析します。そしてリクエストの宛先としてHostヘッダを使用します。
+</p>
+<p>
+    プロキシでHTTPSを使用するとき、クライアントは宛先ホストを特定するCONNECTリクエストを送信し、TLSネゴシエーションを実行します。しかしプロキシ非対応クライアントは、宛先ホストと直接通信していると思い込み、いきなりTLSネゴシエーションを実行します。透過プロキシが有効な場合、Burpはクライアントと直接TLSネゴシエーションを行い、復号したリクエストからHostヘッダを解析します。
+</p>
+<h3>送信リクエストのリダイレクト</h3>
+<p>
+    透過モードの場合、Burpはそれぞれのリクエストから解析されたHostヘッダのホスト宛にリクエストを転送します。しかし、関連するドメインはhostsファイルで変更しているため、Burpもそのホスト名をローカルリスナーに名前解決してしまいます。別の方法で設定しない限りリクエストが自分自身に転送されます。これは無限ループになってしまいます。
+</p>
+<p>
+    この問題を解決するためには 2 つの方法があります:
+</p>
+<ul>
+    <li>
+        一部のケースでは、透過プロキシを通過するトラフィックはすべて単一のドメインに向かいます。プロキシ非対応クライアントは、単一のドメインにしかアクセスしません。Proxyリスナーの<a href="proxy-options.html#request-handling">リダイレクトオプション</a>を使えば、正しいIPアドレスにトラフィックが行くよう強制させられます。
+    </li>
+    <li>
+        一部のケースでは、プロキシされたトラフィックが複数のドメインに向かいます。Burp自身の<a href="../../settings/network/connections.html#hostname-resolution-overrides">ホスト名解決オプション</a>を使ってhostsファイルを上書きすれば、各ドメインを正しい元のIPアドレスにリダイレクトできます。
+    </li>
+</ul>
+<p>
+    関連して、プロキシ非対応クライアントのリクエストにHostヘッダが含まれていない場合に問題が発生します。このヘッダがなく非プロキシスタイルのリクエストを処理すると、リクエストを転送する宛先ホストを判断できません。
+</p>
+<p>
+    この問題を解決するためには 2 つの方法があります。すべてのリクエストを同じ宛先ホストに転送する場合は、Proxyリスナーの<a href="proxy-options.html#request-handling">リダイレクトオプション</a>を使って、正しいIPアドレスにトラフィックが行くよう強制させられます。
+</p>
+<p>
+    異なるリクエストを異なるホストに転送する場合は、複数のProxyリスナーを使う必要があります:
+</p>
+<ul>
+    <li>
+        宛先ごとに個別の仮想ネットワークインタフェースを作成します。ほとんどのオペレーティングシステムでは、ループバックのようなプロパティを持つ仮想インタフェースを追加で作成できます。また、仮想環境でも可能です。
+    </li>
+    <li>
+        異なるインタフェースごとにProxyリスナーを1つ作成するか、HTTPとHTTPSの両方を使う場合は2つ作成します。
+    </li>
+    <li>
+        hostsファイルを使い、それぞれの宛先ホスト名を異なるリスナーにリダイレクトします。
+    </li>
+    <li>
+        各インタフェースのリスナーごとに、トラフィックをリダイレクトするホストのIPアドレスを設定します。
+    </li>
+</ul>
+<h3>TLS証明書の処理</h3>
+<p>
+    Burpリスナーが使用する<a href="proxy-options.html#certificate">サーバTLS証明書</a>には、さまざまな設定があります。デフォルトの設定では、宛先ホストごとに証明書を自動生成します。透過プロキシではこれがうまくいかない場合があります。プロキシ非対応クライアントは、宛先ホストを特定するためのCONNECTリクエストヘッダを付けずに、リスナーと直接TLSネゴシエーションをします。
+</p>
+<p>
+    ブラウザを含む多くのクライアントはClient Helloメッセージの"server_name"拡張をサポートしています。これで、クライアントがネゴシエートしようとしている宛先ホストを特定できます。この拡張が存在している場合、Burpは通常通りそのホスト名を証明書の生成に使用します。その拡張がない場合は、Burpはフェイルオーバーとして静的な自己署名証明書を使用します。
+</p>
+<p>
+    この問題を解決するためには 2 つの方法があります:
+</p>
+<ul>
+    <li>
+        すべてのHTTPSリクエストが同じドメインの場合、アプリケーションが使うホスト名を指定したCA署名の証明書を生成するように、透過リスナーを設定できます。
+    </li>
+    <li>
+        HTTPリクエストが異なるドメインの場合、それぞれの宛先ごとに、それぞれ異なる仮想ネットワークインタフェースを使った透過Proxyリスナーを作成します。それぞれのリスナーで、トラフィックをリダイレクトする先のホスト名を指定した、CA署名の証明書を生成する設定をします。
+    </li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Proxy</a>
+        </li>
+        <li>
+            <a href="manage-certificates.html">CA証明書の管理</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>CA証明書の管理</h1>
+<p>
+    Burpをインストールするごとに独自のCA証明書を生成し、ProxyリスナーがTLS接続を確立する際に使用します。ここでは、CA証明書のエクスポート、インポート、作成方法について説明します。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        CA証明書の管理は、次の場合でのみ必要です:
+    </p>
+    <ul>
+        <li>
+            Burpブラウザではなく、外部のブラウザを使用する場合。大半のユーザは、これは必要ありません。
+        </li>
+        <li>
+            ある種のネットワーク機器やアプリケーションをテストしたい場合。
+        </li>
+    </ul>
+</div>
+<h2 id="exporting-and-importing-the-ca-certificate">CA証明書のエクスポートとインポート</h2>
+<p>
+    インストール固有のCA証明書を他のツールやBurpの他のインスタンスで使用するようエクスポート、または現在のBurpインスタンスで使用するよう証明書をインポートできます:
+</p>
+<ol>
+    <li>
+        <strong>Proxy</strong>タブで、<strong>オプション</strong>を選択します。
+    </li>
+    <li>
+        <strong>CA証明書のインポート/エクスポート</strong>ボタンをクリックします。
+    </li>
+    <li>
+        <strong>エクスポート</strong>または<strong>インポート</strong>オプションを設定します。<strong>次へ</strong>をクリックします。
+    </li>
+    <li>
+        ファイルの詳細と、必要であればキーストアのパスワードを入力します。<strong>次へ</strong>をクリックします。
+    </li>
+    <li>
+        プロンプトが表示されたら、<strong>閉じる</strong>をクリックします。
+    </li>
+</ol>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        信頼できない第三者に証明書の秘密鍵を渡さないでください。証明書と鍵を所有する悪意の攻撃者は、あなたがBurpを使っていないときでもブラウザのHTTPS通信を盗聴できてしまいます。
+    </p>
+</div>
+<p>
+    CA証明書を再生成するには:
+</p>
+<ol>
+    <li>
+        <strong>Proxy</strong>タブで、<strong>オプション</strong>を選択します。
+    </li>
+    <li>
+        <strong>CA証明書再生成</strong>ボタンをクリックします。
+    </li>
+    <li>
+        プロンプトが表示されたら、<strong>はい</strong>をクリックします。
+    </li>
+    <li>
+        変更を有効にするために、Burpを再起動します。
+    </li>
+    <li>
+        新しい証明書をブラウザにインストールします。
+    </li>
+</ol>
+<h2 id="creating-a-custom-ca-certificate">カスタムCA証明書の作成</h2>
+<p>
+    OpenSSLを使用して、独自の内容でCA証明書を作成できます。
+</p>
+<ol>
+    <li>
+        <p>
+            次のOpenSSLコマンドで、暗号化されていない2048ビットRSAキーで730日間有効の自己署名入り証明書を作成します:
+        </p>
+        <code class="code-scrollable">openssl req -x509 -days 730 -nodes -key rsa:2048 -outform der -keyout server.key -out ca.der</code>
+    </li>
+    <li>
+        <p>
+            次のOpenSSLコマンドで、鍵をPEMからDERに変換します:
+        </p>
+        <code class="code-scrollable">openssl rsa -in server.key -inform pem -out server.key.der -outform der</code>
+    </li>
+    <li>
+        <p>
+            次のOpenSSLコマンドで、鍵を含むPKCS8に変換します:
+        </p>
+        <code class="code-scrollable">openssl pkcs8 -topk8 -in server.key.der -inform der -out server.key.pkcs8.der -outform der -nocrypt</code>
+    </li>
+    <li>
+        Burpで<strong>CA証明書のインポート/エクスポート</strong>ボタンをクリックし、<strong>DER形式の証明書と秘密鍵</strong>を選択します。
+    </li>
+    <li>
+        <code>ca.der</code>を証明書ファイルとして、<code>server.key.pkcs8.der</code>を鍵ファイルとして選択します。
+    </li>
+</ol>
+<p>
+    BurpはカスタムCA証明書を読み込み、ホストごとの証明書生成に使用します。
+</p>
+</body>
+</html>

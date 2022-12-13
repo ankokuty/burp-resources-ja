@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Repeater</a>
+        </li>
+        <li>
+            <a href="http-messages.html">HTTPメッセージの操作</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Burp RepeaterでHTTPメッセージを操作</h1>
+<p>
+    Burp Repeaterを使用すると、個々のHTTPリクエスト操作して再送信し、アプリケーションの反応を分析できます。
+</p>
+<div class="container">
+    <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/_Wifm2g9ugg?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
+    </div>
+</div>
+<p>
+    Burp RepeaterでHTTPリクエストを送信するには:
+</p>
+<ol>
+    <li>
+        Burpの任意の場所でHTTPリクエストを右クリックし、<strong>Repeaterへ送信</strong>をクリックします。そのリクエストを含む新しいタブがRepeaterに追加されます。
+    </li>
+    <li>
+        <strong>Repeater</strong>に移動し、新しいタブでHTTPリクエストの詳細を表示します。
+    </li>
+    <li>
+        メッセージを変更します。
+    </li>
+    <li>
+        <strong>送信</strong>をクリックすると、対象のサーバにリクエストが送信され、レスポンスの詳細が表示されます。
+    </li>
+    <li>
+        この作業を何度でも繰り返して、リクエストにさまざまな変更をするとレスポンスがどう変化するかを確認してください。
+    </li>
+</ol>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <ul>
+        <li>
+            Burpがメッセージの送信に使用するプロトコルを選択できます。詳細は、<a href="../../http2/index.html#changing-the-protocol-for-a-request">Burp SuiteでのHTTP/2の操作</a>を参照してください。
+        </li>
+        <li>
+            1回のクリックで、一連のリクエストを順番に送信もできます。詳細は、<a href="send-sequence.html">HTTPリクエストを順番に送信</a>を参照してください。
+        </li>
+    </ul>
+</div>
+<h2 id="http-repeater-tab">HTTP Repeaterタブ</h2>
+<p>
+    HTTPメッセージでは、各Repeaterタブに次のアイテムがあります:
+</p>
+<ul>
+    <li>
+        送信するリクエストを含むHTTPエディタ。<a href="../../functions/message-editor/index.html">メッセージエディタ</a>機能で、メッセージの分析や編集を行えます。
+    </li>
+    <li>
+        <p>
+            リクエストを送信するサーバ。Repeaterにリクエストを送信する際に自動的に設定されます。
+        </p>
+        <ul>
+            <li>
+                対象サーバをクリックすると、その詳細を編集できます。これは、Hostヘッダを変更した場合に、リクエストがどこに送信されたかの確認に便利です。
+            </li>
+        </ul>
+    </li>
+    <li>
+        発行されたリクエストから受信したレスポンスを表示するHTTPメッセージエディタ。
+    </li>
+    <li>
+        レスポンスの長さ(バイト)、およびレスポンスタイム(ミリ秒)。
+    </li>
+    <li>
+        <p>
+            リクエスト履歴をナビゲートするためのコントロール:
+        </p>
+        <ul>
+            <li>
+                <strong>&lt;</strong>ボタンと<strong>&gt;</strong>ボタンをクリックすると、前後の履歴に移動できます。
+            </li>
+            <li>
+                ドロップダウンボタンを使うと、番号付きのリストが表示され素早く移動できます。
+            </li>
+            <li>
+                履歴の任意の時点で、現在表示されているリクエストを編集して再送信できます。
+            </li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>

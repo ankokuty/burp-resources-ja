@@ -36,12 +36,6 @@
 <p>
     拡張により、Burp Suiteのツールへの新機能の追加や、既存機能の強化ができます。多くの拡張は、ユーザが送信したリクエストの変更や、独自のリクエストを生成します。拡張がどのように動作するかを理解したい場合や、予期せぬ動作のトラブルシューティングする場合には特に、これらのリクエストの調査が役立つでしょう。
 </p>
-<div class="highlightedarea">
-    <h4>注</h4>
-    <p>
-        リリース2022.5から、Burp Suiteの実行にはJava 11以降が必要です。Burp SuiteをJARファイルとして実行しない限り、この変更による影響はないはずです。ただし、バージョン11未満のJavaで書かれた拡張は、Burp Suite 2022.5以降では正しく動作しない可能性があります。
-    </p>
-</div>
 <p>
     <strong>Proxy &gt; HTTP履歴</strong>タブには、ブラウザから送信されたリクエストのうち、Burp経由でプロキシされたものだけが記録されます。このチュートリアルでは、<a href="https://portswigger.net/burp/documentation/desktop/tools/logger"><strong>Logger</strong></a>タブを使って、Burpのすべてのツールやインストールされている拡張からのリクエストを記録する方法を学びます。
 </p>
@@ -90,11 +84,11 @@
 <div class="highlightedarea">
     <h4>注</h4>
     <p>
-        拡張がゼロからリクエストを生成した場合は、<strong>Extender</strong>としてリストされます。しかし、拡張が変更しただけのリクエストは、リクエストを行った元のツールとしてリストアップされることに注意してください。
+        拡張がゼロからリクエストを生成した場合は、<strong>拡張</strong>としてリストされます。しかし、拡張が変更しただけのリクエストは、リクエストを行った元のツールとしてリストアップされることに注意してください。
     </p>
 </div>
 <p>
-    この例で拡張は、既存のリクエストの変更と、独自リクエストの生成の、両方を行っています。したがって、拡張によって送信されたすべてのリクエストを表示するには、<strong>Scanner</strong>と<strong>Extender</strong>ツールの両方が表示されている必要があります。
+    この例で拡張は、既存のリクエストの変更と、独自リクエストの生成の、両方を行っています。したがって、拡張によって送信されたすべてのリクエストを表示するには、<strong>Scanner</strong>と<strong>拡張</strong>ツールの両方が表示されている必要があります。
 </p>
 <div class="rounded-dropshadow">
     <img src="images/viewing-requests/logger-tut-5-scanner-and-extender.png" alt="ツール列">

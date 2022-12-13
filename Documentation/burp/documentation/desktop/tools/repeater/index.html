@@ -31,27 +31,65 @@
     <label class="label-edition is-professional">Professional</label>
     <label class="label-edition is-community">Community</label>
 </section>
-<h1>Burp Repeater</h1>
+<h1>Burp Repeaterとは?</h1>
 <p>
-    Burp Repeaterは、手動によるHTTPリクエストの操作や再発行をし、アプリケーションのレスポンスを分析するための、シンプルなツールです。BurpのどこからでもRepeaterにリクエストを送信でき、リクエストの変更と再発行を繰り返し行えます。
+    Burp Repeaterは、興味深いHTTPメッセージやWebSocketメッセージを何度も変更して送信できるツールです。
+</p>
+<p>
+    Repeaterは、次のようなあらゆる用途に使用できます:
+</p>
+<ul>
+    <li>
+        入力ベースの脆弱性をテストするために、パラメータ値を変化させたリクエストを送信する。
+    </li>
+    <li>
+        特定の順序で一連のHTTPリクエストを送信し、多段階処理中の脆弱性や、接続状態の操作に依存する脆弱性をテストする。
+    </li>
+    <li>
+        Burp Scannerから報告された問題を手動で検証する。
+    </li>
+</ul>
+<p>
+    Repeaterでは、複数のメッセージをそれぞれのタブで同時に作業できます。メッセージに行った変更は、タブの履歴に保存されます。グループ機能により、大量に開いたタブを簡単に管理できます。
 </p>
 <div class="highlightedarea">
-    <h4>続きを読む</h4>
+    <h4>関連ページ</h4>
     <ul>
         <li>
-            <a href="getting-started.html">Burp Repeater入門</a>。
+            <a href="../../getting-started/reissuing-http-requests.html">入門: Burp Repeaterによるリクエストの再発行</a>。
         </li>
         <li>
-            <a href="using.html">Burp Repeaterの使い方</a>。
+            <p>
+                <a href="http-messages.html">Burp RepeaterでHTTPメッセージを操作</a>。
+            </p>
+            <ul>
+                <li>
+                    <a href="send-sequence.html">HTTPリクエストを順番に送信</a>。
+                </li>
+            </ul>
         </li>
         <li>
-            <a href="options.html">Burp Repeaterオプション</a>。
+            <a href="websocket-messages.html">Burp RepeaterでWebSocketメッセージを操作</a>。
         </li>
         <li>
-            <a href="groups.html">タブグループの管理</a>。
+            <p>
+                <a href="managing-tabs.html">Repeaterタブの管理</a>。
+            </p>
+            <ul>
+                <li>
+                    <a href="groups.html">タブグループの管理</a>。
+                </li>
+            </ul>
         </li>
         <li>
-            <a href="send-sequence.html">リクエストを順番に送信</a>。
+            <p>
+                <a href="options.html">Burp Repeaterオプション</a>。
+            </p>
+            <ul>
+                <li>
+                    <a href="tab-options.html">タブ固有オプションの設定</a>。
+                </li>
+            </ul>
         </li>
     </ul>
 </div>

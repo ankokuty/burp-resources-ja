@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Proxy</a>
+        </li>
+        <li>
+            <a href="intercept-messages.html">メッセージのインターセプト</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>メッセージのインターセプト</h1>
+<p>
+    <strong>Proxy &gt; インターセプト</strong>タブで、ブラウザと対象サーバ間で送受信されるHTTPリクエストとレスポンスをインターセプトします。これにより、Webサイトを操作したときの挙動の変化を調査できます。
+</p>
+<p>
+    インターセプト機能を使うと、次のような便利なアクションが行えます:
+</p>
+<ul>
+    <li>
+        リクエストをインターセプトし、サーバに転送する前に変更する。
+    </li>
+    <li>
+        興味深いリクエストを、RepeaterやIntruderなどBurpの他のツールに送信し、さらにテストする。
+    </li>
+    <li>
+        リクエストがサーバに送信されないよう破棄する。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>入門</h4>
+    <p>
+        メッセージのインターセプトについて手っ取り早く知りたい場合は、<a href="../../getting-started/index.html">入門</a>セクションのチュートリアルを参照してください:
+    </p>
+    <ul>
+        <li>
+            <a href="../../getting-started/intercepting-http-traffic.html">HTTPトラフィックのインターセプト</a>。
+        </li>
+        <li>
+            <a href="../../getting-started/modifying-http-requests.html">HTTPトラフィックの変更</a>。
+        </li>
+    </ul>
+</div>
+<h2 id="controls">コントロール</h2>
+<p>
+    メッセージをインターセプトすると、リクエストの詳細が<strong>Proxy &gt; インターセプト</strong>タブに入力されます。パネルの上部に対象サーバの詳細が表示されます。HTTPリクエストの場合、対象サーバを手動で編集できます。それには、<strong>対象を編集</strong>メニュー<span class="icon-edit"></span>を選択してください。
+</p>
+<p>
+    パネルには、次のコントロールもあります:
+</p>
+<ul>
+    <li>
+        <strong>転送</strong> - メッセージの確認や編集をした後、対象宛てにメッセージを送信するには<strong>転送</strong>をクリックします。
+    </li>
+    <li>
+        <strong>破棄</strong> - リクエストが対象宛てに届かないようキャンセルするには、<strong>破棄</strong>をクリックします。
+    </li>
+    <li>
+        <p>
+            <strong>インターセプト有効/無効</strong> - すべてのインターセプトの有効と無効を切り替えます:
+        </p>
+        <ul>
+            <li>
+                ボタンに<strong>インターセプト有効</strong>と表示されている場合、メッセージがインターセプトされます。また、<a href="proxy-options.html#intercepting-http-requests-and-responses">HTTP</a>や<a href="proxy-options.html#intercept-websocket-messages">WebSocketメッセージ</a>のインターセプトオプションで、メッセージを自動的に転送するように設定もできます。
+            </li>
+            <li>
+                ボタンに<strong>インターセプト無効</strong>と表示されている場合、すべてのメッセージが自動的に転送されます。
+            </li>
+        </ul>
+    </li>
+    <li>
+        <strong>アクション</strong> - メインパネルのコンテキストメニューが表示されます。ここから、スキャンの実行や他のBurpツールへのリクエスト送信など、さまざまなアクションを実行できます。
+    </li>
+    <li>
+        <p>
+            <strong>コメント欄</strong> - 気になるアイテムにコメントを追加でき、後で特定しやすくできます。入力したコメントは、<a href="http-history/index.html">HTTP履歴</a>のアイテムにも表示されます。
+        </p>
+        <ul>
+            <li>
+                HTTPリクエストにコメントを追加した場合、そのレスポンスがインターセプトされると、そのコメントが再度表示されます。
+            </li>
+        </ul>
+    </li>
+    <li>
+        <strong>色付け</strong> - 気になるアイテムに色付けして強調表示できます。色付けはコメントと同じように動作し、Proxy履歴やインターセプトしたレスポンスに表示されます。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        インターセプトしたメッセージは、ホットキーで転送や破棄ができます。デフォルトでは、Ctrl+Fで現在のメッセージを転送します。<a href="../../settings/ui/hotkeys.html">ホットキーオプション</a>でホットキーのデフォルトを変更できます。
+    </p>
+</div>
+<h2 id="message-display">メッセージ表示</h2>
+<p>
+    メインパネルの<a href="../../functions/message-editor/index.html">メッセージエディタ</a>には、現在インターセプトしているメッセージが表示されます。ここから、メッセージを分析したり、それに対するアクションを実行できます。
+</p>
+<p>
+    <strong>アクション</strong>をクリックするとコンテキストメニューが表示され、<a href="../../functions/message-editor/index.html#context-specific-actions">標準機能にアクセスできます</a>。HTTPメッセージに対して、次の操作も行えます:
+</p>
+<ul>
+    <li>
+        <strong>リクエスト/レスポンスをインターセプトしない</strong> - ホスト名、ファイル拡張子、HTTPステータスコードなど指定した特徴のメッセージを自動的に転送するように、インターセプトルールを追加できます。この機能は、興味のないリクエストや特定のタイプのレスポンスが多い場合に使用します。
+    </li>
+    <li>
+        <strong>インターセプト実行</strong> - このオプションを選択すると、現在表示されているリクエストに対するレスポンスがインターセプトされます。このオプションは、リクエストにのみ使用できます。
+    </li>
+</ul>
+<h2 id="protocol">プロトコル</h2>
+<p>
+    <a href="../../functions/message-editor/getting-started-inspector.html">Inspector</a>を使用して、リクエストのプロトコルを編集できます。詳細は、<a href="../../http2/index.html#changing-the-protocol-for-a-request">HTTP/2ドキュメント</a>を参照してください。
+</p>
+</body>
+</html>

@@ -62,7 +62,7 @@
     ブラウザが送信した各HTTPリクエストが、<strong>インターセプト</strong>タブに表示されます。それぞれのメッセージを確認し、必要なら編集もできます。編集が完了したら、<strong>転送</strong>ボタンをクリックして、宛先Webサーバにリクエストを送信します。インターセプトされたメッセージが保留されている場合、ブラウザが読み込みを完了させるためには、すべてのメッセージを転送する必要があります。
 </p>
 <p>
-    インターセプトの必要に応じて<strong>インターセプト有効/無効</strong>ボタンを変更してください。詳細は、<a href="../tools/proxy/getting-started.html">Burp Proxy入門</a>を参照してください。
+    インターセプトの必要に応じて<strong>インターセプト有効/無効</strong>ボタンを変更してください。詳細は、<a href="../tools/proxy/index.html">Burp Proxyとは?</a>を参照してください。
 </p>
 <div class="rounded-dropshadow">
     <img src="../images/pentesting-intercept-940.png" alt="ペネトレーションテスト: リクエストのインターセプト" class="center-block">
@@ -119,7 +119,7 @@
                 <strong><a href="../tools/intruder/getting-started.html">Intruder</a></strong> - カスタマイズされた自動攻撃をし、さまざまな種類のテストタスクを実行します。
             </li>
             <li>
-                <strong><a href="../tools/repeater/using.html">Repeater</a></strong> - HTTPリクエストを手動で変更し再送します。
+                <strong><a href="../tools/repeater/index.html">Repeater</a></strong> - HTTPやWebSocketリクエストを手動で変更し再送します。
             </li>
             <li>
                 <strong><a href="../tools/collaborator-client/index.html">Collaboratorクライアント</a></strong> - Burp Collaboratorのペイロードを作成し、帯域外通信の結果を監視します。
@@ -163,11 +163,11 @@
 </div>
 <h2 id="recon-and-analysis">情報収集、分析</h2>
 <p>
-    <a href="../tools/proxy/using.html">Proxyツール</a>はBurpのワークフローの中心部に位置します。<a href="../functions/burps-browser.html">Burpブラウザ</a>でアプリケーションを巡回している間、Burpはすべての関連情報を収集しており、他のアクションを簡単に開始できます。典型的なテストで、情報収集、分析フェーズには次のタスクが行われます。
+    <a href="../tools/proxy/index.html">Proxyツール</a>はBurpのワークフローの中心部に位置します。<a href="../functions/burps-browser.html">Burpブラウザ</a>でアプリケーションを巡回している間、Burpはすべての関連情報を収集しており、他のアクションを簡単に開始できます。典型的なテストで、情報収集、分析フェーズには次のタスクが行われます。
 </p>
 <h3>アプリケーションの手動マッピング</h3>
 <p>
-    BurpブラウザがBurp Proxyを経由している間に、リンクを辿る、フォームを送信する、複数手順の処理を実行するなどの操作を行い、<a href="../tools/target/using.html#manual-application-mapping">アプリケーションを手動でマッピング</a>していきます。このプロセスで、リクエストしたコンテンツがProxy<a href="../tools/proxy/using.html#using-the-proxy-history">履歴</a>とTarget<a href="../tools/target/site-map/index.html">サイトマップ</a>に取り込まれ、レスポンスから推測できる追加のコンテンツ(リンク、フォームなど)が、(<a href="../scanning/live-tasks.html">ライブタスク</a>によって)サイトマップに追加されます。<a href="../tools/target/using.html#reviewing-unrequested-items">リクエストされていないアイテム</a>(サイトマップでグレーで表示される)を確認し、ブラウザでこれらをリクエストします。
+    BurpブラウザがBurp Proxyを経由している間に、リンクを辿る、フォームを送信する、複数手順の処理を実行するなどの操作を行い、<a href="../tools/target/using.html#manual-application-mapping">アプリケーションを手動でマッピング</a>していきます。このプロセスで、リクエストしたコンテンツがProxy<a href="../tools/proxy/http-history/index.html">履歴</a>とTarget<a href="../tools/target/site-map/index.html">サイトマップ</a>に取り込まれ、レスポンスから推測できる追加のコンテンツ(リンク、フォームなど)が、(<a href="../scanning/live-tasks.html">ライブタスク</a>によって)サイトマップに追加されます。<a href="../tools/target/using.html#reviewing-unrequested-items">リクエストされていないアイテム</a>(サイトマップでグレーで表示される)を確認し、ブラウザでこれらをリクエストします。
 </p>
 <h3>必要な箇所で自動マッピングを実行</h3>
 <p>
@@ -192,7 +192,7 @@
 </div>
 <h3>アプリケーションの攻撃経路の分析</h3>
 <p>
-    マッピングプロセスでは、アプリケーションについて収集したすべての情報を、Proxy<a href="../tools/proxy/using.html#using-the-proxy-history">履歴</a>やTarget<a href="../tools/target/site-map/index.html">サイトマップ</a>へ取り込みます。どちらのリポジトリにも、含まれている情報の<a href="../tools/target/using.html#analyzing-the-attack-surface">分析</a>を<a href="../tools/proxy/using.html#using-the-proxy-history">サポート</a>する機能や、アプリケーションが晒している攻撃経路を評価する機能があります。さらに、Burpの<a href="../functions/target-analyzer.html">対象分析</a>を使用すると、攻撃経路の範囲やアプリケーションが使用しているさまざまな種類のURLを見つけられます。
+    マッピングプロセスでは、アプリケーションについて収集したすべての情報を、Proxy<a href="../tools/proxy/http-history/index.html">履歴</a>やTarget<a href="../tools/target/site-map/index.html">サイトマップ</a>へ取り込みます。どちらのリポジトリにも、含まれている情報の<a href="../tools/target/using.html#analyzing-the-attack-surface">分析</a>を手助けする機能や、アプリケーションが晒している攻撃経路を評価する機能があります。さらに、Burpの<a href="../functions/target-analyzer.html">対象分析</a>を使用すると、攻撃経路の範囲やアプリケーションが使用しているさまざまな種類のURLを見つけられます。
 </p>
 <h2 id="tool-configuration">ツールの設定</h2>
 <p>
@@ -203,7 +203,7 @@
         <strong>表示</strong> - HTTPメッセージを表示する<a href="../settings/ui/message-editor.html">フォント</a>と文字コードや、Burp自身のUI<a href="../settings/ui/display.html">フォント</a>が設定できます。
     </li>
     <li>
-        <strong>ターゲットスコープ</strong> - 今注目し攻撃をしようとしているアイテムを<a href="../tools/target/scope.html">ターゲットスコープ</a>に設定します。テストの初期段階で設定すべきで、Proxy<a href="../tools/proxy/history/index.html#proxy-history-display-filter">履歴</a>やTarget <a href="../tools/target/site-map/index.html#site-map-display-filter">サイトマップ</a>に表示するアイテム、Proxyが<a href="../tools/proxy/options/index.html#intercepting-http-requests-and-responses">インターセプト</a>するメッセージ、<a href="../scanning/index.html">スキャン</a>するメッセージを制御できます。
+        <strong>ターゲットスコープ</strong> - 今注目し攻撃をしようとしているアイテムを<a href="../tools/target/scope.html">ターゲットスコープ</a>に設定します。テストの初期段階で設定すべきで、Proxy<a href="../tools/proxy/http-history/index.html">履歴</a>やTarget <a href="../tools/target/site-map/index.html#site-map-display-filter">サイトマップ</a>に表示するアイテム、Proxyが<a href="../tools/proxy/intercept-messages.html">インターセプト</a>するメッセージ、<a href="../scanning/index.html">スキャン</a>するメッセージを制御できます。
     </li>
     <li>
         <strong>プラットフォーム認証</strong> - アプリケーションサーバがプラットフォームレベル(HTTP)認証を使用している場合、Burpが自動的に<a href="../settings/network/connections.html#platform-authentication">認証</a>するよう設定します。
@@ -237,7 +237,7 @@
         Burp Intruderで、独自のテスト文字列やペイロードポジションを指定して、<a href="../tools/intruder/using.html#fuzzing-for-vulnerabilities">ファジング</a>が実行できます。
     </li>
     <li>
-        個々のリクエストを<a href="../tools/repeater/using.html">Burp Repeater</a>に送信し、手動でリクエストを編集し何度も再送信できます。
+        個々のリクエストを<a href="../tools/repeater/index.html">Burp Repeater</a>に送信し、手動でリクエストを変更し何度も再送信できます。
     </li>
     <li>
         一部の種類のバグを発見した場合には、<a href="../tools/intruder/using.html">Burp Intruder</a>で積極的に攻撃できます。たとえば、SQLインジェクション脆弱性を攻撃するには、多くの場合<a href="../tools/intruder/payloads/types.html#recursive-grep">再帰検索</a>ペイロードを使用します。
@@ -249,16 +249,16 @@
 </p>
 <ul>
     <li>
-        典型的には、<a href="../tools/proxy/using.html#using-the-proxy-history">Proxy履歴</a>を詳細に評価し、調査する関連リクエストを特定します。
+        典型的には、<a href="../tools/proxy/http-history/index.html">Proxy履歴</a>を詳細に評価し、調査する関連リクエストを特定します。
     </li>
     <li>
-        予期せぬリクエストによるアプリケーションの挙動を調査するには、<a href="../tools/repeater/using.html">Burp Repeater</a>で個々のリクエストを発行するか、<a href="../tools/proxy/using.html#intercepting-requests-and-responses">Proxyインターセプト</a>を有効にしてブラウザを使用しながらその場でリクエストを編集します。
+        予期せぬリクエストによるアプリケーションの挙動を調査するには、<a href="../tools/repeater/index.html">Burp Repeater</a>で個々のリクエストを発行するか、<a href="../tools/proxy/intercept-messages.html">Proxyインターセプト</a>を有効にしてブラウザを使用しながらその場でリクエストを編集します。
     </li>
     <li>
         <a href="../tools/intruder/using.html">Burp Intruder</a>を使用して、ロジックや設計の欠陥を積極的に攻撃できます。たとえば、有効なユーザ名の列挙、パスワード推測、セッショントークンやパスワードリカバリトークンの推測、あるいは同一リクエストを単に大量再送信(<a href="../tools/intruder/payloads/types.html#null-payloads">ペイロードなし</a>タイプを使用)するために、Intruderが使用できます。
     </li>
     <li>
-        ロジックや設計の欠陥を確認後、Burp Proxyの<a href="../tools/proxy/options/index.html#match-and-replace">検索/置換機能</a>や<a href="../settings/sessions/session-handling-rules.html">セッションハンドリングルール</a>を使用してリクエストを機械的に変更し、積極的に攻撃できます。
+        ロジックや設計の欠陥を確認後、Burp Proxyの<a href="../tools/proxy/proxy-options.html#match-and-replace">検索/置換機能</a>や<a href="../settings/sessions/session-handling-rules.html">セッションハンドリングルール</a>を使用してリクエストを機械的に変更し、積極的に攻撃できます。
     </li>
 </ul>
 <h3>アクセス制御の問題</h3>
@@ -270,7 +270,7 @@
         あるユーザがアクセスでき他のユーザができない機能の特定、高権限のユーザだけにアクセスが制限されている機能に低権限のユーザがアクセスできるかのテスト、同じタイプの2人のユーザがアクセスするデータを分離するために使用している識別子の探索など、さまざまなタスクで<a href="../tools/target/site-map/comparing.html">サイトマップ比較</a>機能が使用できます。
     </li>
     <li>
-        各ブラウザごとに(異なるポートを使用する)<a href="../tools/proxy/options/index.html#proxy-listeners">Burp Proxyリスナー</a>を分離すると、異なるブラウザを使用しそれぞれのユーザコンテキストでアプリケーションにアクセスできます。追加の<a href="../tools/proxy/history/index.html">Proxy履歴</a>ウィンドウを(コンテキストメニューから)開き、各ウィンドウで<a href="../tools/proxy/history/index.html#proxy-history-display-filter">ディスプレイフィルタ</a>を設定すると、特定のProxyリスナーが受信したアイテムのみを表示できます。各ブラウザでアプリケーションを使用すると、各履歴ウィンドウには関連するユーザコンテキストのアイテムだけが表示されます。次に、(コンテキストメニューから)<strong>現在のブラウザセッションでリクエスト</strong>機能を使用すると、ブラウザ間でリクエストを切り替えて、ブラウザのユーザコンテキストでどのように処理されるか判断できます。
+        各ブラウザごとに(異なるポートを使用する)<a href="../tools/proxy/proxy-options.html#proxy-listeners">Burp Proxyリスナー</a>を分離すると、異なるブラウザを使用しそれぞれのユーザコンテキストでアプリケーションにアクセスできます。追加の<a href="../tools/proxy/http-history/index.html">Proxy履歴</a>ウィンドウを(コンテキストメニューから)開き、各ウィンドウで<a href="../tools/proxy/http-history/index.html">ディスプレイフィルタ</a>を設定すると、特定のProxyリスナーが受信したアイテムのみを表示できます。各ブラウザでアプリケーションを使用すると、各履歴ウィンドウには関連するユーザコンテキストのアイテムだけが表示されます。次に、(コンテキストメニューから)<strong>現在のブラウザセッションでリクエスト</strong>機能を使用すると、ブラウザ間でリクエストを切り替えて、ブラウザのユーザコンテキストでどのように処理されるか判断できます。
     </li>
     <li>
         多くの権限昇格の脆弱性は、アプリケーションがユーザパラメータ内にユーザ識別子を渡し、現在のユーザコンテキストによらずその識別子で権限を特定している場合に発生します。このタイプの脆弱性を攻撃するには、<a href="../tools/intruder/using.html"> Burp Intruder</a>で(たとえば、<a href="../tools/intruder/payloads/types.html#numbers">数値</a>や<a href="../tools/intruder/payloads/types.html#custom-iterator">カスタムイテレーター</a>ペイロードタイプを使用して)適切な形式の識別子を一通り送信し、<a href="../tools/intruder/options.html#grep-extract">抽出grep</a>アイテムを設定し、アプリケーションのレスポンスからユーザ固有の気になるデータを取得します。
@@ -285,7 +285,7 @@
         情報漏洩問題は、対象の<a href="../tools/target/site-map/index.html">サイトマップ</a>で確認でき、<a href="../functions/search.html#text-search">検索</a>や<a href="../functions/search.html#find-comments-and-scripts">コメント検索</a>機能が支援します。
     </li>
     <li>
-        CSRF脆弱性が特定できた場合、<a href="../functions/generate-csrf-poc.html">CSRFジェネレータ</a>を使用するとHTMLで攻撃の概念実証(proof-of-concept)を素早く生成でき、<strong>ブラウザでテスト</strong>機能を使用してブラウザに攻撃を読み込ませ、ブラウザの結果と<a href="../tools/proxy/using.html#using-the-proxy-history">Proxy履歴</a>を確認して攻撃が成功したか確認できます。
+        CSRF脆弱性が特定できた場合、<a href="../functions/generate-csrf-poc.html">CSRFジェネレータ</a>を使用するとHTMLで攻撃の概念実証(proof-of-concept)を素早く生成でき、<strong>ブラウザでテスト</strong>機能を使用してブラウザに攻撃を読み込ませ、ブラウザの結果と<a href="../tools/proxy/http-history/index.html">Proxy履歴</a>を確認して攻撃が成功したか確認できます。
     </li>
     <li>
         <a href="../tools/sequencer/index.html">Burp Sequencer</a>を使用すると、アプリケーションのセッショントークンを分析し、その乱数品質を評価できます。
@@ -294,7 +294,7 @@
         セッショントークンやその他の種類のパラメータが暗号化されている場合、Burp Intruderの<a href="../tools/intruder/payloads/types.html#bit-flipper">ビットフリッパー</a>や<a href="../tools/intruder/payloads/types.html#ecb-block-shuffler">ECBブロックシャッフル</a>ペイロードタイプを使用すると、アプリケーションが復号した際に意味のあるデータになることを期待して、暗号化されたデータを手当たり次第変更できます。
     </li>
     <li>
-        独自の<a href="../tools/extensions/index.html">Burp拡張</a>を書くと、より特化した、またはカスタマイズされたタスクを実行できます。
+        独自の<a href="../extensions/index.html">Burp拡張</a>を書くと、より特化した、またはカスタマイズされたタスクを実行できます。
     </li>
 </ul>
 <h2 id="read-more">続きを読む</h2>
@@ -310,13 +310,13 @@
             <a href="../tools/target/using.html">Targetツールの使い方</a>
         </li>
         <li>
-            <a href="../tools/proxy/using.html">Burp Proxyの使い方</a>
+            <a href="../tools/proxy/index.html">Burp Proxy</a>
         </li>
         <li>
             <a href="../tools/intruder/using.html">Burp Intruderの使い方</a>
         </li>
         <li>
-            <a href="../tools/repeater/using.html">Burp Repeaterの使い方</a>
+            <a href="../tools/repeater/index.html">Burp Repeaterの使い方</a>
         </li>
         <li>
             <a href="../scanning/index.html">Webサイトのスキャン</a>

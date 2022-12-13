@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Burp Suite Professional / Burp Suite Community Editionで、Burp Repeaterを使ってHTTPリクエストを変更し、手動で再発行する方法を紹介します。">
+<meta name="description" content="Burp Suite Professional / Burp Suite Community Editionで、Burp Repeaterを使ってHTTPリクエストを変更し、手動で再送信する方法を紹介します。">
 <link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
 <cms page-layout="FREESTYLE" ignore-validation="STACKED_HEADINGS,ALLOWED_CHARACTERS"></cms><title>Burp Repeaterによるリクエストの再発行</title>
 </head>
@@ -35,7 +35,7 @@
 <h1 cms-ignore-validation="HEADING_CAPITALIZATION" no-keyword-injection>Burp Repeaterによるリクエストの再発行</h1>
 <div no-keyword-injection>
     <p>
-        このチュートリアルでは、興味深いリクエストをBurp Repeaterを使って何度も繰り返し発行します。すると、リクエストのインターセプトを何度もしなくても、さまざな入力に対する対象Webサイトの反応を調べられます。これにより、脆弱性の調査や、Burp Scannerが発見した脆弱性の確認などが非常に簡単になります。
+        このチュートリアルでは、興味深いリクエストをBurp Repeaterを使って何度も繰り返し送信します。すると、リクエストのインターセプトを何度もしなくても、さまざな入力に対する対象Webサイトの反応を調べられます。これにより、脆弱性の調査や、Burp Scannerが発見した脆弱性の確認などが非常に簡単になります。
     </p>
     <div class="highlightedarea">
         <h4>Webセキュリティアカデミー</h4>
@@ -66,9 +66,9 @@
     <p>
         <strong>Repeater</strong>タブに移動すると、独自の番号のついたタブでリクエストが待機しています。
     </p>
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ5: リクエストを発行しレスポンスを確認する</h3>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ5: リクエストを送信レスポンスを確認する</h3>
     <p>
-        <strong>送信</strong>をクリックすると、リクエストが発行され、サーバからのレスポンスが表示されます。このリクエストは何度でも再送でき、その都度レスポンスが更新されます。
+        <strong>送信</strong>をクリックすると、サーバからのレスポンスが表示されます。このリクエストは何度でも再送でき、その都度レスポンスが更新されます。
     </p>
     <img src="../images/getting-started/quick-start-pro-repeater.png" alt="Burp Repeaterによるリクエストの再発行">
     <hr>
@@ -76,7 +76,7 @@
     <p>
         同じリクエストに毎回異なる入力をして再送すると、入力に基づくさまざまな脆弱性の発見や確認ができます。これは、Burp Suiteを使って手動テスト行う、最も一般的な作業の1つです。
     </p>
-    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: 異なる入力でリクエストを再発行する</h3>
+    <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ1: 異なる入力でリクエストを再送信する</h3>
     <p>
         <code>productId</code>パラメータの数字を変更し、リクエストを再送します。大きめの数字など任意の数字を指定してみてください。
     </p>

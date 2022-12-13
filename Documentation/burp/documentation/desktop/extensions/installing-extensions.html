@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="index.html">拡張</a>
+        </li>
+        <li>
+            <a href="installing-extensions.html">拡張のインストール</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>拡張のインストール</h1>
+<p>
+    ここでは、BAppストアやファイルから拡張をインストールする方法を説明します。
+</p>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="installing-extensions-from-the-bapp-store">BAppストアから拡張をインストール</h2>
+<p>
+    BAppストアには、コミュニティが作成した拡張やBAppがあり、セキュリティや品質についてレビューが行われています。BAppストアにあるすべての拡張は、次の情報が一覧に表示されます:
+</p>
+<ul>
+    <li>
+        拡張の機能説明。
+    </li>
+    <li>
+        拡張がシステムリソースに与える影響の概算。
+    </li>
+    <li>
+        拡張のコミュニティ評価や人気度の概要情報。
+    </li>
+</ul>
+<h3 id="requirements">要件</h3>
+<p>
+    拡張をインストールする前に、次の要件に注意してください:
+</p>
+<ul>
+    <li>
+        一部の拡張は、Burp Suite Community EditionからBurp Suite Professionalへのアップグレードが必要です。
+    </li>
+    <li>
+        一部の拡張は、Burp Suiteのバージョンアップが必要な場合があります。
+    </li>
+    <li>
+        一部の拡張は、JythonやJRubyのインストールが必要です。
+    </li>
+    <li>
+        使用している端末が、<code>portswigger.net</code>にアクセスできる必要があります。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        インターネットに接続できない端末の場合、<a href="#installing-an-extension-from-a-file">ファイルから拡張をインストール</a>できます。
+    </p>
+</div>
+<p>
+    BAppストアから拡張をインストールするには:
+</p>
+<ol>
+    <li>
+        <strong>拡張 &gt; BAppストア</strong>に移動し、Burp SuiteでBAppストアを表示します。
+    </li>
+    <li>
+        リストから拡張を選択します。右側のパネルに表示される、拡張の概要情報に注目してください。
+    </li>
+    <li>
+        利用可能な場合は、<strong>インストール</strong>をクリックして拡張をインストールします。
+    </li>
+</ol>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        <a href="https://portswigger.net/burp/extender/api/" target="_blank">古いExtender API</a>を利用する一部のBAppは、PythonやRubyで書かれていました。これらの拡張を使用する場合、JythonやJRubyのインストールが必要になる場合があります。
+    </p>
+    <p>
+        拡張がJythonやJRubyを必要とする場合、<strong>Install</strong>ボタンはグレーアウトされています。JythonまたはJRubyをインストールする方法は、次の通りです。
+    </p>
+</div>
+<h3 id="installing-jython-or-jruby">JythonやJRubyのインストール</h3>
+<p>
+    BAppストアで、拡張の横に<strong>Jythonをダウンロード</strong>や<strong>JRubyをダウンロード</strong>ボタンが表示されている場合は、JythonやJRubyをインストールする必要があります。これにより、PythonやRubyで書かれた拡張が、BurpのJavaベースの古いExtender APIを使えるようになります。
+</p>
+<p>
+    JythonやJRubyをインストールするには:
+</p>
+<ol>
+    <li>
+        <strong>Jythonをダウンロード</strong>または<strong>JRubyをダウンロード</strong>ボタンをクリックします。
+    </li>
+    <li>
+        JythonやJRubyのスタンドアロンJAR版をダウンロードします。
+    </li>
+    <li>
+        Burp Suiteで、<strong>拡張 &gt; オプション</strong>に移動します。
+    </li>
+    <li>
+        <strong>Python環境</strong>または<strong>Ruby環境</strong>で、<strong>ファイル選択</strong>をクリックします。
+    </li>
+    <li>
+        JARファイルを選択し、<strong>開く</strong>をクリックします。
+    </li>
+    <li>
+        <strong>拡張 &gt; BAppストア</strong>に移動します。<strong>インストール</strong>ボタンが有効になったことに注目してください。
+    </li>
+</ol>
+<h2 id="installing-an-extension-from-a-file">ファイルから拡張をインストール</h2>
+<p>
+    ファイルから拡張をインストールできます。これは、インターネットに接続されていないマシンでBurp Suiteを実行している場合に便利でしょう。
+</p>
+<p>
+    ファイルから拡張機能をインストールする場合、2つの選択肢があります:
+</p>
+<ul>
+    <li>
+        <p>
+            拡張は、BAppストアのWebサイト(<a href="https://portswigger.net/bappstore">https://portswigger.net/bappstore</a>)から直接ダウンロードできます。これらは、<code>.bapp</code>形式です。
+        </p>
+    </li>
+    <li>
+        <p>
+            カスタムファイルを使用できます。これらは通常、JAR形式です。
+        </p>
+    </li>
+</ul>
+<p>
+    <code>.bapp</code>ファイルから拡張をインストールするには:
+</p>
+<ol>
+    <li>
+        <strong>拡張 &gt; BAppストア</strong>に移動し、ウィンドウの下部にある<strong>手動インストール</strong>をクリックします。
+    </li>
+    <li>
+        ファイルを選択し、<strong>開く</strong>をクリックします。
+    </li>
+    <li>
+        拡張がインストールされるのを待ちます。<strong>インストール済み</strong>タブに、拡張が表示されたことに注目してください。
+    </li>
+</ol>
+<p>
+    JARファイルから拡張をインストールするには:
+</p>
+<ol>
+    <li>
+        <strong>拡張 &gt; インストール済み</strong>に移動し、<strong>追加</strong>をクリックします。
+    </li>
+    <li>
+        <strong>拡張詳細</strong>で、<strong>ファイル選択</strong>をクリックし、ファイルを探します。
+    </li>
+    <li>
+        必要に応じて、標準出力や標準エラーの環境設定をします。
+    </li>
+    <li>
+        <strong>次へ</strong>をクリックします。
+    </li>
+    <li>
+        拡張がインストールされるのを待ちます。<strong>インストール済み</strong>タブに、拡張が表示されたことに注目してください。
+    </li>
+</ol>
+<p>
+    PythonやRubyで書かれた拡張をインストールする前に、<a href="#installing-jython-or-jruby">JythonやJRubyをインストール</a>する必要があります。
+</p>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <ul>
+        <li>
+            <a href="monitoring-system-impact.html">拡張によるシステム影響の監視</a>。
+        </li>
+        <li>
+            <a href="managing-extensions.html">拡張の管理</a>。
+        </li>
+    </ul>
+</div>
+</body>
+</html>

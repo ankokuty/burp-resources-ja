@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE" ignore-validation="STACKED_HEADINGS,OTHER_PAGE_KEYWORD_TOO_FREQUENT"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="index.html">Dastardly</a>
+        </li>
+        <li>
+            <a href="teamcity.html">TeamCity</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-dastardly">Dastardly</label>
+</section>
+<h1>DastardlyとTeamCityの連携</h1>
+<p>
+    DastardlyとTeamCityを連携できます。これにより、既存のCI/CDパイプラインのステージとして、DastardlyのWeb脆弱性スキャンを実行できます。
+</p>
+<p>
+    このページでは、簡単な(サンプルの)TeamCity CI/CDパイプラインとDastardlyを連携する方法を説明します。この手順は、TeamCity 2022.04.4でテストされています。
+</p>
+<h2 id="teamcity-agent-requirements">TeamCityエージェントの要件</h2>
+<p>
+    TeamCityエージェントは、Dockerコンテナを実行するように設定されている必要があります。
+</p>
+<p>
+    DastardlyをTeamCityのCI/CDパイプラインで実行するために、TeamCityのデフォルト以外のプラグインは必要ありません。
+</p>
+<p>
+    Dastardlyスキャンを実行するために必要なマシンスペックは、<a href="index.html#dastardly-system-requirements">Dastardlyのシステム要件</a>を参照してください。
+</p>
+<h2 id="creating-the-settings-file">設定ファイルの作成</h2>
+<ol>
+    <li>
+        <p>
+            <code>settings.kts</code>ファイルが格納されているリポジトリに、TeamCityからアクセスする設定を行います。
+        </p>
+    </li>
+    <li>
+        <p>
+            <code>settings.kts</code>ファイルに次の内容を追加します:
+        </p>
+        <p>
+            <code class="code-scrollable">import jetbrains.buildServer.configs.kotlin.* import jetbrains.buildServer.configs.kotlin.buildSteps.ScriptBuildStep import jetbrains.buildServer.configs.kotlin.buildSteps.script version = "2022.04" project { description = "Contains all other projects" buildType(DastardlyScan) } object DastardlyScan : BuildType({ name = "Dastardly from Burp Suite Scan" vcs { cleanCheckout = true } features { feature { type = "xml-report-plugin" param("xmlReportParsing.reportType", "junit") param("xmlReportParsing.reportDirs", "+:**/reports/**.xml") } } steps { script { name = "Dastardly from Burp Suite Scan" dockerImage = "public.ecr.aws/portswigger/dastardly:latest" dockerPull = true dockerImagePlatform = ScriptBuildStep.ImagePlatform.Linux dockerRunParameters = """ -e DASTARDLY_TARGET_URL=https://ginandjuice.shop/ -e DASTARDLY_OUTPUT_FILE=%teamcity.build.checkoutDir%/reports/dastardly-report.xml """.trimIndent() scriptContent = """ mkdir -p %system.teamcity.build.workingDir%/reports docker-entrypoint.sh dastardly """.trimIndent() } } artifactRules = """ reports/** =&gt; reports """.trimIndent() })</code>
+        </p>
+    </li>
+</ol>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        <code>DASTARDLY_TARGET_URL</code>には、スキャンするアプリケーションの<a href="index.html#configuration">開始URL</a>を指定します。
+    </p>
+    <p>
+        この例では、<code>DASTARDLY_TARGET_URL</code>に<code>https://ginandjuice.shop/</code>が設定されています - これはWeb脆弱性スキャナをテストするために設計された、意図的に脆弱性を作り込んだWebアプリケーションです。
+    </p>
+    <p>
+        次にパイプラインが実行されるとき、Dastardlyは<code>DASTARDLY_TARGET_URLで</code>設定したアプリケーションをスキャンします。
+    </p>
+</div>
+<h2 id="configuring-the-teamcity-pipeline">TeamCityパイプラインの設定</h2>
+<ol>
+    <li>
+        <p>
+            TeamCityのメインインタフェースで、<strong>New project...</strong>クリックし、プロジェクト階層内の適切な場所を選択します。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>手動</strong>が選択されているか確認します。
+        </p>
+    </li>
+    <li>
+        <p>
+            プロジェクトに<strong>名前</strong>を付けます。<strong>説明</strong>も追加できます。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>作成</strong>をクリックします。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="images/teamcity/creating-teamcity-project.jpg" alt="TeamCityプロジェクトの新規作成。">
+        </div>
+    </li>
+    <li>
+        <p>
+            <strong>バージョン対応設定</strong>をクリックします。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>同期を有効</strong>を選択します。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>プロジェクト設定VCSルート</strong>で、<strong>VCSルート作成</strong>をクリックするか、<strong>プロジェクト設定VCSルート</strong>ドロップダウンから既存のオプションを選択します。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>設定フォーマット</strong>が<strong>Kotlin</strong>に設定されているか確認します。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>適用</strong>をクリックします。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>既存のプロジェクト設定を検知</strong>ポップアップで、<strong>VCSから設定をインポート</strong>をクリックします。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="images/teamcity/teamcity-import-settings-from-vcs.jpg" alt="TeamCityでVCSから設定をインポート。">
+        </div>
+    </li>
+</ol>
+<h2 id="viewing-dastardly-scan-results-in-teamcity">TeamCityでDastardlyのスキャン結果を表示</h2>
+<ol>
+    <li>
+        <p>
+            Dastardlyを含むTeamCityプロジェクトを実行し、スキャンが完了するのを待ちます。スキャンは最大で10分間実行されます。
+        </p>
+    </li>
+    <li>
+        <p>
+            TeamCityのメインインタフェースから、Dastardlyを含むプロジェクトをクリックします。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Dastardly from Burp Suite Scan</strong>で、スキャンを含むビルドをクリックします。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>テスト</strong>をクリックします。ここで、失敗したテストを確認できます。失敗したテストをクリックすると、その詳細が表示されます。
+        </p>
+    </li>
+</ol>
+<h3 cms-ignore-validation="DUPLICATE_HEADINGS">改善アドバイス</h3>
+<p>
+    Dastardlyが発見したセキュリティ問題に対する改善アドバイスは、Stacktraceで確認できます。ここには、無償のWebセキュリティアカデミーリソースの、関連セクションへのリンクもあります。こちらでWebセキュリティの脆弱性についてさらに詳しく説明しています。
+</p>
+<div class="rounded-dropshadow">
+    <figure>
+        <img src="images/teamcity/dastardly-failed-test-teamcity.jpg" alt="TeamCityで示されるDastardlyのセキュリティ問題改善アドバイス。">
+        <figcaption>Dastardlyが発見したセキュリティ問題に対する改善アドバイス。</figcaption></figure>
+</div>
+<h3 cms-ignore-validation="DUPLICATE_HEADINGS">証拠</h3>
+<p>
+    Dastardlyが発見したセキュリティ問題の証拠は、Stacktraceで見られます。この証拠には、問題を見つけるためにDastardlyが送信したリクエストと、アプリケーションから送信されたレスポンスが含まれます。
+</p>
+<div class="rounded-dropshadow">
+    <figure>
+        <img src="images/teamcity/dastardly-evidence-teamcity.jpg" alt="TeamCityで表示される、Dastardlyのセキュリティ問題の証拠">
+        <figcaption>Dastardlyが発見したセキュリティ問題の証拠。</figcaption></figure>
+</div>
+</body>
+</html>

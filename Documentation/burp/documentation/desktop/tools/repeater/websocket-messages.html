@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Repeater</a>
+        </li>
+        <li>
+            <a href="websocket-messages.html">WebSocketメッセージの変更</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Burp RepeaterでWebSocketメッセージを操作</h1>
+<p>
+    Burp Repeaterを使用すると、個々のWebSocketメッセージを操作して再送信し、アプリケーションの反応を分析できます。
+</p>
+<div class="container">
+    <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/KbaOay1yOH0?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
+    </div>
+</div>
+<p>
+    Burp RepeaterでWebSocketリクエストを送信するには:
+</p>
+<ol>
+    <li>
+        <strong>Proxy &gt; WebSocket履歴</strong>に移動します。
+    </li>
+    <li>
+        WebSocketメッセージを右クリックし、<strong>Repeaterへ送信</strong>をクリックします。そのリクエストを含む新しいタブがRepeaterに追加されます。
+    </li>
+    <li>
+        <strong>Repeater</strong>に移動し、新しいタブでWebSocketメッセージの詳細を表示します。
+    </li>
+    <li>
+        メッセージを変更します。
+    </li>
+    <li>
+        サーバとクライアントのどちらにメッセージを送信するか選択します。
+    </li>
+    <li>
+        <strong>送信</strong>をクリックすると、対象のサーバまたはクライアントにメッセージが送信され、そのレスポンスが表示されます。
+    </li>
+    <li>
+        メッセージを再送信するには、メッセージを右クリックし、<strong>編集して再送信</strong>をクリックします。これを何度でも繰り返して、メッセージを変更するとレスポンスが変化するかを確認してください。
+    </li>
+</ol>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        クライアントにメッセージを送信するオプションは、Burp Proxy経由で接続が開いている間のみ有効です。
+    </p>
+</div>
+<h2 id="websocket-repeater-tab">WebSocket Repeaterタブ</h2>
+<p>
+    WebSocketメッセージでは、各Repeaterのタブに次のアイテムがあります:
+</p>
+<ul>
+    <li>
+        送信されるWebSocketメッセージを含むメッセージエディタ。<a href="../../functions/message-editor/index.html">メッセージエディタ</a>機能で、メッセージの分析や編集を行えます。
+    </li>
+    <li>
+        <p>
+            メッセージが送信されたWebSocket接続。Repeaterにメッセージを送信する際に自動的に設定されます。
+        </p>
+        <ul>
+            <li>
+                WebSocket接続を切断や再接続するには、WebSocket IDヘッダのトグルを使用します。
+            </li>
+            <li>
+                接続を編集するには、WebSocket IDヘッダの編集アイコン<span class="icon-edit"></span>をクリックします。開いている接続の複製や関連付け、新規接続の作成、閉じた接続の再接続ができます。WebSocketを作成する際のネゴシエーションリクエストも操作できます。
+            </li>
+        </ul>
+    </li>
+    <li>
+        <p>
+            送受信したすべてのメッセージが表示される、履歴一覧。手動で生成したメッセージは、一覧で区別できます。
+        </p>
+        <ul>
+            <li>
+                次に受信したメッセージを履歴一覧で自動選択するには、<strong>次に受信するメッセージを自動選択</strong>をチェックします。
+            </li>
+        </ul>
+    </li>
+    <li>
+        履歴一覧で現在選択されているメッセージを表示するメッセージビューア。
+    </li>
+</ul>
+</body>
+</html>

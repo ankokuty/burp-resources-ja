@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">Proxy</a>
+        </li>
+        <li>
+            <a href="index.html">WebSocket履歴</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>WebSocket履歴</h1>
+<p>
+    <strong>WebSocket履歴</strong>を使用すると、BurpブラウザがWebサーバと送受信したWebSocketメッセージのログを確認できます。BurpのブラウザとWebサーバ間の通信を閲覧、インターセプト、変更するために使用できます。これにより次が可能です:
+</p>
+<ul>
+    <li>
+        対象Webサイトの挙動を調査する。
+    </li>
+    <li>
+        WebSocketのハンドシェイクやメッセージに含まれる脆弱性を探す。
+    </li>
+    <li>
+        興味深いメッセージをBurp Suiteの他のツールに送信し、さらにテストする。
+    </li>
+</ul>
+<p>
+    WebSocket履歴には、次の情報があります:
+</p>
+<ul>
+    <li>
+        <strong>#</strong> - リクエストのインデックス番号。
+    </li>
+    <li>
+        <strong>URL</strong> - WebSocket接続のURL。
+    </li>
+    <li>
+        <strong>Direction</strong> - メッセージの方向(送信または受信)。
+    </li>
+    <li>
+        <strong>Edited</strong> - メッセージがユーザによって変更されたかどうかのフラグ。
+    </li>
+    <li>
+        <strong>Length</strong> - レスポンスの長さ(バイト)。
+    </li>
+    <li>
+        <strong>Comment</strong> - ユーザが適用したコメント。
+    </li>
+    <li>
+        <strong>TLS</strong> - TLSを使用しているかどうかのフラグ。
+    </li>
+    <li>
+        <strong>Time</strong> - メッセージを受信した時刻。
+    </li>
+    <li>
+        <strong>Listener port</strong> - リクエストを受信した<a href="../proxy-options.html#binding">リスナーポート</a>。
+    </li>
+    <li>
+        <strong>WebSocket ID</strong> - メッセージに使用されたWebSocketの、Burpの内部ID
+    </li>
+</ul>
+<p>
+    WebSocket履歴は、<a href="../intercept-messages.html#controls">インターセプト無効</a>の場合でも常に更新されます。これにより、アプリケーションのトラフィックに関する重要な詳細を監視しながら、中断せずにブラウジングを行えます。
+</p>
+<h2 id="changing-the-websockets-history-layout">WebSocket履歴のレイアウト変更</h2>
+<p>
+    WebSocket履歴のレイアウトをカスタマイズできます:
+</p>
+<ul>
+    <li>
+        WebSocket履歴をソートするには、いずれかの列ヘッダをクリックします。昇順、降順、ソートなしを切り替えられます。
+    </li>
+    <li>
+        WebSocket履歴を並べ替えるには、列ヘッダをクリックし、ドラッグします。
+    </li>
+    <li>
+        <a href="filter-settings.html">コンテンツをフィルタリング</a>できます。
+    </li>
+    <li>
+        WebSocket履歴のアイテムに、<a href="filter-settings.html#adding-annotations">注釈を追加</a>できます。
+    </li>
+</ul>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="viewing-a-request">リクエストの表示</h2>
+<p>
+    WebSocket履歴でアイテムを選択すると、該当するメッセージが下部のペインに表示されます。変更したメッセージは、別途表示されます。メッセージは、次によって変更された可能性があります:
+</p>
+<ul>
+    <li>
+        <a href="../intercept-messages.html">ユーザのインタセプト</a>。
+    </li>
+    <li>
+        <a href="../proxy-options.html#response-modification">自動レスポンス変更</a>。
+    </li>
+    <li>
+        <a href="../proxy-options.html#match-and-replace">検索/置換ルール</a>。
+    </li>
+</ul>
+<p>
+    さらにメインの履歴ビューでは、次もできます:
+</p>
+<ul>
+    <li>
+        アイテムをダブルクリックすると、ポップアップウィンドウで表示されます。
+    </li>
+    <li>
+        コンテキストメニューを使用すると、独自のディスプレイフィルタの新しい履歴ウィンドウを開けます。
+    </li>
+</ul>
+</body>
+</html>

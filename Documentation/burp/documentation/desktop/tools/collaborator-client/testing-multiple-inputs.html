@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Collaboratorクライアント</a>
+        </li>
+        <li>
+            <a href="testing-multiple-inputs.html">複数の入力をテスト</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1>Burp Collaboratorクライアントで複数の入力をテスト</h1>
+<p>
+    Burp Collaboratorクライアントを使用して、複数のリクエスト入力を一度にテストできます。そのためには、各入力に異なるペイロードを入力する必要があります。これにより、どの入力がCollaboratorサーバとの通信を発生させるかを容易に特定できます。
+</p>
+<p>
+    複数のペイロードを一度に生成するには:
+</p>
+<ol>
+    <li>
+        <strong>Collaborator</strong>タブに移動します。初めて<strong>Collaborator</strong>タブを開いた場合は、<strong>開始</strong>をクリックします。
+    </li>
+    <li>
+        <strong>生成するペイロード</strong>欄に、生成したいCollaboratorペイロードの数を入力します。
+    </li>
+    <li>
+        <strong>クリックボードにコピー</strong>をクリックすると、指定した数のペイロードがコピーされます。
+    </li>
+    <li>
+        ペイロードにアクセスするには、ドキュメントにペーストします。
+    </li>
+</ol>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        ペイロードにCollaborator サーバの完全なアドレスを含めるには、<strong>Collaboratorサーバの場所を含める</strong>を選択します。選択しない場合は、Collaborator IDだけがペイロードに含まれます。
+    </p>
+</div>
+<p>
+    これで、テストしたい特定の入力に、ユニークなペイロードを手動で挿入できるようになりました。あとは通常通りテストしてください:
+</p>
+<ol>
+    <li>
+        ペイロードを挿入したいリクエストを開きます。ペイロードを適切な場所に挿入します。
+    </li>
+    <li>
+        リクエストを送信します。
+    </li>
+    <li>
+        <strong>Collaborator</strong>タブに移動し、<strong>今すぐポーリング</strong>をクリックします。Collaboratorペイロードの結果として受信した通信が表示されます。
+    </li>
+    <li>
+        どの入力が通信を発生させたのか特定するには、通信のペイロードとリクエストで使用されたペイロードを照合します。
+    </li>
+</ol>
+</body>
+</html>

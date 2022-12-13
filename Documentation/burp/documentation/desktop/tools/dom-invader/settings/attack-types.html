@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">DOM Invader</a>
+        </li>
+        <li>
+            <a href="index.html">設定</a>
+        </li>
+        <li>
+            <a href="attack-types.html">攻撃タイプ</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>DOM Invaderの攻撃タイプ</h1>
+<p>
+    デフォルトでDOM Invaderは、通常のDOM XSSのソースとシンクを自動的に調査します。オプションで他の攻撃も試みるようDOM Invaderを設定できます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/dom-invader-prototype-pollution-enabling.png" alt="DOMインベーダーの攻撃タイプの設定">
+</div>
+<h2 id="prototype-pollution">プロトタイプ汚染</h2>
+<p>
+    この設定を有効にするとDOM Invaderは自動的に、通常のDOM XSSのソースとシンクに加えて、クライアント側のプロトタイプ汚染のソースを特定しようとします。
+</p>
+<p>
+    DOM Invaderのプロトタイプ汚染機能の詳細は、<a href="../prototype-pollution.html">クライアント側プロトタイプ汚染のテスト</a>を参照してください。
+</p>
+<p>
+    この設定の隣にある歯車のアイコンをクリックすると、この動作を微調整するための追加設定にアクセスできます。プロトタイプ汚染に特有の設定オプションの詳細は、<a href="prototype-pollution.html">プロトタイプ汚染の設定</a>を参照してください。
+</p>
+<h2 id="dom-clobbering">DOM clobbering</h2>
+<p>
+    この設定を有効にするとDOM Invaderは自動的に、DOM clobbering脆弱性を検出しようとします。
+</p>
+<p>
+    詳細は、<a href="../dom-clobbering.html">DOM InvaderによるDOM clobberingのテスト</a>を参照してください。
+</p>
+</body>
+</html>

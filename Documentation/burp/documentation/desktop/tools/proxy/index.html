@@ -31,39 +31,42 @@
     <label class="label-edition is-professional">Professional</label>
     <label class="label-edition is-community">Community</label>
 </section>
-<h1>Burp Proxy</h1>
+<h1>Burp Proxyとは?</h1>
 <p>
-    Burp Proxyは、Burpの<a href="../../penetration-testing/index.html">ユーザ主導ワークフロー</a>の中心部分に位置し、ブラウザと宛先のWebサーバ間のすべてのリクエストを表示や変更できます。
+    Burp Proxyは、ブラウザと対象Webアプリケーションの間で、Webプロキシサーバとして動作します。通過する双方向のトラフィックをインターセプト、検査、変更できます。これでHTTPSもテストできます。
+</p>
+<p>
+    Burp Proxyは、Burp Suiteのユーザ主導型ワークフローに不可欠なコンポーネントです。Burpの他のツールへリクエストを送信する場合にも使用できます。
 </p>
 <div class="highlightedarea">
-    <h4>続きを読む</h4>
+    <h4>注</h4>
+    <p>
+        Burp Proxyを使うと、一部のアプリケーションで予期しない影響が出る可能性があります。機能や設定にしっかり慣れるまで、本番以外のシステムだけで使うべきです。
+    </p>
+</div>
+<p>
+    Burp Proxyは、<a href="../../functions/burps-browser.html">Burpブラウザ</a>と連動して対象アプリケーションにアクセスします。Burpブラウザを起動するには、<strong>Proxy &gt; インターセプト</strong>に移動し、<strong>ブラウザを開く</strong>をクリックします。このブラウザのすべてのトラフィックは、自動的にBurpを経由してプロキシされます。
+</p>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
     <ul>
         <li>
-            <a href="getting-started.html">Burp Proxy入門</a>
+            <a href="intercept-messages.html">メッセージのインターセプト</a>。
         </li>
         <li>
-            <a href="getting-started-intercept.html">Burp Proxyのインターセプト機能入門</a>
+            <a href="http-history/index.html">HTTP履歴</a>。
         </li>
         <li>
-            <a href="history/getting-started-http-history.html">Burp ProxyのHTTP履歴入門</a>
+            <a href="websockets-history/index.html">WebSocket履歴</a>。
         </li>
         <li>
-            <a href="history/getting-started-websockets-history.html">Burp ProxyのWebSocket履歴入門</a>
+            <a href="proxy-options.html">Burp Proxyオプション</a>。
         </li>
         <li>
-            <a href="using.html">Burp Proxyの使い方</a>
+            <a href="manage-certificates.html">証明書の管理</a>。
         </li>
         <li>
-            <a href="intercept.html">リクエストとレスポンスのインターセプト</a>
-        </li>
-        <li>
-            <a href="history/index.html">履歴</a>
-        </li>
-        <li>
-            <a href="options/index.html">オプション</a>
-        </li>
-        <li>
-            <a href="in-browser-interface.html">ブラウザ内インタフェース</a>
+            <a href="invisible.html">透過プロキシ</a>。
         </li>
     </ul>
 </div>

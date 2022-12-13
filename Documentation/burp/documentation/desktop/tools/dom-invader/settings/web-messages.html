@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">DOM Invader</a>
+        </li>
+        <li>
+            <a href="index.html">設定</a>
+        </li>
+        <li>
+            <a href="web-messages.html">Webメッセージの設定</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Webメッセージの設定</h1>
+<p>
+    <strong>Postmessage interception</strong>オプションの隣にある歯車のアイコンをクリックすると、DOM InvaderがWebメッセージを処理する際の挙動を微調整する設定にアクセスできます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/dom-invader-settings-messages.png" alt="DOM InvaderのWebメッセージ設定">
+</div>
+<h2 id="postmessage-origin-spoofing">Postmessageのオリジン偽装</h2>
+<p>
+    この設定を有効にするとDOM Invaderは、すべてのメッセージのオリジンを、オリジン本来のドメイン名で始まり、本来のドメイン名で終わる偽のオリジンに自動的に置き換えます。そうすることで、メッセージのオリジンを検証するロジックや正規表現に欠陥のあるイベントハンドラをDOM Invaderが自動的に発見できます。
+</p>
+<p>
+    たとえば、一部のWebサイトでは、オリジンのドメイン名を検証するために<code>startsWith()</code>や<code>endsWith()</code>メソッドを使用しています。これらのテクニックで、この検証を簡単に回避できるかもしれません。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        この設定を無効にした場合でも、メッセージの再送時に<strong>Spoof origin</strong>チェックボックスを選択すれば、個々のリクエストのオリジンを偽装できます。また、入力フィールドで手動でオリジンの変更もできます。
+    </p>
+</div>
+<h2 id="canary-injection-into-intercepted-messages">インターセプトしたメッセージへカナリアを挿入</h2>
+<p>
+    この設定を有効にするとDOM Invaderは、ページ上で送信されるあらゆるメッセージの<code>data</code>プロパティにカナリアを自動的に挿入します。DOM Invaderは、JSON文字列、JSONオブジェクト、プレーン文字列のどれが期待されているかを判断し、正しいフォーマットでカナリアを挿入します。
+</p>
+<p>
+    メッセージの詳細を表示する際、ページが送信したオリジナルのデータと自動で挿入されたデータを、<strong>Show</strong>ドロップダウンで切り替えられます。
+</p>
+<h2 id="filter-messages-with-duplicate-values">重複する値を持つメッセージのフィルタリング</h2>
+<p>
+    この設定を有効にすると、DOM Invaderは同じメッセージをグループ化してノイズを低減します。場合によってはこの設定を無効にして、すべてのメッセージを見られるようにもできます。たとえば、個々のメッセージを見て、メッセージが送信されていることを確認したい場合があります。
+</p>
+<h2 id="generate-automated-messages">自動メッセージの生成</h2>
+<p>
+    この設定を有効にすると、DOM Invaderは独自のメッセージを生成し、ページ上で発見したメッセージイベントリスナーへ送信します。これは、潜在的に脆弱なイベントハンドラをテストしたいけれども、通常のページ操作ではメッセージイベントを発生させられない場合に有効です。
+</p>
+<p>
+    DOM Invaderは、各イベントハンドラが期待するデータ構造の情報を推測しようとします。そして、その情報をもとに適切なメッセージを生成し、送信します。
+</p>
+<p>
+    リスナーによる各メッセージの処理方法によって、より危険なシンクにつながる可能性のある追加のコードパスにたどり付けるよう細工した、追加メッセージを生成できます。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        DOM Invaderが生成したメッセージは、<strong>Messages</strong>ビューに数値IDが表示されないため、どのメッセージか判別できます。
+    </p>
+</div>
+<h2 id="detect-cross-domain-leaks">クロスドメインリークの検出</h2>
+<p>
+    この設定を有効にすると、データを含むWebメッセージを、現在のページのURLとは異なるオリジン宛てに送信したときに、DOM Invaderがレポートします。この場合、データを抽出するイベントリスナーを含んだページが<code>iframe</code>に埋め込まれると、攻撃者がOAuthトークンなどの機密データを窃取できる可能性があります。
+</p>
+</body>
+</html>

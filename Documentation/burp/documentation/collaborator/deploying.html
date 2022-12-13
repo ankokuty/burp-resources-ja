@@ -67,6 +67,9 @@
         <a href="#interaction-events-and-polling">通信イベントとポーリング</a>
     </li>
     <li>
+        <a href="#truncating-interaction-messages">通信メッセージの切り捨て</a>
+    </li>
+    <li>
         <a href="#metrics">メトリクス</a>
     </li>
     <li>
@@ -90,7 +93,7 @@
     閉じたプライベートなネットワークでひとり(または少人数のチーム)で利用する方法が、プライベートCollaboratorサーバの一般的な利用方法です。インターネットアクセスがない閉じたネットワーク上のアプリケーションをテストする場合、デフォルトのCollaboratorサーバは使用できません。
 </p>
 <p>
-    このような状況では、<a href="#collaborator-configuration-file">設定ファイル</a>は必要なく、<a href="#installation-and-execution">インストールと実行</a>にあるいずれかコマンドで、最小限のCollaboratorサーバのインスタンスを実行できます。<a href="../desktop/settings/tools/collaborator.html">Burpの設定</a>で、Collaboratorサーバのアドレスに自分のマシンのIPアドレスを設定する必要があります。
+    このような状況では、<a href="#collaborator-configuration-file">設定ファイル</a>は必要なく、<a href="#installation-and-execution">インストールと実行</a>にあるいずれかコマンドで、最小限のCollaboratorサーバのインスタンスを実行できます。<a href="../desktop/settings/project/collaborator.html">Burpの設定</a>で、Collaboratorサーバのアドレスに自分のマシンのIPアドレスを設定する必要があります。
 </p>
 <p>
     このセットアップ方法では、DNS名前解決のカスタマイズや、信頼された有効なHTTPS接続はサポートしません。しかし、Collaboratorの最低限の機能を使用でき、外部にHTTP通信するような問題は検出できます。
@@ -142,12 +145,12 @@
     </li>
     <li>
         <p>
-            このサーバを使用するようにBurpを設定します: Burp Suiteの<a href="../desktop/settings/tools/collaborator.html">プロジェクトオプション &gt; その他</a>で、自身のCollaboratorサーバの場所を設定します。
+            このサーバを使用するようにBurpを設定します: Burp Suiteの<a href="../desktop/settings/project/collaborator.html">プロジェクトオプション &gt; その他</a>で、自身のCollaboratorサーバの場所を設定します。
         </p>
     </li>
     <li>
         <p>
-            Collaboratorヘルスチェックを実行します。これは、<a href="../desktop/settings/tools/collaborator.html">プロジェクトオプション &gt; その他</a>にあります。
+            Collaboratorヘルスチェックを実行します。これは、<a href="../desktop/settings/project/collaborator.html">プロジェクトオプション &gt; その他</a>にあります。
         </p>
     </li>
 </ul>
@@ -205,7 +208,7 @@
 <div class="highlightedarea">
     <h4>注</h4>
     <p>
-        Collaboratorサーバを標準ポート以外で使用するよう設定している場合、<strong>プロジェクトオプション &gt; その他</strong>以下の<a href="../desktop/settings/tools/collaborator.html">Burp Collaboratorサーバオプション</a>でそれらを指定する必要があります。
+        Collaboratorサーバを標準ポート以外で使用するよう設定している場合、<strong>プロジェクトオプション &gt; その他</strong>以下の<a href="../desktop/settings/project/collaborator.html">Burp Collaboratorサーバオプション</a>でそれらを指定する必要があります。
     </p>
 </div>
 <p>
@@ -410,7 +413,7 @@
 <p>
     設定ファイルのサンプルと、使用可能な各オプションの説明は次の通りです:
 </p>
-<code class="code-scrollable">{ "serverDomain": "Your_Collaborator_Domain", "workerThreads": 10, "eventCapture": { "localAddress": "Local_IP", "publicAddress": "Collaborator_External_IP", "http": { "ports": 80 }, "https": { "ports": 443 }, "smtp": { "ports": [ 25, 587 ] }, "smtps": { "ports": 465 }, "ssl": { "certificateFiles": [ "path_to_key_file", "path_to_certificate_file" ] } }, "polling": { "localAddress": "Local_IP", "publicAddress": "Collaborator_External_IP", "http": { "port": 9090 }, "https": { "port": 9443 }, "ssl": { "certificateFiles": [ "path_to_key_file", "path_to_certificate_file" ] } }, "metrics": { "path": "url_to_metrics", "addressWhitelist": [ "21.10.23.0/24" ] }, "dns": { "interfaces": [ { "name": "NS_record_label_1", "localAddress": "Local_IP_1", "publicAddress": "External_IP_Nameserver_A_Record1" }, { "name": "NS_record_label_2", "localAddress": "Local_IP_2", "publicAddress": "External_IP_Nameserver_A_Record2" } ], "ports": 53 }, "logLevel": "INFO" }</code><p>
+<code class="code-scrollable">{ "serverDomain": "Your_Collaborator_Domain", "workerThreads": 10, "interactionLimits": { "http": 8192, "smtp": 8192 }, "eventCapture": { "localAddress": "Local_IP", "publicAddress": "Collaborator_External_IP", "http": { "ports": 80 }, "https": { "ports": 443 }, "smtp": { "ports": [ 25, 587 ] }, "smtps": { "ports": 465 }, "ssl": { "certificateFiles": [ "path_to_key_file", "path_to_certificate_file" ] }, "canonicalName": "&lt;FQDN&gt;" }, "polling": { "localAddress": "Local_IP", "publicAddress": "Collaborator_External_IP", "http": { "port": 9090 }, "https": { "port": 9443 }, "ssl": { "certificateFiles": [ "path_to_key_file", "path_to_certificate_file" ] }, "canonicalName": "&lt;FQDN&gt;" }, "metrics": { "path": "url_to_metrics", "addressWhitelist": [ "21.10.23.0/24" ] }, "dns": { "interfaces": [ { "name": "NS_record_label_1", "localAddress": "Local_IP_1", "publicAddress": "External_IP_Nameserver_A_Record1" }, { "name": "NS_record_label_2", "localAddress": "Local_IP_2", "publicAddress": "External_IP_Nameserver_A_Record2" } ], "ports": 53 }, "logLevel": "INFO" }</code><p>
     設定ファイルでサポートされている定義は次の通りです:
 </p>
 <table class="grid-table grid-table-size-1-2">
@@ -488,6 +491,22 @@
         </tr>
         <tr>
             <td>
+                <code> eventCapture.canonicalName </code>
+            </td>
+            <td>
+                通信イベント用にCNAMEレコードを設定する際に使用されます。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> interactionLimits </code>
+            </td>
+            <td>
+                HTTPまたはSMTP通信の受信メッセージについて、メッセージごとの保存される最大バイト数の設定に使用されます。
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <code> polling.localAddress </code>
             </td>
             <td>
@@ -507,7 +526,7 @@
                 <code> polling.http.port </code>
             </td>
             <td>
-                HTTP経由のポーリングに使用するポート。標準ではないポートに設定できますが、Burp Suiteがそれを使用するように<a href="../desktop/settings/tools/collaborator.html">設定</a>する必要があります。
+                HTTP経由のポーリングに使用するポート。標準ではないポートに設定できますが、Burp Suiteがそれを使用するように<a href="../desktop/settings/project/collaborator.html">設定</a>する必要があります。
             </td>
         </tr>
         <tr>
@@ -515,7 +534,7 @@
                 <code> polling.https.port </code>
             </td>
             <td>
-                HTTPS経由のポーリングに使用するポート。標準ではないポートに設定できますが、Burp Suiteがそれを使用するように<a href="../desktop/settings/tools/collaborator.html">設定</a>する必要があります。
+                HTTPS経由のポーリングに使用するポート。標準ではないポートに設定できますが、Burp Suiteがそれを使用するように<a href="../desktop/settings/project/collaborator.html">設定</a>する必要があります。
             </td>
         </tr>
         <tr>
@@ -524,6 +543,14 @@
             </td>
             <td>
                 自己署名証明書を生成する際に使用されます。詳細は、<a href="#tls-configuration">TLS設定</a>を参照してください。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code> polling.canonicalName </code>
+            </td>
+            <td>
+                ポーリングリクエスト用にCNAMEレコードを設定する際に使用されます。
             </td>
         </tr>
         <tr>
@@ -711,15 +738,35 @@
     CollaboratorのDNSサービスはポーリングサブドメインを、分離したポーリングインタフェースのパブリックIPアドレスに名前解決します。これにより、Burpクライアントで複雑な設定を行わなくても、通信用とポーリング用に別々のインタフェースを使用できます。
 </p>
 <p>
-    次のポーリングインタフェースの例では、カスタムポート、HTTPS、CA発行の証明書を使用しています:
+    また、CollaboratorサーバがCNAMEを使用するように設定もできます。そのためには、イベントやポーリングインタフェースに、次のセクションを追加します:
 </p>
-<code class="code-scrollable">"polling": { "localAddress": "&lt;Local_IP&gt;", "publicAddress": "&lt;External_IP&gt;", "http": { "port": 9090 }, "https": { "port": 9443 }, "ssl": { "certificateFiles": [ "path_to_key_file", "path_to_certificate_file" ] } },</code>
+<code class="code-scrollable">"eventCapture": { "canonicalName": "&lt;FQDN&gt;" }, "polling": { "canonicalName": "&lt;FQDN&gt;" }</code>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        CNAME設定を使用する場合、DNSクエリの種類にかかわらず、ドメイン内のラベルが一致すればCNAMEレコードが返されます。
+    </p>
+</div>
+<p>
+    次のポーリングインタフェースの例では、カスタムポート、HTTPS、CNAME設定、CA発行の証明書を使用しています:
+</p>
+<code class="code-scrollable">"polling": { "localAddress": "&lt;Local_IP&gt;", "publicAddress": "&lt;External_IP&gt;", "http": { "port": 9090 }, "https": { "port": 9443 }, "ssl": { "certificateFiles": [ "path_to_key_file", "path_to_certificate_file" ] }, "canonicalName": "&lt;FQDN&gt;" },</code>
 <div class="highlightedarea">
     <h4>注</h4>
     <p>
         内部CAに署名された証明書を使用している場合は、Javaのトラストストアに正しい証明書があるか確認する必要があります。
     </p>
 </div>
+<h2 id="truncating-interaction-messages">通信メッセージの切り捨て</h2>
+<p>
+    保存される通信メッセージのサイズを制限するように、Collaboratorサーバーを設定できます。
+</p>
+<p>
+    次の設定は、バイト単位で設定された制限値まで、SMTPとHTTPのメッセージを切り詰めます。
+</p>
+<code class="code-scrollable">"interactionLimits": { "http": 8192, "smtp": 8192 },</code><p>
+    この設定で、Collaboratorサーバーの負荷が軽減されます。大規模なチームで同時にCollaboratorを使用するユーザには便利でしょう。小規模なチームや一人のテスターでは、サーバへの負荷がすでに低いので、有用ではないかもしれません。
+</p>
 <h2 id="metrics">メトリクス</h2>
 <p>
     Collaboratorサーバは、管理者がサーバのパフォーマンスや負荷を監視するためのさまざまな使用率のメトリクスを収集します。Collaboratorのマシンがその使用レベルに十分耐えうるかを確認するためにこれらのメトリクスが有用です。<a href="#interaction-events-and-polling">通信イベントやポーリングリクエスト</a>から抽出されたデータは、このメトリクスにはまったく含まれていない点に留意してください。
@@ -751,7 +798,7 @@
 </ul>
 <h2 id="testing-the-installation">インストールのテスト</h2>
 <p>
-    サーバを配備したとき、Burp Suite Professionalを使用して、正しく動作しているか確認できます。Burp Suiteで、<a href="../desktop/settings/tools/collaborator.html">Burp Collaborator Server</a>オプションの詳細を設定し、<strong>ヘルスチェックを実行</strong>してください。するとBurpはCollaboratorの各機能を順番にテストしていきます。
+    サーバを配備したとき、Burp Suite Professionalを使用して、正しく動作しているか確認できます。Burp Suiteで、<a href="../desktop/settings/project/collaborator.html">Burp Collaborator Server</a>オプションの詳細を設定し、<strong>ヘルスチェックを実行</strong>してください。するとBurpはCollaboratorの各機能を順番にテストしていきます。
 </p>
 <h2 id="add-custom-http-content">カスタムHTTPコンテンツの追加</h2>
 <p>

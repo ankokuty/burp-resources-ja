@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE" ignore-validation="STACKED_HEADINGS,OTHER_PAGE_KEYWORD_TOO_FREQUENT"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="index.html">Dastardly</a>
+        </li>
+        <li>
+            <a href="jenkins.html">Jenkins</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-dastardly">Dastardly</label>
+</section>
+<h1>DastardlyとJenkinsの連携</h1>
+<p>
+    DastardlyとJenkinsを連携できます。これにより、既存のCI/CDパイプラインのステージとして、DastardlyのWeb脆弱性スキャンを実行できます。
+</p>
+<p>
+    このページでは、簡単な(サンプルの)Jenkins CI/CDパイプラインとDastardlyを連携する方法を説明します。この手順は、Jenkins 2.361.2でテストされています。
+</p>
+<div class="container">
+    <div class="youtube-wrapper">
+        <iframe src="https://www.youtube.com/embed/Re8pxqhsaF0?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
+    </div>
+</div>
+<h2 id="jenkins-server-requirements">Jenkinsサーバの要件</h2>
+<p>
+    Jenkinsサーバまたはビルドノードに、Dockerがインストールされている必要があります。
+</p>
+<p>
+    DastardlyをJenkinsのCI/CDパイプラインで実行するために、Jenkinsのデフォルト以外のプラグインは必要ありません。
+</p>
+<p>
+    Dastardlyスキャンを実行するために必要なマシンスペックは、<a href="index.html#dastardly-system-requirements">Dastardlyのシステム要件</a>を参照してください。
+</p>
+<h2 id="configuring-the-jenkins-pipeline">Jenkinsパイプラインの設定</h2>
+<ol>
+    <li>
+        <p>
+            Jenkins <strong>Dashboard</strong>で、<strong>新規ジョブ作成</strong>をクリックします。
+        </p>
+    </li>
+    <li>
+        <p>
+            パイプラインのジョブ名を入力し、<strong>パイプライン</strong>をクリックし、<strong>OK</strong>をクリックします。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="images/jenkins/creating-jenkins-pipeline.jpg" alt="Jenkinsで新しいパイプラインを作成。">
+        </div>
+    </li>
+    <li>
+        <p>
+            パイプラインに<strong>説明</strong>を記述できます。
+        </p>
+    </li>
+    <li>
+        <p>
+            サイドメニューで、<strong>パイプライン</strong>をクリックします。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>定義</strong>ドロップダウンで、<strong>Pipeline script from SCM</strong>を選択します。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>パイプライン</strong>セクションで、コードリポジトリの<code>Jenkinsfile</code>を指すように設定します。リポジトリへのアクセスに使用される認証情報を含める必要があります。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>保存</strong>をクリックします。
+        </p>
+        <div class="rounded-dropshadow">
+            <img src="images/jenkins/jenkins-pipeline-config.jpg" alt="Jenkinsでパイプラインを設定。">
+        </div>
+    </li>
+</ol>
+<h2 id="creating-the-jenkinsfile">Jenkinsfileの作成</h2>
+<p>
+    対応するコードリポジトリの場所に<code>Jenkinsfile</code>ファイルを作成します。ファイルには次の内容を追加します:
+</p>
+<code class="code-scrollable">// Jenkinsfile (Declarative Pipeline) for integration of Dastardly, from Burp Suite. pipeline { agent any stages { stage ("Docker Pull Dastardly from Burp Suite container image") { steps { sh 'docker pull public.ecr.aws/portswigger/dastardly:latest' } } stage ("Docker run Dastardly from Burp Suite Scan") { steps { cleanWs() sh ''' docker run --user $(id -u) -v ${WORKSPACE}:${WORKSPACE}:rw \ -e DASTARDLY_TARGET_URL=https://ginandjuice.shop/ \ -e DASTARDLY_OUTPUT_FILE=${WORKSPACE}/dastardly-report.xml \ public.ecr.aws/portswigger/dastardly:latest ''' } } } post { always { junit testResults: 'dastardly-report.xml', skipPublishingChecks: true } } }</code>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        <code>DASTARDLY_TARGET_URL</code>には、スキャンするアプリケーションの<a href="index.html#configuration">開始URL</a>を指定します。
+    </p>
+    <p>
+        この例では、<code>DASTARDLY_TARGET_URL</code>に<code>https://ginandjuice.shop/</code>が設定されています - これはWeb脆弱性スキャナをテストするために設計された、意図的に脆弱性を作り込んだWebアプリケーションです。
+    </p>
+    <p>
+        次にパイプラインが実行されるとき、Dastardlyは<code>DASTARDLY_TARGET_URLで</code>設定したアプリケーションをスキャンします。
+    </p>
+</div>
+<h2 id="viewing-dastardly-scan-results-in-jenkins">JenkinsでDastardlyのスキャン結果を表示</h2>
+<ol>
+    <li>
+        <p>
+            Dastardlyを含むJenkinsパイプラインを実行し、スキャンが完了するのを待ちます。スキャンは最大で10分間実行されます。
+        </p>
+    </li>
+    <li>
+        <p>
+            スキャン結果にアクセスするには、<strong>ビルド履歴</strong>の下にある最新のビルドをクリックします。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>テスト結果</strong>をクリックします。ここで、失敗したテストを確認できます。失敗したテストをクリックすると、その詳細が表示されます。
+        </p>
+    </li>
+</ol>
+<h3 cms-ignore-validation="DUPLICATE_HEADINGS">改善アドバイス</h3>
+<p>
+    Dastardlyが発見したセキュリティ問題に対する改善アドバイスは、<strong>Stacktrace</strong>で確認できます。ここには、無償のWebセキュリティアカデミーリソースの、関連セクションへのリンクもあります。こちらでWebセキュリティの脆弱性についてさらに詳しく説明しています。
+</p>
+<div class="rounded-dropshadow">
+    <figure>
+        <img src="images/jenkins/dastardly-failed-test-jenkins.jpg" alt="Jenkinsで示されるDastardlyのセキュリティ問題改善アドバイス。">
+        <figcaption>Dastardlyが発見したセキュリティ問題に対する改善アドバイス。</figcaption></figure>
+</div>
+<h3 cms-ignore-validation="DUPLICATE_HEADINGS">証拠</h3>
+<p>
+    Dastardlyが発見したセキュリティ問題の証拠は、<strong>Stacktrace</strong>で見られます。この証拠には、問題を見つけるためにDastardlyが送信したリクエストと、アプリケーションから送信されたレスポンスが含まれます。
+</p>
+<div class="rounded-dropshadow">
+    <figure>
+        <img src="images/jenkins/dastardly-evidence-jenkins.jpg" alt="Jenkinsで表示される、Dastardlyのセキュリティ問題の証拠">
+        <figcaption>Dastardlyが発見したセキュリティ問題の証拠。</figcaption></figure>
+</div>
+</body>
+</html>

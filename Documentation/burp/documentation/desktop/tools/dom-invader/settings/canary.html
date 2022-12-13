@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">DOM Invader</a>
+        </li>
+        <li>
+            <a href="index.html">設定</a>
+        </li>
+        <li>
+            <a href="canary.html">カナリア</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>DOM Invaderのカナリア設定</h1>
+<p>
+    DOM Invaderの設定メニューで、DOM Invaderが対象サイトに挿入するカナリア文字列の変更や更新ができます。
+</p>
+<p>
+    DOM Invaderの設定メニューにアクセスするには、ブラウザの右上にあるBurp Suiteのロゴをクリックし、<strong>DOM Invader</strong>タブに切り替えます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/dom-invader-settings-misc.png" alt="カナリア設定">
+</div>
+<p>
+    設定メニューの下部には、DOM Invaderがトラッキングしているカナリア文字列が表示されます。次の選択肢があります。
+</p>
+<h2 id="copying-the-canary">カナリアをコピー</h2>
+<p>
+    <strong>コピー</strong>をクリックすると、現在のカナリア文字列をクリップボードにコピーできます。これは、それぞれのソースに手動で文字列を挿入する場合に便利です。
+</p>
+<h2 id="changing-the-canary">カナリアの変更</h2>
+<p>
+    ランダムに生成されたデフォルトのカナリアはいつでも変更でき、代わりに独自のカスタムカナリア文字列を追跡できます。
+</p>
+<p>
+    カナリアを変更するには:
+</p>
+<ol>
+    <li>
+        <p>
+            デフォルトのカナリアの代わりに使用する文字列を入力します。あるいは、<strong>Randomize</strong>をクリックすると、新たなランダム文字列が生成されます。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Update canary</strong>をクリックします。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Reload</strong>をクリックすると、ブラウザが更新されます。これは、変更を有効にするために必要です。これでDOM Invaderは、代わりに新しいカナリア文字列を追跡するようになります。
+        </p>
+    </li>
+</ol>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        誤検出を避けるためには、ページ上で自然に発生する文字列を使用しないでください。
+    </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Repeater</a>
+        </li>
+        <li>
+            <a href="managing-tabs.html">タブの管理</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Burp Repeaterタブの管理</h1>
+<p>
+    Burp Repeaterは、HTTPまたはWebSocketの新しいメッセージをそれぞれ新しいタブで開きます。これにより、複数のメッセージを同時に処理できます。
+</p>
+<p>
+    タブヘッダ上のコントロールを使用して、新しいタブの作成や、既存のタブに対するさまざな変更ができます:
+</p>
+<ul>
+    <li>
+        ゼロからリクエストを作成する - 新しいタブを開くには、<span class="icon-add"></span>ボタンをクリックします。<strong>HTTP</strong>または<strong>WebSocket</strong>のいずれかを選択します。
+    </li>
+    <li>
+        タブ名変更 - タブヘッダをダブルクリックし、新しいタブ名を入力します。
+    </li>
+    <li>
+        <p>
+            タブ表示の切り替え - タブを右クリックし、<strong>タブ表示オプション</strong>を選択します。2種類の表示方法から選択できます:
+        </p>
+        <ul>
+            <li>
+                スクロール表示 - スクロール可能な1列に表示されます。検索アイコン<span class="icon-search21"></span>をクリックすると、開いているすべてのタブのドロップダウンリストが表示されます。
+            </li>
+            <li>
+                折り返し表示 - 複数の行に折り返して、すべてを画面上に表示します。
+            </li>
+        </ul>
+    </li>
+    <li>
+        グループにタブを追加 - タブを右クリックし、<strong>グループにタブを追加</strong>をクリックし、グループを選択します。
+    </li>
+    <li>
+        <p>
+            タブを閉じる - 複数の方法でタブを閉じられます:
+        </p>
+        <ul>
+            <li>
+                1つのタブを閉じる - タブヘッダのそばにある閉じるアイコン<span class="icon-close"></span>をクリックします。
+            </li>
+            <li>
+                選択したタブ以外のタブを閉じる - タブを右クリックし、<strong>他のタブを閉じる</strong>を選択します。
+            </li>
+            <li>
+                選択したタブの片側にあるすべてのタブを閉じる - タブを右クリックし、<strong>左側のタブを閉じる</strong>または<strong>右側のタブを閉じる</strong>を選択します。
+            </li>
+        </ul>
+    </li>
+    <li>
+        最後に閉じたタブを再び開く - 任意のタブを右クリックし、<strong>閉じたタブを開く</strong>を選択します。
+    </li>
+</ul>
+<h2 id="tab-groups">タブグループ</h2>
+<p>
+    Repeaterのタブグループ機能を使って、関連するタブをグループ化し、HTTPリクエストのグループを順番に送信できます。
+</p>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <ul>
+        <li>
+            Repeaterでタブグループを作成する方法は、<a href="groups.html">タブグループの管理</a>を参照してください。
+        </li>
+        <li>
+            RepeaterのHTTPタブを順番に送信する方法は、<a href="send-sequence.html">HTTPリクエストを順番に送信</a>を参照してください。
+        </li>
+    </ul>
+</div>
+</body>
+</html>

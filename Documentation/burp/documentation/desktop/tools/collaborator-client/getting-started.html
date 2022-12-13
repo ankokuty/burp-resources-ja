@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Collaboratorクライアント</a>
+        </li>
+        <li>
+            <a href="getting-started.html">入門</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1>Burp Collaboratorクライアント入門</h1>
+<p>
+    このチュートリアルでは、Burp Collaboratorクライアントの使用方法を説明します。攻撃者が制御できる任意のサーバに対して、対象サイトからリクエストが行われるように誘導できるかどうかをテストします。
+</p>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-1-access-the-lab">ステップ1: ラボへアクセスする</h2>
+<p>
+    Burpブラウザを開き、次のURLにアクセスします:
+</p>
+<code> https://portswigger.net/web-security/ssrf/blind/lab-out-of-band-detection </code><p>
+    <strong>Access the lab</strong>をクリックしプロンプトが表示されたら、自分のPortSwiggerアカウントでログインします。すると、意図的に脆弱性を作り込んだあなた専用のショッピングサイトが開きます。
+</p>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-2-browse-the-target-site">ステップ2: 対象サイトをブラウズする</h2>
+<p>
+    ブラウザで、いくつかの製品ページをクリックしてサイトを探索します。
+</p>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-3-send-an-interesting-request-to-repeater">ステップ3: 興味深いリクエストをRepeaterに送信する</h2>
+<p>
+    Burpで、<strong>Proxy &gt; HTTP履歴</strong>タブを開きます。
+</p>
+<p>
+    <code>GET /product?productId=[...]</code>リクエストを右クリックし、<strong>Repeaterに送信</strong>を選択します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../images/getting-started/quick-start-pro-send-to-repeater.png" alt="Repeaterへリクエストを送信">
+</div>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-4-inject-a-collaborator-payload-into-the-request">ステップ4: リクエストにCollaboratorペイロードを挿入する</h2>
+<p>
+    <strong>Repeater</strong>タブに移動します。<code>Referer</code>ヘッダのURLを選択し、右クリックし、<strong>Collaboratorペイロードを挿入</strong>を選択します。すると、<code>Referer</code> URLが、Collaboratorサーバが位置する次のようなURLに置き換わります:
+</p>
+<code class="code-scrollable">204119i326shak9tnk6k36z8jlahj74r.oastify.com</code><p>
+    リクエストを送信します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../tutorials/images/collaborator/burp-collaborator-tut-3-injecting-the-payload.png" alt="ペイロードの挿入">
+</div>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Collaboratorサーバのドメイン名は変わる可能性があり、新規ドメイン名を定期的に追加します。詳細は、<a href="index.html">Burp Collaboratorクライアント</a>を参照してください。
+    </p>
+</div>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION" id="step-5-poll-for-interactions">ステップ5: 通信をポーリングする</h2>
+<p>
+    <strong>Collaborator</strong>タブに移動します。Collaboratorクライアントは、60秒ごとに通信をポーリングするため、既にいくつかの通信が表示されているかもしれません。そうでない場合は、<strong>今すぐポーリング</strong>をクリックします。Collaboratorペイロードの結果として受信した通信が表示されます。これにより、任意のサーバに対して、対象サイトからリクエストが行われたことが確認できます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../tutorials/images/collaborator/burp-collaborator-tut-4-polling-for-interactions.png" alt="Collaboratorクライアントでの通信のポーリング">
+</div>
+<p>
+    ここでは、HTTP通信とDNS通信の両方が表示されています。通信をクリックすると、詳細が表示されます。
+</p>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="summary">概要</h2>
+<p>
+    おめでとうございます。あなたは今、次ができました:
+</p>
+<ul>
+    <li>
+        Collaboratorペイロードを生成する。
+    </li>
+    <li>
+        リクエストにCollaboratorペイロードを挿入する。
+    </li>
+    <li>
+        Collaboratorサブドメインにリクエストを送信するようアプリケーションを誘導し、サーバにポーリングして通信を確認する。
+    </li>
+</ul>
+<p>
+    見えない脆弱性(今回はブラインドSSRF)の概念実証生成のためにBurp Collaboratorクライアントを使用する方法がわかりました。
+</p>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="what-next">次は？</h2>
+<p>
+    このチュートリアルはあくまで初期の概念実証です。実サイトでこれらの挙動を悪用する方法については、<a href="https://portswigger.net/web-security/">Webセキュリティアカデミー</a>を、特に下記を参照してください:
+</p>
+<ul>
+    <li>
+        <a href="https://portswigger.net/web-security/ssrf/blind">ブラインドSSRF</a>。
+    </li>
+    <li>
+        <a href="https://portswigger.net/web-security/sql-injection/blind">ブラインドSQLインジェクション</a>。
+    </li>
+</ul>
+<p>
+    このチュートリアルでは、Burp Repeaterで1つの入力を手動でテストしました。実際には、複数の入力を一度にテストしたいでしょう。詳細は、<a href="testing-multiple-inputs.html">Burp Collaboratorクライアントで複数の入力をテスト</a>を参照してください。
+</p>
+</body>
+</html>

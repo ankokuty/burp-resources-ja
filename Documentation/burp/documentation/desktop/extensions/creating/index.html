@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">拡張</a>
+        </li>
+        <li>
+            <a href="index.html">開発</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Burp拡張の開発</h1>
+<p>
+    Javaに精通していれば、Montoya APIを使用して独自のBurp Suite拡張を作成できます。Burp Suiteは、Java 17以下で書かれた拡張のみをサポートしていることに注意してください。
+</p>
+<p>
+    はじめに、MavenまたはGradleのプロジェクトを新規に作成し、次のようにMontoya APIの依存関係を追加します。Burpのバージョンによって必要なパッケージが異なることに注意してください。
+</p>
+<div class="expandable-container">
+    <details><summary>
+            <h4>Burp Suite 2022.9.5 (Stable)</h4>
+        </summary>
+        <div class="content">
+            <p>
+                <strong>Maven</strong>
+            </p>
+            <code class="code-scrollable">&lt;dependency&gt; &lt;groupId&gt;net.portswigger.burp.extender&lt;/groupId&gt; &lt;artifactId&gt;montoya-api&lt;/artifactId&gt; &lt;version&gt;LATEST&lt;/version&gt; &lt;/dependency&gt;</code><p>
+                <strong>Gradle</strong>
+            </p>
+            <code class="code-scrollable">implementation 'net.portswigger.burp.extender:montoya-api:+'</code>
+        </div>
+    </details>
+</div>
+<div class="expandable-container">
+    <details><summary>
+            <h4>Burp Suite 2022.11+ (Early Adopter)</h4>
+        </summary>
+        <div class="content">
+            <p>
+                <strong>Maven</strong>
+            </p>
+            <code class="code-scrollable">&lt;dependency&gt; &lt;groupId&gt;net.portswigger.burp.extensions&lt;/groupId&gt; &lt;artifactId&gt;montoya-api&lt;/artifactId&gt; &lt;version&gt;LATEST&lt;/version&gt; &lt;/dependency&gt;</code><p>
+                <strong>Gradle</strong>
+            </p>
+            <code class="code-scrollable">implementation 'net.portswigger.burp.extensions:montoya-api:+'</code>
+        </div>
+    </details>
+</div>
+<p>
+    次に、<code>BurpExtension</code>インタフェースを実装したクラスを作成します。<code>initialize()</code>メソッドは、<code>MontoyaApi</code>の実装を提供します。これを使用してBurp Suiteの変更や通信ができます。
+</p>
+<p>
+    拡張が完成したら、BAppストアに投稿して他のBurpユーザと共有できます。<a href="bapp-store-submitting-extensions.html">BAppストアへの拡張の投稿</a>および<a href="bapp-store-acceptance-criteria.html">BAppストアの受入基準</a>を参照してください。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        BAppストアにある多くの拡張は、<a href="https://portswigger.net/burp/extender/api/" target="_blank">古いExtender API</a>で開発されています。Burp Suiteは当面の間Extender APIをサポートし続けますが、新しい拡張はMontoya APIを使った開発を強く推奨します。
+    </p>
+</div>
+<h2 id="useful-resources-for-extension-developers">拡張開発者のための有用なリソース</h2>
+<p>
+    独自の拡張の開発について詳しい説明はできませんが、次の有用なリソースを参考にしてください:
+</p>
+<ul>
+    <li>
+        HTTPハンドラやProxyリスナーを登録するような、一般的なタスクの実装例が、<strong><a href="https://github.com/PortSwigger/burp-extensions-montoya-api/tree/main/examples/src/main/java/net/portswigger/burp/extensions">Montoya APIのGitHubリポジトリ</a></strong>にあります。
+    </li>
+    <li>
+        <strong><a href="https://portswigger.github.io/burp-extensions-montoya-api/javadoc/burp/api/montoya/MontoyaApi.html">Montoya APIのJavaDoc</a></strong>。
+    </li>
+    <li>
+        <a href="https://portswigger.net/burp/extender/api/" target="_blank">古いExtender API</a>機能の実装にMontoya APIを使った<strong><a href="https://github.com/PortSwigger/burp-extensions-montoya-api/blob/d86f875647ae35ad3647afbc13090f59c5120c8e/api/src/test/java/burp/api/montoya/TestExtension.java">テスト拡張</a></strong>。これは特に、古い拡張を移植しようとしている場合、有用なリファレンスを提供します。各メソッドには、Extender APIの同等のメソッドと同じ名前を付けているので、探しているものを簡単に見つけられます。
+    </li>
+    <li>
+        メインの<strong><a href="https://github.com/PortSwigger">PortSwigger GitHubリポジトリ</a></strong>には、BAppストアで配布されている拡張のフォーク版と、いくつかの簡単な拡張の<a href="extender-api-examples-legacy.html">例</a>があります。しかし、これらのほとんどは<a href="https://portswigger.net/burp/extender/api/" target="_blank">古いExtender API</a>で開発されている点に注意してください。
+    </li>
+</ul>
+<h2 id="handling-kettled-http-2-requests-in-extensions">拡張でケトルなHTTP/2リクエストを処理</h2>
+<p>
+    拡張から新しいリクエストを発行する場合、HTTP/2フォーマットを使った<a href="https://portswigger.net/burp/documentation/desktop/http2#kettled-requests">ケトルなリクエスト</a>を自由に送信できます。これにより、<a href="../../http2/performing-http2-exclusive-attacks.html">HTTP/2特有の脆弱性</a>をテストするための拡張を開発できます。
+</p>
+<p>
+    ただし現在のところ、Burpによって発行されたケトルなリクエストを、拡張からは変更できません。これは、APIを介した場合には正規化されたHTTP/1スタイルの表現にしかアクセスできないためです。
+</p>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">DOM Invader</a>
+        </li>
+        <li>
+            <a href="index.html">設定</a>
+        </li>
+        <li>
+            <a href="main.html">メイン</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>DOM Invaderのメイン設定</h1>
+<p>
+    DOM Invaderの設定メニューにアクセスするには、ブラウザの右上にあるBurp Suiteのロゴをクリックし、<strong>DOM Invader</strong>タブに切り替えます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/dom-invader-settings-main.png" alt="DOM Invaderのメイン設定">
+</div>
+<p>
+    <strong>Main settings</strong>には、次のオプションがあります。
+</p>
+<h2 id="enable-dom-invader">DOM Invaderの有効化</h2>
+<p>
+    DOM Invaderを有効化するためのグローバルトグルです。DOM Invaderは、その機能の一部が他のテストに影響を与える形で対象サイトの機能を妨害する可能性があるため、デフォルトでは無効になっています。DOM Invaderを有効にすると、ブラウザのデベロッパーツールパネル内のタブからアクセスできます。
+</p>
+<h2 id="postmessage-interception">Postmessageインターセプト</h2>
+<p>
+    この設定を有効にすると、デベロッパーツールパネルの<strong>Messages</strong>ビューで、サイトのWebメッセージのDOM XSSをテストできます。DOM InvaderのWebメッセージ機能の詳細は、<a href="../web-messages.html">Webメッセージを使用したDOM XSSのテスト</a>を参照してください。
+</p>
+<p>
+    また、この動作を微調整するための追加設定もいくつかあります。詳細は、<a href="web-messages.html">Webメッセージの設定</a>を参照してください。
+</p>
+<h2 id="customizing-sources-and-sinks">ソースとシンクのカスタマイズ</h2>
+<p>
+    ソースとシンクの設定を開くには、メインのDOM Invaderスイッチの横にある歯車のアイコンをクリックします。ここから、DOM Invaderがどのソースとシンクを調査するかを制御できます。すべてのソースはデフォルトで非表示で、最も興味深いシンクのみが対象になっています。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/dom-invader-customize-sources-and-sinks.png" alt="ソースとシンクのカスタマイズ">
+</div>
+<p>
+    特定のシンクを対象にするとサイトの正常な動作を妨げる場合、それを無効にしたいことがあります。たとえば、<code>eval()</code>を対象にすると、その挙動が変化し関連する機能が破壊される可能性があります。
+</p>
+</body>
+</html>

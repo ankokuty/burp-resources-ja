@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE" ignore-validation="KEYWORD_APPEARANCES_MORE_THAN_DEFINING_PAGE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">DOM Invader</a>
+        </li>
+        <li>
+            <a href="dom-clobbering.html">DOM clobberingのテスト</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>DOM InvaderによるDOM clobberingのテスト</h1>
+<p>
+    DOM Invaderは、DOM clobbering脆弱性を自動的にテストできます。DOM clobberingは、ページにHTMLを挿入してDOMを操作し、ページ上のJavaScriptの動作を変更できるようにする手法です。
+</p>
+<div class="highlightedarea">
+    <h4>Webセキュリティアカデミー</h4>
+    <p>
+        DOM clobberingの詳細と、意図的に脆弱性を作り込んだ対話式のラボについては、Webセキュリティアカデミーの関連トピックを参照してください。
+    </p>
+    <a href="../../../../../web-security/dom-based/dom-clobbering/index.html">DOM clobbering</a>
+</div>
+<h2 id="enabling-dom-clobbering">DOM clobberingの有効化</h2>
+<p>
+    対象サイトの機能に影響を与えないよう、DOM clobberingはデフォルトで無効になっています。これらのチェックを有効にするには:
+</p>
+<ol>
+    <li>
+        <p>
+            DOM Invaderの設定メニューに移動します。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Attack types</strong>で、<strong>DOM clobbering</strong>がオンになるようにスイッチを切り替えます。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>Reload</strong>をクリックすると、ブラウザが更新されます。これは、変更を有効にするために必要です。
+        </p>
+    </li>
+</ol>
+<div class="rounded-dropshadow">
+    <img src="../../images/dom-invader-dom-clobbering-enabling.png" alt="DOM InvaderでDOM clobberingを有効化">
+</div>
+<p>
+    これで、ブラウズ中にDOM InvaderがDOM clobbering脆弱性をスキャンするようになります。
+</p>
+</body>
+</html>
