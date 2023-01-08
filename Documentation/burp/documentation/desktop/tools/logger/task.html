@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Logger</a>
+        </li>
+        <li>
+            <a href="task.html">タスクLogger</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>タスクLogger</h1>
+<p>
+    単一のタスクによって生成されたトラフィックを調べられます。これにより、予期せぬ動作をしたタスクの調査や、特定のタスクの進捗状況を監視できます。
+</p>
+<p>
+    タスク固有のログエントリを表示するには:
+</p>
+<ol>
+    <li>
+        <strong>ダッシュボード</strong>に移動し、<strong>タスク</strong>欄で該当するタスクまでスクロールします。
+    </li>
+    <li>
+        タスクの<strong>詳細表示</strong>アイコン<span class="icon-redock"></span>をクリックします。タスクの詳細が表示されるウィンドウが開きます。
+    </li>
+    <li>
+        タスクウィンドウ内の<strong>Logger</strong>タブを選択します。
+    </li>
+</ol>
+<div class="rounded-dropshadow">
+    <img src="../../images/getting-started/getting-started-logger-tab-5-dashboard-logger.png" alt="Loggerタスク表示" class="center-block">
+</div>
+<p>
+    タスク固有のLoggerはBurp Loggerと同様の機能を持ちますが、注目する違いがいくつかあります。
+</p>
+<ul>
+    <li>
+        各タスクのデフォルトのメモリ割り当ては10MB、またはBurp Suiteに1GB以上のメモリアクセスを許可した場合は20MBです。
+    </li>
+    <li>
+        タスク固有のLoggerはタスクに使用されたツールからのトラフィックのみをキャプチャして表示するため、ツールによるキャプチャまたはフィルタリングはできません。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <p>
+        タスク固有のLoggerがキャプチャや表示する内容を編集する方法や、メモリ割り当て方法などの詳細は、<a href="options.html">Burp Loggerオプション</a>を参照してください。
+    </p>
+</div>
+</body>
+</html>

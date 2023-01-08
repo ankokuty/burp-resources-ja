@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">Intruder</a>
+        </li>
+        <li>
+            <a href="index.html">攻撃の設定</a>
+        </li>
+        <li>
+            <a href="processing.html">処理</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1>Burp Intruder ペイロード処理</h1>
+<p>
+    Burp Intruderがリクエストに挿入する前にペイロードを変更するように、ペイロード処理ルールを設定できます。次のようなさまざまな用途で活用できます:
+</p>
+<ul>
+    <li>
+        異常なペイロードを発生させる。
+    </li>
+    <li>
+        ペイロードを使用する前に、より大きな構造体に含めたりエンコードをする。
+    </li>
+    <li>
+        定義済みのワードリスト内の各ペイロードに、複数のエンコーディングを適用する。
+    </li>
+</ul>
+<h2 id="configuring-processing-rules">処理ルールの設定</h2>
+<p>
+    各ペイロードが使われる前に、ペイロードに対してさまざまな処理タスクを実行するルールを定義できます:
+</p>
+<ol>
+    <li>
+        <strong>Intruder &gt; ペイロード</strong>に移動し、<strong>ペイロード処理</strong>欄までスクロールします。
+    </li>
+    <li>
+        <strong>追加</strong>をクリックします。処理ルールのドロップダウンリストが表示されたウィンドウが開きます。
+    </li>
+    <li>
+        リストからルールの種類を選択します。ルールを設定するためにさらに必要な項目を入力します。
+    </li>
+</ol>
+<p>
+    処理ルールは順番に実行されます。<strong>上</strong>ボタンと<strong>下</strong>ボタンで順番を変更します。また、各ルールのオンとオフを切り替えられ、設定に問題がある場合のデバッグに役立ちます。
+</p>
+<h2 id="types-of-processing-rules">処理ルールの種類</h2>
+<p>
+    次の種類の処理ルールがあります:
+</p>
+<ul>
+    <li>
+        <strong>プレフィックスを追加</strong>- ペイロードの前にリテラル文字列を追加します。
+    </li>
+    <li>
+        <strong>サフィックスを追加</strong> - ペイロードの後ろにリテラル文字列を追加します。
+    </li>
+    <li>
+        <strong>検索/置換</strong> - 指定した正規表現に一致する部分をリテラル文字列に置換します。
+    </li>
+    <li>
+        <strong>部分文字列</strong> - 指定した(0から始まる)オフセットから指定した長さまでの、ペイロードの一部を取り出します。
+    </li>
+    <li>
+        <strong>部分文字列の反転</strong> - 部分文字列として動作しますが、オフセットはペイロードの最後から指定し、長さはオフセットから逆方向にカウントされます。
+    </li>
+    <li>
+        <strong>大文字小文字変換</strong> - 該当する場合、ペイロードの大文字小文字を変更します。同じオプションは、<a href="payload-types.html#case-modification">大文字小文字変換</a>ペイロードタイプにもあります。
+    </li>
+    <li>
+        <strong>エンコード</strong> - さまざまなスキームでペイロードをエンコードします: URL、HTML、Base64、ASCII16進数、さまざまなプラットフォームで作られる文字列。
+    </li>
+    <li>
+        <strong>デコード</strong> - さまざまなスキームでペイロードをデコードします: URL、HTML、Base64、ASCII16進数。
+    </li>
+    <li>
+        <strong>ハッシュ</strong> - ペイロードのハッシュ処理を実行します。
+    </li>
+    <li>
+        <strong>生ペイロード追加</strong> - 現在処理中の値の前または後に、生のペイロードを追加します。たとえば、生の値とハッシュされた両方を同じペイロードで送信したい場合などに便利です。
+    </li>
+    <li>
+        <strong>正規表現に一致した場合にスキップ</strong> - 現在処理中の値が指定した正規表現にマッチする場合、ペイロードをスキップします。たとえば、パラメータ値の最小の長さがあることを知っていて、その長さより短い文字列をスキップしたい場合などに便利です。
+    </li>
+    <li>
+        <strong>Burp拡張を呼び出す</strong> - ペイロードを処理するために<a href="../../../extensions/index.html">Burp拡張</a>を呼び出します。拡張は、Intruderペイロードプロセッサとして登録されている必要があります。現在読み込まれている拡張によって登録されている、使用可能なプロセッサの一覧から選択できます。
+    </li>
+</ul>
+<h2 id="configuring-payload-encoding">ペイロードエンコーディングの設定</h2>
+<p>
+    HTTPリクエスト内で安全に送信するために、選択した文字をURLエンコードできます。この設定はペイロード処理ルールが実行された後に適用されるため、最終的なURLエンコードとして使用する必要があります。これにより、エコーされたペイロードをペイロードのgrepオプションでチェックした後に、エンコーディングを適用できます。
+</p>
+<p>
+    最終的なURLエンコードを設定するには:
+</p>
+<ol>
+    <li>
+        <strong>Intruder &gt; ペイロード</strong>に移動し、<strong>ペイロードのエンコーディング</strong>欄までスクロールします。
+    </li>
+    <li>
+        <strong>これらの文字をURLエンコードする</strong>を選択します。
+    </li>
+    <li>
+        エンコードしたい文字を入力します。
+    </li>
+</ol>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <p>
+        ペイロードgrepオプションの詳細は、<a href="options.html#grep-payloads">Burp Intruderオプション</a>を参照してください。
+    </p>
+</div>
+</body>
+</html>

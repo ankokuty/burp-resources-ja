@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">Intruder</a>
+        </li>
+        <li>
+            <a href="index.html">結果</a>
+        </li>
+        <li>
+            <a href="editing-attacks.html">攻撃の編集</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1>攻撃の編集</h1>
+<p>
+    攻撃実行中に、攻撃の制御や設定の変更ができます。これは、結果ウィンドウから行います。
+</p>
+<h2 id="controlling-an-attack">攻撃の制御</h2>
+<p>
+    結果ウィンドウを開いた状態で、トップレベルの<strong>攻撃</strong>メニューから攻撃を制御できます。これにより、次の操作ができます:
+</p>
+<ul>
+    <li>
+        攻撃の一時停止。
+    </li>
+    <li>
+        攻撃の再開。
+    </li>
+    <li>
+        攻撃の再実行。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <ul>
+        <li>
+            攻撃を保存して閉じる方法は、<a href="saving-attacks.html">攻撃の保存</a>を参照してください。
+        </li>
+    </ul>
+</div>
+<h2 id="configuring-an-attack">攻撃の設定</h2>
+<p>
+    結果ウィンドウには、元の設定タブを複製したタブがあります。これらを使って、攻撃実行中にほとんどの攻撃設定の確認や変更ができます。
+</p>
+<p>
+    攻撃設定の基本的な部分は変更できません。これは、次の通りです:
+</p>
+<ul>
+    <li>
+        攻撃タイプ。
+    </li>
+    <li>
+        ペイロードポジション。
+    </li>
+    <li>
+        ペイロードタイプ。
+    </li>
+</ul>
+<p>
+    これらの値を変更したい場合は、元の攻撃タブで編集してから、新しい攻撃を開始してください。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        設定を変更する前に、攻撃の一時停止を推奨します。攻撃の実行中に設定を変更する際に各キーが押されるたびに変更が実行されるため、予期せぬ影響を与える可能性があります。
+    </p>
+    <p>
+        たとえば、<strong><a href="../configure-attack/payload-types.html#numbers">数値</a></strong>ペイロードタイプを使っているとき<strong>To</strong>欄で数字を削除すると、<strong>To</strong>欄の数字が小さくなるため、攻撃が突然完了するかもしれません。
+    </p>
+</div>
+</body>
+</html>

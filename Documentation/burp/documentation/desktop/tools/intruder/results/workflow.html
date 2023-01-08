@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">Intruder</a>
+        </li>
+        <li>
+            <a href="index.html">結果</a>
+        </li>
+        <li>
+            <a href="workflow.html">ワークフロー</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1>Burp Intruderのワークフローツール</h1>
+<p>
+    ワークフローの一部として、攻撃結果に対してアクションを実行できます。結果一覧で任意のアイテムを右クリックすると、コンテキストメニューのアクションにアクセスできます。
+</p>
+<h2 id="scan">スキャン</h2>
+<p>
+    選択したアイテムをBurpのスキャナに送信し、コンテンツや脆弱性をスキャンします。
+</p>
+<h2 id="send-to">...に送信</h2>
+<p>
+    選択したアイテムを、<a href="../../repeater/index.html">Repeater</a>や<a href="../../comparer.html">Comparer</a>など他のBurpツールに送信します。これにより、さらなる分析が可能になり、ワークフローの推進にBurpを活用できます。
+</p>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <p>
+        ツール間でリクエストを送信する機能は、Burpのユーザ主導ワークフローの中核をなします。詳細は、<a href="../../../penetration-testing/index.html">ペネトレーションテストでのBurp Suiteの使用方法</a>を参照してください。
+    </p>
+</div>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="show-response-in-browser">レスポンスをブラウザで表示</h2>
+<p>
+    レスポンス用の一意なURLを生成します。これをコピーしてBurpブラウザにペーストすると、Burpの内蔵HTMLレンダラの制限を受けずにレスポンスをレンダリングできます。
+</p>
+<p>
+    Burpは、ブラウザのリクエストに対して、選択したレスポンスを結果として返します: リクエストは元のWebサーバには転送されません。Burpブラウザは、元々リクエストされたURLのコンテキストでレスポンスを処理します。つまり、レスポンス内の相対リンクが適切に処理されます。
+</p>
+<p>
+    Burpブラウザがレスポンスをレンダリングする際に、画像やCSSなどの追加リクエストを行う場合があります。Burpはこれらを、通常の方法で処理します。
+</p>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="request-in-browser">ブラウザでリクエスト</h2>
+<p>
+    Burpブラウザでリクエストを再送します:
+</p>
+<ul>
+    <li>
+        <strong>元のセッションを使う</strong> - 元のリクエストにあるCookieヘッダを使用してリクエストを再送します。
+    </li>
+    <li>
+        <strong>現在のセッションを使う</strong> - ブラウザから提供されたcookieを使ってリクエストを再送します。
+    </li>
+</ul>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="generate-csrf-poc">CSRF PoC生成</h2>
+<p>
+    ブラウザで表示したときに、選択したリクエストが送信されるようなHTMLを生成します。詳細は、<a href="../../../functions/generate-csrf-poc.html">CSRF PoC生成</a>を参照してください。
+</p>
+<h2 id="add-to-site-map">サイトマップに追加</h2>
+<p>
+    選択したアイテムを<a href="../../target/site-map/index.html">Targetサイトマップ</a>に追加します。これは、サイトマップに追加されていないサーバ上の新しいリソースを確認する場合に便利です。
+</p>
+<h2 id="request-item-again">アイテムを再リクエスト</h2>
+<p>
+    選択したアイテムをキューに入れ、攻撃エンジンが再度リクエストするようにします。アイテムが再リクエストされると、アイテムのエントリや関連するHTTPメッセージが、新たなリクエストを元に更新されます。次の場合に便利です:
+</p>
+<ul>
+    <li>
+        一部の攻撃リクエストがネットワークエラーで失敗した場合や、断続的な問題により異常なレスポンスを受信していた場合。
+    </li>
+    <li>
+        攻撃中にベースリクエストやその他の関連する設定を変更し、元の設定で再リクエストしたい場合。
+    </li>
+</ul>
+<h2 id="define-extract-grep-from-response">レスポンスから抽出grepを定義</h2>
+<p>
+    レスポンス抽出ルールダイアログを開き、そのレスポンスを元に新たな抽出grepアイテムを作成します。これにより、レスポンスの興味深い部分を抽出できます。これは、攻撃リクエストによってベースリクエストと異なるタイプのレスポンスが返ってきた場合に、類似のレスポンスの内容を素早く確認するのに便利です。例:
+</p>
+<ul>
+    <li>
+        ファジング中のエラーメッセージの特定の形式。詳細は、<a href="../uses/fuzzing.html">脆弱性のファジング</a>を参照してください。
+    </li>
+    <li>
+        認証情報を推測する際のログインメッセージの違い。詳細は、<a href="../uses/enumerating.html">識別子の列挙</a>を参照してください。
+    </li>
+</ul>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="copy-as-curl-command">curlコマンドをコピー</h2>
+<p>
+    現在のリクエストを生成するcurlコマンドをクリップボードにコピーします。
+</p>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="add-comment">コメントを追加</h2>
+<p>
+    選択したアイテムにコメントを追加します。
+</p>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="highlight">色付け</h2>
+<p>
+    選択したアイテムを色付けします。
+</p>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="copy-links">リンクをコピー</h2>
+<p>
+    選択されたアイテムのリンクを解析し、クリップボードにコピーします。
+</p>
+<h2 id="save-item">アイテムを保存</h2>
+<p>
+    選択したアイテムの詳細をXML形式で保存します。これには、完全なリクエストとレスポンス、レスポンス長、HTTPステータスコード、MIMEタイプなど、関連するすべてのメタデータが含まれます。
+</p>
+</body>
+</html>

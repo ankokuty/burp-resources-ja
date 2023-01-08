@@ -36,39 +36,15 @@
     Javaに精通していれば、Montoya APIを使用して独自のBurp Suite拡張を作成できます。Burp Suiteは、Java 17以下で書かれた拡張のみをサポートしていることに注意してください。
 </p>
 <p>
-    はじめに、MavenまたはGradleのプロジェクトを新規に作成し、次のようにMontoya APIの依存関係を追加します。Burpのバージョンによって必要なパッケージが異なることに注意してください。
+    はじめに、MavenまたはGradleのプロジェクトを新規に作成し、次のようにMontoya APIの依存関係を追加します。
 </p>
-<div class="expandable-container">
-    <details><summary>
-            <h4>Burp Suite 2022.9.5 (Stable)</h4>
-        </summary>
-        <div class="content">
-            <p>
-                <strong>Maven</strong>
-            </p>
-            <code class="code-scrollable">&lt;dependency&gt; &lt;groupId&gt;net.portswigger.burp.extender&lt;/groupId&gt; &lt;artifactId&gt;montoya-api&lt;/artifactId&gt; &lt;version&gt;LATEST&lt;/version&gt; &lt;/dependency&gt;</code><p>
-                <strong>Gradle</strong>
-            </p>
-            <code class="code-scrollable">implementation 'net.portswigger.burp.extender:montoya-api:+'</code>
-        </div>
-    </details>
-</div>
-<div class="expandable-container">
-    <details><summary>
-            <h4>Burp Suite 2022.11+ (Early Adopter)</h4>
-        </summary>
-        <div class="content">
-            <p>
-                <strong>Maven</strong>
-            </p>
-            <code class="code-scrollable">&lt;dependency&gt; &lt;groupId&gt;net.portswigger.burp.extensions&lt;/groupId&gt; &lt;artifactId&gt;montoya-api&lt;/artifactId&gt; &lt;version&gt;LATEST&lt;/version&gt; &lt;/dependency&gt;</code><p>
-                <strong>Gradle</strong>
-            </p>
-            <code class="code-scrollable">implementation 'net.portswigger.burp.extensions:montoya-api:+'</code>
-        </div>
-    </details>
-</div>
 <p>
+    <strong>Maven</strong>
+</p>
+<code class="code-scrollable">&lt;dependency&gt; &lt;groupId&gt;net.portswigger.burp.extensions&lt;/groupId&gt; &lt;artifactId&gt;montoya-api&lt;/artifactId&gt; &lt;version&gt;LATEST&lt;/version&gt; &lt;/dependency&gt;</code><p>
+    <strong>Gradle</strong>
+</p>
+<code class="code-scrollable">implementation 'net.portswigger.burp.extensions:montoya-api:+'</code><p>
     次に、<code>BurpExtension</code>インタフェースを実装したクラスを作成します。<code>initialize()</code>メソッドは、<code>MontoyaApi</code>の実装を提供します。これを使用してBurp Suiteの変更や通信ができます。
 </p>
 <p>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">Intruder</a>
+        </li>
+        <li>
+            <a href="index.html">使用</a>
+        </li>
+        <li>
+            <a href="harvesting.html">データの収集</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1>有用なデータの収集</h1>
+<p>
+    Burp Intruderを使用すると、興味深いデータを攻撃から抽出できます。この情報により、最も重要なアイテムに焦点を当てられ、以後の攻撃の材料にできます。
+</p>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-1-find-a-request">ステップ1: リクエストを探す</h2>
+<p>
+    パラメータに識別子を含み、識別子についての興味深いデータがレスポンスにあるリクエストを検索します。
+</p>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-2-set-a-payload-position">ステップ2: ペイロードポジションを設定する</h2>
+<p>
+    そのパラメータの値を単一のペイロードポジションに設定します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/intruder-gettingstarted-7-940.png" alt="収集時のペイロードポジションの設定">
+</div>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-3-set-a-payload-type">ステップ3: ペイロードタイプを設定する</h2>
+<p>
+    正しいフォーマットやスキームの識別子候補がテストで生成されるように、適切なペイロードタイプを使います。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/intruder-gettingstarted-8-940.png" alt="収集時のペイロードタイプの設定">
+</div>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-4-set-an-extract-grep">ステップ4: 抽出grepを設定する</h2>
+<p>
+    <strong>Grep - extract</strong>オプションを設定し、各レスポンスから関連データを取得します。詳細は、<a href="../configure-attack/options.html#grep-extract">Burp Intruderオプション</a>を参照してください。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/intruder-gettingstarted-9-940.png" alt="Intruderのgrep extract" class="center-block">
+</div>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-5-analyze-the-results">ステップ5: 結果を分析する</h2>
+<p>
+    攻撃結果を抽出grepの式でソートし、抽出された興味深い情報を見つけます。
+</p>
+<div class="section-small">
+    <img src="../../../images/intruder-results-extract-column-940.png" alt="抽出grep結果の収集" class="center-block">
+</div>
+<p>
+    <label class="label-edition is-professional">Professional</label>
+    データをさらに分析するためにコピー＆ペーストするには、controlキーを押しながらヘッダをクリックします。
+</p>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="use-cases">使用例</h2>
+<p>
+    さまざまな有用なデータを収集できるように攻撃を設定できます。例:
+</p>
+<ul>
+    <li>
+        パスワードヒントの抽出 - アプリケーションのパスワード忘れ機能に、一般的なユーザ名のリストを挿入します。各ユーザのパスワードヒントを取得するための、抽出grepアイテムを設定します。これをスキャンすると、簡単に推測できるものが見つけられます。
+    </li>
+    <li>
+        ページタイトルタグの特定 - 数字のペイロードタイプを使用して、ページID番号を巡回します。各ページのHTMLタイトルタグを取得するための、抽出grepアイテムを設定します。これをスキャンすると、興味深いページが見つけられます。
+    </li>
+    <li>
+        ユーザロールの特定 - アプリケーションのユーザプロフィールページに、既知のユーザ名のリストを挿入します。各ユーザのロールを取得するための、抽出grepアイテムを設定します。そして、さらなる攻撃のために管理者アカウントを見つけられます。
+    </li>
+</ul>
+</body>
+</html>

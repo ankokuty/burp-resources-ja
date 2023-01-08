@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">Intruder</a>
+        </li>
+        <li>
+            <a href="index.html">結果</a>
+        </li>
+        <li>
+            <a href="analyzing-results.html">結果の分析</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1>攻撃結果の分析</h1>
+<p>
+    Burp Intruderは、大量の結果を体系的に調べさまざまな種類の興味深いリクエストがどこに現れるか理解するのを助ける、さまざまな機能を備えています。
+</p>
+<h2 id="sorting-results">結果のソート</h2>
+<p>
+    ソートをすると、HTTPステータスコードやレスポンス長が他の結果と異なるアイテムなど、異常なアイテムを素早く見つけられます。
+</p>
+<p>
+    表の内容をソートするには、任意の列ヘッダをクリックします。昇順、降順、ソートなしを切り替えられます。
+</p>
+<h2 id="copying-results">結果のコピー</h2>
+<p>
+    <label class="label-edition is-professional">Professional</label>
+    列のコンテンツをコピーするには、controlキーを押しながらヘッダをクリックします。これにより、結果の一部を抽出してさらに分析できます。
+</p>
+<h2 id="filtering-results">結果のフィルタリング</h2>
+<p>
+    ディスプレイフィルタを使用して、結果を非表示にできます。これにより、注目するコンテンツに集中しやすくなります。現在のディスプレイフィルタは、結果一覧の上のフィルタバーに表示されています。これをクリックすると、<strong>フィルタ設定</strong>ウィンドウが開きます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/intruder-filter-settings.png" alt="Intruderフィルタ設定" class="center-block">
+</div>
+<p>
+    <strong>フィルタ設定</strong>ウィンドウでは、次が可能です:
+</p>
+<ul>
+    <li>
+        <p>
+            <strong>検索語でフィルタ</strong> - 指定された検索語を含むレスポンスを表示または非表示にします。次の選択肢があります:
+        </p>
+        <ul>
+            <li>
+                <strong>正規表現</strong> - 検索語がリテラル文字列か正規表現かを指定します。
+            </li>
+            <li>
+                <strong>大文字小文字を区別</strong> - 検索語の大文字小文字を区別するかを指定します。
+            </li>
+            <li>
+                <strong>一致しないものを検索</strong> - 検索語に一致しないアイテムを表示または非表示にします。
+            </li>
+        </ul>
+    </li>
+    <li>
+        <strong>ステータスコードでフィルタ</strong> - HTTPステータスコードでレスポンスを表示または非表示にします。
+    </li>
+    <li>
+        <strong>注釈でフィルタ</strong> - コメントや色づけがあるアイテムだけを表示します。
+    </li>
+</ul>
+<p>
+    フィルタは、表示するものをコントロールするだけです。非表示にしたアイテムは削除されず、フィルタをリセットすると再び表示されます。
+</p>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="adding-annotations">注釈の追加</h2>
+<p>
+    結果に、コメントや色付けを追加できます。これにより興味深い結果にフラグをセットし、さらに詳しく調査できます。
+</p>
+<p>
+    結果を色付けするには:
+</p>
+<ol>
+    <li>
+        結果テーブルで、リストから1つ以上のアイテムを選択します。
+    </li>
+    <li>
+        アイテムを右クリックし、<strong>色付け</strong>を選択します。
+    </li>
+    <li>
+        一覧から色を選択します。
+    </li>
+</ol>
+<p>
+    コメントを追加するには:
+</p>
+<ol>
+    <li>
+        結果テーブルで、リストから1つ以上のアイテムを選択します。
+    </li>
+    <li>
+        <strong>コメント</strong>列をダブルクリックします。
+    </li>
+    <li>
+        セルにコメントを入力します。
+    </li>
+</ol>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <p>
+        結果アイテムに対してさらにアクションを実行し、テストワークフローを推進できます。詳細は、<a href="workflow.html">Intruderテストのワークフロー</a>を参照してください。
+    </p>
+</div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="index.html">Logger</a>
+        </li>
+        <li>
+            <a href="entries.html">Loggerエントリを操作</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+    <label class="label-edition is-community">Community</label>
+</section>
+<h1>Burp Loggerのエントリを操作</h1>
+<p>
+    すべてのHTTPトラフィックは、割り当てたメモリ制限いっぱいまで、<strong>Logger</strong>タブに記録されます。
+</p>
+<p>
+    全てのアイテムのログを無効または有効にするには、<strong>ログ: On/Off</strong>ボタンをクリックします。ログの消去もできます: <strong>ログをクリア</strong>するゴミ箱アイコン<span class="icon-trash"></span>をクリックします。消去してしまうと、ログは復旧できません。
+</p>
+<p>
+    Burp Loggerには、大量の結果を表示、分析するさまざまな機能があります。
+</p>
+<h2 id="viewing-log-entries">ログエントリを表示</h2>
+<p>
+    <strong>Logger</strong>エントリの主要な情報が一覧に表示されます。表示する列を選択するには、<strong>列</strong>ドロップダウンメニューをクリックします。列の並び替えやサイズを変更するには、列ヘッダや列の境界線をクリック＆ドラッグします。
+</p>
+<p>
+    各エントリのリクエストとレスポンスは、<a href="../../functions/message-editor/index.html">メッセージエディタ</a>と<a href="../../functions/message-editor/inspector.html">Inspector</a>で確認できます。各アイテムをクリックすると表示されます。これらは読み取り専用です。
+</p>
+<p>
+    任意の列のアイテムでログエントリをソートできます。列ヘッダをクリックすると、昇順、降順、ソートなしが切り替わります。
+</p>
+<h2 id="annotating-log-entries">ログエントリの注釈</h2>
+<p>
+    ログエントリに注釈を付けて、後で確認できます。
+</p>
+<ul>
+    <li>
+        エントリに色づけするには、<strong>#</strong>列をクリックし、ドロップダウンメニューから色を選択します。
+    </li>
+    <li>
+        エントリにコメントを残すには、<strong>コメント</strong>列をダブルクリックします。
+    </li>
+</ul>
+<h2 id="logger-workflow-tools">Loggerワークフローツール</h2>
+<p>
+    ワークフローの一部として、任意のログエントリに対してコンテキストメニューを使用して、さらなるアクションを実行できます。たとえば、<a href="../repeater/index.html">Repeater</a>や<a href="../intruder/index.html">Intruder</a>など他のBurpツールにリクエストを送信できます。ログエントリをCSVファイルとしてエクスポートもできます。詳細は次を参照してください。
+</p>
+<h3>LoggerエントリのCSVエクスポート</h3>
+<p>
+    LoggerエントリをCSVファイルとしてエクスポートするには、関連するエントリをテーブルで選択し、右クリックして<strong>CSVとしてエクスポート</strong>を選択します。エントリを選択しない、または1つだけ選択した場合は、テーブル全体がエクスポートされます。
+</p>
+<p>
+    エントリをCSV形式でエクスポートする場合、Loggerは特定のデータを次のようにエンコードします:
+</p>
+<ul>
+    <li>
+        日時は、UTCオフセットでISO 8601フォーマットになります: <code>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</code>。
+    </li>
+    <li>
+        バイナリデータ(たとえば、HTTP/2リクエストやレスポンスなど)は、Base64エンコードされた文字列になります。
+    </li>
+    <li>
+        カンマを含むデータは、データをダブルクオートで囲みエスケープされます。たとえば、a,b は "a,b" になります。
+    </li>
+    <li>
+        ダブルクオートを含むデータは、ダブルクオートを追加してエスケープされます。たとえば、"a" は """a""" になります。
+    </li>
+    <li>
+        -、+、=、@で始まるデータは、Excel用にシングルクオート(')を前に付けてエスケープされます。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <ul>
+        <li>
+            Loggerは、キャプチャするものと表示するものをそれぞれ設定できるよう個別のコントロールがあります。詳細は、<a href="options.html">Burp Loggerオプション</a>を参照してください。
+        </li>
+        <li>
+            これらの機能が実際にどのように動作するかは、<a href="getting-started.html">Burp Logger入門</a>のチュートリアルを参照してください。
+        </li>
+    </ul>
+</div>
+</body>
+</html>

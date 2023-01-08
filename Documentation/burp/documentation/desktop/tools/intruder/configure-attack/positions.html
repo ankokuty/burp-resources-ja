@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">Intruder</a>
+        </li>
+        <li>
+            <a href="index.html">攻撃の設定</a>
+        </li>
+        <li>
+            <a href="positions.html">ポジション</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1>Burp Intruderペイロードポジション</h1>
+<p>
+    Burp Intruderが攻撃時にペイロードを配置する場所を決定するために、リクエストでペイロードポジションを指定できます。
+</p>
+<h2 id="payload-positions-field">ペイロードポジションフィールド</h2>
+<p>
+    ペイロードポジションは、<strong>Intruder &gt; ポジション</strong>の<strong>ペイロードポジション</strong>欄で、任意の位置に指定できます。Intruderにリクエストを送信すると、この欄にリクエストと対象の詳細が自動的に入力されます。Intruderは、デフォルトのペイロード位置も挿入し、リクエストパラメータの値をマークします。例:
+</p>
+<ul>
+    <li>
+        URLクエリ文字列のパラメータ。
+    </li>
+    <li>
+        ボディパラメータ。
+    </li>
+    <li>
+        cookie。
+    </li>
+    <li>
+        ファイルアップロードのファイル名など、マルチパートパラメータ属性。
+    </li>
+    <li>
+        XMLデータと要素の属性値。
+    </li>
+    <li>
+        JSONパラメータ。
+    </li>
+</ul>
+<h3 id="target-field">対象フィールド</h3>
+<p>
+    Burp Intruderは、対象欄にもペイロードポジションを設定できます。これは、Intruder攻撃の送信先を指定するもので、次を含みます:
+</p>
+<ul>
+    <li>
+        プロトコル - HTTPまたはHTTPS。
+    </li>
+    <li>
+        ホスト - 対象サーバのIPアドレスまたはホスト名。
+    </li>
+    <li>
+        ポート - HTTP/Sサービスのポート番号。
+    </li>
+</ul>
+<p>
+    自動ペイロードポジションは、対象欄を含みません。
+</p>
+<p>
+    デフォルトで、<strong>対象に合わせてHostヘッダを更新</strong>が選択されています。対象に対するすべての変更は、ベースリクエストのHostに自動的にミラーリングされます。この選択を外すと、対象のみを変更できます。これにより、たとえば<a href="../../../../../../web-security/host-header/index.html">HTTPホストヘッダ</a>攻撃を仕掛けるために、固定の対象に対して任意の<code>Host</code>ヘッダを送信できます。
+</p>
+<h2 id="configuring-payload-positions">ペイロードポジションを設定</h2>
+<p>
+    各ペイロードポジションは、対のペイロードマーカ§で囲まれ、識別しやすいように強調されます。ペイロードポジションを設定、変更するには、<strong>ペイロードポジション</strong>欄の横にあるボタンを使用します:
+</p>
+<ul>
+    <li>
+        ペイロードマーカを挿入する - <strong>§追加</strong>をクリックします。
+    </li>
+    <li>
+        ペアのペイロードマーカを挿入する - 任意のテキストを選択し、<strong>§追加</strong>をクリックします。選択したテキストの両側にマーカを挿入します。
+    </li>
+    <li>
+        <p>
+            すべてのペイロードマーカを削除する - <strong>§クリア</strong>をクリックします。
+        </p>
+        <ul>
+            <li>
+                テキストが選択されている場合は、選択した範囲内のマーカのみが削除されます。
+            </li>
+        </ul>
+    </li>
+    <li>
+        <p>
+            デフォルトのペイロードマーカを適用する - <strong>自動§</strong>をクリックすると、デフォルトのペイロードポジションが挿入されます。
+        </p>
+        <ul>
+            <li>
+                デフォルトのペイロードマーカが、元パラメータ値を置換するのかあるいは元パラメータ値に追加するのかを設定するには、トップレベルの<strong>Intruder</strong>メニューに移動し、<strong>自動ペイロードポジション</strong>をクリックします。
+            </li>
+            <li>
+                テキストが選択されている場合は、選択した範囲内にのみデフォルトのマーカが挿入されます。たとえば、マルチパートのパラメータ値にXMLやJSON形式のデータが含まれている場合、フォーマットされたデータを選択し<strong>自動§</strong>をクリックすると、その中にペイロードを配置できます。
+            </li>
+        </ul>
+    </li>
+    <li>
+        構文の色付けを更新 - <strong>リフレッシュ</strong>をクリックすると、デフォルトの色付けに戻ります。
+    </li>
+    <li>
+        リクエストテンプレートを消す - <strong>クリア</strong>をクリックします。
+    </li>
+</ul>
+<p>
+    攻撃中は、ペイロードマーカに囲まれたテキストとペイロードマーカの両方が、ペイロードに置き換わります。ペイロードポジションに割り当てられたペイロードがない場合、囲われたテキストは変更されませんが、マーカは削除されます。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Intruderのペイロードポジションを、Burp Scannerの挿入ポイントとしても使用できます。ペイロードポジションを設定し、トップレベルの<strong>Intruder</strong>メニューをクリックし、<strong>定義された挿入ポイントをスキャン</strong>を選択します。
+    </p>
+    <p>
+        Burp Scannerの挿入ポイントの詳細は、<a href="../../../../scanner/auditing.html#insertion-points">診断</a>を参照してください。
+    </p>
+</div>
+</body>
+</html>

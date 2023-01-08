@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">Intruder</a>
+        </li>
+        <li>
+            <a href="index.html">攻撃の設定</a>
+        </li>
+        <li>
+            <a href="options.html">オプション</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1>Burp Intruderオプション</h1>
+<p>
+    攻撃を開始する前に、攻撃タブの<strong>オプション</strong>でBurp Intruderの設定を編集できます。攻撃実行中にも多くの設定を変更できます。それには、結果ウィンドウにある複製した<strong>オプション</strong>タブで編集してください。
+</p>
+<h2 id="save-options">オプション保存</h2>
+<p>
+    デフォルトで攻撃はメモリ内に保存されるため、Burp Suiteを閉じると失われます。ただし、プロジェクトファイルに保存が可能です。それには、<strong>プロジェクトファイルに保存</strong>を選択してください。
+</p>
+<p>
+    何か興味深いものを見つけた場合にのみ、攻撃の保存を推奨します。大量の攻撃を保存するとプロジェクトファイルが肥大化する可能性があります。
+</p>
+<h2 id="request-headers">リクエストヘッダ</h2>
+<p>
+    Intruderが攻撃中に、設定されているリクエストヘッダを更新するかどうかを制御します:
+</p>
+<ul>
+    <li>
+        <strong>Content-Lengthヘッダを更新</strong> - リクエストのHTTPボディの正しい長さを、各リクエストの<code>Content-Length</code>ヘッダに追加または更新します。これは、テンプレートHTTPリクエストのボディに可変長のペイロードを挿入する攻撃に有効です。正しい長さが指定されていない場合、対象サーバがエラーを返す、不完全なリクエストに対するレスポンスを返す、またはさらにリクエストデータを受信しようと無限に待機する可能性があります。
+    </li>
+    <li>
+        <strong>Connectionヘッダをセット</strong> - <code>Connection</code>ヘッダを<code>close</code>にしたヘッダを追加または更新します。有効なContent-LengthヘッダやTransfer-Encodingヘッダをサーバが返さないとき、このオプションで攻撃速度を上げられるかもしれません。
+    </li>
+</ul>
+<h2 id="error-handling">エラーハンドリング</h2>
+<p>
+    攻撃中にネットワークエラーを処理する方法を制御します:
+</p>
+<ul>
+    <li>
+        <strong>ネットワークエラー時のリトライ回数</strong> - 障害発生時にBurpがリクエストを再送する回数を指定します。テスト中に断続的にネットワーク障害が起こることがよくあるので、数回リクエストの再試行を推奨します。
+    </li>
+    <li>
+        <strong>リトライ前の一時停止</strong> - 失敗したリクエストを再試行する前に待つ時間(ミリ秒単位)を指定します。サーバのトラフィックを圧迫している場合、または断続的に問題が起きている場合は、再試行前に短時間の遅延を推奨します。
+    </li>
+</ul>
+<h2 id="attack-results">攻撃結果</h2>
+<p>
+    攻撃結果でどのような情報がキャプチャされるか制御します:
+</p>
+<ul>
+    <li>
+        <p>
+            <strong>リクエスト/レスポンスを保存する</strong> - 攻撃の個々のリクエストとレスポンスの内容を保存するかどうかを指定します。一時ディレクトリのディスク容量を消費しますが、次が可能になります:
+        </p>
+        <ul>
+            <li>
+                攻撃中にリクエストとレスポンスを完全に表示する。
+            </li>
+            <li>
+                必要に応じて個々のリクエストを再送する。
+            </li>
+            <li>
+                他のBurpツールにリクエストやレスポンスを送信する。
+            </li>
+        </ul>
+    </li>
+    <li>
+        <strong>変更されていないベースリクエストを生成する</strong> - 設定された攻撃リクエストに加えて、すべてのペイロードポジションが元の値のままのテンプレートリクエストも送信するよう設定します。このリクエストは、結果一覧のアイテム0として表示されます。これは、ベースレスポンスと攻撃レスポンスを比較する際に便利です。
+    </li>
+    <li>
+        <strong>サービス妨害モードを使用する</strong> - サーバから受信したレスポンスを一切処理しないよう設定します。各リクエストが発行されると、すぐにTCP接続が閉じられます。この機能で、高負荷のタスクがサーバ上で開始されるリクエストを繰り返し送信し、サーバが応答するまでソケットが開き続けてローカルリソースがロックされるのを回避しながら、脆弱なアプリケーションに対してアプリケーションレイヤーのサービス妨害攻撃が行えます。
+    </li>
+    <li>
+        <strong>全ペイロードを保存する</strong> - 各結果のすべてのペイロードを記録します。このオプションは追加のメモリを消費しますが、Payload - Grep設定の変更や、変更されたリクエストテンプレートの再送など、特定のアクションの実行時に必要になる場合があります。
+    </li>
+</ul>
+<h2 id="grep-match">Grep - match</h2>
+<p>
+    指定された文字列をレスポンスに含む結果アイテムにフラグをセットします。
+</p>
+<ul>
+    <li>
+        <strong>これらの文字列にマッチするレスポンスにフラグをセットする</strong> - フラグをセットする式のリストを指定します。デフォルトで、ファジングに便利ないくつかの一般的なエラー文字列が一覧に表示されます。
+    </li>
+    <li>
+        <strong>検索タイプ</strong> - 式が単純な文字列であるか、正規表現であるかを指定します。
+    </li>
+    <li>
+        <strong>大文字小文字を区別する</strong> - 大文字小文字を区別して式をチェックするかどうかを指定します。
+    </li>
+    <li>
+        <strong>HTTPヘッダを除外する</strong> - HTTPレスポンスヘッダをチェック対象外にするかどうかを指定します。
+    </li>
+</ul>
+<p>
+    Burpは攻撃中に、リスト内の各式に対する列を結果に追加します。レスポンスにその式が何回含まれたかを記録します。式で結果を探し出すには、列ヘッダをクリックして結果をソートします。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/intruder-grep-match.png" alt="Intruderのgrep match" class="center-block">
+</div>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <p>
+        このオプションを使用すると、大量の検索結果から興味深いアイテムをすばやく探し出せます。詳細と一般的な使用例は、次を参照してください:
+    </p>
+    <ul>
+        <li>
+            <a href="../uses/fuzzing.html">脆弱性のファジング</a>。
+        </li>
+        <li>
+            <a href="../uses/enumerating.html">識別子の列挙</a>。
+        </li>
+    </ul>
+</div>
+<h2 id="grep-extract">Grep - extract</h2>
+<p>
+    これらの設定は、レスポンスから情報を抽出します。
+</p>
+<p>
+    興味深い文字列を指定し情報を抽出するには、<strong>レスポンスから次のアイテムを抽出する</strong>を選択し、<strong>追加</strong>をクリックします。新しいウィンドウが開き、抽出するアイテムの場所を定義できます。
+</p>
+<div class="section-small">
+    <img src="../../../images/intruder-results-extract-select-940.png" alt="選択の確認" class="center-block">
+</div>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        複数回出現するアイテムから情報を抽出するには、そのアイテムを複数回連続して追加します。たとえば、HTMLのテーブル内に有用な情報が含まれているけれども、各アイテムを自動的に抽出するための一意なプレフィックスがない場合に便利です。
+    </p>
+</div>
+<p>
+    各アイテムについて、Burpがキャプチャする最大長を設定するには、<strong>抽出する最大長</strong>欄に値を入力します。
+</p>
+<p>
+    Burpは攻撃中に、抽出した情報についての結果の列を追加します。列ヘッダをクリックすると、結果をソートできます。
+</p>
+<div class="section-small">
+    <img src="../../../images/intruder-results-extract-column-940.png" alt="抽出grep結果" class="center-block">
+</div>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <ul>
+        <li>
+            抽出するアイテムの詳細な設定方法は、<a href="../../../functions/response-extraction.html">レスポンス抽出ルール</a>を参照してください。
+        </li>
+        <li>
+            このオプションは、アプリケーションからデータを収集するために使用できます。詳細と一般的な使用例は、<a href="../uses/harvesting.html">有用なデータの収集</a>を参照してください。
+        </li>
+    </ul>
+</div>
+<h2 id="grep-payloads">Grep - payloads</h2>
+<p>
+    送信したペイロードが反射されるアイテムに、フラグを設定できます:
+</p>
+<ul>
+    <li>
+        <strong>大文字小文字を区別する</strong> - 大文字小文字を区別するかどうかを指定します。
+    </li>
+    <li>
+        <strong>HTTPヘッダを除外する</strong> - HTTPレスポンスヘッダをチェック対象外にするかどうかを指定します。
+    </li>
+    <li>
+        <strong>URLエンコード前のペイロードとマッチする</strong> - エンコード前のペイロードでレスポンスをチェックします。リクエスト内のペイロードをURLエンコードするようにIntruderを設定した場合に、これが必要な場合があります。それらは普通、アプリケーションによってデコードされて、元の形式で表示されます。
+    </li>
+</ul>
+<p>
+    Burpは攻撃中に、レスポンス内にペイロードが見つかった回数を記録する結果の列を追加します。複数のペイロードセットを使用する場合は、ペイロードセットごとに別の列が追加されます。
+</p>
+<p>
+    このオプションは、ユーザ入力がアプリケーションのレスポンスに動的に挿入される、<a href="../../../../../../web-security/cross-site-scripting/index.html">クロスサイトスクリプティング</a>やその他のレスポンスインジェクションの脆弱性を検出するために使用できます。
+</p>
+<h2 id="redirections">リダイレクト</h2>
+<p>
+    攻撃を実行する際の、リダイレクトの処理方法を制御します。攻撃の目標を達成するためにリダイレクトをたどらなければならない場合が、よくあります。例:
+</p>
+<ul>
+    <li>
+        パスワード推測攻撃で、各試行の結果がリダイレクト後のページだけに表示される場合があります。
+    </li>
+    <li>
+        ファジングでは、最初に返されたリダイレクトレスポンスの後のエラーメッセージだけに、関連するフィードバックが表示される場合もあります。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        リダイレクトを自動的にたどると、場合によって攻撃に問題が起こることがあります。たとえば、悪意のあるリクエストに対してアプリケーションがログアウトページにリダイレクトさせるレスポンスを返すと、セッションが終了してしまうかもしれません。
+    </p>
+</div>
+<p>
+    次のオプションがあります:
+</p>
+<ul>
+    <li>
+        <p>
+            <strong>リダイレクトをたどる</strong> - リダイレクトの対象を制御します。次から選択できます:
+        </p>
+        <ul>
+            <li>
+                <strong>行わない</strong>。
+            </li>
+            <li>
+                <strong>同じサイトのみ</strong>。
+            </li>
+            <li>
+                <strong>スコープ内のみ</strong>。
+            </li>
+            <li>
+                <strong>常に実行する</strong>。
+            </li>
+        </ul>
+    </li>
+    <li>
+        <strong>リダイレクト中にcookieを処理する</strong> - リダイレクト先にアクセスする際に、リダイレクトレスポンスでセットされたcookieを再送信します。たとえば、ログイン試行のブルートフォースでログイン結果が分かるページへのリダイレクトが常に返ってくる場合で、ログイン試行のたびに新たなセッション作られる場合に、このオプションが必要でしょう。
+    </li>
+</ul>
+<p>
+    Burpは最大10回までリダイレクトをたどります。結果一覧には、個々の結果でリダイレクトがたどられたかどうかを示す列があります。リダイレクト途中のすべてのリクエストとレスポンスが、各結果アイテムに保存されています。
+</p>
+<p>
+    Burpが処理するリダイレクトの種類は、全体のリダイレクトオプションで設定できます。詳細は、<a href="../../../settings/network/http.html#allowed-redirect-types">オプション: HTTP</a>を参照してください。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        リダイレクトをたどる時にシングルスレッド攻撃のみを使用する必要があるかもしれません。たとえば、アプリケーションが最初のリクエスト結果をセッション内に格納し、リダイレクト後のレスポンスを返すときにそれを取り出す場合などです。
+    </p>
+</div>
+</body>
+</html>

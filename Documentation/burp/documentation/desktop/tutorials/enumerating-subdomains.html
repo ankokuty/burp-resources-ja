@@ -33,10 +33,10 @@
 </section>
 <h1>Burp Intruderによるサブドメインの列挙</h1>
 <p>
-    <a href="../../desktop/tools/intruder/index.html">Burp Intruder</a>は、複数の対象ホストに対する攻撃を自動化できます。このチュートリアルでは、指定された対象の有効なサブドメインをこの機能を使って列挙して、追加の攻撃対象を発見する方法を紹介します。
+    <a href="../../desktop/tools/intruder/index.html">Burp Intruder</a>は、複数の対象ホストに対する攻撃を自動化できます。このチュートリアルではこの機能を使って、指定された対象の有効なサブドメインを列挙して、追加の攻撃対象を発見する方法を紹介します。
 </p>
 <p>
-    この技術は、さまざまな方法で再利用できます(例えば、複数のサイトに対する同一の攻撃を自動化する場合など)。しかし特に偵察を行う場合に有効です。
+    この技術は、特に偵察を行う場合に有効です。たとえば、複数のサイトに対する同一の攻撃を自動化する場合など、さまざまな方法で再利用できます。
 </p>
 <div class="highlightedarea">
     <h4>注</h4>
@@ -62,7 +62,7 @@
     <iframe src="https://www.youtube.com/embed/jBf6i_B7fTw?origin=https://portswigger.net&rel=0" allowfullscreen></iframe>
 </div>
 <p>
-    このチュートリアルでは、セキュリティテストを行うためのWebアプリケーションが与えられたと仮定します。このアプリケーション内で発見したコンテンツは、テストの"対象"(つまり有効な対象)とみなされます。そこで、偵察段階の一部として、Burp Intruderを使ってテストを実施するサブドメインを検索します。
+    このチュートリアルでは、セキュリティテストを行うためのWebアプリケーションが与えられたと仮定します。このアプリケーション内で発見したコンテンツは、テストの"スコープ内"(つまり有効な対象)とみなされます。そこで、偵察段階の一部として、Burp Intruderを使ってテストを実施するサブドメインを検索します。
 </p>
 <div class="highlightedarea">
     <h4>注</h4>
@@ -105,7 +105,7 @@
 </div>
 <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ3: Intruderの攻撃タイプを選択する</h3>
 <p>
-    このチュートリアルでは、単一の挿入ポイントに対して<a href="../tools/intruder/attack-types.html#sniper">スナイパー攻撃タイプ</a>を使用して、Intruderに潜在的なサブドメイン名のリストを循環させています。<strong>攻撃タイプの選択</strong>で、"スナイパー"が選択されていることに注目してください。その他の<a href="../tools/intruder/attack-types.html">Intruder攻撃タイプ</a>は、2つ以上の挿入ポイントが使用できます。
+    このチュートリアルでは、単一の挿入ポイントに対して<a href="../tools/intruder/configure-attack/attack-types.html#sniper">スナイパー攻撃タイプ</a>を使用して、Intruderに潜在的なサブドメイン名のリストを循環させています。<strong>攻撃タイプの選択</strong>で、"スナイパー"が選択されていることに注目してください。その他の<a href="../tools/intruder/configure-attack/attack-types.html">Intruder攻撃タイプ</a>は、2つ以上の挿入ポイントが使用できます。
 </p>
 <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ4: Intruderのペイロードに、潜在的なサブドメインを追加する</h3>
 <p>

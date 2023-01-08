@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">Intruder</a>
+        </li>
+        <li>
+            <a href="index.html">使用</a>
+        </li>
+        <li>
+            <a href="fuzzing.html">ファジング</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1>脆弱性のファジング</h1>
+<p>
+    Burp Intruderを使用して、攻撃結果のエラーメッセージやその他の例外を分析し、入力ベースの脆弱性を発見できます。
+</p>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <p>
+        入力ベースの脆弱性については、次を参照してください:
+    </p>
+    <ul>
+        <li>
+            <a href="../../../../../../web-security/sql-injection/index.html">SQLインジェクション</a>。
+        </li>
+        <li>
+            <a href="../../../../../../web-security/cross-site-scripting/index.html">クロスサイトスクリプティング</a>。
+        </li>
+        <li>
+            <a href="../../../../../../web-security/file-path-traversal/index.html">ディレクトリトラバーサル</a>。
+        </li>
+    </ul>
+</div>
+<p>
+    最近のアプリケーションの規模や複雑さを考えると、脆弱性を手動でファジングするのは時間のかかる作業です。Burp Intruderを使えば、そのプロセスを自動化できます。
+</p>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-1-set-the-payload-positions">ステップ1: ペイロードポジションを設定する</h2>
+<p>
+    すべてのリクエストパラメータ値にペイロードポジションを設定します。
+</p>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-2-set-the-payload-type">ステップ2: ペイロードタイプを設定する</h2>
+<p>
+    単純リストペイロードタイプを選択し、ペイロードリストを設定します。
+</p>
+<p>
+    独自の攻撃文字列のリスト、またはBurpの定義済みペイロードリストにある一般的なファジング文字列を使用できます。詳細は、<a href="../configure-attack/payload-lists.html">定義済みペイロードリスト</a>を参照してください。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/intruder-fuzzing-lists-940.png" alt="ファジング用ペイロード設定">
+</div>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-3-set-the-match-grep">ステップ3: マッチgrepを設定する</h2>
+<p>
+    <strong>Grep - Match</strong>オプションを設定し、さまざまな一般的なエラーメッセージ文字列を含むレスポンスにフラグをセットします。詳細は、<a href="../configure-attack/options.html#grep-match">Burp Intruderオプション</a>を参照してください。
+</p>
+<p>
+    独自の語句の指定も、デフォルトアイテムの使用も可能です。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/intruder-fuzzing-grep-match-940.png" alt="ファジングgrep match">
+</div>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-4-analyze-the-results">ステップ4: 結果を分析する</h2>
+<p>
+    攻撃結果をマッチgrepの式でソートし、一般的なエラーメッセージ文字列を含む結果を見つけます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/intruder-grep-match.png" alt="Intruderマッチgrepファジング" class="center-block">
+</div>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        同じペイロードとマッチgrep設定で大量のリクエストをテストするために、タブの設定を保存やコピーができます。詳細は、<a href="../configure-attack/index.html">Burp Intruder攻撃の設定</a>を参照してください。
+    </p>
+</div>
+</body>
+</html>

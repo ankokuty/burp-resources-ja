@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">Intruder</a>
+        </li>
+        <li>
+            <a href="index.html">使用</a>
+        </li>
+        <li>
+            <a href="enumerating.html">識別子の列挙</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1>識別子の列挙</h1>
+<p>
+    Webアプリケーションは、データやリソースのアイテムを参照するために、識別子を頻繁に使用します。たとえば:
+</p>
+<ul>
+    <li>
+        ユーザ名とパスワード。
+    </li>
+    <li>
+        ドキュメントID。
+    </li>
+    <li>
+        アカウント番号。
+    </li>
+</ul>
+<p>
+    Burp Intruderを使用すると、多数の潜在的なアイテムから有効な識別子や興味深い識別子を列挙できます。
+</p>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-1-find-a-request">ステップ1: リクエストを探す</h2>
+<p>
+    パラメータに識別子を含み、識別子についての興味深いデータがレスポンスにあるリクエストを検索します。
+</p>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-2-set-a-payload-position">ステップ2: ペイロードポジションを設定する</h2>
+<p>
+    そのパラメータの値を単一のペイロードポジションに設定します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/intruder-enumerating-positions-940.png" alt="ペイロードポジションの設定">
+</div>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-3-set-a-payload-type">ステップ3: ペイロードタイプを設定する</h2>
+<p>
+    正しいフォーマットやスキームの識別子候補がテストで生成されるように、適切な<a href="../configure-attack/payload-types.html">ペイロードタイプ</a>を使います。攻撃を開始します。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/intruder-enumerating-payloads-940.png" alt="列挙するペイロードタイプの設定">
+</div>
+<h2 cms-ignore-validation="HEADING_CAPITALIZATION,DUPLICATE_HEADINGS" id="step-4-analyze-the-results">ステップ4: 結果を分析する</h2>
+<p>
+    攻撃結果をさまざまな属性でソートし、変則的な結果を見つけます。これにより、有効な識別子を推測できます。たとえば、有効な識別子の場合に異なるHTTPステータスコードが返ってくるなどです。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/intruder-enumerating-sorting-results.png" alt="ペイロードタイプの設定">
+</div>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        有効な識別子の場合に特定の文字列を含むレスポンスが返ってくる場合は、この文字列に一致するレスポンスを取り出すようマッチgrepアイテムを定義できます。たとえば、"パスワードが違います"や "ログイン成功"などの語句を検索して、ログインに成功した場所を特定できます。詳細は、<a href="../configure-attack/options.html">Burp Intruderオプション</a>を参照してください。
+    </p>
+</div>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="use-cases">使用例</h2>
+<p>
+    膨大な種類の識別子を列挙するような攻撃を設定できます。例:
+</p>
+<ul>
+    <li>
+        ユーザ名の列挙 - ユーザ名生成ペイロードタイプを使用して、ユーザ名候補の長いリストをアプリケーションのログイン失敗メッセージに挿入する。
+    </li>
+    <li>
+        パスワードの列挙 - 単純リストペイロードタイプを使用して、既知の有効なユーザ名と一般的なパスワードセットをアプリケーションのログイン失敗メッセージに挿入する。
+    </li>
+    <li>
+        注文IDの列挙 - カスタムイテレータペイロードタイプを使用して、有効なフォーマットの潜在的な注文IDを巡回する。これにより、注文の詳細を確認できます。
+    </li>
+    <li>
+        セッショントークンの列挙 - ビットフリッパーペイロードタイプを使用して、CBC暗号を使って暗号化されたトークンを体系的に変更し、復号した値が意味のある値になるよう操作してみる。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <ul>
+        <li>
+            上記のペイロードタイプの詳細は、<a href="../configure-attack/payload-types.html">ペイロードタイプ</a>を参照してください。
+        </li>
+        <li>
+            ログイン情報を列挙する基本的なチュートリアルは、<a href="../getting-started.html">Burp Intruder入門</a>を参照してください。
+        </li>
+        <li>
+            より高度なチュートリアルは、<a href="../../../tutorials/enumerating-subdomains.html">Burp Intruderによるサブドメインの列挙</a>を参照してください。
+        </li>
+        <li>
+            ユーザ名とパスワードを同時に列挙する必要があるクラスター爆弾攻撃のチュートリアルは、<a href="../../../tutorials/brute-forcing-a-login-using-burp-intruder.html">Burp Intruderによるログイン機構へのブルートフォース</a>を参照してください。
+        </li>
+    </ul>
+</div>
+</body>
+</html>

@@ -181,7 +181,7 @@
         ブラウザやクローラが見つけたどのコンテンツからもリンクされていないコンテンツを探し出すために、<a href="../functions/content-discovery.html">コンテンツ探索</a>が使えます。
     </li>
     <li>
-        Burp Intruderを使うと、一般的なファイルとディレクトリのリストを順番に使ってアクセスする<a href="../tools/intruder/using.html#enumerating-identifiers">カスタム探索</a>ができます。
+        Burp Intruderを使うと、一般的なファイルとディレクトリのリストを順番に使ってアクセスする<a href="../tools/intruder/uses/enumerating.html">カスタム探索</a>ができます。
     </li>
 </ul>
 <div class="highlightedarea">
@@ -234,13 +234,13 @@
         Burp Scannerで<a href="../scanning/index.html">スキャン</a>を実行できます。Burpの任意の場所でアイテムを選択し、コンテキストメニューから<a href="../scanning/index.html#launching-scans">スキャンを開始</a>できます。または、Proxyを通過するすべてのスコープ内リクエストをスキャンする<a href="../scanning/live-tasks.html">ライブタスク</a>も設定できます。
     </li>
     <li>
-        Burp Intruderで、独自のテスト文字列やペイロードポジションを指定して、<a href="../tools/intruder/using.html#fuzzing-for-vulnerabilities">ファジング</a>が実行できます。
+        Burp Intruderで、独自のテスト文字列やペイロードポジションを指定して、<a href="../tools/intruder/uses/fuzzing.html">ファジング</a>が実行できます。
     </li>
     <li>
         個々のリクエストを<a href="../tools/repeater/index.html">Burp Repeater</a>に送信し、手動でリクエストを変更し何度も再送信できます。
     </li>
     <li>
-        一部の種類のバグを発見した場合には、<a href="../tools/intruder/using.html">Burp Intruder</a>で積極的に攻撃できます。たとえば、SQLインジェクション脆弱性を攻撃するには、多くの場合<a href="../tools/intruder/payloads/types.html#recursive-grep">再帰検索</a>ペイロードを使用します。
+        一部の種類のバグを発見した場合には、<a href="../tools/intruder/index.html">Burp Intruder</a>で積極的に攻撃できます。たとえば、SQLインジェクション脆弱性を攻撃するには、多くの場合<a href="../tools/intruder/configure-attack/payload-types.html#recursive-grep">再帰検索</a>ペイロードを使用します。
     </li>
 </ul>
 <h3>ロジックと設計の欠陥</h3>
@@ -249,13 +249,13 @@
 </p>
 <ul>
     <li>
-        典型的には、<a href="../tools/proxy/http-history/index.html">Proxy履歴</a>を詳細に評価し、調査する関連リクエストを特定します。
+        典型的には、<a href="../tools/proxy/http-history/index.html">Proxy履歴</a>を詳細に評価し、調査する関連リクエストを見つけます。
     </li>
     <li>
         予期せぬリクエストによるアプリケーションの挙動を調査するには、<a href="../tools/repeater/index.html">Burp Repeater</a>で個々のリクエストを発行するか、<a href="../tools/proxy/intercept-messages.html">Proxyインターセプト</a>を有効にしてブラウザを使用しながらその場でリクエストを編集します。
     </li>
     <li>
-        <a href="../tools/intruder/using.html">Burp Intruder</a>を使用して、ロジックや設計の欠陥を積極的に攻撃できます。たとえば、有効なユーザ名の列挙、パスワード推測、セッショントークンやパスワードリカバリトークンの推測、あるいは同一リクエストを単に大量再送信(<a href="../tools/intruder/payloads/types.html#null-payloads">ペイロードなし</a>タイプを使用)するために、Intruderが使用できます。
+        <a href="../tools/intruder/uses/index.html">Burp Intruder</a>を使用して、ロジックや設計の欠陥を積極的に攻撃できます。たとえば、有効なユーザ名の列挙、パスワード推測、セッショントークンやパスワードリカバリトークンの推測、あるいは同一リクエストを単に大量再送信(<a href="../tools/intruder/configure-attack/payload-types.html#null-payloads">ペイロードなし</a>タイプを使用)するために、Intruderが使用できます。
     </li>
     <li>
         ロジックや設計の欠陥を確認後、Burp Proxyの<a href="../tools/proxy/proxy-options.html#match-and-replace">検索/置換機能</a>や<a href="../settings/sessions/session-handling-rules.html">セッションハンドリングルール</a>を使用してリクエストを機械的に変更し、積極的に攻撃できます。
@@ -273,7 +273,7 @@
         各ブラウザごとに(異なるポートを使用する)<a href="../tools/proxy/proxy-options.html#proxy-listeners">Burp Proxyリスナー</a>を分離すると、異なるブラウザを使用しそれぞれのユーザコンテキストでアプリケーションにアクセスできます。追加の<a href="../tools/proxy/http-history/index.html">Proxy履歴</a>ウィンドウを(コンテキストメニューから)開き、各ウィンドウで<a href="../tools/proxy/http-history/index.html">ディスプレイフィルタ</a>を設定すると、特定のProxyリスナーが受信したアイテムのみを表示できます。各ブラウザでアプリケーションを使用すると、各履歴ウィンドウには関連するユーザコンテキストのアイテムだけが表示されます。次に、(コンテキストメニューから)<strong>現在のブラウザセッションでリクエスト</strong>機能を使用すると、ブラウザ間でリクエストを切り替えて、ブラウザのユーザコンテキストでどのように処理されるか判断できます。
     </li>
     <li>
-        多くの権限昇格の脆弱性は、アプリケーションがユーザパラメータ内にユーザ識別子を渡し、現在のユーザコンテキストによらずその識別子で権限を特定している場合に発生します。このタイプの脆弱性を攻撃するには、<a href="../tools/intruder/using.html"> Burp Intruder</a>で(たとえば、<a href="../tools/intruder/payloads/types.html#numbers">数値</a>や<a href="../tools/intruder/payloads/types.html#custom-iterator">カスタムイテレーター</a>ペイロードタイプを使用して)適切な形式の識別子を一通り送信し、<a href="../tools/intruder/options.html#grep-extract">抽出grep</a>アイテムを設定し、アプリケーションのレスポンスからユーザ固有の気になるデータを取得します。
+        多くの権限昇格の脆弱性は、アプリケーションがユーザパラメータ内にユーザ識別子を渡し、現在のユーザコンテキストによらずその識別子で権限を特定している場合に発生します。このタイプの脆弱性を攻撃するには、<a href="../tools/intruder/uses/harvesting.html"> Burp Intruder</a>で(たとえば、<a href="../tools/intruder/configure-attack/payload-types.html#numbers">数値</a>や<a href="../tools/intruder/configure-attack/payload-types.html#custom-iterator">カスタムイテレーター</a>ペイロードタイプを使用して)適切な形式の識別子を一通り送信し、<a href="../tools/intruder/configure-attack/options.html#grep-extract">抽出grep</a>アイテムを設定し、アプリケーションのレスポンスからユーザ固有の気になるデータを取得します。
     </li>
 </ul>
 <h3>その他の脆弱性</h3>
@@ -291,7 +291,7 @@
         <a href="../tools/sequencer/index.html">Burp Sequencer</a>を使用すると、アプリケーションのセッショントークンを分析し、その乱数品質を評価できます。
     </li>
     <li>
-        セッショントークンやその他の種類のパラメータが暗号化されている場合、Burp Intruderの<a href="../tools/intruder/payloads/types.html#bit-flipper">ビットフリッパー</a>や<a href="../tools/intruder/payloads/types.html#ecb-block-shuffler">ECBブロックシャッフル</a>ペイロードタイプを使用すると、アプリケーションが復号した際に意味のあるデータになることを期待して、暗号化されたデータを手当たり次第変更できます。
+        セッショントークンやその他の種類のパラメータが暗号化されている場合、Burp Intruderの<a href="../tools/intruder/configure-attack/payload-types.html#bit-flipper">ビットフリッパー</a>や<a href="../tools/intruder/configure-attack/payload-types.html#ecb-block-shuffler">ECBブロックシャッフル</a>ペイロードタイプを使用すると、アプリケーションが復号した際に意味のあるデータになることを期待して、暗号化されたデータを手当たり次第変更できます。
     </li>
     <li>
         独自の<a href="../extensions/index.html">Burp拡張</a>を書くと、より特化した、またはカスタマイズされたタスクを実行できます。
@@ -313,7 +313,7 @@
             <a href="../tools/proxy/index.html">Burp Proxy</a>
         </li>
         <li>
-            <a href="../tools/intruder/using.html">Burp Intruderの使い方</a>
+            <a href="../tools/intruder/index.html">Burp Intruderの使い方</a>
         </li>
         <li>
             <a href="../tools/repeater/index.html">Burp Repeaterの使い方</a>

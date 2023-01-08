@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">Intruder</a>
+        </li>
+        <li>
+            <a href="index.html">結果</a>
+        </li>
+        <li>
+            <a href="saving-attacks.html">結果の保存</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1>攻撃の保存</h1>
+<p>
+    Burp Intruder攻撃は、プロジェクトファイルが大きくなる可能性があるため、デフォルトでは保存されません。結果ウィンドウを開いた状態でトップレベルの<strong>保存</strong>メニューから、攻撃のさまざまな結果を保存できます:
+</p>
+<ul>
+    <li>
+        <p>
+            <strong>結果一覧</strong> - 結果一覧をテキストファイルとして保存し、さらなる分析に使用できます。
+        </p>
+        <ul>
+            <li>
+                保存する行と列、区切り文字を設定できます。つまり、たとえば1つの列を保存して、その後の攻撃の入力ファイルとして使用できるということです。
+            </li>
+        </ul>
+    </li>
+    <li>
+        <strong>サーバレスポンス</strong> - すべてのリクエストに対して受信した完全なレスポンスを保存します。これらは、連番の個別ファイルとして保存するか、順番に連結した1つのファイルとして保存するかを選択できます。
+    </li>
+    <li>
+        <p>
+            <strong>攻撃設定</strong> - 現在の攻撃設定をファイルとして保存します。
+        </p>
+        <ul>
+            <li>
+                保存した攻撃設定は、今後の攻撃で使用できます。トップレベルの<strong>Intruder</strong>メニューから、<strong>攻撃設定を読み込み</strong>を選択します。
+            </li>
+        </ul>
+    </li>
+    <li>
+        <p>
+            <strong>プロジェクトファイル</strong> - 攻撃設定と結果の完全なコピーをプロジェクトファイルに保存します。このオプションは、ディスクベースのプロジェクトでのみ使用可能です。
+        </p>
+        <ul>
+            <li>
+                攻撃前、攻撃中、攻撃後に、プロジェクトファイルに保存できます。その時点から攻撃の状態が保存されます。
+            </li>
+            <li>
+                保存した攻撃を閉じた場合に後で開くには、Burpのトップレベルの<strong>Intruder</strong>メニューで<strong>保存した攻撃を開く</strong>を選択します。
+            </li>
+        </ul>
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        Intruder攻撃はステートファイルへは保存できなくなりました。古いステートファイルは、トップレベルの<strong>Intruder</strong>メニューで<strong>保存した攻撃を開く</strong>を選択すると、引き続き読み込めます。
+    </p>
+</div>
+<h2 id="closing-attacks">攻撃を閉じる</h2>
+<p>
+    攻撃中に攻撃ウィンドウを閉じると、次のどちらにするかを聞かれます:
+</p>
+<ul>
+    <li>
+        攻撃をバックグラウンドで行わせる。
+    </li>
+    <li>
+        攻撃を破棄する。
+    </li>
+</ul>
+<p>
+    攻撃が終了した後に攻撃ウィンドウを閉じた場合は、その攻撃をプロジェクトファイルに保存する選択もできます(ディスクベースのプロジェクトの場合)。
+</p>
+<p>
+    いずれの場合についてもデフォルトの選択を設定するには、トップレベルの<strong>Intruder</strong>メニューで、<strong>攻撃結果のクローズ設定</strong>を選択します。
+</p>
+<div class="highlightedarea">
+    <h4>注</h4>
+    <p>
+        攻撃結果テーブルの情報が欠落している場合は、攻撃の進行中に、関連するリクエストを送信する前にBurp Suiteをシャットダウンした可能性があります。
+    </p>
+</div>
+</body>
+</html>

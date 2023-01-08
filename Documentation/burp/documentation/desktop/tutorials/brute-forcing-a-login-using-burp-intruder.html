@@ -32,10 +32,10 @@
 </section>
 <h1>Burp Intruderによるログイン機構へのブルートフォース</h1>
 <p>
-    <a href="../tools/intruder/index.html">Burp Intruder</a>はさまざまな<a href="../tools/intruder/attack-types.html">攻撃タイプ</a>に対応しています。多くの場合、あるタスクは複数タイプの攻撃で達成可能ですが、適切なタイプを選択すれば手動によるセキュリティテストの労力を大幅に削減できます。
+    <a href="../tools/intruder/index.html">Burp Intruder</a>はさまざまな<a href="../tools/intruder/configure-attack/attack-types.html">攻撃タイプ</a>に対応しています。多くの場合、あるタスクは複数タイプの攻撃で達成できます。しかし適切なタイプを選択すれば、手動によるセキュリティテストの労力を大幅に削減できます。
 </p>
 <p>
-    このチュートリアルでは、Burp Suiteのクラスター爆弾攻撃を使って、ユーザ名とパスワードのフィールドを同時にブルートフォースする方法を学びます。
+    このチュートリアルでは、クラスター爆弾攻撃タイプを使って、ユーザ名とパスワードのフィールドを同時にブルートフォースする方法を紹介します。
 </p>
 <div class="highlightedarea">
     <h4>注</h4>
@@ -45,7 +45,7 @@
 </div>
 <h2 id="what-is-a-cluster-bomb-attack" cms-ignore-validation="HEADING_CAPITALIZATION">クラスター爆弾とは?</h2>
 <p>
-    <a href="../tools/intruder/attack-types.html#cluster-bomb">クラスター爆弾(Cluster bomb)</a>攻撃タイプは、複数のペイロードセットを使用し、定義されたポジションごとに別のペイロードセットを割り当てます。これは、複数の異なる入力値を複数の場所に挿入し、可能な限りのあらゆる組み合わせをテストする攻撃に便利です。
+    <a href="../tools/intruder/configure-attack/attack-types.html#cluster-bomb">クラスター爆弾(Cluster bomb)</a>攻撃タイプは、定義されたポジションごとに別のペイロードセットを割り当てます。そして各セットから順番にペイロードを配置します。これは、複数の異なる入力値を複数の場所に挿入し、可能な限りのあらゆる組み合わせをテストする攻撃に便利です。
 </p>
 <p>
     クラスター爆弾攻撃を使用する場合、定義されたペイロードの数に応じて生成されるリクエスト数が指数関数的に増加します。つまりこの攻撃タイプは主に、比較的小さいデータセットでの反復処理を想定しています。
@@ -55,10 +55,10 @@
 </p>
 <h2 id="brute-forcing-a-login-using-a-cluster-bomb-attack" cms-ignore-validation="HEADING_CAPITALIZATION">クラスター爆弾攻撃によるログインのブルートフォース</h2>
 <p>
-    下記にあるラボの課題では、2つの別々の<a href="../tools/intruder/attack-types.html#sniper">スナイパー(Sniper)</a>攻撃を使って解くよう提案していますが、この例ではクラスター爆弾攻撃で解いてみます。クラスター爆弾攻撃で複数のペイロードセットを使用して、ユーザ名とパスワードフィールドを同時にテストできます。
+    下記にあるラボの課題では、2つの別々の<a href="../tools/intruder/configure-attack/attack-types.html#sniper">スナイパー(Sniper)</a>攻撃を使って解くよう提案していますが、今回はクラスター爆弾攻撃で解いてみます。クラスター爆弾攻撃で複数のペイロードセットを使用して、ユーザ名とパスワードフィールドを同時にテストできます。
 </p>
 <p>
-    このラボを解くのにクラスター爆弾攻撃を使用するとより多くのリクエストが送信されることになるため、スナイパー攻撃を2回行うよりも効率が悪いです。しかしスナイパー方式とは異なり、有効なユーザ名を列挙できるかどうかに依存しません。
+    クラスター爆弾攻撃を使用するとより多くのリクエストが送信されることになるため、スナイパー攻撃を2回行うよりも効率が悪いです。しかしスナイパー方式とは異なり、有効なユーザ名を列挙する必要はありません。
 </p>
 <div class="highlightedarea">
     <h4>注</h4>
@@ -100,7 +100,7 @@
     先程選択したリクエストを右クリックして、<strong>Intruderに送信</strong>をクリックします。
 </p>
 <p>
-    <strong>Intruder</strong>タブをクリックします。リクエストがBurp Intruderに送信され、<a href="../tools/intruder/positions.html">ペイロードポジション</a>(<strong>§</strong>マークで区切られている)が3箇所に挿入されていることに注目してください。
+    <strong>Intruder</strong>タブをクリックします。リクエストがBurp Intruderに送信され、<a href="../tools/intruder/configure-attack/positions.html">ペイロードポジション</a>(<strong>§</strong>マークで区切られている)が3箇所に挿入されていることに注目してください。
 </p>
 <h3 cms-ignore-validation="HEADING_CAPITALIZATION">ステップ4: ペイロードポジションを設定する</h3>
 <div class="rounded-dropshadow">
@@ -147,7 +147,7 @@
     <img src="images/cluster-bomb/configuring-burp-intruder-password-payloads.png" alt="Burp Intruderで設定されたパスワードペイロード">
 </div>
 <p>
-    <strong>攻撃開始</strong>ボタンをクリックします。
+    <strong>攻撃開始</strong>をクリックします。
 </p>
 <div class="highlightedarea">
     <h4>注</h4>

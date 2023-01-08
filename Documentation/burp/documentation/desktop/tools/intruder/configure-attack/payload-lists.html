@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">Intruder</a>
+        </li>
+        <li>
+            <a href="index.html">攻撃の設定</a>
+        </li>
+        <li>
+            <a href="payload-lists.html">ペイロードリスト</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1>定義済みペイロードリスト</h1>
+<p>
+    Burp Intruderには、さまざまなペイロードリストが組み込まれています。これらを使って、さまざまな攻撃用のペイロードを素早く簡単に生成できます。
+</p>
+<h2 id="using-predefined-payload-lists">定義済みペイロードリストの使用</h2>
+<p>
+    定義済みペイロードリストは、文字列のリストを使用するペイロードタイプで使用できます。
+</p>
+<ol>
+    <li>
+        <strong>ペイロードオプション</strong>欄で、<strong>リストから追加...</strong>をクリックします。
+    </li>
+    <li>
+        ドロップダウンメニューからリストを選択します。<strong>ペイロードオプション</strong>欄に、リストが読み込まれます。
+    </li>
+    <li>
+        リストにプレースホルダーが含まれている場合は、プレースホルダーを処理するルールを設定します。
+    </li>
+</ol>
+<h2 id="placeholders">プレースホルダ</h2>
+<p>
+    定義済みペイロードリストの中には、<code>{KNOWNFILE}</code>や<code>{domain}</code>のような、プレースホルダーを含むものがあります。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/intruder-payload-list-placeholders.png" alt="Intruderペイロードリストのプレースホルダ">
+</div>
+<p>
+    攻撃時にプレースホルダーを正しく処理するためには、処理ルールを設定します:
+</p>
+<ol>
+    <li>
+        <strong>Intruder &gt; ペイロード</strong>に移動し、<strong>ペイロード処理</strong>欄までスクロールします。
+    </li>
+    <li>
+        <strong>追加</strong>をクリックします。処理ルールのドロップダウンリストが表示されたウィンドウが開きます。
+    </li>
+    <li>
+        <strong>検索/置換</strong>を選択します。
+    </li>
+    <li>
+        <strong>検索正規表現</strong>ボックスに、<code>{KNOWNFILE}</code>や<code>{domain}</code>など、リストで使用されているプレースホルダを入力します。
+    </li>
+    <li>
+        置換ボックスに、プレースホルダから置き換えるものを入力します。たとえば、<code>{KNOWNFILE}</code>をapplication.exeに、<code>{domain}</code>をportswigger.netに置き換えるなどを指定します。
+    </li>
+</ol>
+<h2 id="customizing-predefined-payload-lists">定義済みペイロードリストのカスタマイズ</h2>
+<p>
+    独自のディレクトリからカスタムペイロードリストを読み込めます:
+</p>
+<ol>
+    <li>
+        トップレベルの<strong>Intruder</strong>メニューで、<strong>定義済みペイロードリストを編集</strong>をクリックします。
+    </li>
+    <li>
+        <strong>ディレクトリからカスタムリストを読み込む</strong>を選択します。
+    </li>
+    <li>
+        ディレクトリを選んで、<strong>開く</strong>をクリックします。
+    </li>
+</ol>
+<p>
+    Burpの定義済みペイロードリストをすべて自分のディレクトリにコピーするには、カスタムディレクトリを読み込み、<strong>コピー</strong>を選択します。
+</p>
+</body>
+</html>

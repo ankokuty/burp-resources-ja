@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">Intruder</a>
+        </li>
+        <li>
+            <a href="index.html">結果</a>
+        </li>
+        <li>
+            <a href="viewing-results.html">結果の表示</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1>攻撃結果の表示</h1>
+<p>
+    攻撃で発行されたすべてのリクエストとレスポンスの詳細を結果ウィンドウで確認できます。結果は、<strong>結果</strong>タブに一覧で表示されます。
+</p>
+<p>
+    結果一覧を設定するには、<strong>列</strong>メニューをクリックし、列の選択、非選択を切り替えます。次のオプションがあります:
+</p>
+<ul>
+    <li>
+        <strong>リクエスト</strong> - リクエストのインデックス番号。攻撃で元のリクエストをそのまま送るような<a href="../configure-attack/options.html#attack-results">設定</a>がされていたら、番号0のアイテムとして一覧内に表示されます。
+    </li>
+    <li>
+        <strong>ポジション</strong> - 現在のペイロードのポジション番号(<a href="../configure-attack/attack-types.html">スナイパー攻撃</a>の場合)。
+    </li>
+    <li>
+        <strong>ペイロード</strong> - リクエストで使われたペイロード。
+    </li>
+    <li>
+        <strong>ステータス</strong> - HTTPステータスコード。
+    </li>
+    <li>
+        <strong>時刻</strong> - リクエストが行われた時刻。
+    </li>
+    <li>
+        <strong>レスポンス受信</strong> - レスポンスを受信し始めるまでの所要時間(ミリ秒単位)。
+    </li>
+    <li>
+        <strong>レスポンス完了</strong> - レスポンスを受信し終わるまでの所要時間(ミリ秒単位)。
+    </li>
+    <li>
+        <strong>エラー</strong> - リクエスト送信中にエラーが発生したかどうか。
+    </li>
+    <li>
+        <strong>タイムアウト</strong> - レスポンスや処理を待っている間にタイムアウトが発生したかどうか。
+    </li>
+    <li>
+        <strong>長さ</strong> - レスポンスの長さ(バイト)。
+    </li>
+    <li>
+        <strong>Cookie</strong> - レスポンスで受信したcookie。
+    </li>
+    <li>
+        <strong>コメント</strong> - ユーザが適用した<a href="analyzing-results.html">コメント</a>。
+    </li>
+</ul>
+<p>
+    また、適切なオプションが設定されている場合は、次の詳細が表示されます:
+</p>
+<ul>
+    <li>
+        マッチgrepアイテムの結果。
+    </li>
+    <li>
+        抽出grepアイテムで抽出されたデータ。
+    </li>
+    <li>
+        payload grepが設定されている場合、ペイロードがレスポンス内に返ってきたかどうか。
+    </li>
+    <li>
+        <strong>たどったリダイレクト</strong> - たどったリダイレクトの数。
+    </li>
+</ul>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <p>
+        リダイレクトの詳細、およびgrepの設定オプションは、<a href="../configure-attack/options.html">Burp Intruderオプション</a>を参照してください。
+    </p>
+</div>
+<h2 cms-ignore-validation="DUPLICATE_HEADINGS" id="viewing-a-request">リクエストの表示</h2>
+<p>
+    一覧で任意のアイテムを選択すると、リクエストとレスポンスが表示されます。
+</p>
+<div class="rounded-dropshadow">
+    <img src="../../../images/intruder-viewing-requests.png" alt="Intruderのリクエスト表示" class="center-block">
+</div>
+<p>
+    リダイレクトをたどるように攻撃設定がされている場合は、Burpは途中のすべてのリクエストも表示します。
+</p>
+<p>
+    アイテムをダブルクリックすると、リクエストとレスポンスが新しいウィンドウで表示されます。
+</p>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <p>
+        Burp Intruderには、結果を分析するためのさまざまな機能があります。詳細は、<a href="analyzing-results.html">攻撃結果の分析</a>を参照してください。
+    </p>
+</div>
+</body>
+</html>

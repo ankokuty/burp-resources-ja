@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">Intruder</a>
+        </li>
+        <li>
+            <a href="index.html">攻撃の設定</a>
+        </li>
+        <li>
+            <a href="attack-types.html">攻撃タイプ</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1 id="burp-intruder-attack-types">Burp Intrudeの攻撃タイプ</h1>
+<p>
+    ペイロードポジションへの割り当て方法を決定するために、攻撃タイプを指定できます。攻撃タイプは、次を設定できます:
+</p>
+<ul>
+    <li>
+        ペイロードに1つのセットを使用するか、複数(最大20個)のセットを使用するか。
+    </li>
+    <li>
+        ペイロードポジションにペイロードを順番に割り当てるか、同時に割り当てるか。
+    </li>
+</ul>
+<p>
+    攻撃タイプを選択するには、<strong>Intruder &gt; ポジション</strong>に移動し、<strong>攻撃タイプの選択</strong>ドロップダウンリストをクリックします。
+</p>
+<h2 id="sniper">スナイパー(Sniper)</h2>
+<p>
+    この攻撃は、各ペイロードポジションに各ペイロードを順番に配置します。単一のペイロードセットを使用します。
+</p>
+<p>
+    攻撃で生成されるリクエストの合計数は、ペイロードポジション数とペイロードセット内のペイロード数の積です。
+</p>
+<p>
+    スナイパー攻撃は、多くのリクエストパラメータに対する一般的な脆弱性のファジングに便利です。
+</p>
+<h2 id="battering-ram">破城槌(Battering ram)</h2>
+<p>
+    この攻撃は、定義されたすべてのペイロードポジションに同時に同じペイロードを配置します。単一のペイロードセットを使用します。
+</p>
+<p>
+    攻撃で生成されるリクエストの合計数は、ペイロードセット内のペイロード数です。
+</p>
+<p>
+    破城槌攻撃は、リクエスト内の複数箇所に同じ入力を挿入する必要がある攻撃に有効です。たとえば、cookieとボディパラメータで同じユーザ名を入力する、などです。
+</p>
+<h2 id="pitchfork">ピッチフォーク(Pitchfork)</h2>
+<p>
+    この攻撃は、定義されたポジションごとに異なるペイロードセットを順番に実行します。ペイロードは各ポジションに同時に配置されます。たとえば、最初の3リクエストは次のようになります:
+</p>
+<ul>
+    <li>
+        <p>
+            リクエスト1:
+        </p>
+        <ul>
+            <li>
+                ポジション1 = セット1の最初のペイロード。
+            </li>
+            <li>
+                ポジション2 = セット2の最初のペイロード。
+            </li>
+        </ul>
+    </li>
+    <li>
+        <p>
+            リクエスト2:
+        </p>
+        <ul>
+            <li>
+                ポジション1 = セット1の2番目のペイロード。
+            </li>
+            <li>
+                ポジション2 = セット2の2番目のペイロード。
+            </li>
+        </ul>
+    </li>
+    <li>
+        <p>
+            リクエスト3:
+        </p>
+        <ul>
+            <li>
+                ポジション1 = セット1の3番目のペイロード。
+            </li>
+            <li>
+                ポジション2 = セット2の3番目のペイロード。
+            </li>
+        </ul>
+    </li>
+</ul>
+<p>
+    攻撃で生成されるリクエストの合計数は、最小のペイロードセットのペイロード数です。
+</p>
+<p>
+    ピッチフォーク攻撃は、リクエスト内の複数箇所に、同じではないが関連する値を挿入する必要がある攻撃に有効です。たとえば、あるパラメータにユーザ名、別のパラメータにそのユーザ名に対応する既知のID番号を配置する場合などです。
+</p>
+<h2 id="cluster-bomb">クラスター爆弾(Cluster bomb)</h2>
+<p>
+    この攻撃は、定義されたポジションごとに異なるペイロードセットを順番に実行します。各セットのペイロードを順番に配置し、すべてのペイロードの組み合わせがテストされるようにします。たとえば、最初の3リクエストは次のようになります:
+</p>
+<ul>
+    <li>
+        <p>
+            リクエスト1:
+        </p>
+        <ul>
+            <li>
+                ポジション1 = セット1の最初のペイロード。
+            </li>
+            <li>
+                ポジション2 = セット2の最初のペイロード。
+            </li>
+        </ul>
+    </li>
+    <li>
+        <p>
+            リクエスト2:
+        </p>
+        <ul>
+            <li>
+                ポジション1 = セット1の最初のペイロード。
+            </li>
+            <li>
+                ポジション2 = セット2の2番目のペイロード。
+            </li>
+        </ul>
+    </li>
+    <li>
+        <p>
+            リクエスト3:
+        </p>
+        <ul>
+            <li>
+                ポジション1 = セット1の最初のペイロード。
+            </li>
+            <li>
+                ポジション2 = セット2の3番目のペイロード。
+            </li>
+        </ul>
+    </li>
+</ul>
+<p>
+    攻撃で生成されるリクエストの合計数は、定義されたすべてのペイロードセットのペイロード数の積です - これは非常に大きくなる可能性があります。
+</p>
+<p>
+    クラスター爆弾攻撃は、リクエスト内の複数箇所に、関連のない入力や未知の入力を挿入する必要がある攻撃に有効です。たとえば、ユーザ名とパスワードの両方を推測する場合などです。
+</p>
+<p>
+    クラスター爆弾攻撃のチュートリアルは、<a href="../../../tutorials/brute-forcing-a-login-using-burp-intruder.html">Burp Intruderによるログイン機構へのブルートフォース</a>を参照してください。
+</p>
+</body>
+</html>

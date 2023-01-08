@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">Intruder</a>
+        </li>
+        <li>
+            <a href="index.html">攻撃の設定</a>
+        </li>
+        <li>
+            <a href="resource-pool.html">リソースプール</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1>Burp Intruderのリソースプール</h1>
+<p>
+    リソースプールは、リソースの割り当てを共有するタスクをグループ化したものです。リソースプールを利用すると、次がより簡単になります:
+</p>
+<ul>
+    <li>
+        特に複数の攻撃にまたがる、システムリソースの使用状況の管理と優先度付け。
+    </li>
+    <li>
+        自動化されたリクエストを異なる速度で受け付けるアプリケーションのテスト。
+    </li>
+</ul>
+<h2 id="creating-resource-pools">リソースプールの作成</h2>
+<p>
+    新しいタスクは、デフォルトのリソースプールに割り当てられます。カスタムプールは、攻撃を開始する前にいつでも作成できます。リソースプールを作成するには:
+</p>
+<ol>
+    <li>
+        <strong>Intruder &gt; リソースプール</strong>に移動します。
+    </li>
+    <li>
+        <strong>新しいリソースプールを作成する</strong>を選択します。
+    </li>
+    <li>
+        プールの名前を入力し、プールの設定を行います。
+    </li>
+    <li>
+        攻撃開始時にプールが作成されます。
+    </li>
+</ol>
+<p>
+    攻撃開始後に新しいプールを作成する場合は、別のタスクで行うか、Burpの<strong>ダッシュボード</strong>で設定する必要があります。
+</p>
+<h2 id="resource-pool-settings">リソースプールの設定</h2>
+<p>
+    各リソースプールは、それぞれ独自の速度設定を行えます:
+</p>
+<ul>
+    <li>
+        <strong>最大同時リクエスト数</strong> - 攻撃で同時に送信するリクエスト数を制限します。これは、対象サーバに過負荷をかけないように、あるいは指定されたレート制限を超えないようにするために有効です。
+    </li>
+    <li>
+        <p>
+            <strong>リクエスト間の遅延</strong> - 単位はミリ秒です。遅延の種類は3種類から選択できます:
+        </p>
+        <ul>
+            <li>
+                <strong>固定</strong>。
+            </li>
+            <li>
+                <strong>ランダムに変動</strong>。
+            </li>
+            <li>
+                <strong>遅延を段階的に増加</strong> - リクエストが送信されない場合に、セッションが有効期限切れになるまでの時間を決定できます。
+            </li>
+        </ul>
+    </li>
+    <li>
+        <strong>自動バックオフ</strong> - リクエスト間に短い遅延を自動的に追加し、攻撃がサーバのレート制限に適応するまで段階的に増加させます。これは、デフォルトのリソースプールで有効になっています。
+    </li>
+</ul>
+<h2 id="moving-tasks-between-resource-pools">リソースプール間のタスク移動</h2>
+<p>
+    攻撃を開始する前にタスクを移動するには、<strong>Intruder &gt; リソースプール</strong>で、プールを選択します。
+</p>
+<p>
+    攻撃中にタスクを移動するには、攻撃ウィンドウの<strong>リソースプール</strong>タブで、プールを選択します。これにより、システムリソースの使用状況をリアルタイムに管理できます。
+</p>
+</body>
+</html>

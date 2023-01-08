@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../../../../../assets/ps/styles/psselfservice.css">
+<cms page-layout="FREESTYLE"></cms>
+</head>
+<body class="section theme-white wrapper-themed">
+<section class="container ps-breadcrumbs">
+    <ol class="breadcrumb-list">
+        <li>
+            <a href="https://portswigger.net/support">サポートセンタ</a>
+        </li>
+        <li>
+            <a href="../../../../index.html">ドキュメント</a>
+        </li>
+        <li>
+            <a href="../../../index.html">デスクトップ版</a>
+        </li>
+        <li>
+            <a href="../../index.html">ツール</a>
+        </li>
+        <li>
+            <a href="../index.html">Intruder</a>
+        </li>
+        <li>
+            <a href="index.html">攻撃の設定</a>
+        </li>
+    </ol>
+</section>
+<section class="container labels-editions-wrapper">
+    <label class="label-edition is-professional">Professional</label>
+</section>
+<h1>Burp Intruder攻撃の設定</h1>
+<p>
+    Burp IntruderにHTTPリクエストを送信すると、新しい攻撃タブが開きます。Burp Intruderは、HTTPリクエスト中の定義された位置にペイロードを挿入し、それぞれのリクエストを対象サーバに送信できます。攻撃に関するさまざまな設定を行えます。
+</p>
+<ul>
+    <li>
+        <a href="positions.html">ペイロードポジション</a> - ベースリクエスト内でペイロードが配置される位置です。
+    </li>
+    <li>
+        <a href="attack-types.html">攻撃タイプ</a> - 定義したペイロードポジションにペイロードを配置するアルゴリズムです。
+    </li>
+    <li>
+        <a href="payload-types.html">ペイロードタイプ</a> - ベースリクエストに挿入したいペイロードのタイプです。単純な単語リストも使用できますが、Burp Suiteにはペイロードを自動生成するためのさまざまなオプションも用意されています。Burp Suite Professionalには、対応するペイロードタイプで使用するための、さまざまな<a href="payload-lists.html">定義済みペイロードリスト</a>が含まれています。
+    </li>
+    <li>
+        <a href="processing.html">ペイロード処理</a> - 各ペイロードを使用する前に操作するルールです。
+    </li>
+    <li>
+        <a href="resource-pool.html">リソースプール</a> - 攻撃に割り当てるリソースです。
+    </li>
+    <li>
+        <a href="options.html">オプション</a> - Burp Intruderの設定です。
+    </li>
+</ul>
+<p>
+    トップの<strong>Intruder</strong>メニューで攻撃設定が保存でき、将来の攻撃で攻撃設定を読み込めます。また、開いているタブに攻撃設定をコピーもできます。各機能について、ペイロードポジションを含めるかどうかを選択できます。
+</p>
+<p>
+    攻撃設定が完了したら、<strong>攻撃開始</strong>をクリックして、対象サーバにリクエストを送信します。
+</p>
+<div class="highlightedarea">
+    <h4>関連ページ</h4>
+    <ul>
+        <li>
+            攻撃タブの詳細は、<a href="managing-tabs.html">攻撃タブの管理</a>を参照してください。
+        </li>
+    </ul>
+</div>
+</body>
+</html>
